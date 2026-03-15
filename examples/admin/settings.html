@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebBlocks UI — Settings Page</title>
   <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../dist/webblocks-icons.css">
   <script src="../../dist/webblocks-ui.js"></script>
 </head>
 <body style="background:var(--wb-bg)">
@@ -44,13 +45,13 @@
     <div class="wb-sidebar-header">AdminPanel</div>
     <nav class="wb-sidebar-nav">
       <a class="wb-sidebar-link" href="../v2/dashboard.html">
-        <span class="wb-sidebar-icon">⬛</span> Dashboard
+        <span class="wb-sidebar-icon"><i class="wb-icon wb-icon-layout-dashboard wb-icon-sm"></i></span> Dashboard
       </a>
       <a class="wb-sidebar-link" href="#">
-        <span class="wb-sidebar-icon">👥</span> Users
+        <span class="wb-sidebar-icon"><i class="wb-icon wb-icon-users wb-icon-sm"></i></span> Users
       </a>
       <a class="wb-sidebar-link is-active" href="#">
-        <span class="wb-sidebar-icon">⚙</span> Settings
+        <span class="wb-sidebar-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span> Settings
       </a>
     </nav>
   </aside>
@@ -66,28 +67,28 @@
         <aside class="wb-settings-nav">
           <div class="wb-settings-nav-header">Account</div>
           <a class="wb-settings-nav-link is-active" href="#">
-            <span class="wb-settings-nav-icon">👤</span> Profile
+            <span class="wb-settings-nav-icon"><i class="wb-icon wb-icon-user-round wb-icon-sm"></i></span> Profile
           </a>
           <a class="wb-settings-nav-link" href="#security">
-            <span class="wb-settings-nav-icon">🔒</span> Security
+            <span class="wb-settings-nav-icon"><i class="wb-icon wb-icon-lock wb-icon-sm"></i></span> Security
           </a>
           <a class="wb-settings-nav-link" href="#notifications">
-            <span class="wb-settings-nav-icon">🔔</span> Notifications
+            <span class="wb-settings-nav-icon"><i class="wb-icon wb-icon-bell wb-icon-sm"></i></span> Notifications
           </a>
           <hr class="wb-settings-nav-divider">
           <div class="wb-settings-nav-header">Workspace</div>
           <a class="wb-settings-nav-link" href="#general">
-            <span class="wb-settings-nav-icon">🏢</span> General
+            <span class="wb-settings-nav-icon"><i class="wb-icon wb-icon-store wb-icon-sm"></i></span> General
           </a>
           <a class="wb-settings-nav-link" href="#members">
-            <span class="wb-settings-nav-icon">👥</span> Members
+            <span class="wb-settings-nav-icon"><i class="wb-icon wb-icon-users wb-icon-sm"></i></span> Members
           </a>
           <a class="wb-settings-nav-link" href="#billing">
-            <span class="wb-settings-nav-icon">💳</span> Billing
+            <span class="wb-settings-nav-icon"><i class="wb-icon wb-icon-credit-card wb-icon-sm"></i></span> Billing
           </a>
           <hr class="wb-settings-nav-divider">
           <a class="wb-settings-nav-link" href="#danger" style="color:var(--wb-danger)">
-            <span class="wb-settings-nav-icon">⚠</span> Danger Zone
+            <span class="wb-settings-nav-icon"><i class="wb-icon wb-icon-shield wb-icon-sm"></i></span> Danger Zone
           </a>
         </aside>
 
@@ -343,7 +344,7 @@
 <div class="wb-modal" id="deleteModal" role="dialog" aria-modal="true">
   <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
   <div class="wb-confirm">
-    <div class="wb-confirm-icon wb-confirm-icon-danger">⚠</div>
+    <div class="wb-confirm-icon wb-confirm-icon-danger"><i class="wb-icon wb-icon-shield wb-icon-sm"></i></div>
     <h4 class="wb-confirm-title">Delete your account?</h4>
     <p class="wb-confirm-text">All of your data will be permanently removed. This action cannot be undone.</p>
     <div class="wb-confirm-actions">

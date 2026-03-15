@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebBlocks UI — V2 Admin Dashboard</title>
   <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../dist/webblocks-icons.css">
   <script src="../../dist/webblocks-ui.js"></script>
 </head>
 <body style="background:var(--wb-bg)">
@@ -21,7 +22,7 @@
   <!-- Command palette trigger -->
   <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-toggle="cmd" data-wb-target="#mainCmd"
           style="display:flex;align-items:center;gap:.4rem;color:var(--wb-muted)">
-    <span>⌕</span>
+    <i class="wb-icon wb-icon-file-search wb-icon-sm"></i>
     <span style="font-size:.8rem">Search…</span>
     <kbd style="font-size:.7rem;padding:.1em .35em;background:var(--wb-surface-2);border:1px solid var(--wb-border);border-radius:4px;margin-left:.2rem">⌘K</kbd>
   </button>
@@ -31,7 +32,7 @@
     <div class="wb-topbar-action wb-dropdown">
       <button class="wb-topbar-action" data-wb-toggle="dropdown" aria-expanded="false"
               data-wb-tooltip="Notifications" data-wb-tooltip-placement="bottom">
-        🔔
+        <i class="wb-icon wb-icon-bell wb-icon-sm"></i>
         <span class="wb-topbar-action-dot"></span>
       </button>
       <ul class="wb-dropdown-menu" style="right:0;left:auto;min-width:280px">
@@ -51,7 +52,7 @@
 
     <!-- Theme toggle -->
     <button class="wb-topbar-action" data-wb-mode-set="dark"
-            data-wb-tooltip="Toggle dark mode" data-wb-tooltip-placement="bottom">🌙</button>
+            data-wb-tooltip="Toggle dark mode" data-wb-tooltip-placement="bottom"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></button>
 
     <!-- User menu -->
     <div class="wb-dropdown">
@@ -80,11 +81,11 @@
   <!-- ── Sidebar ───────────────────────────────────────────── -->
   <aside class="wb-sidebar" id="mainSidebar">
     <nav class="wb-sidebar-nav">
-      <a class="wb-sidebar-link is-active" href="#">🏠 Dashboard</a>
+      <a class="wb-sidebar-link is-active" href="#"><i class="wb-icon wb-icon-layout-dashboard wb-icon-sm"></i> Dashboard</a>
 
       <div data-wb-nav-group class="wb-nav-group is-open">
         <button class="wb-nav-group-toggle" aria-expanded="true">
-          <span class="wb-nav-group-icon">👥</span>
+          <span class="wb-nav-group-icon"><i class="wb-icon wb-icon-users wb-icon-sm"></i></span>
           <span class="wb-nav-group-label">Users</span>
           <span class="wb-nav-group-arrow"></span>
         </button>
@@ -97,7 +98,7 @@
 
       <div data-wb-nav-group class="wb-nav-group">
         <button class="wb-nav-group-toggle" aria-expanded="false">
-          <span class="wb-nav-group-icon">📊</span>
+          <span class="wb-nav-group-icon"><i class="wb-icon wb-icon-bar-chart3 wb-icon-sm"></i></span>
           <span class="wb-nav-group-label">Reports</span>
           <span class="wb-nav-group-arrow"></span>
         </button>
@@ -110,7 +111,7 @@
 
       <div data-wb-nav-group class="wb-nav-group">
         <button class="wb-nav-group-toggle" aria-expanded="false">
-          <span class="wb-nav-group-icon">📦</span>
+          <span class="wb-nav-group-icon"><i class="wb-icon wb-icon-package wb-icon-sm"></i></span>
           <span class="wb-nav-group-label">Content</span>
           <span class="wb-nav-group-arrow"></span>
         </button>
@@ -121,7 +122,7 @@
         </div>
       </div>
 
-      <a class="wb-sidebar-link" href="#">⚙ Settings</a>
+      <a class="wb-sidebar-link" href="#"><i class="wb-icon wb-icon-settings wb-icon-sm"></i> Settings</a>
 
       <div class="wb-sidebar-section">
         <span class="wb-sidebar-label">Accent</span>
@@ -197,7 +198,7 @@
         <div class="wb-filter-bar wb-filter-bar-attached">
           <div class="wb-filter-bar-start">
             <div class="wb-search-bar" style="width:220px">
-              <span class="wb-search-bar-icon">⌕</span>
+              <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
               <input class="wb-search-bar-input" type="text" placeholder="Search users…" id="userSearch">
             </div>
             <button class="wb-filter-chip is-active" onclick="toggleChip(this)">All <span class="wb-filter-count">1,284</span></button>
@@ -246,8 +247,8 @@
                 <td style="color:var(--wb-muted);font-size:.875rem">2 min ago</td>
                 <td>
                   <div class="wb-action-group">
-                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile" onclick="openViewDrawer('Alice Johnson')">👁</button>
-                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer">✏</button>
+                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile" onclick="openViewDrawer('Alice Johnson')"><i class="wb-icon wb-icon-maximize2 wb-icon-sm"></i></button>
+                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer"><i class="wb-icon wb-icon-pencil wb-icon-sm"></i></button>
                     <div class="wb-action-more wb-dropdown">
                       <button class="wb-action-more-btn" data-wb-toggle="dropdown">⋯</button>
                       <ul class="wb-dropdown-menu">
@@ -277,8 +278,8 @@
                 <td style="color:var(--wb-muted);font-size:.875rem">3 hours ago</td>
                 <td>
                   <div class="wb-action-group">
-                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile">👁</button>
-                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer">✏</button>
+                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile"><i class="wb-icon wb-icon-maximize2 wb-icon-sm"></i></button>
+                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer"><i class="wb-icon wb-icon-pencil wb-icon-sm"></i></button>
                     <div class="wb-action-more wb-dropdown">
                       <button class="wb-action-more-btn" data-wb-toggle="dropdown">⋯</button>
                       <ul class="wb-dropdown-menu">
@@ -308,8 +309,8 @@
                 <td style="color:var(--wb-muted);font-size:.875rem">5 days ago</td>
                 <td>
                   <div class="wb-action-group">
-                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile">👁</button>
-                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer">✏</button>
+                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile"><i class="wb-icon wb-icon-maximize2 wb-icon-sm"></i></button>
+                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer"><i class="wb-icon wb-icon-pencil wb-icon-sm"></i></button>
                     <div class="wb-action-more wb-dropdown">
                       <button class="wb-action-more-btn" data-wb-toggle="dropdown">⋯</button>
                       <ul class="wb-dropdown-menu">
@@ -512,7 +513,7 @@
 <div class="wb-modal" id="confirmDelete" role="dialog" aria-modal="true">
   <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
   <div class="wb-confirm">
-    <div class="wb-confirm-icon wb-confirm-icon-danger">⚠</div>
+    <div class="wb-confirm-icon wb-confirm-icon-danger"><i class="wb-icon wb-icon-shield wb-icon-sm"></i></div>
     <h4 class="wb-confirm-title">Delete this user?</h4>
     <p class="wb-confirm-text">All of their data will be permanently removed. This action cannot be undone.</p>
     <div class="wb-confirm-actions">
@@ -526,7 +527,7 @@
 <div class="wb-cmd-backdrop" id="mainCmd" role="dialog" aria-modal="true" aria-label="Command palette">
   <div class="wb-cmd-dialog">
     <div class="wb-cmd-search">
-      <span class="wb-cmd-search-icon">⌕</span>
+          <span class="wb-cmd-search-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
       <input class="wb-cmd-input" type="text" placeholder="Search users, pages, actions…" autocomplete="off">
       <span class="wb-cmd-shortcut-hint">Esc</span>
     </div>
@@ -534,19 +535,19 @@
       <div class="wb-cmd-group">
         <div class="wb-cmd-group-label">Navigation</div>
         <a class="wb-cmd-item is-selected" href="#">
-          <span class="wb-cmd-item-icon">🏠</span>
+          <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layout-dashboard wb-icon-sm"></i></span>
           <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Dashboard</span></span>
         </a>
         <a class="wb-cmd-item" href="#">
-          <span class="wb-cmd-item-icon">👥</span>
+          <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-users wb-icon-sm"></i></span>
           <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">All Users</span><span class="wb-cmd-item-sub">1,284 records</span></span>
         </a>
         <a class="wb-cmd-item" href="#">
-          <span class="wb-cmd-item-icon">📊</span>
+          <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-bar-chart3 wb-icon-sm"></i></span>
           <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Reports</span></span>
         </a>
         <a class="wb-cmd-item" href="#">
-          <span class="wb-cmd-item-icon">⚙</span>
+          <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span>
           <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Settings</span></span>
           <span class="wb-cmd-item-kbd">⌘,</span>
         </a>
@@ -558,7 +559,7 @@
           <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Add New User</span></span>
         </button>
         <button class="wb-cmd-item" onclick="WBCommandPalette.close('mainCmd');WBTheme.setMode('dark')">
-          <span class="wb-cmd-item-icon">🌙</span>
+          <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span>
           <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Switch to Dark Mode</span></span>
         </button>
       </div>
