@@ -20,6 +20,7 @@ echo "Building CSS..."
 cat \
   "$ROOT/src/css/foundation/tokens.css" \
   "$ROOT/src/css/foundation/dark.css" \
+  "$ROOT/src/css/foundation/presets.css" \
   "$ROOT/src/css/foundation/accents.css" \
   "$ROOT/src/css/foundation/radius.css" \
   "$ROOT/src/css/foundation/density.css" \
