@@ -1,7 +1,7 @@
 /* ============================================================
    WebBlocks UI — Dark Mode Overrides
-   Activated by: html[data-mode="dark"]  (set by theme.js)
-   Auto fallback: @media prefers-color-scheme dark with data-theme="auto"
+   Activated by: html[data-mode="dark"]  (explicit dark)
+   Auto fallback: @media prefers-color-scheme with data-mode="auto"
    ============================================================ */
 
 html[data-mode="dark"] {
@@ -29,9 +29,9 @@ html[data-mode="dark"] {
   --wb-shadow-xl: 0 24px 64px rgba(0,0,0,0.55);
 }
 
-/* ── Auto mode: no-JS CSS fallback via media query ────────── */
+/* ── Auto mode: CSS-native dark when OS prefers dark ──────── */
 @media (prefers-color-scheme: dark) {
-  html[data-theme="auto"]:not([data-mode="light"]) {
+  html[data-mode="auto"] {
     color-scheme: dark;
 
     --wb-bg:        #0c111d;

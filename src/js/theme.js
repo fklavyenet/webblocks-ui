@@ -1,63 +1,112 @@
 /* ============================================================
    WebBlocks UI — Theme Engine (theme.js)
-   Handles: light / dark / auto modes + accent color schemes
-            + radius / density / shadow / font axes
-   Storage keys: wb-theme, wb-accent, wb-radius,
-                 wb-density, wb-shadow, wb-font
+
+   Axes:
+     data-mode     light | dark | auto         (on <html>, CSS-native)
+     data-preset   modern | minimal | ...      (on <html>, JS bundle)
+     data-accent   ocean | forest | ...        (on <html>, CSS override)
+     data-radius   sharp | default | soft      (on <html>, CSS override)
+     data-density  compact | default | ...     (on <html>, CSS override)
+     data-shadow   flat | default | soft       (on <html>, CSS override)
+     data-font     system | modern | editorial (on <html>, CSS override)
+
+   Storage keys:  wb-mode, wb-preset, wb-accent, wb-radius,
+                  wb-density, wb-shadow, wb-font
+
+   Button hooks:  data-wb-mode-set="light|dark|auto"
+                  data-wb-preset-set="modern|minimal|..."
+                  data-wb-accent-set="ocean|..."
+                  data-wb-radius-set="sharp|default|soft"
+                  data-wb-density-set="compact|default|comfortable"
+                  data-wb-shadow-set="flat|default|soft"
+                  data-wb-font-set="system|modern|editorial"
+
+   Public API:    WBTheme.setMode(v)   WBTheme.getMode()
+                  WBTheme.setPreset(v) WBTheme.getPreset()
+                  WBTheme.setAccent(v) WBTheme.getAccent()
+                  WBTheme.setRadius(v) WBTheme.getRadius()
+                  WBTheme.setDensity(v) WBTheme.getDensity()
+                  WBTheme.setShadow(v) WBTheme.getShadow()
+                  WBTheme.setFont(v)   WBTheme.getFont()
    ============================================================ */
 
 (function () {
   'use strict';
 
-  var THEME_KEY   = 'wb-theme';
+  // ── Storage keys ──────────────────────────────────────────
+  var MODE_KEY    = 'wb-mode';
+  var PRESET_KEY  = 'wb-preset';
   var ACCENT_KEY  = 'wb-accent';
   var RADIUS_KEY  = 'wb-radius';
   var DENSITY_KEY = 'wb-density';
   var SHADOW_KEY  = 'wb-shadow';
   var FONT_KEY    = 'wb-font';
 
-  var VALID_THEMES   = ['light', 'dark', 'auto'];
-  var VALID_ACCENTS  = ['ocean', 'forest', 'royal', 'warm', 'slate', 'rose', 'sand'];
-  var VALID_RADII    = ['sharp', 'default', 'soft'];
+  // ── Valid values ──────────────────────────────────────────
+  var VALID_MODES     = ['light', 'dark', 'auto'];
+  var VALID_PRESETS   = ['modern', 'minimal', 'editorial', 'playful', 'corporate'];
+  var VALID_ACCENTS   = ['ocean', 'forest', 'royal', 'warm', 'slate', 'rose', 'sand'];
+  var VALID_RADII     = ['sharp', 'default', 'soft'];
   var VALID_DENSITIES = ['compact', 'default', 'comfortable'];
-  var VALID_SHADOWS  = ['flat', 'default', 'soft'];
-  var VALID_FONTS    = ['system', 'modern', 'editorial'];
+  var VALID_SHADOWS   = ['flat', 'default', 'soft'];
+  var VALID_FONTS     = ['system', 'modern', 'editorial'];
 
-  var DEFAULT_THEME   = 'auto';
+  // ── Defaults ──────────────────────────────────────────────
+  var DEFAULT_MODE    = 'auto';
+  var DEFAULT_PRESET  = null;   // no preset by default
   var DEFAULT_ACCENT  = 'ocean';
   var DEFAULT_RADIUS  = 'default';
   var DEFAULT_DENSITY = 'default';
   var DEFAULT_SHADOW  = 'default';
   var DEFAULT_FONT    = 'modern';
 
-  // ── Internal helpers ──────────────────────────────────────
+  // ── Named presets ─────────────────────────────────────────
+  // Each preset is a full bundle of axis values. When applied,
+  // all axes are set simultaneously. Individual axes can still
+  // be overridden after applying a preset.
+  var PRESETS = {
+    modern: {
+      accent: 'ocean', radius: 'default', density: 'default',
+      shadow: 'default', font: 'modern'
+    },
+    minimal: {
+      accent: 'slate', radius: 'sharp', density: 'compact',
+      shadow: 'flat', font: 'system'
+    },
+    editorial: {
+      accent: 'warm', radius: 'soft', density: 'comfortable',
+      shadow: 'soft', font: 'editorial'
+    },
+    playful: {
+      accent: 'rose', radius: 'soft', density: 'comfortable',
+      shadow: 'soft', font: 'modern'
+    },
+    corporate: {
+      accent: 'royal', radius: 'sharp', density: 'default',
+      shadow: 'flat', font: 'system'
+    }
+  };
 
-  function prefersDark() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-
-  function resolveMode(theme) {
-    if (theme === 'dark')  return 'dark';
-    if (theme === 'light') return 'light';
-    return prefersDark() ? 'dark' : 'light';
-  }
-
+  // ── localStorage helper ───────────────────────────────────
   function ls(key, val) {
     try {
       if (val === undefined) return localStorage.getItem(key);
+      if (val === null) { localStorage.removeItem(key); return; }
       localStorage.setItem(key, val);
     } catch (e) {}
   }
 
-  // ── Apply individual axes to <html> ───────────────────────
+  // ── OS dark preference ────────────────────────────────────
+  function prefersDark() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
 
-  function applyTheme(theme) {
-    if (!VALID_THEMES.includes(theme)) theme = DEFAULT_THEME;
-    var mode = resolveMode(theme);
-    var html = document.documentElement;
-    html.setAttribute('data-theme', theme);
-    html.setAttribute('data-mode', mode);
-    syncButtons('[data-wb-theme-set]', theme);
+  // ── Apply individual axes ─────────────────────────────────
+
+  function applyMode(mode) {
+    if (!VALID_MODES.includes(mode)) mode = DEFAULT_MODE;
+    document.documentElement.setAttribute('data-mode', mode);
+    syncButtons('[data-wb-mode-set]', mode);
   }
 
   function applyAccent(accent) {
@@ -69,33 +118,24 @@
   function applyRadius(radius) {
     if (!VALID_RADII.includes(radius)) radius = DEFAULT_RADIUS;
     var html = document.documentElement;
-    if (radius === 'default') {
-      html.removeAttribute('data-radius');
-    } else {
-      html.setAttribute('data-radius', radius);
-    }
+    if (radius === 'default') { html.removeAttribute('data-radius'); }
+    else { html.setAttribute('data-radius', radius); }
     syncButtons('[data-wb-radius-set]', radius);
   }
 
   function applyDensity(density) {
     if (!VALID_DENSITIES.includes(density)) density = DEFAULT_DENSITY;
     var html = document.documentElement;
-    if (density === 'default') {
-      html.removeAttribute('data-density');
-    } else {
-      html.setAttribute('data-density', density);
-    }
+    if (density === 'default') { html.removeAttribute('data-density'); }
+    else { html.setAttribute('data-density', density); }
     syncButtons('[data-wb-density-set]', density);
   }
 
   function applyShadow(shadow) {
     if (!VALID_SHADOWS.includes(shadow)) shadow = DEFAULT_SHADOW;
     var html = document.documentElement;
-    if (shadow === 'default') {
-      html.removeAttribute('data-shadow');
-    } else {
-      html.setAttribute('data-shadow', shadow);
-    }
+    if (shadow === 'default') { html.removeAttribute('data-shadow'); }
+    else { html.setAttribute('data-shadow', shadow); }
     syncButtons('[data-wb-shadow-set]', shadow);
   }
 
@@ -105,21 +145,33 @@
     syncButtons('[data-wb-font-set]', font);
   }
 
-  // ── Sync UI controls ──────────────────────────────────────
+  // ── Preset apply (bundles all axes) ───────────────────────
 
-  function syncButtons(selector, value) {
-    document.querySelectorAll(selector).forEach(function (el) {
-      var attr = el.getAttributeNames().find(function (a) { return a.startsWith('data-wb-') && a.endsWith('-set'); });
-      el.classList.toggle('is-active', attr ? el.getAttribute(attr) === value : false);
-    });
+  function applyPreset(preset) {
+    if (!VALID_PRESETS.includes(preset)) return;
+    var def = PRESETS[preset];
+    document.documentElement.setAttribute('data-preset', preset);
+    // Apply each axis (also saves to localStorage via setters)
+    setAccent(def.accent);
+    setRadius(def.radius);
+    setDensity(def.density);
+    setShadow(def.shadow);
+    setFont(def.font);
+    syncButtons('[data-wb-preset-set]', preset);
   }
 
-  // ── Persist + apply ───────────────────────────────────────
+  // ── Persist + apply (public setters) ─────────────────────
 
-  function setTheme(theme) {
-    if (!VALID_THEMES.includes(theme)) theme = DEFAULT_THEME;
-    ls(THEME_KEY, theme);
-    applyTheme(theme);
+  function setMode(mode) {
+    if (!VALID_MODES.includes(mode)) mode = DEFAULT_MODE;
+    ls(MODE_KEY, mode);
+    applyMode(mode);
+  }
+
+  function setPreset(preset) {
+    if (!VALID_PRESETS.includes(preset)) return;
+    ls(PRESET_KEY, preset);
+    applyPreset(preset);
   }
 
   function setAccent(accent) {
@@ -152,14 +204,36 @@
     applyFont(font);
   }
 
+  // ── Sync UI buttons ───────────────────────────────────────
+
+  function syncButtons(selector, value) {
+    document.querySelectorAll(selector).forEach(function (el) {
+      var attrName = selector.replace('[', '').replace(']', '');
+      el.classList.toggle('is-active', el.getAttribute(attrName) === value);
+    });
+  }
+
+  function syncAllButtons() {
+    syncButtons('[data-wb-mode-set]',    ls(MODE_KEY)    || DEFAULT_MODE);
+    syncButtons('[data-wb-preset-set]',  ls(PRESET_KEY)  || '');
+    syncButtons('[data-wb-accent-set]',  ls(ACCENT_KEY)  || DEFAULT_ACCENT);
+    syncButtons('[data-wb-radius-set]',  ls(RADIUS_KEY)  || DEFAULT_RADIUS);
+    syncButtons('[data-wb-density-set]', ls(DENSITY_KEY) || DEFAULT_DENSITY);
+    syncButtons('[data-wb-shadow-set]',  ls(SHADOW_KEY)  || DEFAULT_SHADOW);
+    syncButtons('[data-wb-font-set]',    ls(FONT_KEY)    || DEFAULT_FONT);
+  }
+
   // ── Event delegation ──────────────────────────────────────
 
   function attachListeners() {
     document.addEventListener('click', function (e) {
       var el;
 
-      el = e.target.closest('[data-wb-theme-set]');
-      if (el) { e.preventDefault(); setTheme(el.getAttribute('data-wb-theme-set')); return; }
+      el = e.target.closest('[data-wb-mode-set]');
+      if (el) { e.preventDefault(); setMode(el.getAttribute('data-wb-mode-set')); return; }
+
+      el = e.target.closest('[data-wb-preset-set]');
+      if (el) { e.preventDefault(); setPreset(el.getAttribute('data-wb-preset-set')); return; }
 
       el = e.target.closest('[data-wb-accent-set]');
       if (el) { e.preventDefault(); setAccent(el.getAttribute('data-wb-accent-set')); return; }
@@ -176,55 +250,87 @@
       el = e.target.closest('[data-wb-font-set]');
       if (el) { e.preventDefault(); setFont(el.getAttribute('data-wb-font-set')); return; }
     });
+
+    // Re-sync buttons after any Livewire/SPA navigation
+    document.addEventListener('DOMContentLoaded', syncAllButtons);
   }
 
-  // ── System preference listener ────────────────────────────
+  // ── OS preference watcher ─────────────────────────────────
 
   function watchSystem() {
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    mq.addEventListener('change', function () {
-      var stored = ls(THEME_KEY);
-      if (!stored || stored === 'auto') applyTheme('auto');
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+      // If user is in "auto" mode, re-apply so syncButtons reflects current visual state
+      var stored = ls(MODE_KEY);
+      if (!stored || stored === 'auto') syncButtons('[data-wb-mode-set]', 'auto');
     });
   }
 
   // ── Init ──────────────────────────────────────────────────
 
   function init() {
-    applyTheme(  ls(THEME_KEY)   || DEFAULT_THEME);
+    // Mode (must run first — affects surface colors)
+    applyMode(ls(MODE_KEY) || DEFAULT_MODE);
+
+    // Preset (if stored, mark data-preset attribute for reference)
+    var storedPreset = ls(PRESET_KEY);
+    if (storedPreset && VALID_PRESETS.includes(storedPreset)) {
+      document.documentElement.setAttribute('data-preset', storedPreset);
+    }
+
+    // Individual axes — restored from localStorage independently.
+    // These may have been set by a previous preset OR by manual overrides.
     applyAccent( ls(ACCENT_KEY)  || DEFAULT_ACCENT);
     applyRadius( ls(RADIUS_KEY)  || DEFAULT_RADIUS);
     applyDensity(ls(DENSITY_KEY) || DEFAULT_DENSITY);
     applyShadow( ls(SHADOW_KEY)  || DEFAULT_SHADOW);
     applyFont(   ls(FONT_KEY)    || DEFAULT_FONT);
+
     attachListeners();
     watchSystem();
   }
 
-  // Run immediately so there's no flash
+  // Run immediately — before paint — to prevent flash
   init();
 
   // ── Public API ────────────────────────────────────────────
 
   window.WBTheme = {
-    // Light / dark / auto
-    set:    setTheme,
-    get:    function () { return ls(THEME_KEY)   || DEFAULT_THEME;   },
-    // Accent color scheme
-    setAccent:  setAccent,
-    getAccent:  function () { return ls(ACCENT_KEY)  || DEFAULT_ACCENT;  },
-    // Radius
-    setRadius:  setRadius,
-    getRadius:  function () { return ls(RADIUS_KEY)  || DEFAULT_RADIUS;  },
-    // Density
-    setDensity: setDensity,
-    getDensity: function () { return ls(DENSITY_KEY) || DEFAULT_DENSITY; },
-    // Shadow
-    setShadow:  setShadow,
-    getShadow:  function () { return ls(SHADOW_KEY)  || DEFAULT_SHADOW;  },
-    // Font
-    setFont:    setFont,
-    getFont:    function () { return ls(FONT_KEY)    || DEFAULT_FONT;    },
+    setMode:     setMode,
+    getMode:     function () { return ls(MODE_KEY)    || DEFAULT_MODE;    },
+
+    setPreset:   setPreset,
+    getPreset:   function () { return ls(PRESET_KEY)  || null;            },
+
+    setAccent:   setAccent,
+    getAccent:   function () { return ls(ACCENT_KEY)  || DEFAULT_ACCENT;  },
+
+    setRadius:   setRadius,
+    getRadius:   function () { return ls(RADIUS_KEY)  || DEFAULT_RADIUS;  },
+
+    setDensity:  setDensity,
+    getDensity:  function () { return ls(DENSITY_KEY) || DEFAULT_DENSITY; },
+
+    setShadow:   setShadow,
+    getShadow:   function () { return ls(SHADOW_KEY)  || DEFAULT_SHADOW;  },
+
+    setFont:     setFont,
+    getFont:     function () { return ls(FONT_KEY)    || DEFAULT_FONT;    },
+
+    // Convenience: get all current axis values
+    getAll: function () {
+      return {
+        mode:    window.WBTheme.getMode(),
+        preset:  window.WBTheme.getPreset(),
+        accent:  window.WBTheme.getAccent(),
+        radius:  window.WBTheme.getRadius(),
+        density: window.WBTheme.getDensity(),
+        shadow:  window.WBTheme.getShadow(),
+        font:    window.WBTheme.getFont(),
+      };
+    },
+
+    // Expose preset definitions for tooling / UI builders
+    presets: PRESETS,
   };
 
 })();
