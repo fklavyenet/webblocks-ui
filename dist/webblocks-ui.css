@@ -1483,6 +1483,12 @@ textarea::placeholder {
 }
 .wb-stat-delta-up   { color: var(--wb-success); }
 .wb-stat-delta-down { color: var(--wb-danger); }
+
+/* ── Backward-compat aliases ──────────────────────────────── */
+.wb-stat-meta  { font-size: 0.8rem; font-weight: 500; color: var(--wb-muted); }
+.wb-stat-up    { color: var(--wb-success); font-size: 0.8rem; font-weight: 500; }
+.wb-stat-down  { color: var(--wb-danger);  font-size: 0.8rem; font-weight: 500; }
+.wb-stat-bar   { margin-top: var(--wb-s3); }
 /* ============================================================
    WebBlocks UI — Alert (wb-alert)
    ============================================================ */
@@ -2145,6 +2151,12 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 /* ── Right-align ──────────────────────────────────────────── */
 .wb-dropdown-end .wb-dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+/* ── Backward-compat alias ────────────────────────────────── */
+.wb-dropdown-menu-end {
   left: auto;
   right: 0;
 }
@@ -5050,9 +5062,9 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   gap: var(--wb-s6);
 }
 
-.wb-grid-2 { grid-template-columns: repeat(2, 1fr); }
-.wb-grid-3 { grid-template-columns: repeat(3, 1fr); }
-.wb-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.wb-grid-2 { display: grid; gap: var(--wb-s6); grid-template-columns: repeat(2, 1fr); }
+.wb-grid-3 { display: grid; gap: var(--wb-s6); grid-template-columns: repeat(3, 1fr); }
+.wb-grid-4 { display: grid; gap: var(--wb-s6); grid-template-columns: repeat(4, 1fr); }
 
 /* Responsive auto-grid (min 280px per column) */
 .wb-grid-auto {
@@ -5605,6 +5617,11 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
     flex-wrap: wrap;
   }
 }
+
+/* ── Backward-compat aliases ──────────────────────────────── */
+.wb-shell       { display: flex; min-height: 100vh; background: var(--wb-bg); }
+.wb-shell-main  { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; }
+.wb-shell-body  { flex: 1; overflow-y: auto; padding: var(--wb-s6); }
 /* ============================================================
    WebBlocks UI — Auth Shell Layout
    ============================================================ */
@@ -6352,12 +6369,14 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-mt-2  { margin-top: var(--wb-s2) !important; }
 .wb-mt-3  { margin-top: var(--wb-s3) !important; }
 .wb-mt-4  { margin-top: var(--wb-s4) !important; }
+.wb-mt-5  { margin-top: var(--wb-s5) !important; }
 .wb-mt-6  { margin-top: var(--wb-s6) !important; }
 .wb-mt-8  { margin-top: var(--wb-s8) !important; }
 .wb-mb-1  { margin-bottom: var(--wb-s1) !important; }
 .wb-mb-2  { margin-bottom: var(--wb-s2) !important; }
 .wb-mb-3  { margin-bottom: var(--wb-s3) !important; }
 .wb-mb-4  { margin-bottom: var(--wb-s4) !important; }
+.wb-mb-5  { margin-bottom: var(--wb-s5) !important; }
 .wb-mb-6  { margin-bottom: var(--wb-s6) !important; }
 .wb-mb-8  { margin-bottom: var(--wb-s8) !important; }
 .wb-ms-auto { margin-inline-start: auto !important; }
