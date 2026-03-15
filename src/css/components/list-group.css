@@ -1,0 +1,164 @@
+/* ============================================================
+   WebBlocks UI — List Group (wb-list)
+   Structured vertical lists for navigation, settings, and data.
+   ============================================================ */
+
+/* ── Base list ────────────────────────────────────────────── */
+
+.wb-list {
+  display: flex;
+  flex-direction: column;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  overflow: hidden;
+}
+
+/* ── List item ────────────────────────────────────────────── */
+
+.wb-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: var(--wb-s3) var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  font-size: 0.9rem;
+  color: var(--wb-text);
+  background: var(--wb-surface);
+  text-decoration: none;
+  transition: background var(--wb-t-f);
+  min-width: 0;
+}
+
+.wb-list-item:last-child {
+  border-bottom: none;
+}
+
+/* ── Interactive (clickable) items ───────────────────────────
+   Add .wb-list-item-action to make the item a button/link.
+   ──────────────────────────────────────────────────────────── */
+
+.wb-list-item-action {
+  cursor: pointer;
+}
+
+.wb-list-item-action:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-list-item-action.is-active {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+}
+
+/* ── Item icon ────────────────────────────────────────────── */
+
+.wb-list-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+/* ── Item text block ──────────────────────────────────────── */
+
+.wb-list-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-list-item-title {
+  display: block;
+  font-weight: 500;
+  color: var(--wb-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wb-list-item-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--wb-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.1em;
+}
+
+/* ── Item end content (badge, arrow, etc.) ────────────────── */
+
+.wb-list-item-end {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--wb-muted);
+  font-size: 0.85rem;
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+/* Flush (no border, no border-radius) */
+.wb-list-flush {
+  border: none;
+  border-radius: 0;
+}
+.wb-list-flush .wb-list-item {
+  padding-inline: 0;
+}
+
+/* Bordered items only (no outer border) */
+.wb-list-inset {
+  border: none;
+}
+
+/* Compact */
+.wb-list-sm .wb-list-item {
+  padding: var(--wb-s2) var(--wb-s3);
+  font-size: 0.85rem;
+}
+
+/* ── List group header ────────────────────────────────────── */
+
+.wb-list-header {
+  padding: var(--wb-s2) var(--wb-s4);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--wb-muted);
+  background: var(--wb-surface-2);
+  border-bottom: 1px solid var(--wb-border);
+  user-select: none;
+}
+
+/* ── Numbered list ────────────────────────────────────────── */
+
+.wb-list-numbered {
+  counter-reset: wb-list;
+}
+
+.wb-list-numbered .wb-list-item::before {
+  counter-increment: wb-list;
+  content: counter(wb-list);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}

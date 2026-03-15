@@ -1,0 +1,197 @@
+/* ============================================================
+   WebBlocks UI — Action Menu (wb-action-menu)
+   Inline row-level action menus for data tables and list views.
+   JS: uses wb-dropdown.js behavior (data-wb-dropdown)
+   ============================================================ */
+
+/* ── Inline action group (row actions) ────────────────────── */
+
+.wb-action-group {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+}
+
+/* ── Action button (icon-only) ────────────────────────────── */
+
+.wb-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--wb-r-md);
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--wb-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition:
+    background var(--wb-t),
+    border-color var(--wb-t),
+    color var(--wb-t);
+  flex-shrink: 0;
+}
+
+.wb-action-btn:hover {
+  background: var(--wb-surface-2);
+  border-color: var(--wb-border);
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+.wb-action-btn:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+}
+
+/* ── Semantic variants ────────────────────────────────────── */
+
+.wb-action-btn-view:hover {
+  background: var(--wb-info-soft);
+  border-color: transparent;
+  color: var(--wb-info);
+}
+
+.wb-action-btn-edit:hover {
+  background: var(--wb-primary-soft);
+  border-color: transparent;
+  color: var(--wb-primary);
+}
+
+.wb-action-btn-delete:hover {
+  background: var(--wb-danger-soft);
+  border-color: transparent;
+  color: var(--wb-danger);
+}
+
+/* ── Inline action with label ─────────────────────────────── */
+
+.wb-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--wb-primary);
+  text-decoration: none;
+  padding: 0.2em 0.4em;
+  border-radius: var(--wb-r-sm);
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+}
+
+.wb-action-link:hover {
+  background: var(--wb-primary-soft);
+  text-decoration: none;
+}
+
+.wb-action-link-danger {
+  color: var(--wb-danger);
+}
+
+.wb-action-link-danger:hover {
+  background: var(--wb-danger-soft);
+}
+
+/* ── More actions (kebab) dropdown ───────────────────────────
+   Wraps wb-dropdown to provide a standard "⋯" trigger.
+   ──────────────────────────────────────────────────────────── */
+
+.wb-action-more {
+  position: relative;
+  display: inline-block;
+}
+
+.wb-action-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--wb-r-md);
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--wb-muted);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  transition:
+    background var(--wb-t),
+    border-color var(--wb-t),
+    color var(--wb-t);
+}
+
+.wb-action-more-btn:hover {
+  background: var(--wb-surface-2);
+  border-color: var(--wb-border);
+  color: var(--wb-text);
+}
+
+/* The dropdown panel for action-more reuses wb-dropdown-menu */
+.wb-action-more .wb-dropdown-menu {
+  min-width: 160px;
+  right: 0;
+  left: auto;
+}
+
+/* ── Status pill (inline row status) ─────────────────────────
+   Extends wb-badge with a status-dot indicator for table rows.
+   ──────────────────────────────────────────────────────────── */
+
+.wb-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: 0.22em 0.65em;
+  border-radius: var(--wb-r-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.wb-status-pill::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--wb-r-full);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* Variants */
+.wb-status-active {
+  background: var(--wb-success-soft);
+  color: var(--wb-success);
+}
+
+.wb-status-inactive {
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+}
+
+.wb-status-pending {
+  background: var(--wb-warning-soft);
+  color: var(--wb-warning);
+}
+
+.wb-status-error {
+  background: var(--wb-danger-soft);
+  color: var(--wb-danger);
+}
+
+.wb-status-info {
+  background: var(--wb-info-soft);
+  color: var(--wb-info);
+}
+
+/* ── Row selection checkbox area ──────────────────────────── */
+
+.wb-table-check-cell {
+  width: 2.5rem;
+  padding: 0 var(--wb-s3);
+}

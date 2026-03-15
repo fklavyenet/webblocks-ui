@@ -1,0 +1,305 @@
+/* ============================================================
+   WebBlocks UI — Nav Group (wb-nav-group)
+   Collapsible navigation sections for sidebar and standalone menus.
+   JS: data-wb-nav-group on container; triggers toggle on header click.
+   ============================================================ */
+
+/* ── Nav group wrapper ────────────────────────────────────── */
+
+.wb-nav-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Group toggle (clickable header) ──────────────────────── */
+
+.wb-nav-group-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: 0.45em var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+  white-space: nowrap;
+  overflow: hidden;
+  font: inherit;
+}
+
+.wb-nav-group-toggle:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-nav-group-toggle.is-active {
+  color: var(--wb-primary);
+}
+
+/* ── Toggle icon (chevron) ────────────────────────────────── */
+
+.wb-nav-group-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  width: 1.2em;
+  text-align: center;
+}
+
+.wb-nav-group-label {
+  flex: 1;
+}
+
+.wb-nav-group-arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  opacity: 0.5;
+  transition: transform var(--wb-t);
+  /* SVG arrow via background */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%235a6a84' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* ── Open state: rotate arrow ─────────────────────────────── */
+
+.wb-nav-group.is-open > .wb-nav-group-toggle .wb-nav-group-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Sub-items panel ──────────────────────────────────────── */
+
+.wb-nav-group-items {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: calc(var(--wb-s3) + 1.2em + var(--wb-s3));
+  padding-top: var(--wb-s1);
+  padding-bottom: var(--wb-s1);
+}
+
+.wb-nav-group.is-open > .wb-nav-group-items {
+  display: flex;
+}
+
+/* ── Sub-item links ───────────────────────────────────────── */
+
+.wb-nav-group-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: 0.35em var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--wb-muted);
+  text-decoration: none;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wb-nav-group-item:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+.wb-nav-group-item.is-active {
+  color: var(--wb-primary);
+  font-weight: 600;
+}
+
+/* ── Nested badge ─────────────────────────────────────────── */
+
+.wb-nav-group-item .wb-nav-group-count {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  padding: 0.1em 0.5em;
+  border-radius: var(--wb-r-full);
+  flex-shrink: 0;
+}
+
+/* ── Standalone menu (not inside sidebar) ─────────────────── */
+
+.wb-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--wb-s1) 0;
+}
+
+.wb-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: 0.45em var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+}
+
+.wb-menu-item:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-menu-item.is-active {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+  font-weight: 600;
+}
+
+.wb-menu-item-danger {
+  color: var(--wb-danger);
+}
+.wb-menu-item-danger:hover {
+  background: var(--wb-danger-soft);
+  color: var(--wb-danger);
+}
+
+.wb-menu-divider {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s1) 0;
+}
+
+.wb-menu-label {
+  padding: var(--wb-s1) var(--wb-s3);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-muted);
+  user-select: none;
+}
+
+/* ── Submenu (nested wb-menu inside wb-nav-group-items) ───── */
+
+.wb-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: var(--wb-s4);
+  border-left: 2px solid var(--wb-border);
+  margin-left: var(--wb-s2);
+  margin-top: 2px;
+}
+
+.wb-submenu .wb-menu-item {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--wb-muted);
+}
+
+/* ── Topbar actions (right-side navbar area) ──────────────── */
+
+.wb-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+.wb-topbar-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: var(--wb-r-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--wb-muted);
+  font-size: 1rem;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+}
+
+.wb-topbar-action:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+/* Notification dot */
+.wb-topbar-action-dot {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-danger);
+  border: 2px solid var(--wb-surface);
+}
+
+/* ── User profile button (navbar) ─────────────────────────── */
+
+.wb-topbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: 0.25em 0.5em 0.25em 0.25em;
+  border-radius: var(--wb-r-lg);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  text-decoration: none;
+  transition: background var(--wb-t);
+}
+
+.wb-topbar-user:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-topbar-user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.3;
+}
+
+.wb-topbar-user-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--wb-text);
+}
+
+.wb-topbar-user-role {
+  font-size: 0.75rem;
+  color: var(--wb-muted);
+}

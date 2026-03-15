@@ -4,7 +4,7 @@
    Axes:
      data-mode     light | dark | auto         (on <html>, CSS-native)
      data-preset   modern | minimal | ...      (on <html>, JS bundle)
-     data-accent   ocean | forest | ...        (on <html>, CSS override)
+      data-accent   ocean | forest | sunset | royal | mint | amber | rose | slate-fire
      data-radius   sharp | default | soft      (on <html>, CSS override)
      data-density  compact | default | ...     (on <html>, CSS override)
      data-shadow   flat | default | soft       (on <html>, CSS override)
@@ -45,7 +45,7 @@
   // ── Valid values ──────────────────────────────────────────
   var VALID_MODES     = ['light', 'dark', 'auto'];
   var VALID_PRESETS   = ['modern', 'minimal', 'editorial', 'playful', 'corporate'];
-  var VALID_ACCENTS   = ['ocean', 'forest', 'royal', 'warm', 'slate', 'rose', 'sand'];
+  var VALID_ACCENTS   = ['ocean', 'forest', 'sunset', 'royal', 'mint', 'amber', 'rose', 'slate-fire'];
   var VALID_RADII     = ['sharp', 'default', 'soft'];
   var VALID_DENSITIES = ['compact', 'default', 'comfortable'];
   var VALID_SHADOWS   = ['flat', 'default', 'soft'];
@@ -70,11 +70,11 @@
       shadow: 'default', font: 'modern'
     },
     minimal: {
-      accent: 'slate', radius: 'sharp', density: 'compact',
+      accent: 'ocean', radius: 'sharp', density: 'compact',
       shadow: 'flat', font: 'system'
     },
     editorial: {
-      accent: 'warm', radius: 'soft', density: 'comfortable',
+      accent: 'sunset', radius: 'soft', density: 'comfortable',
       shadow: 'soft', font: 'editorial'
     },
     playful: {
@@ -971,6 +971,529 @@
     close:  close,
     toggle: toggle,
     isOpen: isOpen
+  };
+
+})();
+/* ============================================================
+   WebBlocks UI — Nav Group (nav-group.js)
+   Collapsible navigation groups for sidebars and menus.
+
+   Usage:
+     <div class="wb-nav-group" data-wb-nav-group>
+       <button class="wb-nav-group-toggle">
+         <span class="wb-nav-group-icon">...</span>
+         <span class="wb-nav-group-label">Settings</span>
+         <span class="wb-nav-group-arrow"></span>
+       </button>
+       <div class="wb-nav-group-items">
+         <a class="wb-nav-group-item" href="#">Profile</a>
+         <a class="wb-nav-group-item" href="#">Security</a>
+       </div>
+     </div>
+
+   Options (data attributes on .wb-nav-group):
+     data-wb-nav-group-open  — open by default
+     data-wb-nav-group-accordion — close siblings when opening
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  // ── Toggle a single group ─────────────────────────────────
+
+  function toggle(group) {
+    var isOpen = group.classList.contains('is-open');
+
+    // Accordion: close siblings in the same parent
+    if (group.dataset.wbNavGroupAccordion !== undefined || group.closest('[data-wb-accordion]')) {
+      var parent = group.parentElement;
+      if (parent) {
+        var siblings = Array.from(parent.querySelectorAll(':scope > [data-wb-nav-group]'));
+        siblings.forEach(function (sibling) {
+          if (sibling !== group) closeGroup(sibling);
+        });
+      }
+    }
+
+    if (isOpen) {
+      closeGroup(group);
+    } else {
+      openGroup(group);
+    }
+  }
+
+  function openGroup(group) {
+    group.classList.add('is-open');
+    var toggle = group.querySelector('.wb-nav-group-toggle');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    group.dispatchEvent(new CustomEvent('wb:navgroup:open', { bubbles: true }));
+  }
+
+  function closeGroup(group) {
+    group.classList.remove('is-open');
+    var toggle = group.querySelector('.wb-nav-group-toggle');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    group.dispatchEvent(new CustomEvent('wb:navgroup:close', { bubbles: true }));
+  }
+
+  // ── Auto-open groups with active children ─────────────────
+
+  function autoOpenActive() {
+    var groups = document.querySelectorAll('[data-wb-nav-group]');
+    groups.forEach(function (group) {
+      // Open if explicitly set
+      if (group.dataset.wbNavGroupOpen !== undefined) {
+        openGroup(group);
+        return;
+      }
+      // Open if a child is active
+      var items = group.querySelector('.wb-nav-group-items');
+      if (items && items.querySelector('.is-active')) {
+        openGroup(group);
+      }
+    });
+  }
+
+  // ── Event delegation ──────────────────────────────────────
+
+  document.addEventListener('click', function (e) {
+    var toggleBtn = e.target.closest('.wb-nav-group-toggle');
+    if (!toggleBtn) return;
+
+    var group = toggleBtn.closest('[data-wb-nav-group]');
+    if (!group) return;
+
+    e.preventDefault();
+    toggle(group);
+  });
+
+  // ── Init on DOM ready ─────────────────────────────────────
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', autoOpenActive);
+  } else {
+    autoOpenActive();
+  }
+
+  // ── Public API ─────────────────────────────────────────────
+
+  window.WBNavGroup = {
+    open:   openGroup,
+    close:  closeGroup,
+    toggle: toggle,
+    init:   autoOpenActive
+  };
+
+})();
+/* ============================================================
+   WebBlocks UI — Drawer (drawer.js)
+
+   Usage:
+     <!-- Trigger -->
+     <button data-wb-toggle="drawer" data-wb-target="#myDrawer">Open</button>
+
+     <!-- Drawer -->
+     <div class="wb-drawer" id="myDrawer" role="dialog" aria-modal="true" aria-labelledby="myDrawerTitle">
+       <div class="wb-drawer-header">
+         <h5 class="wb-drawer-title" id="myDrawerTitle">Title</h5>
+         <button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">&times;</button>
+       </div>
+       <div class="wb-drawer-body">Content</div>
+       <div class="wb-drawer-footer">
+         <button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Cancel</button>
+         <button class="wb-btn wb-btn-primary">Save</button>
+       </div>
+     </div>
+
+     <!-- Backdrop (optional, add before </body>) -->
+     <div class="wb-drawer-backdrop" data-wb-dismiss="drawer"></div>
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var activeDrawer    = null;
+  var previouslyFocused = null;
+
+  var FOCUSABLE = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(', ');
+
+  // ── Backdrop helper ───────────────────────────────────────
+
+  function getBackdrop() {
+    return document.querySelector('.wb-drawer-backdrop');
+  }
+
+  // ── Open ──────────────────────────────────────────────────
+
+  function open(drawer) {
+    if (!drawer) return;
+    if (activeDrawer) close(activeDrawer);
+
+    previouslyFocused = document.activeElement;
+    activeDrawer = drawer;
+
+    drawer.classList.add('is-open');
+    document.body.classList.add('wb-drawer-open');
+
+    var backdrop = getBackdrop();
+    if (backdrop) backdrop.classList.add('is-open');
+
+    // Focus first focusable element
+    requestAnimationFrame(function () {
+      var first = drawer.querySelector(FOCUSABLE);
+      if (first) first.focus();
+    });
+
+    drawer.dispatchEvent(new CustomEvent('wb:drawer:open', { bubbles: true }));
+  }
+
+  // ── Close ─────────────────────────────────────────────────
+
+  function close(drawer) {
+    if (!drawer) drawer = activeDrawer;
+    if (!drawer) return;
+
+    drawer.classList.remove('is-open');
+    document.body.classList.remove('wb-drawer-open');
+
+    var backdrop = getBackdrop();
+    if (backdrop) backdrop.classList.remove('is-open');
+
+    if (activeDrawer === drawer) activeDrawer = null;
+
+    if (previouslyFocused && previouslyFocused.focus) {
+      previouslyFocused.focus();
+      previouslyFocused = null;
+    }
+
+    drawer.dispatchEvent(new CustomEvent('wb:drawer:close', { bubbles: true }));
+  }
+
+  // ── Focus trap ────────────────────────────────────────────
+
+  function trapFocus(e) {
+    if (!activeDrawer) return;
+    if (e.key !== 'Tab') return;
+
+    var focusable = Array.from(activeDrawer.querySelectorAll(FOCUSABLE));
+    if (!focusable.length) return;
+
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
+  // ── Event delegation ──────────────────────────────────────
+
+  document.addEventListener('click', function (e) {
+    // Trigger
+    var trigger = e.target.closest('[data-wb-toggle="drawer"]');
+    if (trigger) {
+      e.preventDefault();
+      var target = trigger.getAttribute('data-wb-target');
+      var drawer = target ? document.querySelector(target) : null;
+      if (drawer) open(drawer);
+      return;
+    }
+
+    // Dismiss
+    var dismiss = e.target.closest('[data-wb-dismiss="drawer"]');
+    if (dismiss) {
+      close(activeDrawer);
+      return;
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && activeDrawer) close(activeDrawer);
+    trapFocus(e);
+  });
+
+  // ── Public API ─────────────────────────────────────────────
+
+  window.WBDrawer = {
+    open:      open,
+    close:     close,
+    getActive: function () { return activeDrawer; }
+  };
+
+})();
+/* ============================================================
+   WebBlocks UI — Command Palette (command-palette.js)
+
+   Usage:
+     <!-- Trigger (keyboard shortcut handled automatically) -->
+     <button data-wb-toggle="cmd" data-wb-target="#myCmdPalette">
+       Search
+     </button>
+
+     <!-- Palette markup -->
+     <div class="wb-cmd-backdrop" id="myCmdPalette" role="dialog"
+          aria-modal="true" aria-label="Command palette">
+       <div class="wb-cmd-dialog">
+         <div class="wb-cmd-search">
+           <span class="wb-cmd-search-icon">⌕</span>
+           <input class="wb-cmd-input" type="text"
+                  placeholder="Search commands..." autocomplete="off" />
+         </div>
+         <div class="wb-cmd-results">
+           <!-- Groups populated by search or static HTML -->
+         </div>
+         <div class="wb-cmd-footer">
+           <span class="wb-cmd-footer-hint">
+             <kbd class="wb-cmd-kbd">↑↓</kbd> navigate
+           </span>
+           <span class="wb-cmd-footer-hint">
+             <kbd class="wb-cmd-kbd">↵</kbd> select
+           </span>
+           <span class="wb-cmd-footer-hint">
+             <kbd class="wb-cmd-kbd">Esc</kbd> close
+           </span>
+         </div>
+       </div>
+     </div>
+
+   Default keyboard shortcut: Cmd/Ctrl + K
+   Override: add data-wb-cmd-shortcut="k" (letter only) to the backdrop element.
+
+   Items can be static HTML .wb-cmd-item elements, or provided via a
+   custom search function assigned to WBCommandPalette.onSearch(query, callback).
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var activePalette     = null;
+  var previouslyFocused = null;
+  var selectedIndex     = -1;
+  var items             = [];
+
+  // ── External search handler ────────────────────────────── 
+  // Assign: WBCommandPalette.onSearch = function(query, callback) { ... }
+  var searchHandler = null;
+
+  // ── Helpers ───────────────────────────────────────────────
+
+  function getItems(palette) {
+    return Array.from(palette.querySelectorAll('.wb-cmd-item'));
+  }
+
+  function clearSelection() {
+    items.forEach(function (item) { item.classList.remove('is-selected'); });
+    selectedIndex = -1;
+  }
+
+  function selectItem(index) {
+    if (!items.length) return;
+    if (index < 0) index = items.length - 1;
+    if (index >= items.length) index = 0;
+
+    clearSelection();
+    selectedIndex = index;
+    items[selectedIndex].classList.add('is-selected');
+    items[selectedIndex].scrollIntoView({ block: 'nearest' });
+  }
+
+  function activateSelected() {
+    if (selectedIndex < 0 || !items[selectedIndex]) return;
+    items[selectedIndex].click();
+  }
+
+  // ── Open ──────────────────────────────────────────────────
+
+  function open(palette) {
+    if (!palette) return;
+    if (activePalette) close(activePalette);
+
+    previouslyFocused = document.activeElement;
+    activePalette = palette;
+
+    palette.classList.add('is-open');
+    document.body.classList.add('wb-cmd-open');
+
+    // Focus the input
+    requestAnimationFrame(function () {
+      var input = palette.querySelector('.wb-cmd-input');
+      if (input) {
+        input.value = '';
+        input.focus();
+        handleInput(input);
+      }
+      items = getItems(palette);
+      selectedIndex = -1;
+    });
+
+    palette.dispatchEvent(new CustomEvent('wb:cmd:open', { bubbles: true }));
+  }
+
+  // ── Close ─────────────────────────────────────────────────
+
+  function close(palette) {
+    if (!palette) palette = activePalette;
+    if (!palette) return;
+
+    palette.classList.remove('is-open');
+    document.body.classList.remove('wb-cmd-open');
+
+    if (activePalette === palette) activePalette = null;
+
+    if (previouslyFocused && previouslyFocused.focus) {
+      previouslyFocused.focus();
+      previouslyFocused = null;
+    }
+
+    palette.dispatchEvent(new CustomEvent('wb:cmd:close', { bubbles: true }));
+  }
+
+  // ── Input / search ─────────────────────────────────────── 
+
+  function handleInput(input) {
+    var palette = input.closest('.wb-cmd-backdrop');
+    if (!palette) return;
+
+    var query = input.value.trim().toLowerCase();
+
+    // If custom search handler is set, delegate
+    if (typeof searchHandler === 'function') {
+      searchHandler(query, function (html) {
+        var results = palette.querySelector('.wb-cmd-results');
+        if (results) {
+          results.innerHTML = html;
+          items = getItems(palette);
+          selectedIndex = -1;
+        }
+      });
+      return;
+    }
+
+    // Built-in: filter visible items by text match
+    items = getItems(palette);
+    var anyVisible = false;
+
+    items.forEach(function (item) {
+      var text = (item.textContent || '').toLowerCase();
+      var match = !query || text.includes(query);
+      item.style.display = match ? '' : 'none';
+      if (match) anyVisible = true;
+    });
+
+    // Show/hide empty state
+    var emptyEl = palette.querySelector('.wb-cmd-empty');
+    if (emptyEl) emptyEl.style.display = anyVisible ? 'none' : '';
+
+    // Hide groups with no visible items
+    var groups = palette.querySelectorAll('.wb-cmd-group');
+    groups.forEach(function (group) {
+      var visibleItems = Array.from(group.querySelectorAll('.wb-cmd-item'))
+        .filter(function (i) { return i.style.display !== 'none'; });
+      group.style.display = visibleItems.length ? '' : 'none';
+    });
+
+    // Reset selection
+    items = items.filter(function (i) { return i.style.display !== 'none'; });
+    selectedIndex = -1;
+
+    palette.dispatchEvent(new CustomEvent('wb:cmd:search', {
+      bubbles: true,
+      detail: { query: query }
+    }));
+  }
+
+  // ── Event delegation ──────────────────────────────────────
+
+  document.addEventListener('click', function (e) {
+    // Toggle trigger
+    var trigger = e.target.closest('[data-wb-toggle="cmd"]');
+    if (trigger) {
+      e.preventDefault();
+      var target = trigger.getAttribute('data-wb-target');
+      var palette = target ? document.querySelector(target) : null;
+      if (palette) open(palette);
+      return;
+    }
+
+    // Backdrop click to close
+    var backdrop = e.target.closest('.wb-cmd-backdrop');
+    if (backdrop && e.target === backdrop) {
+      close(backdrop);
+      return;
+    }
+
+    // Item click — close after selection
+    var item = e.target.closest('.wb-cmd-item');
+    if (item && activePalette) {
+      // Allow item click to propagate first, then close
+      setTimeout(function () { close(activePalette); }, 80);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    // Global shortcut: Cmd/Ctrl + K (or custom)
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      if (activePalette) {
+        close(activePalette);
+      } else {
+        // Find first palette with data-wb-cmd-default
+        var palette = document.querySelector('[data-wb-cmd-default]') ||
+                      document.querySelector('.wb-cmd-backdrop');
+        if (palette) open(palette);
+      }
+      return;
+    }
+
+    if (!activePalette) return;
+
+    switch (e.key) {
+      case 'Escape':
+        close(activePalette);
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        selectItem(selectedIndex + 1);
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        selectItem(selectedIndex - 1);
+        break;
+      case 'Enter':
+        e.preventDefault();
+        activateSelected();
+        break;
+    }
+  });
+
+  document.addEventListener('input', function (e) {
+    var input = e.target;
+    if (!input.classList.contains('wb-cmd-input')) return;
+    handleInput(input);
+  });
+
+  // ── Public API ─────────────────────────────────────────────
+
+  window.WBCommandPalette = {
+    open:      open,
+    close:     close,
+    getActive: function () { return activePalette; },
+    onSearch:  function (fn) { searchHandler = fn; }
   };
 
 })();

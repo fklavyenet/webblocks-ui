@@ -1,0 +1,164 @@
+/* ============================================================
+   WebBlocks UI — Tooltip (wb-tooltip)
+   Pure CSS tooltips — no JavaScript required.
+
+   Usage:
+     <button data-wb-tooltip="Save changes">Save</button>
+     <span data-wb-tooltip="Helpful info" data-wb-tooltip-placement="bottom">?</span>
+
+   Placement options (data-wb-tooltip-placement):
+     top     (default)
+     bottom
+     left
+     right
+
+   Works on any element. The tooltip text is read from the
+   data-wb-tooltip attribute via CSS attr().
+   ============================================================ */
+
+/* ── Base ─────────────────────────────────────────────────── */
+
+[data-wb-tooltip] {
+  position: relative;
+}
+
+/* Tooltip bubble */
+[data-wb-tooltip]::before {
+  content: attr(data-wb-tooltip);
+  position: absolute;
+  z-index: calc(var(--wb-z-toast) + 50);
+  padding: 0.35em 0.65em;
+  background: var(--wb-text);
+  color: var(--wb-surface);
+  font-size: var(--wb-font-size-xs);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  border-radius: var(--wb-r-md);
+  box-shadow: var(--wb-shadow-md);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+/* Arrow */
+[data-wb-tooltip]::after {
+  content: "";
+  position: absolute;
+  z-index: calc(var(--wb-z-toast) + 49);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+/* Show on hover / focus-visible */
+[data-wb-tooltip]:hover::before,
+[data-wb-tooltip]:hover::after,
+[data-wb-tooltip]:focus-visible::before,
+[data-wb-tooltip]:focus-visible::after {
+  opacity: 1;
+}
+
+/* ── Placement: top (default) ─────────────────────────────── */
+
+[data-wb-tooltip]:not([data-wb-tooltip-placement])::before,
+[data-wb-tooltip][data-wb-tooltip-placement="top"]::before {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+
+[data-wb-tooltip]:not([data-wb-tooltip-placement]):hover::before,
+[data-wb-tooltip][data-wb-tooltip-placement="top"]:hover::before,
+[data-wb-tooltip]:not([data-wb-tooltip-placement]):focus-visible::before,
+[data-wb-tooltip][data-wb-tooltip-placement="top"]:focus-visible::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-wb-tooltip]:not([data-wb-tooltip-placement])::after,
+[data-wb-tooltip][data-wb-tooltip-placement="top"]::after {
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--wb-text);
+}
+
+/* ── Placement: bottom ────────────────────────────────────── */
+
+[data-wb-tooltip][data-wb-tooltip-placement="bottom"]::before {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="bottom"]:hover::before,
+[data-wb-tooltip][data-wb-tooltip-placement="bottom"]:focus-visible::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="bottom"]::after {
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid var(--wb-text);
+}
+
+/* ── Placement: left ──────────────────────────────────────── */
+
+[data-wb-tooltip][data-wb-tooltip-placement="left"]::before {
+  top: 50%;
+  right: calc(100% + 8px);
+  left: auto;
+  transform: translateY(-50%) translateX(4px);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="left"]:hover::before,
+[data-wb-tooltip][data-wb-tooltip-placement="left"]:focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="left"]::after {
+  top: 50%;
+  right: calc(100% + 4px);
+  left: auto;
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid var(--wb-text);
+}
+
+/* ── Placement: right ─────────────────────────────────────── */
+
+[data-wb-tooltip][data-wb-tooltip-placement="right"]::before {
+  top: 50%;
+  left: calc(100% + 8px);
+  transform: translateY(-50%) translateX(-4px);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="right"]:hover::before,
+[data-wb-tooltip][data-wb-tooltip-placement="right"]:focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="right"]::after {
+  top: 50%;
+  left: calc(100% + 4px);
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid var(--wb-text);
+}
+
+/* ── Multiline tooltip ────────────────────────────────────── */
+
+[data-wb-tooltip-wrap]::before {
+  white-space: normal;
+  max-width: 220px;
+  text-align: center;
+}

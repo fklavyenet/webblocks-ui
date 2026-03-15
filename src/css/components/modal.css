@@ -103,3 +103,60 @@
 .wb-modal-sm .wb-modal-dialog { max-width: 380px; }
 .wb-modal-lg .wb-modal-dialog { max-width: 720px; }
 .wb-modal-xl .wb-modal-dialog { max-width: 960px; }
+
+/* ── Confirmation dialog ──────────────────────────────────── */
+
+.wb-confirm .wb-modal-dialog {
+  max-width: 420px;
+  text-align: center;
+}
+
+.wb-confirm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--wb-r-full);
+  margin: 0 auto var(--wb-s4);
+  font-size: 1.5rem;
+}
+
+.wb-confirm-icon-danger {
+  background: var(--wb-danger-soft);
+  color: var(--wb-danger);
+}
+
+.wb-confirm-icon-warning {
+  background: var(--wb-warning-soft);
+  color: var(--wb-warning);
+}
+
+.wb-confirm-icon-info {
+  background: var(--wb-info-soft);
+  color: var(--wb-info);
+}
+
+.wb-confirm-icon-success {
+  background: var(--wb-success-soft);
+  color: var(--wb-success);
+}
+
+.wb-confirm-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  margin: 0 0 var(--wb-s2);
+}
+
+.wb-confirm-message {
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.wb-confirm .wb-modal-footer {
+  justify-content: center;
+  gap: var(--wb-s3);
+}

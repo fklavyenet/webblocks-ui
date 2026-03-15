@@ -81,3 +81,67 @@
 .wb-toast-warning { border-left: 3px solid var(--wb-warning); }
 .wb-toast-danger  { border-left: 3px solid var(--wb-danger);  }
 .wb-toast-info    { border-left: 3px solid var(--wb-info);    }
+
+/* ── Notification stack positions ────────────────────────────
+   Default is bottom-right. Use modifier classes to reposition.
+   ──────────────────────────────────────────────────────────── */
+
+/* Top-right */
+.wb-toast-container-top-right {
+  top: var(--wb-s6);
+  bottom: auto;
+  right: var(--wb-s6);
+  left: auto;
+}
+.wb-toast-container-top-right .wb-toast {
+  animation: wb-toast-in-top 0.22s ease;
+}
+@keyframes wb-toast-in-top {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+/* Top-center */
+.wb-toast-container-top-center {
+  top: var(--wb-s6);
+  bottom: auto;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wb-toast-container-top-center .wb-toast {
+  animation: wb-toast-in-top 0.22s ease;
+}
+
+/* Bottom-center */
+.wb-toast-container-bottom-center {
+  bottom: var(--wb-s6);
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Top-left */
+.wb-toast-container-top-left {
+  top: var(--wb-s6);
+  bottom: auto;
+  right: auto;
+  left: var(--wb-s6);
+}
+.wb-toast-container-top-left .wb-toast {
+  animation: wb-toast-in-left 0.22s ease;
+}
+@keyframes wb-toast-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+/* Bottom-left */
+.wb-toast-container-bottom-left {
+  bottom: var(--wb-s6);
+  right: auto;
+  left: var(--wb-s6);
+}
+.wb-toast-container-bottom-left .wb-toast {
+  animation: wb-toast-in-left 0.22s ease;
+}

@@ -19,10 +19,27 @@
   /* ── Border ───────────────────────────────────────────── */
   --wb-border: #d6e0ee;
 
-  /* ── Primary ──────────────────────────────────────────── */
-  --wb-primary:      #2563eb;
-  --wb-primary-dark: #1d4ed8;
-  --wb-primary-soft: #dbeafe;
+  /* ── Accent (rich token set — driven by data-accent) ─────
+     Default = blue; overridden per-accent in accents.css.
+     Components that still read --wb-primary* are covered by
+     the backward-compat aliases at the bottom of this block. */
+  --wb-accent:           #2563eb;
+  --wb-accent-hover:     #1d4ed8;
+  --wb-accent-active:    #1e40af;
+  --wb-accent-soft:      #dbeafe;
+  --wb-accent-softer:    #eff6ff;
+  --wb-accent-border:    #93c5fd;
+  --wb-accent-text:      #1d4ed8;
+  --wb-accent-on:        #ffffff;
+  --wb-accent-ring:      rgb(37 99 235);
+  --wb-accent-ring-rgb:  37 99 235;
+  --wb-accent-selection: #dbeafe;
+  --wb-accent-glow-rgb:  37 99 235;
+
+  /* Backward-compat: existing components read --wb-primary* */
+  --wb-primary:      var(--wb-accent);
+  --wb-primary-dark: var(--wb-accent-hover);
+  --wb-primary-soft: var(--wb-accent-soft);
 
   /* ── Semantic ─────────────────────────────────────────── */
   --wb-success:      #15803d;
@@ -115,7 +132,8 @@ html[data-mode="dark"] {
 
   --wb-border: #29364f;
 
-  --wb-primary-soft: rgba(37,99,235,0.18);
+  /* Default (no data-accent) dark soft for primary/accent */
+  --wb-accent-soft:  rgba(37,99,235,0.18);
   --wb-success-soft: rgba(21,128,61,0.18);
   --wb-warning-soft: rgba(180,83,9,0.20);
   --wb-danger-soft:  rgba(185,28,28,0.22);
@@ -142,7 +160,8 @@ html[data-mode="dark"] {
 
     --wb-border: #29364f;
 
-    --wb-primary-soft: rgba(37,99,235,0.18);
+    /* Default (no data-accent) dark soft for primary/accent */
+    --wb-accent-soft:  rgba(37,99,235,0.18);
     --wb-success-soft: rgba(21,128,61,0.18);
     --wb-warning-soft: rgba(180,83,9,0.20);
     --wb-danger-soft:  rgba(185,28,28,0.22);
@@ -384,114 +403,397 @@ html[data-mode="dark"][data-preset="corporate"] {
   }
 }
 /* ============================================================
-   WebBlocks UI — Accent Color Schemes
+   WebBlocks UI — Accent Color Schemes  (V2)
    Applied via: html[data-accent="name"]
-   Default (no attribute) = blue (#2563eb, defined in tokens.css)
-   Dark mode variant: html[data-mode="dark"] or @media auto
+
+   Token set per accent:
+     --wb-accent            Primary action color
+     --wb-accent-hover      Hover state
+     --wb-accent-active     Pressed / active state
+     --wb-accent-soft       Subtle tinted background
+     --wb-accent-softer     Very subtle tinted background
+     --wb-accent-border     Tinted border / divider
+     --wb-accent-text       Text color on light surface
+     --wb-accent-on         Text/icon on accent background
+     --wb-accent-ring       Focus ring (full rgb(...) value)
+     --wb-accent-ring-rgb   Focus ring components (r g b)
+     --wb-accent-selection  ::selection background
+     --wb-accent-glow-rgb   Glow / shadow tint components
+
+   Dark mode: html[data-mode="dark"] or html[data-mode="auto"]
+   Accents:   ocean | forest | sunset | royal | mint | amber | rose | slate-fire
    ============================================================ */
 
-/* ── Ocean (teal) ─────────────────────────────────────────── */
+/* Global ::selection uses the active accent's selection color */
+::selection {
+  background: var(--wb-accent-selection);
+}
+
+/* ── Ocean ──────────────────────────────────────────────── */
 html[data-accent="ocean"] {
-  --wb-primary:      #0d9488;
-  --wb-primary-dark: #0f766e;
-  --wb-primary-soft: #ccfbf1;
+  --wb-accent:           #118AB2;
+  --wb-accent-hover:     #0F7A9D;
+  --wb-accent-active:    #0B6482;
+  --wb-accent-soft:      #D9F0F7;
+  --wb-accent-softer:    #EEF9FC;
+  --wb-accent-border:    #9FD4E5;
+  --wb-accent-text:      #0A4D63;
+  --wb-accent-on:        #FFFFFF;
+  --wb-accent-ring:      rgb(17 138 178);
+  --wb-accent-ring-rgb:  17 138 178;
+  --wb-accent-selection: #CBEAF4;
+  --wb-accent-glow-rgb:  17 138 178;
 }
 html[data-mode="dark"][data-accent="ocean"] {
-  --wb-primary-soft: rgba(13,148,136,0.20);
+  --wb-accent:           #4CC9F0;
+  --wb-accent-hover:     #3AB8DF;
+  --wb-accent-active:    #2BA3C8;
+  --wb-accent-soft:      #0F2530;
+  --wb-accent-softer:    #0A1B24;
+  --wb-accent-border:    #1E5264;
+  --wb-accent-text:      #A8EAFB;
+  --wb-accent-on:        #06202A;
+  --wb-accent-ring:      rgb(76 201 240);
+  --wb-accent-ring-rgb:  76 201 240;
+  --wb-accent-selection: #123342;
+  --wb-accent-glow-rgb:  76 201 240;
 }
 @media (prefers-color-scheme: dark) {
   html[data-mode="auto"][data-accent="ocean"] {
-    --wb-primary-soft: rgba(13,148,136,0.20);
+    --wb-accent:           #4CC9F0;
+    --wb-accent-hover:     #3AB8DF;
+    --wb-accent-active:    #2BA3C8;
+    --wb-accent-soft:      #0F2530;
+    --wb-accent-softer:    #0A1B24;
+    --wb-accent-border:    #1E5264;
+    --wb-accent-text:      #A8EAFB;
+    --wb-accent-on:        #06202A;
+    --wb-accent-ring:      rgb(76 201 240);
+    --wb-accent-ring-rgb:  76 201 240;
+    --wb-accent-selection: #123342;
+    --wb-accent-glow-rgb:  76 201 240;
   }
 }
 
-/* ── Forest (green) ───────────────────────────────────────── */
+/* ── Forest ─────────────────────────────────────────────── */
 html[data-accent="forest"] {
-  --wb-primary:      #16a34a;
-  --wb-primary-dark: #15803d;
-  --wb-primary-soft: #dcfce7;
+  --wb-accent:           #2E8B57;
+  --wb-accent-hover:     #27764A;
+  --wb-accent-active:    #1F603C;
+  --wb-accent-soft:      #DCEFE4;
+  --wb-accent-softer:    #F1F8F4;
+  --wb-accent-border:    #A9D3B9;
+  --wb-accent-text:      #1F5A39;
+  --wb-accent-on:        #FFFFFF;
+  --wb-accent-ring:      rgb(46 139 87);
+  --wb-accent-ring-rgb:  46 139 87;
+  --wb-accent-selection: #CFE6D8;
+  --wb-accent-glow-rgb:  46 139 87;
 }
 html[data-mode="dark"][data-accent="forest"] {
-  --wb-primary-soft: rgba(22,163,74,0.20);
+  --wb-accent:           #52B788;
+  --wb-accent-hover:     #45A97B;
+  --wb-accent-active:    #38966B;
+  --wb-accent-soft:      #12241B;
+  --wb-accent-softer:    #0C1913;
+  --wb-accent-border:    #295542;
+  --wb-accent-text:      #BEEFD4;
+  --wb-accent-on:        #0A1812;
+  --wb-accent-ring:      rgb(82 183 136);
+  --wb-accent-ring-rgb:  82 183 136;
+  --wb-accent-selection: #173025;
+  --wb-accent-glow-rgb:  82 183 136;
 }
 @media (prefers-color-scheme: dark) {
   html[data-mode="auto"][data-accent="forest"] {
-    --wb-primary-soft: rgba(22,163,74,0.20);
+    --wb-accent:           #52B788;
+    --wb-accent-hover:     #45A97B;
+    --wb-accent-active:    #38966B;
+    --wb-accent-soft:      #12241B;
+    --wb-accent-softer:    #0C1913;
+    --wb-accent-border:    #295542;
+    --wb-accent-text:      #BEEFD4;
+    --wb-accent-on:        #0A1812;
+    --wb-accent-ring:      rgb(82 183 136);
+    --wb-accent-ring-rgb:  82 183 136;
+    --wb-accent-selection: #173025;
+    --wb-accent-glow-rgb:  82 183 136;
   }
 }
 
-/* ── Royal (indigo) ───────────────────────────────────────── */
+/* ── Sunset ──────────────────────────────────────────────── */
+html[data-accent="sunset"] {
+  --wb-accent:           #F97316;
+  --wb-accent-hover:     #EA670D;
+  --wb-accent-active:    #D45A08;
+  --wb-accent-soft:      #FDE6D6;
+  --wb-accent-softer:    #FFF3EB;
+  --wb-accent-border:    #F7BE97;
+  --wb-accent-text:      #9A4410;
+  --wb-accent-on:        #FFFFFF;
+  --wb-accent-ring:      rgb(249 115 22);
+  --wb-accent-ring-rgb:  249 115 22;
+  --wb-accent-selection: #FAD9C3;
+  --wb-accent-glow-rgb:  249 115 22;
+}
+html[data-mode="dark"][data-accent="sunset"] {
+  --wb-accent:           #FB923C;
+  --wb-accent-hover:     #F28327;
+  --wb-accent-active:    #E56F0F;
+  --wb-accent-soft:      #2B170C;
+  --wb-accent-softer:    #1C1008;
+  --wb-accent-border:    #6B381B;
+  --wb-accent-text:      #FFD1AB;
+  --wb-accent-on:        #2A1407;
+  --wb-accent-ring:      rgb(251 146 60);
+  --wb-accent-ring-rgb:  251 146 60;
+  --wb-accent-selection: #3A1F10;
+  --wb-accent-glow-rgb:  251 146 60;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-mode="auto"][data-accent="sunset"] {
+    --wb-accent:           #FB923C;
+    --wb-accent-hover:     #F28327;
+    --wb-accent-active:    #E56F0F;
+    --wb-accent-soft:      #2B170C;
+    --wb-accent-softer:    #1C1008;
+    --wb-accent-border:    #6B381B;
+    --wb-accent-text:      #FFD1AB;
+    --wb-accent-on:        #2A1407;
+    --wb-accent-ring:      rgb(251 146 60);
+    --wb-accent-ring-rgb:  251 146 60;
+    --wb-accent-selection: #3A1F10;
+    --wb-accent-glow-rgb:  251 146 60;
+  }
+}
+
+/* ── Royal ──────────────────────────────────────────────── */
 html[data-accent="royal"] {
-  --wb-primary:      #4f46e5;
-  --wb-primary-dark: #4338ca;
-  --wb-primary-soft: #e0e7ff;
+  --wb-accent:           #4F46E5;
+  --wb-accent-hover:     #4338CA;
+  --wb-accent-active:    #3730A3;
+  --wb-accent-soft:      #E2E6FF;
+  --wb-accent-softer:    #F1F3FF;
+  --wb-accent-border:    #B8C1FF;
+  --wb-accent-text:      #2F2A8B;
+  --wb-accent-on:        #FFFFFF;
+  --wb-accent-ring:      rgb(79 70 229);
+  --wb-accent-ring-rgb:  79 70 229;
+  --wb-accent-selection: #D9DEFF;
+  --wb-accent-glow-rgb:  79 70 229;
 }
 html[data-mode="dark"][data-accent="royal"] {
-  --wb-primary-soft: rgba(79,70,229,0.20);
+  --wb-accent:           #818CF8;
+  --wb-accent-hover:     #6F7BF1;
+  --wb-accent-active:    #5B67E6;
+  --wb-accent-soft:      #15172E;
+  --wb-accent-softer:    #0E1020;
+  --wb-accent-border:    #31376A;
+  --wb-accent-text:      #D7DCFF;
+  --wb-accent-on:        #0C0F1C;
+  --wb-accent-ring:      rgb(129 140 248);
+  --wb-accent-ring-rgb:  129 140 248;
+  --wb-accent-selection: #1D2140;
+  --wb-accent-glow-rgb:  129 140 248;
 }
 @media (prefers-color-scheme: dark) {
   html[data-mode="auto"][data-accent="royal"] {
-    --wb-primary-soft: rgba(79,70,229,0.20);
+    --wb-accent:           #818CF8;
+    --wb-accent-hover:     #6F7BF1;
+    --wb-accent-active:    #5B67E6;
+    --wb-accent-soft:      #15172E;
+    --wb-accent-softer:    #0E1020;
+    --wb-accent-border:    #31376A;
+    --wb-accent-text:      #D7DCFF;
+    --wb-accent-on:        #0C0F1C;
+    --wb-accent-ring:      rgb(129 140 248);
+    --wb-accent-ring-rgb:  129 140 248;
+    --wb-accent-selection: #1D2140;
+    --wb-accent-glow-rgb:  129 140 248;
   }
 }
 
-/* ── Warm (orange) ────────────────────────────────────────── */
-html[data-accent="warm"] {
-  --wb-primary:      #ea580c;
-  --wb-primary-dark: #c2410c;
-  --wb-primary-soft: #ffedd5;
+/* ── Mint ────────────────────────────────────────────────── */
+html[data-accent="mint"] {
+  --wb-accent:           #14B8A6;
+  --wb-accent-hover:     #0FA594;
+  --wb-accent-active:    #0B8A7C;
+  --wb-accent-soft:      #D8F4F0;
+  --wb-accent-softer:    #ECFBF8;
+  --wb-accent-border:    #98DED6;
+  --wb-accent-text:      #0D6158;
+  --wb-accent-on:        #FFFFFF;
+  --wb-accent-ring:      rgb(20 184 166);
+  --wb-accent-ring-rgb:  20 184 166;
+  --wb-accent-selection: #C8EEE8;
+  --wb-accent-glow-rgb:  20 184 166;
 }
-html[data-mode="dark"][data-accent="warm"] {
-  --wb-primary-soft: rgba(234,88,12,0.20);
+html[data-mode="dark"][data-accent="mint"] {
+  --wb-accent:           #2DD4BF;
+  --wb-accent-hover:     #21C5B0;
+  --wb-accent-active:    #18AC9A;
+  --wb-accent-soft:      #0D231F;
+  --wb-accent-softer:    #081715;
+  --wb-accent-border:    #256A61;
+  --wb-accent-text:      #BFF8F0;
+  --wb-accent-on:        #071513;
+  --wb-accent-ring:      rgb(45 212 191);
+  --wb-accent-ring-rgb:  45 212 191;
+  --wb-accent-selection: #10332E;
+  --wb-accent-glow-rgb:  45 212 191;
 }
 @media (prefers-color-scheme: dark) {
-  html[data-mode="auto"][data-accent="warm"] {
-    --wb-primary-soft: rgba(234,88,12,0.20);
+  html[data-mode="auto"][data-accent="mint"] {
+    --wb-accent:           #2DD4BF;
+    --wb-accent-hover:     #21C5B0;
+    --wb-accent-active:    #18AC9A;
+    --wb-accent-soft:      #0D231F;
+    --wb-accent-softer:    #081715;
+    --wb-accent-border:    #256A61;
+    --wb-accent-text:      #BFF8F0;
+    --wb-accent-on:        #071513;
+    --wb-accent-ring:      rgb(45 212 191);
+    --wb-accent-ring-rgb:  45 212 191;
+    --wb-accent-selection: #10332E;
+    --wb-accent-glow-rgb:  45 212 191;
   }
 }
 
-/* ── Slate (cool gray) ────────────────────────────────────── */
-html[data-accent="slate"] {
-  --wb-primary:      #475569;
-  --wb-primary-dark: #334155;
-  --wb-primary-soft: #e2e8f0;
+/* ── Amber ──────────────────────────────────────────────── */
+html[data-accent="amber"] {
+  --wb-accent:           #F59E0B;
+  --wb-accent-hover:     #E08E07;
+  --wb-accent-active:    #C97A04;
+  --wb-accent-soft:      #FDECC8;
+  --wb-accent-softer:    #FFF7E6;
+  --wb-accent-border:    #F4CD82;
+  --wb-accent-text:      #8A5A03;
+  --wb-accent-on:        #FFFFFF;
+  --wb-accent-ring:      rgb(245 158 11);
+  --wb-accent-ring-rgb:  245 158 11;
+  --wb-accent-selection: #F8E1B6;
+  --wb-accent-glow-rgb:  245 158 11;
 }
-html[data-mode="dark"][data-accent="slate"] {
-  --wb-primary-soft: rgba(71,85,105,0.22);
+html[data-mode="dark"][data-accent="amber"] {
+  --wb-accent:           #FBBF24;
+  --wb-accent-hover:     #F4B10F;
+  --wb-accent-active:    #E59D05;
+  --wb-accent-soft:      #271B08;
+  --wb-accent-softer:    #191205;
+  --wb-accent-border:    #6A4F17;
+  --wb-accent-text:      #FFE2A0;
+  --wb-accent-on:        #221705;
+  --wb-accent-ring:      rgb(251 191 36);
+  --wb-accent-ring-rgb:  251 191 36;
+  --wb-accent-selection: #34250A;
+  --wb-accent-glow-rgb:  251 191 36;
 }
 @media (prefers-color-scheme: dark) {
-  html[data-mode="auto"][data-accent="slate"] {
-    --wb-primary-soft: rgba(71,85,105,0.22);
+  html[data-mode="auto"][data-accent="amber"] {
+    --wb-accent:           #FBBF24;
+    --wb-accent-hover:     #F4B10F;
+    --wb-accent-active:    #E59D05;
+    --wb-accent-soft:      #271B08;
+    --wb-accent-softer:    #191205;
+    --wb-accent-border:    #6A4F17;
+    --wb-accent-text:      #FFE2A0;
+    --wb-accent-on:        #221705;
+    --wb-accent-ring:      rgb(251 191 36);
+    --wb-accent-ring-rgb:  251 191 36;
+    --wb-accent-selection: #34250A;
+    --wb-accent-glow-rgb:  251 191 36;
   }
 }
 
-/* ── Rose (pink-red) ──────────────────────────────────────── */
+/* ── Rose ────────────────────────────────────────────────── */
 html[data-accent="rose"] {
-  --wb-primary:      #e11d48;
-  --wb-primary-dark: #be123c;
-  --wb-primary-soft: #ffe4e6;
+  --wb-accent:           #E11D48;
+  --wb-accent-hover:     #CD153E;
+  --wb-accent-active:    #AE1235;
+  --wb-accent-soft:      #F9DCE3;
+  --wb-accent-softer:    #FFF1F4;
+  --wb-accent-border:    #F0B1C1;
+  --wb-accent-text:      #8E1230;
+  --wb-accent-on:        #FFFFFF;
+  --wb-accent-ring:      rgb(225 29 72);
+  --wb-accent-ring-rgb:  225 29 72;
+  --wb-accent-selection: #F5CED9;
+  --wb-accent-glow-rgb:  225 29 72;
 }
 html[data-mode="dark"][data-accent="rose"] {
-  --wb-primary-soft: rgba(225,29,72,0.20);
+  --wb-accent:           #FB7185;
+  --wb-accent-hover:     #F85E75;
+  --wb-accent-active:    #F04462;
+  --wb-accent-soft:      #2B1117;
+  --wb-accent-softer:    #1B0B0F;
+  --wb-accent-border:    #6D2332;
+  --wb-accent-text:      #FFD1DA;
+  --wb-accent-on:        #250D12;
+  --wb-accent-ring:      rgb(251 113 133);
+  --wb-accent-ring-rgb:  251 113 133;
+  --wb-accent-selection: #39151D;
+  --wb-accent-glow-rgb:  251 113 133;
 }
 @media (prefers-color-scheme: dark) {
   html[data-mode="auto"][data-accent="rose"] {
-    --wb-primary-soft: rgba(225,29,72,0.20);
+    --wb-accent:           #FB7185;
+    --wb-accent-hover:     #F85E75;
+    --wb-accent-active:    #F04462;
+    --wb-accent-soft:      #2B1117;
+    --wb-accent-softer:    #1B0B0F;
+    --wb-accent-border:    #6D2332;
+    --wb-accent-text:      #FFD1DA;
+    --wb-accent-on:        #250D12;
+    --wb-accent-ring:      rgb(251 113 133);
+    --wb-accent-ring-rgb:  251 113 133;
+    --wb-accent-selection: #39151D;
+    --wb-accent-glow-rgb:  251 113 133;
   }
 }
 
-/* ── Sand (amber) ─────────────────────────────────────────── */
-html[data-accent="sand"] {
-  --wb-primary:      #d97706;
-  --wb-primary-dark: #b45309;
-  --wb-primary-soft: #fef3c7;
+/* ── Slate-Fire ──────────────────────────────────────────── */
+html[data-accent="slate-fire"] {
+  --wb-accent:           #DC2626;
+  --wb-accent-hover:     #C51F1F;
+  --wb-accent-active:    #A61B1B;
+  --wb-accent-soft:      #F7DDDD;
+  --wb-accent-softer:    #FFF3F3;
+  --wb-accent-border:    #EDB0B0;
+  --wb-accent-text:      #8A1919;
+  --wb-accent-on:        #FFFFFF;
+  --wb-accent-ring:      rgb(220 38 38);
+  --wb-accent-ring-rgb:  220 38 38;
+  --wb-accent-selection: #F4CFCF;
+  --wb-accent-glow-rgb:  220 38 38;
 }
-html[data-mode="dark"][data-accent="sand"] {
-  --wb-primary-soft: rgba(217,119,6,0.20);
+html[data-mode="dark"][data-accent="slate-fire"] {
+  --wb-accent:           #F87171;
+  --wb-accent-hover:     #F35E5E;
+  --wb-accent-active:    #E74747;
+  --wb-accent-soft:      #2C1212;
+  --wb-accent-softer:    #1C0B0B;
+  --wb-accent-border:    #6F2828;
+  --wb-accent-text:      #FFD1D1;
+  --wb-accent-on:        #250D0D;
+  --wb-accent-ring:      rgb(248 113 113);
+  --wb-accent-ring-rgb:  248 113 113;
+  --wb-accent-selection: #391717;
+  --wb-accent-glow-rgb:  248 113 113;
 }
 @media (prefers-color-scheme: dark) {
-  html[data-mode="auto"][data-accent="sand"] {
-    --wb-primary-soft: rgba(217,119,6,0.20);
+  html[data-mode="auto"][data-accent="slate-fire"] {
+    --wb-accent:           #F87171;
+    --wb-accent-hover:     #F35E5E;
+    --wb-accent-active:    #E74747;
+    --wb-accent-soft:      #2C1212;
+    --wb-accent-softer:    #1C0B0B;
+    --wb-accent-border:    #6F2828;
+    --wb-accent-text:      #FFD1D1;
+    --wb-accent-on:        #250D0D;
+    --wb-accent-ring:      rgb(248 113 113);
+    --wb-accent-ring-rgb:  248 113 113;
+    --wb-accent-selection: #391717;
+    --wb-accent-glow-rgb:  248 113 113;
   }
 }
 /* ============================================================
@@ -600,6 +902,77 @@ html[data-font="editorial"] {
   --wb-font:         ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --wb-font-heading: Georgia, "Times New Roman", Times, serif;
 }
+/* ============================================================
+   WebBlocks UI — Border Presets
+   Applied via: html[data-border="preset"]
+   Controls border width, border style, and surface border color.
+   ============================================================ */
+
+/* ── None — borderless ────────────────────────────────────── */
+html[data-border="none"] {
+  --wb-border: transparent;
+}
+
+/* ── Subtle (default-like, very light) ────────────────────── */
+html[data-border="subtle"] {
+  --wb-border: color-mix(in srgb, var(--wb-text) 8%, transparent);
+}
+
+/* ── Medium (slightly more visible) ──────────────────────────*/
+html[data-border="medium"] {
+  --wb-border: color-mix(in srgb, var(--wb-text) 15%, transparent);
+}
+
+/* ── Strong (high contrast) ───────────────────────────────── */
+html[data-border="strong"] {
+  --wb-border: color-mix(in srgb, var(--wb-text) 28%, transparent);
+}
+
+/* ── Accent — primary-colored borders ────────────────────── */
+html[data-border="accent"] {
+  --wb-border: var(--wb-primary);
+}
+
+/* ── Dashed — dashed borders globally ────────────────────── */
+html[data-border="dashed"] {
+  --wb-border-style: dashed;
+}
+
+/* ── CSS custom property for border style ─────────────────── */
+:root {
+  --wb-border-style: solid;
+  --wb-border-width: 1px;
+}
+
+/* ── Individual border width utilities ────────────────────── */
+
+.wb-border        { border: var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-t      { border-top:    var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-b      { border-bottom: var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-l      { border-left:   var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-r      { border-right:  var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-none   { border: none; }
+
+/* ── Border width scale ───────────────────────────────────── */
+
+.wb-border-1 { --wb-border-width: 1px; }
+.wb-border-2 { --wb-border-width: 2px; }
+.wb-border-4 { --wb-border-width: 4px; }
+
+/* ── Border style utilities ───────────────────────────────── */
+
+.wb-border-solid  { --wb-border-style: solid; }
+.wb-border-dashed { --wb-border-style: dashed; }
+.wb-border-dotted { --wb-border-style: dotted; }
+
+/* ── Border color utilities ───────────────────────────────── */
+
+.wb-border-primary { border-color: var(--wb-primary); }
+.wb-border-success { border-color: var(--wb-success); }
+.wb-border-warning { border-color: var(--wb-warning); }
+.wb-border-danger  { border-color: var(--wb-danger);  }
+.wb-border-info    { border-color: var(--wb-info);    }
+.wb-border-muted   { border-color: var(--wb-muted);   }
 /* ============================================================
    WebBlocks UI — Minimal Reset
    ============================================================ */
@@ -1633,6 +2006,63 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-modal-sm .wb-modal-dialog { max-width: 380px; }
 .wb-modal-lg .wb-modal-dialog { max-width: 720px; }
 .wb-modal-xl .wb-modal-dialog { max-width: 960px; }
+
+/* ── Confirmation dialog ──────────────────────────────────── */
+
+.wb-confirm .wb-modal-dialog {
+  max-width: 420px;
+  text-align: center;
+}
+
+.wb-confirm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--wb-r-full);
+  margin: 0 auto var(--wb-s4);
+  font-size: 1.5rem;
+}
+
+.wb-confirm-icon-danger {
+  background: var(--wb-danger-soft);
+  color: var(--wb-danger);
+}
+
+.wb-confirm-icon-warning {
+  background: var(--wb-warning-soft);
+  color: var(--wb-warning);
+}
+
+.wb-confirm-icon-info {
+  background: var(--wb-info-soft);
+  color: var(--wb-info);
+}
+
+.wb-confirm-icon-success {
+  background: var(--wb-success-soft);
+  color: var(--wb-success);
+}
+
+.wb-confirm-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  margin: 0 0 var(--wb-s2);
+}
+
+.wb-confirm-message {
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.wb-confirm .wb-modal-footer {
+  justify-content: center;
+  gap: var(--wb-s3);
+}
 /* ============================================================
    WebBlocks UI — Dropdown (wb-dropdown)
    JS: data-wb-dropdown on container; auto-closes on outside click / Escape
@@ -2120,6 +2550,70 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-toast-warning { border-left: 3px solid var(--wb-warning); }
 .wb-toast-danger  { border-left: 3px solid var(--wb-danger);  }
 .wb-toast-info    { border-left: 3px solid var(--wb-info);    }
+
+/* ── Notification stack positions ────────────────────────────
+   Default is bottom-right. Use modifier classes to reposition.
+   ──────────────────────────────────────────────────────────── */
+
+/* Top-right */
+.wb-toast-container-top-right {
+  top: var(--wb-s6);
+  bottom: auto;
+  right: var(--wb-s6);
+  left: auto;
+}
+.wb-toast-container-top-right .wb-toast {
+  animation: wb-toast-in-top 0.22s ease;
+}
+@keyframes wb-toast-in-top {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+/* Top-center */
+.wb-toast-container-top-center {
+  top: var(--wb-s6);
+  bottom: auto;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wb-toast-container-top-center .wb-toast {
+  animation: wb-toast-in-top 0.22s ease;
+}
+
+/* Bottom-center */
+.wb-toast-container-bottom-center {
+  bottom: var(--wb-s6);
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Top-left */
+.wb-toast-container-top-left {
+  top: var(--wb-s6);
+  bottom: auto;
+  right: auto;
+  left: var(--wb-s6);
+}
+.wb-toast-container-top-left .wb-toast {
+  animation: wb-toast-in-left 0.22s ease;
+}
+@keyframes wb-toast-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+/* Bottom-left */
+.wb-toast-container-bottom-left {
+  bottom: var(--wb-s6);
+  right: auto;
+  left: var(--wb-s6);
+}
+.wb-toast-container-bottom-left .wb-toast {
+  animation: wb-toast-in-left 0.22s ease;
+}
 /* ============================================================
    WebBlocks UI — Skeleton Loader (wb-skeleton)
    ============================================================ */
@@ -2206,6 +2700,1941 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-empty-sm .wb-empty-icon {
   width: 2.5rem;
   height: 2.5rem;
+}
+/* ============================================================
+   WebBlocks UI — Nav Group (wb-nav-group)
+   Collapsible navigation sections for sidebar and standalone menus.
+   JS: data-wb-nav-group on container; triggers toggle on header click.
+   ============================================================ */
+
+/* ── Nav group wrapper ────────────────────────────────────── */
+
+.wb-nav-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Group toggle (clickable header) ──────────────────────── */
+
+.wb-nav-group-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: 0.45em var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+  white-space: nowrap;
+  overflow: hidden;
+  font: inherit;
+}
+
+.wb-nav-group-toggle:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-nav-group-toggle.is-active {
+  color: var(--wb-primary);
+}
+
+/* ── Toggle icon (chevron) ────────────────────────────────── */
+
+.wb-nav-group-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  width: 1.2em;
+  text-align: center;
+}
+
+.wb-nav-group-label {
+  flex: 1;
+}
+
+.wb-nav-group-arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  opacity: 0.5;
+  transition: transform var(--wb-t);
+  /* SVG arrow via background */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%235a6a84' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* ── Open state: rotate arrow ─────────────────────────────── */
+
+.wb-nav-group.is-open > .wb-nav-group-toggle .wb-nav-group-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Sub-items panel ──────────────────────────────────────── */
+
+.wb-nav-group-items {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: calc(var(--wb-s3) + 1.2em + var(--wb-s3));
+  padding-top: var(--wb-s1);
+  padding-bottom: var(--wb-s1);
+}
+
+.wb-nav-group.is-open > .wb-nav-group-items {
+  display: flex;
+}
+
+/* ── Sub-item links ───────────────────────────────────────── */
+
+.wb-nav-group-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: 0.35em var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--wb-muted);
+  text-decoration: none;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wb-nav-group-item:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+.wb-nav-group-item.is-active {
+  color: var(--wb-primary);
+  font-weight: 600;
+}
+
+/* ── Nested badge ─────────────────────────────────────────── */
+
+.wb-nav-group-item .wb-nav-group-count {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  padding: 0.1em 0.5em;
+  border-radius: var(--wb-r-full);
+  flex-shrink: 0;
+}
+
+/* ── Standalone menu (not inside sidebar) ─────────────────── */
+
+.wb-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--wb-s1) 0;
+}
+
+.wb-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: 0.45em var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+}
+
+.wb-menu-item:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-menu-item.is-active {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+  font-weight: 600;
+}
+
+.wb-menu-item-danger {
+  color: var(--wb-danger);
+}
+.wb-menu-item-danger:hover {
+  background: var(--wb-danger-soft);
+  color: var(--wb-danger);
+}
+
+.wb-menu-divider {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s1) 0;
+}
+
+.wb-menu-label {
+  padding: var(--wb-s1) var(--wb-s3);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-muted);
+  user-select: none;
+}
+
+/* ── Submenu (nested wb-menu inside wb-nav-group-items) ───── */
+
+.wb-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: var(--wb-s4);
+  border-left: 2px solid var(--wb-border);
+  margin-left: var(--wb-s2);
+  margin-top: 2px;
+}
+
+.wb-submenu .wb-menu-item {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--wb-muted);
+}
+
+/* ── Topbar actions (right-side navbar area) ──────────────── */
+
+.wb-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+.wb-topbar-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: var(--wb-r-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--wb-muted);
+  font-size: 1rem;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+}
+
+.wb-topbar-action:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+/* Notification dot */
+.wb-topbar-action-dot {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-danger);
+  border: 2px solid var(--wb-surface);
+}
+
+/* ── User profile button (navbar) ─────────────────────────── */
+
+.wb-topbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: 0.25em 0.5em 0.25em 0.25em;
+  border-radius: var(--wb-r-lg);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  text-decoration: none;
+  transition: background var(--wb-t);
+}
+
+.wb-topbar-user:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-topbar-user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.3;
+}
+
+.wb-topbar-user-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--wb-text);
+}
+
+.wb-topbar-user-role {
+  font-size: 0.75rem;
+  color: var(--wb-muted);
+}
+/* ============================================================
+   WebBlocks UI — Filter Bar & Search Bar (wb-filter-bar, wb-search-bar)
+   Used for data tables, listing pages, and admin interfaces.
+   ============================================================ */
+
+/* ── Filter bar wrapper ───────────────────────────────────── */
+
+.wb-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-wrap: wrap;
+  padding: var(--wb-s3) var(--wb-s4);
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+}
+
+/* Attached to a table (no bottom radius) */
+.wb-filter-bar-attached {
+  border-bottom: none;
+  border-radius: var(--wb-r-lg) var(--wb-r-lg) 0 0;
+}
+
+/* ── Filter bar sections ──────────────────────────────────── */
+
+.wb-filter-bar-start {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-filter-bar-end {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-shrink: 0;
+}
+
+/* ── Search bar ───────────────────────────────────────────── */
+
+.wb-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wb-search-bar-input {
+  width: 100%;
+  padding: 0.45em 0.85em 0.45em 2.2em;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface);
+  color: var(--wb-text);
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: border-color var(--wb-t), box-shadow var(--wb-t);
+  outline: none;
+}
+
+.wb-search-bar-input::placeholder {
+  color: var(--wb-muted);
+}
+
+.wb-search-bar-input:focus {
+  border-color: var(--wb-primary);
+  box-shadow: 0 0 0 3px var(--wb-primary-soft);
+}
+
+.wb-search-bar-icon {
+  position: absolute;
+  left: 0.7em;
+  color: var(--wb-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.wb-search-bar-clear {
+  position: absolute;
+  right: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: var(--wb-r-sm);
+  background: none;
+  border: none;
+  color: var(--wb-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  transition: opacity var(--wb-t), background var(--wb-t);
+}
+
+.wb-search-bar-clear:hover {
+  opacity: 1;
+  background: var(--wb-surface-2);
+}
+
+/* ── Size variants ────────────────────────────────────────── */
+
+.wb-search-bar-sm .wb-search-bar-input {
+  font-size: 0.8rem;
+  padding: 0.35em 0.7em 0.35em 2em;
+}
+
+.wb-search-bar-lg .wb-search-bar-input {
+  font-size: 1rem;
+  padding: 0.6em 1em 0.6em 2.4em;
+}
+
+/* Expanded (full-width) */
+.wb-search-bar-full {
+  width: 100%;
+}
+
+/* ── Filter chip ──────────────────────────────────────────── */
+
+.wb-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: 0.3em 0.65em;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  background: var(--wb-surface);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background var(--wb-t),
+    border-color var(--wb-t),
+    color var(--wb-t);
+  white-space: nowrap;
+}
+
+.wb-filter-chip:hover {
+  background: var(--wb-surface-2);
+}
+
+.wb-filter-chip.is-active {
+  background: var(--wb-primary-soft);
+  border-color: var(--wb-primary);
+  color: var(--wb-primary);
+}
+
+.wb-filter-chip-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  border-radius: var(--wb-r-full);
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.85em;
+  opacity: 0.6;
+  transition: opacity var(--wb-t);
+}
+
+.wb-filter-chip-remove:hover {
+  opacity: 1;
+}
+
+/* ── Filter select ────────────────────────────────────────── */
+
+.wb-filter-select {
+  padding: 0.4em 2em 0.4em 0.75em;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6a84' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65em center;
+  color: var(--wb-text);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  transition: border-color var(--wb-t), box-shadow var(--wb-t);
+}
+
+.wb-filter-select:focus {
+  border-color: var(--wb-primary);
+  box-shadow: 0 0 0 3px var(--wb-primary-soft);
+}
+
+/* ── Filter count badge ───────────────────────────────────── */
+
+.wb-filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25em;
+  height: 1.25em;
+  padding: 0 0.3em;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-primary);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ── Results info ─────────────────────────────────────────── */
+
+.wb-filter-results {
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+  white-space: nowrap;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .wb-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wb-filter-bar-start,
+  .wb-filter-bar-end {
+    width: 100%;
+  }
+
+  .wb-search-bar-full {
+    width: 100%;
+  }
+}
+/* ============================================================
+   WebBlocks UI — Action Menu (wb-action-menu)
+   Inline row-level action menus for data tables and list views.
+   JS: uses wb-dropdown.js behavior (data-wb-dropdown)
+   ============================================================ */
+
+/* ── Inline action group (row actions) ────────────────────── */
+
+.wb-action-group {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+}
+
+/* ── Action button (icon-only) ────────────────────────────── */
+
+.wb-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--wb-r-md);
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--wb-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition:
+    background var(--wb-t),
+    border-color var(--wb-t),
+    color var(--wb-t);
+  flex-shrink: 0;
+}
+
+.wb-action-btn:hover {
+  background: var(--wb-surface-2);
+  border-color: var(--wb-border);
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+.wb-action-btn:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+}
+
+/* ── Semantic variants ────────────────────────────────────── */
+
+.wb-action-btn-view:hover {
+  background: var(--wb-info-soft);
+  border-color: transparent;
+  color: var(--wb-info);
+}
+
+.wb-action-btn-edit:hover {
+  background: var(--wb-primary-soft);
+  border-color: transparent;
+  color: var(--wb-primary);
+}
+
+.wb-action-btn-delete:hover {
+  background: var(--wb-danger-soft);
+  border-color: transparent;
+  color: var(--wb-danger);
+}
+
+/* ── Inline action with label ─────────────────────────────── */
+
+.wb-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--wb-primary);
+  text-decoration: none;
+  padding: 0.2em 0.4em;
+  border-radius: var(--wb-r-sm);
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+}
+
+.wb-action-link:hover {
+  background: var(--wb-primary-soft);
+  text-decoration: none;
+}
+
+.wb-action-link-danger {
+  color: var(--wb-danger);
+}
+
+.wb-action-link-danger:hover {
+  background: var(--wb-danger-soft);
+}
+
+/* ── More actions (kebab) dropdown ───────────────────────────
+   Wraps wb-dropdown to provide a standard "⋯" trigger.
+   ──────────────────────────────────────────────────────────── */
+
+.wb-action-more {
+  position: relative;
+  display: inline-block;
+}
+
+.wb-action-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--wb-r-md);
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--wb-muted);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  transition:
+    background var(--wb-t),
+    border-color var(--wb-t),
+    color var(--wb-t);
+}
+
+.wb-action-more-btn:hover {
+  background: var(--wb-surface-2);
+  border-color: var(--wb-border);
+  color: var(--wb-text);
+}
+
+/* The dropdown panel for action-more reuses wb-dropdown-menu */
+.wb-action-more .wb-dropdown-menu {
+  min-width: 160px;
+  right: 0;
+  left: auto;
+}
+
+/* ── Status pill (inline row status) ─────────────────────────
+   Extends wb-badge with a status-dot indicator for table rows.
+   ──────────────────────────────────────────────────────────── */
+
+.wb-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: 0.22em 0.65em;
+  border-radius: var(--wb-r-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.wb-status-pill::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--wb-r-full);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* Variants */
+.wb-status-active {
+  background: var(--wb-success-soft);
+  color: var(--wb-success);
+}
+
+.wb-status-inactive {
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+}
+
+.wb-status-pending {
+  background: var(--wb-warning-soft);
+  color: var(--wb-warning);
+}
+
+.wb-status-error {
+  background: var(--wb-danger-soft);
+  color: var(--wb-danger);
+}
+
+.wb-status-info {
+  background: var(--wb-info-soft);
+  color: var(--wb-info);
+}
+
+/* ── Row selection checkbox area ──────────────────────────── */
+
+.wb-table-check-cell {
+  width: 2.5rem;
+  padding: 0 var(--wb-s3);
+}
+/* ============================================================
+   WebBlocks UI — Loading Overlay (wb-loading)
+   Full-screen or scoped loading states.
+   ============================================================ */
+
+/* ── Spinner ──────────────────────────────────────────────── */
+
+.wb-spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--wb-border);
+  border-top-color: var(--wb-primary);
+  border-radius: var(--wb-r-full);
+  animation: wb-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes wb-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Spinner sizes ────────────────────────────────────────── */
+
+.wb-spinner-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 1.5px;
+}
+
+.wb-spinner-lg {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-width: 3px;
+}
+
+.wb-spinner-xl {
+  width: 3rem;
+  height: 3rem;
+  border-width: 3.5px;
+}
+
+/* ── Spinner color variants ───────────────────────────────── */
+
+.wb-spinner-white {
+  border-color: rgba(255,255,255,0.3);
+  border-top-color: #fff;
+}
+
+.wb-spinner-muted {
+  border-color: var(--wb-surface-3);
+  border-top-color: var(--wb-muted);
+}
+
+/* ── Inline loading state ─────────────────────────────────── */
+
+.wb-loading-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+}
+
+/* ── Scoped overlay (inside a card, section, etc.) ────────── */
+
+.wb-loading-overlay {
+  position: relative;
+}
+
+.wb-loading-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--wb-surface) 75%, transparent);
+  border-radius: inherit;
+  z-index: 10;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.wb-loading-overlay .wb-loading-spinner-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+}
+
+/* ── Full-screen loading overlay ──────────────────────────── */
+
+.wb-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--wb-z-modal) + 100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-s4);
+  background: color-mix(in srgb, var(--wb-surface) 90%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.wb-loading-screen-text {
+  font-size: 0.9rem;
+  color: var(--wb-muted);
+  font-weight: 500;
+}
+
+/* Hide when not active */
+.wb-loading-screen:not(.is-visible) {
+  display: none;
+}
+
+/* ── Progress bar (determinate loading) ───────────────────── */
+
+.wb-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--wb-surface-2);
+  border-radius: var(--wb-r-full);
+  overflow: hidden;
+}
+
+.wb-progress-bar-fill {
+  height: 100%;
+  background: var(--wb-primary);
+  border-radius: var(--wb-r-full);
+  transition: width 0.3s ease;
+}
+
+/* ── Indeterminate progress bar ───────────────────────────── */
+
+.wb-progress-bar-indeterminate .wb-progress-bar-fill {
+  width: 40%;
+  animation: wb-progress-slide 1.4s ease infinite;
+}
+
+@keyframes wb-progress-slide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+/* ── Progress bar variants ────────────────────────────────── */
+
+.wb-progress-bar-thin { height: 3px; }
+.wb-progress-bar-thick { height: 10px; }
+
+.wb-progress-bar-success .wb-progress-bar-fill { background: var(--wb-success); }
+.wb-progress-bar-danger  .wb-progress-bar-fill { background: var(--wb-danger); }
+.wb-progress-bar-warning .wb-progress-bar-fill { background: var(--wb-warning); }
+
+/* ── Page-level top loading bar ───────────────────────────── */
+
+.wb-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--wb-primary);
+  z-index: calc(var(--wb-z-toast) + 100);
+  animation: wb-loading-bar-in 0.2s ease;
+  transform-origin: left center;
+}
+
+.wb-loading-bar.is-done {
+  animation: wb-loading-bar-done 0.3s ease forwards;
+}
+
+@keyframes wb-loading-bar-in {
+  from { transform: scaleX(0); }
+}
+
+@keyframes wb-loading-bar-done {
+  to { opacity: 0; transform: scaleX(1); }
+}
+/* ============================================================
+   WebBlocks UI — Popover (wb-popover)
+   Floating contextual panels anchored to a trigger element.
+   JS: data-wb-popover on wrapper; toggles .is-open on trigger click.
+   ============================================================ */
+
+/* ── Wrapper ──────────────────────────────────────────────── */
+
+.wb-popover {
+  position: relative;
+  display: inline-block;
+}
+
+/* ── Popover panel ────────────────────────────────────────── */
+
+.wb-popover-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--wb-s2));
+  left: 0;
+  z-index: var(--wb-z-dropdown);
+  min-width: 240px;
+  max-width: 320px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-lg);
+  padding: var(--wb-s4);
+  animation: wb-popover-in 0.14s ease;
+}
+
+.wb-popover.is-open .wb-popover-panel {
+  display: block;
+}
+
+@keyframes wb-popover-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Placement variants ───────────────────────────────────── */
+
+/* Right-aligned */
+.wb-popover-end .wb-popover-panel {
+  left: auto;
+  right: 0;
+}
+
+/* Above trigger */
+.wb-popover-top .wb-popover-panel {
+  top: auto;
+  bottom: calc(100% + var(--wb-s2));
+  animation-name: wb-popover-in-top;
+}
+@keyframes wb-popover-in-top {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* Right of trigger */
+.wb-popover-right .wb-popover-panel {
+  top: 0;
+  left: calc(100% + var(--wb-s2));
+  animation-name: wb-popover-in-right;
+}
+@keyframes wb-popover-in-right {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+/* Left of trigger */
+.wb-popover-left .wb-popover-panel {
+  top: 0;
+  right: calc(100% + var(--wb-s2));
+  left: auto;
+  animation-name: wb-popover-in-left;
+}
+@keyframes wb-popover-in-left {
+  from { opacity: 0; transform: translateX(6px); }
+  to   { opacity: 1; transform: translateX(0);   }
+}
+
+/* ── Popover inner sections ───────────────────────────────── */
+
+.wb-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s2);
+  padding-bottom: var(--wb-s3);
+  margin-bottom: var(--wb-s3);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-popover-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-popover-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--wb-r-sm);
+  background: none;
+  border: none;
+  color: var(--wb-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background var(--wb-t), color var(--wb-t);
+}
+.wb-popover-close:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-popover-body {
+  font-size: 0.875rem;
+  color: var(--wb-text);
+  line-height: 1.6;
+}
+
+.wb-popover-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding-top: var(--wb-s3);
+  margin-top: var(--wb-s3);
+  border-top: 1px solid var(--wb-border);
+}
+
+/* ── Arrow / caret ────────────────────────────────────────── */
+
+.wb-popover-arrow {
+  position: absolute;
+  top: -6px;
+  left: 1.25rem;
+  width: 12px;
+  height: 6px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wb-popover-arrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  transform: rotate(45deg) translate(-2px, 2px);
+  border-bottom-right-radius: 2px;
+}
+
+.wb-popover-end .wb-popover-arrow {
+  left: auto;
+  right: 1.25rem;
+}
+/* ============================================================
+   WebBlocks UI — Drawer / Offcanvas (wb-drawer)
+   Slide-in panels from any edge of the viewport.
+   JS: data-wb-toggle="drawer" data-wb-target="#id"
+       data-wb-dismiss="drawer" (close trigger)
+   ============================================================ */
+
+/* ── Backdrop ─────────────────────────────────────────────── */
+
+.wb-drawer-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: calc(var(--wb-z-modal) - 10);
+}
+
+.wb-drawer-backdrop.is-open {
+  display: block;
+  animation: wb-fade-in 0.2s ease;
+}
+
+@keyframes wb-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Drawer panel ─────────────────────────────────────────── */
+
+.wb-drawer {
+  position: fixed;
+  z-index: var(--wb-z-modal);
+  background: var(--wb-surface);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--wb-shadow-xl);
+  transition: transform 0.25s ease;
+  overflow: hidden;
+}
+
+/* ── Placement: right (default) ───────────────────────────── */
+
+.wb-drawer,
+.wb-drawer-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 90vw);
+  transform: translateX(100%);
+  border-left: 1px solid var(--wb-border);
+}
+
+.wb-drawer.is-open,
+.wb-drawer-right.is-open {
+  transform: translateX(0);
+}
+
+/* ── Placement: left ──────────────────────────────────────── */
+
+.wb-drawer-left {
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: 0;
+  width: min(420px, 90vw);
+  transform: translateX(-100%);
+  border-right: 1px solid var(--wb-border);
+  border-left: none;
+}
+
+.wb-drawer-left.is-open {
+  transform: translateX(0);
+}
+
+/* ── Placement: bottom ────────────────────────────────────── */
+
+.wb-drawer-bottom {
+  bottom: 0;
+  top: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: min(480px, 85vh);
+  transform: translateY(100%);
+  border-top: 1px solid var(--wb-border);
+  border-bottom: none;
+  border-radius: var(--wb-r-xl) var(--wb-r-xl) 0 0;
+}
+
+.wb-drawer-bottom.is-open {
+  transform: translateY(0);
+}
+
+/* ── Placement: top ───────────────────────────────────────── */
+
+.wb-drawer-top {
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: min(360px, 85vh);
+  transform: translateY(-100%);
+  border-bottom: 1px solid var(--wb-border);
+  border-top: none;
+  border-radius: 0 0 var(--wb-r-xl) var(--wb-r-xl);
+}
+
+.wb-drawer-top.is-open {
+  transform: translateY(0);
+}
+
+/* ── Size variants (right/left only) ──────────────────────── */
+
+.wb-drawer-sm { width: min(320px, 90vw); }
+.wb-drawer-lg { width: min(560px, 90vw); }
+.wb-drawer-xl { width: min(720px, 90vw); }
+
+/* ── Inner sections ───────────────────────────────────────── */
+
+.wb-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+  padding: var(--wb-s4) var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+  flex-shrink: 0;
+}
+
+.wb-drawer-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--wb-text);
+}
+
+.wb-drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: var(--wb-r-md);
+  color: var(--wb-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background var(--wb-t), color var(--wb-t);
+}
+.wb-drawer-close:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--wb-s5);
+}
+
+.wb-drawer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wb-s2);
+  padding: var(--wb-s3) var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+  flex-shrink: 0;
+  background: var(--wb-surface-2);
+}
+
+/* ── Bottom sheet drag handle ─────────────────────────────── */
+
+.wb-drawer-handle {
+  display: flex;
+  justify-content: center;
+  padding: var(--wb-s3) 0 0;
+  flex-shrink: 0;
+}
+
+.wb-drawer-handle::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-border);
+}
+/* ============================================================
+   WebBlocks UI — Command Palette (wb-cmd)
+   Full-screen search/command interface triggered by keyboard
+   shortcut or button. JS: command-palette.js
+   ============================================================ */
+
+/* ── Backdrop ─────────────────────────────────────────────── */
+
+.wb-cmd-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: calc(var(--wb-z-modal) + 50);
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(3rem, 12vh, 8rem);
+  padding-inline: var(--wb-s4);
+}
+
+.wb-cmd-backdrop.is-open {
+  display: flex;
+  animation: wb-cmd-backdrop-in 0.15s ease;
+}
+
+@keyframes wb-cmd-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Dialog ───────────────────────────────────────────────── */
+
+.wb-cmd-dialog {
+  width: 100%;
+  max-width: 580px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-xl);
+  box-shadow: var(--wb-shadow-xl);
+  overflow: hidden;
+  animation: wb-cmd-in 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  max-height: min(560px, 70vh);
+}
+
+@keyframes wb-cmd-in {
+  from { opacity: 0; transform: scale(0.97) translateY(-8px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+/* ── Search input area ────────────────────────────────────── */
+
+.wb-cmd-search {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: var(--wb-s3) var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  flex-shrink: 0;
+}
+
+.wb-cmd-search-icon {
+  color: var(--wb-muted);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.wb-cmd-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--wb-text);
+  line-height: 1.5;
+}
+
+.wb-cmd-input::placeholder {
+  color: var(--wb-muted);
+}
+
+.wb-cmd-shortcut-hint {
+  font-size: 0.72rem;
+  color: var(--wb-muted);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+}
+
+/* ── Results panel ────────────────────────────────────────── */
+
+.wb-cmd-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--wb-s1) 0;
+}
+
+/* ── Result group ─────────────────────────────────────────── */
+
+.wb-cmd-group {
+  padding: var(--wb-s1) var(--wb-s2);
+}
+
+.wb-cmd-group + .wb-cmd-group {
+  border-top: 1px solid var(--wb-border);
+  margin-top: var(--wb-s1);
+  padding-top: var(--wb-s2);
+}
+
+.wb-cmd-group-label {
+  padding: var(--wb-s1) var(--wb-s2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wb-muted);
+  user-select: none;
+}
+
+/* ── Result item ──────────────────────────────────────────── */
+
+.wb-cmd-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: var(--wb-s2) var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.9rem;
+  color: var(--wb-text);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  transition: background var(--wb-t-f);
+}
+
+.wb-cmd-item:hover,
+.wb-cmd-item.is-selected {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-cmd-item.is-selected {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+}
+
+.wb-cmd-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  transition: background var(--wb-t-f), color var(--wb-t-f);
+}
+
+.wb-cmd-item.is-selected .wb-cmd-item-icon {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+}
+
+.wb-cmd-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-cmd-item-title {
+  display: block;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wb-cmd-item-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--wb-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wb-cmd-item-kbd {
+  font-size: 0.7rem;
+  color: var(--wb-muted);
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-sm);
+  padding: 0.1em 0.4em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Highlight matched text ───────────────────────────────── */
+
+.wb-cmd-match {
+  color: var(--wb-primary);
+  font-weight: 600;
+}
+
+/* ── Empty state ──────────────────────────────────────────── */
+
+.wb-cmd-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s8) var(--wb-s4);
+  gap: var(--wb-s2);
+  color: var(--wb-muted);
+  font-size: 0.875rem;
+}
+
+/* ── Footer (keyboard hints) ──────────────────────────────── */
+
+.wb-cmd-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s4);
+  padding: var(--wb-s2) var(--wb-s4);
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  flex-shrink: 0;
+}
+
+.wb-cmd-footer-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  font-size: 0.72rem;
+  color: var(--wb-muted);
+}
+
+.wb-cmd-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2em;
+  height: 1.2em;
+  padding: 0 0.25em;
+  font-size: 0.7rem;
+  color: var(--wb-muted);
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: 3px;
+  font-family: var(--wb-font-mono);
+}
+/* ============================================================
+   WebBlocks UI — Divider (wb-divider)
+   Horizontal and vertical separators with optional label.
+   ============================================================ */
+
+/* ── Horizontal divider ───────────────────────────────────── */
+
+.wb-divider {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s4) 0;
+}
+
+/* ── Labeled divider ──────────────────────────────────────── */
+
+.wb-divider-label {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  margin: var(--wb-s4) 0;
+  color: var(--wb-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.wb-divider-label::before,
+.wb-divider-label::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--wb-border);
+}
+
+/* Label only before */
+.wb-divider-label-start::after { display: none; }
+.wb-divider-label-start::before { flex: 0 0 1rem; }
+
+/* ── Vertical divider ─────────────────────────────────────── */
+
+.wb-divider-v {
+  display: inline-block;
+  width: 1px;
+  background: var(--wb-border);
+  align-self: stretch;
+  margin-inline: var(--wb-s2);
+  flex-shrink: 0;
+}
+
+/* ── Size variants ────────────────────────────────────────── */
+
+.wb-divider-sm { margin: var(--wb-s2) 0; }
+.wb-divider-lg { margin: var(--wb-s6) 0; }
+
+/* ── Style variants ───────────────────────────────────────── */
+
+.wb-divider-dashed {
+  border-top-style: dashed;
+}
+
+.wb-divider-dotted {
+  border-top-style: dotted;
+}
+/* ============================================================
+   WebBlocks UI — List Group (wb-list)
+   Structured vertical lists for navigation, settings, and data.
+   ============================================================ */
+
+/* ── Base list ────────────────────────────────────────────── */
+
+.wb-list {
+  display: flex;
+  flex-direction: column;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  overflow: hidden;
+}
+
+/* ── List item ────────────────────────────────────────────── */
+
+.wb-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: var(--wb-s3) var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  font-size: 0.9rem;
+  color: var(--wb-text);
+  background: var(--wb-surface);
+  text-decoration: none;
+  transition: background var(--wb-t-f);
+  min-width: 0;
+}
+
+.wb-list-item:last-child {
+  border-bottom: none;
+}
+
+/* ── Interactive (clickable) items ───────────────────────────
+   Add .wb-list-item-action to make the item a button/link.
+   ──────────────────────────────────────────────────────────── */
+
+.wb-list-item-action {
+  cursor: pointer;
+}
+
+.wb-list-item-action:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-list-item-action.is-active {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+}
+
+/* ── Item icon ────────────────────────────────────────────── */
+
+.wb-list-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+/* ── Item text block ──────────────────────────────────────── */
+
+.wb-list-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-list-item-title {
+  display: block;
+  font-weight: 500;
+  color: var(--wb-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wb-list-item-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--wb-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.1em;
+}
+
+/* ── Item end content (badge, arrow, etc.) ────────────────── */
+
+.wb-list-item-end {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--wb-muted);
+  font-size: 0.85rem;
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+/* Flush (no border, no border-radius) */
+.wb-list-flush {
+  border: none;
+  border-radius: 0;
+}
+.wb-list-flush .wb-list-item {
+  padding-inline: 0;
+}
+
+/* Bordered items only (no outer border) */
+.wb-list-inset {
+  border: none;
+}
+
+/* Compact */
+.wb-list-sm .wb-list-item {
+  padding: var(--wb-s2) var(--wb-s3);
+  font-size: 0.85rem;
+}
+
+/* ── List group header ────────────────────────────────────── */
+
+.wb-list-header {
+  padding: var(--wb-s2) var(--wb-s4);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--wb-muted);
+  background: var(--wb-surface-2);
+  border-bottom: 1px solid var(--wb-border);
+  user-select: none;
+}
+
+/* ── Numbered list ────────────────────────────────────────── */
+
+.wb-list-numbered {
+  counter-reset: wb-list;
+}
+
+.wb-list-numbered .wb-list-item::before {
+  counter-increment: wb-list;
+  content: counter(wb-list);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+/* ============================================================
+   WebBlocks UI — Tooltip (wb-tooltip)
+   Pure CSS tooltips — no JavaScript required.
+
+   Usage:
+     <button data-wb-tooltip="Save changes">Save</button>
+     <span data-wb-tooltip="Helpful info" data-wb-tooltip-placement="bottom">?</span>
+
+   Placement options (data-wb-tooltip-placement):
+     top     (default)
+     bottom
+     left
+     right
+
+   Works on any element. The tooltip text is read from the
+   data-wb-tooltip attribute via CSS attr().
+   ============================================================ */
+
+/* ── Base ─────────────────────────────────────────────────── */
+
+[data-wb-tooltip] {
+  position: relative;
+}
+
+/* Tooltip bubble */
+[data-wb-tooltip]::before {
+  content: attr(data-wb-tooltip);
+  position: absolute;
+  z-index: calc(var(--wb-z-toast) + 50);
+  padding: 0.35em 0.65em;
+  background: var(--wb-text);
+  color: var(--wb-surface);
+  font-size: var(--wb-font-size-xs);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  border-radius: var(--wb-r-md);
+  box-shadow: var(--wb-shadow-md);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+/* Arrow */
+[data-wb-tooltip]::after {
+  content: "";
+  position: absolute;
+  z-index: calc(var(--wb-z-toast) + 49);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+/* Show on hover / focus-visible */
+[data-wb-tooltip]:hover::before,
+[data-wb-tooltip]:hover::after,
+[data-wb-tooltip]:focus-visible::before,
+[data-wb-tooltip]:focus-visible::after {
+  opacity: 1;
+}
+
+/* ── Placement: top (default) ─────────────────────────────── */
+
+[data-wb-tooltip]:not([data-wb-tooltip-placement])::before,
+[data-wb-tooltip][data-wb-tooltip-placement="top"]::before {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+
+[data-wb-tooltip]:not([data-wb-tooltip-placement]):hover::before,
+[data-wb-tooltip][data-wb-tooltip-placement="top"]:hover::before,
+[data-wb-tooltip]:not([data-wb-tooltip-placement]):focus-visible::before,
+[data-wb-tooltip][data-wb-tooltip-placement="top"]:focus-visible::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-wb-tooltip]:not([data-wb-tooltip-placement])::after,
+[data-wb-tooltip][data-wb-tooltip-placement="top"]::after {
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--wb-text);
+}
+
+/* ── Placement: bottom ────────────────────────────────────── */
+
+[data-wb-tooltip][data-wb-tooltip-placement="bottom"]::before {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="bottom"]:hover::before,
+[data-wb-tooltip][data-wb-tooltip-placement="bottom"]:focus-visible::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="bottom"]::after {
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid var(--wb-text);
+}
+
+/* ── Placement: left ──────────────────────────────────────── */
+
+[data-wb-tooltip][data-wb-tooltip-placement="left"]::before {
+  top: 50%;
+  right: calc(100% + 8px);
+  left: auto;
+  transform: translateY(-50%) translateX(4px);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="left"]:hover::before,
+[data-wb-tooltip][data-wb-tooltip-placement="left"]:focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="left"]::after {
+  top: 50%;
+  right: calc(100% + 4px);
+  left: auto;
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid var(--wb-text);
+}
+
+/* ── Placement: right ─────────────────────────────────────── */
+
+[data-wb-tooltip][data-wb-tooltip-placement="right"]::before {
+  top: 50%;
+  left: calc(100% + 8px);
+  transform: translateY(-50%) translateX(-4px);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="right"]:hover::before,
+[data-wb-tooltip][data-wb-tooltip-placement="right"]:focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+[data-wb-tooltip][data-wb-tooltip-placement="right"]::after {
+  top: 50%;
+  left: calc(100% + 4px);
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid var(--wb-text);
+}
+
+/* ── Multiline tooltip ────────────────────────────────────── */
+
+[data-wb-tooltip-wrap]::before {
+  white-space: normal;
+  max-width: 220px;
+  text-align: center;
 }
 /* ============================================================
    WebBlocks UI — Container & Layout Primitives

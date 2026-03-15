@@ -1,0 +1,164 @@
+/* ============================================================
+   WebBlocks UI — Popover (wb-popover)
+   Floating contextual panels anchored to a trigger element.
+   JS: data-wb-popover on wrapper; toggles .is-open on trigger click.
+   ============================================================ */
+
+/* ── Wrapper ──────────────────────────────────────────────── */
+
+.wb-popover {
+  position: relative;
+  display: inline-block;
+}
+
+/* ── Popover panel ────────────────────────────────────────── */
+
+.wb-popover-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--wb-s2));
+  left: 0;
+  z-index: var(--wb-z-dropdown);
+  min-width: 240px;
+  max-width: 320px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-lg);
+  padding: var(--wb-s4);
+  animation: wb-popover-in 0.14s ease;
+}
+
+.wb-popover.is-open .wb-popover-panel {
+  display: block;
+}
+
+@keyframes wb-popover-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Placement variants ───────────────────────────────────── */
+
+/* Right-aligned */
+.wb-popover-end .wb-popover-panel {
+  left: auto;
+  right: 0;
+}
+
+/* Above trigger */
+.wb-popover-top .wb-popover-panel {
+  top: auto;
+  bottom: calc(100% + var(--wb-s2));
+  animation-name: wb-popover-in-top;
+}
+@keyframes wb-popover-in-top {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* Right of trigger */
+.wb-popover-right .wb-popover-panel {
+  top: 0;
+  left: calc(100% + var(--wb-s2));
+  animation-name: wb-popover-in-right;
+}
+@keyframes wb-popover-in-right {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+/* Left of trigger */
+.wb-popover-left .wb-popover-panel {
+  top: 0;
+  right: calc(100% + var(--wb-s2));
+  left: auto;
+  animation-name: wb-popover-in-left;
+}
+@keyframes wb-popover-in-left {
+  from { opacity: 0; transform: translateX(6px); }
+  to   { opacity: 1; transform: translateX(0);   }
+}
+
+/* ── Popover inner sections ───────────────────────────────── */
+
+.wb-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s2);
+  padding-bottom: var(--wb-s3);
+  margin-bottom: var(--wb-s3);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-popover-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-popover-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--wb-r-sm);
+  background: none;
+  border: none;
+  color: var(--wb-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background var(--wb-t), color var(--wb-t);
+}
+.wb-popover-close:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-popover-body {
+  font-size: 0.875rem;
+  color: var(--wb-text);
+  line-height: 1.6;
+}
+
+.wb-popover-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding-top: var(--wb-s3);
+  margin-top: var(--wb-s3);
+  border-top: 1px solid var(--wb-border);
+}
+
+/* ── Arrow / caret ────────────────────────────────────────── */
+
+.wb-popover-arrow {
+  position: absolute;
+  top: -6px;
+  left: 1.25rem;
+  width: 12px;
+  height: 6px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wb-popover-arrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  transform: rotate(45deg) translate(-2px, 2px);
+  border-bottom-right-radius: 2px;
+}
+
+.wb-popover-end .wb-popover-arrow {
+  left: auto;
+  right: 1.25rem;
+}

@@ -17,7 +17,8 @@ html[data-mode="dark"] {
 
   --wb-border: #29364f;
 
-  --wb-primary-soft: rgba(37,99,235,0.18);
+  /* Default (no data-accent) dark soft for primary/accent */
+  --wb-accent-soft:  rgba(37,99,235,0.18);
   --wb-success-soft: rgba(21,128,61,0.18);
   --wb-warning-soft: rgba(180,83,9,0.20);
   --wb-danger-soft:  rgba(185,28,28,0.22);
@@ -44,7 +45,8 @@ html[data-mode="dark"] {
 
     --wb-border: #29364f;
 
-    --wb-primary-soft: rgba(37,99,235,0.18);
+    /* Default (no data-accent) dark soft for primary/accent */
+    --wb-accent-soft:  rgba(37,99,235,0.18);
     --wb-success-soft: rgba(21,128,61,0.18);
     --wb-warning-soft: rgba(180,83,9,0.20);
     --wb-danger-soft:  rgba(185,28,28,0.22);
