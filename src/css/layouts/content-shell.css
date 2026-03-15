@@ -1,0 +1,245 @@
+/* ============================================================
+   WebBlocks UI — Content Shell Layout
+   ============================================================ */
+
+/*
+  A centered document/article/blog-style layout.
+  Narrower than a full dashboard — ideal for:
+    - documentation pages
+    - blog posts / articles
+    - legal/about pages
+    - onboarding flows
+
+  Structure:
+  <div class="wb-content-shell">
+    <header class="wb-content-header">
+      <nav class="wb-content-breadcrumb"> ... </nav>
+      <h1 class="wb-content-title">Page Title</h1>
+      <p class="wb-content-meta"> ... </p>
+    </header>
+    <div class="wb-content-body">
+      ... article content ...
+    </div>
+    <footer class="wb-content-footer">
+      ... prev/next, back link, etc ...
+    </footer>
+  </div>
+
+  Narrow content shell (docs / onboarding):
+  <div class="wb-content-shell wb-content-shell-narrow"> ... </div>
+*/
+
+/* ── Outer shell ──────────────────────────────────────────── */
+
+.wb-content-shell {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--wb-s10) var(--wb-s6);
+}
+
+.wb-content-shell-narrow {
+  max-width: 620px;
+}
+
+.wb-content-shell-wide {
+  max-width: 1040px;
+}
+
+/* ── Content header ───────────────────────────────────────── */
+
+.wb-content-header {
+  margin-bottom: var(--wb-s8);
+  padding-bottom: var(--wb-s6);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-content-breadcrumb {
+  margin-bottom: var(--wb-s4);
+}
+
+.wb-content-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--wb-text);
+  line-height: 1.2;
+  margin: 0 0 var(--wb-s3);
+}
+
+.wb-content-subtitle {
+  font-size: 1.05rem;
+  color: var(--wb-muted);
+  margin: 0 0 var(--wb-s4);
+  line-height: 1.6;
+}
+
+.wb-content-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+}
+
+.wb-content-meta-divider {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--wb-muted);
+  opacity: 0.4;
+}
+
+/* ── Content body (prose) ─────────────────────────────────── */
+
+.wb-content-body {
+  font-size: 0.975rem;
+  line-height: 1.75;
+  color: var(--wb-text);
+}
+
+.wb-content-body h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: var(--wb-s8) 0 var(--wb-s3);
+  color: var(--wb-text);
+}
+
+.wb-content-body h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: var(--wb-s6) 0 var(--wb-s2);
+  color: var(--wb-text);
+}
+
+.wb-content-body p {
+  margin: 0 0 var(--wb-s4);
+}
+
+.wb-content-body ul,
+.wb-content-body ol {
+  padding-left: var(--wb-s6);
+  margin: 0 0 var(--wb-s4);
+}
+
+.wb-content-body li {
+  margin-bottom: var(--wb-s1);
+}
+
+.wb-content-body a {
+  color: var(--wb-accent-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.wb-content-body a:hover {
+  color: var(--wb-accent-hover);
+}
+
+.wb-content-body code {
+  font-family: var(--wb-font-mono);
+  font-size: 0.85em;
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-sm);
+  padding: 0.1em 0.4em;
+  color: var(--wb-accent-text);
+}
+
+.wb-content-body pre {
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  padding: var(--wb-s4);
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  margin: 0 0 var(--wb-s4);
+}
+
+.wb-content-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+.wb-content-body blockquote {
+  border-left: 3px solid var(--wb-accent-border);
+  margin: var(--wb-s4) 0;
+  padding: var(--wb-s2) var(--wb-s4);
+  color: var(--wb-muted);
+  font-style: italic;
+}
+
+.wb-content-body hr {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s8) 0;
+}
+
+/* ── Content footer (prev/next nav) ───────────────────────── */
+
+.wb-content-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s4);
+  margin-top: var(--wb-s10);
+  padding-top: var(--wb-s6);
+  border-top: 1px solid var(--wb-border);
+  flex-wrap: wrap;
+}
+
+.wb-content-prev,
+.wb-content-next {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  text-decoration: none;
+  color: var(--wb-text);
+  max-width: 240px;
+}
+
+.wb-content-next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.wb-content-prev-label,
+.wb-content-next-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--wb-muted);
+}
+
+.wb-content-prev-title,
+.wb-content-next-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--wb-accent-text);
+}
+
+.wb-content-prev:hover .wb-content-prev-title,
+.wb-content-next:hover .wb-content-next-title {
+  color: var(--wb-accent-hover);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .wb-content-shell {
+    padding: var(--wb-s6) var(--wb-s4);
+  }
+
+  .wb-content-footer {
+    flex-direction: column;
+  }
+
+  .wb-content-next {
+    text-align: left;
+    margin-left: 0;
+  }
+}

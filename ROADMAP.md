@@ -17,7 +17,7 @@ Principles:
 
 ---
 
-# Version 1 (V1) — Core UI Kit
+# Version 1 (V1) — Core UI Kit ✅ Complete
 
 ## Goal
 
@@ -253,7 +253,7 @@ wb-btn-lg
 
 ---
 
-# Version 2 (V2) — Advanced UI System
+# Version 2 (V2) — Advanced UI System ✅ Complete
 
 ## Goal
 
@@ -372,7 +372,7 @@ Additional UI elements improving everyday usage.
 
 ---
 
-# V2 Outcome
+# V2 Outcome ✅
 
 After Version 2, WebBlocks should be capable of powering:
 
@@ -383,6 +383,62 @@ After Version 2, WebBlocks should be capable of powering:
 * settings and configuration panels
 
 At this stage WebBlocks becomes a **complete UI system**, not just a CSS component library.
+
+**Delivered in V2:**
+* Multi-axis theme system (`data-accent`, `data-preset`, `data-radius`, `data-density`, `data-shadow`, `data-border`, `data-font`)
+* 8 accent color palettes × 12 tokens each
+* 5 named presets (modern, minimal, rounded, bold, editorial)
+* Advanced components: drawer, command palette, nav-group, filter-bar, action-menu, loading/spinner, popover, divider, list-group, tooltip, confirmation dialog
+* New layouts: `wb-settings-shell`, `wb-content-shell`
+* `wb-toolbar` component
+* Example pages: admin/settings, website/pricing, website/faq, website/contact
+* Laravel Blade stubs for 14 components
+
+---
+
+# Phase 3 — Framework Adapters 🔄 In Progress
+
+## Goal
+
+Provide official integration helpers for popular server-side frameworks so developers can use WebBlocks idiomatically without writing raw HTML.
+
+---
+
+## Phase 3.1 — Laravel Blade (In Progress)
+
+Anonymous Blade components wrapping WebBlocks HTML patterns.
+
+### Completed
+
+* `wb-btn` — button with variant/size/href/disabled props
+* `wb-badge` — badge with type/size/dot props
+* `wb-card` — card with header/footer slots, flat/hover/padding props
+* `wb-alert` — alert with type/dismissible props
+* `wb-input` — input with label/error/hint/required/disabled props
+* `wb-select` — select with options array, selected, error/hint props
+* `wb-textarea` — textarea with rows/resize/error/hint props
+* `wb-table` — table with headers array, striped/hover/bordered/sm props
+* `wb-modal` — modal with id/title/size props and footer slot
+* `wb-drawer` — drawer with id/title/side/size props and footer slot
+* `wb-tabs` — tabs with tabs array, active, variant props
+* `wb-accordion` — accordion with items array, single/open props
+* `wb-pagination` — pagination supporting Laravel LengthAwarePaginator
+* `wb-stat` — stat card with label/value/change/trend/icon/href props
+
+### Remaining
+
+* `wb-toast` — JS-driven toast helper
+* `wb-breadcrumb` — breadcrumb from array
+* `wb-avatar` — avatar with initials/image/size/color props
+* `wb-spinner` — inline loading spinner
+
+---
+
+## Phase 3.2 — Future Adapters (Planned)
+
+* Django template tags / filters
+* Craft CMS Twig macros
+* Plain PHP functions (non-framework)
 
 ---
 

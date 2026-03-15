@@ -4637,6 +4637,312 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   text-align: center;
 }
 /* ============================================================
+   WebBlocks UI — Toolbar Component
+   ============================================================ */
+
+/*
+  A horizontal action bar used above data tables or content areas.
+  Combines search, filters, and bulk/page-level actions.
+
+  Structure:
+  <div class="wb-toolbar">
+    <div class="wb-toolbar-start">
+      <h2 class="wb-toolbar-title">Users</h2>
+    </div>
+    <div class="wb-toolbar-end">
+      <button class="wb-btn wb-btn-primary wb-btn-sm">Add User</button>
+    </div>
+  </div>
+
+  With bulk actions (visible when rows are selected):
+  <div class="wb-toolbar">
+    <div class="wb-toolbar-bulk is-active">
+      <span class="wb-toolbar-bulk-count">3 selected</span>
+      <button class="wb-btn wb-btn-ghost wb-btn-sm">Export</button>
+      <button class="wb-btn wb-btn-ghost wb-btn-sm wb-text-danger">Delete</button>
+      <button class="wb-toolbar-bulk-clear">✕ Clear</button>
+    </div>
+    <div class="wb-toolbar-start">
+      <h2 class="wb-toolbar-title">Users</h2>
+    </div>
+    <div class="wb-toolbar-end">
+      <button class="wb-btn wb-btn-primary wb-btn-sm">Add User</button>
+    </div>
+  </div>
+*/
+
+/* ── Base toolbar ─────────────────────────────────────────── */
+
+.wb-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  margin-bottom: var(--wb-s4);
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.wb-toolbar-start {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-toolbar-end {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* ── Toolbar title ────────────────────────────────────────── */
+
+.wb-toolbar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.wb-toolbar-subtitle {
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+  margin: 0;
+}
+
+/* ── Toolbar divider (vertical) ───────────────────────────── */
+
+.wb-toolbar-divider {
+  width: 1px;
+  height: 1.25rem;
+  background: var(--wb-border);
+  flex-shrink: 0;
+  margin: 0 var(--wb-s1);
+}
+
+/* ── Bulk action bar ──────────────────────────────────────── */
+
+.wb-toolbar-bulk {
+  display: none;
+  align-items: center;
+  gap: var(--wb-s2);
+  position: absolute;
+  inset: 0;
+  background: var(--wb-accent-softer);
+  border: 1px solid var(--wb-accent-border);
+  border-radius: var(--wb-r-md);
+  padding: 0 var(--wb-s3);
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.wb-toolbar-bulk.is-active {
+  display: flex;
+}
+
+.wb-toolbar-bulk-count {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--wb-accent-text);
+  margin-right: var(--wb-s1);
+}
+
+.wb-toolbar-bulk-clear {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+  cursor: pointer;
+  padding: var(--wb-s1) var(--wb-s2);
+  border-radius: var(--wb-r-sm);
+  font-family: inherit;
+  transition: color var(--wb-t), background var(--wb-t);
+}
+
+.wb-toolbar-bulk-clear:hover {
+  color: var(--wb-text);
+  background: var(--wb-surface-2);
+}
+
+/* ── Compact toolbar variant ──────────────────────────────── */
+
+.wb-toolbar-sm {
+  gap: var(--wb-s2);
+  margin-bottom: var(--wb-s3);
+}
+
+.wb-toolbar-sm .wb-toolbar-title {
+  font-size: 0.875rem;
+}
+
+/* ── Bordered toolbar (sits on top of a card/table) ──────── */
+
+.wb-toolbar-inset {
+  padding: var(--wb-s3) var(--wb-s4);
+  background: var(--wb-surface-2);
+  border-bottom: 1px solid var(--wb-border);
+  margin-bottom: 0;
+  border-radius: var(--wb-r-lg) var(--wb-r-lg) 0 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .wb-toolbar {
+    align-items: flex-start;
+  }
+
+  .wb-toolbar-end {
+    width: 100%;
+  }
+}
+/* ============================================================
+   WebBlocks UI — Icon System
+   ============================================================
+   Designed for use with the WebBlocks icon sprite:
+     dist/webblocks-icons.svg
+
+   Usage (sprite):
+     <svg class="wb-icon" aria-hidden="true">
+       <use href="/dist/webblocks-icons.svg#settings"></use>
+     </svg>
+
+   Usage (inline SVG — paste SVG markup directly):
+     <svg class="wb-icon" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">...</svg>
+
+   Sizes:
+     wb-icon-xs  — 0.875rem (14px)
+     wb-icon-sm  — 1rem     (16px)
+     (default)   — 1.125rem (18px)
+     wb-icon-lg  — 1.5rem   (24px)
+     wb-icon-xl  — 2rem     (32px)
+     wb-icon-2xl — 2.5rem   (40px)
+
+   Color helpers:
+     wb-icon-muted    — dimmed (0.55 opacity)
+     wb-icon-accent   — var(--wb-accent)
+     wb-icon-success  — var(--wb-success)
+     wb-icon-warning  — var(--wb-warning)
+     wb-icon-danger   — var(--wb-danger)
+     wb-icon-info     — var(--wb-info)
+
+   Layout helpers:
+     wb-icon-btn      — inline-flex row with gap (icon + text in button)
+     wb-icon-card     — flex row with larger gap (icon + content block)
+     wb-icon-solo     — centered block display (standalone icon)
+   ============================================================ */
+
+/* ── Base ─────────────────────────────────────────────────── */
+
+.wb-icon {
+  display: inline-block;
+  width:  var(--wb-icon-size, 1.125rem);
+  height: var(--wb-icon-size, 1.125rem);
+  flex-shrink: 0;
+  vertical-align: middle;
+  /* For stroke-based SVGs (Lucide style) */
+  stroke:        currentColor;
+  stroke-width:  var(--wb-icon-stroke, 2);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill:          none;
+  /* For filled SVGs */
+  color:         currentColor;
+}
+
+/* ── Sizes ─────────────────────────────────────────────────── */
+
+.wb-icon-xs  { --wb-icon-size: 0.875rem; }
+.wb-icon-sm  { --wb-icon-size: 1rem; }
+.wb-icon-lg  { --wb-icon-size: 1.5rem; }
+.wb-icon-xl  { --wb-icon-size: 2rem; }
+.wb-icon-2xl { --wb-icon-size: 2.5rem; }
+
+/* ── Stroke weight ─────────────────────────────────────────── */
+
+.wb-icon-thin   { --wb-icon-stroke: 1; }
+.wb-icon-medium { --wb-icon-stroke: 2; }   /* default */
+.wb-icon-bold   { --wb-icon-stroke: 2.5; }
+
+/* ── Color helpers ─────────────────────────────────────────── */
+
+.wb-icon-muted   { opacity: 0.55; }
+.wb-icon-accent  { color: var(--wb-accent); }
+.wb-icon-success { color: var(--wb-success); }
+.wb-icon-warning { color: var(--wb-warning); }
+.wb-icon-danger  { color: var(--wb-danger); }
+.wb-icon-info    { color: var(--wb-info); }
+.wb-icon-on      { color: var(--wb-accent-on); }
+
+/* ── Layout helpers ────────────────────────────────────────── */
+
+/* Inline button/link: icon sits next to text */
+.wb-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+/* Card-style row: larger icon with a content block beside it */
+.wb-icon-card {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+}
+
+/* Standalone centered icon (e.g. empty-state icon) */
+.wb-icon-solo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Badge-style icon wrapper ──────────────────────────────── */
+
+/* Colored rounded background behind an icon */
+.wb-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width:  2.25rem;
+  height: 2.25rem;
+  border-radius: var(--wb-r-md);
+  background: var(--wb-accent-soft);
+  color: var(--wb-accent-text);
+  flex-shrink: 0;
+}
+
+.wb-icon-wrap-sm {
+  width:  1.75rem;
+  height: 1.75rem;
+  border-radius: var(--wb-r-sm);
+}
+
+.wb-icon-wrap-lg {
+  width:  3rem;
+  height: 3rem;
+  border-radius: var(--wb-r-lg);
+}
+
+.wb-icon-wrap-circle {
+  border-radius: var(--wb-r-full);
+}
+
+.wb-icon-wrap-success { background: var(--wb-success-soft); color: var(--wb-success); }
+.wb-icon-wrap-warning { background: var(--wb-warning-soft); color: var(--wb-warning); }
+.wb-icon-wrap-danger  { background: var(--wb-danger-soft);  color: var(--wb-danger); }
+.wb-icon-wrap-info    { background: var(--wb-info-soft);    color: var(--wb-info); }
+.wb-icon-wrap-muted   { background: var(--wb-surface-2);    color: var(--wb-muted); }
+/* ============================================================
    WebBlocks UI — Container & Layout Primitives
    ============================================================ */
 
@@ -5444,6 +5750,512 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   .wb-auth-shell:not(.wb-auth-split) {
     align-items: flex-start;
     padding-top: var(--wb-s8);
+  }
+}
+/* ============================================================
+   WebBlocks UI — Settings Shell Layout
+   ============================================================ */
+
+/*
+  Structure (sidebar nav + content):
+  <div class="wb-settings-shell">
+    <aside class="wb-settings-nav">
+      <div class="wb-settings-nav-header">Account</div>
+      <a class="wb-settings-nav-link is-active" href="#">Profile</a>
+      <a class="wb-settings-nav-link" href="#">Security</a>
+    </aside>
+    <div class="wb-settings-body">
+      <div class="wb-settings-header">
+        <h1 class="wb-settings-title">Profile</h1>
+        <p class="wb-settings-desc">Manage your personal information.</p>
+      </div>
+      <div class="wb-settings-section">
+        ...
+      </div>
+    </div>
+  </div>
+*/
+
+/* ── Outer shell ──────────────────────────────────────────── */
+
+.wb-settings-shell {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wb-s8);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--wb-s8) var(--wb-s6);
+  min-height: calc(100vh - 64px);
+}
+
+/* ── Sidebar nav ──────────────────────────────────────────── */
+
+.wb-settings-nav {
+  flex: 0 0 220px;
+  position: sticky;
+  top: var(--wb-s6);
+}
+
+.wb-settings-nav-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-muted);
+  padding: 0 var(--wb-s3) var(--wb-s2);
+  margin-bottom: var(--wb-s1);
+}
+
+.wb-settings-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: var(--wb-s2) var(--wb-s3);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  border-radius: var(--wb-r-md);
+  text-decoration: none;
+  transition: background var(--wb-t), color var(--wb-t);
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.wb-settings-nav-link:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-settings-nav-link.is-active {
+  background: var(--wb-accent-softer);
+  color: var(--wb-accent-text);
+  font-weight: 600;
+}
+
+.wb-settings-nav-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.wb-settings-nav-section {
+  margin-top: var(--wb-s4);
+}
+
+.wb-settings-nav-divider {
+  margin: var(--wb-s3) 0;
+  border: none;
+  border-top: 1px solid var(--wb-border);
+}
+
+/* ── Body area ────────────────────────────────────────────── */
+
+.wb-settings-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Page header ──────────────────────────────────────────── */
+
+.wb-settings-header {
+  margin-bottom: var(--wb-s6);
+  padding-bottom: var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-settings-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  margin: 0 0 var(--wb-s1);
+  line-height: 1.3;
+}
+
+.wb-settings-desc {
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+  margin: 0;
+}
+
+/* ── Settings section (card-like block) ───────────────────── */
+
+.wb-settings-section {
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  overflow: hidden;
+  margin-bottom: var(--wb-s5);
+}
+
+.wb-settings-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--wb-s4);
+  padding: var(--wb-s4) var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-settings-section-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin: 0 0 var(--wb-s1);
+}
+
+.wb-settings-section-desc {
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+  margin: 0;
+}
+
+.wb-settings-section-body {
+  padding: var(--wb-s5);
+}
+
+.wb-settings-section-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wb-s2);
+  padding: var(--wb-s3) var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+}
+
+/* ── Settings row (label + control side by side) ──────────── */
+
+.wb-settings-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--wb-s6);
+  padding: var(--wb-s4) 0;
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-settings-row:last-child {
+  border-bottom: none;
+}
+
+.wb-settings-row-label {
+  flex: 1;
+}
+
+.wb-settings-row-label strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin-bottom: 2px;
+}
+
+.wb-settings-row-label span {
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+}
+
+.wb-settings-row-control {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+/* ── Danger zone section ──────────────────────────────────── */
+
+.wb-settings-danger {
+  border-color: var(--wb-danger);
+}
+
+.wb-settings-danger .wb-settings-section-header {
+  border-bottom-color: var(--wb-danger);
+}
+
+.wb-settings-danger .wb-settings-section-title {
+  color: var(--wb-danger);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .wb-settings-shell {
+    flex-direction: column;
+    padding: var(--wb-s4);
+    gap: var(--wb-s4);
+  }
+
+  .wb-settings-nav {
+    flex: none;
+    width: 100%;
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wb-s1);
+  }
+
+  .wb-settings-nav-header {
+    width: 100%;
+    padding-bottom: var(--wb-s1);
+  }
+
+  .wb-settings-nav-link {
+    padding: var(--wb-s1) var(--wb-s3);
+    font-size: 0.8rem;
+  }
+
+  .wb-settings-row {
+    flex-direction: column;
+    gap: var(--wb-s2);
+  }
+
+  .wb-settings-row-control {
+    width: 100%;
+  }
+}
+/* ============================================================
+   WebBlocks UI — Content Shell Layout
+   ============================================================ */
+
+/*
+  A centered document/article/blog-style layout.
+  Narrower than a full dashboard — ideal for:
+    - documentation pages
+    - blog posts / articles
+    - legal/about pages
+    - onboarding flows
+
+  Structure:
+  <div class="wb-content-shell">
+    <header class="wb-content-header">
+      <nav class="wb-content-breadcrumb"> ... </nav>
+      <h1 class="wb-content-title">Page Title</h1>
+      <p class="wb-content-meta"> ... </p>
+    </header>
+    <div class="wb-content-body">
+      ... article content ...
+    </div>
+    <footer class="wb-content-footer">
+      ... prev/next, back link, etc ...
+    </footer>
+  </div>
+
+  Narrow content shell (docs / onboarding):
+  <div class="wb-content-shell wb-content-shell-narrow"> ... </div>
+*/
+
+/* ── Outer shell ──────────────────────────────────────────── */
+
+.wb-content-shell {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--wb-s10) var(--wb-s6);
+}
+
+.wb-content-shell-narrow {
+  max-width: 620px;
+}
+
+.wb-content-shell-wide {
+  max-width: 1040px;
+}
+
+/* ── Content header ───────────────────────────────────────── */
+
+.wb-content-header {
+  margin-bottom: var(--wb-s8);
+  padding-bottom: var(--wb-s6);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-content-breadcrumb {
+  margin-bottom: var(--wb-s4);
+}
+
+.wb-content-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--wb-text);
+  line-height: 1.2;
+  margin: 0 0 var(--wb-s3);
+}
+
+.wb-content-subtitle {
+  font-size: 1.05rem;
+  color: var(--wb-muted);
+  margin: 0 0 var(--wb-s4);
+  line-height: 1.6;
+}
+
+.wb-content-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+}
+
+.wb-content-meta-divider {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--wb-muted);
+  opacity: 0.4;
+}
+
+/* ── Content body (prose) ─────────────────────────────────── */
+
+.wb-content-body {
+  font-size: 0.975rem;
+  line-height: 1.75;
+  color: var(--wb-text);
+}
+
+.wb-content-body h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: var(--wb-s8) 0 var(--wb-s3);
+  color: var(--wb-text);
+}
+
+.wb-content-body h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: var(--wb-s6) 0 var(--wb-s2);
+  color: var(--wb-text);
+}
+
+.wb-content-body p {
+  margin: 0 0 var(--wb-s4);
+}
+
+.wb-content-body ul,
+.wb-content-body ol {
+  padding-left: var(--wb-s6);
+  margin: 0 0 var(--wb-s4);
+}
+
+.wb-content-body li {
+  margin-bottom: var(--wb-s1);
+}
+
+.wb-content-body a {
+  color: var(--wb-accent-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.wb-content-body a:hover {
+  color: var(--wb-accent-hover);
+}
+
+.wb-content-body code {
+  font-family: var(--wb-font-mono);
+  font-size: 0.85em;
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-sm);
+  padding: 0.1em 0.4em;
+  color: var(--wb-accent-text);
+}
+
+.wb-content-body pre {
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  padding: var(--wb-s4);
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  margin: 0 0 var(--wb-s4);
+}
+
+.wb-content-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+.wb-content-body blockquote {
+  border-left: 3px solid var(--wb-accent-border);
+  margin: var(--wb-s4) 0;
+  padding: var(--wb-s2) var(--wb-s4);
+  color: var(--wb-muted);
+  font-style: italic;
+}
+
+.wb-content-body hr {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s8) 0;
+}
+
+/* ── Content footer (prev/next nav) ───────────────────────── */
+
+.wb-content-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s4);
+  margin-top: var(--wb-s10);
+  padding-top: var(--wb-s6);
+  border-top: 1px solid var(--wb-border);
+  flex-wrap: wrap;
+}
+
+.wb-content-prev,
+.wb-content-next {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  text-decoration: none;
+  color: var(--wb-text);
+  max-width: 240px;
+}
+
+.wb-content-next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.wb-content-prev-label,
+.wb-content-next-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--wb-muted);
+}
+
+.wb-content-prev-title,
+.wb-content-next-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--wb-accent-text);
+}
+
+.wb-content-prev:hover .wb-content-prev-title,
+.wb-content-next:hover .wb-content-next-title {
+  color: var(--wb-accent-hover);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .wb-content-shell {
+    padding: var(--wb-s6) var(--wb-s4);
+  }
+
+  .wb-content-footer {
+    flex-direction: column;
+  }
+
+  .wb-content-next {
+    text-align: left;
+    margin-left: 0;
   }
 }
 /* ============================================================

@@ -507,64 +507,140 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 <ol class="wb-list wb-list-numbered"> ... </ol>
 ```
 
+### Toolbar
+
+Action bar for tables and list views. Supports bulk-select mode.
+
+```html
+<div class="wb-toolbar">
+  <div class="wb-toolbar-start">
+    <span class="wb-toolbar-title">Users</span>
+  </div>
+  <div class="wb-toolbar-end">
+    <button class="wb-btn wb-btn-primary wb-btn-sm">Add user</button>
+  </div>
+</div>
+
+<!-- Bulk action bar (shown with is-active when rows are selected) -->
+<div class="wb-toolbar-bulk is-active">
+  <span>3 selected</span>
+  <button class="wb-btn wb-btn-danger wb-btn-sm">Delete</button>
+  <button class="wb-btn wb-btn-ghost wb-btn-sm">Deselect</button>
+</div>
+```
+
+Modifier: `wb-toolbar-inset` adds horizontal padding for use inside a card.
+
 ---
 
-## Layouts
+## Icons
 
-### Dashboard shell
+WebBlocks ships a curated set of **120 Lucide icons** as a single SVG sprite.
 
 ```html
-<div class="wb-shell">
-  <aside class="wb-sidebar" id="mySidebar">
-    <!-- nav content -->
-  </aside>
-  <div class="wb-shell-main">
-    <nav class="wb-navbar">
-      <button data-wb-toggle="sidebar" data-wb-target="#mySidebar">☰</button>
-    </nav>
-    <main class="wb-shell-body">
-      <div class="wb-container">
-        <!-- page content -->
-      </div>
-    </main>
-  </div>
+<!-- Include the sprite once, hidden, near the top of <body> -->
+<!-- Or reference the external file directly (see below) -->
+
+<!-- Usage -->
+<svg class="wb-icon" aria-hidden="true">
+  <use href="/dist/webblocks-icons.svg#settings"></use>
+</svg>
+```
+
+No JavaScript required. No CDN dependency.
+
+### Sizes
+
+```html
+<svg class="wb-icon wb-icon-xs"  aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 14px -->
+<svg class="wb-icon wb-icon-sm"  aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 16px -->
+<svg class="wb-icon"             aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 18px default -->
+<svg class="wb-icon wb-icon-lg"  aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 24px -->
+<svg class="wb-icon wb-icon-xl"  aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 32px -->
+<svg class="wb-icon wb-icon-2xl" aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 40px -->
+```
+
+### Colors
+
+```html
+<svg class="wb-icon wb-icon-accent">  ... </svg>
+<svg class="wb-icon wb-icon-success"> ... </svg>
+<svg class="wb-icon wb-icon-warning"> ... </svg>
+<svg class="wb-icon wb-icon-danger">  ... </svg>
+<svg class="wb-icon wb-icon-muted">   ... </svg>
+```
+
+### Icon wrap (colored badge container)
+
+```html
+<span class="wb-icon-wrap">                  <!-- accent -->
+  <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="...#settings"></use></svg>
+</span>
+
+<span class="wb-icon-wrap wb-icon-wrap-success wb-icon-wrap-circle">
+  <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="...#shield-check"></use></svg>
+</span>
+```
+
+Variants: `wb-icon-wrap-success`, `wb-icon-wrap-warning`, `wb-icon-wrap-danger`, `wb-icon-wrap-info`, `wb-icon-wrap-muted`
+Sizes: `wb-icon-wrap-sm`, `wb-icon-wrap-lg`
+Shape: `wb-icon-wrap-circle`
+
+### In buttons
+
+```html
+<button class="wb-btn wb-btn-primary wb-icon-btn">
+  <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="...#plus"></use></svg>
+  New item
+</button>
+```
+
+### Icon list (120 icons)
+
+| Category | Icons |
+|----------|-------|
+| Navigation | `menu` `panel-left` `panel-right` `sidebar` `chevron-left` `chevron-right` `chevron-up` `chevron-down` `arrow-left` `arrow-right` |
+| Actions | `plus` `minus` `x` `check` `pencil` `trash-2` `copy` `save` `download` `upload` |
+| Content | `file-text` `files` `sticky-note` `heading` `type` `list` `list-ordered` `quote` `code` `pen-tool` |
+| Media | `image` `camera` `video` `play` `pause` `volume-2` `mic` `music` `film` `clapperboard` |
+| Files | `folder` `folder-open` `folder-tree` `file` `file-plus` `file-code` `file-image` `file-archive` `file-search` `receipt` |
+| Commerce | `shopping-cart` `shopping-bag` `store` `package` `credit-card` `wallet` `badge-percent` `banknote` `hand-coins` `receipt-text` |
+| Communication | `mail` `send` `inbox` `message-square` `messages-square` `phone` `bell` `bell-ring` `at-sign` `globe` |
+| Users & Security | `user` `user-round` `users` `contact` `badge-check` `shield` `shield-check` `lock` `key-round` `fingerprint` |
+| Settings | `settings` `sliders-horizontal` `toggle-left` `toggle-right` `wrench` `hammer` `bug` `database` `server` `plug` |
+| Charts | `layout-dashboard` `bar-chart-3` `line-chart` `pie-chart` `area-chart` `activity` `gauge` `target` `trending-up` `calendar` |
+| Layout | `layout-grid` `columns-2` `rows-2` `square` `rectangle-horizontal` `maximize-2` `minimize-2` `mouse-pointer-2` `palette` `sparkles` |
+| Devices | `monitor` `laptop` `tablet-smartphone` `smartphone` `tablet` `watch` `printer` `router` `wifi` `cloud` |
+
+Live preview with search: `examples/v2/icons.html`
+
+Rebuilding the sprite (requires Node.js, one-time only):
+
+```bash
+node scripts/build-icons.js
+```
+
+---
+
+## Using with Laravel
+
+WebBlocks UI is plain HTML and CSS — it works in any Laravel Blade template without any extra setup. Just include the dist files and write standard HTML:
+
+```blade
+<button class="wb-btn wb-btn-primary">Save</button>
+
+<div class="wb-field">
+    <label class="wb-label" for="email">Email</label>
+    <input class="wb-input" type="email" name="email" id="email">
+    @error('email')
+        <span class="wb-field-error">{{ $message }}</span>
+    @enderror
 </div>
+
+<div class="wb-alert wb-alert-success">{{ session('status') }}</div>
 ```
 
-### Auth shell (centered)
-
-```html
-<div class="wb-auth">
-  <div class="wb-auth-card">
-    <div class="wb-auth-logo"> ... </div>
-    <div class="wb-auth-body"> ... </div>
-    <div class="wb-auth-footer"> ... </div>
-  </div>
-</div>
-```
-
-### Auth shell (split)
-
-```html
-<div class="wb-auth wb-auth-split">
-  <div class="wb-auth-panel"> <!-- brand / illustration --> </div>
-  <div class="wb-auth-form-area">
-    <div class="wb-auth-card"> ... </div>
-  </div>
-</div>
-```
-
-### Layout primitives
-
-```html
-<div class="wb-container">...</div>        <!-- max-width centered -->
-<div class="wb-section">...</div>          <!-- vertical padding -->
-<div class="wb-stack">...</div>            <!-- vertical flex -->
-<div class="wb-cluster">...</div>          <!-- horizontal wrapping flex -->
-<div class="wb-split">...</div>            <!-- two-sided: left grows, right stays -->
-<div class="wb-grid-3">...</div>           <!-- 3-column grid -->
-<div class="wb-grid-auto">...</div>        <!-- auto-fill grid (min 280px) -->
-```
+No Blade components, no wrappers — HTML stays HTML.
 
 ---
 
@@ -650,9 +726,10 @@ webblocks-ui/
 │   │   │                    breadcrumb, avatar, toast, skeleton, empty,
 │   │   │                    nav-group, filter-bar, action-menu, loading,
 │   │   │                    popover, drawer, command-palette, divider,
-│   │   │                    list-group, tooltip
+│   │   │                    list-group, tooltip, toolbar
 │   │   ├── layouts/         container, navbar, sidebar,
-│   │   │                    dashboard-shell, auth-shell
+│   │   │                    dashboard-shell, auth-shell,
+│   │   │                    settings-shell, content-shell
 │   │   └── utilities/       helpers
 │   └── js/
 │       ├── theme.js         theme engine
@@ -666,9 +743,24 @@ webblocks-ui/
 │       └── command-palette.js  Cmd/Ctrl+K palette with ↑↓↵Esc
 ├── examples/
 │   ├── core/index.html      V1 component reference
-│   └── v2/
-│       ├── index.html       V2 component reference
-│       └── dashboard.html   V2 admin dashboard demo
+│   ├── v2/
+│   │   ├── index.html       V2 component reference
+│   │   └── dashboard.html   V2 admin dashboard demo
+├── examples/
+│   ├── core/
+│   │   └── index.html       V1 component reference
+│   ├── v2/
+│   │   ├── index.html       V2 component reference
+│   │   ├── dashboard.html   V2 admin dashboard demo
+│   │   └── icons.html       Icon gallery (searchable)
+│   ├── admin/
+│   │   ├── dashboard.html   Admin dashboard example
+│   │   └── settings.html    Settings page (wb-settings-shell)
+│   └── website/
+│       ├── home.html        Marketing homepage
+│       ├── pricing.html     Pricing page with billing toggle
+│       ├── faq.html         FAQ with accordion + search filter
+│       └── contact.html     Contact form + info sidebar
 └── build.sh
 ```
 
@@ -710,4 +802,6 @@ Each accent exposes 12 CSS custom properties usable anywhere in your UI:
 
 ## License
 
-MIT
+Copyright (c) 2026 fklavye.net. All rights reserved.
+
+See [LICENSE](LICENSE) for full terms.
