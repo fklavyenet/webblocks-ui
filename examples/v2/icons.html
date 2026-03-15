@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebBlocks UI — Icon Reference</title>
   <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../dist/webblocks-icons.css">
   <script src="../../dist/webblocks-ui.js"></script>
   <style>
     .icon-grid {
@@ -90,10 +91,29 @@
   <div class="demo-section" id="usage">
     <h2>Usage</h2>
     <p style="color:var(--wb-muted);font-size:0.9rem;margin:var(--wb-s3) 0 var(--wb-s4)">
-      Reference the sprite file — no JavaScript required.
+      Two patterns are supported. Use whichever fits your workflow.
     </p>
 
-    <h3>Basic</h3>
+    <h3>Pattern 1 — Bootstrap style <code>&lt;i&gt;</code> tag</h3>
+    <p style="color:var(--wb-muted);font-size:0.875rem;margin-bottom:var(--wb-s3)">
+      Requires <code>webblocks-icons.css</code> in addition to <code>webblocks-ui.css</code>.
+    </p>
+    <div class="demo-row">
+      <i class="wb-icon wb-icon-settings"></i>
+      <i class="wb-icon wb-icon-bell"></i>
+      <i class="wb-icon wb-icon-user"></i>
+      <i class="wb-icon wb-icon-layout-dashboard"></i>
+      <i class="wb-icon wb-icon-trending-up"></i>
+    </div>
+    <pre style="background:var(--wb-surface-2);border:1px solid var(--wb-border);border-radius:var(--wb-r-md);padding:var(--wb-s3) var(--wb-s4);font-size:0.8rem;margin-top:var(--wb-s3);overflow-x:auto"><code>&lt;link rel="stylesheet" href="/dist/webblocks-icons.css"&gt;
+
+&lt;i class="wb-icon wb-icon-settings"&gt;&lt;/i&gt;
+&lt;i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent"&gt;&lt;/i&gt;</code></pre>
+
+    <h3>Pattern 2 — SVG sprite</h3>
+    <p style="color:var(--wb-muted);font-size:0.875rem;margin-bottom:var(--wb-s3)">
+      No extra CSS needed — uses <code>webblocks-icons.svg</code>.
+    </p>
     <div class="demo-row">
       <svg class="wb-icon" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#settings"></use></svg>
       <svg class="wb-icon" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#bell"></use></svg>
@@ -107,12 +127,12 @@
 
     <h3>Sizes</h3>
     <div class="demo-row" style="align-items:center">
-      <svg class="wb-icon wb-icon-xs" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#settings"></use></svg>
-      <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#settings"></use></svg>
-      <svg class="wb-icon" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#settings"></use></svg>
-      <svg class="wb-icon wb-icon-lg" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#settings"></use></svg>
-      <svg class="wb-icon wb-icon-xl" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#settings"></use></svg>
-      <svg class="wb-icon wb-icon-2xl" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#settings"></use></svg>
+      <i class="wb-icon wb-icon-settings wb-icon-xs"></i>
+      <i class="wb-icon wb-icon-settings wb-icon-sm"></i>
+      <i class="wb-icon wb-icon-settings"></i>
+      <i class="wb-icon wb-icon-settings wb-icon-lg"></i>
+      <i class="wb-icon wb-icon-settings wb-icon-xl"></i>
+      <i class="wb-icon wb-icon-settings wb-icon-2xl"></i>
     </div>
     <div class="demo-row" style="margin-top:var(--wb-s1)">
       <span class="demo-label">xs</span>
@@ -125,13 +145,13 @@
 
     <h3>Colors</h3>
     <div class="demo-row">
-      <svg class="wb-icon wb-icon-lg" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#activity"></use></svg>
-      <svg class="wb-icon wb-icon-lg wb-icon-accent" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#activity"></use></svg>
-      <svg class="wb-icon wb-icon-lg wb-icon-success" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#activity"></use></svg>
-      <svg class="wb-icon wb-icon-lg wb-icon-warning" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#activity"></use></svg>
-      <svg class="wb-icon wb-icon-lg wb-icon-danger" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#activity"></use></svg>
-      <svg class="wb-icon wb-icon-lg wb-icon-info" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#activity"></use></svg>
-      <svg class="wb-icon wb-icon-lg wb-icon-muted" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#activity"></use></svg>
+      <i class="wb-icon wb-icon-activity wb-icon-lg"></i>
+      <i class="wb-icon wb-icon-activity wb-icon-lg wb-icon-accent"></i>
+      <i class="wb-icon wb-icon-activity wb-icon-lg wb-icon-success"></i>
+      <i class="wb-icon wb-icon-activity wb-icon-lg wb-icon-warning"></i>
+      <i class="wb-icon wb-icon-activity wb-icon-lg wb-icon-danger"></i>
+      <i class="wb-icon wb-icon-activity wb-icon-lg wb-icon-info"></i>
+      <i class="wb-icon wb-icon-activity wb-icon-lg wb-icon-muted"></i>
     </div>
     <div style="display:flex;gap:var(--wb-s3);margin-top:var(--wb-s1);flex-wrap:wrap">
       <span class="demo-label">default</span>
@@ -146,37 +166,37 @@
     <h3>Icon wrap (colored badge)</h3>
     <div class="demo-row">
       <span class="wb-icon-wrap">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#settings"></use></svg>
+        <i class="wb-icon wb-icon-settings wb-icon-sm"></i>
       </span>
       <span class="wb-icon-wrap wb-icon-wrap-success">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#shield-check"></use></svg>
+        <i class="wb-icon wb-icon-shield-check wb-icon-sm"></i>
       </span>
       <span class="wb-icon-wrap wb-icon-wrap-warning">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#bell-ring"></use></svg>
+        <i class="wb-icon wb-icon-bell-ring wb-icon-sm"></i>
       </span>
       <span class="wb-icon-wrap wb-icon-wrap-danger">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#trash-2"></use></svg>
+        <i class="wb-icon wb-icon-trash-2 wb-icon-sm"></i>
       </span>
       <span class="wb-icon-wrap wb-icon-wrap-muted wb-icon-wrap-circle">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#user"></use></svg>
+        <i class="wb-icon wb-icon-user wb-icon-sm"></i>
       </span>
       <span class="wb-icon-wrap wb-icon-wrap-lg">
-        <svg class="wb-icon" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#layout-dashboard"></use></svg>
+        <i class="wb-icon wb-icon-layout-dashboard"></i>
       </span>
     </div>
 
     <h3>In buttons</h3>
     <div class="demo-row">
       <button class="wb-btn wb-btn-primary wb-icon-btn">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#plus"></use></svg>
+        <i class="wb-icon wb-icon-plus wb-icon-sm"></i>
         New item
       </button>
       <button class="wb-btn wb-btn-secondary wb-icon-btn">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#download"></use></svg>
+        <i class="wb-icon wb-icon-download wb-icon-sm"></i>
         Export
       </button>
       <button class="wb-btn wb-btn-danger wb-icon-btn">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="../../dist/webblocks-icons.svg#trash-2"></use></svg>
+        <i class="wb-icon wb-icon-trash-2 wb-icon-sm"></i>
         Delete
       </button>
       <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-tooltip="Settings" data-wb-tooltip-placement="top">

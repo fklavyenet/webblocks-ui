@@ -4843,20 +4843,43 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 /* ── Base ─────────────────────────────────────────────────── */
 
+/*
+  Two usage patterns are supported simultaneously:
+
+  1. SVG sprite (semantic, accessible):
+     <svg class="wb-icon" aria-hidden="true">
+       <use href="/dist/webblocks-icons.svg#settings"></use>
+     </svg>
+
+  2. Bootstrap-style <i> tag (requires webblocks-icons.css):
+     <i class="wb-icon wb-icon-settings"></i>
+     <i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent"></i>
+*/
+
 .wb-icon {
   display: inline-block;
   width:  var(--wb-icon-size, 1.125rem);
   height: var(--wb-icon-size, 1.125rem);
   flex-shrink: 0;
   vertical-align: middle;
-  /* For stroke-based SVGs (Lucide style) */
-  stroke:        currentColor;
-  stroke-width:  var(--wb-icon-stroke, 2);
+
+  /* SVG sprite mode — stroke-based (Lucide) */
+  stroke:         currentColor;
+  stroke-width:   var(--wb-icon-stroke, 2);
   stroke-linecap: round;
   stroke-linejoin: round;
-  fill:          none;
-  /* For filled SVGs */
-  color:         currentColor;
+  fill:           none;
+  color:          currentColor;
+
+  /* mask-image mode — <i> tag usage */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat:         no-repeat;
+  -webkit-mask-size:   100% 100%;
+  mask-size:           100% 100%;
+  -webkit-mask-position: center;
+  mask-position:         center;
+  /* background provides the color for mask mode */
+  background-color: currentColor;
 }
 
 /* ── Sizes ─────────────────────────────────────────────────── */
@@ -4875,13 +4898,19 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 /* ── Color helpers ─────────────────────────────────────────── */
 
+/*
+  For SVG sprite: color sets stroke via currentColor
+  For <i> mask mode: background-color provides the visible color
+  Both are set together so either pattern works automatically.
+*/
+
 .wb-icon-muted   { opacity: 0.55; }
-.wb-icon-accent  { color: var(--wb-accent); }
-.wb-icon-success { color: var(--wb-success); }
-.wb-icon-warning { color: var(--wb-warning); }
-.wb-icon-danger  { color: var(--wb-danger); }
-.wb-icon-info    { color: var(--wb-info); }
-.wb-icon-on      { color: var(--wb-accent-on); }
+.wb-icon-accent  { color: var(--wb-accent);   background-color: var(--wb-accent); }
+.wb-icon-success { color: var(--wb-success);  background-color: var(--wb-success); }
+.wb-icon-warning { color: var(--wb-warning);  background-color: var(--wb-warning); }
+.wb-icon-danger  { color: var(--wb-danger);   background-color: var(--wb-danger); }
+.wb-icon-info    { color: var(--wb-info);      background-color: var(--wb-info); }
+.wb-icon-on      { color: var(--wb-accent-on); background-color: var(--wb-accent-on); }
 
 /* ── Layout helpers ────────────────────────────────────────── */
 
