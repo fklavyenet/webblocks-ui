@@ -21,6 +21,10 @@ cat \
   "$ROOT/src/css/foundation/tokens.css" \
   "$ROOT/src/css/foundation/dark.css" \
   "$ROOT/src/css/foundation/accents.css" \
+  "$ROOT/src/css/foundation/radius.css" \
+  "$ROOT/src/css/foundation/density.css" \
+  "$ROOT/src/css/foundation/shadow.css" \
+  "$ROOT/src/css/foundation/font.css" \
   "$ROOT/src/css/base/reset.css" \
   "$ROOT/src/css/base/elements.css" \
   "$ROOT/src/css/components/button.css" \

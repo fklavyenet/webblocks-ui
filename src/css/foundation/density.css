@@ -1,0 +1,37 @@
+/* ============================================================
+   WebBlocks UI — Density Axis
+   Attribute: html[data-density="compact|comfortable"]
+   Default (no attribute) = comfortable baseline from tokens.css
+   ============================================================ */
+
+/* Compact — tighter spacing for data-dense UIs */
+html[data-density="compact"] {
+  --wb-s1:  0.125rem;  /* 2px  */
+  --wb-s2:  0.25rem;   /* 4px  */
+  --wb-s3:  0.375rem;  /* 6px  */
+  --wb-s4:  0.625rem;  /* 10px */
+  --wb-s5:  0.75rem;   /* 12px */
+  --wb-s6:  1rem;      /* 16px */
+  --wb-s8:  1.25rem;   /* 20px */
+  --wb-s10: 1.5rem;    /* 24px */
+  --wb-s12: 2rem;      /* 32px */
+  --wb-s16: 2.5rem;    /* 40px */
+  --wb-s20: 3rem;      /* 48px */
+}
+
+/* Default is defined in tokens.css — no override needed */
+
+/* Comfortable — extra generous spacing for spacious UIs */
+html[data-density="comfortable"] {
+  --wb-s1:  0.375rem;  /* 6px  */
+  --wb-s2:  0.75rem;   /* 12px */
+  --wb-s3:  1rem;      /* 16px */
+  --wb-s4:  1.25rem;   /* 20px */
+  --wb-s5:  1.5rem;    /* 24px */
+  --wb-s6:  2rem;      /* 32px */
+  --wb-s8:  2.5rem;    /* 40px */
+  --wb-s10: 3rem;      /* 48px */
+  --wb-s12: 4rem;      /* 64px */
+  --wb-s16: 5rem;      /* 80px */
+  --wb-s20: 6rem;      /* 96px */
+}

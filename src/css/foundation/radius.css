@@ -1,0 +1,23 @@
+/* ============================================================
+   WebBlocks UI — Radius Axis
+   Attribute: html[data-radius="sharp|default|soft"]
+   Default (no attribute) = balanced, set in tokens.css
+   ============================================================ */
+
+/* Sharp — nearly square corners */
+html[data-radius="sharp"] {
+  --wb-r-sm:   2px;
+  --wb-r-md:   4px;
+  --wb-r-lg:   6px;
+  --wb-r-xl:   10px;
+}
+
+/* Default is defined in tokens.css — no override needed */
+
+/* Soft — pronounced rounded corners */
+html[data-radius="soft"] {
+  --wb-r-sm:   8px;
+  --wb-r-md:   14px;
+  --wb-r-lg:   20px;
+  --wb-r-xl:   28px;
+}

@@ -42,8 +42,19 @@
   --wb-info-soft:    #e0f2fe;
 
   /* ── Typography ───────────────────────────────────────── */
-  --wb-font:      Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --wb-font-mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  --wb-font:         Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-heading: var(--wb-font);
+  --wb-font-mono:    ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+
+  --wb-font-size-xs: 0.75rem;   /* 12px */
+  --wb-font-size-sm: 0.875rem;  /* 14px */
+  --wb-font-size-md: 1rem;      /* 16px */
+  --wb-font-size-lg: 1.125rem;  /* 18px */
+  --wb-font-size-xl: 1.25rem;   /* 20px */
+
+  --wb-line-height-base:    1.5;
+  --wb-line-height-tight:   1.25;
+  --wb-line-height-relaxed: 1.75;
 
   /* ── Spacing (4px base) ───────────────────────────────── */
   --wb-s1:  0.25rem;  /* 4px  */
@@ -224,6 +235,112 @@ html[data-accent="sand"] {
 html[data-mode="dark"][data-accent="sand"],
 html[data-theme="auto"]:not([data-mode="light"])[data-accent="sand"] {
   --wb-primary-soft: rgba(217,119,6,0.20);
+}
+/* ============================================================
+   WebBlocks UI — Radius Axis
+   Attribute: html[data-radius="sharp|default|soft"]
+   Default (no attribute) = balanced, set in tokens.css
+   ============================================================ */
+
+/* Sharp — nearly square corners */
+html[data-radius="sharp"] {
+  --wb-r-sm:   2px;
+  --wb-r-md:   4px;
+  --wb-r-lg:   6px;
+  --wb-r-xl:   10px;
+}
+
+/* Default is defined in tokens.css — no override needed */
+
+/* Soft — pronounced rounded corners */
+html[data-radius="soft"] {
+  --wb-r-sm:   8px;
+  --wb-r-md:   14px;
+  --wb-r-lg:   20px;
+  --wb-r-xl:   28px;
+}
+/* ============================================================
+   WebBlocks UI — Density Axis
+   Attribute: html[data-density="compact|comfortable"]
+   Default (no attribute) = comfortable baseline from tokens.css
+   ============================================================ */
+
+/* Compact — tighter spacing for data-dense UIs */
+html[data-density="compact"] {
+  --wb-s1:  0.125rem;  /* 2px  */
+  --wb-s2:  0.25rem;   /* 4px  */
+  --wb-s3:  0.375rem;  /* 6px  */
+  --wb-s4:  0.625rem;  /* 10px */
+  --wb-s5:  0.75rem;   /* 12px */
+  --wb-s6:  1rem;      /* 16px */
+  --wb-s8:  1.25rem;   /* 20px */
+  --wb-s10: 1.5rem;    /* 24px */
+  --wb-s12: 2rem;      /* 32px */
+  --wb-s16: 2.5rem;    /* 40px */
+  --wb-s20: 3rem;      /* 48px */
+}
+
+/* Default is defined in tokens.css — no override needed */
+
+/* Comfortable — extra generous spacing for spacious UIs */
+html[data-density="comfortable"] {
+  --wb-s1:  0.375rem;  /* 6px  */
+  --wb-s2:  0.75rem;   /* 12px */
+  --wb-s3:  1rem;      /* 16px */
+  --wb-s4:  1.25rem;   /* 20px */
+  --wb-s5:  1.5rem;    /* 24px */
+  --wb-s6:  2rem;      /* 32px */
+  --wb-s8:  2.5rem;    /* 40px */
+  --wb-s10: 3rem;      /* 48px */
+  --wb-s12: 4rem;      /* 64px */
+  --wb-s16: 5rem;      /* 80px */
+  --wb-s20: 6rem;      /* 96px */
+}
+/* ============================================================
+   WebBlocks UI — Shadow Axis
+   Attribute: html[data-shadow="flat|soft"]
+   Default (no attribute) = subtle shadows from tokens.css
+   ============================================================ */
+
+/* Flat — minimal / no shadows for clean, flat designs */
+html[data-shadow="flat"] {
+  --wb-shadow-sm: none;
+  --wb-shadow-md: 0 1px 2px rgba(0,0,0,0.06);
+  --wb-shadow-lg: 0 2px 6px rgba(0,0,0,0.08);
+  --wb-shadow-xl: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+/* Default is defined in tokens.css — no override needed */
+
+/* Soft — pronounced depth and elevated surfaces */
+html[data-shadow="soft"] {
+  --wb-shadow-sm: 0 2px 8px rgba(0,0,0,0.08),  0 1px 3px rgba(0,0,0,0.06);
+  --wb-shadow-md: 0 8px 24px rgba(0,0,0,0.12),  0 3px 8px rgba(0,0,0,0.06);
+  --wb-shadow-lg: 0 20px 48px rgba(0,0,0,0.14), 0 6px 16px rgba(0,0,0,0.06);
+  --wb-shadow-xl: 0 36px 80px rgba(0,0,0,0.18), 0 12px 28px rgba(0,0,0,0.08);
+}
+/* ============================================================
+   WebBlocks UI — Font Axis
+   Attribute: html[data-font="system|modern|editorial"]
+   Default (no attribute) = modern (Inter stack) from tokens.css
+   ============================================================ */
+
+/* System — OS native fonts, zero external loading */
+html[data-font="system"] {
+  --wb-font:         ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-heading: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Modern — Inter (default, matches tokens.css baseline) */
+html[data-font="modern"] {
+  --wb-font:         Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Editorial — Georgia serif for headings, system sans for body */
+html[data-font="editorial"] {
+  --wb-font:         ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-heading: Georgia, "Times New Roman", Times, serif;
 }
 /* ============================================================
    WebBlocks UI — Minimal Reset

@@ -1,0 +1,23 @@
+/* ============================================================
+   WebBlocks UI — Font Axis
+   Attribute: html[data-font="system|modern|editorial"]
+   Default (no attribute) = modern (Inter stack) from tokens.css
+   ============================================================ */
+
+/* System — OS native fonts, zero external loading */
+html[data-font="system"] {
+  --wb-font:         ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-heading: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Modern — Inter (default, matches tokens.css baseline) */
+html[data-font="modern"] {
+  --wb-font:         Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Editorial — Georgia serif for headings, system sans for body */
+html[data-font="editorial"] {
+  --wb-font:         ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-heading: Georgia, "Times New Roman", Times, serif;
+}
