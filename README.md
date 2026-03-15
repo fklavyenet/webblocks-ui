@@ -535,50 +535,63 @@ Modifier: `wb-toolbar-inset` adds horizontal padding for use inside a card.
 
 ## Icons
 
-WebBlocks ships a curated set of **120 Lucide icons** as a single SVG sprite.
+WebBlocks ships a curated set of **120 Lucide icons** as both an SVG sprite and a CSS icon file.
+
+Two usage patterns are supported:
+
+### Pattern 1 — Bootstrap style `<i>` tag
+
+Requires `webblocks-icons.css` in addition to `webblocks-ui.css`:
 
 ```html
-<!-- Include the sprite once, hidden, near the top of <body> -->
-<!-- Or reference the external file directly (see below) -->
+<link rel="stylesheet" href="/dist/webblocks-ui.css">
+<link rel="stylesheet" href="/dist/webblocks-icons.css">
 
-<!-- Usage -->
+<i class="wb-icon wb-icon-settings"></i>
+<i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent"></i>
+<i class="wb-icon wb-icon-trash-2 wb-icon-sm wb-icon-danger"></i>
+```
+
+### Pattern 2 — SVG sprite
+
+No extra CSS needed:
+
+```html
 <svg class="wb-icon" aria-hidden="true">
   <use href="/dist/webblocks-icons.svg#settings"></use>
 </svg>
 ```
 
-No JavaScript required. No CDN dependency.
-
 ### Sizes
 
 ```html
-<svg class="wb-icon wb-icon-xs"  aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 14px -->
-<svg class="wb-icon wb-icon-sm"  aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 16px -->
-<svg class="wb-icon"             aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 18px default -->
-<svg class="wb-icon wb-icon-lg"  aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 24px -->
-<svg class="wb-icon wb-icon-xl"  aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 32px -->
-<svg class="wb-icon wb-icon-2xl" aria-hidden="true"><use href="...#settings"></use></svg>  <!-- 40px -->
+<i class="wb-icon wb-icon-settings wb-icon-xs"></i>   <!-- 14px -->
+<i class="wb-icon wb-icon-settings wb-icon-sm"></i>   <!-- 16px -->
+<i class="wb-icon wb-icon-settings"></i>              <!-- 18px default -->
+<i class="wb-icon wb-icon-settings wb-icon-lg"></i>   <!-- 24px -->
+<i class="wb-icon wb-icon-settings wb-icon-xl"></i>   <!-- 32px -->
+<i class="wb-icon wb-icon-settings wb-icon-2xl"></i>  <!-- 40px -->
 ```
 
 ### Colors
 
 ```html
-<svg class="wb-icon wb-icon-accent">  ... </svg>
-<svg class="wb-icon wb-icon-success"> ... </svg>
-<svg class="wb-icon wb-icon-warning"> ... </svg>
-<svg class="wb-icon wb-icon-danger">  ... </svg>
-<svg class="wb-icon wb-icon-muted">   ... </svg>
+<i class="wb-icon wb-icon-activity wb-icon-accent"></i>
+<i class="wb-icon wb-icon-activity wb-icon-success"></i>
+<i class="wb-icon wb-icon-activity wb-icon-warning"></i>
+<i class="wb-icon wb-icon-activity wb-icon-danger"></i>
+<i class="wb-icon wb-icon-activity wb-icon-muted"></i>
 ```
 
 ### Icon wrap (colored badge container)
 
 ```html
-<span class="wb-icon-wrap">                  <!-- accent -->
-  <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="...#settings"></use></svg>
+<span class="wb-icon-wrap">
+  <i class="wb-icon wb-icon-settings wb-icon-sm"></i>
 </span>
 
 <span class="wb-icon-wrap wb-icon-wrap-success wb-icon-wrap-circle">
-  <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="...#shield-check"></use></svg>
+  <i class="wb-icon wb-icon-shield-check wb-icon-sm"></i>
 </span>
 ```
 
@@ -590,7 +603,7 @@ Shape: `wb-icon-wrap-circle`
 
 ```html
 <button class="wb-btn wb-btn-primary wb-icon-btn">
-  <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="...#plus"></use></svg>
+  <i class="wb-icon wb-icon-plus wb-icon-sm"></i>
   New item
 </button>
 ```
@@ -614,7 +627,7 @@ Shape: `wb-icon-wrap-circle`
 
 Live preview with search: `examples/v2/icons.html`
 
-Rebuilding the sprite (requires Node.js, one-time only):
+Rebuilding icon files (requires Node.js, one-time only):
 
 ```bash
 node scripts/build-icons.js
@@ -714,8 +727,10 @@ No npm. No node_modules. Pure shell `cat`.
 ```
 webblocks-ui/
 ├── dist/
-│   ├── webblocks-ui.css     ← use this in your projects
-│   └── webblocks-ui.js      ← use this in your projects
+│   ├── webblocks-ui.css         ← main stylesheet (always include)
+│   ├── webblocks-ui.js          ← main JS (always include)
+│   ├── webblocks-icons.svg      ← SVG sprite (120 icons, Pattern 2)
+│   └── webblocks-icons.css      ← icon classes (120 icons, Pattern 1 — opt-in)
 ├── src/
 │   ├── css/
 │   │   ├── foundation/      tokens, dark, presets, accents, radius,
