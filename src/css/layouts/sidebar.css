@@ -1,0 +1,175 @@
+/* ============================================================
+   WebBlocks UI — Sidebar
+   ============================================================ */
+
+/* ── Sidebar shell ────────────────────────────────────────── */
+
+.wb-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: var(--wb-sidebar-w, 240px);
+  min-height: 100%;
+  background: var(--wb-surface);
+  border-right: 1px solid var(--wb-border);
+  flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Narrow / icon-only sidebar */
+.wb-sidebar-narrow {
+  width: var(--wb-sidebar-narrow-w, 64px);
+}
+
+/* ── Sidebar header (brand area) ──────────────────────────── */
+
+.wb-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  height: var(--wb-navbar-h, 56px);
+  padding-inline: var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+.wb-sidebar-header:hover {
+  text-decoration: none;
+  color: var(--wb-text);
+}
+
+/* ── Nav sections ─────────────────────────────────────────── */
+
+.wb-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  padding: var(--wb-s3) var(--wb-s2);
+  flex: 1;
+}
+
+.wb-sidebar-section {
+  margin-top: var(--wb-s4);
+}
+
+.wb-sidebar-label {
+  display: block;
+  padding: 0 var(--wb-s2);
+  margin-bottom: var(--wb-s1);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-muted);
+  user-select: none;
+}
+
+/* ── Nav links ────────────────────────────────────────────── */
+
+.wb-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: 0.45em var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  text-decoration: none;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wb-sidebar-link:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+.wb-sidebar-link.is-active {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+  font-weight: 600;
+}
+
+.wb-sidebar-link .wb-sidebar-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  width: 1.2em;
+  text-align: center;
+}
+
+.wb-sidebar-link .wb-sidebar-badge {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── Sub-links (nested) ───────────────────────────────────── */
+
+.wb-sidebar-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: calc(var(--wb-s3) + 1.2em + var(--wb-s3));
+  margin-top: 2px;
+}
+
+.wb-sidebar-sub .wb-sidebar-link {
+  font-size: 0.85rem;
+  padding-block: 0.35em;
+  color: var(--wb-muted);
+}
+
+.wb-sidebar-sub .wb-sidebar-link.is-active {
+  color: var(--wb-primary);
+  background: transparent;
+  font-weight: 600;
+}
+
+/* ── Sidebar footer ───────────────────────────────────────── */
+
+.wb-sidebar-footer {
+  padding: var(--wb-s3) var(--wb-s2);
+  border-top: 1px solid var(--wb-border);
+  flex-shrink: 0;
+}
+
+/* ── Backdrop (mobile overlay) ────────────────────────────── */
+
+.wb-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: calc(var(--wb-z-sidebar, 200) - 1);
+}
+
+.wb-sidebar-backdrop.is-open {
+  display: block;
+}
+
+/* ── Mobile: off-canvas ───────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .wb-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: var(--wb-z-sidebar, 200);
+    transform: translateX(-100%);
+    transition: transform var(--wb-t-sidebar, 0.25s ease);
+    box-shadow: var(--wb-shadow-lg);
+  }
+
+  .wb-sidebar.is-open {
+    transform: translateX(0);
+  }
+}

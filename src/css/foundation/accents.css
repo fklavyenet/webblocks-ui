@@ -1,0 +1,82 @@
+/* ============================================================
+   WebBlocks UI — Accent Color Schemes
+   Applied via: html[data-accent="name"]
+   Default (no attribute) = blue (#2563eb, defined in tokens.css)
+   ============================================================ */
+
+/* ── Ocean (teal) ─────────────────────────────────────────── */
+html[data-accent="ocean"] {
+  --wb-primary:      #0d9488;
+  --wb-primary-dark: #0f766e;
+  --wb-primary-soft: #ccfbf1;
+}
+html[data-mode="dark"][data-accent="ocean"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="ocean"] {
+  --wb-primary-soft: rgba(13,148,136,0.20);
+}
+
+/* ── Forest (green) ───────────────────────────────────────── */
+html[data-accent="forest"] {
+  --wb-primary:      #16a34a;
+  --wb-primary-dark: #15803d;
+  --wb-primary-soft: #dcfce7;
+}
+html[data-mode="dark"][data-accent="forest"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="forest"] {
+  --wb-primary-soft: rgba(22,163,74,0.20);
+}
+
+/* ── Royal (indigo) ───────────────────────────────────────── */
+html[data-accent="royal"] {
+  --wb-primary:      #4f46e5;
+  --wb-primary-dark: #4338ca;
+  --wb-primary-soft: #e0e7ff;
+}
+html[data-mode="dark"][data-accent="royal"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="royal"] {
+  --wb-primary-soft: rgba(79,70,229,0.20);
+}
+
+/* ── Warm (orange) ────────────────────────────────────────── */
+html[data-accent="warm"] {
+  --wb-primary:      #ea580c;
+  --wb-primary-dark: #c2410c;
+  --wb-primary-soft: #ffedd5;
+}
+html[data-mode="dark"][data-accent="warm"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="warm"] {
+  --wb-primary-soft: rgba(234,88,12,0.20);
+}
+
+/* ── Slate (cool gray) ────────────────────────────────────── */
+html[data-accent="slate"] {
+  --wb-primary:      #475569;
+  --wb-primary-dark: #334155;
+  --wb-primary-soft: #e2e8f0;
+}
+html[data-mode="dark"][data-accent="slate"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="slate"] {
+  --wb-primary-soft: rgba(71,85,105,0.22);
+}
+
+/* ── Rose (pink-red) ──────────────────────────────────────── */
+html[data-accent="rose"] {
+  --wb-primary:      #e11d48;
+  --wb-primary-dark: #be123c;
+  --wb-primary-soft: #ffe4e6;
+}
+html[data-mode="dark"][data-accent="rose"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="rose"] {
+  --wb-primary-soft: rgba(225,29,72,0.20);
+}
+
+/* ── Sand (amber) ─────────────────────────────────────────── */
+html[data-accent="sand"] {
+  --wb-primary:      #d97706;
+  --wb-primary-dark: #b45309;
+  --wb-primary-soft: #fef3c7;
+}
+html[data-mode="dark"][data-accent="sand"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="sand"] {
+  --wb-primary-soft: rgba(217,119,6,0.20);
+}

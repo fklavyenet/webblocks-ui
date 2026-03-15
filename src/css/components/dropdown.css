@@ -1,0 +1,85 @@
+/* ============================================================
+   WebBlocks UI — Dropdown (wb-dropdown)
+   JS: data-wb-dropdown on container; auto-closes on outside click / Escape
+   ============================================================ */
+
+.wb-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.wb-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--wb-s1));
+  left: 0;
+  z-index: var(--wb-z-dropdown);
+  min-width: 200px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-lg);
+  padding: var(--wb-s1) 0;
+  animation: wb-dropdown-in 0.12s ease;
+}
+
+.wb-dropdown.is-open .wb-dropdown-menu {
+  display: block;
+}
+
+@keyframes wb-dropdown-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.wb-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: var(--wb-s2) var(--wb-s4);
+  font-size: 0.9rem;
+  color: var(--wb-text);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background var(--wb-t-f);
+}
+.wb-dropdown-item:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+.wb-dropdown-item:focus-visible {
+  background: var(--wb-primary-soft);
+  outline: none;
+}
+
+.wb-dropdown-item-danger {
+  color: var(--wb-danger);
+}
+.wb-dropdown-item-danger:hover {
+  background: var(--wb-danger-soft);
+}
+
+.wb-dropdown-divider {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s1) 0;
+}
+
+.wb-dropdown-label {
+  padding: var(--wb-s1) var(--wb-s4);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--wb-muted);
+}
+
+/* ── Right-align ──────────────────────────────────────────── */
+.wb-dropdown-end .wb-dropdown-menu {
+  left: auto;
+  right: 0;
+}

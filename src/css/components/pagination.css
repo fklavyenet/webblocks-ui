@@ -1,0 +1,59 @@
+/* ============================================================
+   WebBlocks UI — Pagination (wb-pagination)
+   ============================================================ */
+
+.wb-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  flex-wrap: wrap;
+}
+
+.wb-page-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0 var(--wb-s2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  text-decoration: none;
+  background: var(--wb-surface);
+  cursor: pointer;
+  transition: background var(--wb-t), border-color var(--wb-t), color var(--wb-t);
+  user-select: none;
+}
+
+.wb-page-item:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-page-item.is-active {
+  background: var(--wb-primary);
+  border-color: var(--wb-primary);
+  color: #fff;
+  cursor: default;
+}
+
+.wb-page-item.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.wb-page-item:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+}
+
+/* ── Simple prev/next ─────────────────────────────────────── */
+.wb-pagination-info {
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+  margin-left: auto;
+}

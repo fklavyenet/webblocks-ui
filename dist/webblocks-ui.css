@@ -1,0 +1,2854 @@
+/* ============================================================
+   WebBlocks UI — Design Tokens (Light mode defaults)
+   All CSS custom properties live here.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ── Surfaces ─────────────────────────────────────────── */
+  --wb-bg:        #f4f6fb;
+  --wb-surface:   #ffffff;
+  --wb-surface-2: #edf1f7;
+  --wb-surface-3: #e2e8f2;
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --wb-text:  #18212f;
+  --wb-muted: #5a6a84;
+
+  /* ── Border ───────────────────────────────────────────── */
+  --wb-border: #d6e0ee;
+
+  /* ── Primary ──────────────────────────────────────────── */
+  --wb-primary:      #2563eb;
+  --wb-primary-dark: #1d4ed8;
+  --wb-primary-soft: #dbeafe;
+
+  /* ── Semantic ─────────────────────────────────────────── */
+  --wb-success:      #15803d;
+  --wb-success-dark: #166534;
+  --wb-success-soft: #dcfce7;
+
+  --wb-warning:      #b45309;
+  --wb-warning-dark: #92400e;
+  --wb-warning-soft: #ffedd5;
+
+  --wb-danger:       #b91c1c;
+  --wb-danger-dark:  #991b1b;
+  --wb-danger-soft:  #fee2e2;
+
+  --wb-info:         #0369a1;
+  --wb-info-dark:    #075985;
+  --wb-info-soft:    #e0f2fe;
+
+  /* ── Typography ───────────────────────────────────────── */
+  --wb-font:      Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+
+  /* ── Spacing (4px base) ───────────────────────────────── */
+  --wb-s1:  0.25rem;  /* 4px  */
+  --wb-s2:  0.5rem;   /* 8px  */
+  --wb-s3:  0.75rem;  /* 12px */
+  --wb-s4:  1rem;     /* 16px */
+  --wb-s5:  1.25rem;  /* 20px */
+  --wb-s6:  1.5rem;   /* 24px */
+  --wb-s8:  2rem;     /* 32px */
+  --wb-s10: 2.5rem;   /* 40px */
+  --wb-s12: 3rem;     /* 48px */
+  --wb-s16: 4rem;     /* 64px */
+  --wb-s20: 5rem;     /* 80px */
+
+  /* ── Border Radius ────────────────────────────────────── */
+  --wb-r-sm:   5px;
+  --wb-r-md:   9px;
+  --wb-r-lg:   14px;
+  --wb-r-xl:   20px;
+  --wb-r-full: 9999px;
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --wb-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --wb-shadow-md: 0 4px 14px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --wb-shadow-lg: 0 12px 36px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.04);
+  --wb-shadow-xl: 0 24px 64px rgba(0,0,0,0.14), 0 8px 16px rgba(0,0,0,0.06);
+
+  /* ── Transitions ──────────────────────────────────────── */
+  --wb-t:   0.18s ease;
+  --wb-t-f: 0.10s ease;
+
+  /* ── Z-index ──────────────────────────────────────────── */
+  --wb-z-dropdown: 100;
+  --wb-z-modal:    200;
+  --wb-z-toast:    300;
+
+  /* ── Layout ───────────────────────────────────────────── */
+  --wb-sidebar-w:  260px;
+  --wb-content-w:  1200px;
+  --wb-content-sm: 720px;
+}
+/* ============================================================
+   WebBlocks UI — Dark Mode Overrides
+   Activated by: html[data-mode="dark"]  (set by theme.js)
+   Auto fallback: @media prefers-color-scheme dark with data-theme="auto"
+   ============================================================ */
+
+html[data-mode="dark"] {
+  color-scheme: dark;
+
+  --wb-bg:        #0c111d;
+  --wb-surface:   #131929;
+  --wb-surface-2: #1a2235;
+  --wb-surface-3: #202c42;
+
+  --wb-text:  #e4ecfa;
+  --wb-muted: #8b9bb8;
+
+  --wb-border: #29364f;
+
+  --wb-primary-soft: rgba(37,99,235,0.18);
+  --wb-success-soft: rgba(21,128,61,0.18);
+  --wb-warning-soft: rgba(180,83,9,0.20);
+  --wb-danger-soft:  rgba(185,28,28,0.22);
+  --wb-info-soft:    rgba(3,105,161,0.20);
+
+  --wb-shadow-sm: 0 1px 3px rgba(0,0,0,0.30);
+  --wb-shadow-md: 0 4px 14px rgba(0,0,0,0.35);
+  --wb-shadow-lg: 0 12px 36px rgba(0,0,0,0.45);
+  --wb-shadow-xl: 0 24px 64px rgba(0,0,0,0.55);
+}
+
+/* ── Auto mode: no-JS CSS fallback via media query ────────── */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"]:not([data-mode="light"]) {
+    color-scheme: dark;
+
+    --wb-bg:        #0c111d;
+    --wb-surface:   #131929;
+    --wb-surface-2: #1a2235;
+    --wb-surface-3: #202c42;
+
+    --wb-text:  #e4ecfa;
+    --wb-muted: #8b9bb8;
+
+    --wb-border: #29364f;
+
+    --wb-primary-soft: rgba(37,99,235,0.18);
+    --wb-success-soft: rgba(21,128,61,0.18);
+    --wb-warning-soft: rgba(180,83,9,0.20);
+    --wb-danger-soft:  rgba(185,28,28,0.22);
+    --wb-info-soft:    rgba(3,105,161,0.20);
+
+    --wb-shadow-sm: 0 1px 3px rgba(0,0,0,0.30);
+    --wb-shadow-md: 0 4px 14px rgba(0,0,0,0.35);
+    --wb-shadow-lg: 0 12px 36px rgba(0,0,0,0.45);
+    --wb-shadow-xl: 0 24px 64px rgba(0,0,0,0.55);
+  }
+}
+/* ============================================================
+   WebBlocks UI — Accent Color Schemes
+   Applied via: html[data-accent="name"]
+   Default (no attribute) = blue (#2563eb, defined in tokens.css)
+   ============================================================ */
+
+/* ── Ocean (teal) ─────────────────────────────────────────── */
+html[data-accent="ocean"] {
+  --wb-primary:      #0d9488;
+  --wb-primary-dark: #0f766e;
+  --wb-primary-soft: #ccfbf1;
+}
+html[data-mode="dark"][data-accent="ocean"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="ocean"] {
+  --wb-primary-soft: rgba(13,148,136,0.20);
+}
+
+/* ── Forest (green) ───────────────────────────────────────── */
+html[data-accent="forest"] {
+  --wb-primary:      #16a34a;
+  --wb-primary-dark: #15803d;
+  --wb-primary-soft: #dcfce7;
+}
+html[data-mode="dark"][data-accent="forest"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="forest"] {
+  --wb-primary-soft: rgba(22,163,74,0.20);
+}
+
+/* ── Royal (indigo) ───────────────────────────────────────── */
+html[data-accent="royal"] {
+  --wb-primary:      #4f46e5;
+  --wb-primary-dark: #4338ca;
+  --wb-primary-soft: #e0e7ff;
+}
+html[data-mode="dark"][data-accent="royal"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="royal"] {
+  --wb-primary-soft: rgba(79,70,229,0.20);
+}
+
+/* ── Warm (orange) ────────────────────────────────────────── */
+html[data-accent="warm"] {
+  --wb-primary:      #ea580c;
+  --wb-primary-dark: #c2410c;
+  --wb-primary-soft: #ffedd5;
+}
+html[data-mode="dark"][data-accent="warm"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="warm"] {
+  --wb-primary-soft: rgba(234,88,12,0.20);
+}
+
+/* ── Slate (cool gray) ────────────────────────────────────── */
+html[data-accent="slate"] {
+  --wb-primary:      #475569;
+  --wb-primary-dark: #334155;
+  --wb-primary-soft: #e2e8f0;
+}
+html[data-mode="dark"][data-accent="slate"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="slate"] {
+  --wb-primary-soft: rgba(71,85,105,0.22);
+}
+
+/* ── Rose (pink-red) ──────────────────────────────────────── */
+html[data-accent="rose"] {
+  --wb-primary:      #e11d48;
+  --wb-primary-dark: #be123c;
+  --wb-primary-soft: #ffe4e6;
+}
+html[data-mode="dark"][data-accent="rose"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="rose"] {
+  --wb-primary-soft: rgba(225,29,72,0.20);
+}
+
+/* ── Sand (amber) ─────────────────────────────────────────── */
+html[data-accent="sand"] {
+  --wb-primary:      #d97706;
+  --wb-primary-dark: #b45309;
+  --wb-primary-soft: #fef3c7;
+}
+html[data-mode="dark"][data-accent="sand"],
+html[data-theme="auto"]:not([data-mode="light"])[data-accent="sand"] {
+  --wb-primary-soft: rgba(217,119,6,0.20);
+}
+/* ============================================================
+   WebBlocks UI — Minimal Reset
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+/* ============================================================
+   WebBlocks UI — Base Element Styles
+   Raw HTML should already look good without any class.
+   ============================================================ */
+
+body {
+  font-family: var(--wb-font);
+  font-size: 1rem;
+  line-height: 1.6;
+  background: var(--wb-bg);
+  color: var(--wb-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Headings ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--wb-text);
+}
+
+h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.375rem, 3vw, 1.875rem); }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; }
+
+/* ── Paragraph & inline ───────────────────────────────────── */
+p {
+  max-width: 70ch;
+  color: var(--wb-text);
+}
+
+a {
+  color: var(--wb-primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+strong, b { font-weight: 700; }
+em, i     { font-style: italic; }
+
+small { font-size: 0.875em; }
+
+code, kbd, samp, pre {
+  font-family: var(--wb-font-mono);
+  font-size: 0.875em;
+}
+
+code {
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-sm);
+  padding: 0.15em 0.4em;
+  color: var(--wb-danger);
+}
+
+pre {
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  padding: var(--wb-s4);
+  overflow-x: auto;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+blockquote {
+  border-left: 3px solid var(--wb-primary);
+  padding: var(--wb-s2) var(--wb-s4);
+  color: var(--wb-muted);
+  background: var(--wb-primary-soft);
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
+
+/* ── Lists ────────────────────────────────────────────────── */
+ul.wb-list, ol.wb-list {
+  list-style: revert;
+  padding-left: var(--wb-s6);
+  display: grid;
+  gap: var(--wb-s1);
+}
+
+/* ── Horizontal rule ──────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s6) 0;
+}
+
+/* ── Table ────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: var(--wb-s3) var(--wb-s4);
+  text-align: left;
+  border-bottom: 1px solid var(--wb-border);
+}
+
+th {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wb-muted);
+  background: var(--wb-surface-2);
+}
+
+/* ── Images ───────────────────────────────────────────────── */
+img {
+  height: auto;
+}
+
+/* ── Form elements (unstyled base, wb-* classes add styling) ─ */
+input, textarea, select {
+  color: var(--wb-text);
+  background: var(--wb-surface);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--wb-muted);
+  opacity: 1;
+}
+
+/* ── Focus ring ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+}
+/* ============================================================
+   WebBlocks UI — Button (wb-btn)
+   ============================================================ */
+
+.wb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-s2);
+  padding: 0.5em 1.1em;
+  border: 1px solid transparent;
+  border-radius: var(--wb-r-md);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background var(--wb-t),
+    border-color var(--wb-t),
+    color var(--wb-t),
+    box-shadow var(--wb-t),
+    transform var(--wb-t-f);
+  -webkit-appearance: none;
+}
+
+.wb-btn:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 3px;
+}
+
+.wb-btn:active {
+  transform: translateY(1px);
+}
+
+.wb-btn:disabled,
+.wb-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+.wb-btn-primary {
+  background: var(--wb-primary);
+  color: #fff;
+  border-color: var(--wb-primary);
+}
+.wb-btn-primary:hover {
+  background: var(--wb-primary-dark);
+  border-color: var(--wb-primary-dark);
+  text-decoration: none;
+  color: #fff;
+}
+
+.wb-btn-secondary {
+  background: var(--wb-surface);
+  color: var(--wb-text);
+  border-color: var(--wb-border);
+}
+.wb-btn-secondary:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-btn-ghost {
+  background: transparent;
+  color: var(--wb-text);
+  border-color: transparent;
+}
+.wb-btn-ghost:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-btn-outline {
+  background: transparent;
+  color: var(--wb-primary);
+  border-color: var(--wb-primary);
+}
+.wb-btn-outline:hover {
+  background: var(--wb-primary-soft);
+  text-decoration: none;
+  color: var(--wb-primary);
+}
+
+.wb-btn-danger {
+  background: var(--wb-danger);
+  color: #fff;
+  border-color: var(--wb-danger);
+}
+.wb-btn-danger:hover {
+  background: var(--wb-danger-dark);
+  border-color: var(--wb-danger-dark);
+  text-decoration: none;
+  color: #fff;
+}
+
+.wb-btn-success {
+  background: var(--wb-success);
+  color: #fff;
+  border-color: var(--wb-success);
+}
+.wb-btn-success:hover {
+  background: var(--wb-success-dark);
+  border-color: var(--wb-success-dark);
+  text-decoration: none;
+  color: #fff;
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+
+.wb-btn-sm {
+  font-size: 0.8rem;
+  padding: 0.35em 0.8em;
+  border-radius: var(--wb-r-sm);
+  gap: var(--wb-s1);
+}
+
+.wb-btn-lg {
+  font-size: 1rem;
+  padding: 0.65em 1.4em;
+  border-radius: var(--wb-r-lg);
+}
+
+/* ── Icon-only ────────────────────────────────────────────── */
+.wb-btn-icon {
+  padding: 0.5em;
+  aspect-ratio: 1 / 1;
+}
+.wb-btn-icon.wb-btn-sm { padding: 0.35em; }
+.wb-btn-icon.wb-btn-lg { padding: 0.65em; }
+
+/* ── Group ────────────────────────────────────────────────── */
+.wb-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+.wb-btn-group-join {
+  display: flex;
+  align-items: center;
+}
+.wb-btn-group-join .wb-btn {
+  border-radius: 0;
+}
+.wb-btn-group-join .wb-btn:first-child {
+  border-radius: var(--wb-r-md) 0 0 var(--wb-r-md);
+}
+.wb-btn-group-join .wb-btn:last-child {
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
+.wb-btn-group-join .wb-btn + .wb-btn {
+  margin-left: -1px;
+}
+/* ============================================================
+   WebBlocks UI — Badge (wb-badge)
+   ============================================================ */
+
+.wb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: 0.25em 0.65em;
+  border-radius: var(--wb-r-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  border: 1px solid var(--wb-border);
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+.wb-badge-primary {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+  border-color: transparent;
+}
+
+.wb-badge-success {
+  background: var(--wb-success-soft);
+  color: var(--wb-success);
+  border-color: transparent;
+}
+
+.wb-badge-warning {
+  background: var(--wb-warning-soft);
+  color: var(--wb-warning);
+  border-color: transparent;
+}
+
+.wb-badge-danger {
+  background: var(--wb-danger-soft);
+  color: var(--wb-danger);
+  border-color: transparent;
+}
+
+.wb-badge-info {
+  background: var(--wb-info-soft);
+  color: var(--wb-info);
+  border-color: transparent;
+}
+
+/* ── Dot indicator ────────────────────────────────────────── */
+.wb-badge-dot::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--wb-r-full);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+.wb-badge-lg {
+  font-size: 0.875rem;
+  padding: 0.35em 0.85em;
+}
+/* ============================================================
+   WebBlocks UI — Card (wb-card)
+   ============================================================ */
+
+.wb-card {
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-sm);
+  overflow: hidden;
+}
+
+.wb-card-header {
+  padding: var(--wb-s4) var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+}
+
+.wb-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-card-body {
+  padding: var(--wb-s5);
+}
+
+.wb-card-footer {
+  padding: var(--wb-s3) var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+/* ── Shorthand: card without header/footer structure ─────── */
+.wb-card > .wb-card-body:only-child {
+  padding: var(--wb-s5);
+}
+
+/* ── Flat card (no shadow) ────────────────────────────────── */
+.wb-card-flat {
+  box-shadow: none;
+}
+
+/* ── Highlighted card ─────────────────────────────────────── */
+.wb-card-highlight {
+  border-color: var(--wb-primary);
+  box-shadow: 0 0 0 1px var(--wb-primary), var(--wb-shadow-sm);
+}
+
+/* ── Stat / KPI card ──────────────────────────────────────── */
+.wb-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+  padding: var(--wb-s5);
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wb-muted);
+}
+
+.wb-stat-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  line-height: 1;
+}
+
+.wb-stat-delta {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.wb-stat-delta-up   { color: var(--wb-success); }
+.wb-stat-delta-down { color: var(--wb-danger); }
+/* ============================================================
+   WebBlocks UI — Alert (wb-alert)
+   ============================================================ */
+
+.wb-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wb-s3);
+  padding: var(--wb-s3) var(--wb-s4);
+  border-radius: var(--wb-r-lg);
+  border: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.wb-alert-icon {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.1em;
+}
+
+.wb-alert-title {
+  font-weight: 600;
+  margin-bottom: var(--wb-s1);
+  display: block;
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+.wb-alert-info {
+  background: var(--wb-info-soft);
+  border-color: transparent;
+  color: var(--wb-info-dark);
+}
+html[data-mode="dark"] .wb-alert-info,
+html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-info {
+  color: #7dd3fc;
+}
+
+.wb-alert-success {
+  background: var(--wb-success-soft);
+  border-color: transparent;
+  color: var(--wb-success-dark);
+}
+html[data-mode="dark"] .wb-alert-success,
+html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-success {
+  color: #86efac;
+}
+
+.wb-alert-warning {
+  background: var(--wb-warning-soft);
+  border-color: transparent;
+  color: var(--wb-warning-dark);
+}
+html[data-mode="dark"] .wb-alert-warning,
+html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-warning {
+  color: #fed7aa;
+}
+
+.wb-alert-danger {
+  background: var(--wb-danger-soft);
+  border-color: transparent;
+  color: var(--wb-danger-dark);
+}
+html[data-mode="dark"] .wb-alert-danger,
+html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
+  color: #fca5a5;
+}
+
+/* ── Dismissible ──────────────────────────────────────────── */
+.wb-alert-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wb-alert-close {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: var(--wb-s1);
+  border-radius: var(--wb-r-sm);
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  font-size: 1rem;
+  transition: opacity var(--wb-t);
+}
+.wb-alert-close:hover { opacity: 1; }
+/* ============================================================
+   WebBlocks UI — Form Elements
+   (wb-input, wb-select, wb-textarea, wb-checkbox, wb-radio,
+    wb-switch, wb-label, wb-field, wb-form-row)
+   ============================================================ */
+
+/* ── Label ────────────────────────────────────────────────── */
+.wb-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--wb-text);
+}
+
+.wb-label-hint {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+}
+
+/* ── Field (label + input + hint) ────────────────────────── */
+.wb-field {
+  display: grid;
+  gap: var(--wb-s2);
+}
+
+.wb-field-hint {
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+}
+
+.wb-field-error {
+  font-size: 0.8rem;
+  color: var(--wb-danger);
+  font-weight: 500;
+}
+
+/* ── Text inputs ──────────────────────────────────────────── */
+.wb-input,
+.wb-select,
+.wb-textarea {
+  width: 100%;
+  padding: 0.55em 0.85em;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface);
+  color: var(--wb-text);
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  transition: border-color var(--wb-t), box-shadow var(--wb-t);
+  outline: none;
+}
+
+.wb-input::placeholder,
+.wb-textarea::placeholder {
+  color: var(--wb-muted);
+  opacity: 1;
+}
+
+.wb-input:focus,
+.wb-select:focus,
+.wb-textarea:focus {
+  border-color: var(--wb-primary);
+  box-shadow: 0 0 0 3px var(--wb-primary-soft);
+}
+
+.wb-input:disabled,
+.wb-select:disabled,
+.wb-textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--wb-surface-2);
+}
+
+.wb-input-error,
+.wb-select-error,
+.wb-textarea-error {
+  border-color: var(--wb-danger);
+}
+.wb-input-error:focus,
+.wb-select-error:focus,
+.wb-textarea-error:focus {
+  border-color: var(--wb-danger);
+  box-shadow: 0 0 0 3px var(--wb-danger-soft);
+}
+
+/* ── Textarea ─────────────────────────────────────────────── */
+.wb-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ── Select ───────────────────────────────────────────────── */
+.wb-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6a84' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85em center;
+  padding-right: 2.2em;
+}
+
+/* ── Input sizes ──────────────────────────────────────────── */
+.wb-input-sm, .wb-select-sm { font-size: 0.8rem; padding: 0.4em 0.7em; }
+.wb-input-lg, .wb-select-lg { font-size: 1rem;   padding: 0.65em 1em; }
+
+/* ── Checkbox & Radio ─────────────────────────────────────── */
+.wb-check,
+.wb-radio {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--wb-text);
+  user-select: none;
+}
+
+.wb-check input[type="checkbox"],
+.wb-radio input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  accent-color: var(--wb-primary);
+  cursor: pointer;
+}
+
+/* ── Switch ───────────────────────────────────────────────── */
+.wb-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--wb-text);
+  user-select: none;
+}
+
+.wb-switch-track {
+  position: relative;
+  width: 2.4rem;
+  height: 1.35rem;
+  background: var(--wb-border);
+  border-radius: var(--wb-r-full);
+  transition: background var(--wb-t);
+  flex-shrink: 0;
+}
+
+.wb-switch-track::after {
+  content: "";
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: var(--wb-r-full);
+  background: #fff;
+  box-shadow: var(--wb-shadow-sm);
+  transition: transform var(--wb-t);
+}
+
+.wb-switch input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.wb-switch input:checked + .wb-switch-track {
+  background: var(--wb-primary);
+}
+.wb-switch input:checked + .wb-switch-track::after {
+  transform: translateX(1.05rem);
+}
+.wb-switch input:focus-visible + .wb-switch-track {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+}
+
+/* ── Input with icon ──────────────────────────────────────── */
+.wb-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.wb-input-wrap .wb-input {
+  padding-left: 2.2em;
+}
+.wb-input-wrap .wb-input-icon {
+  position: absolute;
+  left: 0.75em;
+  color: var(--wb-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+.wb-input-wrap .wb-input-suffix {
+  position: absolute;
+  right: 0.75em;
+  color: var(--wb-muted);
+  display: flex;
+  align-items: center;
+}
+
+/* ── Form row (two-column) ────────────────────────────────── */
+.wb-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--wb-s4);
+}
+@media (max-width: 600px) {
+  .wb-form-row { grid-template-columns: 1fr; }
+}
+
+/* ── Form group (label + fields in a row) ─────────────────── */
+.wb-form-group {
+  display: grid;
+  gap: var(--wb-s4);
+}
+/* ============================================================
+   WebBlocks UI — Table (wb-table)
+   ============================================================ */
+
+/* ── Wrapper (for scrolling on small screens) ─────────────── */
+.wb-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  background: var(--wb-surface);
+}
+
+.wb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.wb-table th,
+.wb-table td {
+  padding: var(--wb-s3) var(--wb-s4);
+  text-align: left;
+  border-bottom: 1px solid var(--wb-border);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.wb-table thead th {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wb-muted);
+  background: var(--wb-surface-2);
+  white-space: nowrap;
+}
+
+.wb-table thead th:first-child { border-radius: var(--wb-r-lg) 0 0 0; }
+.wb-table thead th:last-child  { border-radius: 0 var(--wb-r-lg) 0 0; }
+
+.wb-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Hover rows ───────────────────────────────────────────── */
+.wb-table-hover tbody tr:hover td {
+  background: var(--wb-surface-2);
+}
+
+/* ── Striped rows ─────────────────────────────────────────── */
+.wb-table-striped tbody tr:nth-child(even) td {
+  background: var(--wb-surface-2);
+}
+
+/* ── Condensed ────────────────────────────────────────────── */
+.wb-table-sm th,
+.wb-table-sm td {
+  padding: var(--wb-s2) var(--wb-s3);
+}
+
+/* ── Sortable header ──────────────────────────────────────── */
+.wb-table th[data-wb-sort] {
+  cursor: pointer;
+  user-select: none;
+}
+.wb-table th[data-wb-sort]:hover {
+  color: var(--wb-text);
+}
+
+/* ── Toolbar above table ──────────────────────────────────── */
+.wb-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-wrap: wrap;
+  padding: var(--wb-s3) var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  background: var(--wb-surface);
+}
+
+.wb-toolbar-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-right: auto;
+}
+
+/* ── Filter row ───────────────────────────────────────────── */
+.wb-filter-row {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-wrap: wrap;
+  padding: var(--wb-s3) var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+}
+
+.wb-filter-row .wb-input,
+.wb-filter-row .wb-select {
+  max-width: 220px;
+}
+/* ============================================================
+   WebBlocks UI — Modal (wb-modal)
+   JS: data-wb-toggle="modal" data-wb-target="#id"
+       data-wb-dismiss="modal"  (close trigger)
+   ============================================================ */
+
+.wb-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--wb-z-modal);
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s4);
+}
+
+.wb-modal.is-open {
+  display: flex;
+}
+
+.wb-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.wb-modal-dialog {
+  position: relative;
+  z-index: 1;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-xl);
+  box-shadow: var(--wb-shadow-xl);
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100vh - 2 * var(--wb-s4));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: wb-modal-in 0.18s ease;
+}
+
+@keyframes wb-modal-in {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
+}
+
+.wb-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+  padding: var(--wb-s4) var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+  flex-shrink: 0;
+}
+
+.wb-modal-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.wb-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: var(--wb-r-md);
+  color: var(--wb-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background var(--wb-t), color var(--wb-t);
+}
+.wb-modal-close:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-modal-body {
+  padding: var(--wb-s5);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.wb-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wb-s2);
+  padding: var(--wb-s3) var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+  flex-shrink: 0;
+  background: var(--wb-surface-2);
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+.wb-modal-sm .wb-modal-dialog { max-width: 380px; }
+.wb-modal-lg .wb-modal-dialog { max-width: 720px; }
+.wb-modal-xl .wb-modal-dialog { max-width: 960px; }
+/* ============================================================
+   WebBlocks UI — Dropdown (wb-dropdown)
+   JS: data-wb-dropdown on container; auto-closes on outside click / Escape
+   ============================================================ */
+
+.wb-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.wb-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--wb-s1));
+  left: 0;
+  z-index: var(--wb-z-dropdown);
+  min-width: 200px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-lg);
+  padding: var(--wb-s1) 0;
+  animation: wb-dropdown-in 0.12s ease;
+}
+
+.wb-dropdown.is-open .wb-dropdown-menu {
+  display: block;
+}
+
+@keyframes wb-dropdown-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.wb-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: var(--wb-s2) var(--wb-s4);
+  font-size: 0.9rem;
+  color: var(--wb-text);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background var(--wb-t-f);
+}
+.wb-dropdown-item:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+.wb-dropdown-item:focus-visible {
+  background: var(--wb-primary-soft);
+  outline: none;
+}
+
+.wb-dropdown-item-danger {
+  color: var(--wb-danger);
+}
+.wb-dropdown-item-danger:hover {
+  background: var(--wb-danger-soft);
+}
+
+.wb-dropdown-divider {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s1) 0;
+}
+
+.wb-dropdown-label {
+  padding: var(--wb-s1) var(--wb-s4);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--wb-muted);
+}
+
+/* ── Right-align ──────────────────────────────────────────── */
+.wb-dropdown-end .wb-dropdown-menu {
+  left: auto;
+  right: 0;
+}
+/* ============================================================
+   WebBlocks UI — Tabs (wb-tabs)
+   JS: data-wb-tab="panel-id" on buttons, panels have matching id
+   ============================================================ */
+
+.wb-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.wb-tabs-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  border-bottom: 2px solid var(--wb-border);
+  overflow-x: auto;
+}
+
+.wb-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: var(--wb-s2) var(--wb-s4);
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  background: none;
+  color: var(--wb-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--wb-t), border-color var(--wb-t);
+}
+
+.wb-tab:hover {
+  color: var(--wb-text);
+}
+
+.wb-tab.is-active {
+  color: var(--wb-primary);
+  border-bottom-color: var(--wb-primary);
+}
+
+.wb-tab:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: -2px;
+}
+
+.wb-tab-panel {
+  display: none;
+  padding: var(--wb-s5) 0;
+}
+
+.wb-tab-panel.is-active {
+  display: block;
+}
+
+/* ── Pill variant ─────────────────────────────────────────── */
+.wb-tabs-pills .wb-tabs-nav {
+  border-bottom: none;
+  gap: var(--wb-s1);
+  padding: var(--wb-s2);
+  background: var(--wb-surface-2);
+  border-radius: var(--wb-r-lg);
+}
+
+.wb-tabs-pills .wb-tab {
+  border-bottom: none;
+  border-radius: var(--wb-r-md);
+  padding: var(--wb-s2) var(--wb-s3);
+  margin: 0;
+}
+
+.wb-tabs-pills .wb-tab.is-active {
+  background: var(--wb-surface);
+  color: var(--wb-primary);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-tabs-pills .wb-tab-panel {
+  padding-top: var(--wb-s4);
+}
+/* ============================================================
+   WebBlocks UI — Accordion (wb-accordion)
+   JS: data-wb-accordion-trigger on buttons
+   ============================================================ */
+
+.wb-accordion {
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  overflow: hidden;
+}
+
+.wb-accordion-item {
+  border-bottom: 1px solid var(--wb-border);
+}
+.wb-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.wb-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--wb-s4) var(--wb-s5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  text-align: left;
+  gap: var(--wb-s3);
+  transition: background var(--wb-t);
+}
+
+.wb-accordion-trigger:hover {
+  background: var(--wb-surface-2);
+}
+
+.wb-accordion-trigger:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: -2px;
+}
+
+.wb-accordion-icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  transition: transform var(--wb-t);
+  color: var(--wb-muted);
+}
+
+.wb-accordion-item.is-open .wb-accordion-icon {
+  transform: rotate(180deg);
+}
+
+.wb-accordion-content {
+  display: none;
+  padding: 0 var(--wb-s5) var(--wb-s5);
+  font-size: 0.9rem;
+  color: var(--wb-muted);
+  line-height: 1.7;
+}
+
+.wb-accordion-item.is-open .wb-accordion-content {
+  display: block;
+}
+
+/* ── Flush (no border, separated items) ──────────────────── */
+.wb-accordion-flush {
+  border: none;
+  border-radius: 0;
+}
+.wb-accordion-flush .wb-accordion-item {
+  border-bottom: 1px solid var(--wb-border);
+  border-radius: 0;
+}
+.wb-accordion-flush .wb-accordion-item:last-child {
+  border-bottom: none;
+}
+/* ============================================================
+   WebBlocks UI — Pagination (wb-pagination)
+   ============================================================ */
+
+.wb-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  flex-wrap: wrap;
+}
+
+.wb-page-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0 var(--wb-s2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  text-decoration: none;
+  background: var(--wb-surface);
+  cursor: pointer;
+  transition: background var(--wb-t), border-color var(--wb-t), color var(--wb-t);
+  user-select: none;
+}
+
+.wb-page-item:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-page-item.is-active {
+  background: var(--wb-primary);
+  border-color: var(--wb-primary);
+  color: #fff;
+  cursor: default;
+}
+
+.wb-page-item.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.wb-page-item:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+}
+
+/* ── Simple prev/next ─────────────────────────────────────── */
+.wb-pagination-info {
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+  margin-left: auto;
+}
+/* ============================================================
+   WebBlocks UI — Breadcrumb (wb-breadcrumb)
+   ============================================================ */
+
+.wb-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wb-breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.wb-breadcrumb-item + .wb-breadcrumb-item::before {
+  content: "/";
+  margin: 0 var(--wb-s2);
+  color: var(--wb-border);
+  font-weight: 400;
+}
+
+.wb-breadcrumb-item a {
+  color: var(--wb-muted);
+  text-decoration: none;
+  transition: color var(--wb-t);
+}
+.wb-breadcrumb-item a:hover {
+  color: var(--wb-text);
+  text-decoration: underline;
+}
+
+.wb-breadcrumb-item.is-active {
+  color: var(--wb-text);
+  font-weight: 500;
+}
+/* ============================================================
+   WebBlocks UI — Avatar (wb-avatar)
+   ============================================================ */
+
+.wb-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.wb-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--wb-r-full);
+  display: block;
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+.wb-avatar-sm { width: 1.75rem; height: 1.75rem; font-size: 0.72rem; }
+.wb-avatar-lg { width: 3.5rem;  height: 3.5rem;  font-size: 1.1rem;  }
+.wb-avatar-xl { width: 5rem;    height: 5rem;    font-size: 1.5rem;  }
+
+/* ── Color variants ───────────────────────────────────────── */
+.wb-avatar-success { background: var(--wb-success-soft); color: var(--wb-success); }
+.wb-avatar-warning { background: var(--wb-warning-soft); color: var(--wb-warning); }
+.wb-avatar-danger  { background: var(--wb-danger-soft);  color: var(--wb-danger);  }
+.wb-avatar-info    { background: var(--wb-info-soft);    color: var(--wb-info);    }
+.wb-avatar-muted   { background: var(--wb-surface-3);    color: var(--wb-muted);   }
+
+/* ── Avatar group (stacked) ───────────────────────────────── */
+.wb-avatar-group {
+  display: flex;
+  align-items: center;
+}
+.wb-avatar-group .wb-avatar {
+  border: 2px solid var(--wb-surface);
+  margin-left: -0.6rem;
+}
+.wb-avatar-group .wb-avatar:first-child {
+  margin-left: 0;
+}
+/* ============================================================
+   WebBlocks UI — Toast / Notification (wb-toast)
+   JS: WB.toast(message, type) or manual .is-visible toggle
+   ============================================================ */
+
+.wb-toast-container {
+  position: fixed;
+  bottom: var(--wb-s6);
+  right: var(--wb-s6);
+  z-index: var(--wb-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+  pointer-events: none;
+  max-width: 380px;
+  width: calc(100% - 2 * var(--wb-s6));
+}
+
+.wb-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wb-s3);
+  padding: var(--wb-s3) var(--wb-s4);
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-lg);
+  pointer-events: auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  animation: wb-toast-in 0.22s ease;
+}
+
+@keyframes wb-toast-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+.wb-toast.is-leaving {
+  animation: wb-toast-out 0.18s ease forwards;
+}
+
+@keyframes wb-toast-out {
+  to { opacity: 0; transform: translateX(24px); height: 0; padding: 0; margin: 0; }
+}
+
+.wb-toast-icon {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.1em;
+}
+
+.wb-toast-body {
+  flex: 1;
+}
+
+.wb-toast-title {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.15em;
+}
+
+.wb-toast-close {
+  flex-shrink: 0;
+  padding: var(--wb-s1);
+  border-radius: var(--wb-r-sm);
+  background: none;
+  border: none;
+  color: var(--wb-muted);
+  cursor: pointer;
+  line-height: 1;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: opacity var(--wb-t);
+}
+.wb-toast-close:hover { opacity: 1; }
+
+/* ── Variants ─────────────────────────────────────────────── */
+.wb-toast-success { border-left: 3px solid var(--wb-success); }
+.wb-toast-warning { border-left: 3px solid var(--wb-warning); }
+.wb-toast-danger  { border-left: 3px solid var(--wb-danger);  }
+.wb-toast-info    { border-left: 3px solid var(--wb-info);    }
+/* ============================================================
+   WebBlocks UI — Skeleton Loader (wb-skeleton)
+   ============================================================ */
+
+@keyframes wb-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.wb-skeleton {
+  display: inline-block;
+  width: 100%;
+  height: 1em;
+  border-radius: var(--wb-r-sm);
+  background: linear-gradient(
+    90deg,
+    var(--wb-surface-2) 25%,
+    var(--wb-surface-3) 50%,
+    var(--wb-surface-2) 75%
+  );
+  background-size: 800px 100%;
+  animation: wb-shimmer 1.5s infinite linear;
+}
+
+/* ── Common shapes ────────────────────────────────────────── */
+.wb-skeleton-text   { height: 0.9em; border-radius: var(--wb-r-sm); }
+.wb-skeleton-title  { height: 1.4em; width: 60%; border-radius: var(--wb-r-sm); }
+.wb-skeleton-circle { border-radius: var(--wb-r-full); aspect-ratio: 1 / 1; }
+.wb-skeleton-rect   { border-radius: var(--wb-r-lg); }
+
+/* ── Skeleton card ────────────────────────────────────────── */
+.wb-skeleton-card {
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  padding: var(--wb-s5);
+  display: grid;
+  gap: var(--wb-s3);
+}
+/* ============================================================
+   WebBlocks UI — Empty State (wb-empty)
+   ============================================================ */
+
+.wb-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--wb-s16) var(--wb-s8);
+  gap: var(--wb-s3);
+  color: var(--wb-muted);
+}
+
+.wb-empty-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: var(--wb-border);
+  margin-bottom: var(--wb-s2);
+}
+
+.wb-empty-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-empty-text {
+  font-size: 0.9rem;
+  max-width: 340px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.wb-empty-action {
+  margin-top: var(--wb-s2);
+}
+
+/* ── Compact (inside table / list) ───────────────────────── */
+.wb-empty-sm {
+  padding: var(--wb-s8) var(--wb-s4);
+}
+.wb-empty-sm .wb-empty-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+/* ============================================================
+   WebBlocks UI — Container & Layout Primitives
+   ============================================================ */
+
+/* ── Container ────────────────────────────────────────────── */
+
+.wb-container {
+  width: 100%;
+  max-width: var(--wb-container-max, 1200px);
+  margin-inline: auto;
+  padding-inline: var(--wb-s6);
+}
+
+.wb-container-sm  { max-width: 680px; }
+.wb-container-md  { max-width: 900px; }
+.wb-container-lg  { max-width: 1200px; }
+.wb-container-xl  { max-width: 1440px; }
+.wb-container-full { max-width: none; }
+
+/* ── Section ──────────────────────────────────────────────── */
+
+.wb-section {
+  padding-block: var(--wb-s12);
+}
+
+.wb-section-sm { padding-block: var(--wb-s6); }
+.wb-section-lg { padding-block: calc(var(--wb-s12) * 2); }
+
+/* ── Stack — vertical spacing ─────────────────────────────── */
+/* Children spaced vertically; no margin on last child */
+
+.wb-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.wb-stack > * + * { margin-top: var(--wb-s4); }
+
+.wb-stack-1 > * + * { margin-top: var(--wb-s1); }
+.wb-stack-2 > * + * { margin-top: var(--wb-s2); }
+.wb-stack-3 > * + * { margin-top: var(--wb-s3); }
+.wb-stack-4 > * + * { margin-top: var(--wb-s4); }
+.wb-stack-6 > * + * { margin-top: var(--wb-s6); }
+.wb-stack-8 > * + * { margin-top: var(--wb-s8); }
+
+/* ── Cluster — horizontal wrapping flex ───────────────────── */
+
+.wb-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wb-s3);
+}
+
+.wb-cluster-2  { gap: var(--wb-s2); }
+.wb-cluster-4  { gap: var(--wb-s4); }
+.wb-cluster-6  { gap: var(--wb-s6); }
+.wb-cluster-end   { justify-content: flex-end; }
+.wb-cluster-center { justify-content: center; }
+.wb-cluster-between { justify-content: space-between; }
+
+/* ── Split — two-sided horizontal layout ─────────────────── */
+
+.wb-split {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s4);
+}
+
+.wb-split > :first-child { flex: 1; }
+.wb-split > :last-child  { flex-shrink: 0; }
+
+/* ── Grid ─────────────────────────────────────────────────── */
+
+.wb-grid {
+  display: grid;
+  gap: var(--wb-s6);
+}
+
+.wb-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.wb-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.wb-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Responsive auto-grid (min 280px per column) */
+.wb-grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--wb-s6);
+}
+
+.wb-grid-auto-sm {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.wb-grid-auto-lg {
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+}
+
+/* ── Breakpoint collapse ──────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .wb-grid-3,
+  .wb-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .wb-grid-2,
+  .wb-grid-3,
+  .wb-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-container {
+    padding-inline: var(--wb-s4);
+  }
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+
+.wb-divider {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin-block: var(--wb-s4);
+}
+
+.wb-divider-sm { margin-block: var(--wb-s2); }
+.wb-divider-lg { margin-block: var(--wb-s8); }
+/* ============================================================
+   WebBlocks UI — Navbar / Topbar
+   ============================================================ */
+
+/* ── Base navbar ──────────────────────────────────────────── */
+
+.wb-navbar {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  height: var(--wb-navbar-h, 56px);
+  padding-inline: var(--wb-s6);
+  background: var(--wb-surface);
+  border-bottom: 1px solid var(--wb-border);
+  position: sticky;
+  top: 0;
+  z-index: var(--wb-z-navbar, 100);
+}
+
+/* Frosted-glass variant */
+.wb-navbar-glass {
+  background: color-mix(in srgb, var(--wb-surface) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Filled / branded variant */
+.wb-navbar-filled {
+  background: var(--wb-primary);
+  border-bottom-color: transparent;
+  color: #fff;
+}
+.wb-navbar-filled .wb-navbar-link {
+  color: rgba(255, 255, 255, 0.85);
+}
+.wb-navbar-filled .wb-navbar-link:hover,
+.wb-navbar-filled .wb-navbar-link.is-active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Brand / logo ─────────────────────────────────────────── */
+
+.wb-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--wb-text);
+  flex-shrink: 0;
+}
+
+.wb-navbar-brand:hover {
+  text-decoration: none;
+  color: var(--wb-text);
+}
+
+.wb-navbar-brand img,
+.wb-navbar-brand svg {
+  height: 28px;
+  width: auto;
+}
+
+/* ── Spacer — pushes right side ───────────────────────────── */
+
+.wb-navbar-spacer {
+  flex: 1;
+}
+
+/* ── Nav links ────────────────────────────────────────────── */
+
+.wb-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+}
+
+.wb-navbar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: 0.35em 0.75em;
+  border-radius: var(--wb-r-md);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+  white-space: nowrap;
+}
+
+.wb-navbar-link:hover {
+  color: var(--wb-text);
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-navbar-link.is-active {
+  color: var(--wb-primary);
+  background: var(--wb-primary-soft);
+}
+
+/* ── Right-side controls ──────────────────────────────────── */
+
+.wb-navbar-end {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-shrink: 0;
+}
+
+/* ── Mobile toggle (hamburger) ────────────────────────────── */
+
+.wb-navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--wb-r-md);
+  color: var(--wb-text);
+}
+
+.wb-navbar-toggle:hover {
+  background: var(--wb-surface-2);
+}
+
+.wb-navbar-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--wb-t), opacity var(--wb-t);
+}
+
+/* Animated X when open */
+.wb-navbar-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.wb-navbar-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.wb-navbar-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ────────────────────────────────────────── */
+
+.wb-navbar-drawer {
+  display: none;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  padding: var(--wb-s3) var(--wb-s4);
+  background: var(--wb-surface);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-navbar-drawer.is-open {
+  display: flex;
+}
+
+.wb-navbar-drawer .wb-navbar-link {
+  width: 100%;
+  padding: 0.6em 0.75em;
+}
+
+/* ── Responsive: hide desktop links, show toggle ──────────── */
+
+@media (max-width: 768px) {
+  .wb-navbar-links {
+    display: none;
+  }
+
+  .wb-navbar-toggle {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .wb-navbar-drawer {
+    display: none !important;
+  }
+}
+/* ============================================================
+   WebBlocks UI — Sidebar
+   ============================================================ */
+
+/* ── Sidebar shell ────────────────────────────────────────── */
+
+.wb-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: var(--wb-sidebar-w, 240px);
+  min-height: 100%;
+  background: var(--wb-surface);
+  border-right: 1px solid var(--wb-border);
+  flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Narrow / icon-only sidebar */
+.wb-sidebar-narrow {
+  width: var(--wb-sidebar-narrow-w, 64px);
+}
+
+/* ── Sidebar header (brand area) ──────────────────────────── */
+
+.wb-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  height: var(--wb-navbar-h, 56px);
+  padding-inline: var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+.wb-sidebar-header:hover {
+  text-decoration: none;
+  color: var(--wb-text);
+}
+
+/* ── Nav sections ─────────────────────────────────────────── */
+
+.wb-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  padding: var(--wb-s3) var(--wb-s2);
+  flex: 1;
+}
+
+.wb-sidebar-section {
+  margin-top: var(--wb-s4);
+}
+
+.wb-sidebar-label {
+  display: block;
+  padding: 0 var(--wb-s2);
+  margin-bottom: var(--wb-s1);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-muted);
+  user-select: none;
+}
+
+/* ── Nav links ────────────────────────────────────────────── */
+
+.wb-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: 0.45em var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  text-decoration: none;
+  transition:
+    background var(--wb-t),
+    color var(--wb-t);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wb-sidebar-link:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+.wb-sidebar-link.is-active {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+  font-weight: 600;
+}
+
+.wb-sidebar-link .wb-sidebar-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  width: 1.2em;
+  text-align: center;
+}
+
+.wb-sidebar-link .wb-sidebar-badge {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── Sub-links (nested) ───────────────────────────────────── */
+
+.wb-sidebar-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: calc(var(--wb-s3) + 1.2em + var(--wb-s3));
+  margin-top: 2px;
+}
+
+.wb-sidebar-sub .wb-sidebar-link {
+  font-size: 0.85rem;
+  padding-block: 0.35em;
+  color: var(--wb-muted);
+}
+
+.wb-sidebar-sub .wb-sidebar-link.is-active {
+  color: var(--wb-primary);
+  background: transparent;
+  font-weight: 600;
+}
+
+/* ── Sidebar footer ───────────────────────────────────────── */
+
+.wb-sidebar-footer {
+  padding: var(--wb-s3) var(--wb-s2);
+  border-top: 1px solid var(--wb-border);
+  flex-shrink: 0;
+}
+
+/* ── Backdrop (mobile overlay) ────────────────────────────── */
+
+.wb-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: calc(var(--wb-z-sidebar, 200) - 1);
+}
+
+.wb-sidebar-backdrop.is-open {
+  display: block;
+}
+
+/* ── Mobile: off-canvas ───────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .wb-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: var(--wb-z-sidebar, 200);
+    transform: translateX(-100%);
+    transition: transform var(--wb-t-sidebar, 0.25s ease);
+    box-shadow: var(--wb-shadow-lg);
+  }
+
+  .wb-sidebar.is-open {
+    transform: translateX(0);
+  }
+}
+/* ============================================================
+   WebBlocks UI — Dashboard Shell Layout
+   ============================================================ */
+
+/*
+  Structure:
+  <div class="wb-dashboard-shell">
+    <aside class="wb-sidebar"> ... </aside>
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar"> ... </header>
+      <main class="wb-dashboard-main">
+        <div class="wb-container"> ... </div>
+      </main>
+    </div>
+  </div>
+*/
+
+.wb-dashboard-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--wb-bg);
+}
+
+/* ── Body area (right of sidebar) ─────────────────────────── */
+
+.wb-dashboard-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0; /* prevent flex overflow */
+  overflow: hidden;
+}
+
+/* ── Main content area ────────────────────────────────────── */
+
+.wb-dashboard-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--wb-s6);
+}
+
+/* ── Page header (title + actions row) ────────────────────── */
+
+.wb-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--wb-s4);
+  margin-bottom: var(--wb-s6);
+  flex-wrap: wrap;
+}
+
+.wb-page-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.wb-page-subtitle {
+  font-size: 0.9rem;
+  color: var(--wb-muted);
+  margin-top: var(--wb-s1);
+}
+
+.wb-page-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-shrink: 0;
+}
+
+/* ── Stat card row ────────────────────────────────────────── */
+
+.wb-stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--wb-s4);
+  margin-bottom: var(--wb-s6);
+}
+
+/* ── Dashboard panel (card variant) ──────────────────────── */
+
+.wb-panel {
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  overflow: hidden;
+}
+
+.wb-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+  padding: var(--wb-s4) var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-panel-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-panel-body {
+  padding: var(--wb-s5);
+}
+
+.wb-panel-footer {
+  padding: var(--wb-s3) var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  font-size: 0.85rem;
+  color: var(--wb-muted);
+}
+
+/* ── Mobile: sidebar collapses, main takes full width ─────── */
+
+@media (max-width: 768px) {
+  .wb-dashboard-main {
+    padding: var(--wb-s4);
+  }
+
+  .wb-page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wb-page-actions {
+    flex-wrap: wrap;
+  }
+}
+/* ============================================================
+   WebBlocks UI — Auth Shell Layout
+   ============================================================ */
+
+/*
+  Structure (centered card):
+  <div class="wb-auth-shell">
+    <div class="wb-auth-card">
+      <div class="wb-auth-logo"> ... </div>
+      <div class="wb-auth-body"> ... </div>
+      <div class="wb-auth-footer"> ... </div>
+    </div>
+  </div>
+
+  Structure (split layout):
+  <div class="wb-auth-shell wb-auth-split">
+    <div class="wb-auth-panel"> ... brand / illustration ... </div>
+    <div class="wb-auth-form-area">
+      <div class="wb-auth-card"> ... </div>
+    </div>
+  </div>
+*/
+
+/* ── Centered shell ───────────────────────────────────────── */
+
+.wb-auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s6);
+  background: var(--wb-bg);
+}
+
+/* ── Auth card ────────────────────────────────────────────── */
+
+.wb-auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-xl);
+  box-shadow: var(--wb-shadow-md);
+  overflow: hidden;
+}
+
+.wb-auth-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: var(--wb-s8) var(--wb-s6) var(--wb-s4);
+  text-align: center;
+}
+
+.wb-auth-logo img,
+.wb-auth-logo svg {
+  height: 40px;
+  width: auto;
+}
+
+.wb-auth-logo-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-auth-logo-subtitle {
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+  margin: 0;
+}
+
+.wb-auth-body {
+  padding: var(--wb-s4) var(--wb-s6) var(--wb-s6);
+}
+
+.wb-auth-footer {
+  padding: var(--wb-s4) var(--wb-s6);
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+}
+
+/* ── Social / OAuth buttons ───────────────────────────────── */
+
+.wb-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  margin-block: var(--wb-s4);
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+}
+
+.wb-auth-divider::before,
+.wb-auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--wb-border);
+}
+
+/* ── Split layout ─────────────────────────────────────────── */
+
+.wb-auth-split {
+  padding: 0;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+.wb-auth-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s12);
+  background: var(--wb-primary);
+  color: #fff;
+  text-align: center;
+}
+
+.wb-auth-panel-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: var(--wb-s4);
+  line-height: 1.2;
+}
+
+.wb-auth-panel-text {
+  font-size: 1rem;
+  opacity: 0.85;
+  max-width: 360px;
+}
+
+.wb-auth-form-area {
+  flex: 0 0 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s8);
+  background: var(--wb-bg);
+}
+
+.wb-auth-form-area .wb-auth-card {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .wb-auth-split {
+    flex-direction: column;
+  }
+
+  .wb-auth-panel {
+    padding: var(--wb-s8) var(--wb-s6);
+    min-height: 220px;
+  }
+
+  .wb-auth-form-area {
+    flex: 1;
+    padding: var(--wb-s6) var(--wb-s4);
+  }
+
+  .wb-auth-shell:not(.wb-auth-split) {
+    align-items: flex-start;
+    padding-top: var(--wb-s8);
+  }
+}
+/* ============================================================
+   WebBlocks UI — Utility Helpers
+   ============================================================ */
+
+/* ── Display ──────────────────────────────────────────────── */
+
+.wb-hidden        { display: none !important; }
+.wb-block         { display: block !important; }
+.wb-inline        { display: inline !important; }
+.wb-inline-block  { display: inline-block !important; }
+.wb-flex          { display: flex !important; }
+.wb-inline-flex   { display: inline-flex !important; }
+.wb-grid-display  { display: grid !important; }
+
+/* ── Flex helpers ─────────────────────────────────────────── */
+
+.wb-flex-col      { flex-direction: column; }
+.wb-flex-row      { flex-direction: row; }
+.wb-flex-wrap     { flex-wrap: wrap; }
+.wb-flex-nowrap   { flex-wrap: nowrap; }
+.wb-flex-1        { flex: 1; }
+.wb-flex-shrink-0 { flex-shrink: 0; }
+.wb-items-start   { align-items: flex-start; }
+.wb-items-center  { align-items: center; }
+.wb-items-end     { align-items: flex-end; }
+.wb-justify-start   { justify-content: flex-start; }
+.wb-justify-center  { justify-content: center; }
+.wb-justify-end     { justify-content: flex-end; }
+.wb-justify-between { justify-content: space-between; }
+.wb-gap-1  { gap: var(--wb-s1); }
+.wb-gap-2  { gap: var(--wb-s2); }
+.wb-gap-3  { gap: var(--wb-s3); }
+.wb-gap-4  { gap: var(--wb-s4); }
+.wb-gap-6  { gap: var(--wb-s6); }
+.wb-gap-8  { gap: var(--wb-s8); }
+
+/* ── Width / height ───────────────────────────────────────── */
+
+.wb-w-full  { width: 100%; }
+.wb-w-auto  { width: auto; }
+.wb-h-full  { height: 100%; }
+.wb-min-w-0 { min-width: 0; }
+
+/* ── Overflow ─────────────────────────────────────────────── */
+
+.wb-overflow-hidden  { overflow: hidden; }
+.wb-overflow-auto    { overflow: auto; }
+.wb-overflow-scroll  { overflow: scroll; }
+.wb-overflow-x-auto  { overflow-x: auto; }
+.wb-overflow-y-auto  { overflow-y: auto; }
+.wb-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Spacing (margin) ─────────────────────────────────────── */
+
+.wb-m-0   { margin: 0 !important; }
+.wb-mt-0  { margin-top: 0 !important; }
+.wb-mb-0  { margin-bottom: 0 !important; }
+.wb-mt-1  { margin-top: var(--wb-s1) !important; }
+.wb-mt-2  { margin-top: var(--wb-s2) !important; }
+.wb-mt-3  { margin-top: var(--wb-s3) !important; }
+.wb-mt-4  { margin-top: var(--wb-s4) !important; }
+.wb-mt-6  { margin-top: var(--wb-s6) !important; }
+.wb-mt-8  { margin-top: var(--wb-s8) !important; }
+.wb-mb-1  { margin-bottom: var(--wb-s1) !important; }
+.wb-mb-2  { margin-bottom: var(--wb-s2) !important; }
+.wb-mb-3  { margin-bottom: var(--wb-s3) !important; }
+.wb-mb-4  { margin-bottom: var(--wb-s4) !important; }
+.wb-mb-6  { margin-bottom: var(--wb-s6) !important; }
+.wb-mb-8  { margin-bottom: var(--wb-s8) !important; }
+.wb-ms-auto { margin-inline-start: auto !important; }
+.wb-me-auto { margin-inline-end: auto !important; }
+.wb-mx-auto { margin-inline: auto !important; }
+
+/* ── Spacing (padding) ────────────────────────────────────── */
+
+.wb-p-0  { padding: 0 !important; }
+.wb-p-2  { padding: var(--wb-s2) !important; }
+.wb-p-3  { padding: var(--wb-s3) !important; }
+.wb-p-4  { padding: var(--wb-s4) !important; }
+.wb-p-6  { padding: var(--wb-s6) !important; }
+.wb-px-4 { padding-inline: var(--wb-s4) !important; }
+.wb-px-6 { padding-inline: var(--wb-s6) !important; }
+.wb-py-2 { padding-block: var(--wb-s2) !important; }
+.wb-py-4 { padding-block: var(--wb-s4) !important; }
+.wb-py-6 { padding-block: var(--wb-s6) !important; }
+
+/* ── Typography ───────────────────────────────────────────── */
+
+.wb-text-xs   { font-size: 0.75rem; }
+.wb-text-sm   { font-size: 0.85rem; }
+.wb-text-base { font-size: 1rem; }
+.wb-text-lg   { font-size: 1.125rem; }
+.wb-text-xl   { font-size: 1.25rem; }
+.wb-text-2xl  { font-size: 1.5rem; }
+.wb-text-3xl  { font-size: 1.875rem; }
+.wb-text-4xl  { font-size: 2.25rem; }
+
+.wb-font-normal  { font-weight: 400; }
+.wb-font-medium  { font-weight: 500; }
+.wb-font-semibold { font-weight: 600; }
+.wb-font-bold    { font-weight: 700; }
+
+.wb-text-left    { text-align: left; }
+.wb-text-center  { text-align: center; }
+.wb-text-right   { text-align: right; }
+
+.wb-leading-tight  { line-height: 1.25; }
+.wb-leading-normal { line-height: 1.5; }
+.wb-leading-loose  { line-height: 2; }
+
+.wb-no-decoration  { text-decoration: none !important; }
+.wb-uppercase      { text-transform: uppercase; }
+.wb-lowercase      { text-transform: lowercase; }
+.wb-capitalize     { text-transform: capitalize; }
+.wb-nowrap         { white-space: nowrap; }
+
+/* ── Color helpers ────────────────────────────────────────── */
+
+.wb-text-primary  { color: var(--wb-primary) !important; }
+.wb-text-success  { color: var(--wb-success) !important; }
+.wb-text-warning  { color: var(--wb-warning) !important; }
+.wb-text-danger   { color: var(--wb-danger) !important; }
+.wb-text-muted    { color: var(--wb-muted) !important; }
+.wb-text-default  { color: var(--wb-text) !important; }
+
+.wb-bg-surface    { background: var(--wb-surface) !important; }
+.wb-bg-surface-2  { background: var(--wb-surface-2) !important; }
+.wb-bg-primary    { background: var(--wb-primary) !important; color: #fff !important; }
+.wb-bg-success    { background: var(--wb-success) !important; color: #fff !important; }
+.wb-bg-danger     { background: var(--wb-danger) !important; color: #fff !important; }
+.wb-bg-warning    { background: var(--wb-warning) !important; }
+
+/* ── Border ───────────────────────────────────────────────── */
+
+.wb-border        { border: 1px solid var(--wb-border) !important; }
+.wb-border-top    { border-top: 1px solid var(--wb-border) !important; }
+.wb-border-bottom { border-bottom: 1px solid var(--wb-border) !important; }
+.wb-border-0      { border: none !important; }
+.wb-rounded       { border-radius: var(--wb-r-md) !important; }
+.wb-rounded-sm    { border-radius: var(--wb-r-sm) !important; }
+.wb-rounded-lg    { border-radius: var(--wb-r-lg) !important; }
+.wb-rounded-xl    { border-radius: var(--wb-r-xl) !important; }
+.wb-rounded-full  { border-radius: 9999px !important; }
+
+/* ── Shadow ───────────────────────────────────────────────── */
+
+.wb-shadow-sm { box-shadow: var(--wb-shadow-sm) !important; }
+.wb-shadow    { box-shadow: var(--wb-shadow-md) !important; }
+.wb-shadow-lg { box-shadow: var(--wb-shadow-lg) !important; }
+.wb-shadow-0  { box-shadow: none !important; }
+
+/* ── Position ─────────────────────────────────────────────── */
+
+.wb-relative  { position: relative; }
+.wb-absolute  { position: absolute; }
+.wb-fixed     { position: fixed; }
+.wb-sticky    { position: sticky; }
+.wb-inset-0   { inset: 0; }
+
+/* ── Cursor ───────────────────────────────────────────────── */
+
+.wb-cursor-pointer  { cursor: pointer; }
+.wb-cursor-default  { cursor: default; }
+.wb-cursor-not-allowed { cursor: not-allowed; }
+
+/* ── Opacity ──────────────────────────────────────────────── */
+
+.wb-opacity-50  { opacity: 0.5; }
+.wb-opacity-75  { opacity: 0.75; }
+.wb-opacity-100 { opacity: 1; }
+
+/* ── SR only (accessible hidden) ─────────────────────────── */
+
+.wb-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Responsive visibility ────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .wb-hidden-sm { display: none !important; }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .wb-hidden-md { display: none !important; }
+}
+
+@media (min-width: 901px) {
+  .wb-hidden-lg { display: none !important; }
+}
+
+@media (max-width: 768px) {
+  .wb-visible-desktop { display: none !important; }
+}
+
+@media (min-width: 769px) {
+  .wb-visible-mobile { display: none !important; }
+}

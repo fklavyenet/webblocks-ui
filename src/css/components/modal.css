@@ -1,0 +1,105 @@
+/* ============================================================
+   WebBlocks UI — Modal (wb-modal)
+   JS: data-wb-toggle="modal" data-wb-target="#id"
+       data-wb-dismiss="modal"  (close trigger)
+   ============================================================ */
+
+.wb-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--wb-z-modal);
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s4);
+}
+
+.wb-modal.is-open {
+  display: flex;
+}
+
+.wb-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.wb-modal-dialog {
+  position: relative;
+  z-index: 1;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-xl);
+  box-shadow: var(--wb-shadow-xl);
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100vh - 2 * var(--wb-s4));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: wb-modal-in 0.18s ease;
+}
+
+@keyframes wb-modal-in {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
+}
+
+.wb-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+  padding: var(--wb-s4) var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+  flex-shrink: 0;
+}
+
+.wb-modal-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.wb-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: var(--wb-r-md);
+  color: var(--wb-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background var(--wb-t), color var(--wb-t);
+}
+.wb-modal-close:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-modal-body {
+  padding: var(--wb-s5);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.wb-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wb-s2);
+  padding: var(--wb-s3) var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+  flex-shrink: 0;
+  background: var(--wb-surface-2);
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+.wb-modal-sm .wb-modal-dialog { max-width: 380px; }
+.wb-modal-lg .wb-modal-dialog { max-width: 720px; }
+.wb-modal-xl .wb-modal-dialog { max-width: 960px; }

@@ -1,0 +1,83 @@
+/* ============================================================
+   WebBlocks UI — Toast / Notification (wb-toast)
+   JS: WB.toast(message, type) or manual .is-visible toggle
+   ============================================================ */
+
+.wb-toast-container {
+  position: fixed;
+  bottom: var(--wb-s6);
+  right: var(--wb-s6);
+  z-index: var(--wb-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+  pointer-events: none;
+  max-width: 380px;
+  width: calc(100% - 2 * var(--wb-s6));
+}
+
+.wb-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wb-s3);
+  padding: var(--wb-s3) var(--wb-s4);
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-lg);
+  pointer-events: auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  animation: wb-toast-in 0.22s ease;
+}
+
+@keyframes wb-toast-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+.wb-toast.is-leaving {
+  animation: wb-toast-out 0.18s ease forwards;
+}
+
+@keyframes wb-toast-out {
+  to { opacity: 0; transform: translateX(24px); height: 0; padding: 0; margin: 0; }
+}
+
+.wb-toast-icon {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.1em;
+}
+
+.wb-toast-body {
+  flex: 1;
+}
+
+.wb-toast-title {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.15em;
+}
+
+.wb-toast-close {
+  flex-shrink: 0;
+  padding: var(--wb-s1);
+  border-radius: var(--wb-r-sm);
+  background: none;
+  border: none;
+  color: var(--wb-muted);
+  cursor: pointer;
+  line-height: 1;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: opacity var(--wb-t);
+}
+.wb-toast-close:hover { opacity: 1; }
+
+/* ── Variants ─────────────────────────────────────────────── */
+.wb-toast-success { border-left: 3px solid var(--wb-success); }
+.wb-toast-warning { border-left: 3px solid var(--wb-warning); }
+.wb-toast-danger  { border-left: 3px solid var(--wb-danger);  }
+.wb-toast-info    { border-left: 3px solid var(--wb-info);    }

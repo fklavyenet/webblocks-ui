@@ -1,0 +1,81 @@
+/* ============================================================
+   WebBlocks UI — Accordion (wb-accordion)
+   JS: data-wb-accordion-trigger on buttons
+   ============================================================ */
+
+.wb-accordion {
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  overflow: hidden;
+}
+
+.wb-accordion-item {
+  border-bottom: 1px solid var(--wb-border);
+}
+.wb-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.wb-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--wb-s4) var(--wb-s5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  text-align: left;
+  gap: var(--wb-s3);
+  transition: background var(--wb-t);
+}
+
+.wb-accordion-trigger:hover {
+  background: var(--wb-surface-2);
+}
+
+.wb-accordion-trigger:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: -2px;
+}
+
+.wb-accordion-icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  transition: transform var(--wb-t);
+  color: var(--wb-muted);
+}
+
+.wb-accordion-item.is-open .wb-accordion-icon {
+  transform: rotate(180deg);
+}
+
+.wb-accordion-content {
+  display: none;
+  padding: 0 var(--wb-s5) var(--wb-s5);
+  font-size: 0.9rem;
+  color: var(--wb-muted);
+  line-height: 1.7;
+}
+
+.wb-accordion-item.is-open .wb-accordion-content {
+  display: block;
+}
+
+/* ── Flush (no border, separated items) ──────────────────── */
+.wb-accordion-flush {
+  border: none;
+  border-radius: 0;
+}
+.wb-accordion-flush .wb-accordion-item {
+  border-bottom: 1px solid var(--wb-border);
+  border-radius: 0;
+}
+.wb-accordion-flush .wb-accordion-item:last-child {
+  border-bottom: none;
+}

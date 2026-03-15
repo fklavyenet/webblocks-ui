@@ -1,0 +1,58 @@
+/* ============================================================
+   WebBlocks UI — Dark Mode Overrides
+   Activated by: html[data-mode="dark"]  (set by theme.js)
+   Auto fallback: @media prefers-color-scheme dark with data-theme="auto"
+   ============================================================ */
+
+html[data-mode="dark"] {
+  color-scheme: dark;
+
+  --wb-bg:        #0c111d;
+  --wb-surface:   #131929;
+  --wb-surface-2: #1a2235;
+  --wb-surface-3: #202c42;
+
+  --wb-text:  #e4ecfa;
+  --wb-muted: #8b9bb8;
+
+  --wb-border: #29364f;
+
+  --wb-primary-soft: rgba(37,99,235,0.18);
+  --wb-success-soft: rgba(21,128,61,0.18);
+  --wb-warning-soft: rgba(180,83,9,0.20);
+  --wb-danger-soft:  rgba(185,28,28,0.22);
+  --wb-info-soft:    rgba(3,105,161,0.20);
+
+  --wb-shadow-sm: 0 1px 3px rgba(0,0,0,0.30);
+  --wb-shadow-md: 0 4px 14px rgba(0,0,0,0.35);
+  --wb-shadow-lg: 0 12px 36px rgba(0,0,0,0.45);
+  --wb-shadow-xl: 0 24px 64px rgba(0,0,0,0.55);
+}
+
+/* ── Auto mode: no-JS CSS fallback via media query ────────── */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"]:not([data-mode="light"]) {
+    color-scheme: dark;
+
+    --wb-bg:        #0c111d;
+    --wb-surface:   #131929;
+    --wb-surface-2: #1a2235;
+    --wb-surface-3: #202c42;
+
+    --wb-text:  #e4ecfa;
+    --wb-muted: #8b9bb8;
+
+    --wb-border: #29364f;
+
+    --wb-primary-soft: rgba(37,99,235,0.18);
+    --wb-success-soft: rgba(21,128,61,0.18);
+    --wb-warning-soft: rgba(180,83,9,0.20);
+    --wb-danger-soft:  rgba(185,28,28,0.22);
+    --wb-info-soft:    rgba(3,105,161,0.20);
+
+    --wb-shadow-sm: 0 1px 3px rgba(0,0,0,0.30);
+    --wb-shadow-md: 0 4px 14px rgba(0,0,0,0.35);
+    --wb-shadow-lg: 0 12px 36px rgba(0,0,0,0.45);
+    --wb-shadow-xl: 0 24px 64px rgba(0,0,0,0.55);
+  }
+}

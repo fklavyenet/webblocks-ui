@@ -1,0 +1,176 @@
+/* ============================================================
+   WebBlocks UI — Auth Shell Layout
+   ============================================================ */
+
+/*
+  Structure (centered card):
+  <div class="wb-auth-shell">
+    <div class="wb-auth-card">
+      <div class="wb-auth-logo"> ... </div>
+      <div class="wb-auth-body"> ... </div>
+      <div class="wb-auth-footer"> ... </div>
+    </div>
+  </div>
+
+  Structure (split layout):
+  <div class="wb-auth-shell wb-auth-split">
+    <div class="wb-auth-panel"> ... brand / illustration ... </div>
+    <div class="wb-auth-form-area">
+      <div class="wb-auth-card"> ... </div>
+    </div>
+  </div>
+*/
+
+/* ── Centered shell ───────────────────────────────────────── */
+
+.wb-auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s6);
+  background: var(--wb-bg);
+}
+
+/* ── Auth card ────────────────────────────────────────────── */
+
+.wb-auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-xl);
+  box-shadow: var(--wb-shadow-md);
+  overflow: hidden;
+}
+
+.wb-auth-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: var(--wb-s8) var(--wb-s6) var(--wb-s4);
+  text-align: center;
+}
+
+.wb-auth-logo img,
+.wb-auth-logo svg {
+  height: 40px;
+  width: auto;
+}
+
+.wb-auth-logo-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-auth-logo-subtitle {
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+  margin: 0;
+}
+
+.wb-auth-body {
+  padding: var(--wb-s4) var(--wb-s6) var(--wb-s6);
+}
+
+.wb-auth-footer {
+  padding: var(--wb-s4) var(--wb-s6);
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+}
+
+/* ── Social / OAuth buttons ───────────────────────────────── */
+
+.wb-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  margin-block: var(--wb-s4);
+  font-size: 0.8rem;
+  color: var(--wb-muted);
+}
+
+.wb-auth-divider::before,
+.wb-auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--wb-border);
+}
+
+/* ── Split layout ─────────────────────────────────────────── */
+
+.wb-auth-split {
+  padding: 0;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+.wb-auth-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s12);
+  background: var(--wb-primary);
+  color: #fff;
+  text-align: center;
+}
+
+.wb-auth-panel-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: var(--wb-s4);
+  line-height: 1.2;
+}
+
+.wb-auth-panel-text {
+  font-size: 1rem;
+  opacity: 0.85;
+  max-width: 360px;
+}
+
+.wb-auth-form-area {
+  flex: 0 0 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s8);
+  background: var(--wb-bg);
+}
+
+.wb-auth-form-area .wb-auth-card {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .wb-auth-split {
+    flex-direction: column;
+  }
+
+  .wb-auth-panel {
+    padding: var(--wb-s8) var(--wb-s6);
+    min-height: 220px;
+  }
+
+  .wb-auth-form-area {
+    flex: 1;
+    padding: var(--wb-s6) var(--wb-s4);
+  }
+
+  .wb-auth-shell:not(.wb-auth-split) {
+    align-items: flex-start;
+    padding-top: var(--wb-s8);
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — WebBlocks UI</title>
+  <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <script src="../../dist/webblocks-ui.js"></script>
+</head>
+<body>
+
+<div class="wb-auth-shell wb-auth-split">
+
+  <!-- Left panel — brand -->
+  <div class="wb-auth-panel">
+    <div class="wb-avatar wb-avatar-xl" style="font-size:1.4rem;margin-bottom:var(--wb-s4)">WB</div>
+    <p class="wb-auth-panel-title">Build faster with WebBlocks UI</p>
+    <p class="wb-auth-panel-text">
+      A modern, framework-agnostic UI kit. No build step. No dependencies.
+      Just clean HTML, CSS, and vanilla JavaScript.
+    </p>
+    <div class="wb-cluster wb-mt-6" style="justify-content:center;gap:var(--wb-s6)">
+      <div class="wb-text-center">
+        <div style="font-size:1.5rem;font-weight:700">100+</div>
+        <div style="opacity:.8;font-size:.85rem">Components</div>
+      </div>
+      <div class="wb-text-center">
+        <div style="font-size:1.5rem;font-weight:700">7</div>
+        <div style="opacity:.8;font-size:.85rem">Color schemes</div>
+      </div>
+      <div class="wb-text-center">
+        <div style="font-size:1.5rem;font-weight:700">0</div>
+        <div style="opacity:.8;font-size:.85rem">Dependencies</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel — form -->
+  <div class="wb-auth-form-area">
+    <div class="wb-auth-card" style="max-width:400px;width:100%">
+
+      <div class="wb-auth-logo">
+        <h1 class="wb-auth-logo-title">Create your account</h1>
+        <p class="wb-auth-logo-subtitle">Free to start. No credit card required.</p>
+      </div>
+
+      <div class="wb-auth-body">
+        <form class="wb-stack-4" onsubmit="return false">
+
+          <div class="wb-form-row">
+            <div class="wb-field">
+              <label class="wb-label" for="firstName">First name</label>
+              <input class="wb-input" id="firstName" type="text" placeholder="Jane" autocomplete="given-name">
+            </div>
+            <div class="wb-field">
+              <label class="wb-label" for="lastName">Last name</label>
+              <input class="wb-input" id="lastName" type="text" placeholder="Doe" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="wb-field">
+            <label class="wb-label" for="regEmail">Email address</label>
+            <input class="wb-input" id="regEmail" type="email" placeholder="jane@example.com" autocomplete="email">
+          </div>
+
+          <div class="wb-field">
+            <label class="wb-label" for="regPassword">Password</label>
+            <input class="wb-input" id="regPassword" type="password" placeholder="Min. 8 characters" autocomplete="new-password">
+          </div>
+
+          <label class="wb-checkbox">
+            <input type="checkbox">
+            I agree to the <a href="#" class="wb-text-primary">Terms of Service</a>
+            and <a href="#" class="wb-text-primary">Privacy Policy</a>
+          </label>
+
+          <button class="wb-btn wb-btn-primary wb-w-full" type="submit">Create account</button>
+
+        </form>
+      </div>
+
+      <div class="wb-auth-footer">
+        Already have an account?
+        <a href="login.html" class="wb-text-primary">Sign in</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

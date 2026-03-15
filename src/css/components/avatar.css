@@ -1,0 +1,53 @@
+/* ============================================================
+   WebBlocks UI — Avatar (wb-avatar)
+   ============================================================ */
+
+.wb-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.wb-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--wb-r-full);
+  display: block;
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+.wb-avatar-sm { width: 1.75rem; height: 1.75rem; font-size: 0.72rem; }
+.wb-avatar-lg { width: 3.5rem;  height: 3.5rem;  font-size: 1.1rem;  }
+.wb-avatar-xl { width: 5rem;    height: 5rem;    font-size: 1.5rem;  }
+
+/* ── Color variants ───────────────────────────────────────── */
+.wb-avatar-success { background: var(--wb-success-soft); color: var(--wb-success); }
+.wb-avatar-warning { background: var(--wb-warning-soft); color: var(--wb-warning); }
+.wb-avatar-danger  { background: var(--wb-danger-soft);  color: var(--wb-danger);  }
+.wb-avatar-info    { background: var(--wb-info-soft);    color: var(--wb-info);    }
+.wb-avatar-muted   { background: var(--wb-surface-3);    color: var(--wb-muted);   }
+
+/* ── Avatar group (stacked) ───────────────────────────────── */
+.wb-avatar-group {
+  display: flex;
+  align-items: center;
+}
+.wb-avatar-group .wb-avatar {
+  border: 2px solid var(--wb-surface);
+  margin-left: -0.6rem;
+}
+.wb-avatar-group .wb-avatar:first-child {
+  margin-left: 0;
+}

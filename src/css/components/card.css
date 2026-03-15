@@ -1,0 +1,90 @@
+/* ============================================================
+   WebBlocks UI — Card (wb-card)
+   ============================================================ */
+
+.wb-card {
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-sm);
+  overflow: hidden;
+}
+
+.wb-card-header {
+  padding: var(--wb-s4) var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+}
+
+.wb-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-card-body {
+  padding: var(--wb-s5);
+}
+
+.wb-card-footer {
+  padding: var(--wb-s3) var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+/* ── Shorthand: card without header/footer structure ─────── */
+.wb-card > .wb-card-body:only-child {
+  padding: var(--wb-s5);
+}
+
+/* ── Flat card (no shadow) ────────────────────────────────── */
+.wb-card-flat {
+  box-shadow: none;
+}
+
+/* ── Highlighted card ─────────────────────────────────────── */
+.wb-card-highlight {
+  border-color: var(--wb-primary);
+  box-shadow: 0 0 0 1px var(--wb-primary), var(--wb-shadow-sm);
+}
+
+/* ── Stat / KPI card ──────────────────────────────────────── */
+.wb-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+  padding: var(--wb-s5);
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wb-muted);
+}
+
+.wb-stat-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  line-height: 1;
+}
+
+.wb-stat-delta {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.wb-stat-delta-up   { color: var(--wb-success); }
+.wb-stat-delta-down { color: var(--wb-danger); }

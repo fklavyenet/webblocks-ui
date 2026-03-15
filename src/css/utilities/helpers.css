@@ -1,0 +1,210 @@
+/* ============================================================
+   WebBlocks UI — Utility Helpers
+   ============================================================ */
+
+/* ── Display ──────────────────────────────────────────────── */
+
+.wb-hidden        { display: none !important; }
+.wb-block         { display: block !important; }
+.wb-inline        { display: inline !important; }
+.wb-inline-block  { display: inline-block !important; }
+.wb-flex          { display: flex !important; }
+.wb-inline-flex   { display: inline-flex !important; }
+.wb-grid-display  { display: grid !important; }
+
+/* ── Flex helpers ─────────────────────────────────────────── */
+
+.wb-flex-col      { flex-direction: column; }
+.wb-flex-row      { flex-direction: row; }
+.wb-flex-wrap     { flex-wrap: wrap; }
+.wb-flex-nowrap   { flex-wrap: nowrap; }
+.wb-flex-1        { flex: 1; }
+.wb-flex-shrink-0 { flex-shrink: 0; }
+.wb-items-start   { align-items: flex-start; }
+.wb-items-center  { align-items: center; }
+.wb-items-end     { align-items: flex-end; }
+.wb-justify-start   { justify-content: flex-start; }
+.wb-justify-center  { justify-content: center; }
+.wb-justify-end     { justify-content: flex-end; }
+.wb-justify-between { justify-content: space-between; }
+.wb-gap-1  { gap: var(--wb-s1); }
+.wb-gap-2  { gap: var(--wb-s2); }
+.wb-gap-3  { gap: var(--wb-s3); }
+.wb-gap-4  { gap: var(--wb-s4); }
+.wb-gap-6  { gap: var(--wb-s6); }
+.wb-gap-8  { gap: var(--wb-s8); }
+
+/* ── Width / height ───────────────────────────────────────── */
+
+.wb-w-full  { width: 100%; }
+.wb-w-auto  { width: auto; }
+.wb-h-full  { height: 100%; }
+.wb-min-w-0 { min-width: 0; }
+
+/* ── Overflow ─────────────────────────────────────────────── */
+
+.wb-overflow-hidden  { overflow: hidden; }
+.wb-overflow-auto    { overflow: auto; }
+.wb-overflow-scroll  { overflow: scroll; }
+.wb-overflow-x-auto  { overflow-x: auto; }
+.wb-overflow-y-auto  { overflow-y: auto; }
+.wb-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Spacing (margin) ─────────────────────────────────────── */
+
+.wb-m-0   { margin: 0 !important; }
+.wb-mt-0  { margin-top: 0 !important; }
+.wb-mb-0  { margin-bottom: 0 !important; }
+.wb-mt-1  { margin-top: var(--wb-s1) !important; }
+.wb-mt-2  { margin-top: var(--wb-s2) !important; }
+.wb-mt-3  { margin-top: var(--wb-s3) !important; }
+.wb-mt-4  { margin-top: var(--wb-s4) !important; }
+.wb-mt-6  { margin-top: var(--wb-s6) !important; }
+.wb-mt-8  { margin-top: var(--wb-s8) !important; }
+.wb-mb-1  { margin-bottom: var(--wb-s1) !important; }
+.wb-mb-2  { margin-bottom: var(--wb-s2) !important; }
+.wb-mb-3  { margin-bottom: var(--wb-s3) !important; }
+.wb-mb-4  { margin-bottom: var(--wb-s4) !important; }
+.wb-mb-6  { margin-bottom: var(--wb-s6) !important; }
+.wb-mb-8  { margin-bottom: var(--wb-s8) !important; }
+.wb-ms-auto { margin-inline-start: auto !important; }
+.wb-me-auto { margin-inline-end: auto !important; }
+.wb-mx-auto { margin-inline: auto !important; }
+
+/* ── Spacing (padding) ────────────────────────────────────── */
+
+.wb-p-0  { padding: 0 !important; }
+.wb-p-2  { padding: var(--wb-s2) !important; }
+.wb-p-3  { padding: var(--wb-s3) !important; }
+.wb-p-4  { padding: var(--wb-s4) !important; }
+.wb-p-6  { padding: var(--wb-s6) !important; }
+.wb-px-4 { padding-inline: var(--wb-s4) !important; }
+.wb-px-6 { padding-inline: var(--wb-s6) !important; }
+.wb-py-2 { padding-block: var(--wb-s2) !important; }
+.wb-py-4 { padding-block: var(--wb-s4) !important; }
+.wb-py-6 { padding-block: var(--wb-s6) !important; }
+
+/* ── Typography ───────────────────────────────────────────── */
+
+.wb-text-xs   { font-size: 0.75rem; }
+.wb-text-sm   { font-size: 0.85rem; }
+.wb-text-base { font-size: 1rem; }
+.wb-text-lg   { font-size: 1.125rem; }
+.wb-text-xl   { font-size: 1.25rem; }
+.wb-text-2xl  { font-size: 1.5rem; }
+.wb-text-3xl  { font-size: 1.875rem; }
+.wb-text-4xl  { font-size: 2.25rem; }
+
+.wb-font-normal  { font-weight: 400; }
+.wb-font-medium  { font-weight: 500; }
+.wb-font-semibold { font-weight: 600; }
+.wb-font-bold    { font-weight: 700; }
+
+.wb-text-left    { text-align: left; }
+.wb-text-center  { text-align: center; }
+.wb-text-right   { text-align: right; }
+
+.wb-leading-tight  { line-height: 1.25; }
+.wb-leading-normal { line-height: 1.5; }
+.wb-leading-loose  { line-height: 2; }
+
+.wb-no-decoration  { text-decoration: none !important; }
+.wb-uppercase      { text-transform: uppercase; }
+.wb-lowercase      { text-transform: lowercase; }
+.wb-capitalize     { text-transform: capitalize; }
+.wb-nowrap         { white-space: nowrap; }
+
+/* ── Color helpers ────────────────────────────────────────── */
+
+.wb-text-primary  { color: var(--wb-primary) !important; }
+.wb-text-success  { color: var(--wb-success) !important; }
+.wb-text-warning  { color: var(--wb-warning) !important; }
+.wb-text-danger   { color: var(--wb-danger) !important; }
+.wb-text-muted    { color: var(--wb-muted) !important; }
+.wb-text-default  { color: var(--wb-text) !important; }
+
+.wb-bg-surface    { background: var(--wb-surface) !important; }
+.wb-bg-surface-2  { background: var(--wb-surface-2) !important; }
+.wb-bg-primary    { background: var(--wb-primary) !important; color: #fff !important; }
+.wb-bg-success    { background: var(--wb-success) !important; color: #fff !important; }
+.wb-bg-danger     { background: var(--wb-danger) !important; color: #fff !important; }
+.wb-bg-warning    { background: var(--wb-warning) !important; }
+
+/* ── Border ───────────────────────────────────────────────── */
+
+.wb-border        { border: 1px solid var(--wb-border) !important; }
+.wb-border-top    { border-top: 1px solid var(--wb-border) !important; }
+.wb-border-bottom { border-bottom: 1px solid var(--wb-border) !important; }
+.wb-border-0      { border: none !important; }
+.wb-rounded       { border-radius: var(--wb-r-md) !important; }
+.wb-rounded-sm    { border-radius: var(--wb-r-sm) !important; }
+.wb-rounded-lg    { border-radius: var(--wb-r-lg) !important; }
+.wb-rounded-xl    { border-radius: var(--wb-r-xl) !important; }
+.wb-rounded-full  { border-radius: 9999px !important; }
+
+/* ── Shadow ───────────────────────────────────────────────── */
+
+.wb-shadow-sm { box-shadow: var(--wb-shadow-sm) !important; }
+.wb-shadow    { box-shadow: var(--wb-shadow-md) !important; }
+.wb-shadow-lg { box-shadow: var(--wb-shadow-lg) !important; }
+.wb-shadow-0  { box-shadow: none !important; }
+
+/* ── Position ─────────────────────────────────────────────── */
+
+.wb-relative  { position: relative; }
+.wb-absolute  { position: absolute; }
+.wb-fixed     { position: fixed; }
+.wb-sticky    { position: sticky; }
+.wb-inset-0   { inset: 0; }
+
+/* ── Cursor ───────────────────────────────────────────────── */
+
+.wb-cursor-pointer  { cursor: pointer; }
+.wb-cursor-default  { cursor: default; }
+.wb-cursor-not-allowed { cursor: not-allowed; }
+
+/* ── Opacity ──────────────────────────────────────────────── */
+
+.wb-opacity-50  { opacity: 0.5; }
+.wb-opacity-75  { opacity: 0.75; }
+.wb-opacity-100 { opacity: 1; }
+
+/* ── SR only (accessible hidden) ─────────────────────────── */
+
+.wb-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Responsive visibility ────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .wb-hidden-sm { display: none !important; }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .wb-hidden-md { display: none !important; }
+}
+
+@media (min-width: 901px) {
+  .wb-hidden-lg { display: none !important; }
+}
+
+@media (max-width: 768px) {
+  .wb-visible-desktop { display: none !important; }
+}
+
+@media (min-width: 769px) {
+  .wb-visible-mobile { display: none !important; }
+}

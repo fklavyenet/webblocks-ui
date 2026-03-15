@@ -1,0 +1,67 @@
+/* ============================================================
+   WebBlocks UI — Badge (wb-badge)
+   ============================================================ */
+
+.wb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: 0.25em 0.65em;
+  border-radius: var(--wb-r-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  border: 1px solid var(--wb-border);
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+.wb-badge-primary {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+  border-color: transparent;
+}
+
+.wb-badge-success {
+  background: var(--wb-success-soft);
+  color: var(--wb-success);
+  border-color: transparent;
+}
+
+.wb-badge-warning {
+  background: var(--wb-warning-soft);
+  color: var(--wb-warning);
+  border-color: transparent;
+}
+
+.wb-badge-danger {
+  background: var(--wb-danger-soft);
+  color: var(--wb-danger);
+  border-color: transparent;
+}
+
+.wb-badge-info {
+  background: var(--wb-info-soft);
+  color: var(--wb-info);
+  border-color: transparent;
+}
+
+/* ── Dot indicator ────────────────────────────────────────── */
+.wb-badge-dot::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--wb-r-full);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+.wb-badge-lg {
+  font-size: 0.875rem;
+  padding: 0.35em 0.85em;
+}

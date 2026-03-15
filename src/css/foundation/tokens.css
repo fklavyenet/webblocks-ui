@@ -1,0 +1,87 @@
+/* ============================================================
+   WebBlocks UI — Design Tokens (Light mode defaults)
+   All CSS custom properties live here.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ── Surfaces ─────────────────────────────────────────── */
+  --wb-bg:        #f4f6fb;
+  --wb-surface:   #ffffff;
+  --wb-surface-2: #edf1f7;
+  --wb-surface-3: #e2e8f2;
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --wb-text:  #18212f;
+  --wb-muted: #5a6a84;
+
+  /* ── Border ───────────────────────────────────────────── */
+  --wb-border: #d6e0ee;
+
+  /* ── Primary ──────────────────────────────────────────── */
+  --wb-primary:      #2563eb;
+  --wb-primary-dark: #1d4ed8;
+  --wb-primary-soft: #dbeafe;
+
+  /* ── Semantic ─────────────────────────────────────────── */
+  --wb-success:      #15803d;
+  --wb-success-dark: #166534;
+  --wb-success-soft: #dcfce7;
+
+  --wb-warning:      #b45309;
+  --wb-warning-dark: #92400e;
+  --wb-warning-soft: #ffedd5;
+
+  --wb-danger:       #b91c1c;
+  --wb-danger-dark:  #991b1b;
+  --wb-danger-soft:  #fee2e2;
+
+  --wb-info:         #0369a1;
+  --wb-info-dark:    #075985;
+  --wb-info-soft:    #e0f2fe;
+
+  /* ── Typography ───────────────────────────────────────── */
+  --wb-font:      Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wb-font-mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+
+  /* ── Spacing (4px base) ───────────────────────────────── */
+  --wb-s1:  0.25rem;  /* 4px  */
+  --wb-s2:  0.5rem;   /* 8px  */
+  --wb-s3:  0.75rem;  /* 12px */
+  --wb-s4:  1rem;     /* 16px */
+  --wb-s5:  1.25rem;  /* 20px */
+  --wb-s6:  1.5rem;   /* 24px */
+  --wb-s8:  2rem;     /* 32px */
+  --wb-s10: 2.5rem;   /* 40px */
+  --wb-s12: 3rem;     /* 48px */
+  --wb-s16: 4rem;     /* 64px */
+  --wb-s20: 5rem;     /* 80px */
+
+  /* ── Border Radius ────────────────────────────────────── */
+  --wb-r-sm:   5px;
+  --wb-r-md:   9px;
+  --wb-r-lg:   14px;
+  --wb-r-xl:   20px;
+  --wb-r-full: 9999px;
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --wb-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --wb-shadow-md: 0 4px 14px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --wb-shadow-lg: 0 12px 36px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.04);
+  --wb-shadow-xl: 0 24px 64px rgba(0,0,0,0.14), 0 8px 16px rgba(0,0,0,0.06);
+
+  /* ── Transitions ──────────────────────────────────────── */
+  --wb-t:   0.18s ease;
+  --wb-t-f: 0.10s ease;
+
+  /* ── Z-index ──────────────────────────────────────────── */
+  --wb-z-dropdown: 100;
+  --wb-z-modal:    200;
+  --wb-z-toast:    300;
+
+  /* ── Layout ───────────────────────────────────────────── */
+  --wb-sidebar-w:  260px;
+  --wb-content-w:  1200px;
+  --wb-content-sm: 720px;
+}

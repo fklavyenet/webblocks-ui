@@ -1,0 +1,39 @@
+/* ============================================================
+   WebBlocks UI — Skeleton Loader (wb-skeleton)
+   ============================================================ */
+
+@keyframes wb-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.wb-skeleton {
+  display: inline-block;
+  width: 100%;
+  height: 1em;
+  border-radius: var(--wb-r-sm);
+  background: linear-gradient(
+    90deg,
+    var(--wb-surface-2) 25%,
+    var(--wb-surface-3) 50%,
+    var(--wb-surface-2) 75%
+  );
+  background-size: 800px 100%;
+  animation: wb-shimmer 1.5s infinite linear;
+}
+
+/* ── Common shapes ────────────────────────────────────────── */
+.wb-skeleton-text   { height: 0.9em; border-radius: var(--wb-r-sm); }
+.wb-skeleton-title  { height: 1.4em; width: 60%; border-radius: var(--wb-r-sm); }
+.wb-skeleton-circle { border-radius: var(--wb-r-full); aspect-ratio: 1 / 1; }
+.wb-skeleton-rect   { border-radius: var(--wb-r-lg); }
+
+/* ── Skeleton card ────────────────────────────────────────── */
+.wb-skeleton-card {
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  padding: var(--wb-s5);
+  display: grid;
+  gap: var(--wb-s3);
+}

@@ -1,0 +1,145 @@
+/* ============================================================
+   WebBlocks UI — Base Element Styles
+   Raw HTML should already look good without any class.
+   ============================================================ */
+
+body {
+  font-family: var(--wb-font);
+  font-size: 1rem;
+  line-height: 1.6;
+  background: var(--wb-bg);
+  color: var(--wb-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Headings ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--wb-text);
+}
+
+h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.375rem, 3vw, 1.875rem); }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; }
+
+/* ── Paragraph & inline ───────────────────────────────────── */
+p {
+  max-width: 70ch;
+  color: var(--wb-text);
+}
+
+a {
+  color: var(--wb-primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+strong, b { font-weight: 700; }
+em, i     { font-style: italic; }
+
+small { font-size: 0.875em; }
+
+code, kbd, samp, pre {
+  font-family: var(--wb-font-mono);
+  font-size: 0.875em;
+}
+
+code {
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-sm);
+  padding: 0.15em 0.4em;
+  color: var(--wb-danger);
+}
+
+pre {
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  padding: var(--wb-s4);
+  overflow-x: auto;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+blockquote {
+  border-left: 3px solid var(--wb-primary);
+  padding: var(--wb-s2) var(--wb-s4);
+  color: var(--wb-muted);
+  background: var(--wb-primary-soft);
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
+
+/* ── Lists ────────────────────────────────────────────────── */
+ul.wb-list, ol.wb-list {
+  list-style: revert;
+  padding-left: var(--wb-s6);
+  display: grid;
+  gap: var(--wb-s1);
+}
+
+/* ── Horizontal rule ──────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--wb-border);
+  margin: var(--wb-s6) 0;
+}
+
+/* ── Table ────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: var(--wb-s3) var(--wb-s4);
+  text-align: left;
+  border-bottom: 1px solid var(--wb-border);
+}
+
+th {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wb-muted);
+  background: var(--wb-surface-2);
+}
+
+/* ── Images ───────────────────────────────────────────────── */
+img {
+  height: auto;
+}
+
+/* ── Form elements (unstyled base, wb-* classes add styling) ─ */
+input, textarea, select {
+  color: var(--wb-text);
+  background: var(--wb-surface);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--wb-muted);
+  opacity: 1;
+}
+
+/* ── Focus ring ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 2px;
+}

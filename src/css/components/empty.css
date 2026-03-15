@@ -1,0 +1,48 @@
+/* ============================================================
+   WebBlocks UI — Empty State (wb-empty)
+   ============================================================ */
+
+.wb-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--wb-s16) var(--wb-s8);
+  gap: var(--wb-s3);
+  color: var(--wb-muted);
+}
+
+.wb-empty-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: var(--wb-border);
+  margin-bottom: var(--wb-s2);
+}
+
+.wb-empty-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--wb-text);
+  margin: 0;
+}
+
+.wb-empty-text {
+  font-size: 0.9rem;
+  max-width: 340px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.wb-empty-action {
+  margin-top: var(--wb-s2);
+}
+
+/* ── Compact (inside table / list) ───────────────────────── */
+.wb-empty-sm {
+  padding: var(--wb-s8) var(--wb-s4);
+}
+.wb-empty-sm .wb-empty-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}

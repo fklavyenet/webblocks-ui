@@ -1,0 +1,161 @@
+/* ============================================================
+   WebBlocks UI — Button (wb-btn)
+   ============================================================ */
+
+.wb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-s2);
+  padding: 0.5em 1.1em;
+  border: 1px solid transparent;
+  border-radius: var(--wb-r-md);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background var(--wb-t),
+    border-color var(--wb-t),
+    color var(--wb-t),
+    box-shadow var(--wb-t),
+    transform var(--wb-t-f);
+  -webkit-appearance: none;
+}
+
+.wb-btn:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: 3px;
+}
+
+.wb-btn:active {
+  transform: translateY(1px);
+}
+
+.wb-btn:disabled,
+.wb-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+.wb-btn-primary {
+  background: var(--wb-primary);
+  color: #fff;
+  border-color: var(--wb-primary);
+}
+.wb-btn-primary:hover {
+  background: var(--wb-primary-dark);
+  border-color: var(--wb-primary-dark);
+  text-decoration: none;
+  color: #fff;
+}
+
+.wb-btn-secondary {
+  background: var(--wb-surface);
+  color: var(--wb-text);
+  border-color: var(--wb-border);
+}
+.wb-btn-secondary:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-btn-ghost {
+  background: transparent;
+  color: var(--wb-text);
+  border-color: transparent;
+}
+.wb-btn-ghost:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-btn-outline {
+  background: transparent;
+  color: var(--wb-primary);
+  border-color: var(--wb-primary);
+}
+.wb-btn-outline:hover {
+  background: var(--wb-primary-soft);
+  text-decoration: none;
+  color: var(--wb-primary);
+}
+
+.wb-btn-danger {
+  background: var(--wb-danger);
+  color: #fff;
+  border-color: var(--wb-danger);
+}
+.wb-btn-danger:hover {
+  background: var(--wb-danger-dark);
+  border-color: var(--wb-danger-dark);
+  text-decoration: none;
+  color: #fff;
+}
+
+.wb-btn-success {
+  background: var(--wb-success);
+  color: #fff;
+  border-color: var(--wb-success);
+}
+.wb-btn-success:hover {
+  background: var(--wb-success-dark);
+  border-color: var(--wb-success-dark);
+  text-decoration: none;
+  color: #fff;
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+
+.wb-btn-sm {
+  font-size: 0.8rem;
+  padding: 0.35em 0.8em;
+  border-radius: var(--wb-r-sm);
+  gap: var(--wb-s1);
+}
+
+.wb-btn-lg {
+  font-size: 1rem;
+  padding: 0.65em 1.4em;
+  border-radius: var(--wb-r-lg);
+}
+
+/* ── Icon-only ────────────────────────────────────────────── */
+.wb-btn-icon {
+  padding: 0.5em;
+  aspect-ratio: 1 / 1;
+}
+.wb-btn-icon.wb-btn-sm { padding: 0.35em; }
+.wb-btn-icon.wb-btn-lg { padding: 0.65em; }
+
+/* ── Group ────────────────────────────────────────────────── */
+.wb-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+.wb-btn-group-join {
+  display: flex;
+  align-items: center;
+}
+.wb-btn-group-join .wb-btn {
+  border-radius: 0;
+}
+.wb-btn-group-join .wb-btn:first-child {
+  border-radius: var(--wb-r-md) 0 0 var(--wb-r-md);
+}
+.wb-btn-group-join .wb-btn:last-child {
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
+.wb-btn-group-join .wb-btn + .wb-btn {
+  margin-left: -1px;
+}

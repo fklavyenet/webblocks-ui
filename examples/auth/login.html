@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — WebBlocks UI</title>
+  <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <script src="../../dist/webblocks-ui.js"></script>
+</head>
+<body>
+
+<div class="wb-auth-shell">
+  <div class="wb-auth-card">
+
+    <div class="wb-auth-logo">
+      <div class="wb-avatar wb-avatar-xl" style="font-size:1.4rem">WB</div>
+      <h1 class="wb-auth-logo-title">Welcome back</h1>
+      <p class="wb-auth-logo-subtitle">Sign in to your account</p>
+    </div>
+
+    <div class="wb-auth-body">
+      <form class="wb-stack-4" onsubmit="return false">
+
+        <div class="wb-field">
+          <label class="wb-label" for="email">Email address</label>
+          <input class="wb-input" id="email" type="email" placeholder="you@example.com" autocomplete="email">
+        </div>
+
+        <div class="wb-field">
+          <div class="wb-split wb-mb-1">
+            <label class="wb-label wb-m-0" for="password">Password</label>
+            <a href="forgot-password.html" class="wb-text-sm wb-text-primary">Forgot password?</a>
+          </div>
+          <input class="wb-input" id="password" type="password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+
+        <label class="wb-checkbox">
+          <input type="checkbox"> Remember me for 30 days
+        </label>
+
+        <button class="wb-btn wb-btn-primary wb-w-full" type="submit">Sign in</button>
+
+        <div class="wb-auth-divider">or continue with</div>
+
+        <div class="wb-cluster" style="justify-content:center;gap:var(--wb-s3)">
+          <button class="wb-btn wb-btn-secondary" type="button" style="flex:1">
+            Google
+          </button>
+          <button class="wb-btn wb-btn-secondary" type="button" style="flex:1">
+            GitHub
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="wb-auth-footer">
+      Don't have an account?
+      <a href="register.html" class="wb-text-primary">Create one</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+/* ============================================================
+   WebBlocks UI — Tabs (wb-tabs)
+   JS: data-wb-tab="panel-id" on buttons, panels have matching id
+   ============================================================ */
+
+.wb-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.wb-tabs-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  border-bottom: 2px solid var(--wb-border);
+  overflow-x: auto;
+}
+
+.wb-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: var(--wb-s2) var(--wb-s4);
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  background: none;
+  color: var(--wb-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--wb-t), border-color var(--wb-t);
+}
+
+.wb-tab:hover {
+  color: var(--wb-text);
+}
+
+.wb-tab.is-active {
+  color: var(--wb-primary);
+  border-bottom-color: var(--wb-primary);
+}
+
+.wb-tab:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: -2px;
+}
+
+.wb-tab-panel {
+  display: none;
+  padding: var(--wb-s5) 0;
+}
+
+.wb-tab-panel.is-active {
+  display: block;
+}
+
+/* ── Pill variant ─────────────────────────────────────────── */
+.wb-tabs-pills .wb-tabs-nav {
+  border-bottom: none;
+  gap: var(--wb-s1);
+  padding: var(--wb-s2);
+  background: var(--wb-surface-2);
+  border-radius: var(--wb-r-lg);
+}
+
+.wb-tabs-pills .wb-tab {
+  border-bottom: none;
+  border-radius: var(--wb-r-md);
+  padding: var(--wb-s2) var(--wb-s3);
+  margin: 0;
+}
+
+.wb-tabs-pills .wb-tab.is-active {
+  background: var(--wb-surface);
+  color: var(--wb-primary);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-tabs-pills .wb-tab-panel {
+  padding-top: var(--wb-s4);
+}

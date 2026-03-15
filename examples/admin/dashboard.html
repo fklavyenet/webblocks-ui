@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI — Admin Dashboard</title>
+  <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <script src="../../dist/webblocks-ui.js"></script>
+</head>
+<body>
+
+<div class="wb-dashboard-shell">
+
+  <!-- ── Backdrop (mobile) ─────────────────────────────────── -->
+  <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
+  <!-- ── Sidebar ───────────────────────────────────────────── -->
+  <aside class="wb-sidebar" id="adminSidebar">
+    <a href="#" class="wb-sidebar-header">
+      &#9776; DoDone Admin
+    </a>
+    <nav class="wb-sidebar-nav">
+      <a class="wb-sidebar-link is-active" href="#">
+        <span class="wb-sidebar-icon">&#9632;</span> Dashboard
+      </a>
+      <a class="wb-sidebar-link" href="#">
+        <span class="wb-sidebar-icon">&#128100;</span> Users
+      </a>
+      <a class="wb-sidebar-link" href="#">
+        <span class="wb-sidebar-icon">&#128202;</span> Analytics
+      </a>
+      <a class="wb-sidebar-link" href="#">
+        <span class="wb-sidebar-icon">&#128276;</span> Announcements
+      </a>
+      <a class="wb-sidebar-link" href="#">
+        <span class="wb-sidebar-icon">&#128190;</span> Backups
+      </a>
+      <div class="wb-sidebar-section">
+        <span class="wb-sidebar-label">Settings</span>
+        <a class="wb-sidebar-link" href="#">
+          <span class="wb-sidebar-icon">&#9881;</span> General
+        </a>
+        <a class="wb-sidebar-link" href="#">
+          <span class="wb-sidebar-icon">&#128273;</span> Security
+        </a>
+      </div>
+    </nav>
+    <div class="wb-sidebar-footer">
+      <div class="wb-split">
+        <div class="wb-cluster-2">
+          <div class="wb-avatar wb-avatar-sm wb-avatar-green">AD</div>
+          <div>
+            <div class="wb-text-sm wb-font-medium">Admin</div>
+            <div class="wb-text-xs wb-text-muted">admin@app.com</div>
+          </div>
+        </div>
+        <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" title="Log out">&#8594;</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Dashboard body ────────────────────────────────────── -->
+  <div class="wb-dashboard-body">
+
+    <!-- Topbar -->
+    <nav class="wb-navbar">
+      <button class="wb-navbar-toggle" data-wb-toggle="sidebar" data-wb-target="#adminSidebar"
+              aria-expanded="false" aria-controls="adminSidebar" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="wb-navbar-brand wb-visible-desktop">Dashboard</span>
+      <span class="wb-navbar-spacer"></span>
+      <div class="wb-navbar-end">
+        <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-theme-set="light" title="Light">&#9728;</button>
+        <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-theme-set="dark" title="Dark">&#9790;</button>
+        <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-theme-set="auto" title="Auto">&#9681;</button>
+        <div class="wb-dropdown">
+          <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" aria-expanded="false"
+                  title="Notifications">
+            &#128276;
+          </button>
+          <div class="wb-dropdown-menu" style="min-width:280px;right:0;left:auto">
+            <div class="wb-dropdown-label">Notifications</div>
+            <a class="wb-dropdown-item" href="#">New user registered</a>
+            <a class="wb-dropdown-item" href="#">Backup completed</a>
+            <div class="wb-dropdown-divider"></div>
+            <a class="wb-dropdown-item wb-text-primary" href="#">View all</a>
+          </div>
+        </div>
+        <div class="wb-dropdown">
+          <button class="wb-btn wb-btn-ghost" data-wb-toggle="dropdown" aria-expanded="false">
+            <div class="wb-avatar wb-avatar-sm">AD</div>
+            <span class="wb-visible-desktop">Admin</span>
+          </button>
+          <ul class="wb-dropdown-menu wb-dropdown-menu-end">
+            <li><a class="wb-dropdown-item" href="#">Profile</a></li>
+            <li><a class="wb-dropdown-item" href="#">Settings</a></li>
+            <li class="wb-dropdown-divider"></li>
+            <li><a class="wb-dropdown-item wb-text-danger" href="#">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="wb-dashboard-main">
+
+      <div class="wb-page-header">
+        <div>
+          <h1 class="wb-page-title">Dashboard</h1>
+          <p class="wb-page-subtitle">Welcome back, Admin. Here's what's happening.</p>
+        </div>
+        <div class="wb-page-actions">
+          <button class="wb-btn wb-btn-outline wb-btn-sm">Export</button>
+          <button class="wb-btn wb-btn-primary wb-btn-sm">Add User</button>
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="wb-stat-row wb-mb-6">
+        <div class="wb-card wb-card-stat">
+          <div class="wb-card-stat-label">Total Users</div>
+          <div class="wb-card-stat-value">1,284</div>
+          <div class="wb-card-stat-change wb-card-stat-up">+12% this week</div>
+        </div>
+        <div class="wb-card wb-card-stat">
+          <div class="wb-card-stat-label">Active Tasks</div>
+          <div class="wb-card-stat-value">3,891</div>
+          <div class="wb-card-stat-change wb-card-stat-up">+8% this week</div>
+        </div>
+        <div class="wb-card wb-card-stat">
+          <div class="wb-card-stat-label">Completed Today</div>
+          <div class="wb-card-stat-value">247</div>
+          <div class="wb-card-stat-change wb-card-stat-down">-3% vs yesterday</div>
+        </div>
+        <div class="wb-card wb-card-stat">
+          <div class="wb-card-stat-label">Pending Approvals</div>
+          <div class="wb-card-stat-value">14</div>
+          <div class="wb-card-stat-change">Needs attention</div>
+        </div>
+      </div>
+
+      <!-- Two-column layout -->
+      <div class="wb-grid-2" style="gap:var(--wb-s5)">
+
+        <!-- Recent users panel -->
+        <div class="wb-panel">
+          <div class="wb-panel-header">
+            <h3 class="wb-panel-title">Recent Users</h3>
+            <a class="wb-btn wb-btn-ghost wb-btn-sm" href="#">View all</a>
+          </div>
+          <div class="wb-overflow-x-auto">
+            <table class="wb-table wb-table-sm">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="wb-cluster-2">
+                      <div class="wb-avatar wb-avatar-sm wb-avatar-green">AL</div>
+                      <span>Alice Liu</span>
+                    </div>
+                  </td>
+                  <td>Admin</td>
+                  <td><span class="wb-badge wb-badge-success wb-badge-dot">Active</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="wb-cluster-2">
+                      <div class="wb-avatar wb-avatar-sm">BS</div>
+                      <span>Bob Smith</span>
+                    </div>
+                  </td>
+                  <td>Editor</td>
+                  <td><span class="wb-badge wb-badge-warning">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="wb-cluster-2">
+                      <div class="wb-avatar wb-avatar-sm wb-avatar-orange">CJ</div>
+                      <span>Carol Jones</span>
+                    </div>
+                  </td>
+                  <td>Viewer</td>
+                  <td><span class="wb-badge wb-badge-success wb-badge-dot">Active</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="wb-cluster-2">
+                      <div class="wb-avatar wb-avatar-sm wb-avatar-red">DK</div>
+                      <span>David Kim</span>
+                    </div>
+                  </td>
+                  <td>Editor</td>
+                  <td><span class="wb-badge wb-badge-neutral">Inactive</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Activity panel -->
+        <div class="wb-panel">
+          <div class="wb-panel-header">
+            <h3 class="wb-panel-title">Recent Activity</h3>
+          </div>
+          <div class="wb-panel-body">
+            <div class="wb-stack-4">
+              <div class="wb-cluster-2">
+                <div class="wb-avatar wb-avatar-sm wb-avatar-green">AL</div>
+                <div>
+                  <div class="wb-text-sm wb-font-medium">Alice completed 5 tasks</div>
+                  <div class="wb-text-xs wb-text-muted">2 minutes ago</div>
+                </div>
+              </div>
+              <div class="wb-cluster-2">
+                <div class="wb-avatar wb-avatar-sm">BS</div>
+                <div>
+                  <div class="wb-text-sm wb-font-medium">Bob joined the team</div>
+                  <div class="wb-text-xs wb-text-muted">1 hour ago</div>
+                </div>
+              </div>
+              <div class="wb-cluster-2">
+                <div class="wb-avatar wb-avatar-sm wb-avatar-orange">CJ</div>
+                <div>
+                  <div class="wb-text-sm wb-font-medium">Carol created a project</div>
+                  <div class="wb-text-xs wb-text-muted">3 hours ago</div>
+                </div>
+              </div>
+              <div class="wb-cluster-2">
+                <div class="wb-avatar wb-avatar-sm wb-avatar-violet">SY</div>
+                <div>
+                  <div class="wb-text-sm wb-font-medium">System backup completed</div>
+                  <div class="wb-text-xs wb-text-muted">Last night, 02:00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

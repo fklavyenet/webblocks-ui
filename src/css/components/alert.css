@@ -1,0 +1,94 @@
+/* ============================================================
+   WebBlocks UI — Alert (wb-alert)
+   ============================================================ */
+
+.wb-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wb-s3);
+  padding: var(--wb-s3) var(--wb-s4);
+  border-radius: var(--wb-r-lg);
+  border: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.wb-alert-icon {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.1em;
+}
+
+.wb-alert-title {
+  font-weight: 600;
+  margin-bottom: var(--wb-s1);
+  display: block;
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+.wb-alert-info {
+  background: var(--wb-info-soft);
+  border-color: transparent;
+  color: var(--wb-info-dark);
+}
+html[data-mode="dark"] .wb-alert-info,
+html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-info {
+  color: #7dd3fc;
+}
+
+.wb-alert-success {
+  background: var(--wb-success-soft);
+  border-color: transparent;
+  color: var(--wb-success-dark);
+}
+html[data-mode="dark"] .wb-alert-success,
+html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-success {
+  color: #86efac;
+}
+
+.wb-alert-warning {
+  background: var(--wb-warning-soft);
+  border-color: transparent;
+  color: var(--wb-warning-dark);
+}
+html[data-mode="dark"] .wb-alert-warning,
+html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-warning {
+  color: #fed7aa;
+}
+
+.wb-alert-danger {
+  background: var(--wb-danger-soft);
+  border-color: transparent;
+  color: var(--wb-danger-dark);
+}
+html[data-mode="dark"] .wb-alert-danger,
+html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
+  color: #fca5a5;
+}
+
+/* ── Dismissible ──────────────────────────────────────────── */
+.wb-alert-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wb-alert-close {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: var(--wb-s1);
+  border-radius: var(--wb-r-sm);
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  font-size: 1rem;
+  transition: opacity var(--wb-t);
+}
+.wb-alert-close:hover { opacity: 1; }
