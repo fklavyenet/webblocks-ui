@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebBlocks UI — Component Reference</title>
   <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../dist/webblocks-icons.css">
   <script src="../../dist/webblocks-ui.js"></script>
 </head>
 <body>
@@ -19,9 +20,9 @@
   <span class="wb-navbar-spacer"></span>
   <div class="wb-navbar-end">
     <!-- Theme toggles -->
-    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="light" title="Light">&#9728;</button>
-    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="dark" title="Dark">&#9790;</button>
-    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="auto" title="Auto">&#9681;</button>
+    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="light" title="Light"><i class="wb-icon wb-icon-toggle-right wb-icon-sm"></i></button>
+    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="dark" title="Dark"><i class="wb-icon wb-icon-toggle-left wb-icon-sm"></i></button>
+    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="auto" title="Auto"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></button>
   </div>
 </nav>
 
@@ -126,10 +127,10 @@
               <button class="wb-btn wb-btn-primary wb-btn-sm">Action</button>
             </div>
           </div>
-          <div class="wb-card wb-card-stat">
-            <div class="wb-card-stat-label">Total Users</div>
-            <div class="wb-card-stat-value">1,284</div>
-            <div class="wb-card-stat-change wb-card-stat-up">+12% this week</div>
+          <div class="wb-stat">
+            <div class="wb-stat-label">Total Users</div>
+            <div class="wb-stat-value">1,284</div>
+            <div class="wb-stat-meta wb-stat-up">+12% this week</div>
           </div>
           <div class="wb-card wb-card-flat">
             <div class="wb-card-body">
@@ -403,7 +404,7 @@
         </div>
         <!-- Static demo -->
         <div class="wb-toast wb-toast-success">
-          <span class="wb-toast-icon">&#10003;</span>
+          <span class="wb-toast-icon"><i class="wb-icon wb-icon-check wb-icon-sm wb-icon-success"></i></span>
           <span class="wb-toast-body">Changes saved successfully.</span>
           <button class="wb-toast-close">&times;</button>
         </div>
@@ -415,7 +416,7 @@
       <section id="empty">
         <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Empty State</h2>
         <div class="wb-empty">
-          <div class="wb-empty-icon">&#128466;</div>
+          <div class="wb-empty-icon"><i class="wb-icon wb-icon-file-text wb-icon-2xl wb-icon-muted"></i></div>
           <div class="wb-empty-title">No tasks yet</div>
           <div class="wb-empty-text">Create your first task to get started.</div>
           <button class="wb-btn wb-btn-primary wb-mt-3">Create Task</button>

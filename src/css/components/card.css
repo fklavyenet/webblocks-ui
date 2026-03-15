@@ -88,3 +88,9 @@
 }
 .wb-stat-delta-up   { color: var(--wb-success); }
 .wb-stat-delta-down { color: var(--wb-danger); }
+
+/* ── Backward-compat aliases ──────────────────────────────── */
+.wb-stat-meta  { font-size: 0.8rem; font-weight: 500; color: var(--wb-muted); }
+.wb-stat-up    { color: var(--wb-success); font-size: 0.8rem; font-weight: 500; }
+.wb-stat-down  { color: var(--wb-danger);  font-size: 0.8rem; font-weight: 500; }
+.wb-stat-bar   { margin-top: var(--wb-s3); }

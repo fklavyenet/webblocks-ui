@@ -77,9 +77,9 @@
   gap: var(--wb-s6);
 }
 
-.wb-grid-2 { grid-template-columns: repeat(2, 1fr); }
-.wb-grid-3 { grid-template-columns: repeat(3, 1fr); }
-.wb-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.wb-grid-2 { display: grid; gap: var(--wb-s6); grid-template-columns: repeat(2, 1fr); }
+.wb-grid-3 { display: grid; gap: var(--wb-s6); grid-template-columns: repeat(3, 1fr); }
+.wb-grid-4 { display: grid; gap: var(--wb-s6); grid-template-columns: repeat(4, 1fr); }
 
 /* Responsive auto-grid (min 280px per column) */
 .wb-grid-auto {

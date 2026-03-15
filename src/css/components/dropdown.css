@@ -83,3 +83,9 @@
   left: auto;
   right: 0;
 }
+
+/* ── Backward-compat alias ────────────────────────────────── */
+.wb-dropdown-menu-end {
+  left: auto;
+  right: 0;
+}

@@ -63,12 +63,14 @@
 .wb-mt-2  { margin-top: var(--wb-s2) !important; }
 .wb-mt-3  { margin-top: var(--wb-s3) !important; }
 .wb-mt-4  { margin-top: var(--wb-s4) !important; }
+.wb-mt-5  { margin-top: var(--wb-s5) !important; }
 .wb-mt-6  { margin-top: var(--wb-s6) !important; }
 .wb-mt-8  { margin-top: var(--wb-s8) !important; }
 .wb-mb-1  { margin-bottom: var(--wb-s1) !important; }
 .wb-mb-2  { margin-bottom: var(--wb-s2) !important; }
 .wb-mb-3  { margin-bottom: var(--wb-s3) !important; }
 .wb-mb-4  { margin-bottom: var(--wb-s4) !important; }
+.wb-mb-5  { margin-bottom: var(--wb-s5) !important; }
 .wb-mb-6  { margin-bottom: var(--wb-s6) !important; }
 .wb-mb-8  { margin-bottom: var(--wb-s8) !important; }
 .wb-ms-auto { margin-inline-start: auto !important; }

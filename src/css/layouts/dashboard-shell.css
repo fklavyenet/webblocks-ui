@@ -133,3 +133,8 @@
     flex-wrap: wrap;
   }
 }
+
+/* ── Backward-compat aliases ──────────────────────────────── */
+.wb-shell       { display: flex; min-height: 100vh; background: var(--wb-bg); }
+.wb-shell-main  { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; }
+.wb-shell-body  { flex: 1; overflow-y: auto; padding: var(--wb-s6); }
