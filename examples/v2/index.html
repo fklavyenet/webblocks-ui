@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebBlocks UI — V2 Component Reference</title>
   <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../dist/webblocks-icons.css">
   <script src="../../dist/webblocks-ui.js"></script>
   <style>
     .demo-section { padding: 2rem 0; border-bottom: 1px solid var(--wb-border); }
@@ -67,7 +68,7 @@
         <div class="wb-card" style="max-width:260px;padding:var(--wb-s3)">
           <div data-wb-nav-group class="wb-nav-group is-open">
             <button class="wb-nav-group-toggle" aria-expanded="true">
-              <span class="wb-nav-group-icon">⚙</span>
+              <span class="wb-nav-group-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span>
               <span class="wb-nav-group-label">Settings</span>
               <span class="wb-nav-group-arrow"></span>
             </button>
@@ -79,7 +80,7 @@
           </div>
           <div data-wb-nav-group class="wb-nav-group">
             <button class="wb-nav-group-toggle" aria-expanded="false">
-              <span class="wb-nav-group-icon">📊</span>
+              <span class="wb-nav-group-icon"><i class="wb-icon wb-icon-bar-chart3 wb-icon-sm"></i></span>
               <span class="wb-nav-group-label">Reports</span>
               <span class="wb-nav-group-arrow"></span>
             </button>
@@ -111,8 +112,8 @@
         <div class="wb-filter-bar">
           <div class="wb-filter-bar-start">
             <div class="wb-search-bar" style="width:220px">
-              <span class="wb-search-bar-icon">⌕</span>
-              <input class="wb-search-bar-input" type="text" placeholder="Search users…">
+            <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
+            <input class="wb-search-bar-input" type="text" placeholder="Search users…">
             </div>
             <button class="wb-filter-chip is-active">Active <span class="wb-filter-count">12</span></button>
             <button class="wb-filter-chip">Pending</button>
@@ -131,15 +132,15 @@
         <h3>Search Bar sizes</h3>
         <div class="demo-row" style="align-items:center">
           <div class="wb-search-bar wb-search-bar-sm" style="width:180px">
-            <span class="wb-search-bar-icon">⌕</span>
+            <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
             <input class="wb-search-bar-input" type="text" placeholder="Small…">
           </div>
           <div class="wb-search-bar" style="width:200px">
-            <span class="wb-search-bar-icon">⌕</span>
+            <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
             <input class="wb-search-bar-input" type="text" placeholder="Default…">
           </div>
           <div class="wb-search-bar wb-search-bar-lg" style="width:220px">
-            <span class="wb-search-bar-icon">⌕</span>
+            <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
             <input class="wb-search-bar-input" type="text" placeholder="Large…">
           </div>
         </div>
@@ -152,8 +153,8 @@
 
         <div class="demo-row" style="align-items:center">
           <div class="wb-action-group">
-            <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View">👁</button>
-            <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit">✏</button>
+            <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View"><i class="wb-icon wb-icon-maximize2 wb-icon-sm"></i></button>
+            <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit"><i class="wb-icon wb-icon-pencil wb-icon-sm"></i></button>
             <button class="wb-action-btn wb-action-btn-delete" data-wb-tooltip="Delete">✕</button>
           </div>
 
@@ -352,13 +353,13 @@
         <p style="color:var(--wb-muted);font-size:.875rem">Press <kbd style="font-size:.8rem;padding:.1em .4em;background:var(--wb-surface-2);border:1px solid var(--wb-border);border-radius:4px">⌘K</kbd> or click the button to open.</p>
 
         <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-toggle="cmd" data-wb-target="#cmdPalette">
-          ⌕ Search commands…
+          <i class="wb-icon wb-icon-file-search wb-icon-sm"></i> Search commands…
         </button>
 
         <div class="wb-cmd-backdrop" id="cmdPalette" role="dialog" aria-modal="true" aria-label="Command palette">
           <div class="wb-cmd-dialog">
             <div class="wb-cmd-search">
-              <span class="wb-cmd-search-icon">⌕</span>
+              <span class="wb-cmd-search-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
               <input class="wb-cmd-input" type="text" placeholder="Search commands…" autocomplete="off">
               <span class="wb-cmd-shortcut-hint">Esc</span>
             </div>
@@ -366,21 +367,21 @@
               <div class="wb-cmd-group">
                 <div class="wb-cmd-group-label">Navigation</div>
                 <a class="wb-cmd-item is-selected" href="#">
-                  <span class="wb-cmd-item-icon">🏠</span>
+                  <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layout-dashboard wb-icon-sm"></i></span>
                   <span class="wb-cmd-item-text">
                     <span class="wb-cmd-item-title">Dashboard</span>
                     <span class="wb-cmd-item-sub">Go to main dashboard</span>
                   </span>
                 </a>
                 <a class="wb-cmd-item" href="#">
-                  <span class="wb-cmd-item-icon">👥</span>
+                  <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-users wb-icon-sm"></i></span>
                   <span class="wb-cmd-item-text">
                     <span class="wb-cmd-item-title">Users</span>
                     <span class="wb-cmd-item-sub">Manage users</span>
                   </span>
                 </a>
                 <a class="wb-cmd-item" href="#">
-                  <span class="wb-cmd-item-icon">⚙</span>
+                  <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span>
                   <span class="wb-cmd-item-text">
                     <span class="wb-cmd-item-title">Settings</span>
                   </span>
@@ -396,7 +397,7 @@
                   </span>
                 </button>
                 <button class="wb-cmd-item">
-                  <span class="wb-cmd-item-icon">🌙</span>
+                  <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span>
                   <span class="wb-cmd-item-text">
                     <span class="wb-cmd-item-title">Toggle Dark Mode</span>
                   </span>
@@ -452,7 +453,7 @@
           <div class="wb-list" style="width:280px">
             <div class="wb-list-header">Team Members</div>
             <div class="wb-list-item wb-list-item-action is-active">
-              <span class="wb-list-item-icon">👤</span>
+              <span class="wb-list-item-icon"><i class="wb-icon wb-icon-user-round wb-icon-sm"></i></span>
               <span class="wb-list-item-text">
                 <span class="wb-list-item-title">Alice Johnson</span>
                 <span class="wb-list-item-sub">Admin</span>
@@ -460,7 +461,7 @@
               <span class="wb-list-item-end"><span class="wb-badge wb-badge-success">Active</span></span>
             </div>
             <div class="wb-list-item wb-list-item-action">
-              <span class="wb-list-item-icon">👤</span>
+              <span class="wb-list-item-icon"><i class="wb-icon wb-icon-user-round wb-icon-sm"></i></span>
               <span class="wb-list-item-text">
                 <span class="wb-list-item-title">Bob Smith</span>
                 <span class="wb-list-item-sub">Editor</span>
@@ -468,7 +469,7 @@
               <span class="wb-list-item-end"><span class="wb-badge">Pending</span></span>
             </div>
             <div class="wb-list-item wb-list-item-action">
-              <span class="wb-list-item-icon">👤</span>
+              <span class="wb-list-item-icon"><i class="wb-icon wb-icon-user-round wb-icon-sm"></i></span>
               <span class="wb-list-item-text">
                 <span class="wb-list-item-title">Carol Williams</span>
                 <span class="wb-list-item-sub">Viewer</span>
@@ -550,7 +551,7 @@
         <div class="wb-modal" id="confirmModal" role="dialog" aria-modal="true">
           <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
           <div class="wb-confirm">
-            <div class="wb-confirm-icon wb-confirm-icon-danger">⚠</div>
+            <div class="wb-confirm-icon wb-confirm-icon-danger"><i class="wb-icon wb-icon-shield wb-icon-sm"></i></div>
             <h4 class="wb-confirm-title">Delete this item?</h4>
             <p class="wb-confirm-text">This action cannot be undone. The item will be permanently removed.</p>
             <div class="wb-confirm-actions">
@@ -578,7 +579,7 @@
         <div class="demo-row" style="align-items:center;padding:1rem 0">
           <span class="wb-badge wb-badge-info" data-wb-tooltip="This user has admin privileges" data-wb-tooltip-placement="right">Admin</span>
           <span class="wb-status-pill wb-status-active" data-wb-tooltip="Last seen 2 minutes ago">Active</span>
-          <div class="wb-action-btn" data-wb-tooltip="Download CSV" style="cursor:pointer">⬇</div>
+          <div class="wb-action-btn" data-wb-tooltip="Download CSV" style="cursor:pointer"><i class="wb-icon wb-icon-download wb-icon-sm"></i></div>
         </div>
       </section>
 
