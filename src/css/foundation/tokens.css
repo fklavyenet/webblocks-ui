@@ -19,10 +19,27 @@
   /* ── Border ───────────────────────────────────────────── */
   --wb-border: #d6e0ee;
 
-  /* ── Primary ──────────────────────────────────────────── */
-  --wb-primary:      #2563eb;
-  --wb-primary-dark: #1d4ed8;
-  --wb-primary-soft: #dbeafe;
+  /* ── Accent (rich token set — driven by data-accent) ─────
+     Default = blue; overridden per-accent in accents.css.
+     Components that still read --wb-primary* are covered by
+     the backward-compat aliases at the bottom of this block. */
+  --wb-accent:           #2563eb;
+  --wb-accent-hover:     #1d4ed8;
+  --wb-accent-active:    #1e40af;
+  --wb-accent-soft:      #dbeafe;
+  --wb-accent-softer:    #eff6ff;
+  --wb-accent-border:    #93c5fd;
+  --wb-accent-text:      #1d4ed8;
+  --wb-accent-on:        #ffffff;
+  --wb-accent-ring:      rgb(37 99 235);
+  --wb-accent-ring-rgb:  37 99 235;
+  --wb-accent-selection: #dbeafe;
+  --wb-accent-glow-rgb:  37 99 235;
+
+  /* Backward-compat: existing components read --wb-primary* */
+  --wb-primary:      var(--wb-accent);
+  --wb-primary-dark: var(--wb-accent-hover);
+  --wb-primary-soft: var(--wb-accent-soft);
 
   /* ── Semantic ─────────────────────────────────────────── */
   --wb-success:      #15803d;

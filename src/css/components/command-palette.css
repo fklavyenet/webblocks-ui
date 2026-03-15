@@ -1,0 +1,263 @@
+/* ============================================================
+   WebBlocks UI — Command Palette (wb-cmd)
+   Full-screen search/command interface triggered by keyboard
+   shortcut or button. JS: command-palette.js
+   ============================================================ */
+
+/* ── Backdrop ─────────────────────────────────────────────── */
+
+.wb-cmd-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: calc(var(--wb-z-modal) + 50);
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(3rem, 12vh, 8rem);
+  padding-inline: var(--wb-s4);
+}
+
+.wb-cmd-backdrop.is-open {
+  display: flex;
+  animation: wb-cmd-backdrop-in 0.15s ease;
+}
+
+@keyframes wb-cmd-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Dialog ───────────────────────────────────────────────── */
+
+.wb-cmd-dialog {
+  width: 100%;
+  max-width: 580px;
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-xl);
+  box-shadow: var(--wb-shadow-xl);
+  overflow: hidden;
+  animation: wb-cmd-in 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  max-height: min(560px, 70vh);
+}
+
+@keyframes wb-cmd-in {
+  from { opacity: 0; transform: scale(0.97) translateY(-8px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+/* ── Search input area ────────────────────────────────────── */
+
+.wb-cmd-search {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: var(--wb-s3) var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  flex-shrink: 0;
+}
+
+.wb-cmd-search-icon {
+  color: var(--wb-muted);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.wb-cmd-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--wb-text);
+  line-height: 1.5;
+}
+
+.wb-cmd-input::placeholder {
+  color: var(--wb-muted);
+}
+
+.wb-cmd-shortcut-hint {
+  font-size: 0.72rem;
+  color: var(--wb-muted);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+}
+
+/* ── Results panel ────────────────────────────────────────── */
+
+.wb-cmd-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--wb-s1) 0;
+}
+
+/* ── Result group ─────────────────────────────────────────── */
+
+.wb-cmd-group {
+  padding: var(--wb-s1) var(--wb-s2);
+}
+
+.wb-cmd-group + .wb-cmd-group {
+  border-top: 1px solid var(--wb-border);
+  margin-top: var(--wb-s1);
+  padding-top: var(--wb-s2);
+}
+
+.wb-cmd-group-label {
+  padding: var(--wb-s1) var(--wb-s2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wb-muted);
+  user-select: none;
+}
+
+/* ── Result item ──────────────────────────────────────────── */
+
+.wb-cmd-item {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  padding: var(--wb-s2) var(--wb-s3);
+  border-radius: var(--wb-r-md);
+  font-size: 0.9rem;
+  color: var(--wb-text);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  transition: background var(--wb-t-f);
+}
+
+.wb-cmd-item:hover,
+.wb-cmd-item.is-selected {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-cmd-item.is-selected {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+}
+
+.wb-cmd-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  transition: background var(--wb-t-f), color var(--wb-t-f);
+}
+
+.wb-cmd-item.is-selected .wb-cmd-item-icon {
+  background: var(--wb-primary-soft);
+  color: var(--wb-primary);
+}
+
+.wb-cmd-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-cmd-item-title {
+  display: block;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wb-cmd-item-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--wb-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wb-cmd-item-kbd {
+  font-size: 0.7rem;
+  color: var(--wb-muted);
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-sm);
+  padding: 0.1em 0.4em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Highlight matched text ───────────────────────────────── */
+
+.wb-cmd-match {
+  color: var(--wb-primary);
+  font-weight: 600;
+}
+
+/* ── Empty state ──────────────────────────────────────────── */
+
+.wb-cmd-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--wb-s8) var(--wb-s4);
+  gap: var(--wb-s2);
+  color: var(--wb-muted);
+  font-size: 0.875rem;
+}
+
+/* ── Footer (keyboard hints) ──────────────────────────────── */
+
+.wb-cmd-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s4);
+  padding: var(--wb-s2) var(--wb-s4);
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+  flex-shrink: 0;
+}
+
+.wb-cmd-footer-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  font-size: 0.72rem;
+  color: var(--wb-muted);
+}
+
+.wb-cmd-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2em;
+  height: 1.2em;
+  padding: 0 0.25em;
+  font-size: 0.7rem;
+  color: var(--wb-muted);
+  background: var(--wb-surface);
+  border: 1px solid var(--wb-border);
+  border-radius: 3px;
+  font-family: var(--wb-font-mono);
+}

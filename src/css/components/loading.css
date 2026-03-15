@@ -1,0 +1,180 @@
+/* ============================================================
+   WebBlocks UI — Loading Overlay (wb-loading)
+   Full-screen or scoped loading states.
+   ============================================================ */
+
+/* ── Spinner ──────────────────────────────────────────────── */
+
+.wb-spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--wb-border);
+  border-top-color: var(--wb-primary);
+  border-radius: var(--wb-r-full);
+  animation: wb-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes wb-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Spinner sizes ────────────────────────────────────────── */
+
+.wb-spinner-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 1.5px;
+}
+
+.wb-spinner-lg {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-width: 3px;
+}
+
+.wb-spinner-xl {
+  width: 3rem;
+  height: 3rem;
+  border-width: 3.5px;
+}
+
+/* ── Spinner color variants ───────────────────────────────── */
+
+.wb-spinner-white {
+  border-color: rgba(255,255,255,0.3);
+  border-top-color: #fff;
+}
+
+.wb-spinner-muted {
+  border-color: var(--wb-surface-3);
+  border-top-color: var(--wb-muted);
+}
+
+/* ── Inline loading state ─────────────────────────────────── */
+
+.wb-loading-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  font-size: 0.875rem;
+  color: var(--wb-muted);
+}
+
+/* ── Scoped overlay (inside a card, section, etc.) ────────── */
+
+.wb-loading-overlay {
+  position: relative;
+}
+
+.wb-loading-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--wb-surface) 75%, transparent);
+  border-radius: inherit;
+  z-index: 10;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.wb-loading-overlay .wb-loading-spinner-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+}
+
+/* ── Full-screen loading overlay ──────────────────────────── */
+
+.wb-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--wb-z-modal) + 100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-s4);
+  background: color-mix(in srgb, var(--wb-surface) 90%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.wb-loading-screen-text {
+  font-size: 0.9rem;
+  color: var(--wb-muted);
+  font-weight: 500;
+}
+
+/* Hide when not active */
+.wb-loading-screen:not(.is-visible) {
+  display: none;
+}
+
+/* ── Progress bar (determinate loading) ───────────────────── */
+
+.wb-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--wb-surface-2);
+  border-radius: var(--wb-r-full);
+  overflow: hidden;
+}
+
+.wb-progress-bar-fill {
+  height: 100%;
+  background: var(--wb-primary);
+  border-radius: var(--wb-r-full);
+  transition: width 0.3s ease;
+}
+
+/* ── Indeterminate progress bar ───────────────────────────── */
+
+.wb-progress-bar-indeterminate .wb-progress-bar-fill {
+  width: 40%;
+  animation: wb-progress-slide 1.4s ease infinite;
+}
+
+@keyframes wb-progress-slide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+/* ── Progress bar variants ────────────────────────────────── */
+
+.wb-progress-bar-thin { height: 3px; }
+.wb-progress-bar-thick { height: 10px; }
+
+.wb-progress-bar-success .wb-progress-bar-fill { background: var(--wb-success); }
+.wb-progress-bar-danger  .wb-progress-bar-fill { background: var(--wb-danger); }
+.wb-progress-bar-warning .wb-progress-bar-fill { background: var(--wb-warning); }
+
+/* ── Page-level top loading bar ───────────────────────────── */
+
+.wb-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--wb-primary);
+  z-index: calc(var(--wb-z-toast) + 100);
+  animation: wb-loading-bar-in 0.2s ease;
+  transform-origin: left center;
+}
+
+.wb-loading-bar.is-done {
+  animation: wb-loading-bar-done 0.3s ease forwards;
+}
+
+@keyframes wb-loading-bar-in {
+  from { transform: scaleX(0); }
+}
+
+@keyframes wb-loading-bar-done {
+  to { opacity: 0; transform: scaleX(1); }
+}

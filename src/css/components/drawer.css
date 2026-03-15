@@ -1,0 +1,193 @@
+/* ============================================================
+   WebBlocks UI — Drawer / Offcanvas (wb-drawer)
+   Slide-in panels from any edge of the viewport.
+   JS: data-wb-toggle="drawer" data-wb-target="#id"
+       data-wb-dismiss="drawer" (close trigger)
+   ============================================================ */
+
+/* ── Backdrop ─────────────────────────────────────────────── */
+
+.wb-drawer-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: calc(var(--wb-z-modal) - 10);
+}
+
+.wb-drawer-backdrop.is-open {
+  display: block;
+  animation: wb-fade-in 0.2s ease;
+}
+
+@keyframes wb-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Drawer panel ─────────────────────────────────────────── */
+
+.wb-drawer {
+  position: fixed;
+  z-index: var(--wb-z-modal);
+  background: var(--wb-surface);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--wb-shadow-xl);
+  transition: transform 0.25s ease;
+  overflow: hidden;
+}
+
+/* ── Placement: right (default) ───────────────────────────── */
+
+.wb-drawer,
+.wb-drawer-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 90vw);
+  transform: translateX(100%);
+  border-left: 1px solid var(--wb-border);
+}
+
+.wb-drawer.is-open,
+.wb-drawer-right.is-open {
+  transform: translateX(0);
+}
+
+/* ── Placement: left ──────────────────────────────────────── */
+
+.wb-drawer-left {
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: 0;
+  width: min(420px, 90vw);
+  transform: translateX(-100%);
+  border-right: 1px solid var(--wb-border);
+  border-left: none;
+}
+
+.wb-drawer-left.is-open {
+  transform: translateX(0);
+}
+
+/* ── Placement: bottom ────────────────────────────────────── */
+
+.wb-drawer-bottom {
+  bottom: 0;
+  top: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: min(480px, 85vh);
+  transform: translateY(100%);
+  border-top: 1px solid var(--wb-border);
+  border-bottom: none;
+  border-radius: var(--wb-r-xl) var(--wb-r-xl) 0 0;
+}
+
+.wb-drawer-bottom.is-open {
+  transform: translateY(0);
+}
+
+/* ── Placement: top ───────────────────────────────────────── */
+
+.wb-drawer-top {
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: min(360px, 85vh);
+  transform: translateY(-100%);
+  border-bottom: 1px solid var(--wb-border);
+  border-top: none;
+  border-radius: 0 0 var(--wb-r-xl) var(--wb-r-xl);
+}
+
+.wb-drawer-top.is-open {
+  transform: translateY(0);
+}
+
+/* ── Size variants (right/left only) ──────────────────────── */
+
+.wb-drawer-sm { width: min(320px, 90vw); }
+.wb-drawer-lg { width: min(560px, 90vw); }
+.wb-drawer-xl { width: min(720px, 90vw); }
+
+/* ── Inner sections ───────────────────────────────────────── */
+
+.wb-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+  padding: var(--wb-s4) var(--wb-s5);
+  border-bottom: 1px solid var(--wb-border);
+  flex-shrink: 0;
+}
+
+.wb-drawer-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--wb-text);
+}
+
+.wb-drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: var(--wb-r-md);
+  color: var(--wb-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background var(--wb-t), color var(--wb-t);
+}
+.wb-drawer-close:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--wb-s5);
+}
+
+.wb-drawer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wb-s2);
+  padding: var(--wb-s3) var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+  flex-shrink: 0;
+  background: var(--wb-surface-2);
+}
+
+/* ── Bottom sheet drag handle ─────────────────────────────── */
+
+.wb-drawer-handle {
+  display: flex;
+  justify-content: center;
+  padding: var(--wb-s3) 0 0;
+  flex-shrink: 0;
+}
+
+.wb-drawer-handle::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-border);
+}

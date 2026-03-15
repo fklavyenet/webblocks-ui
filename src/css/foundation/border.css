@@ -1,0 +1,71 @@
+/* ============================================================
+   WebBlocks UI — Border Presets
+   Applied via: html[data-border="preset"]
+   Controls border width, border style, and surface border color.
+   ============================================================ */
+
+/* ── None — borderless ────────────────────────────────────── */
+html[data-border="none"] {
+  --wb-border: transparent;
+}
+
+/* ── Subtle (default-like, very light) ────────────────────── */
+html[data-border="subtle"] {
+  --wb-border: color-mix(in srgb, var(--wb-text) 8%, transparent);
+}
+
+/* ── Medium (slightly more visible) ──────────────────────────*/
+html[data-border="medium"] {
+  --wb-border: color-mix(in srgb, var(--wb-text) 15%, transparent);
+}
+
+/* ── Strong (high contrast) ───────────────────────────────── */
+html[data-border="strong"] {
+  --wb-border: color-mix(in srgb, var(--wb-text) 28%, transparent);
+}
+
+/* ── Accent — primary-colored borders ────────────────────── */
+html[data-border="accent"] {
+  --wb-border: var(--wb-primary);
+}
+
+/* ── Dashed — dashed borders globally ────────────────────── */
+html[data-border="dashed"] {
+  --wb-border-style: dashed;
+}
+
+/* ── CSS custom property for border style ─────────────────── */
+:root {
+  --wb-border-style: solid;
+  --wb-border-width: 1px;
+}
+
+/* ── Individual border width utilities ────────────────────── */
+
+.wb-border        { border: var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-t      { border-top:    var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-b      { border-bottom: var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-l      { border-left:   var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-r      { border-right:  var(--wb-border-width) var(--wb-border-style) var(--wb-border); }
+.wb-border-none   { border: none; }
+
+/* ── Border width scale ───────────────────────────────────── */
+
+.wb-border-1 { --wb-border-width: 1px; }
+.wb-border-2 { --wb-border-width: 2px; }
+.wb-border-4 { --wb-border-width: 4px; }
+
+/* ── Border style utilities ───────────────────────────────── */
+
+.wb-border-solid  { --wb-border-style: solid; }
+.wb-border-dashed { --wb-border-style: dashed; }
+.wb-border-dotted { --wb-border-style: dotted; }
+
+/* ── Border color utilities ───────────────────────────────── */
+
+.wb-border-primary { border-color: var(--wb-primary); }
+.wb-border-success { border-color: var(--wb-success); }
+.wb-border-warning { border-color: var(--wb-warning); }
+.wb-border-danger  { border-color: var(--wb-danger);  }
+.wb-border-info    { border-color: var(--wb-info);    }
+.wb-border-muted   { border-color: var(--wb-muted);   }

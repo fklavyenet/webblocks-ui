@@ -26,6 +26,7 @@ cat \
   "$ROOT/src/css/foundation/density.css" \
   "$ROOT/src/css/foundation/shadow.css" \
   "$ROOT/src/css/foundation/font.css" \
+  "$ROOT/src/css/foundation/border.css" \
   "$ROOT/src/css/base/reset.css" \
   "$ROOT/src/css/base/elements.css" \
   "$ROOT/src/css/components/button.css" \
@@ -44,6 +45,16 @@ cat \
   "$ROOT/src/css/components/toast.css" \
   "$ROOT/src/css/components/skeleton.css" \
   "$ROOT/src/css/components/empty.css" \
+  "$ROOT/src/css/components/nav-group.css" \
+  "$ROOT/src/css/components/filter-bar.css" \
+  "$ROOT/src/css/components/action-menu.css" \
+  "$ROOT/src/css/components/loading.css" \
+  "$ROOT/src/css/components/popover.css" \
+  "$ROOT/src/css/components/drawer.css" \
+  "$ROOT/src/css/components/command-palette.css" \
+  "$ROOT/src/css/components/divider.css" \
+  "$ROOT/src/css/components/list-group.css" \
+  "$ROOT/src/css/components/tooltip.css" \
   "$ROOT/src/css/layouts/container.css" \
   "$ROOT/src/css/layouts/navbar.css" \
   "$ROOT/src/css/layouts/sidebar.css" \
@@ -64,6 +75,9 @@ cat \
   "$ROOT/src/js/tabs.js" \
   "$ROOT/src/js/accordion.js" \
   "$ROOT/src/js/sidebar.js" \
+  "$ROOT/src/js/nav-group.js" \
+  "$ROOT/src/js/drawer.js" \
+  "$ROOT/src/js/command-palette.js" \
   > "$JS_OUT"
 
 JS_LINES=$(wc -l < "$JS_OUT")

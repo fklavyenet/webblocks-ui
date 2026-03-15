@@ -1,6 +1,6 @@
 # WebBlocks UI
 
-A framework-agnostic UI kit built with plain HTML, separate CSS files, and vanilla JavaScript.
+A framework-agnostic UI kit built with plain HTML, CSS custom properties, and vanilla JavaScript.
 
 **No build step. No npm. No dependencies.**
 
@@ -21,26 +21,37 @@ Add the dist files to your project and start using components.
 
 ## Theme engine
 
-Set on the `<html>` element:
+Set axes on the `<html>` element:
 
 ```html
-<!-- Theme mode: light | dark | auto -->
-<html data-theme="auto"
-
-      <!-- Accent scheme: ocean | forest | royal | warm | slate | rose | sand -->
-      data-accent="ocean">
+<html data-mode="dark"
+      data-accent="ocean"
+      data-preset="modern"
+      data-density="compact"
+      data-radius="soft"
+      data-shadow="flat"
+      data-border="subtle">
 ```
 
-`auto` respects the OS `prefers-color-scheme` setting.
+| Attribute      | Values                                                                              |
+|----------------|-------------------------------------------------------------------------------------|
+| `data-mode`    | `light` \| `dark` \| `auto`                                                        |
+| `data-accent`  | `ocean` \| `forest` \| `sunset` \| `royal` \| `mint` \| `amber` \| `rose` \| `slate-fire` |
+| `data-preset`  | `modern` \| `minimal` \| `rounded` \| `bold` \| `editorial`                        |
+| `data-radius`  | `sharp` \| `soft`                                                                   |
+| `data-density` | `compact` \| `comfortable`                                                          |
+| `data-shadow`  | `flat` \| `soft`                                                                    |
+| `data-border`  | `none` \| `subtle` \| `medium` \| `bold` \| `dashed`                               |
+
+`data-mode="auto"` respects the OS `prefers-color-scheme` setting.
 
 ### Switch via buttons
 
 ```html
-<button data-wb-theme-set="dark">Dark</button>
-<button data-wb-theme-set="light">Light</button>
-<button data-wb-theme-set="auto">Auto</button>
-
+<button data-wb-mode-set="dark">Dark</button>
+<button data-wb-mode-set="light">Light</button>
 <button data-wb-accent-set="forest">Forest</button>
+<button data-wb-preset-set="rounded">Rounded</button>
 ```
 
 Preferences are saved to `localStorage` automatically.
@@ -82,12 +93,15 @@ Preferences are saved to `localStorage` automatically.
   <div class="wb-card-body">Content</div>
   <div class="wb-card-footer">Footer</div>
 </div>
+```
 
-<!-- Stat / KPI card -->
-<div class="wb-card wb-card-stat">
-  <div class="wb-card-stat-label">Total Users</div>
-  <div class="wb-card-stat-value">1,284</div>
-  <div class="wb-card-stat-change wb-card-stat-up">+12%</div>
+### Stat card
+
+```html
+<div class="wb-stat">
+  <div class="wb-stat-label">Total Users</div>
+  <div class="wb-stat-value">1,284</div>
+  <div class="wb-stat-change wb-stat-up">+12%</div>
 </div>
 ```
 
@@ -109,6 +123,7 @@ Preferences are saved to `localStorage` automatically.
 <div class="wb-field">
   <label class="wb-label">Email</label>
   <input class="wb-input" type="email" placeholder="you@example.com">
+  <span class="wb-field-error">This field is required.</span>
 </div>
 
 <select class="wb-select"> ... </select>
@@ -131,6 +146,8 @@ Preferences are saved to `localStorage` automatically.
   <tbody><tr><td>Alice</td><td>Active</td></tr></tbody>
 </table>
 ```
+
+Modifiers: `wb-table-striped`, `wb-table-hover`, `wb-table-sm`, `wb-table-bordered`
 
 ### Modal
 
@@ -155,6 +172,22 @@ Preferences are saved to `localStorage` automatically.
 ```
 
 Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`, `wb-modal-full`
+
+### Confirmation dialog
+
+```html
+<div class="wb-modal wb-confirm" id="myConfirm" role="alertdialog" aria-modal="true">
+  <div class="wb-modal-dialog wb-modal-sm">
+    <div class="wb-confirm-icon wb-confirm-icon-danger">!</div>
+    <div class="wb-confirm-title">Delete item?</div>
+    <div class="wb-confirm-message">This action cannot be undone.</div>
+    <div class="wb-confirm-actions">
+      <button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button>
+      <button class="wb-btn wb-btn-danger">Delete</button>
+    </div>
+  </div>
+</div>
+```
 
 ### Dropdown
 
@@ -205,6 +238,27 @@ Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`, `wb-modal-full`
 </div>
 ```
 
+### Pagination
+
+```html
+<nav class="wb-pagination">
+  <a class="wb-page-item" href="#">&laquo;</a>
+  <a class="wb-page-item is-active" href="#">1</a>
+  <a class="wb-page-item" href="#">2</a>
+  <a class="wb-page-item" href="#">&raquo;</a>
+</nav>
+```
+
+### Breadcrumb
+
+```html
+<nav class="wb-breadcrumb">
+  <a class="wb-breadcrumb-item" href="#">Home</a>
+  <a class="wb-breadcrumb-item" href="#">Settings</a>
+  <span class="wb-breadcrumb-item is-active">Profile</span>
+</nav>
+```
+
 ### Avatar
 
 ```html
@@ -222,6 +276,237 @@ Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`, `wb-modal-full`
 Sizes: `wb-avatar-xs`, `wb-avatar-sm`, _(default)_, `wb-avatar-lg`, `wb-avatar-xl`
 Colors: `wb-avatar-green`, `wb-avatar-red`, `wb-avatar-orange`, `wb-avatar-violet`, `wb-avatar-cyan`
 
+### Toast
+
+```html
+<!-- Container — place near </body> -->
+<div class="wb-toast-container wb-toast-top-right" id="toastArea"></div>
+
+<!-- Toast item (add/remove dynamically) -->
+<div class="wb-toast wb-toast-success">Saved successfully.</div>
+```
+
+Position variants: `wb-toast-top-right` (default), `wb-toast-top-center`, `wb-toast-top-left`, `wb-toast-bottom-right`, `wb-toast-bottom-center`, `wb-toast-bottom-left`
+
+### Skeleton
+
+```html
+<div class="wb-skeleton wb-skeleton-text"></div>
+<div class="wb-skeleton wb-skeleton-circle"></div>
+<div class="wb-skeleton wb-skeleton-rect" style="height:120px"></div>
+```
+
+### Empty state
+
+```html
+<div class="wb-empty">
+  <div class="wb-empty-icon">📭</div>
+  <div class="wb-empty-title">No results</div>
+  <div class="wb-empty-desc">Try adjusting your filters.</div>
+  <button class="wb-btn wb-btn-primary">Add item</button>
+</div>
+```
+
+### Tooltip
+
+Pure CSS — no JavaScript required.
+
+```html
+<!-- Default (top) -->
+<button data-wb-tooltip="Save changes">Save</button>
+
+<!-- Placements -->
+<span data-wb-tooltip="Left side"  data-wb-tooltip-placement="left">Hover</span>
+<span data-wb-tooltip="Right side" data-wb-tooltip-placement="right">Hover</span>
+<span data-wb-tooltip="Below"      data-wb-tooltip-placement="bottom">Hover</span>
+
+<!-- Multi-line -->
+<button data-wb-tooltip="This is a longer tooltip that wraps to multiple lines."
+        data-wb-tooltip-wrap>Info</button>
+```
+
+Triggers on `hover` and `focus-visible` (keyboard accessible).
+
+### Popover
+
+```html
+<div class="wb-popover wb-popover-bottom is-open">
+  <div class="wb-popover-arrow"></div>
+  <div class="wb-popover-header">Title</div>
+  <div class="wb-popover-body">Popover content here.</div>
+</div>
+```
+
+Placements: `wb-popover-top`, `wb-popover-right`, `wb-popover-bottom`, `wb-popover-left`
+
+### Drawer
+
+```html
+<!-- Trigger -->
+<button data-wb-toggle="drawer" data-wb-target="#myDrawer">Open</button>
+
+<!-- Drawer -->
+<div class="wb-drawer wb-drawer-right" id="myDrawer">
+  <div class="wb-drawer-dialog">
+    <div class="wb-drawer-header">
+      <h5 class="wb-drawer-title">Title</h5>
+      <button class="wb-drawer-close" data-wb-dismiss="drawer">&times;</button>
+    </div>
+    <div class="wb-drawer-body">Content</div>
+    <div class="wb-drawer-footer">
+      <button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Close</button>
+    </div>
+  </div>
+</div>
+```
+
+Sides: `wb-drawer-right` (default), `wb-drawer-left`, `wb-drawer-top`, `wb-drawer-bottom`
+Sizes: `wb-drawer-sm`, `wb-drawer-lg`, `wb-drawer-xl`
+
+Full focus trap — Tab cycles within the drawer; Escape closes.
+
+### Command palette
+
+```html
+<!-- Trigger: Cmd/Ctrl+K opens automatically -->
+<button data-wb-toggle="cmd" data-wb-target="#myCmdPalette">Search</button>
+
+<!-- Palette -->
+<div class="wb-cmd-backdrop" id="myCmdPalette">
+  <div class="wb-cmd-dialog" role="dialog" aria-modal="true">
+    <div class="wb-cmd-search">
+      <input class="wb-cmd-input" type="text" placeholder="Search...">
+    </div>
+    <div class="wb-cmd-results">
+      <a class="wb-cmd-result" href="#">Dashboard</a>
+      <a class="wb-cmd-result" href="#">Settings</a>
+    </div>
+  </div>
+</div>
+```
+
+Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
+
+### Nav group
+
+```html
+<!-- Sidebar navigation with collapsible groups -->
+<nav data-wb-nav-group-accordion>
+  <div class="wb-nav-group">
+    <button class="wb-nav-group-trigger" data-wb-nav-group-trigger>
+      Settings
+      <span class="wb-nav-group-arrow"></span>
+    </button>
+    <ul class="wb-submenu">
+      <li><a class="wb-menu-item" href="#">Profile</a></li>
+      <li><a class="wb-menu-item" href="#">Security</a></li>
+    </ul>
+  </div>
+
+  <a class="wb-menu-item is-active" href="#">Dashboard</a>
+</nav>
+```
+
+`data-wb-nav-group-accordion` on the parent closes siblings when one group opens.
+
+### Filter bar
+
+```html
+<div class="wb-filter-bar">
+  <div class="wb-search-bar">
+    <input class="wb-input" type="text" placeholder="Search...">
+  </div>
+  <select class="wb-filter-select wb-select">
+    <option>All statuses</option>
+  </select>
+  <div class="wb-filter-chips">
+    <span class="wb-filter-chip">
+      Active
+      <button class="wb-filter-chip-remove">&times;</button>
+    </span>
+  </div>
+</div>
+```
+
+### Action menu
+
+```html
+<div class="wb-action-group">
+  <button class="wb-action-btn wb-btn wb-btn-ghost wb-btn-icon"
+          data-wb-tooltip="Edit" data-wb-tooltip-placement="top">✎</button>
+  <button class="wb-action-btn wb-btn wb-btn-ghost wb-btn-icon wb-action-danger"
+          data-wb-tooltip="Delete">✕</button>
+</div>
+
+<!-- Status pill -->
+<span class="wb-status-pill wb-status-active">Active</span>
+<span class="wb-status-pill wb-status-inactive">Inactive</span>
+<span class="wb-status-pill wb-status-pending">Pending</span>
+```
+
+### Loading
+
+```html
+<!-- Inline spinner -->
+<span class="wb-spinner"></span>
+<span class="wb-spinner wb-spinner-sm"></span>
+<span class="wb-spinner wb-spinner-lg"></span>
+
+<!-- Full overlay (on a positioned parent) -->
+<div class="wb-loading-overlay is-open">
+  <span class="wb-spinner wb-spinner-lg"></span>
+</div>
+
+<!-- Full-screen loading screen -->
+<div class="wb-loading-screen is-open">
+  <span class="wb-spinner wb-spinner-xl"></span>
+</div>
+
+<!-- Progress bar (indeterminate) -->
+<div class="wb-loading-bar is-open"></div>
+
+<!-- Progress bar (determinate) -->
+<div class="wb-progress-bar">
+  <div class="wb-progress-fill" style="width: 65%"></div>
+</div>
+```
+
+### Divider
+
+```html
+<!-- Horizontal -->
+<hr class="wb-divider">
+
+<!-- Labeled -->
+<div class="wb-divider wb-divider-labeled"><span>OR</span></div>
+
+<!-- Dashed / dotted -->
+<hr class="wb-divider wb-divider-dashed">
+<hr class="wb-divider wb-divider-dotted">
+
+<!-- Vertical (in a flex row) -->
+<span class="wb-divider-vertical"></span>
+```
+
+### List group
+
+```html
+<ul class="wb-list">
+  <li class="wb-list-item">Item one</li>
+  <li class="wb-list-item is-active">Item two (active)</li>
+  <li class="wb-list-item">Item three</li>
+</ul>
+
+<!-- Flush (no outer border) -->
+<ul class="wb-list wb-list-flush"> ... </ul>
+
+<!-- Compact -->
+<ul class="wb-list wb-list-compact"> ... </ul>
+
+<!-- Numbered -->
+<ol class="wb-list wb-list-numbered"> ... </ol>
+```
+
 ---
 
 ## Layouts
@@ -229,15 +514,15 @@ Colors: `wb-avatar-green`, `wb-avatar-red`, `wb-avatar-orange`, `wb-avatar-viole
 ### Dashboard shell
 
 ```html
-<div class="wb-dashboard-shell">
+<div class="wb-shell">
   <aside class="wb-sidebar" id="mySidebar">
-    <!-- sidebar content -->
+    <!-- nav content -->
   </aside>
-  <div class="wb-dashboard-body">
+  <div class="wb-shell-main">
     <nav class="wb-navbar">
       <button data-wb-toggle="sidebar" data-wb-target="#mySidebar">☰</button>
     </nav>
-    <main class="wb-dashboard-main">
+    <main class="wb-shell-body">
       <div class="wb-container">
         <!-- page content -->
       </div>
@@ -249,7 +534,7 @@ Colors: `wb-avatar-green`, `wb-avatar-red`, `wb-avatar-orange`, `wb-avatar-viole
 ### Auth shell (centered)
 
 ```html
-<div class="wb-auth-shell">
+<div class="wb-auth">
   <div class="wb-auth-card">
     <div class="wb-auth-logo"> ... </div>
     <div class="wb-auth-body"> ... </div>
@@ -261,7 +546,7 @@ Colors: `wb-avatar-green`, `wb-avatar-red`, `wb-avatar-orange`, `wb-avatar-viole
 ### Auth shell (split)
 
 ```html
-<div class="wb-auth-shell wb-auth-split">
+<div class="wb-auth wb-auth-split">
   <div class="wb-auth-panel"> <!-- brand / illustration --> </div>
   <div class="wb-auth-form-area">
     <div class="wb-auth-card"> ... </div>
@@ -288,28 +573,56 @@ Colors: `wb-avatar-green`, `wb-avatar-red`, `wb-avatar-orange`, `wb-avatar-viole
 Each module exposes a global object:
 
 ```js
-WBTheme.set('dark')         // set theme
-WBTheme.setAccent('forest') // set accent
+// Theme
+WBTheme.setMode('dark')            // 'light' | 'dark' | 'auto'
+WBTheme.setAccent('forest')        // accent color key
+WBTheme.setPreset('rounded')       // preset key
+WBTheme.setRadius('soft')          // 'sharp' | 'soft'
+WBTheme.setDensity('compact')      // 'compact' | 'comfortable'
 
-WBModal.open(el)            // open a modal element
-WBModal.close()             // close active modal
+// Modal
+WBModal.open('#myModal')
+WBModal.close('#myModal')
 
-WBDropdown.closeAll()       // close any open dropdown
+// Dropdown
+WBDropdown.open(triggerEl)
+WBDropdown.close(triggerEl)
 
-WBTabs.activateById('tab2') // switch tab by panel id
+// Tabs
+WBTabs.activate(tabButtonEl)
 
-WBAccordion.open(triggerEl)  // open accordion item
-WBAccordion.close(triggerEl) // close accordion item
+// Accordion
+WBAccordion.open(itemEl)
+WBAccordion.close(itemEl)
 
-WBSidebar.open(sidebarEl)   // open sidebar (mobile)
-WBSidebar.close(sidebarEl)  // close sidebar
+// Sidebar
+WBSidebar.open()
+WBSidebar.close()
+
+// Nav Group
+WBNavGroup.open(groupEl)
+WBNavGroup.close(groupEl)
+WBNavGroup.init()
+
+// Drawer
+WBDrawer.open('#myDrawer')
+WBDrawer.close('#myDrawer')
+
+// Command Palette
+WBCommandPalette.open('#myCmdPalette')
+WBCommandPalette.close('#myCmdPalette')
+WBCommandPalette.register('#myCmdPalette', {
+  onSearch: function(query, results) {
+    // called on every keystroke; results = matching wb-cmd-result NodeList
+  }
+})
 ```
 
 ---
 
 ## Build
 
-Regenerate dist files from src:
+Regenerate dist files from source:
 
 ```bash
 chmod +x build.sh
@@ -329,27 +642,33 @@ webblocks-ui/
 │   └── webblocks-ui.js      ← use this in your projects
 ├── src/
 │   ├── css/
-│   │   ├── foundation/      tokens.css, dark.css, accents.css
-│   │   ├── base/            reset.css, elements.css
+│   │   ├── foundation/      tokens, dark, presets, accents, radius,
+│   │   │                    density, shadow, font, border
+│   │   ├── base/            reset, elements
 │   │   ├── components/      button, badge, card, alert, form, table,
 │   │   │                    modal, dropdown, tabs, accordion, pagination,
-│   │   │                    breadcrumb, avatar, toast, skeleton, empty
-│   │   ├── layouts/         container, navbar, sidebar, dashboard-shell, auth-shell
-│   │   └── utilities/       helpers.css
+│   │   │                    breadcrumb, avatar, toast, skeleton, empty,
+│   │   │                    nav-group, filter-bar, action-menu, loading,
+│   │   │                    popover, drawer, command-palette, divider,
+│   │   │                    list-group, tooltip
+│   │   ├── layouts/         container, navbar, sidebar,
+│   │   │                    dashboard-shell, auth-shell
+│   │   └── utilities/       helpers
 │   └── js/
-│       ├── theme.js         theme engine (light/dark/auto + accents)
+│       ├── theme.js         theme engine
 │       ├── dropdown.js      dropdown toggle
-│       ├── modal.js         modal with focus trap
+│       ├── modal.js         modal + confirmation dialog, focus trap
 │       ├── tabs.js          tab panels with keyboard nav
 │       ├── accordion.js     animated accordion
-│       └── sidebar.js       mobile sidebar + backdrop
+│       ├── sidebar.js       mobile sidebar + backdrop
+│       ├── nav-group.js     collapsible sidebar nav groups
+│       ├── drawer.js        drawer with focus trap + Escape
+│       └── command-palette.js  Cmd/Ctrl+K palette with ↑↓↵Esc
 ├── examples/
-│   ├── core/index.html      full component reference
-│   ├── admin/dashboard.html admin panel demo
-│   ├── website/home.html    marketing homepage
-│   └── auth/
-│       ├── login.html
-│       └── register.html
+│   ├── core/index.html      V1 component reference
+│   └── v2/
+│       ├── index.html       V2 component reference
+│       └── dashboard.html   V2 admin dashboard demo
 └── build.sh
 ```
 
@@ -357,15 +676,35 @@ webblocks-ui/
 
 ## Accent colors
 
-| Key      | Description              |
-|----------|--------------------------|
-| `ocean`  | Blue-teal (default)      |
-| `forest` | Green                    |
-| `royal`  | Purple / indigo          |
-| `warm`   | Amber / orange           |
-| `slate`  | Cool grey                |
-| `rose`   | Pink / rose              |
-| `sand`   | Warm beige               |
+Each accent exposes 12 CSS custom properties usable anywhere in your UI:
+
+| Token                   | Purpose                               |
+|-------------------------|---------------------------------------|
+| `--wb-accent`           | Primary action color                  |
+| `--wb-accent-hover`     | Hover state                           |
+| `--wb-accent-active`    | Pressed / active state                |
+| `--wb-accent-soft`      | Subtle tinted background              |
+| `--wb-accent-softer`    | Very subtle tinted background         |
+| `--wb-accent-border`    | Tinted border / divider               |
+| `--wb-accent-text`      | Text color on light surfaces          |
+| `--wb-accent-on`        | Text/icon on filled accent background |
+| `--wb-accent-ring`      | Focus ring (`rgb(...)` value)         |
+| `--wb-accent-ring-rgb`  | Focus ring components (`r g b`)       |
+| `--wb-accent-selection` | `::selection` background              |
+| `--wb-accent-glow-rgb`  | Glow / shadow tint (`r g b`)          |
+
+`--wb-primary`, `--wb-primary-dark`, `--wb-primary-soft` are backward-compat aliases that resolve to `--wb-accent`, `--wb-accent-hover`, `--wb-accent-soft` automatically.
+
+| Key          | Description         |
+|--------------|---------------------|
+| `ocean`      | Blue-teal (default) |
+| `forest`     | Deep green          |
+| `sunset`     | Orange / warm       |
+| `royal`      | Indigo / purple     |
+| `mint`       | Teal / cyan         |
+| `amber`      | Amber / gold        |
+| `rose`       | Pink / rose         |
+| `slate-fire` | Red / ember         |
 
 ---
 

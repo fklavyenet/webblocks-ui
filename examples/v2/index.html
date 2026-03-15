@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI — V2 Component Reference</title>
+  <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <script src="../../dist/webblocks-ui.js"></script>
+  <style>
+    .demo-section { padding: 2rem 0; border-bottom: 1px solid var(--wb-border); }
+    .demo-section:last-child { border-bottom: none; }
+    .demo-row { display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .demo-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--wb-muted); margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; font-weight: 700; margin: 0 0 0.25rem; }
+    h3 { font-size: 0.95rem; font-weight: 600; color: var(--wb-muted); margin: 1.25rem 0 0.5rem; }
+    .relative-wrap { position: relative; min-height: 3rem; }
+  </style>
+</head>
+<body style="background:var(--wb-bg)">
+
+<!-- ── Navbar ────────────────────────────────────────────── -->
+<nav class="wb-navbar">
+  <a href="#" class="wb-navbar-brand">WebBlocks V2</a>
+  <span class="wb-navbar-spacer"></span>
+  <div class="wb-navbar-end">
+    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-theme-set="light">Light</button>
+    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-theme-set="dark">Dark</button>
+    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-theme-set="auto">Auto</button>
+    <a href="../core/index.html" class="wb-btn wb-btn-outline wb-btn-sm">V1 Components →</a>
+  </div>
+</nav>
+
+<div class="wb-shell">
+
+  <!-- ── Sidebar ───────────────────────────────────────────── -->
+  <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+  <aside class="wb-sidebar" id="v2Sidebar">
+    <nav class="wb-sidebar-nav">
+      <a class="wb-sidebar-link" href="#nav-group">Nav Group</a>
+      <a class="wb-sidebar-link" href="#filter-bar">Filter Bar</a>
+      <a class="wb-sidebar-link" href="#action-menu">Action Menu</a>
+      <a class="wb-sidebar-link" href="#status-pill">Status Pill</a>
+      <a class="wb-sidebar-link" href="#loading">Loading</a>
+      <a class="wb-sidebar-link" href="#popover">Popover</a>
+      <a class="wb-sidebar-link" href="#drawer">Drawer</a>
+      <a class="wb-sidebar-link" href="#command-palette">Command Palette</a>
+      <a class="wb-sidebar-link" href="#divider">Divider</a>
+      <a class="wb-sidebar-link" href="#list-group">List Group</a>
+      <a class="wb-sidebar-link" href="#toast-positions">Toast Positions</a>
+      <a class="wb-sidebar-link" href="#confirm">Confirm Dialog</a>
+      <a class="wb-sidebar-link" href="#tooltip">Tooltip</a>
+      <a class="wb-sidebar-link" href="#border-presets">Border Presets</a>
+    </nav>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="wb-shell-main">
+    <div class="wb-container" style="max-width:860px; padding: 2rem 1.5rem">
+      <h1 style="font-size:1.75rem;font-weight:800;margin-bottom:0.25rem">V2 Components</h1>
+      <p style="color:var(--wb-muted);margin-bottom:0">New components added in WebBlocks V2.</p>
+
+      <!-- ── Nav Group ─────────────────────────────────────── -->
+      <section id="nav-group" class="demo-section">
+        <h2>Nav Group</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Collapsible navigation groups for sidebar menus. JS-powered toggle with optional accordion mode.</p>
+
+        <div class="wb-card" style="max-width:260px;padding:var(--wb-s3)">
+          <div data-wb-nav-group class="wb-nav-group is-open">
+            <button class="wb-nav-group-toggle" aria-expanded="true">
+              <span class="wb-nav-group-icon">⚙</span>
+              <span class="wb-nav-group-label">Settings</span>
+              <span class="wb-nav-group-arrow"></span>
+            </button>
+            <div class="wb-nav-group-items">
+              <a class="wb-nav-group-item is-active" href="#">Profile</a>
+              <a class="wb-nav-group-item" href="#">Security</a>
+              <a class="wb-nav-group-item" href="#">Notifications</a>
+            </div>
+          </div>
+          <div data-wb-nav-group class="wb-nav-group">
+            <button class="wb-nav-group-toggle" aria-expanded="false">
+              <span class="wb-nav-group-icon">📊</span>
+              <span class="wb-nav-group-label">Reports</span>
+              <span class="wb-nav-group-arrow"></span>
+            </button>
+            <div class="wb-nav-group-items">
+              <a class="wb-nav-group-item" href="#">Overview</a>
+              <a class="wb-nav-group-item" href="#">Sales</a>
+            </div>
+          </div>
+        </div>
+
+        <h3>Standalone Menu</h3>
+        <div class="wb-card" style="max-width:220px;padding:var(--wb-s2)">
+          <div class="wb-menu">
+            <span class="wb-menu-label">Account</span>
+            <a class="wb-menu-item is-active" href="#">Dashboard</a>
+            <a class="wb-menu-item" href="#">Users</a>
+            <a class="wb-menu-item" href="#">Billing</a>
+            <hr class="wb-menu-divider">
+            <a class="wb-menu-item wb-menu-item-danger" href="#">Sign out</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Filter Bar ─────────────────────────────────────── -->
+      <section id="filter-bar" class="demo-section">
+        <h2>Filter Bar</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Search, filter chips, and selects for data tables.</p>
+
+        <div class="wb-filter-bar">
+          <div class="wb-filter-bar-start">
+            <div class="wb-search-bar" style="width:220px">
+              <span class="wb-search-bar-icon">⌕</span>
+              <input class="wb-search-bar-input" type="text" placeholder="Search users…">
+            </div>
+            <button class="wb-filter-chip is-active">Active <span class="wb-filter-count">12</span></button>
+            <button class="wb-filter-chip">Pending</button>
+            <button class="wb-filter-chip">Inactive</button>
+          </div>
+          <div class="wb-filter-bar-end">
+            <select class="wb-filter-select">
+              <option>All roles</option>
+              <option>Admin</option>
+              <option>Editor</option>
+            </select>
+            <button class="wb-btn wb-btn-outline wb-btn-sm">Export</button>
+          </div>
+        </div>
+
+        <h3>Search Bar sizes</h3>
+        <div class="demo-row" style="align-items:center">
+          <div class="wb-search-bar wb-search-bar-sm" style="width:180px">
+            <span class="wb-search-bar-icon">⌕</span>
+            <input class="wb-search-bar-input" type="text" placeholder="Small…">
+          </div>
+          <div class="wb-search-bar" style="width:200px">
+            <span class="wb-search-bar-icon">⌕</span>
+            <input class="wb-search-bar-input" type="text" placeholder="Default…">
+          </div>
+          <div class="wb-search-bar wb-search-bar-lg" style="width:220px">
+            <span class="wb-search-bar-icon">⌕</span>
+            <input class="wb-search-bar-input" type="text" placeholder="Large…">
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Action Menu ────────────────────────────────────── -->
+      <section id="action-menu" class="demo-section">
+        <h2>Action Menu</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Row-level inline actions for tables and lists.</p>
+
+        <div class="demo-row" style="align-items:center">
+          <div class="wb-action-group">
+            <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View">👁</button>
+            <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit">✏</button>
+            <button class="wb-action-btn wb-action-btn-delete" data-wb-tooltip="Delete">✕</button>
+          </div>
+
+          <div class="wb-action-group">
+            <a class="wb-action-link" href="#">View</a>
+            <a class="wb-action-link" href="#">Edit</a>
+            <a class="wb-action-link wb-action-link-danger" href="#">Delete</a>
+          </div>
+
+          <!-- Kebab dropdown -->
+          <div class="wb-action-more wb-dropdown">
+            <button class="wb-action-more-btn" data-wb-toggle="dropdown" aria-expanded="false">⋯</button>
+            <ul class="wb-dropdown-menu">
+              <li><a class="wb-dropdown-item" href="#">Edit</a></li>
+              <li><a class="wb-dropdown-item" href="#">Duplicate</a></li>
+              <li class="wb-dropdown-divider"></li>
+              <li><a class="wb-dropdown-item" href="#">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Status Pill ────────────────────────────────────── -->
+      <section id="status-pill" class="demo-section">
+        <h2>Status Pill</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Inline status indicators for table rows.</p>
+        <div class="demo-row">
+          <span class="wb-status-pill wb-status-active">Active</span>
+          <span class="wb-status-pill wb-status-inactive">Inactive</span>
+          <span class="wb-status-pill wb-status-pending">Pending</span>
+          <span class="wb-status-pill wb-status-error">Error</span>
+          <span class="wb-status-pill wb-status-info">Info</span>
+        </div>
+      </section>
+
+      <!-- ── Loading ────────────────────────────────────────── -->
+      <section id="loading" class="demo-section">
+        <h2>Loading</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Spinners, progress bars, and loading overlays.</p>
+
+        <h3>Spinner sizes</h3>
+        <div class="demo-row" style="align-items:center">
+          <div class="wb-spinner wb-spinner-sm"></div>
+          <div class="wb-spinner"></div>
+          <div class="wb-spinner wb-spinner-lg"></div>
+          <div class="wb-spinner wb-spinner-xl"></div>
+        </div>
+
+        <h3>Inline loading</h3>
+        <div class="wb-loading-inline">
+          <div class="wb-spinner wb-spinner-sm"></div>
+          Loading data…
+        </div>
+
+        <h3>Progress bar</h3>
+        <div style="max-width:400px;display:flex;flex-direction:column;gap:.75rem;margin-top:.5rem">
+          <div>
+            <div class="demo-label">65%</div>
+            <div class="wb-progress-bar"><div class="wb-progress-bar-fill" style="width:65%"></div></div>
+          </div>
+          <div>
+            <div class="demo-label">Success — 80%</div>
+            <div class="wb-progress-bar wb-progress-bar-success"><div class="wb-progress-bar-fill" style="width:80%"></div></div>
+          </div>
+          <div>
+            <div class="demo-label">Danger — 30%</div>
+            <div class="wb-progress-bar wb-progress-bar-danger"><div class="wb-progress-bar-fill" style="width:30%"></div></div>
+          </div>
+          <div>
+            <div class="demo-label">Indeterminate</div>
+            <div class="wb-progress-bar wb-progress-bar-indeterminate"><div class="wb-progress-bar-fill"></div></div>
+          </div>
+          <div>
+            <div class="demo-label">Thin</div>
+            <div class="wb-progress-bar wb-progress-bar-thin"><div class="wb-progress-bar-fill" style="width:55%"></div></div>
+          </div>
+        </div>
+
+        <h3>Scoped overlay</h3>
+        <div class="wb-card wb-loading-overlay" style="max-width:340px;padding:1.5rem;position:relative">
+          <div class="wb-loading-spinner-wrap">
+            <div class="wb-spinner wb-spinner-lg"></div>
+          </div>
+          <p style="margin:0;color:var(--wb-muted);font-size:.875rem">This card content is blurred behind a scoped loading overlay.</p>
+        </div>
+      </section>
+
+      <!-- ── Popover ────────────────────────────────────────── -->
+      <section id="popover" class="demo-section">
+        <h2>Popover</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Floating contextual panels. Toggle <code>.is-open</code> on the wrapper (or wire to <code>WBDropdown</code>).</p>
+
+        <div class="demo-row" style="padding-bottom:180px;align-items:flex-start;flex-wrap:wrap;gap:2rem">
+          <!-- Bottom (default) -->
+          <div class="wb-popover is-open">
+            <button class="wb-btn wb-btn-outline wb-btn-sm">Bottom (default) ▾</button>
+            <div class="wb-popover-panel">
+              <div class="wb-popover-header">
+                <span class="wb-popover-title">User Info</span>
+                <button class="wb-popover-close">✕</button>
+              </div>
+              <div class="wb-popover-body">Email notifications are enabled for this account.</div>
+              <div class="wb-popover-footer">
+                <button class="wb-btn wb-btn-primary wb-btn-sm">Save</button>
+                <button class="wb-btn wb-btn-ghost wb-btn-sm">Cancel</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- End-aligned -->
+          <div class="wb-popover wb-popover-end is-open">
+            <button class="wb-btn wb-btn-outline wb-btn-sm">End ▾</button>
+            <div class="wb-popover-panel">
+              <div class="wb-popover-body">Right-aligned popover panel.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Drawer ─────────────────────────────────────────── -->
+      <section id="drawer" class="demo-section">
+        <h2>Drawer</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Slide-in panels from any edge. Full focus trap, keyboard navigation (Esc to close).</p>
+
+        <div class="demo-row">
+          <button class="wb-btn wb-btn-primary wb-btn-sm" data-wb-toggle="drawer" data-wb-target="#drawerRight">Open Right</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-toggle="drawer" data-wb-target="#drawerLeft">Open Left</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-toggle="drawer" data-wb-target="#drawerBottom">Open Bottom</button>
+        </div>
+
+        <!-- Right drawer -->
+        <div class="wb-drawer" id="drawerRight" role="dialog" aria-modal="true" aria-labelledby="drawerRightTitle">
+          <div class="wb-drawer-header">
+            <h5 class="wb-drawer-title" id="drawerRightTitle">Edit User</h5>
+            <button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">&times;</button>
+          </div>
+          <div class="wb-drawer-body">
+            <div class="wb-field" style="margin-bottom:1rem">
+              <label class="wb-label">Full Name</label>
+              <input class="wb-input" type="text" value="Alice Johnson">
+            </div>
+            <div class="wb-field" style="margin-bottom:1rem">
+              <label class="wb-label">Email</label>
+              <input class="wb-input" type="email" value="alice@example.com">
+            </div>
+            <div class="wb-field">
+              <label class="wb-label">Role</label>
+              <select class="wb-select">
+                <option>Admin</option>
+                <option selected>Editor</option>
+                <option>Viewer</option>
+              </select>
+            </div>
+          </div>
+          <div class="wb-drawer-footer">
+            <button class="wb-btn wb-btn-secondary wb-btn-sm" data-wb-dismiss="drawer">Cancel</button>
+            <button class="wb-btn wb-btn-primary wb-btn-sm">Save Changes</button>
+          </div>
+        </div>
+
+        <!-- Left drawer -->
+        <div class="wb-drawer wb-drawer-left" id="drawerLeft" role="dialog" aria-modal="true" aria-labelledby="drawerLeftTitle">
+          <div class="wb-drawer-header">
+            <h5 class="wb-drawer-title" id="drawerLeftTitle">Filters</h5>
+            <button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">&times;</button>
+          </div>
+          <div class="wb-drawer-body">
+            <p style="color:var(--wb-muted);font-size:.875rem">Advanced filter options for the data table.</p>
+          </div>
+          <div class="wb-drawer-footer">
+            <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-dismiss="drawer">Clear</button>
+            <button class="wb-btn wb-btn-primary wb-btn-sm">Apply</button>
+          </div>
+        </div>
+
+        <!-- Bottom drawer -->
+        <div class="wb-drawer wb-drawer-bottom" id="drawerBottom" role="dialog" aria-modal="true" aria-labelledby="drawerBottomTitle">
+          <div class="wb-drawer-handle"></div>
+          <div class="wb-drawer-header">
+            <h5 class="wb-drawer-title" id="drawerBottomTitle">Quick Actions</h5>
+            <button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">&times;</button>
+          </div>
+          <div class="wb-drawer-body">
+            <p style="color:var(--wb-muted);font-size:.875rem">Bottom sheet — great for mobile-friendly action sheets.</p>
+          </div>
+        </div>
+
+        <div class="wb-drawer-backdrop" id="drawerRight-backdrop"></div>
+        <div class="wb-drawer-backdrop" id="drawerLeft-backdrop"></div>
+        <div class="wb-drawer-backdrop" id="drawerBottom-backdrop"></div>
+      </section>
+
+      <!-- ── Command Palette ───────────────────────────────── -->
+      <section id="command-palette" class="demo-section">
+        <h2>Command Palette</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Press <kbd style="font-size:.8rem;padding:.1em .4em;background:var(--wb-surface-2);border:1px solid var(--wb-border);border-radius:4px">⌘K</kbd> or click the button to open.</p>
+
+        <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-toggle="cmd" data-wb-target="#cmdPalette">
+          ⌕ Search commands…
+        </button>
+
+        <div class="wb-cmd-backdrop" id="cmdPalette" role="dialog" aria-modal="true" aria-label="Command palette">
+          <div class="wb-cmd-dialog">
+            <div class="wb-cmd-search">
+              <span class="wb-cmd-search-icon">⌕</span>
+              <input class="wb-cmd-input" type="text" placeholder="Search commands…" autocomplete="off">
+              <span class="wb-cmd-shortcut-hint">Esc</span>
+            </div>
+            <div class="wb-cmd-results">
+              <div class="wb-cmd-group">
+                <div class="wb-cmd-group-label">Navigation</div>
+                <a class="wb-cmd-item is-selected" href="#">
+                  <span class="wb-cmd-item-icon">🏠</span>
+                  <span class="wb-cmd-item-text">
+                    <span class="wb-cmd-item-title">Dashboard</span>
+                    <span class="wb-cmd-item-sub">Go to main dashboard</span>
+                  </span>
+                </a>
+                <a class="wb-cmd-item" href="#">
+                  <span class="wb-cmd-item-icon">👥</span>
+                  <span class="wb-cmd-item-text">
+                    <span class="wb-cmd-item-title">Users</span>
+                    <span class="wb-cmd-item-sub">Manage users</span>
+                  </span>
+                </a>
+                <a class="wb-cmd-item" href="#">
+                  <span class="wb-cmd-item-icon">⚙</span>
+                  <span class="wb-cmd-item-text">
+                    <span class="wb-cmd-item-title">Settings</span>
+                  </span>
+                  <span class="wb-cmd-item-kbd">⌘,</span>
+                </a>
+              </div>
+              <div class="wb-cmd-group">
+                <div class="wb-cmd-group-label">Actions</div>
+                <button class="wb-cmd-item">
+                  <span class="wb-cmd-item-icon">＋</span>
+                  <span class="wb-cmd-item-text">
+                    <span class="wb-cmd-item-title">New User</span>
+                  </span>
+                </button>
+                <button class="wb-cmd-item">
+                  <span class="wb-cmd-item-icon">🌙</span>
+                  <span class="wb-cmd-item-text">
+                    <span class="wb-cmd-item-title">Toggle Dark Mode</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="wb-cmd-footer">
+              <span class="wb-cmd-footer-hint"><kbd class="wb-cmd-kbd">↑↓</kbd> navigate</span>
+              <span class="wb-cmd-footer-hint"><kbd class="wb-cmd-kbd">↵</kbd> select</span>
+              <span class="wb-cmd-footer-hint"><kbd class="wb-cmd-kbd">Esc</kbd> close</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Divider ────────────────────────────────────────── -->
+      <section id="divider" class="demo-section">
+        <h2>Divider</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Horizontal and vertical separators with optional labels.</p>
+
+        <div class="demo-label">Default</div>
+        <hr class="wb-divider">
+
+        <div class="demo-label">Dashed</div>
+        <hr class="wb-divider wb-divider-dashed">
+
+        <div class="demo-label">Dotted</div>
+        <hr class="wb-divider wb-divider-dotted">
+
+        <div class="demo-label">Labeled</div>
+        <div class="wb-divider-label">OR</div>
+
+        <div class="demo-label">Labeled start</div>
+        <div class="wb-divider-label wb-divider-label-start">Section</div>
+
+        <div class="demo-label">Vertical (in a flex row)</div>
+        <div style="display:flex;align-items:center;gap:.75rem;height:2rem;margin-top:.5rem">
+          <button class="wb-btn wb-btn-ghost wb-btn-sm">Edit</button>
+          <span class="wb-divider-v"></span>
+          <button class="wb-btn wb-btn-ghost wb-btn-sm">Delete</button>
+          <span class="wb-divider-v"></span>
+          <button class="wb-btn wb-btn-ghost wb-btn-sm">Archive</button>
+        </div>
+      </section>
+
+      <!-- ── List Group ─────────────────────────────────────── -->
+      <section id="list-group" class="demo-section">
+        <h2>List Group</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Structured vertical lists for navigation, settings, and data.</p>
+
+        <div class="demo-row" style="align-items:flex-start">
+          <!-- Standard -->
+          <div class="wb-list" style="width:280px">
+            <div class="wb-list-header">Team Members</div>
+            <div class="wb-list-item wb-list-item-action is-active">
+              <span class="wb-list-item-icon">👤</span>
+              <span class="wb-list-item-text">
+                <span class="wb-list-item-title">Alice Johnson</span>
+                <span class="wb-list-item-sub">Admin</span>
+              </span>
+              <span class="wb-list-item-end"><span class="wb-badge wb-badge-success">Active</span></span>
+            </div>
+            <div class="wb-list-item wb-list-item-action">
+              <span class="wb-list-item-icon">👤</span>
+              <span class="wb-list-item-text">
+                <span class="wb-list-item-title">Bob Smith</span>
+                <span class="wb-list-item-sub">Editor</span>
+              </span>
+              <span class="wb-list-item-end"><span class="wb-badge">Pending</span></span>
+            </div>
+            <div class="wb-list-item wb-list-item-action">
+              <span class="wb-list-item-icon">👤</span>
+              <span class="wb-list-item-text">
+                <span class="wb-list-item-title">Carol Williams</span>
+                <span class="wb-list-item-sub">Viewer</span>
+              </span>
+              <span class="wb-list-item-end">›</span>
+            </div>
+          </div>
+
+          <!-- Numbered -->
+          <div class="wb-list wb-list-numbered" style="width:240px">
+            <div class="wb-list-header">Top Pages</div>
+            <div class="wb-list-item">
+              <span class="wb-list-item-text">
+                <span class="wb-list-item-title">Dashboard</span>
+                <span class="wb-list-item-sub">4,280 views</span>
+              </span>
+            </div>
+            <div class="wb-list-item">
+              <span class="wb-list-item-text">
+                <span class="wb-list-item-title">Users</span>
+                <span class="wb-list-item-sub">2,140 views</span>
+              </span>
+            </div>
+            <div class="wb-list-item">
+              <span class="wb-list-item-text">
+                <span class="wb-list-item-title">Reports</span>
+                <span class="wb-list-item-sub">890 views</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Toast Positions ────────────────────────────────── -->
+      <section id="toast-positions" class="demo-section">
+        <h2>Toast Positions</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">V2 adds position variants to the toast container. Click to preview.</p>
+
+        <div class="demo-row">
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="showToast('top-right')">Top Right</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="showToast('top-center')">Top Center</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="showToast('top-left')">Top Left</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="showToast('bottom-center')">Bottom Center</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="showToast('bottom-left')">Bottom Left</button>
+        </div>
+
+        <div id="toast-tr" class="wb-toast-container wb-toast-top-right"></div>
+        <div id="toast-tc" class="wb-toast-container wb-toast-top-center"></div>
+        <div id="toast-tl" class="wb-toast-container wb-toast-top-left"></div>
+        <div id="toast-bc" class="wb-toast-container wb-toast-bottom-center"></div>
+        <div id="toast-bl" class="wb-toast-container wb-toast-bottom-left"></div>
+
+        <script>
+          var containerMap = {
+            'top-right': 'toast-tr', 'top-center': 'toast-tc',
+            'top-left': 'toast-tl', 'bottom-center': 'toast-bc', 'bottom-left': 'toast-bl'
+          };
+          function showToast(pos) {
+            var c = document.getElementById(containerMap[pos]);
+            var t = document.createElement('div');
+            t.className = 'wb-toast wb-toast-success';
+            t.innerHTML = '<span>Toast: <strong>' + pos + '</strong></span>';
+            c.appendChild(t);
+            setTimeout(function() {
+              t.classList.add('is-leaving');
+              setTimeout(function() { t.remove(); }, 200);
+            }, 2500);
+          }
+        </script>
+      </section>
+
+      <!-- ── Confirm Dialog ────────────────────────────────── -->
+      <section id="confirm" class="demo-section">
+        <h2>Confirm Dialog</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Compact confirmation modal built as a variant of <code>wb-modal</code>.</p>
+
+        <button class="wb-btn wb-btn-danger wb-btn-sm" data-wb-toggle="modal" data-wb-target="#confirmModal">Delete Item</button>
+
+        <div class="wb-modal" id="confirmModal" role="dialog" aria-modal="true">
+          <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
+          <div class="wb-confirm">
+            <div class="wb-confirm-icon wb-confirm-icon-danger">⚠</div>
+            <h4 class="wb-confirm-title">Delete this item?</h4>
+            <p class="wb-confirm-text">This action cannot be undone. The item will be permanently removed.</p>
+            <div class="wb-confirm-actions">
+              <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-dismiss="modal">Cancel</button>
+              <button class="wb-btn wb-btn-danger wb-btn-sm" data-wb-dismiss="modal">Yes, delete</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Tooltip ────────────────────────────────────────── -->
+      <section id="tooltip" class="demo-section">
+        <h2>Tooltip</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Pure CSS tooltips via <code>data-wb-tooltip</code>. No JavaScript needed.</p>
+
+        <div class="demo-row" style="padding:1.5rem 0">
+          <button class="wb-btn wb-btn-primary wb-btn-sm" data-wb-tooltip="Save your changes">Top (default)</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-tooltip="Below the element" data-wb-tooltip-placement="bottom">Bottom</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-tooltip="To the right" data-wb-tooltip-placement="right">Right</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-tooltip="To the left" data-wb-tooltip-placement="left">Left</button>
+          <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-tooltip="Keyboard shortcut: Ctrl+S" data-wb-tooltip-placement="bottom">With keyboard hint</button>
+        </div>
+
+        <h3>On other elements</h3>
+        <div class="demo-row" style="align-items:center;padding:1rem 0">
+          <span class="wb-badge wb-badge-info" data-wb-tooltip="This user has admin privileges" data-wb-tooltip-placement="right">Admin</span>
+          <span class="wb-status-pill wb-status-active" data-wb-tooltip="Last seen 2 minutes ago">Active</span>
+          <div class="wb-action-btn" data-wb-tooltip="Download CSV" style="cursor:pointer">⬇</div>
+        </div>
+      </section>
+
+      <!-- ── Border Presets ─────────────────────────────────── -->
+      <section id="border-presets" class="demo-section">
+        <h2>Border Presets</h2>
+        <p style="color:var(--wb-muted);font-size:.875rem">Set on <code>&lt;html data-border="..."&gt;</code>. Buttons below preview by temporarily overriding the token.</p>
+
+        <div class="demo-row">
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="document.documentElement.removeAttribute('data-border')">Default</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="document.documentElement.setAttribute('data-border','none')">None</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="document.documentElement.setAttribute('data-border','subtle')">Subtle</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="document.documentElement.setAttribute('data-border','medium')">Medium</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="document.documentElement.setAttribute('data-border','bold')">Bold</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="document.documentElement.setAttribute('data-border','dashed')">Dashed</button>
+        </div>
+
+        <div class="demo-row" style="margin-top:1rem">
+          <div class="wb-card" style="width:200px;padding:1rem">
+            <div style="font-weight:600;margin-bottom:.25rem">Card</div>
+            <div style="color:var(--wb-muted);font-size:.875rem">Border preview</div>
+          </div>
+          <div class="wb-input" style="width:180px">Input field</div>
+        </div>
+      </section>
+
+    </div><!-- /container -->
+  </div><!-- /shell-main -->
+</div><!-- /shell -->
+
+</body>
+</html>

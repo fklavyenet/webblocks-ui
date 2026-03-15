@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI — V2 Admin Dashboard</title>
+  <link rel="stylesheet" href="../../dist/webblocks-ui.css">
+  <script src="../../dist/webblocks-ui.js"></script>
+</head>
+<body style="background:var(--wb-bg)">
+
+<!-- ── Navbar ────────────────────────────────────────────── -->
+<nav class="wb-navbar">
+  <button class="wb-navbar-toggle" data-wb-toggle="sidebar" data-wb-target="#mainSidebar"
+          aria-expanded="false" aria-controls="mainSidebar" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="#" class="wb-navbar-brand">AdminPanel</a>
+  <span class="wb-navbar-spacer"></span>
+
+  <!-- Command palette trigger -->
+  <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-toggle="cmd" data-wb-target="#mainCmd"
+          style="display:flex;align-items:center;gap:.4rem;color:var(--wb-muted)">
+    <span>⌕</span>
+    <span style="font-size:.8rem">Search…</span>
+    <kbd style="font-size:.7rem;padding:.1em .35em;background:var(--wb-surface-2);border:1px solid var(--wb-border);border-radius:4px;margin-left:.2rem">⌘K</kbd>
+  </button>
+
+  <div class="wb-topbar-actions" style="margin-left:.5rem">
+    <!-- Notifications -->
+    <div class="wb-topbar-action wb-dropdown">
+      <button class="wb-topbar-action" data-wb-toggle="dropdown" aria-expanded="false"
+              data-wb-tooltip="Notifications" data-wb-tooltip-placement="bottom">
+        🔔
+        <span class="wb-topbar-action-dot"></span>
+      </button>
+      <ul class="wb-dropdown-menu" style="right:0;left:auto;min-width:280px">
+        <li style="padding:.5rem .75rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--wb-muted)">Notifications</li>
+        <li><a class="wb-dropdown-item" href="#" style="flex-direction:column;align-items:flex-start;gap:.1rem">
+          <span style="font-weight:600;font-size:.875rem">New user registered</span>
+          <span style="font-size:.78rem;color:var(--wb-muted)">2 minutes ago</span>
+        </a></li>
+        <li><a class="wb-dropdown-item" href="#" style="flex-direction:column;align-items:flex-start;gap:.1rem">
+          <span style="font-weight:600;font-size:.875rem">Backup completed</span>
+          <span style="font-size:.78rem;color:var(--wb-muted)">1 hour ago</span>
+        </a></li>
+        <li class="wb-dropdown-divider"></li>
+        <li><a class="wb-dropdown-item" href="#">View all notifications</a></li>
+      </ul>
+    </div>
+
+    <!-- Theme toggle -->
+    <button class="wb-topbar-action" data-wb-theme-set="dark"
+            data-wb-tooltip="Toggle dark mode" data-wb-tooltip-placement="bottom">🌙</button>
+
+    <!-- User menu -->
+    <div class="wb-dropdown">
+      <button class="wb-topbar-user" data-wb-toggle="dropdown" aria-expanded="false">
+        <div class="wb-avatar wb-avatar-sm">AJ</div>
+        <span class="wb-topbar-user-info" style="display:none">
+          <span class="wb-topbar-user-name">Alice Johnson</span>
+          <span class="wb-topbar-user-role">Administrator</span>
+        </span>
+      </button>
+      <ul class="wb-dropdown-menu" style="right:0;left:auto">
+        <li><a class="wb-dropdown-item" href="#">Profile</a></li>
+        <li><a class="wb-dropdown-item" href="#">Settings</a></li>
+        <li class="wb-dropdown-divider"></li>
+        <li><a class="wb-dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Shell ──────────────────────────────────────────────── -->
+<div class="wb-shell">
+
+  <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
+  <!-- ── Sidebar ───────────────────────────────────────────── -->
+  <aside class="wb-sidebar" id="mainSidebar">
+    <nav class="wb-sidebar-nav">
+      <a class="wb-sidebar-link is-active" href="#">🏠 Dashboard</a>
+
+      <div data-wb-nav-group class="wb-nav-group is-open">
+        <button class="wb-nav-group-toggle" aria-expanded="true">
+          <span class="wb-nav-group-icon">👥</span>
+          <span class="wb-nav-group-label">Users</span>
+          <span class="wb-nav-group-arrow"></span>
+        </button>
+        <div class="wb-nav-group-items">
+          <a class="wb-nav-group-item is-active" href="#">All Users</a>
+          <a class="wb-nav-group-item" href="#">Roles</a>
+          <a class="wb-nav-group-item" href="#">Invitations</a>
+        </div>
+      </div>
+
+      <div data-wb-nav-group class="wb-nav-group">
+        <button class="wb-nav-group-toggle" aria-expanded="false">
+          <span class="wb-nav-group-icon">📊</span>
+          <span class="wb-nav-group-label">Reports</span>
+          <span class="wb-nav-group-arrow"></span>
+        </button>
+        <div class="wb-nav-group-items">
+          <a class="wb-nav-group-item" href="#">Overview</a>
+          <a class="wb-nav-group-item" href="#">Sales</a>
+          <a class="wb-nav-group-item" href="#">Traffic</a>
+        </div>
+      </div>
+
+      <div data-wb-nav-group class="wb-nav-group">
+        <button class="wb-nav-group-toggle" aria-expanded="false">
+          <span class="wb-nav-group-icon">📦</span>
+          <span class="wb-nav-group-label">Content</span>
+          <span class="wb-nav-group-arrow"></span>
+        </button>
+        <div class="wb-nav-group-items">
+          <a class="wb-nav-group-item" href="#">Posts</a>
+          <a class="wb-nav-group-item" href="#">Media</a>
+          <a class="wb-nav-group-item" href="#">Categories</a>
+        </div>
+      </div>
+
+      <a class="wb-sidebar-link" href="#">⚙ Settings</a>
+
+      <div class="wb-sidebar-section">
+        <span class="wb-sidebar-label">Accent</span>
+        <button class="wb-sidebar-link" data-wb-accent-set="ocean">Ocean</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="forest">Forest</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="sunset">Sunset</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="royal">Royal</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="mint">Mint</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="amber">Amber</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="rose">Rose</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="slate-fire">Slate Fire</button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="wb-shell-main">
+    <div class="wb-container" style="padding:1.5rem">
+
+      <!-- Breadcrumb -->
+      <nav class="wb-breadcrumb" style="margin-bottom:1.25rem">
+        <a class="wb-breadcrumb-item" href="#">Home</a>
+        <span class="wb-breadcrumb-sep">/</span>
+        <a class="wb-breadcrumb-item" href="#">Users</a>
+        <span class="wb-breadcrumb-sep">/</span>
+        <span class="wb-breadcrumb-item wb-breadcrumb-current">All Users</span>
+      </nav>
+
+      <!-- Page header -->
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem">
+        <div>
+          <h1 style="font-size:1.4rem;font-weight:800;margin:0 0 .15rem">Users</h1>
+          <p style="margin:0;color:var(--wb-muted);font-size:.875rem">Manage team members and their access.</p>
+        </div>
+        <div style="display:flex;gap:.5rem">
+          <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-toggle="drawer" data-wb-target="#filterDrawer">Filters</button>
+          <button class="wb-btn wb-btn-primary wb-btn-sm" data-wb-toggle="modal" data-wb-target="#addUserModal">+ Add User</button>
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="wb-grid-4" style="margin-bottom:1.5rem">
+        <div class="wb-stat">
+          <div class="wb-stat-label">Total Users</div>
+          <div class="wb-stat-value">1,284</div>
+          <div class="wb-stat-meta wb-stat-up">↑ 12% this month</div>
+          <div class="wb-stat-bar" style="margin-top:.75rem">
+            <div class="wb-progress-bar wb-progress-bar-thin"><div class="wb-progress-bar-fill" style="width:72%"></div></div>
+          </div>
+        </div>
+        <div class="wb-stat">
+          <div class="wb-stat-label">Active Now</div>
+          <div class="wb-stat-value">48</div>
+          <div class="wb-stat-meta" style="color:var(--wb-muted)">Online sessions</div>
+        </div>
+        <div class="wb-stat">
+          <div class="wb-stat-label">Pending Approval</div>
+          <div class="wb-stat-value">7</div>
+          <div class="wb-stat-meta wb-stat-down">↓ 3 from yesterday</div>
+        </div>
+        <div class="wb-stat">
+          <div class="wb-stat-label">Storage Used</div>
+          <div class="wb-stat-value">64%</div>
+          <div class="wb-stat-bar" style="margin-top:.75rem">
+            <div class="wb-progress-bar wb-progress-bar-warning"><div class="wb-progress-bar-fill" style="width:64%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter bar + Table card -->
+      <div class="wb-card" style="overflow:hidden">
+        <!-- Filter bar -->
+        <div class="wb-filter-bar wb-filter-bar-attached">
+          <div class="wb-filter-bar-start">
+            <div class="wb-search-bar" style="width:220px">
+              <span class="wb-search-bar-icon">⌕</span>
+              <input class="wb-search-bar-input" type="text" placeholder="Search users…" id="userSearch">
+            </div>
+            <button class="wb-filter-chip is-active" onclick="toggleChip(this)">All <span class="wb-filter-count">1,284</span></button>
+            <button class="wb-filter-chip" onclick="toggleChip(this)">Active</button>
+            <button class="wb-filter-chip" onclick="toggleChip(this)">Pending</button>
+            <button class="wb-filter-chip" onclick="toggleChip(this)">Inactive</button>
+          </div>
+          <div class="wb-filter-bar-end">
+            <select class="wb-filter-select">
+              <option>All roles</option>
+              <option>Admin</option>
+              <option>Editor</option>
+              <option>Viewer</option>
+            </select>
+            <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-tooltip="Export CSV">Export</button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div style="overflow-x:auto">
+          <table class="wb-table wb-table-hover">
+            <thead>
+              <tr>
+                <th class="wb-table-check-cell"><input type="checkbox" class="wb-checkbox-plain"></th>
+                <th>User</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Last Active</th>
+                <th style="width:1%">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="wb-table-check-cell"><input type="checkbox" class="wb-checkbox-plain"></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:.6rem">
+                    <div class="wb-avatar wb-avatar-sm wb-avatar-green">AJ</div>
+                    <div>
+                      <div style="font-weight:600;font-size:.875rem">Alice Johnson</div>
+                      <div style="font-size:.78rem;color:var(--wb-muted)">alice@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="wb-badge wb-badge-primary">Admin</span></td>
+                <td><span class="wb-status-pill wb-status-active">Active</span></td>
+                <td style="color:var(--wb-muted);font-size:.875rem">2 min ago</td>
+                <td>
+                  <div class="wb-action-group">
+                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile" onclick="openViewDrawer('Alice Johnson')">👁</button>
+                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer">✏</button>
+                    <div class="wb-action-more wb-dropdown">
+                      <button class="wb-action-more-btn" data-wb-toggle="dropdown">⋯</button>
+                      <ul class="wb-dropdown-menu">
+                        <li><a class="wb-dropdown-item" href="#">Impersonate</a></li>
+                        <li><a class="wb-dropdown-item" href="#">Reset password</a></li>
+                        <li class="wb-dropdown-divider"></li>
+                        <li><a class="wb-dropdown-item wb-dropdown-item-danger" href="#"
+                              data-wb-toggle="modal" data-wb-target="#confirmDelete">Delete</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="wb-table-check-cell"><input type="checkbox" class="wb-checkbox-plain"></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:.6rem">
+                    <div class="wb-avatar wb-avatar-sm">BS</div>
+                    <div>
+                      <div style="font-weight:600;font-size:.875rem">Bob Smith</div>
+                      <div style="font-size:.78rem;color:var(--wb-muted)">bob@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="wb-badge">Editor</span></td>
+                <td><span class="wb-status-pill wb-status-pending">Pending</span></td>
+                <td style="color:var(--wb-muted);font-size:.875rem">3 hours ago</td>
+                <td>
+                  <div class="wb-action-group">
+                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile">👁</button>
+                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer">✏</button>
+                    <div class="wb-action-more wb-dropdown">
+                      <button class="wb-action-more-btn" data-wb-toggle="dropdown">⋯</button>
+                      <ul class="wb-dropdown-menu">
+                        <li><a class="wb-dropdown-item" href="#">Approve</a></li>
+                        <li><a class="wb-dropdown-item" href="#">Reset password</a></li>
+                        <li class="wb-dropdown-divider"></li>
+                        <li><a class="wb-dropdown-item wb-dropdown-item-danger" href="#"
+                              data-wb-toggle="modal" data-wb-target="#confirmDelete">Delete</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="wb-table-check-cell"><input type="checkbox" class="wb-checkbox-plain"></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:.6rem">
+                    <div class="wb-avatar wb-avatar-sm wb-avatar-violet">CW</div>
+                    <div>
+                      <div style="font-weight:600;font-size:.875rem">Carol Williams</div>
+                      <div style="font-size:.78rem;color:var(--wb-muted)">carol@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="wb-badge">Viewer</span></td>
+                <td><span class="wb-status-pill wb-status-inactive">Inactive</span></td>
+                <td style="color:var(--wb-muted);font-size:.875rem">5 days ago</td>
+                <td>
+                  <div class="wb-action-group">
+                    <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View profile">👁</button>
+                    <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit user" data-wb-toggle="drawer" data-wb-target="#editDrawer">✏</button>
+                    <div class="wb-action-more wb-dropdown">
+                      <button class="wb-action-more-btn" data-wb-toggle="dropdown">⋯</button>
+                      <ul class="wb-dropdown-menu">
+                        <li><a class="wb-dropdown-item" href="#">Reactivate</a></li>
+                        <li class="wb-dropdown-divider"></li>
+                        <li><a class="wb-dropdown-item wb-dropdown-item-danger" href="#"
+                              data-wb-toggle="modal" data-wb-target="#confirmDelete">Delete</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Table footer -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-top:1px solid var(--wb-border)">
+          <span style="font-size:.8rem;color:var(--wb-muted)">Showing 3 of 1,284 users</span>
+          <nav class="wb-pagination">
+            <button class="wb-pagination-btn" disabled>‹ Prev</button>
+            <button class="wb-pagination-btn is-active">1</button>
+            <button class="wb-pagination-btn">2</button>
+            <button class="wb-pagination-btn">3</button>
+            <span class="wb-pagination-ellipsis">…</span>
+            <button class="wb-pagination-btn">128</button>
+            <button class="wb-pagination-btn">Next ›</button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="wb-divider-label" style="margin:2rem 0 1.25rem">Recent Activity</div>
+
+      <!-- List group -->
+      <div class="wb-list" style="max-width:560px">
+        <div class="wb-list-header">Activity Log</div>
+        <div class="wb-list-item">
+          <span class="wb-list-item-icon" style="background:var(--wb-success-soft);color:var(--wb-success)">✓</span>
+          <span class="wb-list-item-text">
+            <span class="wb-list-item-title">Alice Johnson signed in</span>
+            <span class="wb-list-item-sub">Today at 9:14 AM · Chrome / macOS</span>
+          </span>
+          <span class="wb-list-item-end"><span class="wb-status-pill wb-status-active">Success</span></span>
+        </div>
+        <div class="wb-list-item">
+          <span class="wb-list-item-icon" style="background:var(--wb-warning-soft);color:var(--wb-warning)">!</span>
+          <span class="wb-list-item-text">
+            <span class="wb-list-item-title">Bob Smith failed login (3x)</span>
+            <span class="wb-list-item-sub">Today at 8:50 AM · Firefox / Windows</span>
+          </span>
+          <span class="wb-list-item-end"><span class="wb-status-pill wb-status-pending">Warning</span></span>
+        </div>
+        <div class="wb-list-item">
+          <span class="wb-list-item-icon" style="background:var(--wb-info-soft);color:var(--wb-info)">↑</span>
+          <span class="wb-list-item-text">
+            <span class="wb-list-item-title">Role updated: Carol Williams → Viewer</span>
+            <span class="wb-list-item-sub">Yesterday at 4:32 PM · by Alice Johnson</span>
+          </span>
+          <span class="wb-list-item-end"><span class="wb-status-pill wb-status-info">Info</span></span>
+        </div>
+      </div>
+
+    </div><!-- /container -->
+  </div><!-- /shell-main -->
+</div><!-- /shell -->
+
+<!-- ── Edit User Drawer ──────────────────────────────────── -->
+<div class="wb-drawer" id="editDrawer" role="dialog" aria-modal="true" aria-labelledby="editDrawerTitle">
+  <div class="wb-drawer-header">
+    <h5 class="wb-drawer-title" id="editDrawerTitle">Edit User</h5>
+    <button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">&times;</button>
+  </div>
+  <div class="wb-drawer-body">
+    <div class="wb-field" style="margin-bottom:1rem">
+      <label class="wb-label">Full Name</label>
+      <input class="wb-input" type="text" value="Alice Johnson">
+    </div>
+    <div class="wb-field" style="margin-bottom:1rem">
+      <label class="wb-label">Email</label>
+      <input class="wb-input" type="email" value="alice@example.com">
+    </div>
+    <div class="wb-field" style="margin-bottom:1rem">
+      <label class="wb-label">Role</label>
+      <select class="wb-select">
+        <option selected>Admin</option>
+        <option>Editor</option>
+        <option>Viewer</option>
+      </select>
+    </div>
+    <div class="wb-field" style="margin-bottom:1rem">
+      <label class="wb-label">Status</label>
+      <select class="wb-select">
+        <option selected>Active</option>
+        <option>Inactive</option>
+        <option>Suspended</option>
+      </select>
+    </div>
+    <hr class="wb-divider">
+    <div class="wb-field">
+      <label class="wb-label" style="display:flex;align-items:center;gap:.5rem">
+        <span>Email Notifications</span>
+        <span class="wb-badge wb-badge-info wb-badge-sm">Recommended</span>
+      </label>
+      <label class="wb-switch">
+        <input type="checkbox" checked>
+        <span class="wb-switch-track"></span>
+        Send email alerts for security events
+      </label>
+    </div>
+  </div>
+  <div class="wb-drawer-footer">
+    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-dismiss="drawer">Cancel</button>
+    <button class="wb-btn wb-btn-primary wb-btn-sm" onclick="WBDrawer.close('editDrawer');showSaveToast()">Save Changes</button>
+  </div>
+</div>
+
+<!-- ── Filter Drawer ─────────────────────────────────────── -->
+<div class="wb-drawer wb-drawer-left" id="filterDrawer" role="dialog" aria-modal="true" aria-labelledby="filterDrawerTitle">
+  <div class="wb-drawer-header">
+    <h5 class="wb-drawer-title" id="filterDrawerTitle">Advanced Filters</h5>
+    <button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">&times;</button>
+  </div>
+  <div class="wb-drawer-body">
+    <div class="wb-field" style="margin-bottom:1rem">
+      <label class="wb-label">Date Range</label>
+      <select class="wb-select">
+        <option>Last 7 days</option>
+        <option>Last 30 days</option>
+        <option>Last 90 days</option>
+        <option>All time</option>
+      </select>
+    </div>
+    <div class="wb-field" style="margin-bottom:1rem">
+      <label class="wb-label">Country</label>
+      <select class="wb-select">
+        <option>All countries</option>
+        <option>United States</option>
+        <option>Germany</option>
+        <option>Turkey</option>
+      </select>
+    </div>
+    <div class="wb-field" style="margin-bottom:1rem">
+      <label class="wb-label">Has 2FA</label>
+      <label class="wb-switch">
+        <input type="checkbox">
+        <span class="wb-switch-track"></span>
+        Only show users with 2FA enabled
+      </label>
+    </div>
+    <div class="wb-field">
+      <label class="wb-label">Show deleted</label>
+      <label class="wb-switch">
+        <input type="checkbox">
+        <span class="wb-switch-track"></span>
+        Include soft-deleted records
+      </label>
+    </div>
+  </div>
+  <div class="wb-drawer-footer">
+    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-dismiss="drawer">Reset</button>
+    <button class="wb-btn wb-btn-primary wb-btn-sm" data-wb-dismiss="drawer">Apply Filters</button>
+  </div>
+</div>
+
+<!-- ── Add User Modal ────────────────────────────────────── -->
+<div class="wb-modal" id="addUserModal" role="dialog" aria-modal="true" aria-labelledby="addUserTitle">
+  <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-header">
+      <h5 class="wb-modal-title" id="addUserTitle">Add New User</h5>
+      <button class="wb-modal-close" data-wb-dismiss="modal">&times;</button>
+    </div>
+    <div class="wb-modal-body">
+      <div class="wb-field" style="margin-bottom:.75rem">
+        <label class="wb-label">Full Name</label>
+        <input class="wb-input" type="text" placeholder="Jane Doe">
+      </div>
+      <div class="wb-field" style="margin-bottom:.75rem">
+        <label class="wb-label">Email</label>
+        <input class="wb-input" type="email" placeholder="jane@example.com">
+      </div>
+      <div class="wb-field">
+        <label class="wb-label">Role</label>
+        <select class="wb-select">
+          <option>Viewer</option>
+          <option>Editor</option>
+          <option>Admin</option>
+        </select>
+      </div>
+    </div>
+    <div class="wb-modal-footer">
+      <button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button>
+      <button class="wb-btn wb-btn-primary" data-wb-dismiss="modal">Create User</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Confirm Delete Modal ──────────────────────────────── -->
+<div class="wb-modal" id="confirmDelete" role="dialog" aria-modal="true">
+  <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
+  <div class="wb-confirm">
+    <div class="wb-confirm-icon wb-confirm-icon-danger">⚠</div>
+    <h4 class="wb-confirm-title">Delete this user?</h4>
+    <p class="wb-confirm-text">All of their data will be permanently removed. This action cannot be undone.</p>
+    <div class="wb-confirm-actions">
+      <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-dismiss="modal">Cancel</button>
+      <button class="wb-btn wb-btn-danger wb-btn-sm" data-wb-dismiss="modal">Yes, delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Command Palette ───────────────────────────────────── -->
+<div class="wb-cmd-backdrop" id="mainCmd" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="wb-cmd-dialog">
+    <div class="wb-cmd-search">
+      <span class="wb-cmd-search-icon">⌕</span>
+      <input class="wb-cmd-input" type="text" placeholder="Search users, pages, actions…" autocomplete="off">
+      <span class="wb-cmd-shortcut-hint">Esc</span>
+    </div>
+    <div class="wb-cmd-results">
+      <div class="wb-cmd-group">
+        <div class="wb-cmd-group-label">Navigation</div>
+        <a class="wb-cmd-item is-selected" href="#">
+          <span class="wb-cmd-item-icon">🏠</span>
+          <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Dashboard</span></span>
+        </a>
+        <a class="wb-cmd-item" href="#">
+          <span class="wb-cmd-item-icon">👥</span>
+          <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">All Users</span><span class="wb-cmd-item-sub">1,284 records</span></span>
+        </a>
+        <a class="wb-cmd-item" href="#">
+          <span class="wb-cmd-item-icon">📊</span>
+          <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Reports</span></span>
+        </a>
+        <a class="wb-cmd-item" href="#">
+          <span class="wb-cmd-item-icon">⚙</span>
+          <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Settings</span></span>
+          <span class="wb-cmd-item-kbd">⌘,</span>
+        </a>
+      </div>
+      <div class="wb-cmd-group">
+        <div class="wb-cmd-group-label">Actions</div>
+        <button class="wb-cmd-item" onclick="WBCommandPalette.close('mainCmd');WBModal.open('addUserModal')">
+          <span class="wb-cmd-item-icon">＋</span>
+          <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Add New User</span></span>
+        </button>
+        <button class="wb-cmd-item" onclick="WBCommandPalette.close('mainCmd');WBTheme.setMode('dark')">
+          <span class="wb-cmd-item-icon">🌙</span>
+          <span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Switch to Dark Mode</span></span>
+        </button>
+      </div>
+    </div>
+    <div class="wb-cmd-footer">
+      <span class="wb-cmd-footer-hint"><kbd class="wb-cmd-kbd">↑↓</kbd> navigate</span>
+      <span class="wb-cmd-footer-hint"><kbd class="wb-cmd-kbd">↵</kbd> select</span>
+      <span class="wb-cmd-footer-hint"><kbd class="wb-cmd-kbd">Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Save toast ─────────────────────────────────────────── -->
+<div id="saveToastContainer" class="wb-toast-container wb-toast-top-right"></div>
+
+<script>
+  function toggleChip(btn) {
+    document.querySelectorAll('.wb-filter-chip').forEach(function(c) { c.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+  }
+  function showSaveToast() {
+    var c = document.getElementById('saveToastContainer');
+    var t = document.createElement('div');
+    t.className = 'wb-toast wb-toast-success';
+    t.innerHTML = '<span>✓ <strong>User saved</strong> — changes applied successfully.</span>';
+    c.appendChild(t);
+    setTimeout(function() {
+      t.classList.add('is-leaving');
+      setTimeout(function() { t.remove(); }, 200);
+    }, 3000);
+  }
+  function openViewDrawer(name) {
+    // just opens edit drawer as a proxy for view
+    WBDrawer.open('editDrawer');
+  }
+</script>
+
+</body>
+</html>

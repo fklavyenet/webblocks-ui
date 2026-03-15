@@ -14,3 +14,6 @@ Thumbs.db
 # Temp / local
 *.log
 .env
+
+# Agent context file (dev tool, not part of codebase)
+AGENTS.md

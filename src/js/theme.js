@@ -4,7 +4,7 @@
    Axes:
      data-mode     light | dark | auto         (on <html>, CSS-native)
      data-preset   modern | minimal | ...      (on <html>, JS bundle)
-     data-accent   ocean | forest | ...        (on <html>, CSS override)
+      data-accent   ocean | forest | sunset | royal | mint | amber | rose | slate-fire
      data-radius   sharp | default | soft      (on <html>, CSS override)
      data-density  compact | default | ...     (on <html>, CSS override)
      data-shadow   flat | default | soft       (on <html>, CSS override)
@@ -45,7 +45,7 @@
   // ── Valid values ──────────────────────────────────────────
   var VALID_MODES     = ['light', 'dark', 'auto'];
   var VALID_PRESETS   = ['modern', 'minimal', 'editorial', 'playful', 'corporate'];
-  var VALID_ACCENTS   = ['ocean', 'forest', 'royal', 'warm', 'slate', 'rose', 'sand'];
+  var VALID_ACCENTS   = ['ocean', 'forest', 'sunset', 'royal', 'mint', 'amber', 'rose', 'slate-fire'];
   var VALID_RADII     = ['sharp', 'default', 'soft'];
   var VALID_DENSITIES = ['compact', 'default', 'comfortable'];
   var VALID_SHADOWS   = ['flat', 'default', 'soft'];
@@ -70,11 +70,11 @@
       shadow: 'default', font: 'modern'
     },
     minimal: {
-      accent: 'slate', radius: 'sharp', density: 'compact',
+      accent: 'ocean', radius: 'sharp', density: 'compact',
       shadow: 'flat', font: 'system'
     },
     editorial: {
-      accent: 'warm', radius: 'soft', density: 'comfortable',
+      accent: 'sunset', radius: 'soft', density: 'comfortable',
       shadow: 'soft', font: 'editorial'
     },
     playful: {
