@@ -55,11 +55,15 @@ cat \
   "$ROOT/src/css/components/divider.css" \
   "$ROOT/src/css/components/list-group.css" \
   "$ROOT/src/css/components/tooltip.css" \
+  "$ROOT/src/css/components/toolbar.css" \
+  "$ROOT/src/css/components/icons.css" \
   "$ROOT/src/css/layouts/container.css" \
   "$ROOT/src/css/layouts/navbar.css" \
   "$ROOT/src/css/layouts/sidebar.css" \
   "$ROOT/src/css/layouts/dashboard-shell.css" \
   "$ROOT/src/css/layouts/auth-shell.css" \
+  "$ROOT/src/css/layouts/settings-shell.css" \
+  "$ROOT/src/css/layouts/content-shell.css" \
   "$ROOT/src/css/utilities/helpers.css" \
   > "$CSS_OUT"
 

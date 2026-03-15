@@ -1,0 +1,140 @@
+/* ============================================================
+   WebBlocks UI — Icon System
+   ============================================================
+   Designed for use with the WebBlocks icon sprite:
+     dist/webblocks-icons.svg
+
+   Usage (sprite):
+     <svg class="wb-icon" aria-hidden="true">
+       <use href="/dist/webblocks-icons.svg#settings"></use>
+     </svg>
+
+   Usage (inline SVG — paste SVG markup directly):
+     <svg class="wb-icon" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">...</svg>
+
+   Sizes:
+     wb-icon-xs  — 0.875rem (14px)
+     wb-icon-sm  — 1rem     (16px)
+     (default)   — 1.125rem (18px)
+     wb-icon-lg  — 1.5rem   (24px)
+     wb-icon-xl  — 2rem     (32px)
+     wb-icon-2xl — 2.5rem   (40px)
+
+   Color helpers:
+     wb-icon-muted    — dimmed (0.55 opacity)
+     wb-icon-accent   — var(--wb-accent)
+     wb-icon-success  — var(--wb-success)
+     wb-icon-warning  — var(--wb-warning)
+     wb-icon-danger   — var(--wb-danger)
+     wb-icon-info     — var(--wb-info)
+
+   Layout helpers:
+     wb-icon-btn      — inline-flex row with gap (icon + text in button)
+     wb-icon-card     — flex row with larger gap (icon + content block)
+     wb-icon-solo     — centered block display (standalone icon)
+   ============================================================ */
+
+/* ── Base ─────────────────────────────────────────────────── */
+
+.wb-icon {
+  display: inline-block;
+  width:  var(--wb-icon-size, 1.125rem);
+  height: var(--wb-icon-size, 1.125rem);
+  flex-shrink: 0;
+  vertical-align: middle;
+  /* For stroke-based SVGs (Lucide style) */
+  stroke:        currentColor;
+  stroke-width:  var(--wb-icon-stroke, 2);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill:          none;
+  /* For filled SVGs */
+  color:         currentColor;
+}
+
+/* ── Sizes ─────────────────────────────────────────────────── */
+
+.wb-icon-xs  { --wb-icon-size: 0.875rem; }
+.wb-icon-sm  { --wb-icon-size: 1rem; }
+.wb-icon-lg  { --wb-icon-size: 1.5rem; }
+.wb-icon-xl  { --wb-icon-size: 2rem; }
+.wb-icon-2xl { --wb-icon-size: 2.5rem; }
+
+/* ── Stroke weight ─────────────────────────────────────────── */
+
+.wb-icon-thin   { --wb-icon-stroke: 1; }
+.wb-icon-medium { --wb-icon-stroke: 2; }   /* default */
+.wb-icon-bold   { --wb-icon-stroke: 2.5; }
+
+/* ── Color helpers ─────────────────────────────────────────── */
+
+.wb-icon-muted   { opacity: 0.55; }
+.wb-icon-accent  { color: var(--wb-accent); }
+.wb-icon-success { color: var(--wb-success); }
+.wb-icon-warning { color: var(--wb-warning); }
+.wb-icon-danger  { color: var(--wb-danger); }
+.wb-icon-info    { color: var(--wb-info); }
+.wb-icon-on      { color: var(--wb-accent-on); }
+
+/* ── Layout helpers ────────────────────────────────────────── */
+
+/* Inline button/link: icon sits next to text */
+.wb-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s2);
+}
+
+/* Card-style row: larger icon with a content block beside it */
+.wb-icon-card {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+}
+
+/* Standalone centered icon (e.g. empty-state icon) */
+.wb-icon-solo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Badge-style icon wrapper ──────────────────────────────── */
+
+/* Colored rounded background behind an icon */
+.wb-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width:  2.25rem;
+  height: 2.25rem;
+  border-radius: var(--wb-r-md);
+  background: var(--wb-accent-soft);
+  color: var(--wb-accent-text);
+  flex-shrink: 0;
+}
+
+.wb-icon-wrap-sm {
+  width:  1.75rem;
+  height: 1.75rem;
+  border-radius: var(--wb-r-sm);
+}
+
+.wb-icon-wrap-lg {
+  width:  3rem;
+  height: 3rem;
+  border-radius: var(--wb-r-lg);
+}
+
+.wb-icon-wrap-circle {
+  border-radius: var(--wb-r-full);
+}
+
+.wb-icon-wrap-success { background: var(--wb-success-soft); color: var(--wb-success); }
+.wb-icon-wrap-warning { background: var(--wb-warning-soft); color: var(--wb-warning); }
+.wb-icon-wrap-danger  { background: var(--wb-danger-soft);  color: var(--wb-danger); }
+.wb-icon-wrap-info    { background: var(--wb-info-soft);    color: var(--wb-info); }
+.wb-icon-wrap-muted   { background: var(--wb-surface-2);    color: var(--wb-muted); }
