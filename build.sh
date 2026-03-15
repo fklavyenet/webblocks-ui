@@ -87,5 +87,13 @@ cat \
 JS_LINES=$(wc -l < "$JS_OUT")
 echo "  -> dist/webblocks-ui.js   ($JS_LINES lines)"
 
+echo "Building icon CSS..."
+
+if command -v node &> /dev/null; then
+  node "$ROOT/scripts/build-icons.js"
+else
+  echo "  -> Skipped (node not found — run: node scripts/build-icons.js)"
+fi
+
 echo ""
 echo "Build complete."

@@ -115,3 +115,50 @@ fs.writeFileSync(outPath, svg, 'utf8');
 
 const count = (svg.match(/<symbol /g) || []).length;
 console.log(`Generated dist/webblocks-icons.svg — ${count} icons`);
+
+// ── Generate CSS mask-image file ─────────────────────────────
+// Allows Bootstrap-style usage: <i class="wb-icon wb-icon-settings"></i>
+
+function renderSvgDataUri(name) {
+  const icon = lucide[name];
+  if (!icon) return null;
+  const inner = icon.map(renderNode).join('');
+  const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+  // Encode for use in CSS url()
+  const encoded = svgStr
+    .replace(/"/g, "'")
+    .replace(/#/g, '%23')
+    .replace(/</g, '%3C')
+    .replace(/>/g, '%3E');
+  return `url("data:image/svg+xml,${encoded}")`;
+}
+
+let cssRules = `/* ============================================================
+   WebBlocks UI — Icon Font-Style CSS
+   Generated from Lucide ${require('/tmp/wb-lucide-build/node_modules/lucide/package.json').version}
+
+   Bootstrap-style usage:
+     <i class="wb-icon wb-icon-settings"></i>
+     <i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent"></i>
+
+   All size and color helpers from icons.css apply:
+     wb-icon-xs / sm / lg / xl / 2xl
+     wb-icon-accent / success / warning / danger / info / muted
+     wb-icon-btn (icon + text inline)
+     wb-icon-wrap (colored badge background)
+   ============================================================ */
+
+`;
+
+for (const name of ICONS) {
+  const id = toKebab(name);
+  const uri = renderSvgDataUri(name);
+  if (!uri) continue;
+  cssRules += `.wb-icon-${id} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
+}
+
+const cssOutPath = path.join(__dirname, '..', 'dist', 'webblocks-icons.css');
+fs.writeFileSync(cssOutPath, cssRules, 'utf8');
+
+const cssCount = (cssRules.match(/\.wb-icon-[a-z]/g) || []).length;
+console.log(`Generated dist/webblocks-icons.css — ${cssCount} icon classes`);
