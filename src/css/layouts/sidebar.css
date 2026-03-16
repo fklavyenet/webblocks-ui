@@ -7,7 +7,7 @@
 .wb-sidebar {
   display: flex;
   flex-direction: column;
-  width: var(--wb-sidebar-w, 240px);
+  width: var(--wb-sidebar-w, 260px);
   min-height: 100%;
   background: var(--wb-surface);
   border-right: 1px solid var(--wb-border);
@@ -23,7 +23,8 @@
 
 /* ── Sidebar header (brand area) ──────────────────────────── */
 
-.wb-sidebar-header {
+.wb-sidebar-header,
+.wb-sidebar-brand {
   display: flex;
   align-items: center;
   gap: var(--wb-s2);
@@ -37,7 +38,8 @@
   text-decoration: none;
 }
 
-.wb-sidebar-header:hover {
+.wb-sidebar-header:hover,
+.wb-sidebar-brand:hover {
   text-decoration: none;
   color: var(--wb-text);
 }
