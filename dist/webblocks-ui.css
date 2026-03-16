@@ -5316,7 +5316,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-sidebar {
   display: flex;
   flex-direction: column;
-  width: var(--wb-sidebar-w, 240px);
+  width: var(--wb-sidebar-w, 260px);
   min-height: 100%;
   background: var(--wb-surface);
   border-right: 1px solid var(--wb-border);
@@ -5332,7 +5332,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 /* ── Sidebar header (brand area) ──────────────────────────── */
 
-.wb-sidebar-header {
+.wb-sidebar-header,
+.wb-sidebar-brand {
   display: flex;
   align-items: center;
   gap: var(--wb-s2);
@@ -5346,7 +5347,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   text-decoration: none;
 }
 
-.wb-sidebar-header:hover {
+.wb-sidebar-header:hover,
+.wb-sidebar-brand:hover {
   text-decoration: none;
   color: var(--wb-text);
 }
