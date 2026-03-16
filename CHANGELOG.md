@@ -6,6 +6,27 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.1.0] — 2026-03-16
+
+### Added
+- `wb-icon-trash` — Lucide `Trash` icon (simple, no inner lines); complements existing `wb-icon-trash2`
+- `wb-icon-home` — Lucide `Home`
+- `wb-icon-layout` — Lucide `Layout`
+- `wb-icon-bar-chart` — Lucide `BarChart`
+- `wb-icon-bar-chart2` — Lucide `BarChart2`
+- `wb-icon-log-out` — Lucide `LogOut`
+- `wb-icon-arrow-up-circle` — Lucide `ArrowUpCircle`
+- `wb-icon-info` — Lucide `Info`
+- `wb-icon-help-circle` — Lucide `HelpCircle`
+- `wb-icon-circle-help` — Lucide `CircleHelp`
+- Icon count: 120 → 130 (both `webblocks-icons.svg` and `webblocks-icons.css`)
+- `wb-sidebar-brand` — alias for `wb-sidebar-header`; same styles, more intuitive name for logo/brand areas
+
+### Fixed
+- `.wb-sidebar` width fallback corrected: `var(--wb-sidebar-w, 240px)` → `var(--wb-sidebar-w, 260px)` to match the `--wb-sidebar-w: 260px` token definition
+
+---
+
 ## [2.0.1] — 2026-03-15
 
 ### Fixed
