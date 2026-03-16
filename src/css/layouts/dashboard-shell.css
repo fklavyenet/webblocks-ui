@@ -17,7 +17,8 @@
 
 .wb-dashboard-shell {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;       /* fixed viewport height — enables internal scroll */
+  overflow: hidden;    /* children handle their own scroll */
   background: var(--wb-bg);
 }
 
@@ -29,6 +30,7 @@
   flex: 1;
   min-width: 0; /* prevent flex overflow */
   overflow: hidden;
+  height: 100%;        /* fill shell height */
 }
 
 /* ── Main content area ────────────────────────────────────── */
@@ -135,6 +137,6 @@
 }
 
 /* ── Backward-compat aliases ──────────────────────────────── */
-.wb-shell       { display: flex; min-height: 100vh; background: var(--wb-bg); }
-.wb-shell-main  { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; }
+.wb-shell       { display: flex; height: 100vh; overflow: hidden; background: var(--wb-bg); }
+.wb-shell-main  { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; height: 100%; }
 .wb-shell-body  { flex: 1; overflow-y: auto; padding: var(--wb-s6); }

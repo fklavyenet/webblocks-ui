@@ -168,6 +168,35 @@
     applyMode(mode);
   }
 
+  function cycleMode() {
+    var current = ls(MODE_KEY) || DEFAULT_MODE;
+    var next = current === 'light' ? 'dark' : current === 'dark' ? 'auto' : 'light';
+    setMode(next);
+    syncCycleButtons();
+  }
+
+  // Update icon on data-wb-mode-cycle buttons to reflect current mode
+  function syncCycleButtons() {
+    var mode = ls(MODE_KEY) || DEFAULT_MODE;
+    var iconMap = { light: 'sun', dark: 'moon', auto: 'sun-moon' };
+    var icon = iconMap[mode] || 'sun-moon';
+    document.querySelectorAll('[data-wb-mode-cycle]').forEach(function (btn) {
+      // Update SVG <use> href if present
+      var use = btn.querySelector('use');
+      if (use) use.setAttribute('href', '#' + icon);
+      // Update <i> class if present
+      var i = btn.querySelector('i.wb-icon');
+      if (i) {
+        i.className = i.className.replace(/wb-icon-sun(-moon)?|wb-icon-moon/g, '').trim();
+        i.classList.add('wb-icon-' + icon);
+      }
+      // Update title/aria-label
+      var labels = { light: 'Light mode', dark: 'Dark mode', auto: 'Auto mode' };
+      btn.setAttribute('title', labels[mode]);
+      btn.setAttribute('aria-label', labels[mode]);
+    });
+  }
+
   function setPreset(preset) {
     if (!VALID_PRESETS.includes(preset)) return;
     ls(PRESET_KEY, preset);
@@ -229,6 +258,9 @@
     document.addEventListener('click', function (e) {
       var el;
 
+      el = e.target.closest('[data-wb-mode-cycle]');
+      if (el) { e.preventDefault(); cycleMode(); return; }
+
       el = e.target.closest('[data-wb-mode-set]');
       if (el) { e.preventDefault(); setMode(el.getAttribute('data-wb-mode-set')); return; }
 
@@ -287,6 +319,12 @@
 
     attachListeners();
     watchSystem();
+    // Sync cycle buttons after DOM is ready (icons need to reflect stored mode)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', syncCycleButtons);
+    } else {
+      syncCycleButtons();
+    }
   }
 
   // Run immediately — before paint — to prevent flash

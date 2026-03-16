@@ -52,6 +52,8 @@ const ICONS = [
   // layout_design
   'Home','Layout','LayoutGrid','Columns2','Rows2','Square',
   'RectangleHorizontal','Maximize2','Minimize2','MousePointer2','Palette','Sparkles',
+  // theme_mode
+  'Sun','Moon','SunMoon',
   // devices_integration
   'Monitor','Laptop','TabletSmartphone','Smartphone',
   'Tablet','Watch','Printer','Router','Wifi','Cloud',
