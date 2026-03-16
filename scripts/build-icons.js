@@ -13,7 +13,7 @@ const ICONS = [
   'ArrowLeft','ArrowRight',
   // actions
   'Plus','Minus','X','Check',
-  'Pencil','Trash2','Copy','Save','Download','Upload',
+  'Pencil','Trash','Trash2','Copy','Save','Download','Upload',
   // content_editor
   'FileText','Files','StickyNote','Heading',
   'Type','List','ListOrdered','Quote','Code','PenTool',
