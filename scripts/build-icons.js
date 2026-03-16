@@ -10,7 +10,7 @@ const ICONS = [
   // navigation
   'Menu','PanelLeft','PanelRight','Sidebar',
   'ChevronLeft','ChevronRight','ChevronUp','ChevronDown',
-  'ArrowLeft','ArrowRight',
+  'ArrowLeft','ArrowRight','ArrowUpCircle','LogOut',
   // actions
   'Plus','Minus','X','Check',
   'Pencil','Trash','Trash2','Copy','Save','Download','Upload',
@@ -36,14 +36,16 @@ const ICONS = [
   'Settings','SlidersHorizontal','ToggleLeft','ToggleRight',
   'Wrench','Hammer','Bug','Database','Server','Plug',
   // charts_dashboard
-  'LayoutDashboard','BarChart3','LineChart','PieChart',
+  'LayoutDashboard','BarChart','BarChart2','BarChart3','LineChart','PieChart',
   'AreaChart','Activity','Gauge','Target','TrendingUp','Calendar',
   // layout_design
-  'LayoutGrid','Columns2','Rows2','Square',
+  'Home','Layout','LayoutGrid','Columns2','Rows2','Square',
   'RectangleHorizontal','Maximize2','Minimize2','MousePointer2','Palette','Sparkles',
   // devices_integration
   'Monitor','Laptop','TabletSmartphone','Smartphone',
   'Tablet','Watch','Printer','Router','Wifi','Cloud',
+  // feedback_status
+  'Info','HelpCircle','CircleHelp',
 ];
 
 // kebab-case helper (PascalCase → kebab-case)
