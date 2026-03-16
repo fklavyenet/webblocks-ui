@@ -6,6 +6,26 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.2.0] — 2026-03-16
+
+### Changed
+- **Build system refactor**: `scripts/build-icons.js` now fetches Lucide icon bundle directly from unpkg.com CDN
+- Removed hardcoded `/tmp/wb-lucide-build/node_modules/lucide` dependency
+- Dynamic UMD bundle parsing for icon extraction (all 130 icons still generated identically)
+
+### Improved
+- Better documentation: separated **user** vs **developer** build workflows in README
+- Marked `build-icons.js` as **development-only tool** with ⚠️ warning header
+- Users warned not to run icon build script (requires internet, not needed for existing projects)
+- Icon validation in `build.sh` continues working seamlessly
+
+### Notes
+- Zero breaking changes — existing projects unaffected
+- Pre-built icon files (`dist/webblocks-icons.svg` and `.css`) ship ready-to-use
+- Developers can update icon list by editing `scripts/build-icons.js` and running `node scripts/build-icons.js`
+
+---
+
 ## [2.1.0] — 2026-03-16
 
 ### Added
