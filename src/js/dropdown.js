@@ -90,6 +90,17 @@
       return;
     }
 
+    // Close dropdown when a menu item is clicked (but allow other handlers to run first)
+    var menuItem = e.target.closest('.wb-dropdown-item');
+    if (menuItem && openDropdown) {
+      var menu = menuItem.closest('.wb-dropdown-menu');
+      if (menu && menu === openDropdown) {
+        // Delay close slightly to allow other click handlers (like theme toggle) to run
+        setTimeout(function () { if (openDropdown === menu) close(menu); }, 10);
+        return;
+      }
+    }
+
     // Close on outside click
     if (openDropdown && !openDropdown.contains(e.target)) {
       close(openDropdown);
