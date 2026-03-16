@@ -535,7 +535,11 @@ Modifier: `wb-toolbar-inset` adds horizontal padding for use inside a card.
 
 ## Icons
 
-WebBlocks ships a curated set of **120 Lucide icons** as both an SVG sprite and a CSS icon file.
+WebBlocks ships a curated set of **130 Lucide icons** as both an SVG sprite and a CSS icon file.
+
+**For users:** Use the pre-built icon files from `dist/`.
+
+**For developers:** Icon files are regenerated from the Lucide CDN (see **Development** section below).
 
 Two usage patterns are supported:
 
@@ -549,7 +553,7 @@ Requires `webblocks-icons.css` in addition to `webblocks-ui.css`:
 
 <i class="wb-icon wb-icon-settings"></i>
 <i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent"></i>
-<i class="wb-icon wb-icon-trash-2 wb-icon-sm wb-icon-danger"></i>
+<i class="wb-icon wb-icon-trash wb-icon-sm wb-icon-danger"></i>
 ```
 
 ### Pattern 2 — SVG sprite
@@ -608,30 +612,24 @@ Shape: `wb-icon-wrap-circle`
 </button>
 ```
 
-### Icon list (120 icons)
+### Icon list (130 icons)
 
 | Category | Icons |
 |----------|-------|
-| Navigation | `menu` `panel-left` `panel-right` `sidebar` `chevron-left` `chevron-right` `chevron-up` `chevron-down` `arrow-left` `arrow-right` |
-| Actions | `plus` `minus` `x` `check` `pencil` `trash-2` `copy` `save` `download` `upload` |
+| Navigation | `menu` `panel-left` `panel-right` `sidebar` `chevron-left` `chevron-right` `chevron-up` `chevron-down` `arrow-left` `arrow-right` `arrow-up-circle` `log-out` |
+| Actions | `plus` `minus` `x` `check` `pencil` `trash` `trash2` `copy` `save` `download` `upload` |
 | Content | `file-text` `files` `sticky-note` `heading` `type` `list` `list-ordered` `quote` `code` `pen-tool` |
-| Media | `image` `camera` `video` `play` `pause` `volume-2` `mic` `music` `film` `clapperboard` |
+| Media | `image` `camera` `video` `play` `pause` `volume2` `mic` `music` `film` `clapperboard` |
 | Files | `folder` `folder-open` `folder-tree` `file` `file-plus` `file-code` `file-image` `file-archive` `file-search` `receipt` |
 | Commerce | `shopping-cart` `shopping-bag` `store` `package` `credit-card` `wallet` `badge-percent` `banknote` `hand-coins` `receipt-text` |
 | Communication | `mail` `send` `inbox` `message-square` `messages-square` `phone` `bell` `bell-ring` `at-sign` `globe` |
 | Users & Security | `user` `user-round` `users` `contact` `badge-check` `shield` `shield-check` `lock` `key-round` `fingerprint` |
 | Settings | `settings` `sliders-horizontal` `toggle-left` `toggle-right` `wrench` `hammer` `bug` `database` `server` `plug` |
-| Charts | `layout-dashboard` `bar-chart-3` `line-chart` `pie-chart` `area-chart` `activity` `gauge` `target` `trending-up` `calendar` |
-| Layout | `layout-grid` `columns-2` `rows-2` `square` `rectangle-horizontal` `maximize-2` `minimize-2` `mouse-pointer-2` `palette` `sparkles` |
+| Charts | `layout-dashboard` `bar-chart` `bar-chart2` `bar-chart3` `line-chart` `pie-chart` `area-chart` `activity` `gauge` `target` `trending-up` `calendar` |
+| Layout | `home` `layout` `layout-grid` `columns2` `rows2` `square` `rectangle-horizontal` `maximize2` `minimize2` `mouse-pointer2` `palette` `sparkles` |
 | Devices | `monitor` `laptop` `tablet-smartphone` `smartphone` `tablet` `watch` `printer` `router` `wifi` `cloud` |
 
 Live preview with search: `examples/v2/icons.html`
-
-Rebuilding icon files (requires Node.js, one-time only):
-
-```bash
-node scripts/build-icons.js
-```
 
 ---
 
@@ -711,14 +709,28 @@ WBCommandPalette.register('#myCmdPalette', {
 
 ## Build
 
-Regenerate dist files from source:
+**For users:** The dist files are pre-built and ready to use. No build step required.
+
+**For developers:** Regenerate dist files from source:
 
 ```bash
 chmod +x build.sh
 ./build.sh
 ```
 
-No npm. No node_modules. Pure shell `cat`.
+This concatenates source files into `dist/webblocks-ui.css` and `dist/webblocks-ui.js`, and regenerates the icon sprite from the Lucide CDN.
+
+No npm. No node_modules. Pure shell script.
+
+### Icon regeneration (development only)
+
+To update the icon sprite after changing the icon list in `scripts/build-icons.js`:
+
+```bash
+node scripts/build-icons.js
+```
+
+⚠️ **Development tool only** — This script requires internet access to fetch icons from the Lucide CDN. Users should never run this; it's only for maintainers updating the icon set.
 
 ---
 
