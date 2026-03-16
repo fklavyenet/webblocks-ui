@@ -1,7 +1,16 @@
 #!/usr/bin/env node
-// Generates dist/webblocks-icons.svg from the 130 selected Lucide icons
-// Fetches icons directly from Lucide CDN (UMD bundle) — zero external dependencies
-// Run from the webblocks-ui project root: node scripts/build-icons.js
+// ⚠️  DEVELOPMENT TOOL ONLY — Do not run in production/user projects
+//
+// Regenerates dist/webblocks-icons.svg from 130 selected Lucide icons.
+// Fetches icons directly from Lucide CDN (UMD bundle) — requires internet.
+//
+// FOR DEVELOPERS ONLY:
+//   When updating icon list, run: node scripts/build-icons.js
+//   Then commit the updated dist/webblocks-icons.* files to git.
+//
+// FOR USERS:
+//   Do NOT run this script. Use pre-built icons from dist/ directory.
+//   dist/webblocks-icons.svg and dist/webblocks-icons.css are ready to use.
 
 const fs   = require('fs');
 const path = require('path');
