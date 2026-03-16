@@ -1005,9 +1005,27 @@
   <a href="#" class="wb-navbar-brand">WebBlocks Icons</a>
   <span class="wb-navbar-spacer"></span>
   <div class="wb-navbar-end">
-    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-mode-set="light">Light</button>
-    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-mode-set="dark">Dark</button>
-    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-mode-set="auto">Auto</button>
+    <!-- Theme toggle dropdown -->
+    <div class="wb-dropdown">
+      <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" aria-expanded="false"
+              title="Theme settings" aria-label="Change theme">
+        <i class="wb-icon wb-icon-sun-moon wb-icon-sm"></i>
+      </button>
+      <ul class="wb-dropdown-menu">
+        <li><a class="wb-dropdown-item" href="#" data-wb-mode-set="light">
+          <i class="wb-icon wb-icon-sun wb-icon-sm" style="margin-right: 0.5rem;"></i>
+          Light
+        </a></li>
+        <li><a class="wb-dropdown-item" href="#" data-wb-mode-set="dark">
+          <i class="wb-icon wb-icon-moon wb-icon-sm" style="margin-right: 0.5rem;"></i>
+          Dark
+        </a></li>
+        <li><a class="wb-dropdown-item" href="#" data-wb-mode-set="auto">
+          <i class="wb-icon wb-icon-sun-moon wb-icon-sm" style="margin-right: 0.5rem;"></i>
+          Auto
+        </a></li>
+      </ul>
+    </div>
     <a href="../index.html" class="wb-btn wb-btn-outline wb-btn-sm">← Component Reference</a>
   </div>
 </nav>
