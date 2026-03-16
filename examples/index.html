@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebBlocks UI — V2 Component Reference</title>
-  <link rel="stylesheet" href="../../dist/webblocks-ui.css">
-  <link rel="stylesheet" href="../../dist/webblocks-icons.css">
-  <script src="../../dist/webblocks-ui.js"></script>
+  <title>WebBlocks UI — Component Reference</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../dist/webblocks-icons.css">
+  <script src="../dist/webblocks-ui.js"></script>
   <style>
     .demo-section { padding: 2rem 0; border-bottom: 1px solid var(--wb-border); }
     .demo-section:last-child { border-bottom: none; }
@@ -19,46 +19,102 @@
 </head>
 <body style="background:var(--wb-bg)">
 
+<!-- Load SVG icon sprite async -->
+<script>
+  fetch('../dist/webblocks-icons.svg')
+    .then(r => r.text())
+    .then(html => {
+      var d = document.createElement('div');
+      d.hidden = true;
+      d.innerHTML = html;
+      document.body.prepend(d);
+    });
+</script>
+
 <!-- ── Navbar ────────────────────────────────────────────── -->
 <nav class="wb-navbar">
-  <a href="#" class="wb-navbar-brand">WebBlocks V2</a>
+  <button class="wb-navbar-toggle" data-wb-toggle="sidebar" data-wb-target="#mainSidebar"
+          aria-expanded="false" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="index.html" class="wb-navbar-brand">WebBlocks UI</a>
   <span class="wb-navbar-spacer"></span>
-  <div class="wb-navbar-end">
-    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-mode-set="light">Light</button>
-    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-mode-set="dark">Dark</button>
-    <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-mode-set="auto">Auto</button>
-    <a href="../core/index.html" class="wb-btn wb-btn-outline wb-btn-sm">V1 Components →</a>
-  </div>
-</nav>
+   <div class="wb-navbar-end">
+     <!-- Theme toggle dropdown -->
+     <div class="wb-dropdown">
+       <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" aria-expanded="false"
+               title="Theme settings" aria-label="Change theme">
+         <i class="wb-icon wb-icon-sun-moon wb-icon-sm"></i>
+       </button>
+       <ul class="wb-dropdown-menu">
+         <li><a class="wb-dropdown-item" href="#" data-wb-mode-set="light">
+           <i class="wb-icon wb-icon-sun wb-icon-sm" style="margin-right: 0.5rem;"></i>
+           Light
+         </a></li>
+         <li><a class="wb-dropdown-item" href="#" data-wb-mode-set="dark">
+           <i class="wb-icon wb-icon-moon wb-icon-sm" style="margin-right: 0.5rem;"></i>
+           Dark
+         </a></li>
+         <li><a class="wb-dropdown-item" href="#" data-wb-mode-set="auto">
+           <i class="wb-icon wb-icon-sun-moon wb-icon-sm" style="margin-right: 0.5rem;"></i>
+           Auto
+         </a></li>
+       </ul>
+     </div>
+     <a href="admin/dashboard.html" class="wb-btn wb-btn-primary wb-btn-sm">Admin Demo →</a>
+   </div>
+ </nav>
 
 <div class="wb-shell">
 
   <!-- ── Sidebar ───────────────────────────────────────────── -->
   <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
-  <aside class="wb-sidebar" id="v2Sidebar">
+  <aside class="wb-sidebar" id="mainSidebar">
     <nav class="wb-sidebar-nav">
-      <a class="wb-sidebar-link" href="#nav-group">Nav Group</a>
-      <a class="wb-sidebar-link" href="#filter-bar">Filter Bar</a>
-      <a class="wb-sidebar-link" href="#action-menu">Action Menu</a>
-      <a class="wb-sidebar-link" href="#status-pill">Status Pill</a>
-      <a class="wb-sidebar-link" href="#loading">Loading</a>
-      <a class="wb-sidebar-link" href="#popover">Popover</a>
-      <a class="wb-sidebar-link" href="#drawer">Drawer</a>
-      <a class="wb-sidebar-link" href="#command-palette">Command Palette</a>
-      <a class="wb-sidebar-link" href="#divider">Divider</a>
-      <a class="wb-sidebar-link" href="#list-group">List Group</a>
-      <a class="wb-sidebar-link" href="#toast-positions">Toast Positions</a>
-      <a class="wb-sidebar-link" href="#confirm">Confirm Dialog</a>
-      <a class="wb-sidebar-link" href="#tooltip">Tooltip</a>
-      <a class="wb-sidebar-link" href="#border-presets">Border Presets</a>
+      <div class="wb-sidebar-section">
+        <span class="wb-sidebar-label">Demo Pages</span>
+        <a class="wb-sidebar-link" href="admin/dashboard.html">
+          <i class="wb-icon wb-icon-layout-dashboard wb-icon-sm"></i> Admin Dashboard
+        </a>
+        <a class="wb-sidebar-link" href="v2/icons.html">
+          <i class="wb-icon wb-icon-palette wb-icon-sm"></i> Icon Reference
+        </a>
+      </div>
+      <div class="wb-sidebar-section">
+        <span class="wb-sidebar-label">Components</span>
+        <a class="wb-sidebar-link" href="#nav-group">Nav Group</a>
+        <a class="wb-sidebar-link" href="#filter-bar">Filter Bar</a>
+        <a class="wb-sidebar-link" href="#action-menu">Action Menu</a>
+        <a class="wb-sidebar-link" href="#status-pill">Status Pill</a>
+        <a class="wb-sidebar-link" href="#loading">Loading</a>
+        <a class="wb-sidebar-link" href="#popover">Popover</a>
+        <a class="wb-sidebar-link" href="#drawer">Drawer</a>
+        <a class="wb-sidebar-link" href="#command-palette">Command Palette</a>
+        <a class="wb-sidebar-link" href="#divider">Divider</a>
+        <a class="wb-sidebar-link" href="#list-group">List Group</a>
+        <a class="wb-sidebar-link" href="#toast-positions">Toast Positions</a>
+        <a class="wb-sidebar-link" href="#confirm">Confirm Dialog</a>
+        <a class="wb-sidebar-link" href="#tooltip">Tooltip</a>
+        <a class="wb-sidebar-link" href="#border-presets">Border Presets</a>
+      </div>
     </nav>
   </aside>
 
   <!-- ── Main ──────────────────────────────────────────────── -->
   <div class="wb-shell-main">
     <div class="wb-container" style="max-width:860px; padding: 2rem 1.5rem">
-      <h1 style="font-size:1.75rem;font-weight:800;margin-bottom:0.25rem">V2 Components</h1>
-      <p style="color:var(--wb-muted);margin-bottom:0">New components added in WebBlocks V2.</p>
+
+      <!-- Hero -->
+      <div style="margin-bottom:2.5rem">
+        <h1 style="font-size:2rem;font-weight:800;margin:0 0 .5rem">WebBlocks UI</h1>
+        <p style="color:var(--wb-muted);margin:0 0 1.25rem;font-size:1rem">
+          Standalone HTML/CSS/JS component library — no npm, no framework, no dependencies.
+        </p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <a href="admin/dashboard.html" class="wb-btn wb-btn-primary">Open Admin Demo →</a>
+          <a href="v2/icons.html" class="wb-btn wb-btn-outline">Icon Reference</a>
+        </div>
+      </div>
 
       <!-- ── Nav Group ─────────────────────────────────────── -->
       <section id="nav-group" class="demo-section">
@@ -112,8 +168,8 @@
         <div class="wb-filter-bar">
           <div class="wb-filter-bar-start">
             <div class="wb-search-bar" style="width:220px">
-            <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
-            <input class="wb-search-bar-input" type="text" placeholder="Search users…">
+              <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
+              <input class="wb-search-bar-input" type="text" placeholder="Search users…">
             </div>
             <button class="wb-filter-chip is-active">Active <span class="wb-filter-count">12</span></button>
             <button class="wb-filter-chip">Pending</button>
@@ -366,40 +422,39 @@
             <div class="wb-cmd-results">
               <div class="wb-cmd-group">
                 <div class="wb-cmd-group-label">Navigation</div>
-                <a class="wb-cmd-item is-selected" href="#">
+                <a class="wb-cmd-item is-selected" href="admin/dashboard.html">
                   <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layout-dashboard wb-icon-sm"></i></span>
                   <span class="wb-cmd-item-text">
-                    <span class="wb-cmd-item-title">Dashboard</span>
-                    <span class="wb-cmd-item-sub">Go to main dashboard</span>
+                    <span class="wb-cmd-item-title">Admin Dashboard</span>
+                    <span class="wb-cmd-item-sub">Open admin demo page</span>
                   </span>
                 </a>
-                <a class="wb-cmd-item" href="#">
-                  <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-users wb-icon-sm"></i></span>
+                <a class="wb-cmd-item" href="v2/icons.html">
+                  <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-palette wb-icon-sm"></i></span>
                   <span class="wb-cmd-item-text">
-                    <span class="wb-cmd-item-title">Users</span>
-                    <span class="wb-cmd-item-sub">Manage users</span>
+                    <span class="wb-cmd-item-title">Icon Reference</span>
+                    <span class="wb-cmd-item-sub">All 130 icons</span>
                   </span>
                 </a>
-                <a class="wb-cmd-item" href="#">
+                <a class="wb-cmd-item" href="#nav-group">
                   <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span>
                   <span class="wb-cmd-item-text">
-                    <span class="wb-cmd-item-title">Settings</span>
+                    <span class="wb-cmd-item-title">Nav Group</span>
                   </span>
-                  <span class="wb-cmd-item-kbd">⌘,</span>
                 </a>
               </div>
               <div class="wb-cmd-group">
-                <div class="wb-cmd-group-label">Actions</div>
-                <button class="wb-cmd-item">
-                  <span class="wb-cmd-item-icon">＋</span>
-                  <span class="wb-cmd-item-text">
-                    <span class="wb-cmd-item-title">New User</span>
-                  </span>
-                </button>
-                <button class="wb-cmd-item">
+                <div class="wb-cmd-group-label">Theme</div>
+                <button class="wb-cmd-item" onclick="WBTheme.setMode('dark');WBCommandPalette.close('cmdPalette')">
                   <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span>
                   <span class="wb-cmd-item-text">
-                    <span class="wb-cmd-item-title">Toggle Dark Mode</span>
+                    <span class="wb-cmd-item-title">Switch to Dark Mode</span>
+                  </span>
+                </button>
+                <button class="wb-cmd-item" onclick="WBTheme.setMode('light');WBCommandPalette.close('cmdPalette')">
+                  <span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></span>
+                  <span class="wb-cmd-item-text">
+                    <span class="wb-cmd-item-title">Switch to Light Mode</span>
                   </span>
                 </button>
               </div>
