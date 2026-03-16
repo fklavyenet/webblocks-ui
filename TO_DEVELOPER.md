@@ -74,6 +74,29 @@ That's the only command. No tests, no linting, no dev server.
 
 ---
 
+## Workflow Checklist
+
+After modifying **any source files** (CSS, JS, or icons), follow this sequence:
+
+```bash
+# 1. Run build
+./build.sh
+
+# 2. Verify dist files were regenerated
+git status              # should show dist/ files as modified
+
+# 3. Commit changes
+git add dist/
+git commit -m "Build: regenerate dist files after [description of change]"
+
+# 4. Push to GitHub
+git push origin master
+```
+
+**Critical:** Never push source-only changes without running `build.sh` first. Test sites depend on up-to-date `dist/` files.
+
+---
+
 ## Architecture
 
 ```
@@ -82,7 +105,7 @@ webblocks-ui/
 ├── dist/
 │   ├── webblocks-ui.css        ← single compiled CSS (DO NOT edit directly)
 │   ├── webblocks-ui.js         ← single compiled JS  (DO NOT edit directly)
-│   └── webblocks-icons.svg     ← SVG sprite (120 Lucide icons)
+│   └── webblocks-icons.svg     ← SVG sprite (133 Lucide icons)
 ├── src/
 │   ├── css/
 │   │   ├── foundation/         ← tokens, dark mode, theme axes (edit here for design system changes)
@@ -165,7 +188,7 @@ Managed at runtime by `WBTheme` — preferences are saved to `localStorage` auto
 
 ## Icon System
 
-WebBlocks UI ships **120 Lucide icons** as an SVG sprite (`dist/webblocks-icons.svg`).
+WebBlocks UI ships **133 Lucide icons** as an SVG sprite (`dist/webblocks-icons.svg`).
 
 ### Including the sprite
 
@@ -222,6 +245,24 @@ node scripts/build-icons.js
 ```
 
 Edit `selected-icons.json` to add or remove icons before rebuilding.
+
+**IMPORTANT: After regenerating the sprite, rebuild and push `dist/` files:**
+
+```bash
+# 1. Rebuild all dist files from source
+./build.sh
+
+# 2. Commit and push the regenerated dist/ files to GitHub
+git add dist/
+git commit -m "Build: regenerate dist files with updated icons"
+git push origin master
+```
+
+**GitHub caching:** After push, GitHub Pages and CDN caches may lag 1-2 minutes. Test sites should:
+1. Hard refresh browser cache: `Ctrl+Shift+R` (or `Cmd+Shift+R` on macOS)
+2. If still stale, purge JSDelivr cache: `curl https://purge.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.svg`
+
+**Without rebuilding and pushing `dist/`, changes are invisible to external consumers.**
 
 ### Reference page
 
