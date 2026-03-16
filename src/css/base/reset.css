@@ -26,7 +26,12 @@ ul, ol {
   padding: 0;
 }
 
-img, svg, video, canvas, audio, iframe, embed, object {
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+svg, video, canvas, audio, iframe, embed, object {
   display: block;
   max-width: 100%;
 }
