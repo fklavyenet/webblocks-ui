@@ -8,10 +8,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [2.2.0] — 2026-03-16
 
+### Added
+- Theme mode icons for light/dark/auto mode selection:
+  - `wb-icon-sun` — Light mode (Lucide `Sun`)
+  - `wb-icon-moon` — Dark mode (Lucide `Moon`)
+  - `wb-icon-sun-moon` — Auto/system mode (Lucide `SunMoon`)
+- Icon count: 130 → 133 (both `webblocks-icons.svg` and `webblocks-icons.css`)
+- Icon gallery reference updated with all 133 icons
+
 ### Changed
 - **Build system refactor**: `scripts/build-icons.js` now fetches Lucide icon bundle directly from unpkg.com CDN
 - Removed hardcoded `/tmp/wb-lucide-build/node_modules/lucide` dependency
-- Dynamic UMD bundle parsing for icon extraction (all 130 icons still generated identically)
+- Dynamic UMD bundle parsing for icon extraction (all 133 icons still generated identically)
 
 ### Improved
 - Better documentation: separated **user** vs **developer** build workflows in README
