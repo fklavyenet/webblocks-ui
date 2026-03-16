@@ -1001,7 +1001,12 @@ ul, ol {
   padding: 0;
 }
 
-img, svg, video, canvas, audio, iframe, embed, object {
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+svg, video, canvas, audio, iframe, embed, object {
   display: block;
   max-width: 100%;
 }
@@ -4874,24 +4879,29 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   height: var(--wb-icon-size, 1.125rem);
   flex-shrink: 0;
   vertical-align: middle;
+  color: currentColor;
+}
 
-  /* SVG sprite mode — stroke-based (Lucide) */
+/* SVG sprite mode (<svg class="wb-icon">) — stroke-based (Lucide) */
+svg.wb-icon {
   stroke:         currentColor;
   stroke-width:   var(--wb-icon-stroke, 2);
   stroke-linecap: round;
   stroke-linejoin: round;
   fill:           none;
-  color:          currentColor;
+  background:     none;
+  overflow:       visible;
+}
 
-  /* mask-image mode — <i> tag usage */
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat:         no-repeat;
-  -webkit-mask-size:   100% 100%;
-  mask-size:           100% 100%;
+/* Bootstrap-style <i> tag mode — requires webblocks-icons.css */
+i.wb-icon {
+  -webkit-mask-repeat:   no-repeat;
+  mask-repeat:           no-repeat;
+  -webkit-mask-size:     100% 100%;
+  mask-size:             100% 100%;
   -webkit-mask-position: center;
   mask-position:         center;
-  /* background provides the color for mask mode */
-  background-color: currentColor;
+  background-color:      currentColor;
 }
 
 /* ── Sizes ─────────────────────────────────────────────────── */
@@ -5503,7 +5513,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 .wb-dashboard-shell {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;       /* fixed viewport height — enables internal scroll */
+  overflow: hidden;    /* children handle their own scroll */
   background: var(--wb-bg);
 }
 
@@ -5515,6 +5526,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   flex: 1;
   min-width: 0; /* prevent flex overflow */
   overflow: hidden;
+  height: 100%;        /* fill shell height */
 }
 
 /* ── Main content area ────────────────────────────────────── */
@@ -5621,8 +5633,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 }
 
 /* ── Backward-compat aliases ──────────────────────────────── */
-.wb-shell       { display: flex; min-height: 100vh; background: var(--wb-bg); }
-.wb-shell-main  { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; }
+.wb-shell       { display: flex; height: 100vh; overflow: hidden; background: var(--wb-bg); }
+.wb-shell-main  { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; height: 100%; }
 .wb-shell-body  { flex: 1; overflow-y: auto; padding: var(--wb-s6); }
 /* ============================================================
    WebBlocks UI — Auth Shell Layout
