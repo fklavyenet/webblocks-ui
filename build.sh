@@ -73,6 +73,8 @@ echo "  -> dist/webblocks-ui.css  ($CSS_LINES lines)"
 echo "Building JS..."
 
 cat \
+  "$ROOT/src/js/utils/storage.js" \
+  "$ROOT/src/js/utils/dom.js" \
   "$ROOT/src/js/theme.js" \
   "$ROOT/src/js/dropdown.js" \
   "$ROOT/src/js/modal.js" \

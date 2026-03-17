@@ -1,4 +1,139 @@
 /* ============================================================
+   WebBlocks UI — Storage Utilities (utils/storage.js)
+
+   Safe localStorage wrapper used by theme.js and any other
+   module that needs to persist state across page loads.
+   Exposed on window.WBStorage — internal API for WB modules.
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  // ── Safe localStorage access ──────────────────────────────
+  // Falls back silently in private browsing or when storage
+  // is blocked by browser policy.
+
+  function get(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function set(key, value) {
+    try { localStorage.setItem(key, value); } catch (e) {}
+  }
+
+  function remove(key) {
+    try { localStorage.removeItem(key); } catch (e) {}
+  }
+
+  // ── Public API ────────────────────────────────────────────
+
+  window.WBStorage = {
+    get:    get,
+    set:    set,
+    remove: remove
+  };
+
+})();
+/* ============================================================
+   WebBlocks UI — DOM Utilities (utils/dom.js)
+
+   Shared helpers used across all WB modules.
+   Exposed on window.WBDom — not intended for direct use by
+   page authors; internal API for WB modules only.
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  // ── Focusable elements selector ───────────────────────────
+  // Used by modal.js, drawer.js (focus trap)
+
+  var FOCUSABLE_SELECTOR = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(', ');
+
+  // ── Focus trap ────────────────────────────────────────────
+  // Keeps Tab focus cycling within a container element.
+  // Call inside a keydown handler.
+
+  function trapFocus(e, container) {
+    if (e.key !== 'Tab') return;
+    var focusable = Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR));
+    if (!focusable.length) return;
+
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
+  // ── Focus first focusable element in container ────────────
+
+  function focusFirst(container) {
+    requestAnimationFrame(function () {
+      var first = container.querySelector(FOCUSABLE_SELECTOR);
+      if (first) first.focus();
+    });
+  }
+
+  // ── Emit a custom event ───────────────────────────────────
+
+  function emit(element, eventName, detail) {
+    element.dispatchEvent(new CustomEvent(eventName, {
+      bubbles: true,
+      detail: detail || {}
+    }));
+  }
+
+  // ── Debounce ──────────────────────────────────────────────
+  // Returns a debounced version of fn.
+
+  function debounce(fn, delay) {
+    var timer;
+    return function () {
+      var args = arguments;
+      var ctx  = this;
+      clearTimeout(timer);
+      timer = setTimeout(function () { fn.apply(ctx, args); }, delay);
+    };
+  }
+
+  // ── Resolve a target element from a selector string ───────
+
+  function resolveTarget(selector) {
+    if (!selector) return null;
+    if (selector === 'body') return document.body;
+    return document.querySelector(selector);
+  }
+
+  // ── Public API ────────────────────────────────────────────
+
+  window.WBDom = {
+    FOCUSABLE:     FOCUSABLE_SELECTOR,
+    trapFocus:     trapFocus,
+    focusFirst:    focusFirst,
+    emit:          emit,
+    debounce:      debounce,
+    resolveTarget: resolveTarget
+  };
+
+})();
+/* ============================================================
    WebBlocks UI — Theme Engine (theme.js)
 
    Axes:
@@ -88,12 +223,12 @@
   };
 
   // ── localStorage helper ───────────────────────────────────
+  // Delegates to WBStorage (utils/storage.js)
+
   function ls(key, val) {
-    try {
-      if (val === undefined) return localStorage.getItem(key);
-      if (val === null) { localStorage.removeItem(key); return; }
-      localStorage.setItem(key, val);
-    } catch (e) {}
+    if (val === undefined) return WBStorage.get(key);
+    if (val === null) { WBStorage.remove(key); return; }
+    WBStorage.set(key, val);
   }
 
   // ── OS dark preference ────────────────────────────────────
@@ -530,18 +665,8 @@
 (function () {
   'use strict';
 
-  var activeModal = null;
+  var activeModal       = null;
   var previouslyFocused = null;
-
-  // Focusable elements for focus trap
-  var FOCUSABLE = [
-    'a[href]',
-    'button:not([disabled])',
-    'input:not([disabled])',
-    'select:not([disabled])',
-    'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])'
-  ].join(', ');
 
   // ── Open ──────────────────────────────────────────────────
 
@@ -555,14 +680,8 @@
     modal.classList.add('is-open');
     document.body.classList.add('wb-modal-open');
 
-    // Focus first focusable element inside modal
-    requestAnimationFrame(function () {
-      var first = modal.querySelector(FOCUSABLE);
-      if (first) first.focus();
-    });
-
-    // Emit custom event
-    modal.dispatchEvent(new CustomEvent('wb:modal:open', { bubbles: true }));
+    WBDom.focusFirst(modal);
+    WBDom.emit(modal, 'wb:modal:open');
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -576,38 +695,12 @@
 
     if (activeModal === modal) activeModal = null;
 
-    // Restore focus
     if (previouslyFocused && previouslyFocused.focus) {
       previouslyFocused.focus();
       previouslyFocused = null;
     }
 
-    modal.dispatchEvent(new CustomEvent('wb:modal:close', { bubbles: true }));
-  }
-
-  // ── Focus trap ────────────────────────────────────────────
-
-  function trapFocus(e) {
-    if (!activeModal) return;
-    if (e.key !== 'Tab') return;
-
-    var focusable = Array.from(activeModal.querySelectorAll(FOCUSABLE));
-    if (!focusable.length) return;
-
-    var first = focusable[0];
-    var last  = focusable[focusable.length - 1];
-
-    if (e.shiftKey) {
-      if (document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      }
-    } else {
-      if (document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
+    WBDom.emit(modal, 'wb:modal:close');
   }
 
   // ── Event delegation ──────────────────────────────────────
@@ -618,7 +711,7 @@
     if (trigger) {
       e.preventDefault();
       var target = trigger.getAttribute('data-wb-target');
-      var modal = target ? document.querySelector(target) : null;
+      var modal  = target ? document.querySelector(target) : null;
       if (modal) open(modal);
       return;
     }
@@ -638,14 +731,14 @@
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && activeModal) close(activeModal);
-    trapFocus(e);
+    if (activeModal) WBDom.trapFocus(e, activeModal);
   });
 
   // ── Public API ─────────────────────────────────────────────
 
   window.WBModal = {
-    open:  open,
-    close: close,
+    open:      open,
+    close:     close,
     getActive: function () { return activeModal; }
   };
 
@@ -696,10 +789,7 @@
     }
 
     // Emit event
-    container.dispatchEvent(new CustomEvent('wb:tabs:change', {
-      bubbles: true,
-      detail: { tabId: targetId }
-    }));
+    WBDom.emit(container, 'wb:tabs:change', { tabId: targetId });
   }
 
   // ── Keyboard navigation ────────────────────────────────────
@@ -844,10 +934,7 @@
     }
 
     // Emit event
-    trigger.dispatchEvent(new CustomEvent('wb:accordion:toggle', {
-      bubbles: true,
-      detail: { open: isOpen(trigger) }
-    }));
+    WBDom.emit(trigger, 'wb:accordion:toggle', { open: isOpen(trigger) });
   }
 
   // ── Recalculate open heights (e.g. after resize) ──────────
@@ -869,11 +956,7 @@
     }
   });
 
-  window.addEventListener('resize', function () {
-    // Debounce
-    clearTimeout(window._wbAccordionResizeTimer);
-    window._wbAccordionResizeTimer = setTimeout(recalc, 150);
-  });
+  window.addEventListener('resize', WBDom.debounce(recalc, 150));
 
   // ── Public API ─────────────────────────────────────────────
 
@@ -928,7 +1011,7 @@
 
     // Sync trigger button aria
     syncTriggers(sidebar, true);
-    sidebar.dispatchEvent(new CustomEvent('wb:sidebar:open', { bubbles: true }));
+    WBDom.emit(sidebar, 'wb:sidebar:open');
   }
 
   function close(sidebar) {
@@ -938,7 +1021,7 @@
     document.body.style.overflow = '';
 
     syncTriggers(sidebar, false);
-    sidebar.dispatchEvent(new CustomEvent('wb:sidebar:close', { bubbles: true }));
+    WBDom.emit(sidebar, 'wb:sidebar:close');
   }
 
   function toggle(sidebar) {
@@ -960,22 +1043,17 @@
 
   // ── Close sidebar on desktop resize ───────────────────────
 
-  window.addEventListener('resize', function () {
-    clearTimeout(window._wbSidebarResizeTimer);
-    window._wbSidebarResizeTimer = setTimeout(function () {
-      if (window.innerWidth > 768) {
-        document.querySelectorAll('.wb-sidebar.is-open').forEach(function (sidebar) {
-          // Remove open state but don't trigger close animations —
-          // CSS will show sidebar on desktop anyway
-          sidebar.classList.remove('is-open');
-          var backdrop = getBackdrop(sidebar);
-          if (backdrop) backdrop.classList.remove('is-open');
-          document.body.style.overflow = '';
-          syncTriggers(sidebar, false);
-        });
-      }
-    }, 100);
-  });
+  window.addEventListener('resize', WBDom.debounce(function () {
+    if (window.innerWidth > 768) {
+      document.querySelectorAll('.wb-sidebar.is-open').forEach(function (sidebar) {
+        sidebar.classList.remove('is-open');
+        var backdrop = getBackdrop(sidebar);
+        if (backdrop) backdrop.classList.remove('is-open');
+        document.body.style.overflow = '';
+        syncTriggers(sidebar, false);
+      });
+    }
+  }, 100));
 
   // ── Event delegation ──────────────────────────────────────
 
@@ -1075,14 +1153,14 @@
     group.classList.add('is-open');
     var toggle = group.querySelector('.wb-nav-group-toggle');
     if (toggle) toggle.setAttribute('aria-expanded', 'true');
-    group.dispatchEvent(new CustomEvent('wb:navgroup:open', { bubbles: true }));
+    WBDom.emit(group, 'wb:navgroup:open');
   }
 
   function closeGroup(group) {
     group.classList.remove('is-open');
     var toggle = group.querySelector('.wb-nav-group-toggle');
     if (toggle) toggle.setAttribute('aria-expanded', 'false');
-    group.dispatchEvent(new CustomEvent('wb:navgroup:close', { bubbles: true }));
+    WBDom.emit(group, 'wb:navgroup:close');
   }
 
   // ── Auto-open groups with active children ─────────────────
@@ -1161,17 +1239,8 @@
 (function () {
   'use strict';
 
-  var activeDrawer    = null;
+  var activeDrawer      = null;
   var previouslyFocused = null;
-
-  var FOCUSABLE = [
-    'a[href]',
-    'button:not([disabled])',
-    'input:not([disabled])',
-    'select:not([disabled])',
-    'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])'
-  ].join(', ');
 
   // ── Backdrop helper ───────────────────────────────────────
 
@@ -1194,13 +1263,8 @@
     var backdrop = getBackdrop();
     if (backdrop) backdrop.classList.add('is-open');
 
-    // Focus first focusable element
-    requestAnimationFrame(function () {
-      var first = drawer.querySelector(FOCUSABLE);
-      if (first) first.focus();
-    });
-
-    drawer.dispatchEvent(new CustomEvent('wb:drawer:open', { bubbles: true }));
+    WBDom.focusFirst(drawer);
+    WBDom.emit(drawer, 'wb:drawer:open');
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -1222,32 +1286,7 @@
       previouslyFocused = null;
     }
 
-    drawer.dispatchEvent(new CustomEvent('wb:drawer:close', { bubbles: true }));
-  }
-
-  // ── Focus trap ────────────────────────────────────────────
-
-  function trapFocus(e) {
-    if (!activeDrawer) return;
-    if (e.key !== 'Tab') return;
-
-    var focusable = Array.from(activeDrawer.querySelectorAll(FOCUSABLE));
-    if (!focusable.length) return;
-
-    var first = focusable[0];
-    var last  = focusable[focusable.length - 1];
-
-    if (e.shiftKey) {
-      if (document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      }
-    } else {
-      if (document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
+    WBDom.emit(drawer, 'wb:drawer:close');
   }
 
   // ── Event delegation ──────────────────────────────────────
@@ -1273,7 +1312,7 @@
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && activeDrawer) close(activeDrawer);
-    trapFocus(e);
+    if (activeDrawer) WBDom.trapFocus(e, activeDrawer);
   });
 
   // ── Public API ─────────────────────────────────────────────

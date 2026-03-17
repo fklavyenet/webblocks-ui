@@ -25,17 +25,8 @@
 (function () {
   'use strict';
 
-  var activeDrawer    = null;
+  var activeDrawer      = null;
   var previouslyFocused = null;
-
-  var FOCUSABLE = [
-    'a[href]',
-    'button:not([disabled])',
-    'input:not([disabled])',
-    'select:not([disabled])',
-    'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])'
-  ].join(', ');
 
   // ── Backdrop helper ───────────────────────────────────────
 
@@ -58,13 +49,8 @@
     var backdrop = getBackdrop();
     if (backdrop) backdrop.classList.add('is-open');
 
-    // Focus first focusable element
-    requestAnimationFrame(function () {
-      var first = drawer.querySelector(FOCUSABLE);
-      if (first) first.focus();
-    });
-
-    drawer.dispatchEvent(new CustomEvent('wb:drawer:open', { bubbles: true }));
+    WBDom.focusFirst(drawer);
+    WBDom.emit(drawer, 'wb:drawer:open');
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -86,32 +72,7 @@
       previouslyFocused = null;
     }
 
-    drawer.dispatchEvent(new CustomEvent('wb:drawer:close', { bubbles: true }));
-  }
-
-  // ── Focus trap ────────────────────────────────────────────
-
-  function trapFocus(e) {
-    if (!activeDrawer) return;
-    if (e.key !== 'Tab') return;
-
-    var focusable = Array.from(activeDrawer.querySelectorAll(FOCUSABLE));
-    if (!focusable.length) return;
-
-    var first = focusable[0];
-    var last  = focusable[focusable.length - 1];
-
-    if (e.shiftKey) {
-      if (document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      }
-    } else {
-      if (document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
+    WBDom.emit(drawer, 'wb:drawer:close');
   }
 
   // ── Event delegation ──────────────────────────────────────
@@ -137,7 +98,7 @@
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && activeDrawer) close(activeDrawer);
-    trapFocus(e);
+    if (activeDrawer) WBDom.trapFocus(e, activeDrawer);
   });
 
   // ── Public API ─────────────────────────────────────────────
