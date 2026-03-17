@@ -175,7 +175,7 @@ function parseIconsFromBundle(bundleCode) {
       const id = toKebab(name);
       // icon is array of [tag, attrs, ...children] tuples
       const inner = icon.map(renderNode).join('\n    ');
-      symbols += `  <symbol id="${id}" viewBox="0 0 24 24" fill="none"
+      symbols += `  <symbol id="wb-icon-${id}" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     ${inner}
