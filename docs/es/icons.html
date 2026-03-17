@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iconos — WebBlocks UI</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.6/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
     .docs-layout { display: flex; min-height: 100vh; }
@@ -308,10 +308,10 @@
   fetch('dist/webblocks-icons.svg')
     .then(function(r) { return r.text(); })
     .then(function(svg) {
-      var div = document.createElement('div');
-      div.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
-      div.innerHTML = svg;
-      document.body.insertBefore(div, document.body.firstChild);
+      var parser = new DOMParser();
+      var svgEl = parser.parseFromString(svg, 'image/svg+xml').documentElement;
+      svgEl.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      document.body.insertBefore(svgEl, document.body.firstChild);
     });
 &lt;/script&gt;</pre>
 
@@ -360,10 +360,10 @@
 
       <h3 class="docs-sub-title">URLs de CDN</h3>
       <pre class="wb-code">&lt;!-- Sprite (requerido para patrón &lt;svg&gt;&lt;use&gt;) --&gt;
-https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg
+https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.6/dist/webblocks-icons.svg
 
 &lt;!-- CSS de iconos (requerido para patrón de etiqueta &lt;i&gt;) --&gt;
-https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.css</pre>
+https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.6/dist/webblocks-icons.css</pre>
     </section>
 
     <!-- ── Referencia de tamaños y colores ──────────────────── -->
@@ -448,16 +448,16 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
   </main>
 </div>
 
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.6/dist/webblocks-ui.js"></script>
 <script>
   /* ── Cargar sprite SVG ──────────────────────────────────── */
-  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg')
+  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.6/dist/webblocks-icons.svg')
     .then(function(r) { return r.text(); })
     .then(function(svg) {
-      var div = document.createElement('div');
-      div.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
-      div.innerHTML = svg;
-      document.body.insertBefore(div, document.body.firstChild);
+      var parser = new DOMParser();
+      var svgEl = parser.parseFromString(svg, 'image/svg+xml').documentElement;
+      svgEl.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      document.body.insertBefore(svgEl, document.body.firstChild);
       buildGallery();
     });
 

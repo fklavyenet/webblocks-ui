@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fundamentos y Tokens — WebBlocks UI</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.6/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
     .docs-layout { display: flex; min-height: 100vh; }
@@ -590,15 +590,15 @@
   </main>
 </div>
 
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.6/dist/webblocks-ui.js"></script>
 <script>
-  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg')
+  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.6/dist/webblocks-icons.svg')
     .then(function(r) { return r.text(); })
     .then(function(svg) {
-      var div = document.createElement('div');
-      div.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
-      div.innerHTML = svg;
-      document.body.insertBefore(div, document.body.firstChild);
+      var parser = new DOMParser();
+      var svgEl = parser.parseFromString(svg, 'image/svg+xml').documentElement;
+      svgEl.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      document.body.insertBefore(svgEl, document.body.firstChild);
     });
 </script>
 </body>
