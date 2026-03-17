@@ -749,26 +749,26 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
       <p class="docs-section-lead">Anchored overlay with rich content. Supports four placement variants.</p>
 
       <div class="docs-preview" style="padding-bottom:var(--wb-s12);gap:var(--wb-s8);flex-wrap:wrap">
-        <div class="wb-popover-wrapper">
+        <div class="wb-popover wb-popover-top">
           <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Top (default)</button>
-          <div class="wb-popover wb-popover-top">
+          <div class="wb-popover-panel">
             <div class="wb-popover-title">Popover title</div>
             <div class="wb-popover-body">Some helpful info here.</div>
           </div>
         </div>
-        <div class="wb-popover-wrapper">
+        <div class="wb-popover wb-popover-bottom">
           <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Bottom</button>
-          <div class="wb-popover wb-popover-bottom">
+          <div class="wb-popover-panel">
             <div class="wb-popover-title">Bottom popover</div>
             <div class="wb-popover-body">Opens below the trigger.</div>
           </div>
         </div>
       </div>
-      <pre class="wb-code">&lt;div class="wb-popover-wrapper"&gt;
+      <pre class="wb-code">&lt;div class="wb-popover wb-popover-top"&gt;
   &lt;button class="wb-btn wb-btn-outline" data-wb-toggle="popover"&gt;
     Click me
   &lt;/button&gt;
-  &lt;div class="wb-popover wb-popover-top"&gt;
+  &lt;div class="wb-popover-panel"&gt;
     &lt;div class="wb-popover-title"&gt;Popover title&lt;/div&gt;
     &lt;div class="wb-popover-body"&gt;Popover content goes here.&lt;/div&gt;
   &lt;/div&gt;

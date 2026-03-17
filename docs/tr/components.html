@@ -749,26 +749,28 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
       <p class="docs-section-lead">Zengin içerikli bağlantılı katman. Dört yerleşim varyantını destekler.</p>
 
       <div class="docs-preview" style="padding-bottom:var(--wb-s12);gap:var(--wb-s8);flex-wrap:wrap">
-        <div class="wb-popover-wrapper">
+        <div class="wb-popover wb-popover-top">
           <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Üst (varsayılan)</button>
-          <div class="wb-popover wb-popover-top">
+          <div class="wb-popover-panel">
             <div class="wb-popover-title">Popover başlığı</div>
-            <div class="wb-popover-body">Burada yardımcı bilgi var.</div>
+            <div class="wb-popover-body">Burada yardımcı bilgi var.
           </div>
         </div>
-        <div class="wb-popover-wrapper">
+        </div>
+        <div class="wb-popover wb-popover-bottom">
           <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Alt</button>
-          <div class="wb-popover wb-popover-bottom">
+          <div class="wb-popover-panel">
             <div class="wb-popover-title">Alt popover</div>
-            <div class="wb-popover-body">Tetikleyicinin altında açılır.</div>
+            <div class="wb-popover-body">Tetikleyicinin altında açılır.
           </div>
+        </div>
         </div>
       </div>
-      <pre class="wb-code">&lt;div class="wb-popover-wrapper"&gt;
+      <pre class="wb-code">&lt;div class="wb-popover wb-popover-top"&gt;
   &lt;button class="wb-btn wb-btn-outline" data-wb-toggle="popover"&gt;
     Tıklayın
   &lt;/button&gt;
-  &lt;div class="wb-popover wb-popover-top"&gt;
+    &lt;div class="wb-popover-panel"&gt;
     &lt;div class="wb-popover-title"&gt;Popover başlığı&lt;/div&gt;
     &lt;div class="wb-popover-body"&gt;Popover içeriği buraya.&lt;/div&gt;
   &lt;/div&gt;

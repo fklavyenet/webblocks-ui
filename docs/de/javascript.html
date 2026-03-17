@@ -543,15 +543,15 @@ WBToast.dismiss(toast);</pre>
         <h2 class="docs-section-title" style="margin:0">WBPopover</h2>
         <span class="module-badge">popover.js</span>
       </div>
-      <p class="docs-section-lead">Schaltet <code class="wb-code-inline">is-open</code> auf einem <code class="wb-code-inline">wb-popover-wrapper</code>. Schließt bei Klick außerhalb und Escape.</p>
+      <p class="docs-section-lead">Schaltet <code class="wb-code-inline">is-open</code> auf einem <code class="wb-code-inline">wb-popover</code>. Schließt bei Klick außerhalb und Escape.</p>
 
       <div class="api-method"><span class="api-method-name">WBPopover.open</span><span class="api-method-params">(wrapperEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBPopover.close</span><span class="api-method-params">(wrapperEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBPopover.closeAll</span><span class="api-method-params">()</span></div>
 
-      <pre class="wb-code">&lt;div class="wb-popover-wrapper"&gt;
+      <pre class="wb-code">&lt;div class="wb-popover wb-popover-top"&gt;
   &lt;button data-wb-toggle="popover"&gt;Klicken&lt;/button&gt;
-  &lt;div class="wb-popover wb-popover-top"&gt;
+    &lt;div class="wb-popover-panel"&gt;
     &lt;div class="wb-popover-title"&gt;Titel&lt;/div&gt;
     &lt;div class="wb-popover-body"&gt;Inhalt hier.&lt;/div&gt;
   &lt;/div&gt;

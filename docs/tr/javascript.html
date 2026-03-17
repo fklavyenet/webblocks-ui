@@ -543,15 +543,15 @@ WBToast.dismiss(toast);</pre>
         <h2 class="docs-section-title" style="margin:0">WBPopover</h2>
         <span class="module-badge">popover.js</span>
       </div>
-      <p class="docs-section-lead">Bir <code class="wb-code-inline">wb-popover-wrapper</code> üzerinde <code class="wb-code-inline">is-open</code> durumunu değiştirir. Dışarı tıklamada ve Escape tuşunda kapanır.</p>
+      <p class="docs-section-lead">Bir <code class="wb-code-inline">wb-popover</code> üzerinde <code class="wb-code-inline">is-open</code> durumunu değiştirir. Dışarı tıklamada ve Escape tuşunda kapanır.</p>
 
       <div class="api-method"><span class="api-method-name">WBPopover.open</span><span class="api-method-params">(wrapperEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBPopover.close</span><span class="api-method-params">(wrapperEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBPopover.closeAll</span><span class="api-method-params">()</span></div>
 
-      <pre class="wb-code">&lt;div class="wb-popover-wrapper"&gt;
+      <pre class="wb-code">&lt;div class="wb-popover wb-popover-top"&gt;
   &lt;button data-wb-toggle="popover"&gt;Tıklayın&lt;/button&gt;
-  &lt;div class="wb-popover wb-popover-top"&gt;
+    &lt;div class="wb-popover-panel"&gt;
     &lt;div class="wb-popover-title"&gt;Başlık&lt;/div&gt;
     &lt;div class="wb-popover-body"&gt;Buradaki içerik.&lt;/div&gt;
   &lt;/div&gt;
