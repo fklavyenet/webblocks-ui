@@ -318,7 +318,7 @@
     document.querySelectorAll('[data-wb-mode-cycle]').forEach(function (btn) {
       // Update SVG <use> href if present
       var use = btn.querySelector('use');
-      if (use) use.setAttribute('href', '#' + icon);
+      if (use) use.setAttribute('href', '#wb-icon-' + icon);
       // Update <i> class if present
       var i = btn.querySelector('i.wb-icon');
       if (i) {
