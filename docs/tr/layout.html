@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="light" data-accent="ocean">
+<html lang="tr" data-mode="light" data-accent="ocean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Layouts — WebBlocks UI</title>
+  <title>Düzenler — WebBlocks UI</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
@@ -178,18 +178,18 @@
       <a href="index.html">WebBlocks UI <span>v2.2</span></a>
     </div>
 
-    <div class="docs-nav-section">Overview</div>
-    <a href="index.html" class="docs-nav-link">Introduction</a>
-    <a href="getting-started.html" class="docs-nav-link">Getting Started</a>
+    <div class="docs-nav-section">Genel Bakış</div>
+    <a href="index.html" class="docs-nav-link">Giriş</a>
+    <a href="getting-started.html" class="docs-nav-link">Başlarken</a>
 
-    <div class="docs-nav-section">Guides</div>
-    <a href="foundation.html" class="docs-nav-link">Foundation & Tokens</a>
-    <a href="layout.html" class="docs-nav-link is-active">Layouts</a>
+    <div class="docs-nav-section">Kılavuzlar</div>
+    <a href="foundation.html" class="docs-nav-link">Temel &amp; Tokenlar</a>
+    <a href="layout.html" class="docs-nav-link is-active">Düzenler</a>
 
-    <div class="docs-nav-section">Reference</div>
-    <a href="components.html" class="docs-nav-link">Components</a>
-    <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
-    <a href="icons.html" class="docs-nav-link">Icons</a>
+    <div class="docs-nav-section">Referans</div>
+    <a href="../components.html" class="docs-nav-link">Bileşenler</a>
+    <a href="../javascript.html" class="docs-nav-link">JavaScript API</a>
+    <a href="../icons.html" class="docs-nav-link">İkonlar</a>
   </aside>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -198,10 +198,10 @@
     <!-- Topbar -->
     <div class="docs-topbar">
       <div class="docs-lang-switch">
-        <a href="layout.html" class="is-active">EN</a>
-        <a href="tr/layout.html">TR</a>
-        <a href="de/layout.html">DE</a>
-        <a href="es/layout.html">ES</a>
+        <a href="../layout.html">EN</a>
+        <a href="layout.html" class="is-active">TR</a>
+        <a href="../de/layout.html">DE</a>
+        <a href="../es/layout.html">ES</a>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
@@ -210,28 +210,28 @@
         </svg>
         GitHub
       </a>
-      <button class="docs-mode-btn" data-wb-mode-cycle title="Toggle theme">
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Temayı değiştir">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
     </div>
 
     <!-- Page header -->
     <div class="docs-page-header">
-      <h1>Layouts</h1>
-      <p>Full-page shell structures for admin dashboards, authentication pages, settings panels, and content areas.</p>
+      <h1>Düzenler</h1>
+      <p>Yönetim panelleri, kimlik doğrulama sayfaları, ayarlar ekranları ve içerik alanları için tam sayfa kabuk yapıları.</p>
     </div>
 
     <!-- ── Dashboard shell ──────────────────────────────── -->
     <section class="docs-section" id="dashboard-shell">
-      <h2 class="docs-section-title">Dashboard Shell</h2>
+      <h2 class="docs-section-title">Dashboard Kabuğu</h2>
       <p class="docs-section-lead">
-        The primary admin panel layout. A fixed-width sidebar sits on the left; the right side contains a sticky topbar and a scrollable main content area.
+        Birincil yönetim paneli düzeni. Sabit genişlikli bir kenar çubuğu solda bulunur; sağ tarafta yapışkan bir üst çubuk ve kaydırılabilir bir ana içerik alanı yer alır.
       </p>
 
       <div class="layout-diagram">
         <div class="layout-diagram-row" style="height:48px">
           <div class="layout-diagram-cell" style="width:140px">wb-sidebar</div>
-          <div class="layout-diagram-cell hl" style="flex:1">wb-navbar (sticky topbar)</div>
+          <div class="layout-diagram-cell hl" style="flex:1">wb-navbar (yapışkan üst çubuk)</div>
         </div>
         <div class="layout-diagram-row" style="min-height:160px">
           <div class="layout-diagram-cell" style="width:140px;flex-direction:column;gap:4px">
@@ -244,22 +244,22 @@
 
       <pre class="wb-code">&lt;div class="wb-dashboard-shell"&gt;
 
-  &lt;!-- Sidebar --&gt;
+  &lt;!-- Kenar çubuğu --&gt;
   &lt;aside class="wb-sidebar"&gt;
     &lt;div class="wb-sidebar-brand"&gt;
-      &lt;a href="/"&gt;My App&lt;/a&gt;
+      &lt;a href="/"&gt;Uygulamam&lt;/a&gt;
     &lt;/div&gt;
     &lt;nav class="wb-sidebar-nav"&gt;
       &lt;a href="/dashboard" class="wb-sidebar-link is-active"&gt;Dashboard&lt;/a&gt;
-      &lt;a href="/users"     class="wb-sidebar-link"&gt;Users&lt;/a&gt;
-      &lt;a href="/settings"  class="wb-sidebar-link"&gt;Settings&lt;/a&gt;
+      &lt;a href="/users"     class="wb-sidebar-link"&gt;Kullanıcılar&lt;/a&gt;
+      &lt;a href="/settings"  class="wb-sidebar-link"&gt;Ayarlar&lt;/a&gt;
     &lt;/nav&gt;
   &lt;/aside&gt;
 
-  &lt;!-- Main body --&gt;
+  &lt;!-- Ana gövde --&gt;
   &lt;div class="wb-dashboard-body"&gt;
 
-    &lt;!-- Top navigation bar --&gt;
+    &lt;!-- Üst gezinme çubuğu --&gt;
     &lt;header class="wb-navbar"&gt;
       &lt;button class="wb-btn wb-btn-ghost wb-btn-sm"
               data-wb-toggle="sidebar"&gt;☰&lt;/button&gt;
@@ -267,50 +267,50 @@
       &lt;span class="wb-avatar wb-avatar-sm"&gt;JD&lt;/span&gt;
     &lt;/header&gt;
 
-    &lt;!-- Scrollable content --&gt;
+    &lt;!-- Kaydırılabilir içerik --&gt;
     &lt;main class="wb-dashboard-main"&gt;
       &lt;div class="wb-container"&gt;
-        &lt;h1&gt;Page title&lt;/h1&gt;
+        &lt;h1&gt;Sayfa başlığı&lt;/h1&gt;
       &lt;/div&gt;
     &lt;/main&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;</pre>
 
-      <h3 class="docs-sub-title">Sidebar collapse (mobile)</h3>
+      <h3 class="docs-sub-title">Kenar çubuğu daraltma (mobil)</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        The sidebar hides on mobile. <code class="wb-code-inline">data-wb-toggle="sidebar"</code> on any button opens it with a backdrop overlay. <code class="wb-code-inline">WBSidebar</code> handles this automatically.
+        Kenar çubuğu mobilde gizlenir. Herhangi bir düğmedeki <code class="wb-code-inline">data-wb-toggle="sidebar"</code>, arka plan katmanıyla birlikte açar. <code class="wb-code-inline">WBSidebar</code> bunu otomatik olarak yönetir.
       </p>
-      <pre class="wb-code">&lt;!-- Hamburger in navbar --&gt;
-&lt;button data-wb-toggle="sidebar"&gt;☰ Menu&lt;/button&gt;
+      <pre class="wb-code">&lt;!-- Navbar'daki hamburger --&gt;
+&lt;button data-wb-toggle="sidebar"&gt;☰ Menü&lt;/button&gt;
 
-&lt;!-- Or JS --&gt;
+&lt;!-- Veya JS ile --&gt;
 WBSidebar.open();
 WBSidebar.close();</pre>
 
-      <h3 class="docs-sub-title">Sidebar nav groups</h3>
+      <h3 class="docs-sub-title">Kenar çubuğu nav grupları</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Use <code class="wb-code-inline">wb-nav-group</code> for collapsible sections within the sidebar.
+        Kenar çubuğu içinde daraltılabilir bölümler için <code class="wb-code-inline">wb-nav-group</code> kullanın.
       </p>
       <pre class="wb-code">&lt;nav class="wb-sidebar-nav"&gt;
   &lt;a href="#" class="wb-sidebar-link is-active"&gt;Dashboard&lt;/a&gt;
 
   &lt;div class="wb-nav-group"&gt;
     &lt;button class="wb-nav-group-trigger"&gt;
-      Users
+      Kullanıcılar
       &lt;svg class="wb-nav-group-chevron" ...&gt;...&lt;/svg&gt;
     &lt;/button&gt;
     &lt;div class="wb-nav-group-body"&gt;
-      &lt;a href="#" class="wb-sidebar-link"&gt;All Users&lt;/a&gt;
-      &lt;a href="#" class="wb-sidebar-link"&gt;Roles&lt;/a&gt;
-      &lt;a href="#" class="wb-sidebar-link"&gt;Permissions&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Tüm Kullanıcılar&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Roller&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;İzinler&lt;/a&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 
-  &lt;a href="#" class="wb-sidebar-link"&gt;Settings&lt;/a&gt;
+  &lt;a href="#" class="wb-sidebar-link"&gt;Ayarlar&lt;/a&gt;
 &lt;/nav&gt;
 
-&lt;!-- Accordion mode: closes siblings when one group opens --&gt;
+&lt;!-- Akordeon modu: bir grup açıldığında diğerlerini kapatır --&gt;
 &lt;nav class="wb-sidebar-nav" data-wb-nav-group-accordion&gt;
   ...
 &lt;/nav&gt;</pre>
@@ -318,17 +318,17 @@ WBSidebar.close();</pre>
 
     <!-- ── Auth shell ────────────────────────────────────── -->
     <section class="docs-section" id="auth-shell">
-      <h2 class="docs-section-title">Auth Shell</h2>
+      <h2 class="docs-section-title">Kimlik Doğrulama Kabuğu</h2>
       <p class="docs-section-lead">
-        Centered card layout for login, register, and password reset pages.
+        Giriş, kayıt ve şifre sıfırlama sayfaları için ortaya hizalanmış kart düzeni.
       </p>
 
       <div class="layout-diagram">
         <div class="layout-diagram-row" style="min-height:120px">
           <div class="layout-diagram-cell" style="flex:1;background:var(--wb-bg)">
-            wb-auth (full screen)
+            wb-auth (tam ekran)
             <br>
-            <span style="font-size:0.7rem">↓ centered</span>
+            <span style="font-size:0.7rem">↓ ortalanmış</span>
           </div>
         </div>
         <div class="layout-diagram-row" style="min-height:100px;justify-content:center">
@@ -340,28 +340,28 @@ WBSidebar.close();</pre>
   &lt;div class="wb-auth-card"&gt;
 
     &lt;div class="wb-auth-logo"&gt;
-      &lt;!-- Logo here --&gt;
+      &lt;!-- Logo buraya --&gt;
     &lt;/div&gt;
 
-    &lt;h1 class="wb-auth-title"&gt;Sign in to your account&lt;/h1&gt;
-    &lt;p class="wb-auth-subtitle"&gt;Welcome back. Enter your credentials.&lt;/p&gt;
+    &lt;h1 class="wb-auth-title"&gt;Hesabınıza giriş yapın&lt;/h1&gt;
+    &lt;p class="wb-auth-subtitle"&gt;Tekrar hoş geldiniz. Kimlik bilgilerinizi girin.&lt;/p&gt;
 
     &lt;form class="wb-auth-form"&gt;
       &lt;div class="wb-field"&gt;
-        &lt;label class="wb-label"&gt;Email&lt;/label&gt;
+        &lt;label class="wb-label"&gt;E-posta&lt;/label&gt;
         &lt;input type="email" class="wb-input" autocomplete="email"&gt;
       &lt;/div&gt;
       &lt;div class="wb-field"&gt;
-        &lt;label class="wb-label"&gt;Password&lt;/label&gt;
+        &lt;label class="wb-label"&gt;Şifre&lt;/label&gt;
         &lt;input type="password" class="wb-input" autocomplete="current-password"&gt;
       &lt;/div&gt;
       &lt;button type="submit" class="wb-btn wb-btn-primary" style="width:100%"&gt;
-        Sign in
+        Giriş yap
       &lt;/button&gt;
     &lt;/form&gt;
 
     &lt;p class="wb-auth-footer"&gt;
-      Don't have an account? &lt;a href="/register"&gt;Sign up&lt;/a&gt;
+      Hesabınız yok mu? &lt;a href="/register"&gt;Kayıt ol&lt;/a&gt;
     &lt;/p&gt;
 
   &lt;/div&gt;
@@ -370,42 +370,42 @@ WBSidebar.close();</pre>
 
     <!-- ── Settings shell ────────────────────────────────── -->
     <section class="docs-section" id="settings-shell">
-      <h2 class="docs-section-title">Settings Shell</h2>
+      <h2 class="docs-section-title">Ayarlar Kabuğu</h2>
       <p class="docs-section-lead">
-        Two-column layout for settings pages — a sticky left nav and a content area.
-        Often used inside the dashboard shell's main content area.
+        Ayarlar sayfaları için iki sütunlu düzen — yapışkan sol gezinme ve içerik alanı.
+        Genellikle dashboard kabuğunun ana içerik alanı içinde kullanılır.
       </p>
 
       <div class="layout-diagram">
         <div class="layout-diagram-row" style="min-height:120px">
-          <div class="layout-diagram-cell" style="width:180px">wb-settings-nav<br><span style="font-size:0.7rem">(sticky)</span></div>
+          <div class="layout-diagram-cell" style="width:180px">wb-settings-nav<br><span style="font-size:0.7rem">(yapışkan)</span></div>
           <div class="layout-diagram-cell hl" style="flex:1">wb-settings-body</div>
         </div>
       </div>
 
       <pre class="wb-code">&lt;div class="wb-settings-shell"&gt;
 
-  &lt;!-- Left nav --&gt;
+  &lt;!-- Sol gezinme --&gt;
   &lt;nav class="wb-settings-nav"&gt;
-    &lt;a href="#profile"   class="wb-settings-nav-link is-active"&gt;Profile&lt;/a&gt;
-    &lt;a href="#security"  class="wb-settings-nav-link"&gt;Security&lt;/a&gt;
-    &lt;a href="#billing"   class="wb-settings-nav-link"&gt;Billing&lt;/a&gt;
-    &lt;a href="#team"      class="wb-settings-nav-link"&gt;Team&lt;/a&gt;
+    &lt;a href="#profile"   class="wb-settings-nav-link is-active"&gt;Profil&lt;/a&gt;
+    &lt;a href="#security"  class="wb-settings-nav-link"&gt;Güvenlik&lt;/a&gt;
+    &lt;a href="#billing"   class="wb-settings-nav-link"&gt;Faturalama&lt;/a&gt;
+    &lt;a href="#team"      class="wb-settings-nav-link"&gt;Ekip&lt;/a&gt;
   &lt;/nav&gt;
 
-  &lt;!-- Content --&gt;
+  &lt;!-- İçerik --&gt;
   &lt;div class="wb-settings-body"&gt;
 
     &lt;section class="wb-settings-section" id="profile"&gt;
-      &lt;h2 class="wb-settings-title"&gt;Profile&lt;/h2&gt;
-      &lt;p class="wb-settings-desc"&gt;Manage your public profile information.&lt;/p&gt;
-      &lt;!-- form fields --&gt;
+      &lt;h2 class="wb-settings-title"&gt;Profil&lt;/h2&gt;
+      &lt;p class="wb-settings-desc"&gt;Genel profil bilgilerinizi yönetin.&lt;/p&gt;
+      &lt;!-- form alanları --&gt;
     &lt;/section&gt;
 
     &lt;section class="wb-settings-section" id="security"&gt;
-      &lt;h2 class="wb-settings-title"&gt;Security&lt;/h2&gt;
-      &lt;p class="wb-settings-desc"&gt;Update your password and 2FA settings.&lt;/p&gt;
-      &lt;!-- form fields --&gt;
+      &lt;h2 class="wb-settings-title"&gt;Güvenlik&lt;/h2&gt;
+      &lt;p class="wb-settings-desc"&gt;Şifrenizi ve 2FA ayarlarınızı güncelleyin.&lt;/p&gt;
+      &lt;!-- form alanları --&gt;
     &lt;/section&gt;
 
   &lt;/div&gt;
@@ -414,40 +414,40 @@ WBSidebar.close();</pre>
 
     <!-- ── Content shell ─────────────────────────────────── -->
     <section class="docs-section" id="content-shell">
-      <h2 class="docs-section-title">Content Shell</h2>
+      <h2 class="docs-section-title">İçerik Kabuğu</h2>
       <p class="docs-section-lead">
-        Single-column layout with a sticky header, scrollable body, and optional footer.
-        Useful for detail pages, forms, and full-page editors inside the dashboard main area.
+        Yapışkan başlık, kaydırılabilir gövde ve isteğe bağlı altbilgi içeren tek sütunlu düzen.
+        Dashboard ana alanı içindeki detay sayfaları, formlar ve tam sayfa düzenleyiciler için kullanışlıdır.
       </p>
 
       <div class="layout-diagram">
         <div class="layout-diagram-row" style="height:44px">
-          <div class="layout-diagram-cell hl" style="flex:1">wb-content-header (sticky)</div>
+          <div class="layout-diagram-cell hl" style="flex:1">wb-content-header (yapışkan)</div>
         </div>
         <div class="layout-diagram-row" style="min-height:100px">
-          <div class="layout-diagram-cell" style="flex:1">wb-content-body (scrollable)</div>
+          <div class="layout-diagram-cell" style="flex:1">wb-content-body (kaydırılabilir)</div>
         </div>
         <div class="layout-diagram-row" style="height:44px">
-          <div class="layout-diagram-cell" style="flex:1">wb-content-footer (optional)</div>
+          <div class="layout-diagram-cell" style="flex:1">wb-content-footer (isteğe bağlı)</div>
         </div>
       </div>
 
       <pre class="wb-code">&lt;div class="wb-content-shell"&gt;
 
   &lt;div class="wb-content-header"&gt;
-    &lt;h2 class="wb-content-title"&gt;Edit user&lt;/h2&gt;
+    &lt;h2 class="wb-content-title"&gt;Kullanıcıyı düzenle&lt;/h2&gt;
     &lt;div class="wb-content-actions"&gt;
-      &lt;button class="wb-btn wb-btn-ghost wb-btn-sm"&gt;Discard&lt;/button&gt;
-      &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Save changes&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-ghost wb-btn-sm"&gt;Vazgeç&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Değişiklikleri kaydet&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 
   &lt;div class="wb-content-body"&gt;
-    &lt;!-- form / content here --&gt;
+    &lt;!-- form / içerik buraya --&gt;
   &lt;/div&gt;
 
   &lt;div class="wb-content-footer"&gt;
-    &lt;!-- optional pagination / status --&gt;
+    &lt;!-- isteğe bağlı sayfalama / durum --&gt;
   &lt;/div&gt;
 
 &lt;/div&gt;</pre>
@@ -457,41 +457,41 @@ WBSidebar.close();</pre>
     <section class="docs-section" id="container">
       <h2 class="docs-section-title">Container &amp; Section</h2>
       <p class="docs-section-lead">
-        Basic content-width constraint and vertical spacing helpers.
+        Temel içerik genişliği kısıtlaması ve dikey boşluk yardımcıları.
       </p>
 
       <table class="docs-table">
-        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <thead><tr><th>Sınıf</th><th>Açıklama</th></tr></thead>
         <tbody>
-          <tr><td>wb-container</td><td>Max-width container (<code class="wb-code-inline">--wb-content-w</code>, default 1200px), centered with auto margins</td></tr>
-          <tr><td>wb-container-sm</td><td>Narrow container (<code class="wb-code-inline">--wb-content-sm</code>, default 720px)</td></tr>
-          <tr><td>wb-section</td><td>Vertical padding block (<code class="wb-code-inline">--wb-s10</code> top/bottom)</td></tr>
-          <tr><td>wb-stack</td><td>Flex column with gap for stacking form fields or cards</td></tr>
+          <tr><td>wb-container</td><td>Maksimum genişlik container'ı (<code class="wb-code-inline">--wb-content-w</code>, varsayılan 1200px), otomatik kenar boşluklarıyla ortalanmış</td></tr>
+          <tr><td>wb-container-sm</td><td>Dar container (<code class="wb-code-inline">--wb-content-sm</code>, varsayılan 720px)</td></tr>
+          <tr><td>wb-section</td><td>Dikey dolgu bloğu (<code class="wb-code-inline">--wb-s10</code> üst/alt)</td></tr>
+          <tr><td>wb-stack</td><td>Form alanlarını veya kartları üst üste yığmak için boşluklu flex sütun</td></tr>
         </tbody>
       </table>
 
-      <pre class="wb-code">&lt;!-- Constrain content width --&gt;
+      <pre class="wb-code">&lt;!-- İçerik genişliğini kısıtla --&gt;
 &lt;div class="wb-container"&gt;
   ...
 &lt;/div&gt;
 
-&lt;!-- Narrow content (forms, article) --&gt;
+&lt;!-- Dar içerik (formlar, makale) --&gt;
 &lt;div class="wb-container-sm"&gt;
   ...
 &lt;/div&gt;
 
-&lt;!-- Vertical section spacing --&gt;
+&lt;!-- Dikey bölüm boşluğu --&gt;
 &lt;section class="wb-section"&gt;
   &lt;div class="wb-container"&gt;
     ...
   &lt;/div&gt;
 &lt;/section&gt;
 
-&lt;!-- Stack layout --&gt;
+&lt;!-- Yığma düzeni --&gt;
 &lt;div class="wb-stack"&gt;
   &lt;div class="wb-field"&gt;...&lt;/div&gt;
   &lt;div class="wb-field"&gt;...&lt;/div&gt;
-  &lt;button class="wb-btn wb-btn-primary"&gt;Submit&lt;/button&gt;
+  &lt;button class="wb-btn wb-btn-primary"&gt;Gönder&lt;/button&gt;
 &lt;/div&gt;</pre>
     </section>
 
@@ -499,30 +499,30 @@ WBSidebar.close();</pre>
     <section class="docs-section" id="navbar">
       <h2 class="docs-section-title">Navbar</h2>
       <p class="docs-section-lead">
-        Sticky top navigation bar. Can be used standalone (landing page) or as the topbar inside a dashboard shell.
+        Yapışkan üst gezinme çubuğu. Bağımsız (açılış sayfası) olarak veya dashboard kabuğu içinde üst çubuk olarak kullanılabilir.
       </p>
 
       <pre class="wb-code">&lt;header class="wb-navbar"&gt;
-  &lt;!-- Brand --&gt;
-  &lt;a href="/" class="wb-navbar-brand"&gt;My App&lt;/a&gt;
+  &lt;!-- Marka --&gt;
+  &lt;a href="/" class="wb-navbar-brand"&gt;Uygulamam&lt;/a&gt;
 
-  &lt;!-- Nav links (hide on mobile with a responsive class) --&gt;
+  &lt;!-- Nav bağlantıları (mobilde responsive sınıfla gizle) --&gt;
   &lt;nav class="wb-navbar-nav"&gt;
     &lt;a href="#" class="wb-navbar-link is-active"&gt;Dashboard&lt;/a&gt;
-    &lt;a href="#" class="wb-navbar-link"&gt;Reports&lt;/a&gt;
-    &lt;a href="#" class="wb-navbar-link"&gt;Settings&lt;/a&gt;
+    &lt;a href="#" class="wb-navbar-link"&gt;Raporlar&lt;/a&gt;
+    &lt;a href="#" class="wb-navbar-link"&gt;Ayarlar&lt;/a&gt;
   &lt;/nav&gt;
 
-  &lt;!-- Right side --&gt;
+  &lt;!-- Sağ taraf --&gt;
   &lt;div class="wb-navbar-end"&gt;
     &lt;button class="docs-mode-btn" data-wb-mode-cycle&gt;...&lt;/button&gt;
     &lt;div class="wb-dropdown"&gt;
       &lt;button class="wb-avatar wb-avatar-sm" data-wb-toggle="dropdown"&gt;JD&lt;/button&gt;
       &lt;div class="wb-dropdown-menu"&gt;
-        &lt;a href="#" class="wb-dropdown-item"&gt;My profile&lt;/a&gt;
-        &lt;a href="#" class="wb-dropdown-item"&gt;Settings&lt;/a&gt;
+        &lt;a href="#" class="wb-dropdown-item"&gt;Profilim&lt;/a&gt;
+        &lt;a href="#" class="wb-dropdown-item"&gt;Ayarlar&lt;/a&gt;
         &lt;div class="wb-dropdown-divider"&gt;&lt;/div&gt;
-        &lt;a href="/logout" class="wb-dropdown-item wb-dropdown-item-danger"&gt;Sign out&lt;/a&gt;
+        &lt;a href="/logout" class="wb-dropdown-item wb-dropdown-item-danger"&gt;Çıkış yap&lt;/a&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -531,39 +531,39 @@ WBSidebar.close();</pre>
 
     <!-- ── Toolbar ────────────────────────────────────────── -->
     <section class="docs-section" id="toolbar">
-      <h2 class="docs-section-title">Toolbar</h2>
+      <h2 class="docs-section-title">Araç Çubuğu</h2>
       <p class="docs-section-lead">
-        Horizontal bar for page-level actions — typically placed between the page title and the content table.
+        Sayfa düzeyindeki eylemler için yatay çubuk — genellikle sayfa başlığı ile içerik tablosu arasına yerleştirilir.
       </p>
 
       <pre class="wb-code">&lt;div class="wb-toolbar"&gt;
   &lt;div class="wb-toolbar-start"&gt;
-    &lt;h2 class="wb-toolbar-title"&gt;Users &lt;span class="wb-badge"&gt;248&lt;/span&gt;&lt;/h2&gt;
+    &lt;h2 class="wb-toolbar-title"&gt;Kullanıcılar &lt;span class="wb-badge"&gt;248&lt;/span&gt;&lt;/h2&gt;
   &lt;/div&gt;
   &lt;div class="wb-toolbar-end"&gt;
-    &lt;button class="wb-btn wb-btn-outline wb-btn-sm"&gt;Export&lt;/button&gt;
-    &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;+ New user&lt;/button&gt;
+    &lt;button class="wb-btn wb-btn-outline wb-btn-sm"&gt;Dışa aktar&lt;/button&gt;
+    &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;+ Yeni kullanıcı&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Bulk action bar (shown when rows are selected) --&gt;
+&lt;!-- Toplu işlem çubuğu (satırlar seçildiğinde gösterilir) --&gt;
 &lt;div class="wb-toolbar wb-toolbar-bulk"&gt;
-  &lt;span&gt;3 selected&lt;/span&gt;
-  &lt;button class="wb-btn wb-btn-danger wb-btn-sm"&gt;Delete selected&lt;/button&gt;
+  &lt;span&gt;3 seçildi&lt;/span&gt;
+  &lt;button class="wb-btn wb-btn-danger wb-btn-sm"&gt;Seçilenleri sil&lt;/button&gt;
 &lt;/div&gt;</pre>
     </section>
 
     <!-- ── Command palette ───────────────────────────────── -->
     <section class="docs-section" id="command-palette">
-      <h2 class="docs-section-title">Command Palette</h2>
+      <h2 class="docs-section-title">Komut Paleti</h2>
       <p class="docs-section-lead">
-        Full-screen search/command overlay triggered by <kbd>Cmd+K</kbd> / <kbd>Ctrl+K</kbd>.
-        Register it once; WebBlocks handles keyboard, search, and navigation.
+        <kbd>Cmd+K</kbd> / <kbd>Ctrl+K</kbd> ile tetiklenen tam ekran arama/komut katmanı.
+        Bir kez kaydedin; WebBlocks klavye, arama ve gezinmeyi yönetir.
       </p>
 
       <div style="margin-bottom:var(--wb-s4)">
         <button class="wb-btn wb-btn-outline" onclick="WBCommandPalette.open('#docs-cmd')">
-          Open command palette <kbd style="font-size:0.75rem;border:1px solid var(--wb-border);padding:1px 5px;border-radius:4px">⌘K</kbd>
+          Komut paletini aç <kbd style="font-size:0.75rem;border:1px solid var(--wb-border);padding:1px 5px;border-radius:4px">⌘K</kbd>
         </button>
       </div>
 
@@ -572,15 +572,15 @@ WBSidebar.close();</pre>
   &lt;div class="wb-cmd-dialog"&gt;
     &lt;div class="wb-cmd-header"&gt;
       &lt;svg class="wb-cmd-search-icon"&gt;...&lt;/svg&gt;
-      &lt;input type="text" class="wb-cmd-input" placeholder="Search or type a command…"&gt;
+      &lt;input type="text" class="wb-cmd-input" placeholder="Ara veya komut gir…"&gt;
       &lt;kbd class="wb-cmd-esc"&gt;Esc&lt;/kbd&gt;
     &lt;/div&gt;
     &lt;div class="wb-cmd-results"&gt;
       &lt;div class="wb-cmd-group"&gt;
-        &lt;div class="wb-cmd-group-label"&gt;Pages&lt;/div&gt;
+        &lt;div class="wb-cmd-group-label"&gt;Sayfalar&lt;/div&gt;
         &lt;a href="/dashboard" class="wb-cmd-result"&gt;Dashboard&lt;/a&gt;
-        &lt;a href="/users"     class="wb-cmd-result"&gt;Users&lt;/a&gt;
-        &lt;a href="/settings"  class="wb-cmd-result"&gt;Settings&lt;/a&gt;
+        &lt;a href="/users"     class="wb-cmd-result"&gt;Kullanıcılar&lt;/a&gt;
+        &lt;a href="/settings"  class="wb-cmd-result"&gt;Ayarlar&lt;/a&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -592,7 +592,7 @@ WBCommandPalette.register('#my-cmd');
 &lt;/script&gt;</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        See the <a href="javascript.html#command-palette" style="color:var(--wb-accent)">JavaScript API</a> page for the full <code class="wb-code-inline">register()</code> options including <code class="wb-code-inline">onSearch</code>.
+        Tam <code class="wb-code-inline">register()</code> seçenekleri (özellikle <code class="wb-code-inline">onSearch</code>) için <a href="../javascript.html#command-palette" style="color:var(--wb-accent)">JavaScript API</a> sayfasına bakın.
       </p>
     </section>
 
@@ -604,18 +604,18 @@ WBCommandPalette.register('#my-cmd');
   <div class="wb-cmd-dialog">
     <div class="wb-cmd-header">
       <svg class="wb-cmd-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" class="wb-cmd-input" placeholder="Search docs…">
+      <input type="text" class="wb-cmd-input" placeholder="Dokümanlarda ara…">
       <kbd class="wb-cmd-esc">Esc</kbd>
     </div>
     <div class="wb-cmd-results">
       <div class="wb-cmd-group">
-        <div class="wb-cmd-group-label">Pages</div>
-        <a href="getting-started.html" class="wb-cmd-result">Getting Started</a>
-        <a href="foundation.html" class="wb-cmd-result">Foundation &amp; Tokens</a>
-        <a href="components.html" class="wb-cmd-result">Components</a>
-        <a href="layout.html" class="wb-cmd-result">Layouts</a>
-        <a href="javascript.html" class="wb-cmd-result">JavaScript API</a>
-        <a href="icons.html" class="wb-cmd-result">Icons</a>
+        <div class="wb-cmd-group-label">Sayfalar</div>
+        <a href="getting-started.html" class="wb-cmd-result">Başlarken</a>
+        <a href="foundation.html" class="wb-cmd-result">Temel &amp; Tokenlar</a>
+        <a href="../components.html" class="wb-cmd-result">Bileşenler</a>
+        <a href="layout.html" class="wb-cmd-result">Düzenler</a>
+        <a href="../javascript.html" class="wb-cmd-result">JavaScript API</a>
+        <a href="../icons.html" class="wb-cmd-result">İkonlar</a>
       </div>
     </div>
   </div>

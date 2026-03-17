@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="light" data-accent="ocean">
+<html lang="tr" data-mode="light" data-accent="ocean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foundation & Tokens — WebBlocks UI</title>
+  <title>Temel & Tokenlar — WebBlocks UI</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
@@ -143,15 +143,12 @@
       cursor: pointer; transition: transform var(--wb-t);
     }
     .accent-swatch:hover { transform: translateY(-2px); }
-    .accent-swatch-bar {
-      height: 56px;
-    }
+    .accent-swatch-bar { height: 56px; }
     .accent-swatch-label {
       padding: var(--wb-s2) var(--wb-s3);
       background: var(--wb-surface); font-size: 0.8rem; font-weight: 500;
       color: var(--wb-text);
     }
-    /* Accent bar colors */
     .accent-ocean     { background: #2563eb; }
     .accent-forest    { background: #16a34a; }
     .accent-sunset    { background: #ea580c; }
@@ -185,18 +182,18 @@
       <a href="index.html">WebBlocks UI <span>v2.2</span></a>
     </div>
 
-    <div class="docs-nav-section">Overview</div>
-    <a href="index.html" class="docs-nav-link">Introduction</a>
-    <a href="getting-started.html" class="docs-nav-link">Getting Started</a>
+    <div class="docs-nav-section">Genel Bakış</div>
+    <a href="index.html" class="docs-nav-link">Giriş</a>
+    <a href="getting-started.html" class="docs-nav-link">Başlarken</a>
 
-    <div class="docs-nav-section">Guides</div>
-    <a href="foundation.html" class="docs-nav-link is-active">Foundation & Tokens</a>
-    <a href="layout.html" class="docs-nav-link">Layouts</a>
+    <div class="docs-nav-section">Kılavuzlar</div>
+    <a href="foundation.html" class="docs-nav-link is-active">Temel & Tokenlar</a>
+    <a href="../layout.html" class="docs-nav-link">Düzenler</a>
 
-    <div class="docs-nav-section">Reference</div>
-    <a href="components.html" class="docs-nav-link">Components</a>
-    <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
-    <a href="icons.html" class="docs-nav-link">Icons</a>
+    <div class="docs-nav-section">Referans</div>
+    <a href="../components.html" class="docs-nav-link">Bileşenler</a>
+    <a href="../javascript.html" class="docs-nav-link">JavaScript API</a>
+    <a href="../icons.html" class="docs-nav-link">İkonlar</a>
   </aside>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -205,10 +202,10 @@
     <!-- Topbar -->
     <div class="docs-topbar">
       <div class="docs-lang-switch">
-        <a href="foundation.html" class="is-active">EN</a>
-        <a href="tr/foundation.html">TR</a>
-        <a href="de/foundation.html">DE</a>
-        <a href="es/foundation.html">ES</a>
+        <a href="../foundation.html">EN</a>
+        <a href="foundation.html" class="is-active">TR</a>
+        <a href="../de/foundation.html">DE</a>
+        <a href="../es/foundation.html">ES</a>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
@@ -217,59 +214,60 @@
         </svg>
         GitHub
       </a>
-      <button class="docs-mode-btn" data-wb-mode-cycle title="Toggle theme">
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Temayı değiştir">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
     </div>
 
     <!-- Page header -->
     <div class="docs-page-header">
-      <h1>Foundation &amp; Tokens</h1>
-      <p>The design token system that powers every component — surfaces, colors, spacing, typography, and the multi-axis theme engine.</p>
+      <h1>Temel &amp; Tokenlar</h1>
+      <p>Her bileşene güç veren tasarım token sistemi — yüzeyler, renkler, boşluklar, tipografi ve çok eksenli tema motoru.</p>
     </div>
 
-    <!-- ── Design tokens ───────────────────────────────── -->
+    <!-- ── Tasarım tokenları ───────────────────────────── -->
     <section class="docs-section" id="tokens">
-      <h2 class="docs-section-title">Design tokens</h2>
+      <h2 class="docs-section-title">Tasarım tokenları</h2>
       <p class="docs-section-lead">
-        All values (colors, sizes, radii, shadows, spacing) are CSS custom properties defined in
-        <code class="wb-code-inline">tokens.css</code>. Components never use hardcoded values —
-        they always reference a token. Override any token to adapt WebBlocks UI to your brand.
+        Tüm değerler (renkler, boyutlar, yarıçaplar, gölgeler, boşluklar)
+        <code class="wb-code-inline">tokens.css</code> dosyasında tanımlanmış CSS özel özellikleridir.
+        Bileşenler hiçbir zaman sabit değer kullanmaz — her zaman bir tokena referans verir.
+        Markanıza uyarlamak için istediğiniz tokeni geçersiz kılabilirsiniz.
       </p>
 
       <div class="docs-callout">
-        <strong>Rule:</strong> Always use tokens in your own components too.
-        Never hardcode a color, size, or radius that could change with a theme switch.
+        <strong>Kural:</strong> Kendi bileşenlerinizde de her zaman token kullanın.
+        Tema değişiminde etkilenebilecek hiçbir renk, boyut veya yarıçapı sabit değer olarak yazmayın.
       </div>
 
-      <h3 class="docs-sub-title">Surfaces &amp; text</h3>
+      <h3 class="docs-sub-title">Yüzeyler &amp; metin</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Default (light)</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Varsayılan (açık)</th><th>Kullanım</th></tr></thead>
         <tbody>
-          <tr><td>--wb-bg</td><td>#f4f6fb</td><td>Page background</td></tr>
-          <tr><td>--wb-surface</td><td>#ffffff</td><td>Cards, panels, modals</td></tr>
-          <tr><td>--wb-surface-2</td><td>#edf1f7</td><td>Subtle backgrounds, table rows</td></tr>
-          <tr><td>--wb-surface-3</td><td>#e2e8f2</td><td>Hover states, dividers</td></tr>
-          <tr><td>--wb-text</td><td>#18212f</td><td>Primary text</td></tr>
-          <tr><td>--wb-muted</td><td>#5a6a84</td><td>Secondary text, labels, placeholders</td></tr>
-          <tr><td>--wb-border</td><td>#d6e0ee</td><td>All borders and dividers</td></tr>
+          <tr><td>--wb-bg</td><td>#f4f6fb</td><td>Sayfa arka planı</td></tr>
+          <tr><td>--wb-surface</td><td>#ffffff</td><td>Kartlar, paneller, modaller</td></tr>
+          <tr><td>--wb-surface-2</td><td>#edf1f7</td><td>Hafif arka planlar, tablo satırları</td></tr>
+          <tr><td>--wb-surface-3</td><td>#e2e8f2</td><td>Hover durumları, ayraçlar</td></tr>
+          <tr><td>--wb-text</td><td>#18212f</td><td>Birincil metin</td></tr>
+          <tr><td>--wb-muted</td><td>#5a6a84</td><td>İkincil metin, etiketler, yer tutucular</td></tr>
+          <tr><td>--wb-border</td><td>#d6e0ee</td><td>Tüm kenarlıklar ve ayraçlar</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Semantic colors</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Anlamsal renkler</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Variants</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Varyantlar</th><th>Kullanım</th></tr></thead>
         <tbody>
-          <tr><td>--wb-success</td><td>-dark · -soft</td><td>Success alerts, badges, icons</td></tr>
-          <tr><td>--wb-warning</td><td>-dark · -soft</td><td>Warning alerts, caution states</td></tr>
-          <tr><td>--wb-danger</td><td>-dark · -soft</td><td>Error states, destructive actions</td></tr>
-          <tr><td>--wb-info</td><td>-dark · -soft</td><td>Informational alerts, hints</td></tr>
+          <tr><td>--wb-success</td><td>-dark · -soft</td><td>Başarı uyarıları, rozetler, ikonlar</td></tr>
+          <tr><td>--wb-warning</td><td>-dark · -soft</td><td>Uyarı bildirimleri, dikkat durumları</td></tr>
+          <tr><td>--wb-danger</td><td>-dark · -soft</td><td>Hata durumları, yıkıcı işlemler</td></tr>
+          <tr><td>--wb-info</td><td>-dark · -soft</td><td>Bilgi uyarıları, ipuçları</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Spacing scale (4px base)</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Boşluk skalası (4px taban)</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Value</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Token</th><th>Değer</th><th>Token</th><th>Değer</th></tr></thead>
         <tbody>
           <tr><td>--wb-s1</td><td>4px</td><td>--wb-s8</td><td>32px</td></tr>
           <tr><td>--wb-s2</td><td>8px</td><td>--wb-s10</td><td>40px</td></tr>
@@ -280,73 +278,74 @@
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Border radius</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Kenar yarıçapı</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Token</th><th>Değer</th></tr></thead>
         <tbody>
           <tr><td>--wb-r-sm</td><td>5px</td></tr>
           <tr><td>--wb-r-md</td><td>9px</td></tr>
           <tr><td>--wb-r-lg</td><td>14px</td></tr>
           <tr><td>--wb-r-xl</td><td>20px</td></tr>
-          <tr><td>--wb-r-full</td><td>9999px (pill/circle)</td></tr>
+          <tr><td>--wb-r-full</td><td>9999px (hap/daire)</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Typography</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Tipografi</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Description</th></tr></thead>
+        <thead><tr><th>Token</th><th>Açıklama</th></tr></thead>
         <tbody>
-          <tr><td>--wb-font</td><td>Body font stack (Inter, system-ui fallbacks)</td></tr>
-          <tr><td>--wb-font-heading</td><td>Heading font stack (same as body by default)</td></tr>
-          <tr><td>--wb-font-mono</td><td>Monospace stack (Cascadia Code, Menlo, Consolas)</td></tr>
+          <tr><td>--wb-font</td><td>Gövde yazı tipi yığını (Inter, system-ui yedekleri)</td></tr>
+          <tr><td>--wb-font-heading</td><td>Başlık yazı tipi yığını (varsayılan olarak gövde ile aynı)</td></tr>
+          <tr><td>--wb-font-mono</td><td>Sabit genişlikli yığın (Cascadia Code, Menlo, Consolas)</td></tr>
           <tr><td>--wb-font-size-xs/sm/md/lg/xl</td><td>0.75 / 0.875 / 1 / 1.125 / 1.25 rem</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Shadows</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Gölgeler</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Kullanım</th></tr></thead>
         <tbody>
-          <tr><td>--wb-shadow-sm</td><td>Subtle lift (cards, inputs)</td></tr>
-          <tr><td>--wb-shadow-md</td><td>Dropdowns, popovers</td></tr>
-          <tr><td>--wb-shadow-lg</td><td>Modals, drawers</td></tr>
-          <tr><td>--wb-shadow-xl</td><td>Command palette, elevated overlays</td></tr>
+          <tr><td>--wb-shadow-sm</td><td>Hafif yükseklik (kartlar, girdiler)</td></tr>
+          <tr><td>--wb-shadow-md</td><td>Açılır menüler, popoverlar</td></tr>
+          <tr><td>--wb-shadow-lg</td><td>Modaller, çekmeceler</td></tr>
+          <tr><td>--wb-shadow-xl</td><td>Komut paleti, yüksek yüzen katmanlar</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Z-index scale</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Z-index skalası</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Değer</th><th>Kullanım</th></tr></thead>
         <tbody>
-          <tr><td>--wb-z-dropdown</td><td>100</td><td>Dropdowns, popovers, tooltips</td></tr>
-          <tr><td>--wb-z-modal</td><td>200</td><td>Modals, drawers, confirmation dialogs</td></tr>
-          <tr><td>--wb-z-toast</td><td>300</td><td>Toast notifications</td></tr>
+          <tr><td>--wb-z-dropdown</td><td>100</td><td>Açılır menüler, popoverlar, araç ipuçları</td></tr>
+          <tr><td>--wb-z-modal</td><td>200</td><td>Modaller, çekmeceler, onay diyalogları</td></tr>
+          <tr><td>--wb-z-toast</td><td>300</td><td>Toast bildirimleri</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Overriding tokens</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Token geçersiz kılma</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Override any token in your own CSS by targeting <code class="wb-code-inline">:root</code>
-        or a scoped selector:
+        Kendi CSS'inizde <code class="wb-code-inline">:root</code> veya kapsamlı bir seçici
+        hedefleyerek herhangi bir tokeni geçersiz kılabilirsiniz:
       </p>
-      <pre class="wb-code">/* Global override */
+      <pre class="wb-code">/* Global geçersiz kılma */
 :root {
   --wb-font: 'Geist', sans-serif;
   --wb-r-md: 12px;
 }
 
-/* Scoped override — only affects one section */
+/* Kapsamlı geçersiz kılma — yalnızca bir bölümü etkiler */
 .my-hero {
   --wb-accent: #8b5cf6;
 }</pre>
     </section>
 
-    <!-- ── Accent colors ───────────────────────────────── -->
+    <!-- ── Vurgu renkleri ──────────────────────────────── -->
     <section class="docs-section" id="accent-colors">
-      <h2 class="docs-section-title">Accent colors</h2>
+      <h2 class="docs-section-title">Vurgu renkleri</h2>
       <p class="docs-section-lead">
-        Set <code class="wb-code-inline">data-accent</code> on the <code class="wb-code-inline">&lt;html&gt;</code>
-        element to switch the entire UI to a different color scheme. Each accent defines 12 tokens.
+        Tüm arayüzü farklı bir renk düzenine geçirmek için
+        <code class="wb-code-inline">&lt;html&gt;</code> öğesine
+        <code class="wb-code-inline">data-accent</code> ayarlayın. Her vurgu 12 token tanımlar.
       </p>
 
       <div class="accent-grid">
@@ -385,165 +384,168 @@
       </div>
 
       <p style="font-size:0.8rem;color:var(--wb-muted);margin-bottom:var(--wb-s5)">
-        Click a swatch above to preview the accent on this page.
+        Vurguyu bu sayfada önizlemek için yukarıdaki renk kutusuna tıklayın.
       </p>
 
-      <h3 class="docs-sub-title">Accent token set (12 tokens per accent)</h3>
+      <h3 class="docs-sub-title">Vurgu token seti (vurgu başına 12 token)</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Kullanım</th></tr></thead>
         <tbody>
-          <tr><td>--wb-accent</td><td>Primary accent — button backgrounds, active states</td></tr>
-          <tr><td>--wb-accent-hover</td><td>Hover state for accent-colored elements</td></tr>
-          <tr><td>--wb-accent-active</td><td>Active / pressed state</td></tr>
-          <tr><td>--wb-accent-soft</td><td>Tinted background (badges, chips)</td></tr>
-          <tr><td>--wb-accent-softer</td><td>Very light tint (page sections, callouts)</td></tr>
-          <tr><td>--wb-accent-border</td><td>Accent-tinted border</td></tr>
-          <tr><td>--wb-accent-text</td><td>Accent text on light background</td></tr>
-          <tr><td>--wb-accent-on</td><td>Text color on accent background (always white or near-white)</td></tr>
-          <tr><td>--wb-accent-ring</td><td>Focus ring color</td></tr>
-          <tr><td>--wb-accent-ring-rgb</td><td>RGB values for rgba() focus ring with opacity</td></tr>
-          <tr><td>--wb-accent-selection</td><td>Text selection background</td></tr>
-          <tr><td>--wb-accent-glow-rgb</td><td>RGB values for glow effects</td></tr>
+          <tr><td>--wb-accent</td><td>Birincil vurgu — düğme arka planları, aktif durumlar</td></tr>
+          <tr><td>--wb-accent-hover</td><td>Vurgu renkli öğelerin hover durumu</td></tr>
+          <tr><td>--wb-accent-active</td><td>Aktif / basılı durum</td></tr>
+          <tr><td>--wb-accent-soft</td><td>Tonlu arka plan (rozetler, çipler)</td></tr>
+          <tr><td>--wb-accent-softer</td><td>Çok hafif ton (sayfa bölümleri, açıklamalar)</td></tr>
+          <tr><td>--wb-accent-border</td><td>Vurgu tonlu kenarlık</td></tr>
+          <tr><td>--wb-accent-text</td><td>Açık arka plan üzerinde vurgu metni</td></tr>
+          <tr><td>--wb-accent-on</td><td>Vurgu arka planı üzerinde metin rengi (genellikle beyaz)</td></tr>
+          <tr><td>--wb-accent-ring</td><td>Odak halkası rengi</td></tr>
+          <tr><td>--wb-accent-ring-rgb</td><td>Opaklıklı rgba() odak halkası için RGB değerleri</td></tr>
+          <tr><td>--wb-accent-selection</td><td>Metin seçim arka planı</td></tr>
+          <tr><td>--wb-accent-glow-rgb</td><td>Parıltı efektleri için RGB değerleri</td></tr>
         </tbody>
       </table>
 
       <div class="docs-callout" style="margin-top:var(--wb-s5)">
-        <strong>Backward compatibility:</strong> <code class="wb-code-inline">--wb-primary</code>,
-        <code class="wb-code-inline">--wb-primary-dark</code>, and <code class="wb-code-inline">--wb-primary-soft</code>
-        are aliases that map to their <code class="wb-code-inline">--wb-accent*</code> equivalents.
-        In new code, always use <code class="wb-code-inline">--wb-accent*</code>.
+        <strong>Geriye dönük uyumluluk:</strong> <code class="wb-code-inline">--wb-primary</code>,
+        <code class="wb-code-inline">--wb-primary-dark</code> ve <code class="wb-code-inline">--wb-primary-soft</code>
+        eşdeğer <code class="wb-code-inline">--wb-accent*</code> tokenlarına yönlendiren takma adlardır.
+        Yeni kodda her zaman <code class="wb-code-inline">--wb-accent*</code> kullanın.
       </div>
     </section>
 
-    <!-- ── Dark mode ───────────────────────────────────── -->
+    <!-- ── Karanlık mod ────────────────────────────────── -->
     <section class="docs-section" id="dark-mode">
-      <h2 class="docs-section-title">Dark mode</h2>
+      <h2 class="docs-section-title">Karanlık mod</h2>
       <p class="docs-section-lead">
-        Dark mode is controlled by the <code class="wb-code-inline">data-mode</code> attribute on
-        <code class="wb-code-inline">&lt;html&gt;</code>. Three values are supported.
+        Karanlık mod, <code class="wb-code-inline">&lt;html&gt;</code> üzerindeki
+        <code class="wb-code-inline">data-mode</code> özniteliği ile kontrol edilir. Üç değer desteklenir.
       </p>
 
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Behaviour</th></tr></thead>
+        <thead><tr><th>Değer</th><th>Davranış</th></tr></thead>
         <tbody>
-          <tr><td>light</td><td>Always light mode</td></tr>
-          <tr><td>dark</td><td>Always dark mode</td></tr>
-          <tr><td>auto</td><td>Follows <code class="wb-code-inline">prefers-color-scheme</code> system setting</td></tr>
+          <tr><td>light</td><td>Her zaman açık mod</td></tr>
+          <tr><td>dark</td><td>Her zaman karanlık mod</td></tr>
+          <tr><td>auto</td><td><code class="wb-code-inline">prefers-color-scheme</code> sistem ayarını izler</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">How dark mode works</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Karanlık mod nasıl çalışır</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Dark mode overrides surface, text, and border tokens via a
-        <code class="wb-code-inline">[data-mode="dark"]</code> selector in <code class="wb-code-inline">dark.css</code>.
-        All component styles automatically inherit the new values — there are no separate dark-mode class variants needed.
+        Karanlık mod, <code class="wb-code-inline">dark.css</code> dosyasındaki
+        <code class="wb-code-inline">[data-mode="dark"]</code> seçicisi aracılığıyla yüzey, metin ve
+        kenarlık tokenlarını geçersiz kılar. Tüm bileşen stilleri yeni değerleri otomatik olarak devralır —
+        ayrıca karanlık mod sınıf varyantlarına gerek yoktur.
       </p>
-      <pre class="wb-code">&lt;!-- Static --&gt;
+      <pre class="wb-code">&lt;!-- Statik --&gt;
 &lt;html data-mode="dark"&gt;
 
-&lt;!-- Toggled by the user --&gt;
-&lt;button data-wb-mode-cycle&gt;Toggle mode&lt;/button&gt;
+&lt;!-- Kullanıcı tarafından değiştirilebilir --&gt;
+&lt;button data-wb-mode-cycle&gt;Modu değiştir&lt;/button&gt;
 
-&lt;!-- Set programmatically --&gt;
+&lt;!-- Programatik olarak ayarlama --&gt;
 &lt;script&gt;WBTheme.setMode('dark');&lt;/script&gt;</pre>
 
       <div class="docs-callout">
-        <strong>localStorage persistence:</strong> <code class="wb-code-inline">WBTheme</code> persists the user's
-        mode preference in <code class="wb-code-inline">localStorage</code> under the key
-        <code class="wb-code-inline">wb-mode</code> and restores it on next page load.
-        Set the initial <code class="wb-code-inline">data-mode</code> in HTML to avoid a flash of the wrong mode.
+        <strong>localStorage kalıcılığı:</strong> <code class="wb-code-inline">WBTheme</code>,
+        kullanıcının mod tercihini <code class="wb-code-inline">localStorage</code> içinde
+        <code class="wb-code-inline">wb-mode</code> anahtarıyla saklar ve bir sonraki sayfa yüklemesinde
+        geri yükler. Yanlış modun görünmesini önlemek için HTML'de başlangıç
+        <code class="wb-code-inline">data-mode</code> değerini ayarlayın.
       </div>
     </section>
 
-    <!-- ── Presets ─────────────────────────────────────── -->
+    <!-- ── Önayarlar ───────────────────────────────────── -->
     <section class="docs-section" id="presets">
-      <h2 class="docs-section-title">Presets</h2>
+      <h2 class="docs-section-title">Önayarlar</h2>
       <p class="docs-section-lead">
-        Presets are named bundles that set multiple axes at once — radius, shadow, density, font, and border.
-        Use them as starting points for a consistent look; individual axes can still override any preset value.
+        Önayarlar, birden fazla ekseni aynı anda ayarlayan adlandırılmış paketlerdir —
+        yarıçap, gölge, yoğunluk, yazı tipi ve kenarlık. Tutarlı bir görünüm için başlangıç
+        noktası olarak kullanın; bireysel eksenler herhangi bir önayar değerini hâlâ geçersiz kılabilir.
       </p>
 
       <table class="docs-table">
-        <thead><tr><th>Preset</th><th>Radius</th><th>Shadow</th><th>Density</th><th>Font</th><th>Border</th></tr></thead>
+        <thead><tr><th>Önayar</th><th>Yarıçap</th><th>Gölge</th><th>Yoğunluk</th><th>Yazı Tipi</th><th>Kenarlık</th></tr></thead>
         <tbody>
-          <tr><td>modern</td><td>default</td><td>default</td><td>default</td><td>modern</td><td>subtle</td></tr>
+          <tr><td>modern</td><td>varsayılan</td><td>varsayılan</td><td>varsayılan</td><td>modern</td><td>subtle</td></tr>
           <tr><td>minimal</td><td>sharp</td><td>flat</td><td>compact</td><td>system</td><td>subtle</td></tr>
           <tr><td>rounded</td><td>soft</td><td>soft</td><td>comfortable</td><td>modern</td><td>none</td></tr>
-          <tr><td>bold</td><td>sharp</td><td>default</td><td>default</td><td>modern</td><td>bold</td></tr>
+          <tr><td>bold</td><td>sharp</td><td>varsayılan</td><td>varsayılan</td><td>modern</td><td>bold</td></tr>
           <tr><td>editorial</td><td>sharp</td><td>flat</td><td>comfortable</td><td>editorial</td><td>medium</td></tr>
         </tbody>
       </table>
 
-      <pre class="wb-code">&lt;!-- Apply "rounded" preset, override accent only --&gt;
+      <pre class="wb-code">&lt;!-- "rounded" önayarını uygula, yalnızca vurguyu geçersiz kıl --&gt;
 &lt;html data-preset="rounded" data-accent="rose"&gt;
 
-&lt;!-- Apply "minimal", override radius to soft --&gt;
+&lt;!-- "minimal" uygula, yarıçapı soft olarak geçersiz kıl --&gt;
 &lt;html data-preset="minimal" data-radius="soft"&gt;</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        Presets are applied in CSS cascade order before individual axis attributes,
-        so individual axes always win.
+        Önayarlar CSS şelale sırasında bireysel eksen özniteliklerinden önce uygulanır,
+        dolayısıyla bireysel eksenler her zaman önceliklidir.
       </p>
     </section>
 
-    <!-- ── Theme axes ──────────────────────────────────── -->
+    <!-- ── Tema eksenleri ──────────────────────────────── -->
     <section class="docs-section" id="axes">
-      <h2 class="docs-section-title">Theme axes</h2>
+      <h2 class="docs-section-title">Tema eksenleri</h2>
       <p class="docs-section-lead">
-        Beyond dark mode and accent, five additional axes let you tune the visual personality of your UI.
+        Karanlık mod ve vurgunun ötesinde, beş ek eksen arayüzünüzün görsel kişiliğini ayarlamanıza olanak tanır.
       </p>
 
-      <h3 class="docs-sub-title">Radius — <code class="wb-code-inline">data-radius</code></h3>
+      <h3 class="docs-sub-title">Yarıçap — <code class="wb-code-inline">data-radius</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Değer</th><th>Etki</th></tr></thead>
         <tbody>
-          <tr><td>sharp</td><td>Reduces all border radii — more structured, enterprise feel</td></tr>
-          <tr><td>soft</td><td>Increases all border radii — friendly, consumer-facing feel</td></tr>
+          <tr><td>sharp</td><td>Tüm kenar yarıçaplarını azaltır — daha yapılandırılmış, kurumsal his</td></tr>
+          <tr><td>soft</td><td>Tüm kenar yarıçaplarını artırır — arkadaşça, tüketiciye yönelik his</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Density — <code class="wb-code-inline">data-density</code></h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Yoğunluk — <code class="wb-code-inline">data-density</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Değer</th><th>Etki</th></tr></thead>
         <tbody>
-          <tr><td>compact</td><td>Reduces padding across buttons, inputs, table rows — more content per screen</td></tr>
-          <tr><td>comfortable</td><td>Increases padding — more breathing room, better for touch</td></tr>
+          <tr><td>compact</td><td>Düğme, girdi, tablo satırlarındaki dolguyu azaltır — ekranda daha fazla içerik</td></tr>
+          <tr><td>comfortable</td><td>Dolguyu artırır — daha fazla nefes alanı, dokunmatik için daha iyi</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Shadow — <code class="wb-code-inline">data-shadow</code></h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Gölge — <code class="wb-code-inline">data-shadow</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Değer</th><th>Etki</th></tr></thead>
         <tbody>
-          <tr><td>flat</td><td>Removes shadows — border-based depth, clean and minimal</td></tr>
-          <tr><td>soft</td><td>Increases shadow blur and opacity — more elevated, premium feel</td></tr>
+          <tr><td>flat</td><td>Gölgeleri kaldırır — kenarlık tabanlı derinlik, temiz ve minimal</td></tr>
+          <tr><td>soft</td><td>Gölge bulanıklığını ve opaklığını artırır — daha yüksek, premium his</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Font — <code class="wb-code-inline">data-font</code></h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Yazı Tipi — <code class="wb-code-inline">data-font</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Font stack</th></tr></thead>
+        <thead><tr><th>Değer</th><th>Yazı tipi yığını</th></tr></thead>
         <tbody>
-          <tr><td>system</td><td>Native OS font stack — no web font loaded</td></tr>
-          <tr><td>modern</td><td>Inter (CDN) — clean, highly legible</td></tr>
-          <tr><td>editorial</td><td>Playfair Display (CDN) + Inter — editorial, publishing feel</td></tr>
+          <tr><td>system</td><td>Yerel işletim sistemi yazı tipi yığını — web fontu yüklenmez</td></tr>
+          <tr><td>modern</td><td>Inter (CDN) — temiz, son derece okunabilir</td></tr>
+          <tr><td>editorial</td><td>Playfair Display (CDN) + Inter — editoryal, yayıncılık hissi</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Border — <code class="wb-code-inline">data-border</code></h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Kenarlık — <code class="wb-code-inline">data-border</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Değer</th><th>Etki</th></tr></thead>
         <tbody>
-          <tr><td>none</td><td>Removes borders — surfaces defined by shadows only</td></tr>
-          <tr><td>subtle</td><td>Light borders (default)</td></tr>
-          <tr><td>medium</td><td>Medium-weight borders</td></tr>
-          <tr><td>bold</td><td>Heavy borders — strong visual structure</td></tr>
-          <tr><td>dashed</td><td>Dashed borders — distinctive, technical feel</td></tr>
+          <tr><td>none</td><td>Kenarlıkları kaldırır — yüzeyler yalnızca gölgelerle tanımlanır</td></tr>
+          <tr><td>subtle</td><td>Hafif kenarlıklar (varsayılan)</td></tr>
+          <tr><td>medium</td><td>Orta ağırlıklı kenarlıklar</td></tr>
+          <tr><td>bold</td><td>Kalın kenarlıklar — güçlü görsel yapı</td></tr>
+          <tr><td>dashed</td><td>Kesik kenarlıklar — belirgin, teknik his</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Combining all axes</h3>
-      <pre class="wb-code">&lt;!-- Maximum customisation without a single line of custom CSS --&gt;
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Tüm eksenleri birleştirme</h3>
+      <pre class="wb-code">&lt;!-- Tek satır özel CSS yazmadan maksimum özelleştirme --&gt;
 &lt;html
   data-mode="dark"
   data-accent="royal"
@@ -553,20 +555,21 @@
 &gt;</pre>
     </section>
 
-    <!-- ── Custom token overrides ──────────────────────── -->
+    <!-- ── Özel token geçersiz kılmaları ──────────────── -->
     <section class="docs-section" id="custom-tokens">
-      <h2 class="docs-section-title">Custom token overrides</h2>
+      <h2 class="docs-section-title">Özel token geçersiz kılmaları</h2>
       <p class="docs-section-lead">
-        For brand-specific customization that goes beyond the built-in axes, override tokens directly in your own CSS.
+        Yerleşik eksenlerin ötesine geçen markaya özgü özelleştirme için, tokenları doğrudan
+        kendi CSS'inizde geçersiz kılın.
       </p>
 
-      <pre class="wb-code">/* ── Brand font ──────────────────────────────────── */
+      <pre class="wb-code">/* ── Marka yazı tipi ─────────────────────────────── */
 :root {
   --wb-font:         'DM Sans', sans-serif;
   --wb-font-heading: 'DM Serif Display', serif;
 }
 
-/* ── Custom accent (outside the 8 built-ins) ─────── */
+/* ── Özel vurgu (8 yerleşik dışında) ───────────────── */
 :root {
   --wb-accent:           #0f766e;
   --wb-accent-hover:     #0d6e66;
@@ -582,7 +585,7 @@
   --wb-accent-glow-rgb:  15 118 110;
 }
 
-/* ── Tighter spacing for a dense data grid ───────── */
+/* ── Yoğun veri tablosu için daha sıkı boşluk ───────── */
 .my-data-table {
   --wb-s3: 0.5rem;
   --wb-s4: 0.75rem;

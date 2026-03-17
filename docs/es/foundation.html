@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="light" data-accent="ocean">
+<html lang="es" data-mode="light" data-accent="ocean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foundation & Tokens — WebBlocks UI</title>
+  <title>Fundamentos y Tokens — WebBlocks UI</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
@@ -143,9 +143,7 @@
       cursor: pointer; transition: transform var(--wb-t);
     }
     .accent-swatch:hover { transform: translateY(-2px); }
-    .accent-swatch-bar {
-      height: 56px;
-    }
+    .accent-swatch-bar { height: 56px; }
     .accent-swatch-label {
       padding: var(--wb-s2) var(--wb-s3);
       background: var(--wb-surface); font-size: 0.8rem; font-weight: 500;
@@ -185,18 +183,18 @@
       <a href="index.html">WebBlocks UI <span>v2.2</span></a>
     </div>
 
-    <div class="docs-nav-section">Overview</div>
-    <a href="index.html" class="docs-nav-link">Introduction</a>
-    <a href="getting-started.html" class="docs-nav-link">Getting Started</a>
+    <div class="docs-nav-section">Resumen</div>
+    <a href="index.html" class="docs-nav-link">Introducción</a>
+    <a href="getting-started.html" class="docs-nav-link">Primeros pasos</a>
 
-    <div class="docs-nav-section">Guides</div>
-    <a href="foundation.html" class="docs-nav-link is-active">Foundation & Tokens</a>
-    <a href="layout.html" class="docs-nav-link">Layouts</a>
+    <div class="docs-nav-section">Guías</div>
+    <a href="foundation.html" class="docs-nav-link is-active">Fundamentos &amp; Tokens</a>
+    <a href="layout.html" class="docs-nav-link">Diseño</a>
 
-    <div class="docs-nav-section">Reference</div>
-    <a href="components.html" class="docs-nav-link">Components</a>
+    <div class="docs-nav-section">Referencia</div>
+    <a href="components.html" class="docs-nav-link">Componentes</a>
     <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
-    <a href="icons.html" class="docs-nav-link">Icons</a>
+    <a href="icons.html" class="docs-nav-link">Iconos</a>
   </aside>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -205,10 +203,10 @@
     <!-- Topbar -->
     <div class="docs-topbar">
       <div class="docs-lang-switch">
-        <a href="foundation.html" class="is-active">EN</a>
-        <a href="tr/foundation.html">TR</a>
-        <a href="de/foundation.html">DE</a>
-        <a href="es/foundation.html">ES</a>
+        <a href="../foundation.html">EN</a>
+        <a href="../tr/foundation.html">TR</a>
+        <a href="../de/foundation.html">DE</a>
+        <a href="foundation.html" class="is-active">ES</a>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
@@ -217,59 +215,59 @@
         </svg>
         GitHub
       </a>
-      <button class="docs-mode-btn" data-wb-mode-cycle title="Toggle theme">
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Cambiar tema">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
     </div>
 
     <!-- Page header -->
     <div class="docs-page-header">
-      <h1>Foundation &amp; Tokens</h1>
-      <p>The design token system that powers every component — surfaces, colors, spacing, typography, and the multi-axis theme engine.</p>
+      <h1>Fundamentos &amp; Tokens</h1>
+      <p>El sistema de tokens de diseño que impulsa cada componente — superficies, colores, espaciado, tipografía y el motor de temas multi-eje.</p>
     </div>
 
-    <!-- ── Design tokens ───────────────────────────────── -->
+    <!-- ── Tokens de diseño ─────────────────────────────── -->
     <section class="docs-section" id="tokens">
-      <h2 class="docs-section-title">Design tokens</h2>
+      <h2 class="docs-section-title">Tokens de diseño</h2>
       <p class="docs-section-lead">
-        All values (colors, sizes, radii, shadows, spacing) are CSS custom properties defined in
-        <code class="wb-code-inline">tokens.css</code>. Components never use hardcoded values —
-        they always reference a token. Override any token to adapt WebBlocks UI to your brand.
+        Todos los valores (colores, tamaños, radios, sombras, espaciado) son propiedades personalizadas CSS definidas en
+        <code class="wb-code-inline">tokens.css</code>. Los componentes nunca usan valores fijos —
+        siempre referencian un token. Reemplaza cualquier token para adaptar WebBlocks UI a tu marca.
       </p>
 
       <div class="docs-callout">
-        <strong>Rule:</strong> Always use tokens in your own components too.
-        Never hardcode a color, size, or radius that could change with a theme switch.
+        <strong>Regla:</strong> Usa tokens también en tus propios componentes.
+        Nunca fijes un color, tamaño o radio que pueda cambiar con un cambio de tema.
       </div>
 
-      <h3 class="docs-sub-title">Surfaces &amp; text</h3>
+      <h3 class="docs-sub-title">Superficies &amp; texto</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Default (light)</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Por defecto (claro)</th><th>Uso</th></tr></thead>
         <tbody>
-          <tr><td>--wb-bg</td><td>#f4f6fb</td><td>Page background</td></tr>
-          <tr><td>--wb-surface</td><td>#ffffff</td><td>Cards, panels, modals</td></tr>
-          <tr><td>--wb-surface-2</td><td>#edf1f7</td><td>Subtle backgrounds, table rows</td></tr>
-          <tr><td>--wb-surface-3</td><td>#e2e8f2</td><td>Hover states, dividers</td></tr>
-          <tr><td>--wb-text</td><td>#18212f</td><td>Primary text</td></tr>
-          <tr><td>--wb-muted</td><td>#5a6a84</td><td>Secondary text, labels, placeholders</td></tr>
-          <tr><td>--wb-border</td><td>#d6e0ee</td><td>All borders and dividers</td></tr>
+          <tr><td>--wb-bg</td><td>#f4f6fb</td><td>Fondo de página</td></tr>
+          <tr><td>--wb-surface</td><td>#ffffff</td><td>Tarjetas, paneles, modales</td></tr>
+          <tr><td>--wb-surface-2</td><td>#edf1f7</td><td>Fondos sutiles, filas de tabla</td></tr>
+          <tr><td>--wb-surface-3</td><td>#e2e8f2</td><td>Estados hover, divisores</td></tr>
+          <tr><td>--wb-text</td><td>#18212f</td><td>Texto principal</td></tr>
+          <tr><td>--wb-muted</td><td>#5a6a84</td><td>Texto secundario, etiquetas, marcadores</td></tr>
+          <tr><td>--wb-border</td><td>#d6e0ee</td><td>Todos los bordes y divisores</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Semantic colors</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Colores semánticos</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Variants</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Variantes</th><th>Uso</th></tr></thead>
         <tbody>
-          <tr><td>--wb-success</td><td>-dark · -soft</td><td>Success alerts, badges, icons</td></tr>
-          <tr><td>--wb-warning</td><td>-dark · -soft</td><td>Warning alerts, caution states</td></tr>
-          <tr><td>--wb-danger</td><td>-dark · -soft</td><td>Error states, destructive actions</td></tr>
-          <tr><td>--wb-info</td><td>-dark · -soft</td><td>Informational alerts, hints</td></tr>
+          <tr><td>--wb-success</td><td>-dark · -soft</td><td>Alertas de éxito, badges, iconos</td></tr>
+          <tr><td>--wb-warning</td><td>-dark · -soft</td><td>Alertas de advertencia, estados de precaución</td></tr>
+          <tr><td>--wb-danger</td><td>-dark · -soft</td><td>Estados de error, acciones destructivas</td></tr>
+          <tr><td>--wb-info</td><td>-dark · -soft</td><td>Alertas informativas, sugerencias</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Spacing scale (4px base)</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Escala de espaciado (base 4px)</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Value</th><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Token</th><th>Valor</th><th>Token</th><th>Valor</th></tr></thead>
         <tbody>
           <tr><td>--wb-s1</td><td>4px</td><td>--wb-s8</td><td>32px</td></tr>
           <tr><td>--wb-s2</td><td>8px</td><td>--wb-s10</td><td>40px</td></tr>
@@ -280,73 +278,73 @@
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Border radius</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Radio de borde</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Token</th><th>Valor</th></tr></thead>
         <tbody>
           <tr><td>--wb-r-sm</td><td>5px</td></tr>
           <tr><td>--wb-r-md</td><td>9px</td></tr>
           <tr><td>--wb-r-lg</td><td>14px</td></tr>
           <tr><td>--wb-r-xl</td><td>20px</td></tr>
-          <tr><td>--wb-r-full</td><td>9999px (pill/circle)</td></tr>
+          <tr><td>--wb-r-full</td><td>9999px (pastilla/círculo)</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Typography</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Tipografía</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Description</th></tr></thead>
+        <thead><tr><th>Token</th><th>Descripción</th></tr></thead>
         <tbody>
-          <tr><td>--wb-font</td><td>Body font stack (Inter, system-ui fallbacks)</td></tr>
-          <tr><td>--wb-font-heading</td><td>Heading font stack (same as body by default)</td></tr>
-          <tr><td>--wb-font-mono</td><td>Monospace stack (Cascadia Code, Menlo, Consolas)</td></tr>
+          <tr><td>--wb-font</td><td>Pila de fuente de cuerpo (Inter, fallbacks del sistema)</td></tr>
+          <tr><td>--wb-font-heading</td><td>Pila de fuente para encabezados (igual al cuerpo por defecto)</td></tr>
+          <tr><td>--wb-font-mono</td><td>Pila monoespaciada (Cascadia Code, Menlo, Consolas)</td></tr>
           <tr><td>--wb-font-size-xs/sm/md/lg/xl</td><td>0.75 / 0.875 / 1 / 1.125 / 1.25 rem</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Shadows</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Sombras</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Uso</th></tr></thead>
         <tbody>
-          <tr><td>--wb-shadow-sm</td><td>Subtle lift (cards, inputs)</td></tr>
-          <tr><td>--wb-shadow-md</td><td>Dropdowns, popovers</td></tr>
-          <tr><td>--wb-shadow-lg</td><td>Modals, drawers</td></tr>
-          <tr><td>--wb-shadow-xl</td><td>Command palette, elevated overlays</td></tr>
+          <tr><td>--wb-shadow-sm</td><td>Elevación sutil (tarjetas, entradas)</td></tr>
+          <tr><td>--wb-shadow-md</td><td>Menús desplegables, popovers</td></tr>
+          <tr><td>--wb-shadow-lg</td><td>Modales, drawers</td></tr>
+          <tr><td>--wb-shadow-xl</td><td>Paleta de comandos, overlays elevados</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Z-index scale</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Escala de z-index</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
         <tbody>
-          <tr><td>--wb-z-dropdown</td><td>100</td><td>Dropdowns, popovers, tooltips</td></tr>
-          <tr><td>--wb-z-modal</td><td>200</td><td>Modals, drawers, confirmation dialogs</td></tr>
-          <tr><td>--wb-z-toast</td><td>300</td><td>Toast notifications</td></tr>
+          <tr><td>--wb-z-dropdown</td><td>100</td><td>Menús desplegables, popovers, tooltips</td></tr>
+          <tr><td>--wb-z-modal</td><td>200</td><td>Modales, drawers, diálogos de confirmación</td></tr>
+          <tr><td>--wb-z-toast</td><td>300</td><td>Notificaciones toast</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Overriding tokens</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Sobreescribir tokens</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Override any token in your own CSS by targeting <code class="wb-code-inline">:root</code>
-        or a scoped selector:
+        Sobreescribe cualquier token en tu propio CSS apuntando a <code class="wb-code-inline">:root</code>
+        o a un selector acotado:
       </p>
-      <pre class="wb-code">/* Global override */
+      <pre class="wb-code">/* Sobreescritura global */
 :root {
   --wb-font: 'Geist', sans-serif;
   --wb-r-md: 12px;
 }
 
-/* Scoped override — only affects one section */
+/* Sobreescritura acotada — solo afecta a una sección */
 .my-hero {
   --wb-accent: #8b5cf6;
 }</pre>
     </section>
 
-    <!-- ── Accent colors ───────────────────────────────── -->
+    <!-- ── Colores de acento ─────────────────────────────── -->
     <section class="docs-section" id="accent-colors">
-      <h2 class="docs-section-title">Accent colors</h2>
+      <h2 class="docs-section-title">Colores de acento</h2>
       <p class="docs-section-lead">
-        Set <code class="wb-code-inline">data-accent</code> on the <code class="wb-code-inline">&lt;html&gt;</code>
-        element to switch the entire UI to a different color scheme. Each accent defines 12 tokens.
+        Establece <code class="wb-code-inline">data-accent</code> en el elemento <code class="wb-code-inline">&lt;html&gt;</code>
+        para cambiar toda la interfaz a un esquema de color diferente. Cada acento define 12 tokens.
       </p>
 
       <div class="accent-grid">
@@ -385,73 +383,73 @@
       </div>
 
       <p style="font-size:0.8rem;color:var(--wb-muted);margin-bottom:var(--wb-s5)">
-        Click a swatch above to preview the accent on this page.
+        Haz clic en una muestra arriba para ver el acento en esta página.
       </p>
 
-      <h3 class="docs-sub-title">Accent token set (12 tokens per accent)</h3>
+      <h3 class="docs-sub-title">Conjunto de tokens de acento (12 tokens por acento)</h3>
       <table class="docs-table">
-        <thead><tr><th>Token</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Token</th><th>Uso</th></tr></thead>
         <tbody>
-          <tr><td>--wb-accent</td><td>Primary accent — button backgrounds, active states</td></tr>
-          <tr><td>--wb-accent-hover</td><td>Hover state for accent-colored elements</td></tr>
-          <tr><td>--wb-accent-active</td><td>Active / pressed state</td></tr>
-          <tr><td>--wb-accent-soft</td><td>Tinted background (badges, chips)</td></tr>
-          <tr><td>--wb-accent-softer</td><td>Very light tint (page sections, callouts)</td></tr>
-          <tr><td>--wb-accent-border</td><td>Accent-tinted border</td></tr>
-          <tr><td>--wb-accent-text</td><td>Accent text on light background</td></tr>
-          <tr><td>--wb-accent-on</td><td>Text color on accent background (always white or near-white)</td></tr>
-          <tr><td>--wb-accent-ring</td><td>Focus ring color</td></tr>
-          <tr><td>--wb-accent-ring-rgb</td><td>RGB values for rgba() focus ring with opacity</td></tr>
-          <tr><td>--wb-accent-selection</td><td>Text selection background</td></tr>
-          <tr><td>--wb-accent-glow-rgb</td><td>RGB values for glow effects</td></tr>
+          <tr><td>--wb-accent</td><td>Acento principal — fondos de botones, estados activos</td></tr>
+          <tr><td>--wb-accent-hover</td><td>Estado hover para elementos con color de acento</td></tr>
+          <tr><td>--wb-accent-active</td><td>Estado activo / presionado</td></tr>
+          <tr><td>--wb-accent-soft</td><td>Fondo con tinte (badges, chips)</td></tr>
+          <tr><td>--wb-accent-softer</td><td>Tinte muy claro (secciones de página, callouts)</td></tr>
+          <tr><td>--wb-accent-border</td><td>Borde con tinte de acento</td></tr>
+          <tr><td>--wb-accent-text</td><td>Texto de acento sobre fondo claro</td></tr>
+          <tr><td>--wb-accent-on</td><td>Color de texto sobre fondo de acento (siempre blanco o casi blanco)</td></tr>
+          <tr><td>--wb-accent-ring</td><td>Color del anillo de foco</td></tr>
+          <tr><td>--wb-accent-ring-rgb</td><td>Valores RGB para anillo de foco con opacidad rgba()</td></tr>
+          <tr><td>--wb-accent-selection</td><td>Fondo de selección de texto</td></tr>
+          <tr><td>--wb-accent-glow-rgb</td><td>Valores RGB para efectos de brillo</td></tr>
         </tbody>
       </table>
 
       <div class="docs-callout" style="margin-top:var(--wb-s5)">
-        <strong>Backward compatibility:</strong> <code class="wb-code-inline">--wb-primary</code>,
-        <code class="wb-code-inline">--wb-primary-dark</code>, and <code class="wb-code-inline">--wb-primary-soft</code>
-        are aliases that map to their <code class="wb-code-inline">--wb-accent*</code> equivalents.
-        In new code, always use <code class="wb-code-inline">--wb-accent*</code>.
+        <strong>Compatibilidad con versiones anteriores:</strong> <code class="wb-code-inline">--wb-primary</code>,
+        <code class="wb-code-inline">--wb-primary-dark</code> y <code class="wb-code-inline">--wb-primary-soft</code>
+        son alias que apuntan a sus equivalentes <code class="wb-code-inline">--wb-accent*</code>.
+        En código nuevo, usa siempre <code class="wb-code-inline">--wb-accent*</code>.
       </div>
     </section>
 
-    <!-- ── Dark mode ───────────────────────────────────── -->
+    <!-- ── Modo oscuro ──────────────────────────────────── -->
     <section class="docs-section" id="dark-mode">
-      <h2 class="docs-section-title">Dark mode</h2>
+      <h2 class="docs-section-title">Modo oscuro</h2>
       <p class="docs-section-lead">
-        Dark mode is controlled by the <code class="wb-code-inline">data-mode</code> attribute on
-        <code class="wb-code-inline">&lt;html&gt;</code>. Three values are supported.
+        El modo oscuro se controla mediante el atributo <code class="wb-code-inline">data-mode</code> en
+        <code class="wb-code-inline">&lt;html&gt;</code>. Se admiten tres valores.
       </p>
 
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Behaviour</th></tr></thead>
+        <thead><tr><th>Valor</th><th>Comportamiento</th></tr></thead>
         <tbody>
-          <tr><td>light</td><td>Always light mode</td></tr>
-          <tr><td>dark</td><td>Always dark mode</td></tr>
-          <tr><td>auto</td><td>Follows <code class="wb-code-inline">prefers-color-scheme</code> system setting</td></tr>
+          <tr><td>light</td><td>Siempre modo claro</td></tr>
+          <tr><td>dark</td><td>Siempre modo oscuro</td></tr>
+          <tr><td>auto</td><td>Sigue la configuración del sistema <code class="wb-code-inline">prefers-color-scheme</code></td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">How dark mode works</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Cómo funciona el modo oscuro</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Dark mode overrides surface, text, and border tokens via a
-        <code class="wb-code-inline">[data-mode="dark"]</code> selector in <code class="wb-code-inline">dark.css</code>.
-        All component styles automatically inherit the new values — there are no separate dark-mode class variants needed.
+        El modo oscuro reemplaza los tokens de superficie, texto y borde mediante un selector
+        <code class="wb-code-inline">[data-mode="dark"]</code> en <code class="wb-code-inline">dark.css</code>.
+        Todos los estilos de componentes heredan automáticamente los nuevos valores — no se necesitan variantes separadas de clase para modo oscuro.
       </p>
-      <pre class="wb-code">&lt;!-- Static --&gt;
+      <pre class="wb-code">&lt;!-- Estático --&gt;
 &lt;html data-mode="dark"&gt;
 
-&lt;!-- Toggled by the user --&gt;
-&lt;button data-wb-mode-cycle&gt;Toggle mode&lt;/button&gt;
+&lt;!-- Cambiado por el usuario --&gt;
+&lt;button data-wb-mode-cycle&gt;Cambiar modo&lt;/button&gt;
 
-&lt;!-- Set programmatically --&gt;
+&lt;!-- Establecido por programación --&gt;
 &lt;script&gt;WBTheme.setMode('dark');&lt;/script&gt;</pre>
 
       <div class="docs-callout">
-        <strong>localStorage persistence:</strong> <code class="wb-code-inline">WBTheme</code> persists the user's
-        mode preference in <code class="wb-code-inline">localStorage</code> under the key
-        <code class="wb-code-inline">wb-mode</code> and restores it on next page load.
-        Set the initial <code class="wb-code-inline">data-mode</code> in HTML to avoid a flash of the wrong mode.
+        <strong>Persistencia en localStorage:</strong> <code class="wb-code-inline">WBTheme</code> guarda la
+        preferencia de modo del usuario en <code class="wb-code-inline">localStorage</code> bajo la clave
+        <code class="wb-code-inline">wb-mode</code> y la restaura en la siguiente carga de página.
+        Establece el <code class="wb-code-inline">data-mode</code> inicial en el HTML para evitar un flash del modo incorrecto.
       </div>
     </section>
 
@@ -459,12 +457,12 @@
     <section class="docs-section" id="presets">
       <h2 class="docs-section-title">Presets</h2>
       <p class="docs-section-lead">
-        Presets are named bundles that set multiple axes at once — radius, shadow, density, font, and border.
-        Use them as starting points for a consistent look; individual axes can still override any preset value.
+        Los presets son paquetes con nombre que establecen múltiples ejes a la vez — radio, sombra, densidad, fuente y borde.
+        Úsalos como punto de partida para un aspecto coherente; los ejes individuales aún pueden sobreescribir cualquier valor del preset.
       </p>
 
       <table class="docs-table">
-        <thead><tr><th>Preset</th><th>Radius</th><th>Shadow</th><th>Density</th><th>Font</th><th>Border</th></tr></thead>
+        <thead><tr><th>Preset</th><th>Radio</th><th>Sombra</th><th>Densidad</th><th>Fuente</th><th>Borde</th></tr></thead>
         <tbody>
           <tr><td>modern</td><td>default</td><td>default</td><td>default</td><td>modern</td><td>subtle</td></tr>
           <tr><td>minimal</td><td>sharp</td><td>flat</td><td>compact</td><td>system</td><td>subtle</td></tr>
@@ -474,76 +472,76 @@
         </tbody>
       </table>
 
-      <pre class="wb-code">&lt;!-- Apply "rounded" preset, override accent only --&gt;
+      <pre class="wb-code">&lt;!-- Aplicar preset "rounded", sobreescribir solo el acento --&gt;
 &lt;html data-preset="rounded" data-accent="rose"&gt;
 
-&lt;!-- Apply "minimal", override radius to soft --&gt;
+&lt;!-- Aplicar "minimal", sobreescribir radio a soft --&gt;
 &lt;html data-preset="minimal" data-radius="soft"&gt;</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        Presets are applied in CSS cascade order before individual axis attributes,
-        so individual axes always win.
+        Los presets se aplican en el orden de cascada CSS antes que los atributos de eje individuales,
+        por lo que los ejes individuales siempre tienen prioridad.
       </p>
     </section>
 
-    <!-- ── Theme axes ──────────────────────────────────── -->
+    <!-- ── Ejes de tema ──────────────────────────────────── -->
     <section class="docs-section" id="axes">
-      <h2 class="docs-section-title">Theme axes</h2>
+      <h2 class="docs-section-title">Ejes de tema</h2>
       <p class="docs-section-lead">
-        Beyond dark mode and accent, five additional axes let you tune the visual personality of your UI.
+        Más allá del modo oscuro y el acento, cinco ejes adicionales permiten ajustar la personalidad visual de tu interfaz.
       </p>
 
-      <h3 class="docs-sub-title">Radius — <code class="wb-code-inline">data-radius</code></h3>
+      <h3 class="docs-sub-title">Radio — <code class="wb-code-inline">data-radius</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Valor</th><th>Efecto</th></tr></thead>
         <tbody>
-          <tr><td>sharp</td><td>Reduces all border radii — more structured, enterprise feel</td></tr>
-          <tr><td>soft</td><td>Increases all border radii — friendly, consumer-facing feel</td></tr>
+          <tr><td>sharp</td><td>Reduce todos los radios de borde — aspecto más estructurado y empresarial</td></tr>
+          <tr><td>soft</td><td>Aumenta todos los radios de borde — aspecto amigable y orientado al consumidor</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Density — <code class="wb-code-inline">data-density</code></h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Densidad — <code class="wb-code-inline">data-density</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Valor</th><th>Efecto</th></tr></thead>
         <tbody>
-          <tr><td>compact</td><td>Reduces padding across buttons, inputs, table rows — more content per screen</td></tr>
-          <tr><td>comfortable</td><td>Increases padding — more breathing room, better for touch</td></tr>
+          <tr><td>compact</td><td>Reduce el relleno en botones, entradas, filas de tabla — más contenido por pantalla</td></tr>
+          <tr><td>comfortable</td><td>Aumenta el relleno — más espacio para respirar, mejor para táctil</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Shadow — <code class="wb-code-inline">data-shadow</code></h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Sombra — <code class="wb-code-inline">data-shadow</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Valor</th><th>Efecto</th></tr></thead>
         <tbody>
-          <tr><td>flat</td><td>Removes shadows — border-based depth, clean and minimal</td></tr>
-          <tr><td>soft</td><td>Increases shadow blur and opacity — more elevated, premium feel</td></tr>
+          <tr><td>flat</td><td>Elimina sombras — profundidad basada en bordes, limpio y minimalista</td></tr>
+          <tr><td>soft</td><td>Aumenta el desenfoque y opacidad de sombra — aspecto más elevado y premium</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Font — <code class="wb-code-inline">data-font</code></h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Fuente — <code class="wb-code-inline">data-font</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Font stack</th></tr></thead>
+        <thead><tr><th>Valor</th><th>Pila de fuente</th></tr></thead>
         <tbody>
-          <tr><td>system</td><td>Native OS font stack — no web font loaded</td></tr>
-          <tr><td>modern</td><td>Inter (CDN) — clean, highly legible</td></tr>
-          <tr><td>editorial</td><td>Playfair Display (CDN) + Inter — editorial, publishing feel</td></tr>
+          <tr><td>system</td><td>Pila de fuente nativa del SO — no se carga ninguna fuente web</td></tr>
+          <tr><td>modern</td><td>Inter (CDN) — limpia y muy legible</td></tr>
+          <tr><td>editorial</td><td>Playfair Display (CDN) + Inter — aspecto editorial y de publicación</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Border — <code class="wb-code-inline">data-border</code></h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Borde — <code class="wb-code-inline">data-border</code></h3>
       <table class="docs-table">
-        <thead><tr><th>Value</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Valor</th><th>Efecto</th></tr></thead>
         <tbody>
-          <tr><td>none</td><td>Removes borders — surfaces defined by shadows only</td></tr>
-          <tr><td>subtle</td><td>Light borders (default)</td></tr>
-          <tr><td>medium</td><td>Medium-weight borders</td></tr>
-          <tr><td>bold</td><td>Heavy borders — strong visual structure</td></tr>
-          <tr><td>dashed</td><td>Dashed borders — distinctive, technical feel</td></tr>
+          <tr><td>none</td><td>Elimina bordes — superficies definidas solo por sombras</td></tr>
+          <tr><td>subtle</td><td>Bordes ligeros (por defecto)</td></tr>
+          <tr><td>medium</td><td>Bordes de peso medio</td></tr>
+          <tr><td>bold</td><td>Bordes gruesos — estructura visual fuerte</td></tr>
+          <tr><td>dashed</td><td>Bordes discontinuos — aspecto distintivo y técnico</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Combining all axes</h3>
-      <pre class="wb-code">&lt;!-- Maximum customisation without a single line of custom CSS --&gt;
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Combinando todos los ejes</h3>
+      <pre class="wb-code">&lt;!-- Máxima personalización sin una sola línea de CSS propio --&gt;
 &lt;html
   data-mode="dark"
   data-accent="royal"
@@ -553,20 +551,20 @@
 &gt;</pre>
     </section>
 
-    <!-- ── Custom token overrides ──────────────────────── -->
+    <!-- ── Sobreescrituras de token personalizadas ──────── -->
     <section class="docs-section" id="custom-tokens">
-      <h2 class="docs-section-title">Custom token overrides</h2>
+      <h2 class="docs-section-title">Sobreescrituras de token personalizadas</h2>
       <p class="docs-section-lead">
-        For brand-specific customization that goes beyond the built-in axes, override tokens directly in your own CSS.
+        Para personalizaciones específicas de marca que van más allá de los ejes incorporados, sobreescribe tokens directamente en tu propio CSS.
       </p>
 
-      <pre class="wb-code">/* ── Brand font ──────────────────────────────────── */
+      <pre class="wb-code">/* ── Fuente de marca ─────────────────────────────── */
 :root {
   --wb-font:         'DM Sans', sans-serif;
   --wb-font-heading: 'DM Serif Display', serif;
 }
 
-/* ── Custom accent (outside the 8 built-ins) ─────── */
+/* ── Acento personalizado (fuera de los 8 predefinidos) ── */
 :root {
   --wb-accent:           #0f766e;
   --wb-accent-hover:     #0d6e66;
@@ -582,7 +580,7 @@
   --wb-accent-glow-rgb:  15 118 110;
 }
 
-/* ── Tighter spacing for a dense data grid ───────── */
+/* ── Espaciado más ajustado para una tabla de datos densa ── */
 .my-data-table {
   --wb-s3: 0.5rem;
   --wb-s4: 0.75rem;

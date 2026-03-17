@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="light" data-accent="ocean">
+<html lang="tr" data-mode="light" data-accent="ocean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Icons — WebBlocks UI</title>
+  <title>İkonlar — WebBlocks UI</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
@@ -240,18 +240,18 @@
       <a href="index.html">WebBlocks UI <span>v2.2</span></a>
     </div>
 
-    <div class="docs-nav-section">Overview</div>
-    <a href="index.html" class="docs-nav-link">Introduction</a>
-    <a href="getting-started.html" class="docs-nav-link">Getting Started</a>
+    <div class="docs-nav-section">Genel Bakış</div>
+    <a href="index.html" class="docs-nav-link">Giriş</a>
+    <a href="getting-started.html" class="docs-nav-link">Başlarken</a>
 
-    <div class="docs-nav-section">Guides</div>
-    <a href="foundation.html" class="docs-nav-link">Foundation &amp; Tokens</a>
-    <a href="layout.html" class="docs-nav-link">Layouts</a>
+    <div class="docs-nav-section">Kılavuzlar</div>
+    <a href="foundation.html" class="docs-nav-link">Temel &amp; Tokenlar</a>
+    <a href="layout.html" class="docs-nav-link">Düzenler</a>
 
-    <div class="docs-nav-section">Reference</div>
-    <a href="components.html" class="docs-nav-link">Components</a>
+    <div class="docs-nav-section">Referans</div>
+    <a href="components.html" class="docs-nav-link">Bileşenler</a>
     <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
-    <a href="icons.html" class="docs-nav-link is-active">Icons</a>
+    <a href="icons.html" class="docs-nav-link is-active">İkonlar</a>
   </aside>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -260,14 +260,14 @@
     <!-- Topbar -->
     <div class="docs-topbar">
       <div class="docs-lang-switch">
-        <a href="icons.html" class="is-active">EN</a>
-        <a href="tr/icons.html">TR</a>
-        <a href="de/icons.html">DE</a>
-        <a href="es/icons.html">ES</a>
+        <a href="../icons.html">EN</a>
+        <a href="icons.html" class="is-active">TR</a>
+        <a href="../de/icons.html">DE</a>
+        <a href="../es/icons.html">ES</a>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          style="font-size:0.8rem;color:var(--wb-muted);text-decoration:none;">GitHub</a>
-      <button class="docs-mode-btn" id="modeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">
+      <button class="docs-mode-btn" id="modeBtn" title="Karanlık modu değiştir" aria-label="Karanlık modu değiştir">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"/>
@@ -285,25 +285,25 @@
 
     <!-- Page header -->
     <div class="docs-page-header">
-      <h1>Icons</h1>
+      <h1>İkonlar</h1>
       <p>
-        133 Lucide-based icons bundled as an SVG sprite. Use them via
-        <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> or the
-        <code class="wb-code-inline">&lt;i&gt;</code> tag shorthand.
-        Click any icon to copy its usage snippet.
+        SVG sprite olarak paketlenmiş 133 Lucide tabanlı ikon. Bunları
+        <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> veya
+        <code class="wb-code-inline">&lt;i&gt;</code> etiketi kısayoluyla kullanın.
+        Kullanım snippet'ini kopyalamak için herhangi bir ikona tıklayın.
       </p>
     </div>
 
-    <!-- ── Usage section ──────────────────────────────────── -->
+    <!-- ── Kullanım bölümü ─────────────────────────────────── -->
     <section class="docs-section" id="usage">
-      <h2 class="docs-section-title">Usage</h2>
+      <h2 class="docs-section-title">Kullanım</h2>
       <p class="docs-section-lead">
-        The icon sprite is a separate file: <code class="wb-code-inline">dist/webblocks-icons.svg</code>.
-        Load it once per page with a small inline script, then reference any icon by ID.
+        İkon sprite'ı ayrı bir dosyadır: <code class="wb-code-inline">dist/webblocks-icons.svg</code>.
+        Küçük bir satır içi script ile sayfa başına bir kez yükleyin, ardından herhangi bir ikona ID ile başvurun.
       </p>
 
-      <h3 class="docs-sub-title" style="margin-top:0">1. Load the sprite</h3>
-      <pre class="wb-code">&lt;!-- Place near the end of &lt;body&gt;, after webblocks-ui.js --&gt;
+      <h3 class="docs-sub-title" style="margin-top:0">1. Sprite'ı yükle</h3>
+      <pre class="wb-code">&lt;!-- &lt;body&gt; sonuna, webblocks-ui.js'den sonra yerleştirin --&gt;
 &lt;script&gt;
   fetch('dist/webblocks-icons.svg')
     .then(function(r) { return r.text(); })
@@ -315,112 +315,112 @@
     });
 &lt;/script&gt;</pre>
 
-      <h3 class="docs-sub-title">2a. SVG &lt;use&gt; pattern</h3>
+      <h3 class="docs-sub-title">2a. SVG &lt;use&gt; kalıbı</h3>
       <p style="font-size:0.9rem;color:var(--wb-muted);margin:0 0 var(--wb-s3);">
-        Semantic, accessible, inherits <code class="wb-code-inline">currentColor</code> for easy theming.
+        Anlamsal, erişilebilir, kolay tema için <code class="wb-code-inline">currentColor</code>'ı devralır.
       </p>
-      <pre class="wb-code">&lt;!-- Default size (20px) --&gt;
+      <pre class="wb-code">&lt;!-- Varsayılan boyut (20px) --&gt;
 &lt;svg class="wb-icon"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;
 
-&lt;!-- Size variants --&gt;
+&lt;!-- Boyut varyantları --&gt;
 &lt;svg class="wb-icon wb-icon-sm"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;  &lt;!-- 16px --&gt;
 &lt;svg class="wb-icon wb-icon-lg"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;  &lt;!-- 24px --&gt;
 &lt;svg class="wb-icon wb-icon-xl"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;  &lt;!-- 32px --&gt;
 
-&lt;!-- With color helpers --&gt;
+&lt;!-- Renk yardımcılarıyla --&gt;
 &lt;svg class="wb-icon wb-icon-accent"&gt;&lt;use href="#wb-icon-star"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-muted"&gt;&lt;use href="#wb-icon-info"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-success"&gt;&lt;use href="#wb-icon-check"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-danger"&gt;&lt;use href="#wb-icon-x"&gt;&lt;/use&gt;&lt;/svg&gt;
 
-&lt;!-- Wrapped in a circle background --&gt;
+&lt;!-- Daire arka planlı sarmalayıcı --&gt;
 &lt;span class="wb-icon-wrap"&gt;
   &lt;svg class="wb-icon wb-icon-accent"&gt;&lt;use href="#wb-icon-bell"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;/span&gt;</pre>
 
-      <h3 class="docs-sub-title">2b. &lt;i&gt; tag pattern (opt-in)</h3>
+      <h3 class="docs-sub-title">2b. &lt;i&gt; etiketi kalıbı (isteğe bağlı)</h3>
       <p style="font-size:0.9rem;color:var(--wb-muted);margin:0 0 var(--wb-s3);">
-        Load <code class="wb-code-inline">dist/webblocks-icons.css</code> for Bootstrap-style
-        <code class="wb-code-inline">&lt;i&gt;</code> support using CSS <code class="wb-code-inline">mask-image</code>.
+        Bootstrap tarzı <code class="wb-code-inline">&lt;i&gt;</code> desteği için
+        <code class="wb-code-inline">dist/webblocks-icons.css</code> yükleyin (CSS <code class="wb-code-inline">mask-image</code> kullanır).
       </p>
       <pre class="wb-code">&lt;link rel="stylesheet" href="dist/webblocks-icons.css"&gt;
 
-&lt;!-- Then use &lt;i&gt; tags (no sprite fetch needed) --&gt;
+&lt;!-- Ardından &lt;i&gt; etiketi kullanın (sprite fetch gerekmez) --&gt;
 &lt;i class="wb-icon wb-icon-settings"&gt;&lt;/i&gt;
 &lt;i class="wb-icon wb-icon-sm wb-icon-bell"&gt;&lt;/i&gt;
 &lt;i class="wb-icon wb-icon-lg wb-icon-check wb-icon-success"&gt;&lt;/i&gt;</pre>
 
       <div class="docs-callout">
-        <strong>Two methods, one class system.</strong>
-        The <code class="wb-code-inline">wb-icon</code> size and color helper classes work identically
-        for both SVG <code class="wb-code-inline">&lt;use&gt;</code> and
-        <code class="wb-code-inline">&lt;i&gt;</code> tags.
-        The sprite-based approach is recommended for semantic usage and better accessibility.
+        <strong>İki yöntem, tek sınıf sistemi.</strong>
+        <code class="wb-code-inline">wb-icon</code> boyut ve renk yardımcı sınıfları hem SVG
+        <code class="wb-code-inline">&lt;use&gt;</code> hem de <code class="wb-code-inline">&lt;i&gt;</code>
+        etiketleri için aynı şekilde çalışır.
+        Anlamsal kullanım ve daha iyi erişilebilirlik için sprite tabanlı yaklaşım önerilir.
       </div>
 
-      <h3 class="docs-sub-title">CDN URLs</h3>
-      <pre class="wb-code">&lt;!-- Sprite (required for &lt;svg&gt;&lt;use&gt; pattern) --&gt;
+      <h3 class="docs-sub-title">CDN URL'leri</h3>
+      <pre class="wb-code">&lt;!-- Sprite (&lt;svg&gt;&lt;use&gt; kalıbı için gerekli) --&gt;
 https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg
 
-&lt;!-- Icon CSS (required for &lt;i&gt; tag pattern) --&gt;
+&lt;!-- İkon CSS (&lt;i&gt; etiketi kalıbı için gerekli) --&gt;
 https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.css</pre>
     </section>
 
-    <!-- ── Size & color reference ─────────────────────────── -->
+    <!-- ── Boyut & Renk referansı ──────────────────────────── -->
     <section class="docs-section" id="reference">
-      <h2 class="docs-section-title">Size &amp; Color Classes</h2>
+      <h2 class="docs-section-title">Boyut &amp; Renk Sınıfları</h2>
       <p class="docs-section-lead">
-        Apply these classes directly to <code class="wb-code-inline">&lt;svg class="wb-icon"&gt;</code>
-        or <code class="wb-code-inline">&lt;i class="wb-icon"&gt;</code>.
+        Bu sınıfları doğrudan <code class="wb-code-inline">&lt;svg class="wb-icon"&gt;</code>
+        veya <code class="wb-code-inline">&lt;i class="wb-icon"&gt;</code> üzerine uygulayın.
       </p>
 
-      <h3 class="docs-sub-title" style="margin-top:0">Size modifiers</h3>
+      <h3 class="docs-sub-title" style="margin-top:0">Boyut değiştiricileri</h3>
       <table class="docs-table">
         <thead>
-          <tr><th>Class</th><th>Size</th><th>Use case</th></tr>
+          <tr><th>Sınıf</th><th>Boyut</th><th>Kullanım durumu</th></tr>
         </thead>
         <tbody>
-          <tr><td>wb-icon-sm</td><td>16px</td><td>Inline text, badges, compact UI</td></tr>
-          <tr><td>(default)</td><td>20px</td><td>Buttons, nav items, most UI contexts</td></tr>
-          <tr><td>wb-icon-lg</td><td>24px</td><td>Headings, card icons, prominent actions</td></tr>
-          <tr><td>wb-icon-xl</td><td>32px</td><td>Empty states, feature highlights</td></tr>
+          <tr><td>wb-icon-sm</td><td>16px</td><td>Satır içi metin, rozetler, kompakt arayüz</td></tr>
+          <tr><td>(varsayılan)</td><td>20px</td><td>Düğmeler, gezinme öğeleri, çoğu arayüz bağlamı</td></tr>
+          <tr><td>wb-icon-lg</td><td>24px</td><td>Başlıklar, kart ikonları, öne çıkan eylemler</td></tr>
+          <tr><td>wb-icon-xl</td><td>32px</td><td>Boş durumlar, özellik vurguları</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title">Color helpers</h3>
+      <h3 class="docs-sub-title">Renk yardımcıları</h3>
       <table class="docs-table">
         <thead>
-          <tr><th>Class</th><th>Token used</th><th>Description</th></tr>
+          <tr><th>Sınıf</th><th>Kullanılan token</th><th>Açıklama</th></tr>
         </thead>
         <tbody>
-          <tr><td>wb-icon-accent</td><td>--wb-accent-text</td><td>Accent / brand color</td></tr>
-          <tr><td>wb-icon-muted</td><td>--wb-muted</td><td>Subdued, secondary icons</td></tr>
-          <tr><td>wb-icon-success</td><td>--wb-success</td><td>Positive / confirmed</td></tr>
-          <tr><td>wb-icon-warning</td><td>--wb-warning</td><td>Caution / attention</td></tr>
-          <tr><td>wb-icon-danger</td><td>--wb-danger</td><td>Destructive / error</td></tr>
-          <tr><td>wb-icon-info</td><td>--wb-info</td><td>Informational</td></tr>
-          <tr><td>(none)</td><td>currentColor</td><td>Inherits from parent text color</td></tr>
+          <tr><td>wb-icon-accent</td><td>--wb-accent-text</td><td>Vurgu / marka rengi</td></tr>
+          <tr><td>wb-icon-muted</td><td>--wb-muted</td><td>Soluk, ikincil ikonlar</td></tr>
+          <tr><td>wb-icon-success</td><td>--wb-success</td><td>Olumlu / onaylandı</td></tr>
+          <tr><td>wb-icon-warning</td><td>--wb-warning</td><td>Dikkat / uyarı</td></tr>
+          <tr><td>wb-icon-danger</td><td>--wb-danger</td><td>Yıkıcı / hata</td></tr>
+          <tr><td>wb-icon-info</td><td>--wb-info</td><td>Bilgilendirici</td></tr>
+          <tr><td>(yok)</td><td>currentColor</td><td>Üst öğenin metin rengini devralır</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title">Icon wrap</h3>
-      <pre class="wb-code">&lt;!-- Rounded container with accent-soft background --&gt;
+      <h3 class="docs-sub-title">İkon sarmalayıcı</h3>
+      <pre class="wb-code">&lt;!-- Vurgu-soft arka planlı yuvarlak kapsayıcı --&gt;
 &lt;span class="wb-icon-wrap"&gt;
   &lt;svg class="wb-icon wb-icon-accent"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;/span&gt;
 
-&lt;!-- Size variants of the wrap --&gt;
+&lt;!-- Sarmalayıcı boyut varyantları --&gt;
 &lt;span class="wb-icon-wrap wb-icon-wrap-sm"&gt;…&lt;/span&gt;
 &lt;span class="wb-icon-wrap wb-icon-wrap-lg"&gt;…&lt;/span&gt;</pre>
     </section>
 
-    <!-- ── Gallery ────────────────────────────────────────── -->
+    <!-- ── Galeri ──────────────────────────────────────────── -->
     <section class="docs-section" id="gallery">
-      <h2 class="docs-section-title">Icon Gallery</h2>
+      <h2 class="docs-section-title">İkon Galerisi</h2>
       <p class="docs-section-lead">
-        Click any icon to copy its snippet. Use the toggle to switch between
-        <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> and
-        <code class="wb-code-inline">&lt;i&gt;</code> formats.
+        Snippet'i kopyalamak için herhangi bir ikona tıklayın.
+        <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> ve
+        <code class="wb-code-inline">&lt;i&gt;</code> formatları arasında geçiş yapmak için düğmeyi kullanın.
       </p>
 
       <div class="icons-controls">
@@ -430,18 +430,18 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
           <input type="search" class="icons-search" id="iconSearch"
-                 placeholder="Search 133 icons…" autocomplete="off" spellcheck="false">
+                 placeholder="133 ikon ara…" autocomplete="off" spellcheck="false">
         </div>
-        <div class="copy-mode-group" role="group" aria-label="Copy format">
+        <div class="copy-mode-group" role="group" aria-label="Kopyalama formatı">
           <button class="copy-mode-btn is-active" data-mode="svg" id="modeSvg">SVG use</button>
-          <button class="copy-mode-btn" data-mode="i" id="modeI">&lt;i&gt; tag</button>
+          <button class="copy-mode-btn" data-mode="i" id="modeI">&lt;i&gt; etiketi</button>
         </div>
       </div>
 
-      <p class="icons-count" id="iconsCount">133 icons</p>
+      <p class="icons-count" id="iconsCount">133 ikon</p>
 
       <div class="icons-grid" id="iconGrid">
-        <!-- Populated by JS -->
+        <!-- JS tarafından doldurulur -->
       </div>
     </section>
 
@@ -504,13 +504,13 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
       : ICONS;
 
     document.getElementById('iconsCount').textContent =
-      filtered.length + (filtered.length === 1 ? ' icon' : ' icons')
-      + (currentFilter ? ' matching "' + currentFilter + '"' : '');
+      filtered.length + (filtered.length === 1 ? ' ikon' : ' ikon')
+      + (currentFilter ? ' — "' + currentFilter + '" için eşleşme' : '');
 
     if (filtered.length === 0) {
       var empty = document.createElement('div');
       empty.className = 'icons-empty';
-      empty.textContent = 'No icons match "' + currentFilter + '"';
+      empty.textContent = '"' + currentFilter + '" ile eşleşen ikon yok';
       grid.appendChild(empty);
       return;
     }
@@ -518,11 +518,11 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
     filtered.forEach(function(name) {
       var card = document.createElement('div');
       card.className = 'icon-card';
-      card.title = 'Click to copy';
+      card.title = 'Kopyalamak için tıkla';
       card.innerHTML =
         '<svg class="wb-icon wb-icon-lg" aria-hidden="true"><use href="#wb-icon-' + name + '"></use></svg>' +
         '<span class="icon-card-name">' + name + '</span>' +
-        '<span class="icon-card-copied">Copied!</span>';
+        '<span class="icon-card-copied">Kopyalandı!</span>';
 
       card.addEventListener('click', function() {
         var snippet = copyMode === 'svg'

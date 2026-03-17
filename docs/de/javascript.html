@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="light" data-accent="ocean">
+<html lang="de" data-mode="light" data-accent="ocean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -193,16 +193,16 @@
       <a href="index.html">WebBlocks UI <span>v2.2</span></a>
     </div>
 
-    <div class="docs-nav-section">Overview</div>
-    <a href="index.html" class="docs-nav-link">Introduction</a>
-    <a href="getting-started.html" class="docs-nav-link">Getting Started</a>
+    <div class="docs-nav-section">Übersicht</div>
+    <a href="index.html" class="docs-nav-link">Einführung</a>
+    <a href="getting-started.html" class="docs-nav-link">Erste Schritte</a>
 
-    <div class="docs-nav-section">Guides</div>
-    <a href="foundation.html" class="docs-nav-link">Foundation & Tokens</a>
+    <div class="docs-nav-section">Anleitungen</div>
+    <a href="foundation.html" class="docs-nav-link">Grundlagen &amp; Tokens</a>
     <a href="layout.html" class="docs-nav-link">Layouts</a>
 
-    <div class="docs-nav-section">Reference</div>
-    <a href="components.html" class="docs-nav-link">Components</a>
+    <div class="docs-nav-section">Referenz</div>
+    <a href="components.html" class="docs-nav-link">Komponenten</a>
     <a href="javascript.html" class="docs-nav-link is-active">JavaScript API</a>
     <a href="icons.html" class="docs-nav-link">Icons</a>
   </aside>
@@ -213,10 +213,10 @@
     <!-- Topbar -->
     <div class="docs-topbar">
       <div class="docs-lang-switch">
-        <a href="javascript.html" class="is-active">EN</a>
-        <a href="tr/javascript.html">TR</a>
-        <a href="de/javascript.html">DE</a>
-        <a href="es/javascript.html">ES</a>
+        <a href="../javascript.html">EN</a>
+        <a href="../tr/javascript.html">TR</a>
+        <a href="javascript.html" class="is-active">DE</a>
+        <a href="../es/javascript.html">ES</a>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
@@ -225,7 +225,7 @@
         </svg>
         GitHub
       </a>
-      <button class="docs-mode-btn" data-wb-mode-cycle title="Toggle theme">
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Design umschalten">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
     </div>
@@ -233,10 +233,10 @@
     <!-- Page header -->
     <div class="docs-page-header">
       <h1>JavaScript API</h1>
-      <p>13 vanilla JS modules — all IIFE, zero dependencies, each exposing a <code class="wb-code-inline">window.WB*</code> API. Loaded by a single <code class="wb-code-inline">&lt;script&gt;</code> tag.</p>
+      <p>13 Vanilla-JS-Module — alle als IIFE, ohne Abhängigkeiten, jedes mit einer <code class="wb-code-inline">window.WB*</code>-API. Eingebunden über ein einziges <code class="wb-code-inline">&lt;script&gt;</code>-Tag.</p>
     </div>
 
-    <!-- ── Overview ─────────────────────────────────────── -->
+    <!-- ── Übersicht ─────────────────────────────────────── -->
     <section class="docs-section" id="overview" style="padding-top:var(--wb-s6);padding-bottom:var(--wb-s6)">
       <div class="docs-toc">
         <a href="#wbtheme">WBTheme</a>
@@ -253,12 +253,12 @@
         <a href="#wbdismiss">WBDismiss</a>
         <a href="#wbcommandpalette">WBCommandPalette</a>
         <a href="#wbajaxtoggle">WBAjaxToggle</a>
-        <a href="#conventions">Conventions</a>
+        <a href="#conventions">Konventionen</a>
       </div>
 
-      <h3 class="docs-sub-title" style="margin-top:0">Module summary</h3>
+      <h3 class="docs-sub-title" style="margin-top:0">Modulübersicht</h3>
       <table class="docs-table">
-        <thead><tr><th>Module</th><th>window.*</th><th>Key methods</th></tr></thead>
+        <thead><tr><th>Modul</th><th>window.*</th><th>Wichtige Methoden</th></tr></thead>
         <tbody>
           <tr><td>theme.js</td><td>WBTheme</td><td>setMode, setAccent, setPreset, setRadius, setDensity</td></tr>
           <tr><td>modal.js</td><td>WBModal</td><td>open(id), close(id)</td></tr>
@@ -273,7 +273,7 @@
           <tr><td>tooltip.js</td><td>WBTooltip</td><td>show(el), hide(el), hideAll()</td></tr>
           <tr><td>dismiss.js</td><td>WBDismiss</td><td>dismiss(el)</td></tr>
           <tr><td>command-palette.js</td><td>WBCommandPalette</td><td>open(id), close(id), register(id, opts)</td></tr>
-          <tr><td>ajax-toggle.js</td><td>WBAjaxToggle</td><td>handle(checkboxEl) — auto via change event</td></tr>
+          <tr><td>ajax-toggle.js</td><td>WBAjaxToggle</td><td>handle(checkboxEl) — automatisch via change-Event</td></tr>
         </tbody>
       </table>
     </section>
@@ -284,7 +284,7 @@
         <h2 class="docs-section-title" style="margin:0">WBTheme</h2>
         <span class="module-badge">theme.js</span>
       </div>
-      <p class="docs-section-lead">Manages all theme axes — sets <code class="wb-code-inline">data-*</code> attributes on <code class="wb-code-inline">&lt;html&gt;</code> and persists values in <code class="wb-code-inline">localStorage</code>.</p>
+      <p class="docs-section-lead">Verwaltet alle Theme-Achsen — setzt <code class="wb-code-inline">data-*</code>-Attribute auf <code class="wb-code-inline">&lt;html&gt;</code> und speichert Werte im <code class="wb-code-inline">localStorage</code>.</p>
 
       <div class="api-method"><span class="api-method-name">WBTheme.setMode</span><span class="api-method-params">(value: 'light' | 'dark' | 'auto')</span></div>
       <div class="api-method"><span class="api-method-name">WBTheme.setAccent</span><span class="api-method-params">(value: string)</span></div>
@@ -292,35 +292,35 @@
       <div class="api-method"><span class="api-method-name">WBTheme.setRadius</span><span class="api-method-params">(value: 'sharp' | 'soft')</span></div>
       <div class="api-method"><span class="api-method-name">WBTheme.setDensity</span><span class="api-method-params">(value: 'compact' | 'comfortable')</span></div>
 
-      <pre class="wb-code">// Set dark mode
+      <pre class="wb-code">// Dunkelmodus aktivieren
 WBTheme.setMode('dark');
 
-// Switch accent color
+// Akzentfarbe wechseln
 WBTheme.setAccent('forest');
 
-// Apply a preset (bundles radius/shadow/density/font/border)
+// Preset anwenden (bündelt Radius/Shadow/Density/Font/Border)
 WBTheme.setPreset('rounded');
 
-// Fine-tune individual axes
+// Einzelne Achsen feinjustieren
 WBTheme.setRadius('sharp');
 WBTheme.setDensity('compact');</pre>
 
-      <h3 class="docs-sub-title">Data attribute triggers (no JS needed)</h3>
-      <pre class="wb-code">&lt;!-- Cycle: light → dark → auto --&gt;
-&lt;button data-wb-mode-cycle&gt;Toggle mode&lt;/button&gt;
+      <h3 class="docs-sub-title">Data-Attribut-Trigger (kein JS erforderlich)</h3>
+      <pre class="wb-code">&lt;!-- Zyklus: light → dark → auto --&gt;
+&lt;button data-wb-mode-cycle&gt;Modus wechseln&lt;/button&gt;
 
-&lt;!-- Set a specific mode --&gt;
-&lt;button data-wb-mode-set="dark"&gt;Dark&lt;/button&gt;
-&lt;button data-wb-mode-set="light"&gt;Light&lt;/button&gt;
+&lt;!-- Bestimmten Modus setzen --&gt;
+&lt;button data-wb-mode-set="dark"&gt;Dunkel&lt;/button&gt;
+&lt;button data-wb-mode-set="light"&gt;Hell&lt;/button&gt;
 &lt;button data-wb-mode-set="auto"&gt;Auto&lt;/button&gt;
 
-&lt;!-- Set accent color --&gt;
+&lt;!-- Akzentfarbe setzen --&gt;
 &lt;button data-wb-accent-set="ocean"&gt;Ocean&lt;/button&gt;
 &lt;button data-wb-accent-set="forest"&gt;Forest&lt;/button&gt;</pre>
 
       <div class="docs-callout">
-        <strong>localStorage keys:</strong> <code class="wb-code-inline">wb-mode</code>, <code class="wb-code-inline">wb-accent</code>, <code class="wb-code-inline">wb-preset</code>, <code class="wb-code-inline">wb-radius</code>, <code class="wb-code-inline">wb-density</code>.
-        Values are restored automatically on page load. To reset, clear these keys.
+        <strong>localStorage-Schlüssel:</strong> <code class="wb-code-inline">wb-mode</code>, <code class="wb-code-inline">wb-accent</code>, <code class="wb-code-inline">wb-preset</code>, <code class="wb-code-inline">wb-radius</code>, <code class="wb-code-inline">wb-density</code>.
+        Werte werden beim Seitenaufruf automatisch wiederhergestellt. Zum Zurücksetzen diese Schlüssel löschen.
       </div>
     </section>
 
@@ -330,7 +330,7 @@ WBTheme.setDensity('compact');</pre>
         <h2 class="docs-section-title" style="margin:0">WBModal</h2>
         <span class="module-badge">modal.js</span>
       </div>
-      <p class="docs-section-lead">Opens and closes dialog overlays. Handles <code class="wb-code-inline">is-open</code>/<code class="wb-code-inline">is-leaving</code> states, body scroll lock, Escape key, and backdrop click.</p>
+      <p class="docs-section-lead">Öffnet und schließt Dialog-Overlays. Verwaltet <code class="wb-code-inline">is-open</code>/<code class="wb-code-inline">is-leaving</code>-Zustände, Scroll-Sperre, Escape-Taste und Klick auf den Hintergrund.</p>
 
       <div class="api-method"><span class="api-method-name">WBModal.open</span><span class="api-method-params">(id: string)</span></div>
       <div class="api-method"><span class="api-method-name">WBModal.close</span><span class="api-method-params">(id: string)</span></div>
@@ -338,24 +338,24 @@ WBTheme.setDensity('compact');</pre>
       <pre class="wb-code">WBModal.open('my-modal');
 WBModal.close('my-modal');</pre>
 
-      <h3 class="docs-sub-title">Data attribute triggers</h3>
-      <pre class="wb-code">&lt;!-- Open --&gt;
-&lt;button data-wb-toggle="modal" data-wb-target="#my-modal"&gt;Open&lt;/button&gt;
+      <h3 class="docs-sub-title">Data-Attribut-Trigger</h3>
+      <pre class="wb-code">&lt;!-- Öffnen --&gt;
+&lt;button data-wb-toggle="modal" data-wb-target="#my-modal"&gt;Öffnen&lt;/button&gt;
 
-&lt;!-- Close (inside the modal) --&gt;
-&lt;button data-wb-dismiss="modal"&gt;Close&lt;/button&gt;
+&lt;!-- Schließen (innerhalb des Modals) --&gt;
+&lt;button data-wb-dismiss="modal"&gt;Schließen&lt;/button&gt;
 &lt;div class="wb-modal-backdrop" data-wb-dismiss="modal"&gt;&lt;/div&gt;</pre>
 
-      <h3 class="docs-sub-title">Confirmation dialog (wb-confirm)</h3>
+      <h3 class="docs-sub-title">Bestätigungsdialog (wb-confirm)</h3>
       <pre class="wb-code">&lt;div class="wb-modal wb-confirm" id="confirm-delete"&gt;
   &lt;div class="wb-modal-backdrop" data-wb-dismiss="modal"&gt;&lt;/div&gt;
   &lt;div class="wb-modal-dialog"&gt;
     &lt;div class="wb-confirm-icon wb-confirm-danger"&gt;!&lt;/div&gt;
-    &lt;h4 class="wb-confirm-title"&gt;Delete record?&lt;/h4&gt;
-    &lt;p class="wb-confirm-desc"&gt;This action cannot be undone.&lt;/p&gt;
+    &lt;h4 class="wb-confirm-title"&gt;Eintrag löschen?&lt;/h4&gt;
+    &lt;p class="wb-confirm-desc"&gt;Diese Aktion kann nicht rückgängig gemacht werden.&lt;/p&gt;
     &lt;div class="wb-confirm-actions"&gt;
-      &lt;button class="wb-btn wb-btn-ghost" data-wb-dismiss="modal"&gt;Cancel&lt;/button&gt;
-      &lt;button class="wb-btn wb-btn-danger" id="confirm-btn"&gt;Delete&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-ghost" data-wb-dismiss="modal"&gt;Abbrechen&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-danger" id="confirm-btn"&gt;Löschen&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
@@ -367,7 +367,7 @@ WBModal.close('my-modal');</pre>
         <h2 class="docs-section-title" style="margin:0">WBDrawer</h2>
         <span class="module-badge">drawer.js</span>
       </div>
-      <p class="docs-section-lead">Slide-in side panel with full focus trap. Keyboard: <kbd>Escape</kbd> closes; <kbd>Tab</kbd> cycles within the panel.</p>
+      <p class="docs-section-lead">Eingleitendes Seitenpanel mit vollständiger Fokus-Falle. Tastatur: <kbd>Escape</kbd> schließt; <kbd>Tab</kbd> wechselt innerhalb des Panels.</p>
 
       <div class="api-method"><span class="api-method-name">WBDrawer.open</span><span class="api-method-params">(id: string)</span></div>
       <div class="api-method"><span class="api-method-name">WBDrawer.close</span><span class="api-method-params">(id: string)</span></div>
@@ -375,9 +375,9 @@ WBModal.close('my-modal');</pre>
       <pre class="wb-code">WBDrawer.open('my-drawer');
 WBDrawer.close('my-drawer');</pre>
 
-      <h3 class="docs-sub-title">Data attribute triggers</h3>
-      <pre class="wb-code">&lt;button data-wb-toggle="drawer" data-wb-target="#my-drawer"&gt;Open&lt;/button&gt;
-&lt;button data-wb-dismiss="drawer"&gt;Close&lt;/button&gt;</pre>
+      <h3 class="docs-sub-title">Data-Attribut-Trigger</h3>
+      <pre class="wb-code">&lt;button data-wb-toggle="drawer" data-wb-target="#my-drawer"&gt;Öffnen&lt;/button&gt;
+&lt;button data-wb-dismiss="drawer"&gt;Schließen&lt;/button&gt;</pre>
     </section>
 
     <!-- ── WBDropdown ────────────────────────────────────── -->
@@ -386,7 +386,7 @@ WBDrawer.close('my-drawer');</pre>
         <h2 class="docs-section-title" style="margin:0">WBDropdown</h2>
         <span class="module-badge">dropdown.js</span>
       </div>
-      <p class="docs-section-lead">Toggles <code class="wb-code-inline">is-open</code> on a <code class="wb-code-inline">wb-dropdown</code> wrapper. Closes on outside click and Escape.</p>
+      <p class="docs-section-lead">Schaltet <code class="wb-code-inline">is-open</code> auf einem <code class="wb-code-inline">wb-dropdown</code>-Wrapper. Schließt bei Klick außerhalb und Escape.</p>
 
       <div class="api-method"><span class="api-method-name">WBDropdown.open</span><span class="api-method-params">(wrapperEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBDropdown.close</span><span class="api-method-params">(wrapperEl: Element)</span></div>
@@ -395,9 +395,9 @@ WBDrawer.close('my-drawer');</pre>
 WBDropdown.open(wrapper);
 WBDropdown.close(wrapper);</pre>
 
-      <h3 class="docs-sub-title">Data attribute trigger</h3>
+      <h3 class="docs-sub-title">Data-Attribut-Trigger</h3>
       <pre class="wb-code">&lt;div class="wb-dropdown"&gt;
-  &lt;button data-wb-toggle="dropdown"&gt;Open menu&lt;/button&gt;
+  &lt;button data-wb-toggle="dropdown"&gt;Menü öffnen&lt;/button&gt;
   &lt;div class="wb-dropdown-menu"&gt;...&lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
@@ -408,22 +408,22 @@ WBDropdown.close(wrapper);</pre>
         <h2 class="docs-section-title" style="margin:0">WBTabs</h2>
         <span class="module-badge">tabs.js</span>
       </div>
-      <p class="docs-section-lead">Activates tab items and their corresponding panels.</p>
+      <p class="docs-section-lead">Aktiviert Tab-Elemente und die zugehörigen Panels.</p>
 
       <div class="api-method"><span class="api-method-name">WBTabs.activate</span><span class="api-method-params">(tabEl: Element)</span></div>
 
       <pre class="wb-code">var tab = document.querySelector('[data-wb-tab="tab2"]');
 WBTabs.activate(tab);</pre>
 
-      <h3 class="docs-sub-title">HTML structure</h3>
+      <h3 class="docs-sub-title">HTML-Struktur</h3>
       <pre class="wb-code">&lt;div class="wb-tabs"&gt;
   &lt;div class="wb-tab-list"&gt;
     &lt;button class="wb-tab-item is-active" data-wb-tab="panel1"&gt;Tab 1&lt;/button&gt;
     &lt;button class="wb-tab-item"            data-wb-tab="panel2"&gt;Tab 2&lt;/button&gt;
   &lt;/div&gt;
   &lt;div class="wb-tab-panels"&gt;
-    &lt;div class="wb-tab-panel is-active" id="panel1"&gt;Content 1&lt;/div&gt;
-    &lt;div class="wb-tab-panel"           id="panel2"&gt;Content 2&lt;/div&gt;
+    &lt;div class="wb-tab-panel is-active" id="panel1"&gt;Inhalt 1&lt;/div&gt;
+    &lt;div class="wb-tab-panel"           id="panel2"&gt;Inhalt 2&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
@@ -434,7 +434,7 @@ WBTabs.activate(tab);</pre>
         <h2 class="docs-section-title" style="margin:0">WBAccordion</h2>
         <span class="module-badge">accordion.js</span>
       </div>
-      <p class="docs-section-lead">Toggles <code class="wb-code-inline">is-open</code> on accordion items. Clicks on <code class="wb-code-inline">wb-accordion-trigger</code> are wired automatically.</p>
+      <p class="docs-section-lead">Schaltet <code class="wb-code-inline">is-open</code> auf Accordion-Einträgen. Klicks auf <code class="wb-code-inline">wb-accordion-trigger</code> werden automatisch verdrahtet.</p>
 
       <div class="api-method"><span class="api-method-name">WBAccordion.open</span><span class="api-method-params">(itemEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBAccordion.close</span><span class="api-method-params">(itemEl: Element)</span></div>
@@ -450,7 +450,7 @@ WBAccordion.close(item);</pre>
         <h2 class="docs-section-title" style="margin:0">WBSidebar</h2>
         <span class="module-badge">sidebar.js</span>
       </div>
-      <p class="docs-section-lead">Opens and closes the mobile sidebar overlay. Adds/removes <code class="wb-code-inline">is-open</code> on <code class="wb-code-inline">.wb-sidebar</code> and <code class="wb-code-inline">.wb-dashboard-shell</code>.</p>
+      <p class="docs-section-lead">Öffnet und schließt das mobile Sidebar-Overlay. Fügt <code class="wb-code-inline">is-open</code> zu <code class="wb-code-inline">.wb-sidebar</code> und <code class="wb-code-inline">.wb-dashboard-shell</code> hinzu bzw. entfernt es.</p>
 
       <div class="api-method"><span class="api-method-name">WBSidebar.open</span><span class="api-method-params">()</span></div>
       <div class="api-method"><span class="api-method-name">WBSidebar.close</span><span class="api-method-params">()</span></div>
@@ -458,8 +458,8 @@ WBAccordion.close(item);</pre>
       <pre class="wb-code">WBSidebar.open();
 WBSidebar.close();</pre>
 
-      <h3 class="docs-sub-title">Data attribute trigger</h3>
-      <pre class="wb-code">&lt;button data-wb-toggle="sidebar"&gt;☰ Menu&lt;/button&gt;</pre>
+      <h3 class="docs-sub-title">Data-Attribut-Trigger</h3>
+      <pre class="wb-code">&lt;button data-wb-toggle="sidebar"&gt;☰ Menü&lt;/button&gt;</pre>
     </section>
 
     <!-- ── WBNavGroup ────────────────────────────────────── -->
@@ -468,28 +468,28 @@ WBSidebar.close();</pre>
         <h2 class="docs-section-title" style="margin:0">WBNavGroup</h2>
         <span class="module-badge">nav-group.js</span>
       </div>
-      <p class="docs-section-lead">Collapsible navigation groups inside the sidebar. Supports optional accordion mode.</p>
+      <p class="docs-section-lead">Ausklappbare Navigationsgruppen in der Sidebar. Unterstützt optionalen Accordion-Modus.</p>
 
       <div class="api-method"><span class="api-method-name">WBNavGroup.open</span><span class="api-method-params">(groupEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBNavGroup.close</span><span class="api-method-params">(groupEl: Element)</span></div>
-      <div class="api-method"><span class="api-method-name">WBNavGroup.init</span><span class="api-method-params">()</span> <span class="api-method-return">Call after dynamic DOM changes</span></div>
+      <div class="api-method"><span class="api-method-name">WBNavGroup.init</span><span class="api-method-params">()</span> <span class="api-method-return">Nach dynamischen DOM-Änderungen aufrufen</span></div>
 
-      <pre class="wb-code">&lt;!-- Basic group --&gt;
+      <pre class="wb-code">&lt;!-- Einfache Gruppe --&gt;
 &lt;div class="wb-nav-group"&gt;
   &lt;button class="wb-nav-group-trigger"&gt;
-    Users
+    Benutzer
     &lt;svg class="wb-nav-group-chevron" width="12" height="12" viewBox="0 0 24 24"
          fill="none" stroke="currentColor" stroke-width="2"&gt;
       &lt;path d="m6 9 6 6 6-6"/&gt;
     &lt;/svg&gt;
   &lt;/button&gt;
   &lt;div class="wb-nav-group-body"&gt;
-    &lt;a href="#" class="wb-sidebar-link"&gt;All Users&lt;/a&gt;
-    &lt;a href="#" class="wb-sidebar-link"&gt;Roles&lt;/a&gt;
+    &lt;a href="#" class="wb-sidebar-link"&gt;Alle Benutzer&lt;/a&gt;
+    &lt;a href="#" class="wb-sidebar-link"&gt;Rollen&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Accordion mode: closes other groups when one opens --&gt;
+&lt;!-- Accordion-Modus: schließt andere Gruppen beim Öffnen einer neuen --&gt;
 &lt;nav class="wb-sidebar-nav" data-wb-nav-group-accordion&gt;
   &lt;!-- nav groups here --&gt;
 &lt;/nav&gt;</pre>
@@ -501,38 +501,38 @@ WBSidebar.close();</pre>
         <h2 class="docs-section-title" style="margin:0">WBToast</h2>
         <span class="module-badge">toast.js</span>
       </div>
-      <p class="docs-section-lead">Programmatically shows notification toasts. Auto-creates the container on first call.</p>
+      <p class="docs-section-lead">Zeigt Benachrichtigungs-Toasts programmatisch an. Erstellt den Container beim ersten Aufruf automatisch.</p>
 
       <div class="api-method"><span class="api-method-name">WBToast.show</span><span class="api-method-params">(message: string, options?: object)</span> <span class="api-method-return">→ Element</span></div>
       <div class="api-method"><span class="api-method-name">WBToast.dismiss</span><span class="api-method-params">(toastEl: Element)</span></div>
 
-      <h3 class="docs-sub-title">Options</h3>
+      <h3 class="docs-sub-title">Optionen</h3>
       <table class="docs-table">
-        <thead><tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+        <thead><tr><th>Option</th><th>Typ</th><th>Standard</th><th>Beschreibung</th></tr></thead>
         <tbody>
           <tr><td>type</td><td>string</td><td>'default'</td><td>'default' · 'success' · 'error' · 'warning' · 'info'</td></tr>
-          <tr><td>duration</td><td>number</td><td>4000</td><td>Auto-dismiss delay in ms. Set to 0 to disable.</td></tr>
+          <tr><td>duration</td><td>number</td><td>4000</td><td>Verzögerung vor automatischem Ausblenden in ms. 0 = deaktiviert.</td></tr>
           <tr><td>position</td><td>string</td><td>'top-right'</td><td>'top-right' · 'top-center' · 'top-left' · 'bottom-center' · 'bottom-left'</td></tr>
-          <tr><td>dismissible</td><td>boolean</td><td>true</td><td>Show a close button on the toast</td></tr>
+          <tr><td>dismissible</td><td>boolean</td><td>true</td><td>Schließen-Schaltfläche auf dem Toast anzeigen</td></tr>
         </tbody>
       </table>
 
-      <pre class="wb-code">// Simple
-WBToast.show('Settings saved.');
+      <pre class="wb-code">// Einfach
+WBToast.show('Einstellungen gespeichert.');
 
-// Typed
-WBToast.show('Record deleted!', { type: 'success' });
-WBToast.show('Upload failed.', { type: 'error' });
+// Mit Typ
+WBToast.show('Eintrag gelöscht!', { type: 'success' });
+WBToast.show('Upload fehlgeschlagen.', { type: 'error' });
 
-// Custom duration + position
-WBToast.show('Processing…', {
+// Benutzerdefinierte Dauer + Position
+WBToast.show('Wird verarbeitet…', {
   type: 'info',
-  duration: 0,          // stays until dismissed
+  duration: 0,          // bleibt bis zum manuellen Schließen
   position: 'bottom-center'
 });
 
-// Programmatic dismiss
-var toast = WBToast.show('Long message');
+// Programmatisches Schließen
+var toast = WBToast.show('Lange Nachricht');
 WBToast.dismiss(toast);</pre>
     </section>
 
@@ -542,21 +542,21 @@ WBToast.dismiss(toast);</pre>
         <h2 class="docs-section-title" style="margin:0">WBPopover</h2>
         <span class="module-badge">popover.js</span>
       </div>
-      <p class="docs-section-lead">Toggles <code class="wb-code-inline">is-open</code> on a <code class="wb-code-inline">wb-popover-wrapper</code>. Closes on outside click and Escape.</p>
+      <p class="docs-section-lead">Schaltet <code class="wb-code-inline">is-open</code> auf einem <code class="wb-code-inline">wb-popover-wrapper</code>. Schließt bei Klick außerhalb und Escape.</p>
 
       <div class="api-method"><span class="api-method-name">WBPopover.open</span><span class="api-method-params">(wrapperEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBPopover.close</span><span class="api-method-params">(wrapperEl: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBPopover.closeAll</span><span class="api-method-params">()</span></div>
 
       <pre class="wb-code">&lt;div class="wb-popover-wrapper"&gt;
-  &lt;button data-wb-toggle="popover"&gt;Click me&lt;/button&gt;
+  &lt;button data-wb-toggle="popover"&gt;Klicken&lt;/button&gt;
   &lt;div class="wb-popover wb-popover-top"&gt;
-    &lt;div class="wb-popover-title"&gt;Title&lt;/div&gt;
-    &lt;div class="wb-popover-body"&gt;Content here.&lt;/div&gt;
+    &lt;div class="wb-popover-title"&gt;Titel&lt;/div&gt;
+    &lt;div class="wb-popover-body"&gt;Inhalt hier.&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Placements: wb-popover-top / -right / -bottom / -left --&gt;</pre>
+&lt;!-- Positionen: wb-popover-top / -right / -bottom / -left --&gt;</pre>
     </section>
 
     <!-- ── WBTooltip ─────────────────────────────────────── -->
@@ -565,19 +565,19 @@ WBToast.dismiss(toast);</pre>
         <h2 class="docs-section-title" style="margin:0">WBTooltip</h2>
         <span class="module-badge">tooltip.js</span>
       </div>
-      <p class="docs-section-lead">Shows/hides tooltips defined via <code class="wb-code-inline">data-wb-tooltip</code>. Triggers on hover and focus. 300ms show delay by default.</p>
+      <p class="docs-section-lead">Zeigt/versteckt Tooltips, die über <code class="wb-code-inline">data-wb-tooltip</code> definiert sind. Wird bei Hover und Fokus ausgelöst. Standardmäßig 300ms Anzeigeverzögerung.</p>
 
       <div class="api-method"><span class="api-method-name">WBTooltip.show</span><span class="api-method-params">(el: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBTooltip.hide</span><span class="api-method-params">(el: Element)</span></div>
       <div class="api-method"><span class="api-method-name">WBTooltip.hideAll</span><span class="api-method-params">()</span></div>
 
       <pre class="wb-code">&lt;!-- HTML --&gt;
-&lt;button data-wb-tooltip="Click to save"
+&lt;button data-wb-tooltip="Zum Speichern klicken"
         data-wb-tooltip-placement="top"&gt;
-  Save
+  Speichern
 &lt;/button&gt;
 
-&lt;!-- Placements: top (default) / right / bottom / left --&gt;
+&lt;!-- Positionen: top (Standard) / right / bottom / left --&gt;
 
 &lt;!-- JS --&gt;
 var el = document.querySelector('[data-wb-tooltip]');
@@ -591,13 +591,13 @@ WBTooltip.hide(el);</pre>
         <h2 class="docs-section-title" style="margin:0">WBDismiss</h2>
         <span class="module-badge">dismiss.js</span>
       </div>
-      <p class="docs-section-lead">Dismisses alerts and banners with an <code class="wb-code-inline">is-leaving</code> animation before removal.</p>
+      <p class="docs-section-lead">Blendet Alerts und Banner mit einer <code class="wb-code-inline">is-leaving</code>-Animation aus, bevor sie entfernt werden.</p>
 
       <div class="api-method"><span class="api-method-name">WBDismiss.dismiss</span><span class="api-method-params">(el: Element)</span></div>
 
       <pre class="wb-code">&lt;!-- HTML --&gt;
 &lt;div class="wb-alert wb-alert-info" id="my-alert"&gt;
-  Message text.
+  Nachrichtentext.
   &lt;button data-wb-dismiss="alert" class="wb-alert-close"&gt;&amp;times;&lt;/button&gt;
 &lt;/div&gt;
 
@@ -605,8 +605,8 @@ WBTooltip.hide(el);</pre>
 WBDismiss.dismiss(document.getElementById('my-alert'));</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        The <code class="wb-code-inline">data-wb-dismiss="alert"</code> attribute wires dismissal automatically.
-        Programmatic use is for cases where you need to dismiss from external code.
+        Das Attribut <code class="wb-code-inline">data-wb-dismiss="alert"</code> verdrahtet das Schließen automatisch.
+        Programmatische Verwendung ist für Fälle gedacht, in denen von externem Code geschlossen werden muss.
       </p>
     </section>
 
@@ -616,43 +616,43 @@ WBDismiss.dismiss(document.getElementById('my-alert'));</pre>
         <h2 class="docs-section-title" style="margin:0">WBCommandPalette</h2>
         <span class="module-badge">command-palette.js</span>
       </div>
-      <p class="docs-section-lead">Full-screen command palette overlay with keyboard navigation. Opened via <kbd>Cmd+K</kbd> / <kbd>Ctrl+K</kbd>.</p>
+      <p class="docs-section-lead">Vollbild-Befehlspaletten-Overlay mit Tastaturnavigation. Geöffnet über <kbd>Cmd+K</kbd> / <kbd>Ctrl+K</kbd>.</p>
 
       <div class="api-method"><span class="api-method-name">WBCommandPalette.register</span><span class="api-method-params">(id: string, options?: object)</span></div>
       <div class="api-method"><span class="api-method-name">WBCommandPalette.open</span><span class="api-method-params">(id: string)</span></div>
       <div class="api-method"><span class="api-method-name">WBCommandPalette.close</span><span class="api-method-params">(id: string)</span></div>
 
-      <h3 class="docs-sub-title">Options</h3>
+      <h3 class="docs-sub-title">Optionen</h3>
       <table class="docs-table">
-        <thead><tr><th>Option</th><th>Type</th><th>Description</th></tr></thead>
+        <thead><tr><th>Option</th><th>Typ</th><th>Beschreibung</th></tr></thead>
         <tbody>
-          <tr><td>onSearch</td><td>function(query, results)</td><td>Called on every keystroke. Receives query string and filtered result NodeList.</td></tr>
+          <tr><td>onSearch</td><td>function(query, results)</td><td>Bei jedem Tastendruck aufgerufen. Erhält Suchbegriff und gefilterte NodeList der Ergebnisse.</td></tr>
         </tbody>
       </table>
 
-      <pre class="wb-code">// Basic registration (built-in text search)
+      <pre class="wb-code">// Einfache Registrierung (eingebaute Textsuche)
 WBCommandPalette.register('#my-cmd');
 
-// With custom search handler
+// Mit benutzerdefiniertem Such-Handler
 WBCommandPalette.register('#my-cmd', {
   onSearch: function(query, results) {
-    // results is a NodeList of .wb-cmd-result elements matching query
-    console.log(query, results.length + ' results');
+    // results ist eine NodeList von .wb-cmd-result-Elementen, die zur Suche passen
+    console.log(query, results.length + ' Ergebnisse');
   }
 });
 
-// Open/close programmatically
+// Programmatisch öffnen/schließen
 WBCommandPalette.open('#my-cmd');
 WBCommandPalette.close('#my-cmd');</pre>
 
-      <h3 class="docs-sub-title">Keyboard shortcuts</h3>
+      <h3 class="docs-sub-title">Tastaturkürzel</h3>
       <table class="docs-table">
-        <thead><tr><th>Key</th><th>Action</th></tr></thead>
+        <thead><tr><th>Taste</th><th>Aktion</th></tr></thead>
         <tbody>
-          <tr><td>Cmd/Ctrl+K</td><td>Open first registered palette</td></tr>
-          <tr><td>↑ / ↓</td><td>Navigate results</td></tr>
-          <tr><td>Enter</td><td>Activate selected result</td></tr>
-          <tr><td>Escape</td><td>Close palette</td></tr>
+          <tr><td>Cmd/Ctrl+K</td><td>Erste registrierte Palette öffnen</td></tr>
+          <tr><td>↑ / ↓</td><td>Ergebnisse navigieren</td></tr>
+          <tr><td>Enter</td><td>Ausgewähltes Ergebnis aktivieren</td></tr>
+          <tr><td>Escape</td><td>Palette schließen</td></tr>
         </tbody>
       </table>
     </section>
@@ -663,19 +663,19 @@ WBCommandPalette.close('#my-cmd');</pre>
         <h2 class="docs-section-title" style="margin:0">WBAjaxToggle</h2>
         <span class="module-badge">ajax-toggle.js</span>
       </div>
-      <p class="docs-section-lead">Sends an AJAX POST request when a checkbox changes. Reads CSRF token from the <code class="wb-code-inline">meta[name=csrf-token]</code> tag. Reverts on error and shows a toast.</p>
+      <p class="docs-section-lead">Sendet eine AJAX-POST-Anfrage, wenn eine Checkbox ihren Zustand ändert. Liest das CSRF-Token aus dem <code class="wb-code-inline">meta[name=csrf-token]</code>-Tag. Kehrt bei Fehler um und zeigt einen Toast.</p>
 
-      <div class="api-method"><span class="api-method-name">WBAjaxToggle.handle</span><span class="api-method-params">(checkboxEl: Element)</span> <span class="api-method-return">Auto-called via change event</span></div>
+      <div class="api-method"><span class="api-method-name">WBAjaxToggle.handle</span><span class="api-method-params">(checkboxEl: Element)</span> <span class="api-method-return">Automatisch via change-Event aufgerufen</span></div>
 
-      <h3 class="docs-sub-title">Data attributes</h3>
+      <h3 class="docs-sub-title">Data-Attribute</h3>
       <table class="docs-table">
-        <thead><tr><th>Attribute</th><th>Required</th><th>Description</th></tr></thead>
+        <thead><tr><th>Attribut</th><th>Pflicht</th><th>Beschreibung</th></tr></thead>
         <tbody>
-          <tr><td>data-wb-ajax-toggle</td><td>Yes</td><td>Marks the checkbox for AJAX toggle behavior</td></tr>
-          <tr><td>data-wb-url</td><td>Yes</td><td>POST URL for the toggle request</td></tr>
-          <tr><td>data-wb-field</td><td>No</td><td>JSON field name to send (<code class="wb-code-inline">{ field: checked }</code>). Default: <code class="wb-code-inline">value</code></td></tr>
-          <tr><td>data-wb-success</td><td>No</td><td>Toast message shown on success</td></tr>
-          <tr><td>data-wb-error</td><td>No</td><td>Toast message shown on error (default: 'Error occurred')</td></tr>
+          <tr><td>data-wb-ajax-toggle</td><td>Ja</td><td>Markiert die Checkbox für AJAX-Toggle-Verhalten</td></tr>
+          <tr><td>data-wb-url</td><td>Ja</td><td>POST-URL für die Toggle-Anfrage</td></tr>
+          <tr><td>data-wb-field</td><td>Nein</td><td>JSON-Feldname zum Senden (<code class="wb-code-inline">{ field: checked }</code>). Standard: <code class="wb-code-inline">value</code></td></tr>
+          <tr><td>data-wb-success</td><td>Nein</td><td>Toast-Nachricht bei Erfolg</td></tr>
+          <tr><td>data-wb-error</td><td>Nein</td><td>Toast-Nachricht bei Fehler (Standard: 'Error occurred')</td></tr>
         </tbody>
       </table>
 
@@ -686,81 +686,81 @@ WBCommandPalette.close('#my-cmd');</pre>
   data-wb-ajax-toggle
   data-wb-url="/api/users/42/toggle-active"
   data-wb-field="is_active"
-  data-wb-success="Status updated"
-  data-wb-error="Failed to update status"
+  data-wb-success="Status aktualisiert"
+  data-wb-error="Status konnte nicht aktualisiert werden"
   checked
 &gt;
 
-&lt;!-- Laravel Blade example --&gt;
+&lt;!-- Laravel Blade Beispiel --&gt;
 &lt;input
   type="checkbox"
   class="wb-switch"
   data-wb-ajax-toggle
   data-wb-url="{{ route('users.toggle', $user) }}"
   data-wb-field="is_active"
-  data-wb-success="Status updated"
+  data-wb-success="Status aktualisiert"
   {{ $user->is_active ? 'checked' : '' }}
 &gt;
 
-&lt;!-- CSRF meta tag (required in &lt;head&gt;) --&gt;
+&lt;!-- CSRF-Meta-Tag (erforderlich im &lt;head&gt;) --&gt;
 &lt;meta name="csrf-token" content="{{ csrf_token() }}"&gt;</pre>
 
-      <h3 class="docs-sub-title">Request format</h3>
-      <pre class="wb-code">// POST to data-wb-url
-// Headers: Content-Type: application/json, X-CSRF-TOKEN: ...
-// Body:    { "is_active": true }
+      <h3 class="docs-sub-title">Anfrageformat</h3>
+      <pre class="wb-code">// POST an data-wb-url
+// Header: Content-Type: application/json, X-CSRF-TOKEN: ...
+// Body:   { "is_active": true }
 
-// On success: show WBToast(data-wb-success, { type: 'success' })
-// On error:   revert checkbox state + show WBToast(data-wb-error, { type: 'error' })</pre>
+// Bei Erfolg: WBToast(data-wb-success, { type: 'success' }) anzeigen
+// Bei Fehler: Checkbox-Zustand zurücksetzen + WBToast(data-wb-error, { type: 'error' }) anzeigen</pre>
     </section>
 
-    <!-- ── Conventions ───────────────────────────────────── -->
+    <!-- ── Konventionen ───────────────────────────────────── -->
     <section class="docs-section" id="conventions">
-      <h2 class="docs-section-title">JS Conventions</h2>
-      <p class="docs-section-lead">Shared patterns used across all modules.</p>
+      <h2 class="docs-section-title">JS-Konventionen</h2>
+      <p class="docs-section-lead">Gemeinsame Muster, die in allen Modulen verwendet werden.</p>
 
-      <h3 class="docs-sub-title">State classes</h3>
+      <h3 class="docs-sub-title">Zustandsklassen</h3>
       <table class="docs-table">
-        <thead><tr><th>Class</th><th>Usage</th></tr></thead>
+        <thead><tr><th>Klasse</th><th>Verwendung</th></tr></thead>
         <tbody>
-          <tr><td>is-open</td><td>Element is visible/active (modal, drawer, dropdown, sidebar)</td></tr>
-          <tr><td>is-active</td><td>Selected state (tabs, nav links, filter chips)</td></tr>
-          <tr><td>is-selected</td><td>Selection state (table rows, list items)</td></tr>
-          <tr><td>is-leaving</td><td>Exit animation in progress — added before removing is-open</td></tr>
+          <tr><td>is-open</td><td>Element ist sichtbar/aktiv (Modal, Drawer, Dropdown, Sidebar)</td></tr>
+          <tr><td>is-active</td><td>Ausgewählter Zustand (Tabs, Nav-Links, Filter-Chips)</td></tr>
+          <tr><td>is-selected</td><td>Auswahlzustand (Tabellenzeilen, Listenelemente)</td></tr>
+          <tr><td>is-leaving</td><td>Schließanimation läuft — wird vor dem Entfernen von is-open hinzugefügt</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title">is-leaving animation pattern</h3>
+      <h3 class="docs-sub-title">is-leaving-Animationsmuster</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        All close animations follow this sequence to prevent abrupt disappearance:
+        Alle Schließanimationen folgen dieser Abfolge, um ein abruptes Verschwinden zu verhindern:
       </p>
-      <pre class="wb-code">// 1. Add is-leaving (triggers CSS exit transition)
+      <pre class="wb-code">// 1. is-leaving hinzufügen (löst CSS-Schließtransition aus)
 element.classList.add('is-leaving');
 
-// 2. Wait for transitionend (with 300ms fallback)
+// 2. Auf transitionend warten (mit 300ms-Fallback)
 element.addEventListener('transitionend', function handler() {
   element.classList.remove('is-open', 'is-leaving');
   element.removeEventListener('transitionend', handler);
 }, { once: true });
 
-// Fallback in case transitionend doesn't fire
+// Fallback, falls transitionend nicht ausgelöst wird
 setTimeout(function() {
   element.classList.remove('is-open', 'is-leaving');
 }, 300);</pre>
 
-      <h3 class="docs-sub-title">Universal data attribute wiring</h3>
-      <pre class="wb-code">&lt;!-- Open any toggleable component --&gt;
+      <h3 class="docs-sub-title">Universelle Data-Attribut-Verdrahtung</h3>
+      <pre class="wb-code">&lt;!-- Jede umschaltbare Komponente öffnen --&gt;
 &lt;button data-wb-toggle="modal|drawer|dropdown|sidebar|cmd"
-        data-wb-target="#target-id"&gt;Open&lt;/button&gt;
+        data-wb-target="#target-id"&gt;Öffnen&lt;/button&gt;
 
-&lt;!-- Close from inside --&gt;
-&lt;button data-wb-dismiss="modal|drawer|alert"&gt;Close&lt;/button&gt;</pre>
+&lt;!-- Von innen schließen --&gt;
+&lt;button data-wb-dismiss="modal|drawer|alert"&gt;Schließen&lt;/button&gt;</pre>
 
       <div class="docs-callout">
-        <strong>Module pattern:</strong> All modules use an IIFE —
+        <strong>Modulmuster:</strong> Alle Module verwenden ein IIFE —
         <code class="wb-code-inline">(function()&#123; 'use strict'; … &#125;)()</code> —
-        and expose their API on <code class="wb-code-inline">window</code>.
-        No global namespace pollution occurs; each module is fully self-contained.
+        und stellen ihre API auf <code class="wb-code-inline">window</code> bereit.
+        Es gibt keine globale Namespace-Verschmutzung; jedes Modul ist vollständig eigenständig.
       </div>
     </section>
 

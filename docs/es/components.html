@@ -1,40 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="light" data-accent="ocean">
+<html lang="es" data-mode="light" data-accent="ocean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Components — WebBlocks UI</title>
+  <title>Componentes — WebBlocks UI</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
     .docs-layout { display: flex; min-height: 100vh; }
     .docs-sidebar {
       width: 240px; flex-shrink: 0;
-      background: var(--wb-surface); border-right: 1px solid var(--wb-border);
+      background: var(--wb-surface);
+      border-right: 1px solid var(--wb-border);
       position: sticky; top: 0; height: 100vh;
       overflow-y: auto; padding: var(--wb-s6) 0;
       display: flex; flex-direction: column;
     }
     .docs-sidebar-brand {
       padding: 0 var(--wb-s5) var(--wb-s5);
-      border-bottom: 1px solid var(--wb-border); margin-bottom: var(--wb-s4);
+      border-bottom: 1px solid var(--wb-border);
+      margin-bottom: var(--wb-s4);
     }
     .docs-sidebar-brand a {
-      font-size: 1.1rem; font-weight: 700; color: var(--wb-text);
-      text-decoration: none; display: flex; align-items: center; gap: var(--wb-s2);
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--wb-text); text-decoration: none;
+      display: flex; align-items: center; gap: var(--wb-s2);
     }
     .docs-sidebar-brand span {
-      font-size: 0.7rem; font-weight: 500; color: var(--wb-accent-on);
-      background: var(--wb-accent); padding: 2px 6px; border-radius: var(--wb-r-full);
+      font-size: 0.7rem; font-weight: 500;
+      color: var(--wb-accent-on); background: var(--wb-accent);
+      padding: 2px 6px; border-radius: var(--wb-r-full);
     }
     .docs-nav-section {
       padding: var(--wb-s2) var(--wb-s5) var(--wb-s1);
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--wb-muted);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--wb-muted);
     }
     .docs-nav-link {
       display: block; padding: var(--wb-s2) var(--wb-s5);
-      font-size: 0.875rem; color: var(--wb-muted); text-decoration: none;
+      font-size: 0.875rem; color: var(--wb-muted);
+      text-decoration: none;
       transition: color var(--wb-t), background var(--wb-t);
     }
     .docs-nav-link:hover { color: var(--wb-text); background: var(--wb-surface-2); }
@@ -49,31 +55,19 @@
       padding: var(--wb-s3) var(--wb-s6);
       display: flex; align-items: center; justify-content: flex-end; gap: var(--wb-s3);
     }
-    .docs-lang-switch {
-      display: flex; border: 1px solid var(--wb-border);
-      border-radius: var(--wb-r-md); overflow: hidden;
-    }
-    .docs-lang-switch a {
-      padding: 3px 9px; font-size: 0.75rem; font-weight: 600;
-      text-decoration: none; color: var(--wb-muted);
-      border-right: 1px solid var(--wb-border);
-      transition: background var(--wb-t), color var(--wb-t);
-      letter-spacing: 0.02em;
-    }
-    .docs-lang-switch a:last-child { border-right: none; }
-    .docs-lang-switch a:hover { background: var(--wb-surface-3); color: var(--wb-text); }
-    .docs-lang-switch a.is-active { background: var(--wb-accent); color: var(--wb-accent-on); }
     /* ── Page header ─────────────────────────────────────── */
     .docs-page-header {
       padding: var(--wb-s10) var(--wb-s8) var(--wb-s8);
       border-bottom: 1px solid var(--wb-border);
     }
     .docs-page-header h1 {
-      font-size: 2.2rem; font-weight: 800; line-height: 1.15;
-      color: var(--wb-text); margin: 0 0 var(--wb-s3); letter-spacing: -0.02em;
+      font-size: 2.2rem; font-weight: 800;
+      line-height: 1.15; color: var(--wb-text);
+      margin: 0 0 var(--wb-s3); letter-spacing: -0.02em;
     }
     .docs-page-header p {
-      font-size: 1rem; color: var(--wb-muted); margin: 0; line-height: 1.7; max-width: 600px;
+      font-size: 1rem; color: var(--wb-muted);
+      margin: 0; line-height: 1.7; max-width: 600px;
     }
     /* ── Code block ──────────────────────────────────────── */
     .wb-code {
@@ -86,23 +80,27 @@
     .wb-code-inline {
       font-family: var(--wb-font-mono); font-size: 0.82em;
       background: var(--wb-surface-2); border: 1px solid var(--wb-border);
-      padding: 1px 6px; border-radius: var(--wb-r-sm); color: var(--wb-accent-text);
+      padding: 1px 6px; border-radius: var(--wb-r-sm);
+      color: var(--wb-accent-text);
     }
     /* ── Section ─────────────────────────────────────────── */
     .docs-section {
-      padding: var(--wb-s10) var(--wb-s8); border-bottom: 1px solid var(--wb-border);
+      padding: var(--wb-s10) var(--wb-s8);
+      border-bottom: 1px solid var(--wb-border);
     }
     .docs-section:last-child { border-bottom: none; }
     .docs-section-title {
-      font-size: 1.5rem; font-weight: 700; color: var(--wb-text);
-      margin: 0 0 var(--wb-s2); letter-spacing: -0.01em;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--wb-text); margin: 0 0 var(--wb-s2);
+      letter-spacing: -0.01em;
     }
     .docs-section-lead {
-      font-size: 0.95rem; color: var(--wb-muted); margin: 0 0 var(--wb-s6); line-height: 1.6;
+      font-size: 0.95rem; color: var(--wb-muted);
+      margin: 0 0 var(--wb-s6); line-height: 1.6;
     }
     .docs-sub-title {
-      font-size: 1.05rem; font-weight: 600; color: var(--wb-text);
-      margin: var(--wb-s8) 0 var(--wb-s3);
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--wb-text); margin: var(--wb-s8) 0 var(--wb-s3);
     }
     .docs-sub-title:first-child { margin-top: 0; }
     /* ── Component preview box ───────────────────────────── */
@@ -144,6 +142,21 @@
       color: var(--wb-accent-text); border-color: var(--wb-accent-border);
       background: var(--wb-accent-softer);
     }
+    /* ── Lang switcher ───────────────────────────────────── */
+    .docs-lang-switch {
+      display: flex; border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-md); overflow: hidden;
+    }
+    .docs-lang-switch a {
+      padding: 3px 9px; font-size: 0.75rem; font-weight: 600;
+      text-decoration: none; color: var(--wb-muted);
+      border-right: 1px solid var(--wb-border);
+      transition: background var(--wb-t), color var(--wb-t);
+      letter-spacing: 0.02em;
+    }
+    .docs-lang-switch a:last-child { border-right: none; }
+    .docs-lang-switch a:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    .docs-lang-switch a.is-active { background: var(--wb-accent); color: var(--wb-accent-on); }
     /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 768px) {
       .docs-sidebar { display: none; }
@@ -161,18 +174,18 @@
       <a href="index.html">WebBlocks UI <span>v2.2</span></a>
     </div>
 
-    <div class="docs-nav-section">Overview</div>
-    <a href="index.html" class="docs-nav-link">Introduction</a>
-    <a href="getting-started.html" class="docs-nav-link">Getting Started</a>
+    <div class="docs-nav-section">Resumen</div>
+    <a href="index.html" class="docs-nav-link">Introducción</a>
+    <a href="getting-started.html" class="docs-nav-link">Primeros pasos</a>
 
-    <div class="docs-nav-section">Guides</div>
-    <a href="foundation.html" class="docs-nav-link">Foundation & Tokens</a>
-    <a href="layout.html" class="docs-nav-link">Layouts</a>
+    <div class="docs-nav-section">Guías</div>
+    <a href="foundation.html" class="docs-nav-link">Fundamentos &amp; Tokens</a>
+    <a href="layout.html" class="docs-nav-link">Diseño</a>
 
-    <div class="docs-nav-section">Reference</div>
-    <a href="components.html" class="docs-nav-link is-active">Components</a>
+    <div class="docs-nav-section">Referencia</div>
+    <a href="components.html" class="docs-nav-link is-active">Componentes</a>
     <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
-    <a href="icons.html" class="docs-nav-link">Icons</a>
+    <a href="icons.html" class="docs-nav-link">Iconos</a>
   </aside>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -181,10 +194,10 @@
     <!-- Topbar -->
     <div class="docs-topbar">
       <div class="docs-lang-switch">
-        <a href="components.html" class="is-active">EN</a>
-        <a href="tr/components.html">TR</a>
-        <a href="de/components.html">DE</a>
-        <a href="es/components.html">ES</a>
+        <a href="../components.html">EN</a>
+        <a href="../tr/components.html">TR</a>
+        <a href="../de/components.html">DE</a>
+        <a href="components.html" class="is-active">ES</a>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
@@ -193,27 +206,27 @@
         </svg>
         GitHub
       </a>
-      <button class="docs-mode-btn" data-wb-mode-cycle title="Toggle theme">
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Cambiar tema">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
     </div>
 
     <!-- Page header -->
     <div class="docs-page-header">
-      <h1>Components</h1>
-      <p>All UI components with live previews and copy-ready HTML snippets. Every component uses the <code class="wb-code-inline">wb-</code> prefix and responds to the active theme.</p>
+      <h1>Componentes</h1>
+      <p>Todos los componentes de UI con vista previa en vivo y HTML listo para copiar. Cada componente usa el prefijo <code class="wb-code-inline">wb-</code> y responde al tema activo.</p>
     </div>
 
     <!-- ── On-page nav ──────────────────────────────────── -->
     <section class="docs-section" style="padding-top:var(--wb-s6);padding-bottom:var(--wb-s6)">
       <div class="docs-toc">
-        <a href="#buttons">Buttons</a>
+        <a href="#buttons">Botones</a>
         <a href="#badges">Badges</a>
-        <a href="#alerts">Alerts</a>
-        <a href="#cards">Cards</a>
-        <a href="#stats">Stat Cards</a>
-        <a href="#forms">Forms</a>
-        <a href="#tables">Tables</a>
+        <a href="#alerts">Alertas</a>
+        <a href="#cards">Tarjetas</a>
+        <a href="#stats">Tarjetas de estadísticas</a>
+        <a href="#forms">Formularios</a>
+        <a href="#tables">Tablas</a>
         <a href="#modal">Modal</a>
         <a href="#drawer">Drawer</a>
         <a href="#dropdown">Dropdown</a>
@@ -223,24 +236,24 @@
         <a href="#popover">Popover</a>
         <a href="#tooltip">Tooltip</a>
         <a href="#avatar">Avatar</a>
-        <a href="#pagination">Pagination</a>
+        <a href="#pagination">Paginación</a>
         <a href="#breadcrumb">Breadcrumb</a>
         <a href="#skeleton">Skeleton</a>
-        <a href="#empty">Empty State</a>
-        <a href="#spinner">Spinner &amp; Loading</a>
-        <a href="#divider">Divider</a>
-        <a href="#list">List Group</a>
-        <a href="#filter-bar">Filter Bar</a>
-        <a href="#action-menu">Action Menu</a>
+        <a href="#empty">Estado vacío</a>
+        <a href="#spinner">Spinner &amp; Carga</a>
+        <a href="#divider">Divisor</a>
+        <a href="#list">Lista</a>
+        <a href="#filter-bar">Barra de filtros</a>
+        <a href="#action-menu">Menú de acciones</a>
       </div>
     </section>
 
     <!-- ── Buttons ──────────────────────────────────────── -->
     <section class="docs-section" id="buttons">
-      <h2 class="docs-section-title">Buttons</h2>
-      <p class="docs-section-lead">Core action component. Combine <code class="wb-code-inline">wb-btn</code> with a variant and optional size modifier.</p>
+      <h2 class="docs-section-title">Botones</h2>
+      <p class="docs-section-lead">Componente de acción principal. Combina <code class="wb-code-inline">wb-btn</code> con una variante y un modificador de tamaño opcional.</p>
 
-      <h3 class="docs-sub-title">Variants</h3>
+      <h3 class="docs-sub-title">Variantes</h3>
       <div class="docs-preview">
         <button class="wb-btn wb-btn-primary">Primary</button>
         <button class="wb-btn wb-btn-secondary">Secondary</button>
@@ -256,41 +269,41 @@
 &lt;button class="wb-btn wb-btn-danger"&gt;Danger&lt;/button&gt;
 &lt;button class="wb-btn wb-btn-success"&gt;Success&lt;/button&gt;</pre>
 
-      <h3 class="docs-sub-title">Sizes</h3>
+      <h3 class="docs-sub-title">Tamaños</h3>
       <div class="docs-preview" style="align-items:center">
-        <button class="wb-btn wb-btn-primary wb-btn-sm">Small</button>
-        <button class="wb-btn wb-btn-primary">Default</button>
-        <button class="wb-btn wb-btn-primary wb-btn-lg">Large</button>
+        <button class="wb-btn wb-btn-primary wb-btn-sm">Pequeño</button>
+        <button class="wb-btn wb-btn-primary">Normal</button>
+        <button class="wb-btn wb-btn-primary wb-btn-lg">Grande</button>
       </div>
-      <pre class="wb-code">&lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Small&lt;/button&gt;
-&lt;button class="wb-btn wb-btn-primary"&gt;Default&lt;/button&gt;
-&lt;button class="wb-btn wb-btn-primary wb-btn-lg"&gt;Large&lt;/button&gt;</pre>
+      <pre class="wb-code">&lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Pequeño&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-primary"&gt;Normal&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-primary wb-btn-lg"&gt;Grande&lt;/button&gt;</pre>
 
-      <h3 class="docs-sub-title">States</h3>
+      <h3 class="docs-sub-title">Estados</h3>
       <div class="docs-preview">
-        <button class="wb-btn wb-btn-primary" disabled>Disabled</button>
-        <button class="wb-btn wb-btn-primary wb-btn-loading">Loading</button>
-        <a href="#" class="wb-btn wb-btn-outline">Link button</a>
+        <button class="wb-btn wb-btn-primary" disabled>Desactivado</button>
+        <button class="wb-btn wb-btn-primary wb-btn-loading">Cargando</button>
+        <a href="#" class="wb-btn wb-btn-outline">Botón enlace</a>
       </div>
-      <pre class="wb-code">&lt;button class="wb-btn wb-btn-primary" disabled&gt;Disabled&lt;/button&gt;
-&lt;button class="wb-btn wb-btn-primary wb-btn-loading"&gt;Loading&lt;/button&gt;
-&lt;a href="#" class="wb-btn wb-btn-outline"&gt;Link button&lt;/a&gt;</pre>
+      <pre class="wb-code">&lt;button class="wb-btn wb-btn-primary" disabled&gt;Desactivado&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-primary wb-btn-loading"&gt;Cargando&lt;/button&gt;
+&lt;a href="#" class="wb-btn wb-btn-outline"&gt;Botón enlace&lt;/a&gt;</pre>
     </section>
 
     <!-- ── Badges ───────────────────────────────────────── -->
     <section class="docs-section" id="badges">
       <h2 class="docs-section-title">Badges</h2>
-      <p class="docs-section-lead">Small status indicators and labels.</p>
+      <p class="docs-section-lead">Pequeños indicadores de estado y etiquetas.</p>
 
       <div class="docs-preview" style="align-items:center">
-        <span class="wb-badge">Default</span>
+        <span class="wb-badge">Estándar</span>
         <span class="wb-badge wb-badge-primary">Primary</span>
         <span class="wb-badge wb-badge-success">Success</span>
         <span class="wb-badge wb-badge-warning">Warning</span>
         <span class="wb-badge wb-badge-danger">Danger</span>
         <span class="wb-badge wb-badge-info">Info</span>
       </div>
-      <pre class="wb-code">&lt;span class="wb-badge"&gt;Default&lt;/span&gt;
+      <pre class="wb-code">&lt;span class="wb-badge"&gt;Estándar&lt;/span&gt;
 &lt;span class="wb-badge wb-badge-primary"&gt;Primary&lt;/span&gt;
 &lt;span class="wb-badge wb-badge-success"&gt;Success&lt;/span&gt;
 &lt;span class="wb-badge wb-badge-warning"&gt;Warning&lt;/span&gt;
@@ -300,305 +313,305 @@
 
     <!-- ── Alerts ───────────────────────────────────────── -->
     <section class="docs-section" id="alerts">
-      <h2 class="docs-section-title">Alerts</h2>
-      <p class="docs-section-lead">Inline feedback messages. Add <code class="wb-code-inline">data-wb-dismiss="alert"</code> to make them dismissible.</p>
+      <h2 class="docs-section-title">Alertas</h2>
+      <p class="docs-section-lead">Mensajes de retroalimentación en línea. Agrega <code class="wb-code-inline">data-wb-dismiss="alert"</code> para hacerlos cerrables.</p>
 
       <div class="docs-preview docs-preview-col">
-        <div class="wb-alert wb-alert-success">Record saved successfully.</div>
-        <div class="wb-alert wb-alert-danger">An error occurred. Please try again.</div>
-        <div class="wb-alert wb-alert-warning">Your plan will expire in 3 days.</div>
-        <div class="wb-alert wb-alert-info">A new version is available.</div>
+        <div class="wb-alert wb-alert-success">Registro guardado correctamente.</div>
+        <div class="wb-alert wb-alert-danger">Ocurrió un error. Por favor intenta de nuevo.</div>
+        <div class="wb-alert wb-alert-warning">Tu plan vence en 3 días.</div>
+        <div class="wb-alert wb-alert-info">Hay una nueva versión disponible.</div>
       </div>
-      <pre class="wb-code">&lt;div class="wb-alert wb-alert-success"&gt;Record saved successfully.&lt;/div&gt;
-&lt;div class="wb-alert wb-alert-danger"&gt;An error occurred. Please try again.&lt;/div&gt;
-&lt;div class="wb-alert wb-alert-warning"&gt;Your plan will expire in 3 days.&lt;/div&gt;
-&lt;div class="wb-alert wb-alert-info"&gt;A new version is available.&lt;/div&gt;</pre>
+      <pre class="wb-code">&lt;div class="wb-alert wb-alert-success"&gt;Registro guardado correctamente.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-danger"&gt;Ocurrió un error.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-warning"&gt;Tu plan vence en 3 días.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-info"&gt;Hay una nueva versión disponible.&lt;/div&gt;</pre>
 
-      <h3 class="docs-sub-title">Dismissible alert</h3>
+      <h3 class="docs-sub-title">Alerta cerrable</h3>
       <div class="docs-preview docs-preview-col">
         <div class="wb-alert wb-alert-info">
-          You have 3 unread notifications.
-          <button class="wb-alert-close" data-wb-dismiss="alert" aria-label="Close">&times;</button>
+          Tienes 3 notificaciones sin leer.
+          <button class="wb-alert-close" data-wb-dismiss="alert" aria-label="Cerrar">&times;</button>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-alert wb-alert-info"&gt;
-  You have 3 unread notifications.
-  &lt;button class="wb-alert-close" data-wb-dismiss="alert" aria-label="Close"&gt;&amp;times;&lt;/button&gt;
+  Tienes 3 notificaciones sin leer.
+  &lt;button class="wb-alert-close" data-wb-dismiss="alert" aria-label="Cerrar"&gt;&amp;times;&lt;/button&gt;
 &lt;/div&gt;</pre>
     </section>
 
     <!-- ── Cards ────────────────────────────────────────── -->
     <section class="docs-section" id="cards">
-      <h2 class="docs-section-title">Cards</h2>
-      <p class="docs-section-lead">General-purpose content container with optional header, body, and footer.</p>
+      <h2 class="docs-section-title">Tarjetas</h2>
+      <p class="docs-section-lead">Contenedor de contenido de propósito general con cabecera, cuerpo y pie de página opcionales.</p>
 
       <div class="docs-preview">
         <div class="wb-card" style="width:300px">
           <div class="wb-card-header">
-            <h3 class="wb-card-title">Card title</h3>
-            <p class="wb-card-subtitle">Optional subtitle</p>
+            <h3 class="wb-card-title">Título de tarjeta</h3>
+            <p class="wb-card-subtitle">Subtítulo opcional</p>
           </div>
           <div class="wb-card-body">
-            <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Card content and body text goes here. Add anything inside.</p>
+            <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Contenido de la tarjeta aquí. Agrega cualquier contenido que necesites.</p>
           </div>
           <div class="wb-card-footer">
-            <button class="wb-btn wb-btn-primary wb-btn-sm">Save</button>
-            <button class="wb-btn wb-btn-ghost wb-btn-sm">Cancel</button>
+            <button class="wb-btn wb-btn-primary wb-btn-sm">Guardar</button>
+            <button class="wb-btn wb-btn-ghost wb-btn-sm">Cancelar</button>
           </div>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-card"&gt;
   &lt;div class="wb-card-header"&gt;
-    &lt;h3 class="wb-card-title"&gt;Card title&lt;/h3&gt;
-    &lt;p class="wb-card-subtitle"&gt;Optional subtitle&lt;/p&gt;
+    &lt;h3 class="wb-card-title"&gt;Título de tarjeta&lt;/h3&gt;
+    &lt;p class="wb-card-subtitle"&gt;Subtítulo opcional&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="wb-card-body"&gt;
-    Card content goes here.
+    Contenido aquí.
   &lt;/div&gt;
   &lt;div class="wb-card-footer"&gt;
-    &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Save&lt;/button&gt;
-    &lt;button class="wb-btn wb-btn-ghost wb-btn-sm"&gt;Cancel&lt;/button&gt;
+    &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Guardar&lt;/button&gt;
+    &lt;button class="wb-btn wb-btn-ghost wb-btn-sm"&gt;Cancelar&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
 
     <!-- ── Stat cards ────────────────────────────────────── -->
     <section class="docs-section" id="stats">
-      <h2 class="docs-section-title">Stat Cards</h2>
-      <p class="docs-section-lead">Dashboard KPI cards — use <code class="wb-code-inline">wb-stat</code> inside a <code class="wb-code-inline">wb-card</code>.</p>
+      <h2 class="docs-section-title">Tarjetas de estadísticas</h2>
+      <p class="docs-section-lead">Tarjetas KPI para dashboards — usa <code class="wb-code-inline">wb-stat</code> dentro de un <code class="wb-code-inline">wb-card</code>.</p>
 
       <div class="docs-preview">
         <div class="wb-card wb-stat" style="min-width:160px">
-          <div class="wb-stat-label">Total Users</div>
-          <div class="wb-stat-value">12,480</div>
-          <div class="wb-stat-change wb-stat-up">+8.4% this month</div>
+          <div class="wb-stat-label">Total de usuarios</div>
+          <div class="wb-stat-value">12.480</div>
+          <div class="wb-stat-change wb-stat-up">+8,4 % este mes</div>
         </div>
         <div class="wb-card wb-stat" style="min-width:160px">
-          <div class="wb-stat-label">Revenue</div>
-          <div class="wb-stat-value">$94,200</div>
-          <div class="wb-stat-change wb-stat-down">−2.1% this month</div>
+          <div class="wb-stat-label">Ingresos</div>
+          <div class="wb-stat-value">$94.200</div>
+          <div class="wb-stat-change wb-stat-down">−2,1 % este mes</div>
         </div>
         <div class="wb-card wb-stat" style="min-width:160px">
-          <div class="wb-stat-label">Open Tickets</div>
+          <div class="wb-stat-label">Tickets abiertos</div>
           <div class="wb-stat-value">37</div>
-          <div class="wb-stat-change">No change</div>
+          <div class="wb-stat-change">Sin cambios</div>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-card wb-stat"&gt;
-  &lt;div class="wb-stat-label"&gt;Total Users&lt;/div&gt;
-  &lt;div class="wb-stat-value"&gt;12,480&lt;/div&gt;
-  &lt;div class="wb-stat-change wb-stat-up"&gt;+8.4% this month&lt;/div&gt;
+  &lt;div class="wb-stat-label"&gt;Total de usuarios&lt;/div&gt;
+  &lt;div class="wb-stat-value"&gt;12.480&lt;/div&gt;
+  &lt;div class="wb-stat-change wb-stat-up"&gt;+8,4 % este mes&lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
 
     <!-- ── Forms ────────────────────────────────────────── -->
     <section class="docs-section" id="forms">
-      <h2 class="docs-section-title">Forms</h2>
-      <p class="docs-section-lead">Input fields, selects, checkboxes, radios, switches, and textarea.</p>
+      <h2 class="docs-section-title">Formularios</h2>
+      <p class="docs-section-lead">Campos de texto, selects, checkboxes, radios, switches y textarea.</p>
 
-      <h3 class="docs-sub-title">Text inputs</h3>
+      <h3 class="docs-sub-title">Campos de texto</h3>
       <div class="docs-preview docs-preview-col" style="max-width:400px">
         <div class="wb-field">
-          <label class="wb-label">Full name</label>
-          <input type="text" class="wb-input" placeholder="Jane Smith">
+          <label class="wb-label">Nombre completo</label>
+          <input type="text" class="wb-input" placeholder="Ana García">
         </div>
         <div class="wb-field">
-          <label class="wb-label">Email</label>
-          <input type="email" class="wb-input" placeholder="jane@example.com">
-          <p class="wb-field-hint">We'll never share your email.</p>
+          <label class="wb-label">Correo electrónico</label>
+          <input type="email" class="wb-input" placeholder="ana@ejemplo.com">
+          <p class="wb-field-hint">Nunca compartiremos tu correo.</p>
         </div>
         <div class="wb-field">
-          <label class="wb-label">Invalid field</label>
-          <input type="text" class="wb-input is-invalid" value="bad value">
-          <p class="wb-field-error">This field is required.</p>
+          <label class="wb-label">Campo inválido</label>
+          <input type="text" class="wb-input is-invalid" value="valor inválido">
+          <p class="wb-field-error">Este campo es obligatorio.</p>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-field"&gt;
-  &lt;label class="wb-label"&gt;Full name&lt;/label&gt;
-  &lt;input type="text" class="wb-input" placeholder="Jane Smith"&gt;
+  &lt;label class="wb-label"&gt;Nombre completo&lt;/label&gt;
+  &lt;input type="text" class="wb-input" placeholder="Ana García"&gt;
 &lt;/div&gt;
 
 &lt;div class="wb-field"&gt;
-  &lt;label class="wb-label"&gt;Email&lt;/label&gt;
-  &lt;input type="email" class="wb-input" placeholder="jane@example.com"&gt;
-  &lt;p class="wb-field-hint"&gt;We'll never share your email.&lt;/p&gt;
+  &lt;label class="wb-label"&gt;Correo electrónico&lt;/label&gt;
+  &lt;input type="email" class="wb-input" placeholder="ana@ejemplo.com"&gt;
+  &lt;p class="wb-field-hint"&gt;Nunca compartiremos tu correo.&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;!-- Error state --&gt;
+&lt;!-- Estado de error --&gt;
 &lt;div class="wb-field"&gt;
-  &lt;label class="wb-label"&gt;Invalid field&lt;/label&gt;
-  &lt;input type="text" class="wb-input is-invalid" value="bad value"&gt;
-  &lt;p class="wb-field-error"&gt;This field is required.&lt;/p&gt;
+  &lt;label class="wb-label"&gt;Campo inválido&lt;/label&gt;
+  &lt;input type="text" class="wb-input is-invalid" value="valor inválido"&gt;
+  &lt;p class="wb-field-error"&gt;Este campo es obligatorio.&lt;/p&gt;
 &lt;/div&gt;</pre>
 
       <h3 class="docs-sub-title">Select &amp; Textarea</h3>
       <div class="docs-preview docs-preview-col" style="max-width:400px">
         <div class="wb-field">
-          <label class="wb-label">Status</label>
+          <label class="wb-label">Estado</label>
           <select class="wb-select">
-            <option>Active</option>
-            <option>Inactive</option>
-            <option>Pending</option>
+            <option>Activo</option>
+            <option>Inactivo</option>
+            <option>Pendiente</option>
           </select>
         </div>
         <div class="wb-field">
-          <label class="wb-label">Notes</label>
-          <textarea class="wb-textarea" rows="3" placeholder="Add a note…"></textarea>
+          <label class="wb-label">Notas</label>
+          <textarea class="wb-textarea" rows="3" placeholder="Agregar nota…"></textarea>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-field"&gt;
-  &lt;label class="wb-label"&gt;Status&lt;/label&gt;
+  &lt;label class="wb-label"&gt;Estado&lt;/label&gt;
   &lt;select class="wb-select"&gt;
-    &lt;option&gt;Active&lt;/option&gt;
-    &lt;option&gt;Inactive&lt;/option&gt;
+    &lt;option&gt;Activo&lt;/option&gt;
+    &lt;option&gt;Inactivo&lt;/option&gt;
   &lt;/select&gt;
 &lt;/div&gt;
 
 &lt;div class="wb-field"&gt;
-  &lt;label class="wb-label"&gt;Notes&lt;/label&gt;
+  &lt;label class="wb-label"&gt;Notas&lt;/label&gt;
   &lt;textarea class="wb-textarea" rows="3"&gt;&lt;/textarea&gt;
 &lt;/div&gt;</pre>
 
       <h3 class="docs-sub-title">Checkboxes, Radios &amp; Switch</h3>
       <div class="docs-preview docs-preview-col">
-        <label class="wb-check"><input type="checkbox" checked> Enable notifications</label>
-        <label class="wb-check"><input type="checkbox"> Remember me</label>
-        <label class="wb-radio"><input type="radio" name="r1" checked> Option A</label>
-        <label class="wb-radio"><input type="radio" name="r1"> Option B</label>
+        <label class="wb-check"><input type="checkbox" checked> Activar notificaciones</label>
+        <label class="wb-check"><input type="checkbox"> Mantener sesión iniciada</label>
+        <label class="wb-radio"><input type="radio" name="r1" checked> Opción A</label>
+        <label class="wb-radio"><input type="radio" name="r1"> Opción B</label>
         <label class="wb-switch-label">
           <input type="checkbox" class="wb-switch" checked>
-          <span>Active</span>
+          <span>Activo</span>
         </label>
       </div>
-      <pre class="wb-code">&lt;label class="wb-check"&gt;&lt;input type="checkbox"&gt; Enable notifications&lt;/label&gt;
-&lt;label class="wb-radio"&gt;&lt;input type="radio" name="r1"&gt; Option A&lt;/label&gt;
+      <pre class="wb-code">&lt;label class="wb-check"&gt;&lt;input type="checkbox"&gt; Activar notificaciones&lt;/label&gt;
+&lt;label class="wb-radio"&gt;&lt;input type="radio" name="r1"&gt; Opción A&lt;/label&gt;
 
 &lt;!-- Toggle switch --&gt;
 &lt;label class="wb-switch-label"&gt;
   &lt;input type="checkbox" class="wb-switch" checked&gt;
-  &lt;span&gt;Active&lt;/span&gt;
+  &lt;span&gt;Activo&lt;/span&gt;
 &lt;/label&gt;</pre>
     </section>
 
     <!-- ── Tables ───────────────────────────────────────── -->
     <section class="docs-section" id="tables">
-      <h2 class="docs-section-title">Tables</h2>
-      <p class="docs-section-lead">Responsive data tables with optional striped and hover modifiers.</p>
+      <h2 class="docs-section-title">Tablas</h2>
+      <p class="docs-section-lead">Tablas de datos responsivas con modificadores de filas alternas y hover opcionales.</p>
 
       <div class="docs-preview" style="display:block">
         <table class="wb-table wb-table-striped">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Role</th>
-              <th>Status</th>
+              <th>Nombre</th>
+              <th>Rol</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Alice Chen</td>
               <td>Admin</td>
-              <td><span class="wb-badge wb-badge-success">Active</span></td>
+              <td><span class="wb-badge wb-badge-success">Activo</span></td>
             </tr>
             <tr>
               <td>Bob Ross</td>
               <td>Editor</td>
-              <td><span class="wb-badge wb-badge-warning">Pending</span></td>
+              <td><span class="wb-badge wb-badge-warning">Pendiente</span></td>
             </tr>
             <tr>
               <td>Carol White</td>
               <td>Viewer</td>
-              <td><span class="wb-badge wb-badge-danger">Inactive</span></td>
+              <td><span class="wb-badge wb-badge-danger">Inactivo</span></td>
             </tr>
           </tbody>
         </table>
       </div>
       <pre class="wb-code">&lt;table class="wb-table wb-table-striped"&gt;
   &lt;thead&gt;
-    &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Nombre&lt;/th&gt;&lt;th&gt;Rol&lt;/th&gt;&lt;th&gt;Estado&lt;/th&gt;&lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td&gt;Alice Chen&lt;/td&gt;
       &lt;td&gt;Admin&lt;/td&gt;
-      &lt;td&gt;&lt;span class="wb-badge wb-badge-success"&gt;Active&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;span class="wb-badge wb-badge-success"&gt;Activo&lt;/span&gt;&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        Modifiers: <code class="wb-code-inline">wb-table-striped</code> · <code class="wb-code-inline">wb-table-hover</code> · <code class="wb-code-inline">wb-table-bordered</code> · <code class="wb-code-inline">wb-table-sm</code>
+        Modificadores: <code class="wb-code-inline">wb-table-striped</code> · <code class="wb-code-inline">wb-table-hover</code> · <code class="wb-code-inline">wb-table-bordered</code> · <code class="wb-code-inline">wb-table-sm</code>
       </p>
     </section>
 
     <!-- ── Modal ────────────────────────────────────────── -->
     <section class="docs-section" id="modal">
       <h2 class="docs-section-title">Modal</h2>
-      <p class="docs-section-lead">Dialog overlay. Opened via <code class="wb-code-inline">WBModal.open(id)</code> or <code class="wb-code-inline">data-wb-toggle="modal"</code>.</p>
+      <p class="docs-section-lead">Overlay de diálogo. Se abre con <code class="wb-code-inline">WBModal.open(id)</code> o <code class="wb-code-inline">data-wb-toggle="modal"</code>.</p>
 
       <div class="docs-preview">
-        <button class="wb-btn wb-btn-primary" data-wb-toggle="modal" data-wb-target="#demo-modal">Open modal</button>
+        <button class="wb-btn wb-btn-primary" data-wb-toggle="modal" data-wb-target="#demo-modal-es">Abrir modal</button>
       </div>
-      <pre class="wb-code">&lt;!-- Trigger --&gt;
+      <pre class="wb-code">&lt;!-- Activador --&gt;
 &lt;button class="wb-btn wb-btn-primary"
         data-wb-toggle="modal"
-        data-wb-target="#my-modal"&gt;Open modal&lt;/button&gt;
+        data-wb-target="#mi-modal"&gt;Abrir modal&lt;/button&gt;
 
 &lt;!-- Modal --&gt;
-&lt;div class="wb-modal" id="my-modal"&gt;
+&lt;div class="wb-modal" id="mi-modal"&gt;
   &lt;div class="wb-modal-backdrop" data-wb-dismiss="modal"&gt;&lt;/div&gt;
   &lt;div class="wb-modal-dialog"&gt;
     &lt;div class="wb-modal-header"&gt;
-      &lt;h4 class="wb-modal-title"&gt;Confirm action&lt;/h4&gt;
+      &lt;h4 class="wb-modal-title"&gt;Confirmar acción&lt;/h4&gt;
       &lt;button class="wb-modal-close" data-wb-dismiss="modal"&gt;&amp;times;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class="wb-modal-body"&gt;
-      Are you sure you want to proceed?
+      ¿Realmente deseas continuar?
     &lt;/div&gt;
     &lt;div class="wb-modal-footer"&gt;
-      &lt;button class="wb-btn wb-btn-ghost" data-wb-dismiss="modal"&gt;Cancel&lt;/button&gt;
-      &lt;button class="wb-btn wb-btn-primary"&gt;Confirm&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-ghost" data-wb-dismiss="modal"&gt;Cancelar&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-primary"&gt;Confirmar&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
 
-      <h3 class="docs-sub-title">JS API</h3>
-      <pre class="wb-code">WBModal.open('my-modal');
-WBModal.close('my-modal');</pre>
+      <h3 class="docs-sub-title">API de JS</h3>
+      <pre class="wb-code">WBModal.open('mi-modal');
+WBModal.close('mi-modal');</pre>
     </section>
 
     <!-- ── Drawer ───────────────────────────────────────── -->
     <section class="docs-section" id="drawer">
       <h2 class="docs-section-title">Drawer</h2>
-      <p class="docs-section-lead">Side panel overlay with focus trap. Supports right, left, top, and bottom placements.</p>
+      <p class="docs-section-lead">Panel lateral superpuesto con trampa de foco. Soporta derecha, izquierda, arriba y abajo.</p>
 
       <div class="docs-preview" style="gap:var(--wb-s3)">
-        <button class="wb-btn wb-btn-outline" data-wb-toggle="drawer" data-wb-target="#demo-drawer-right">Right drawer</button>
-        <button class="wb-btn wb-btn-outline" data-wb-toggle="drawer" data-wb-target="#demo-drawer-left">Left drawer</button>
+        <button class="wb-btn wb-btn-outline" data-wb-toggle="drawer" data-wb-target="#demo-drawer-es-right">Derecha</button>
+        <button class="wb-btn wb-btn-outline" data-wb-toggle="drawer" data-wb-target="#demo-drawer-es-left">Izquierda</button>
       </div>
-      <pre class="wb-code">&lt;!-- Trigger --&gt;
-&lt;button data-wb-toggle="drawer" data-wb-target="#my-drawer"&gt;Open&lt;/button&gt;
+      <pre class="wb-code">&lt;!-- Activador --&gt;
+&lt;button data-wb-toggle="drawer" data-wb-target="#mi-drawer"&gt;Abrir&lt;/button&gt;
 
-&lt;!-- Drawer (right by default) --&gt;
-&lt;div class="wb-drawer wb-drawer-right" id="my-drawer"&gt;
+&lt;!-- Drawer (derecha por defecto) --&gt;
+&lt;div class="wb-drawer wb-drawer-right" id="mi-drawer"&gt;
   &lt;div class="wb-drawer-backdrop" data-wb-dismiss="drawer"&gt;&lt;/div&gt;
   &lt;div class="wb-drawer-panel"&gt;
     &lt;div class="wb-drawer-header"&gt;
-      &lt;h4 class="wb-drawer-title"&gt;Panel title&lt;/h4&gt;
+      &lt;h4 class="wb-drawer-title"&gt;Título del panel&lt;/h4&gt;
       &lt;button class="wb-drawer-close" data-wb-dismiss="drawer"&gt;&amp;times;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class="wb-drawer-body"&gt;
-      Drawer content here.
+      Contenido del drawer aquí.
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Placement variants --&gt;
-&lt;div class="wb-drawer wb-drawer-left" id="left-drawer"&gt;...&lt;/div&gt;
-&lt;div class="wb-drawer wb-drawer-top"  id="top-drawer"&gt;...&lt;/div&gt;
-&lt;div class="wb-drawer wb-drawer-bottom" id="btm-drawer"&gt;...&lt;/div&gt;
+&lt;!-- Variantes de posición --&gt;
+&lt;div class="wb-drawer wb-drawer-left"   id="izquierda-drawer"&gt;...&lt;/div&gt;
+&lt;div class="wb-drawer wb-drawer-top"    id="arriba-drawer"&gt;...&lt;/div&gt;
+&lt;div class="wb-drawer wb-drawer-bottom" id="abajo-drawer"&gt;...&lt;/div&gt;
 
-&lt;!-- Width variants --&gt;
+&lt;!-- Variantes de ancho --&gt;
 &lt;div class="wb-drawer wb-drawer-right wb-drawer-sm"&gt;...&lt;/div&gt;
 &lt;div class="wb-drawer wb-drawer-right wb-drawer-lg"&gt;...&lt;/div&gt;
 &lt;div class="wb-drawer wb-drawer-right wb-drawer-xl"&gt;...&lt;/div&gt;</pre>
@@ -607,31 +620,31 @@ WBModal.close('my-modal');</pre>
     <!-- ── Dropdown ─────────────────────────────────────── -->
     <section class="docs-section" id="dropdown">
       <h2 class="docs-section-title">Dropdown</h2>
-      <p class="docs-section-lead">Click-triggered menu. Closes on outside click and Escape key.</p>
+      <p class="docs-section-lead">Menú activado por clic. Se cierra al hacer clic fuera o con la tecla Escape.</p>
 
       <div class="docs-preview">
         <div class="wb-dropdown">
           <button class="wb-btn wb-btn-outline" data-wb-toggle="dropdown">
-            Actions
+            Acciones
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:4px"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="wb-dropdown-menu">
-            <a href="#" class="wb-dropdown-item">Edit</a>
-            <a href="#" class="wb-dropdown-item">Duplicate</a>
+            <a href="#" class="wb-dropdown-item">Editar</a>
+            <a href="#" class="wb-dropdown-item">Duplicar</a>
             <div class="wb-dropdown-divider"></div>
-            <a href="#" class="wb-dropdown-item wb-dropdown-item-danger">Delete</a>
+            <a href="#" class="wb-dropdown-item wb-dropdown-item-danger">Eliminar</a>
           </div>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-dropdown"&gt;
   &lt;button class="wb-btn wb-btn-outline" data-wb-toggle="dropdown"&gt;
-    Actions ▾
+    Acciones ▾
   &lt;/button&gt;
   &lt;div class="wb-dropdown-menu"&gt;
-    &lt;a href="#" class="wb-dropdown-item"&gt;Edit&lt;/a&gt;
-    &lt;a href="#" class="wb-dropdown-item"&gt;Duplicate&lt;/a&gt;
+    &lt;a href="#" class="wb-dropdown-item"&gt;Editar&lt;/a&gt;
+    &lt;a href="#" class="wb-dropdown-item"&gt;Duplicar&lt;/a&gt;
     &lt;div class="wb-dropdown-divider"&gt;&lt;/div&gt;
-    &lt;a href="#" class="wb-dropdown-item wb-dropdown-item-danger"&gt;Delete&lt;/a&gt;
+    &lt;a href="#" class="wb-dropdown-item wb-dropdown-item-danger"&gt;Eliminar&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
@@ -639,36 +652,36 @@ WBModal.close('my-modal');</pre>
     <!-- ── Tabs ─────────────────────────────────────────── -->
     <section class="docs-section" id="tabs">
       <h2 class="docs-section-title">Tabs</h2>
-      <p class="docs-section-lead">Tabbed content panel. JS handles switching; <code class="wb-code-inline">is-active</code> marks the current tab and panel.</p>
+      <p class="docs-section-lead">Panel de pestañas. JS gestiona el cambio; <code class="wb-code-inline">is-active</code> marca la pestaña y el panel actuales.</p>
 
       <div class="docs-preview docs-preview-col" style="width:100%">
-        <div class="wb-tabs" id="demo-tabs">
+        <div class="wb-tabs" id="demo-tabs-es">
           <div class="wb-tab-list">
-            <button class="wb-tab-item is-active" data-wb-tab="tab1">Overview</button>
-            <button class="wb-tab-item" data-wb-tab="tab2">Activity</button>
-            <button class="wb-tab-item" data-wb-tab="tab3">Settings</button>
+            <button class="wb-tab-item is-active" data-wb-tab="tab-es1">Resumen</button>
+            <button class="wb-tab-item" data-wb-tab="tab-es2">Actividad</button>
+            <button class="wb-tab-item" data-wb-tab="tab-es3">Configuración</button>
           </div>
           <div class="wb-tab-panels">
-            <div class="wb-tab-panel is-active" id="tab1">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Overview panel content.</p>
+            <div class="wb-tab-panel is-active" id="tab-es1">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Contenido del panel de resumen.</p>
             </div>
-            <div class="wb-tab-panel" id="tab2">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Activity panel content.</p>
+            <div class="wb-tab-panel" id="tab-es2">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Contenido del panel de actividad.</p>
             </div>
-            <div class="wb-tab-panel" id="tab3">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Settings panel content.</p>
+            <div class="wb-tab-panel" id="tab-es3">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Contenido del panel de configuración.</p>
             </div>
           </div>
         </div>
       </div>
-      <pre class="wb-code">&lt;div class="wb-tabs" id="my-tabs"&gt;
+      <pre class="wb-code">&lt;div class="wb-tabs" id="mis-tabs"&gt;
   &lt;div class="wb-tab-list"&gt;
-    &lt;button class="wb-tab-item is-active" data-wb-tab="tab1"&gt;Overview&lt;/button&gt;
-    &lt;button class="wb-tab-item" data-wb-tab="tab2"&gt;Activity&lt;/button&gt;
+    &lt;button class="wb-tab-item is-active" data-wb-tab="tab1"&gt;Resumen&lt;/button&gt;
+    &lt;button class="wb-tab-item" data-wb-tab="tab2"&gt;Actividad&lt;/button&gt;
   &lt;/div&gt;
   &lt;div class="wb-tab-panels"&gt;
-    &lt;div class="wb-tab-panel is-active" id="tab1"&gt;Overview content&lt;/div&gt;
-    &lt;div class="wb-tab-panel" id="tab2"&gt;Activity content&lt;/div&gt;
+    &lt;div class="wb-tab-panel is-active" id="tab1"&gt;Contenido resumen&lt;/div&gt;
+    &lt;div class="wb-tab-panel" id="tab2"&gt;Contenido actividad&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
@@ -676,38 +689,38 @@ WBModal.close('my-modal');</pre>
     <!-- ── Accordion ────────────────────────────────────── -->
     <section class="docs-section" id="accordion">
       <h2 class="docs-section-title">Accordion</h2>
-      <p class="docs-section-lead">Collapsible content sections.</p>
+      <p class="docs-section-lead">Áreas de contenido expandibles y colapsables.</p>
 
       <div class="docs-preview docs-preview-col" style="width:100%">
         <div class="wb-accordion">
           <div class="wb-accordion-item is-open">
-            <button class="wb-accordion-trigger">What is WebBlocks UI?</button>
+            <button class="wb-accordion-trigger">¿Qué es WebBlocks UI?</button>
             <div class="wb-accordion-body">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">A zero-dependency UI kit for admin panels and dashboards.</p>
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Un kit de UI sin dependencias para paneles de administración y dashboards.</p>
             </div>
           </div>
           <div class="wb-accordion-item">
-            <button class="wb-accordion-trigger">Does it need npm?</button>
+            <button class="wb-accordion-trigger">¿Se necesita npm?</button>
             <div class="wb-accordion-body">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">No. Drop two script tags and you're done.</p>
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">No. Agrega dos etiquetas de script y listo.</p>
             </div>
           </div>
           <div class="wb-accordion-item">
-            <button class="wb-accordion-trigger">Can I use it with Laravel?</button>
+            <button class="wb-accordion-trigger">¿Funciona con Laravel?</button>
             <div class="wb-accordion-body">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Yes — works with any template engine. HTML stays HTML.</p>
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Sí — funciona con cualquier motor de plantillas. El HTML sigue siendo HTML.</p>
             </div>
           </div>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-accordion"&gt;
   &lt;div class="wb-accordion-item is-open"&gt;
-    &lt;button class="wb-accordion-trigger"&gt;Question one?&lt;/button&gt;
-    &lt;div class="wb-accordion-body"&gt;Answer text here.&lt;/div&gt;
+    &lt;button class="wb-accordion-trigger"&gt;¿Pregunta uno?&lt;/button&gt;
+    &lt;div class="wb-accordion-body"&gt;Texto de respuesta aquí.&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="wb-accordion-item"&gt;
-    &lt;button class="wb-accordion-trigger"&gt;Question two?&lt;/button&gt;
-    &lt;div class="wb-accordion-body"&gt;Answer text here.&lt;/div&gt;
+    &lt;button class="wb-accordion-trigger"&gt;¿Pregunta dos?&lt;/button&gt;
+    &lt;div class="wb-accordion-body"&gt;Texto de respuesta aquí.&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
@@ -715,151 +728,151 @@ WBModal.close('my-modal');</pre>
     <!-- ── Toast ────────────────────────────────────────── -->
     <section class="docs-section" id="toast">
       <h2 class="docs-section-title">Toast</h2>
-      <p class="docs-section-lead">Programmatic notification messages. Shown via <code class="wb-code-inline">WBToast.show()</code>.</p>
+      <p class="docs-section-lead">Notificaciones programáticas. Se muestran con <code class="wb-code-inline">WBToast.show()</code>.</p>
 
       <div class="docs-preview" style="gap:var(--wb-s3);flex-wrap:wrap">
-        <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="WBToast.show('Settings saved.')">Default toast</button>
-        <button class="wb-btn wb-btn-success wb-btn-sm" onclick="WBToast.show('Record created!', {type:'success'})">Success</button>
-        <button class="wb-btn wb-btn-danger wb-btn-sm" onclick="WBToast.show('Something went wrong.', {type:'error'})">Error</button>
-        <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="WBToast.show('Please review.', {type:'warning'})">Warning</button>
+        <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="WBToast.show('Configuración guardada.')">Estándar</button>
+        <button class="wb-btn wb-btn-success wb-btn-sm" onclick="WBToast.show('¡Registro creado!', {type:'success'})">Éxito</button>
+        <button class="wb-btn wb-btn-danger wb-btn-sm" onclick="WBToast.show('Algo salió mal.', {type:'error'})">Error</button>
+        <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="WBToast.show('Por favor revisa.', {type:'warning'})">Advertencia</button>
       </div>
-      <pre class="wb-code">// Basic
-WBToast.show('Settings saved.');
+      <pre class="wb-code">// Simple
+WBToast.show('Configuración guardada.');
 
-// With type
-WBToast.show('Record created!', { type: 'success' });
-WBToast.show('Something went wrong.', { type: 'error' });
-WBToast.show('Please review.', { type: 'warning' });
+// Con tipo
+WBToast.show('¡Registro creado!', { type: 'success' });
+WBToast.show('Algo salió mal.', { type: 'error' });
+WBToast.show('Por favor revisa.', { type: 'warning' });
 
-// With custom duration (ms)
-WBToast.show('Auto-closes in 2s.', { duration: 2000 });
+// Con duración personalizada (ms)
+WBToast.show('Se cierra en 2s.', { duration: 2000 });
 
-// With position (default: top-right)
-WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
+// Con posición (por defecto: top-right)
+WBToast.show('¡Centro abajo!', { position: 'bottom-center' });</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        Position values: <code class="wb-code-inline">top-right</code> · <code class="wb-code-inline">top-center</code> · <code class="wb-code-inline">top-left</code> · <code class="wb-code-inline">bottom-center</code> · <code class="wb-code-inline">bottom-left</code>
+        Valores de posición: <code class="wb-code-inline">top-right</code> · <code class="wb-code-inline">top-center</code> · <code class="wb-code-inline">top-left</code> · <code class="wb-code-inline">bottom-center</code> · <code class="wb-code-inline">bottom-left</code>
       </p>
     </section>
 
     <!-- ── Popover ──────────────────────────────────────── -->
     <section class="docs-section" id="popover">
       <h2 class="docs-section-title">Popover</h2>
-      <p class="docs-section-lead">Anchored overlay with rich content. Supports four placement variants.</p>
+      <p class="docs-section-lead">Overlay anclado con contenido enriquecido. Soporta cuatro variantes de posicionamiento.</p>
 
       <div class="docs-preview" style="padding-bottom:var(--wb-s12);gap:var(--wb-s8);flex-wrap:wrap">
         <div class="wb-popover-wrapper">
-          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Top (default)</button>
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Arriba (por defecto)</button>
           <div class="wb-popover wb-popover-top">
-            <div class="wb-popover-title">Popover title</div>
-            <div class="wb-popover-body">Some helpful info here.</div>
+            <div class="wb-popover-title">Título del popover</div>
+            <div class="wb-popover-body">Información útil aquí.</div>
           </div>
         </div>
         <div class="wb-popover-wrapper">
-          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Bottom</button>
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Abajo</button>
           <div class="wb-popover wb-popover-bottom">
-            <div class="wb-popover-title">Bottom popover</div>
-            <div class="wb-popover-body">Opens below the trigger.</div>
+            <div class="wb-popover-title">Popover inferior</div>
+            <div class="wb-popover-body">Se abre debajo del activador.</div>
           </div>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-popover-wrapper"&gt;
   &lt;button class="wb-btn wb-btn-outline" data-wb-toggle="popover"&gt;
-    Click me
+    Haz clic
   &lt;/button&gt;
   &lt;div class="wb-popover wb-popover-top"&gt;
-    &lt;div class="wb-popover-title"&gt;Popover title&lt;/div&gt;
-    &lt;div class="wb-popover-body"&gt;Popover content goes here.&lt;/div&gt;
+    &lt;div class="wb-popover-title"&gt;Título del popover&lt;/div&gt;
+    &lt;div class="wb-popover-body"&gt;Contenido del popover aquí.&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Placements: wb-popover-top / -right / -bottom / -left --&gt;</pre>
+&lt;!-- Posiciones: wb-popover-top / -right / -bottom / -left --&gt;</pre>
     </section>
 
     <!-- ── Tooltip ──────────────────────────────────────── -->
     <section class="docs-section" id="tooltip">
       <h2 class="docs-section-title">Tooltip</h2>
-      <p class="docs-section-lead">Simple hover/focus tooltip via the <code class="wb-code-inline">data-wb-tooltip</code> attribute.</p>
+      <p class="docs-section-lead">Tooltip simple de hover/foco mediante el atributo <code class="wb-code-inline">data-wb-tooltip</code>.</p>
 
       <div class="docs-preview" style="gap:var(--wb-s5);flex-wrap:wrap;align-items:center">
-        <button class="wb-btn wb-btn-outline" data-wb-tooltip="Saves your work" data-wb-tooltip-placement="top">Hover me (top)</button>
-        <button class="wb-btn wb-btn-outline" data-wb-tooltip="Copy to clipboard" data-wb-tooltip-placement="right">Hover me (right)</button>
-        <button class="wb-btn wb-btn-outline" data-wb-tooltip="Delete record" data-wb-tooltip-placement="bottom">Hover me (bottom)</button>
+        <button class="wb-btn wb-btn-outline" data-wb-tooltip="Guarda tu trabajo" data-wb-tooltip-placement="top">Hover (arriba)</button>
+        <button class="wb-btn wb-btn-outline" data-wb-tooltip="Copiar al portapapeles" data-wb-tooltip-placement="right">Hover (derecha)</button>
+        <button class="wb-btn wb-btn-outline" data-wb-tooltip="Eliminar registro" data-wb-tooltip-placement="bottom">Hover (abajo)</button>
       </div>
-      <pre class="wb-code">&lt;button data-wb-tooltip="Saves your work"
+      <pre class="wb-code">&lt;button data-wb-tooltip="Guarda tu trabajo"
         data-wb-tooltip-placement="top"&gt;
-  Save
+  Guardar
 &lt;/button&gt;
 
-&lt;!-- Placements: top (default) / right / bottom / left --&gt;</pre>
+&lt;!-- Posiciones: top (por defecto) / right / bottom / left --&gt;</pre>
     </section>
 
     <!-- ── Avatar ───────────────────────────────────────── -->
     <section class="docs-section" id="avatar">
       <h2 class="docs-section-title">Avatar</h2>
-      <p class="docs-section-lead">User picture placeholder with size variants and initials fallback.</p>
+      <p class="docs-section-lead">Marcadores de posición de usuario con variantes de tamaño y fallback de iniciales.</p>
 
       <div class="docs-preview" style="align-items:center;gap:var(--wb-s4)">
         <span class="wb-avatar wb-avatar-xl">JD</span>
         <span class="wb-avatar wb-avatar-lg">AB</span>
         <span class="wb-avatar">CD</span>
         <span class="wb-avatar wb-avatar-sm">EF</span>
-        <img src="https://i.pravatar.cc/48?img=5" class="wb-avatar" alt="User">
+        <img src="https://i.pravatar.cc/48?img=5" class="wb-avatar" alt="Usuario">
       </div>
-      <pre class="wb-code">&lt;!-- Initials --&gt;
+      <pre class="wb-code">&lt;!-- Iniciales --&gt;
 &lt;span class="wb-avatar wb-avatar-xl"&gt;JD&lt;/span&gt;
 &lt;span class="wb-avatar wb-avatar-lg"&gt;AB&lt;/span&gt;
 &lt;span class="wb-avatar"&gt;CD&lt;/span&gt;
 &lt;span class="wb-avatar wb-avatar-sm"&gt;EF&lt;/span&gt;
 
-&lt;!-- Image --&gt;
-&lt;img src="user.jpg" class="wb-avatar" alt="User"&gt;</pre>
+&lt;!-- Imagen --&gt;
+&lt;img src="usuario.jpg" class="wb-avatar" alt="Usuario"&gt;</pre>
     </section>
 
     <!-- ── Pagination ────────────────────────────────────── -->
     <section class="docs-section" id="pagination">
-      <h2 class="docs-section-title">Pagination</h2>
-      <p class="docs-section-lead">Page navigation links.</p>
+      <h2 class="docs-section-title">Paginación</h2>
+      <p class="docs-section-lead">Links de navegación entre páginas.</p>
 
       <div class="docs-preview">
         <nav class="wb-pagination">
-          <a href="#" class="wb-page-item wb-page-prev">← Prev</a>
+          <a href="#" class="wb-page-item wb-page-prev">← Anterior</a>
           <a href="#" class="wb-page-item">1</a>
           <a href="#" class="wb-page-item is-active">2</a>
           <a href="#" class="wb-page-item">3</a>
           <span class="wb-page-item wb-page-ellipsis">…</span>
           <a href="#" class="wb-page-item">10</a>
-          <a href="#" class="wb-page-item wb-page-next">Next →</a>
+          <a href="#" class="wb-page-item wb-page-next">Siguiente →</a>
         </nav>
       </div>
       <pre class="wb-code">&lt;nav class="wb-pagination"&gt;
-  &lt;a href="#" class="wb-page-item wb-page-prev"&gt;← Prev&lt;/a&gt;
+  &lt;a href="#" class="wb-page-item wb-page-prev"&gt;← Anterior&lt;/a&gt;
   &lt;a href="#" class="wb-page-item"&gt;1&lt;/a&gt;
   &lt;a href="#" class="wb-page-item is-active"&gt;2&lt;/a&gt;
   &lt;a href="#" class="wb-page-item"&gt;3&lt;/a&gt;
   &lt;span class="wb-page-item wb-page-ellipsis"&gt;…&lt;/span&gt;
-  &lt;a href="#" class="wb-page-item wb-page-next"&gt;Next →&lt;/a&gt;
+  &lt;a href="#" class="wb-page-item wb-page-next"&gt;Siguiente →&lt;/a&gt;
 &lt;/nav&gt;</pre>
     </section>
 
     <!-- ── Breadcrumb ────────────────────────────────────── -->
     <section class="docs-section" id="breadcrumb">
       <h2 class="docs-section-title">Breadcrumb</h2>
-      <p class="docs-section-lead">Hierarchical navigation trail.</p>
+      <p class="docs-section-lead">Ruta de navegación jerárquica.</p>
 
       <div class="docs-preview">
         <nav class="wb-breadcrumb">
-          <a href="#" class="wb-crumb">Home</a>
+          <a href="#" class="wb-crumb">Inicio</a>
           <span class="wb-crumb-sep">/</span>
-          <a href="#" class="wb-crumb">Users</a>
+          <a href="#" class="wb-crumb">Usuarios</a>
           <span class="wb-crumb-sep">/</span>
           <span class="wb-crumb is-active">Alice Chen</span>
         </nav>
       </div>
       <pre class="wb-code">&lt;nav class="wb-breadcrumb"&gt;
-  &lt;a href="#" class="wb-crumb"&gt;Home&lt;/a&gt;
+  &lt;a href="#" class="wb-crumb"&gt;Inicio&lt;/a&gt;
   &lt;span class="wb-crumb-sep"&gt;/&lt;/span&gt;
-  &lt;a href="#" class="wb-crumb"&gt;Users&lt;/a&gt;
+  &lt;a href="#" class="wb-crumb"&gt;Usuarios&lt;/a&gt;
   &lt;span class="wb-crumb-sep"&gt;/&lt;/span&gt;
   &lt;span class="wb-crumb is-active"&gt;Alice Chen&lt;/span&gt;
 &lt;/nav&gt;</pre>
@@ -868,7 +881,7 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
     <!-- ── Skeleton ──────────────────────────────────────── -->
     <section class="docs-section" id="skeleton">
       <h2 class="docs-section-title">Skeleton</h2>
-      <p class="docs-section-lead">Loading placeholder for content areas.</p>
+      <p class="docs-section-lead">Marcadores de carga para áreas de contenido.</p>
 
       <div class="docs-preview docs-preview-col" style="max-width:320px">
         <div class="wb-skeleton" style="height:1rem;width:60%"></div>
@@ -884,29 +897,29 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
 
     <!-- ── Empty state ───────────────────────────────────── -->
     <section class="docs-section" id="empty">
-      <h2 class="docs-section-title">Empty State</h2>
-      <p class="docs-section-lead">Placeholder shown when a list or table has no data.</p>
+      <h2 class="docs-section-title">Estado vacío</h2>
+      <p class="docs-section-lead">Marcador de posición cuando una lista o tabla no contiene datos.</p>
 
       <div class="docs-preview" style="justify-content:center">
         <div class="wb-empty">
           <div class="wb-empty-icon">📭</div>
-          <h4 class="wb-empty-title">No results found</h4>
-          <p class="wb-empty-desc">Try adjusting your search or filter.</p>
-          <button class="wb-btn wb-btn-primary wb-btn-sm">Clear filters</button>
+          <h4 class="wb-empty-title">No se encontraron resultados</h4>
+          <p class="wb-empty-desc">Intenta ajustar tu búsqueda o filtros.</p>
+          <button class="wb-btn wb-btn-primary wb-btn-sm">Restablecer filtros</button>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-empty"&gt;
   &lt;div class="wb-empty-icon"&gt;📭&lt;/div&gt;
-  &lt;h4 class="wb-empty-title"&gt;No results found&lt;/h4&gt;
-  &lt;p class="wb-empty-desc"&gt;Try adjusting your search or filter.&lt;/p&gt;
-  &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Clear filters&lt;/button&gt;
+  &lt;h4 class="wb-empty-title"&gt;No se encontraron resultados&lt;/h4&gt;
+  &lt;p class="wb-empty-desc"&gt;Intenta ajustar tus filtros.&lt;/p&gt;
+  &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Restablecer filtros&lt;/button&gt;
 &lt;/div&gt;</pre>
     </section>
 
     <!-- ── Spinner & Loading ─────────────────────────────── -->
     <section class="docs-section" id="spinner">
-      <h2 class="docs-section-title">Spinner &amp; Loading</h2>
-      <p class="docs-section-lead">Inline spinner, progress bar, and loading bar for page-level transitions.</p>
+      <h2 class="docs-section-title">Spinner &amp; Carga</h2>
+      <p class="docs-section-lead">Spinner en línea, barras de progreso y barra de carga para transiciones de página completa.</p>
 
       <h3 class="docs-sub-title">Spinner</h3>
       <div class="docs-preview" style="align-items:center;gap:var(--wb-s5)">
@@ -918,7 +931,7 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
 &lt;div class="wb-spinner"&gt;&lt;/div&gt;
 &lt;div class="wb-spinner wb-spinner-lg"&gt;&lt;/div&gt;</pre>
 
-      <h3 class="docs-sub-title">Progress bar</h3>
+      <h3 class="docs-sub-title">Barra de progreso</h3>
       <div class="docs-preview docs-preview-col" style="width:100%">
         <div class="wb-progress-bar"><div class="wb-progress-fill" style="width:65%"></div></div>
         <div class="wb-progress-bar"><div class="wb-progress-fill wb-progress-success" style="width:40%"></div></div>
@@ -928,7 +941,7 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
   &lt;div class="wb-progress-fill" style="width:65%"&gt;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Semantic variants --&gt;
+&lt;!-- Variantes semánticas --&gt;
 &lt;div class="wb-progress-bar"&gt;
   &lt;div class="wb-progress-fill wb-progress-success" style="width:40%"&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
@@ -936,160 +949,160 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
 
     <!-- ── Divider ───────────────────────────────────────── -->
     <section class="docs-section" id="divider">
-      <h2 class="docs-section-title">Divider</h2>
-      <p class="docs-section-lead">Horizontal, vertical, or labeled separator lines.</p>
+      <h2 class="docs-section-title">Divisor</h2>
+      <p class="docs-section-lead">Divisores horizontales, verticales o con etiqueta.</p>
 
       <div class="docs-preview docs-preview-col" style="width:100%">
         <div class="wb-divider"></div>
-        <div class="wb-divider wb-divider-labeled"><span>or continue with</span></div>
+        <div class="wb-divider wb-divider-labeled"><span>o continuar con</span></div>
       </div>
       <pre class="wb-code">&lt;!-- Simple --&gt;
 &lt;div class="wb-divider"&gt;&lt;/div&gt;
 
-&lt;!-- Labeled --&gt;
+&lt;!-- Con etiqueta --&gt;
 &lt;div class="wb-divider wb-divider-labeled"&gt;
-  &lt;span&gt;or continue with&lt;/span&gt;
+  &lt;span&gt;o continuar con&lt;/span&gt;
 &lt;/div&gt;
 
-&lt;!-- Vertical (in a flex container) --&gt;
+&lt;!-- Vertical (dentro de un contenedor flex) --&gt;
 &lt;div class="wb-divider wb-divider-vertical"&gt;&lt;/div&gt;</pre>
     </section>
 
     <!-- ── List Group ────────────────────────────────────── -->
     <section class="docs-section" id="list">
-      <h2 class="docs-section-title">List Group</h2>
-      <p class="docs-section-lead">Vertically stacked list of items.</p>
+      <h2 class="docs-section-title">Lista</h2>
+      <p class="docs-section-lead">Lista vertical apilada de elementos.</p>
 
       <div class="docs-preview" style="min-width:260px">
         <ul class="wb-list">
           <li class="wb-list-item is-active">Dashboard</li>
-          <li class="wb-list-item">Users</li>
-          <li class="wb-list-item">Reports</li>
-          <li class="wb-list-item">Settings</li>
+          <li class="wb-list-item">Usuarios</li>
+          <li class="wb-list-item">Reportes</li>
+          <li class="wb-list-item">Configuración</li>
         </ul>
       </div>
       <pre class="wb-code">&lt;ul class="wb-list"&gt;
   &lt;li class="wb-list-item is-active"&gt;Dashboard&lt;/li&gt;
-  &lt;li class="wb-list-item"&gt;Users&lt;/li&gt;
-  &lt;li class="wb-list-item"&gt;Reports&lt;/li&gt;
+  &lt;li class="wb-list-item"&gt;Usuarios&lt;/li&gt;
+  &lt;li class="wb-list-item"&gt;Reportes&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;!-- Modifiers: wb-list-flush · wb-list-compact · wb-list-numbered --&gt;</pre>
+&lt;!-- Modificadores: wb-list-flush · wb-list-compact · wb-list-numbered --&gt;</pre>
     </section>
 
     <!-- ── Filter bar ────────────────────────────────────── -->
     <section class="docs-section" id="filter-bar">
-      <h2 class="docs-section-title">Filter Bar</h2>
-      <p class="docs-section-lead">Search and filter row for data tables.</p>
+      <h2 class="docs-section-title">Barra de filtros</h2>
+      <p class="docs-section-lead">Fila de búsqueda y filtrado para tablas de datos.</p>
 
       <div class="docs-preview docs-preview-col" style="width:100%">
         <div class="wb-filter-bar">
           <div class="wb-search-bar">
             <svg class="wb-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="search" class="wb-search-input" placeholder="Search users…">
+            <input type="search" class="wb-search-input" placeholder="Buscar usuarios…">
           </div>
           <select class="wb-select" style="width:auto">
-            <option>All roles</option>
+            <option>Todos los roles</option>
             <option>Admin</option>
             <option>Editor</option>
           </select>
-          <button class="wb-btn wb-btn-outline wb-btn-sm">Export</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm">Exportar</button>
         </div>
         <div style="display:flex;gap:var(--wb-s2);flex-wrap:wrap">
-          <span class="wb-filter-chip is-active">All</span>
-          <span class="wb-filter-chip">Active</span>
-          <span class="wb-filter-chip">Pending</span>
-          <span class="wb-filter-chip">Inactive</span>
+          <span class="wb-filter-chip is-active">Todos</span>
+          <span class="wb-filter-chip">Activos</span>
+          <span class="wb-filter-chip">Pendientes</span>
+          <span class="wb-filter-chip">Inactivos</span>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-filter-bar"&gt;
   &lt;div class="wb-search-bar"&gt;
     &lt;svg class="wb-search-icon"&gt;...&lt;/svg&gt;
-    &lt;input type="search" class="wb-search-input" placeholder="Search…"&gt;
+    &lt;input type="search" class="wb-search-input" placeholder="Buscar…"&gt;
   &lt;/div&gt;
   &lt;select class="wb-select"&gt;...&lt;/select&gt;
-  &lt;button class="wb-btn wb-btn-outline wb-btn-sm"&gt;Export&lt;/button&gt;
+  &lt;button class="wb-btn wb-btn-outline wb-btn-sm"&gt;Exportar&lt;/button&gt;
 &lt;/div&gt;
 
 &lt;!-- Filter chips --&gt;
-&lt;span class="wb-filter-chip is-active"&gt;All&lt;/span&gt;
-&lt;span class="wb-filter-chip"&gt;Active&lt;/span&gt;
-&lt;span class="wb-filter-chip"&gt;Pending&lt;/span&gt;</pre>
+&lt;span class="wb-filter-chip is-active"&gt;Todos&lt;/span&gt;
+&lt;span class="wb-filter-chip"&gt;Activos&lt;/span&gt;
+&lt;span class="wb-filter-chip"&gt;Pendientes&lt;/span&gt;</pre>
     </section>
 
     <!-- ── Action menu ───────────────────────────────────── -->
     <section class="docs-section" id="action-menu">
-      <h2 class="docs-section-title">Action Menu</h2>
-      <p class="docs-section-lead">Toolbar of action buttons and status pills for table rows or headers.</p>
+      <h2 class="docs-section-title">Menú de acciones</h2>
+      <p class="docs-section-lead">Barra de herramientas con botones de acción y pills de estado para filas o encabezados de tablas.</p>
 
       <div class="docs-preview docs-preview-col" style="width:100%">
         <div class="wb-action-group">
-          <button class="wb-action-btn">Edit</button>
-          <button class="wb-action-btn">Preview</button>
-          <button class="wb-action-btn wb-action-btn-danger">Delete</button>
+          <button class="wb-action-btn">Editar</button>
+          <button class="wb-action-btn">Vista previa</button>
+          <button class="wb-action-btn wb-action-btn-danger">Eliminar</button>
         </div>
         <div style="display:flex;gap:var(--wb-s3);align-items:center">
-          <span class="wb-status-pill wb-status-active">Active</span>
-          <span class="wb-status-pill wb-status-pending">Pending</span>
-          <span class="wb-status-pill wb-status-inactive">Inactive</span>
+          <span class="wb-status-pill wb-status-active">Activo</span>
+          <span class="wb-status-pill wb-status-pending">Pendiente</span>
+          <span class="wb-status-pill wb-status-inactive">Inactivo</span>
           <span class="wb-status-pill wb-status-danger">Error</span>
         </div>
       </div>
       <pre class="wb-code">&lt;div class="wb-action-group"&gt;
-  &lt;button class="wb-action-btn"&gt;Edit&lt;/button&gt;
-  &lt;button class="wb-action-btn"&gt;Preview&lt;/button&gt;
-  &lt;button class="wb-action-btn wb-action-btn-danger"&gt;Delete&lt;/button&gt;
+  &lt;button class="wb-action-btn"&gt;Editar&lt;/button&gt;
+  &lt;button class="wb-action-btn"&gt;Vista previa&lt;/button&gt;
+  &lt;button class="wb-action-btn wb-action-btn-danger"&gt;Eliminar&lt;/button&gt;
 &lt;/div&gt;
 
 &lt;!-- Status pills --&gt;
-&lt;span class="wb-status-pill wb-status-active"&gt;Active&lt;/span&gt;
-&lt;span class="wb-status-pill wb-status-pending"&gt;Pending&lt;/span&gt;
-&lt;span class="wb-status-pill wb-status-inactive"&gt;Inactive&lt;/span&gt;</pre>
+&lt;span class="wb-status-pill wb-status-active"&gt;Activo&lt;/span&gt;
+&lt;span class="wb-status-pill wb-status-pending"&gt;Pendiente&lt;/span&gt;
+&lt;span class="wb-status-pill wb-status-inactive"&gt;Inactivo&lt;/span&gt;</pre>
     </section>
 
   </main>
 </div>
 
-<!-- Demo modal -->
-<div class="wb-modal" id="demo-modal">
+<!-- Demo Modal -->
+<div class="wb-modal" id="demo-modal-es">
   <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
   <div class="wb-modal-dialog">
     <div class="wb-modal-header">
-      <h4 class="wb-modal-title">Demo modal</h4>
+      <h4 class="wb-modal-title">Modal de demostración</h4>
       <button class="wb-modal-close" data-wb-dismiss="modal">&times;</button>
     </div>
     <div class="wb-modal-body">
-      <p>This is a live demo modal. Close it with the button, the backdrop, or the Escape key.</p>
+      <p>Este es un modal de demostración en vivo. Ciérralo con el botón, el backdrop o la tecla Escape.</p>
     </div>
     <div class="wb-modal-footer">
-      <button class="wb-btn wb-btn-ghost" data-wb-dismiss="modal">Cancel</button>
-      <button class="wb-btn wb-btn-primary" data-wb-dismiss="modal">Confirm</button>
+      <button class="wb-btn wb-btn-ghost" data-wb-dismiss="modal">Cancelar</button>
+      <button class="wb-btn wb-btn-primary" data-wb-dismiss="modal">Confirmar</button>
     </div>
   </div>
 </div>
 
-<!-- Demo drawers -->
-<div class="wb-drawer wb-drawer-right" id="demo-drawer-right">
+<!-- Demo Drawers -->
+<div class="wb-drawer wb-drawer-right" id="demo-drawer-es-right">
   <div class="wb-drawer-backdrop" data-wb-dismiss="drawer"></div>
   <div class="wb-drawer-panel">
     <div class="wb-drawer-header">
-      <h4 class="wb-drawer-title">Right drawer</h4>
+      <h4 class="wb-drawer-title">Drawer derecho</h4>
       <button class="wb-drawer-close" data-wb-dismiss="drawer">&times;</button>
     </div>
     <div class="wb-drawer-body">
-      <p>Right-side drawer panel. Close with Escape or the backdrop.</p>
+      <p>Panel lateral derecho. Cierra con Escape o el backdrop.</p>
     </div>
   </div>
 </div>
-<div class="wb-drawer wb-drawer-left" id="demo-drawer-left">
+<div class="wb-drawer wb-drawer-left" id="demo-drawer-es-left">
   <div class="wb-drawer-backdrop" data-wb-dismiss="drawer"></div>
   <div class="wb-drawer-panel">
     <div class="wb-drawer-header">
-      <h4 class="wb-drawer-title">Left drawer</h4>
+      <h4 class="wb-drawer-title">Drawer izquierdo</h4>
       <button class="wb-drawer-close" data-wb-dismiss="drawer">&times;</button>
     </div>
     <div class="wb-drawer-body">
-      <p>Left-side drawer panel.</p>
+      <p>Panel lateral izquierdo.</p>
     </div>
   </div>
 </div>

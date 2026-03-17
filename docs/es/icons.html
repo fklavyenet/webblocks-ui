@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="light" data-accent="ocean">
+<html lang="es" data-mode="light" data-accent="ocean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Icons — WebBlocks UI</title>
+  <title>Iconos — WebBlocks UI</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
@@ -240,18 +240,18 @@
       <a href="index.html">WebBlocks UI <span>v2.2</span></a>
     </div>
 
-    <div class="docs-nav-section">Overview</div>
-    <a href="index.html" class="docs-nav-link">Introduction</a>
-    <a href="getting-started.html" class="docs-nav-link">Getting Started</a>
+    <div class="docs-nav-section">Resumen</div>
+    <a href="index.html" class="docs-nav-link">Introducción</a>
+    <a href="getting-started.html" class="docs-nav-link">Primeros pasos</a>
 
-    <div class="docs-nav-section">Guides</div>
-    <a href="foundation.html" class="docs-nav-link">Foundation &amp; Tokens</a>
-    <a href="layout.html" class="docs-nav-link">Layouts</a>
+    <div class="docs-nav-section">Guías</div>
+    <a href="foundation.html" class="docs-nav-link">Fundamentos &amp; Tokens</a>
+    <a href="layout.html" class="docs-nav-link">Diseño</a>
 
-    <div class="docs-nav-section">Reference</div>
-    <a href="components.html" class="docs-nav-link">Components</a>
+    <div class="docs-nav-section">Referencia</div>
+    <a href="components.html" class="docs-nav-link">Componentes</a>
     <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
-    <a href="icons.html" class="docs-nav-link is-active">Icons</a>
+    <a href="icons.html" class="docs-nav-link is-active">Iconos</a>
   </aside>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -260,14 +260,14 @@
     <!-- Topbar -->
     <div class="docs-topbar">
       <div class="docs-lang-switch">
-        <a href="icons.html" class="is-active">EN</a>
-        <a href="tr/icons.html">TR</a>
-        <a href="de/icons.html">DE</a>
-        <a href="es/icons.html">ES</a>
+        <a href="../icons.html">EN</a>
+        <a href="../tr/icons.html">TR</a>
+        <a href="../de/icons.html">DE</a>
+        <a href="icons.html" class="is-active">ES</a>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          style="font-size:0.8rem;color:var(--wb-muted);text-decoration:none;">GitHub</a>
-      <button class="docs-mode-btn" id="modeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">
+      <button class="docs-mode-btn" id="modeBtn" title="Cambiar modo oscuro" aria-label="Cambiar modo oscuro">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"/>
@@ -285,25 +285,25 @@
 
     <!-- Page header -->
     <div class="docs-page-header">
-      <h1>Icons</h1>
+      <h1>Iconos</h1>
       <p>
-        133 Lucide-based icons bundled as an SVG sprite. Use them via
-        <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> or the
-        <code class="wb-code-inline">&lt;i&gt;</code> tag shorthand.
-        Click any icon to copy its usage snippet.
+        133 iconos basados en Lucide empaquetados como sprite SVG. Usables via
+        <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> o la
+        forma abreviada con etiqueta <code class="wb-code-inline">&lt;i&gt;</code>.
+        Haz clic en un icono para copiar el fragmento de uso.
       </p>
     </div>
 
-    <!-- ── Usage section ──────────────────────────────────── -->
+    <!-- ── Uso ─────────────────────────────────────────────── -->
     <section class="docs-section" id="usage">
-      <h2 class="docs-section-title">Usage</h2>
+      <h2 class="docs-section-title">Uso</h2>
       <p class="docs-section-lead">
-        The icon sprite is a separate file: <code class="wb-code-inline">dist/webblocks-icons.svg</code>.
-        Load it once per page with a small inline script, then reference any icon by ID.
+        El sprite de iconos es un archivo separado: <code class="wb-code-inline">dist/webblocks-icons.svg</code>.
+        Cárgalo una vez por página con un pequeño script en línea, luego referencia cada icono por su ID.
       </p>
 
-      <h3 class="docs-sub-title" style="margin-top:0">1. Load the sprite</h3>
-      <pre class="wb-code">&lt;!-- Place near the end of &lt;body&gt;, after webblocks-ui.js --&gt;
+      <h3 class="docs-sub-title" style="margin-top:0">1. Cargar el sprite</h3>
+      <pre class="wb-code">&lt;!-- Colocar al final de &lt;body&gt;, después de webblocks-ui.js --&gt;
 &lt;script&gt;
   fetch('dist/webblocks-icons.svg')
     .then(function(r) { return r.text(); })
@@ -315,112 +315,112 @@
     });
 &lt;/script&gt;</pre>
 
-      <h3 class="docs-sub-title">2a. SVG &lt;use&gt; pattern</h3>
+      <h3 class="docs-sub-title">2a. Patrón SVG &lt;use&gt;</h3>
       <p style="font-size:0.9rem;color:var(--wb-muted);margin:0 0 var(--wb-s3);">
-        Semantic, accessible, inherits <code class="wb-code-inline">currentColor</code> for easy theming.
+        Semántico, accesible, hereda <code class="wb-code-inline">currentColor</code> para theming sencillo.
       </p>
-      <pre class="wb-code">&lt;!-- Default size (20px) --&gt;
+      <pre class="wb-code">&lt;!-- Tamaño estándar (20px) --&gt;
 &lt;svg class="wb-icon"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;
 
-&lt;!-- Size variants --&gt;
+&lt;!-- Variantes de tamaño --&gt;
 &lt;svg class="wb-icon wb-icon-sm"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;  &lt;!-- 16px --&gt;
 &lt;svg class="wb-icon wb-icon-lg"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;  &lt;!-- 24px --&gt;
 &lt;svg class="wb-icon wb-icon-xl"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;  &lt;!-- 32px --&gt;
 
-&lt;!-- With color helpers --&gt;
+&lt;!-- Con helpers de color --&gt;
 &lt;svg class="wb-icon wb-icon-accent"&gt;&lt;use href="#wb-icon-star"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-muted"&gt;&lt;use href="#wb-icon-info"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-success"&gt;&lt;use href="#wb-icon-check"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-danger"&gt;&lt;use href="#wb-icon-x"&gt;&lt;/use&gt;&lt;/svg&gt;
 
-&lt;!-- Wrapped in a circle background --&gt;
+&lt;!-- Envuelto en un fondo circular --&gt;
 &lt;span class="wb-icon-wrap"&gt;
   &lt;svg class="wb-icon wb-icon-accent"&gt;&lt;use href="#wb-icon-bell"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;/span&gt;</pre>
 
-      <h3 class="docs-sub-title">2b. &lt;i&gt; tag pattern (opt-in)</h3>
+      <h3 class="docs-sub-title">2b. Patrón de etiqueta &lt;i&gt; (opt-in)</h3>
       <p style="font-size:0.9rem;color:var(--wb-muted);margin:0 0 var(--wb-s3);">
-        Load <code class="wb-code-inline">dist/webblocks-icons.css</code> for Bootstrap-style
-        <code class="wb-code-inline">&lt;i&gt;</code> support using CSS <code class="wb-code-inline">mask-image</code>.
+        Carga <code class="wb-code-inline">dist/webblocks-icons.css</code> para soporte de etiqueta
+        <code class="wb-code-inline">&lt;i&gt;</code> al estilo Bootstrap via CSS <code class="wb-code-inline">mask-image</code>.
       </p>
       <pre class="wb-code">&lt;link rel="stylesheet" href="dist/webblocks-icons.css"&gt;
 
-&lt;!-- Then use &lt;i&gt; tags (no sprite fetch needed) --&gt;
+&lt;!-- Luego usar etiquetas &lt;i&gt; (no se necesita fetch del sprite) --&gt;
 &lt;i class="wb-icon wb-icon-settings"&gt;&lt;/i&gt;
 &lt;i class="wb-icon wb-icon-sm wb-icon-bell"&gt;&lt;/i&gt;
 &lt;i class="wb-icon wb-icon-lg wb-icon-check wb-icon-success"&gt;&lt;/i&gt;</pre>
 
       <div class="docs-callout">
-        <strong>Two methods, one class system.</strong>
-        The <code class="wb-code-inline">wb-icon</code> size and color helper classes work identically
-        for both SVG <code class="wb-code-inline">&lt;use&gt;</code> and
-        <code class="wb-code-inline">&lt;i&gt;</code> tags.
-        The sprite-based approach is recommended for semantic usage and better accessibility.
+        <strong>Dos métodos, un sistema de clases.</strong>
+        Las clases de tamaño y color de <code class="wb-code-inline">wb-icon</code> funcionan de forma idéntica
+        para SVG <code class="wb-code-inline">&lt;use&gt;</code> y etiquetas
+        <code class="wb-code-inline">&lt;i&gt;</code>.
+        El enfoque basado en sprite se recomienda para uso semántico y mejor accesibilidad.
       </div>
 
-      <h3 class="docs-sub-title">CDN URLs</h3>
-      <pre class="wb-code">&lt;!-- Sprite (required for &lt;svg&gt;&lt;use&gt; pattern) --&gt;
+      <h3 class="docs-sub-title">URLs de CDN</h3>
+      <pre class="wb-code">&lt;!-- Sprite (requerido para patrón &lt;svg&gt;&lt;use&gt;) --&gt;
 https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg
 
-&lt;!-- Icon CSS (required for &lt;i&gt; tag pattern) --&gt;
+&lt;!-- CSS de iconos (requerido para patrón de etiqueta &lt;i&gt;) --&gt;
 https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.css</pre>
     </section>
 
-    <!-- ── Size & color reference ─────────────────────────── -->
+    <!-- ── Referencia de tamaños y colores ──────────────────── -->
     <section class="docs-section" id="reference">
-      <h2 class="docs-section-title">Size &amp; Color Classes</h2>
+      <h2 class="docs-section-title">Clases de tamaño &amp; color</h2>
       <p class="docs-section-lead">
-        Apply these classes directly to <code class="wb-code-inline">&lt;svg class="wb-icon"&gt;</code>
-        or <code class="wb-code-inline">&lt;i class="wb-icon"&gt;</code>.
+        Aplica estas clases directamente en <code class="wb-code-inline">&lt;svg class="wb-icon"&gt;</code>
+        o <code class="wb-code-inline">&lt;i class="wb-icon"&gt;</code>.
       </p>
 
-      <h3 class="docs-sub-title" style="margin-top:0">Size modifiers</h3>
+      <h3 class="docs-sub-title" style="margin-top:0">Modificadores de tamaño</h3>
       <table class="docs-table">
         <thead>
-          <tr><th>Class</th><th>Size</th><th>Use case</th></tr>
+          <tr><th>Clase</th><th>Tamaño</th><th>Uso</th></tr>
         </thead>
         <tbody>
-          <tr><td>wb-icon-sm</td><td>16px</td><td>Inline text, badges, compact UI</td></tr>
-          <tr><td>(default)</td><td>20px</td><td>Buttons, nav items, most UI contexts</td></tr>
-          <tr><td>wb-icon-lg</td><td>24px</td><td>Headings, card icons, prominent actions</td></tr>
-          <tr><td>wb-icon-xl</td><td>32px</td><td>Empty states, feature highlights</td></tr>
+          <tr><td>wb-icon-sm</td><td>16px</td><td>Texto inline, badges, UI compacta</td></tr>
+          <tr><td>(predeterminado)</td><td>20px</td><td>Botones, elementos de nav, la mayoría de contextos UI</td></tr>
+          <tr><td>wb-icon-lg</td><td>24px</td><td>Encabezados, iconos de tarjetas, acciones prominentes</td></tr>
+          <tr><td>wb-icon-xl</td><td>32px</td><td>Estados vacíos, destacados de características</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title">Color helpers</h3>
+      <h3 class="docs-sub-title">Helpers de color</h3>
       <table class="docs-table">
         <thead>
-          <tr><th>Class</th><th>Token used</th><th>Description</th></tr>
+          <tr><th>Clase</th><th>Token usado</th><th>Descripción</th></tr>
         </thead>
         <tbody>
-          <tr><td>wb-icon-accent</td><td>--wb-accent-text</td><td>Accent / brand color</td></tr>
-          <tr><td>wb-icon-muted</td><td>--wb-muted</td><td>Subdued, secondary icons</td></tr>
-          <tr><td>wb-icon-success</td><td>--wb-success</td><td>Positive / confirmed</td></tr>
-          <tr><td>wb-icon-warning</td><td>--wb-warning</td><td>Caution / attention</td></tr>
-          <tr><td>wb-icon-danger</td><td>--wb-danger</td><td>Destructive / error</td></tr>
-          <tr><td>wb-icon-info</td><td>--wb-info</td><td>Informational</td></tr>
-          <tr><td>(none)</td><td>currentColor</td><td>Inherits from parent text color</td></tr>
+          <tr><td>wb-icon-accent</td><td>--wb-accent-text</td><td>Color de acento/marca</td></tr>
+          <tr><td>wb-icon-muted</td><td>--wb-muted</td><td>Iconos secundarios atenuados</td></tr>
+          <tr><td>wb-icon-success</td><td>--wb-success</td><td>Positivo / confirmado</td></tr>
+          <tr><td>wb-icon-warning</td><td>--wb-warning</td><td>Precaución / atención</td></tr>
+          <tr><td>wb-icon-danger</td><td>--wb-danger</td><td>Destructivo / error</td></tr>
+          <tr><td>wb-icon-info</td><td>--wb-info</td><td>Informativo</td></tr>
+          <tr><td>(ninguno)</td><td>currentColor</td><td>Hereda del texto del elemento padre</td></tr>
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title">Icon wrap</h3>
-      <pre class="wb-code">&lt;!-- Rounded container with accent-soft background --&gt;
+      <h3 class="docs-sub-title">Icon Wrap</h3>
+      <pre class="wb-code">&lt;!-- Contenedor redondeado con fondo accent-soft --&gt;
 &lt;span class="wb-icon-wrap"&gt;
   &lt;svg class="wb-icon wb-icon-accent"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;/span&gt;
 
-&lt;!-- Size variants of the wrap --&gt;
+&lt;!-- Variantes de tamaño del wrap --&gt;
 &lt;span class="wb-icon-wrap wb-icon-wrap-sm"&gt;…&lt;/span&gt;
 &lt;span class="wb-icon-wrap wb-icon-wrap-lg"&gt;…&lt;/span&gt;</pre>
     </section>
 
-    <!-- ── Gallery ────────────────────────────────────────── -->
+    <!-- ── Galería ────────────────────────────────────────── -->
     <section class="docs-section" id="gallery">
-      <h2 class="docs-section-title">Icon Gallery</h2>
+      <h2 class="docs-section-title">Galería de iconos</h2>
       <p class="docs-section-lead">
-        Click any icon to copy its snippet. Use the toggle to switch between
-        <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> and
-        <code class="wb-code-inline">&lt;i&gt;</code> formats.
+        Haz clic en un icono para copiar el fragmento. Alterna entre formato
+        <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> y
+        <code class="wb-code-inline">&lt;i&gt;</code> con los botones.
       </p>
 
       <div class="icons-controls">
@@ -430,18 +430,18 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
           <input type="search" class="icons-search" id="iconSearch"
-                 placeholder="Search 133 icons…" autocomplete="off" spellcheck="false">
+                 placeholder="Buscar 133 iconos…" autocomplete="off" spellcheck="false">
         </div>
-        <div class="copy-mode-group" role="group" aria-label="Copy format">
+        <div class="copy-mode-group" role="group" aria-label="Formato de copia">
           <button class="copy-mode-btn is-active" data-mode="svg" id="modeSvg">SVG use</button>
-          <button class="copy-mode-btn" data-mode="i" id="modeI">&lt;i&gt; tag</button>
+          <button class="copy-mode-btn" data-mode="i" id="modeI">&lt;i&gt; Tag</button>
         </div>
       </div>
 
-      <p class="icons-count" id="iconsCount">133 icons</p>
+      <p class="icons-count" id="iconsCount">133 iconos</p>
 
       <div class="icons-grid" id="iconGrid">
-        <!-- Populated by JS -->
+        <!-- Rellenado por JS -->
       </div>
     </section>
 
@@ -450,7 +450,7 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
 
 <script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"></script>
 <script>
-  /* ── Load SVG sprite ───────────────────────────────────── */
+  /* ── Cargar sprite SVG ──────────────────────────────────── */
   fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg')
     .then(function(r) { return r.text(); })
     .then(function(svg) {
@@ -461,7 +461,7 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
       buildGallery();
     });
 
-  /* ── Icon list (133 icons) ─────────────────────────────── */
+  /* ── Lista de iconos (133 iconos) ───────────────────────── */
   var ICONS = [
     'activity','area-chart','arrow-left','arrow-right','arrow-up-circle',
     'at-sign','badge-check','badge-percent','banknote','bar-chart',
@@ -495,7 +495,7 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
   var copyMode = 'svg'; /* 'svg' | 'i' */
   var currentFilter = '';
 
-  /* ── Build gallery ─────────────────────────────────────── */
+  /* ── Construir galería ────────────────────────────────── */
   function buildGallery() {
     var grid = document.getElementById('iconGrid');
     grid.innerHTML = '';
@@ -504,13 +504,13 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
       : ICONS;
 
     document.getElementById('iconsCount').textContent =
-      filtered.length + (filtered.length === 1 ? ' icon' : ' icons')
-      + (currentFilter ? ' matching "' + currentFilter + '"' : '');
+      filtered.length + (filtered.length === 1 ? ' icono' : ' iconos')
+      + (currentFilter ? ' para "' + currentFilter + '"' : '');
 
     if (filtered.length === 0) {
       var empty = document.createElement('div');
       empty.className = 'icons-empty';
-      empty.textContent = 'No icons match "' + currentFilter + '"';
+      empty.textContent = 'No hay iconos para "' + currentFilter + '"';
       grid.appendChild(empty);
       return;
     }
@@ -518,11 +518,11 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
     filtered.forEach(function(name) {
       var card = document.createElement('div');
       card.className = 'icon-card';
-      card.title = 'Click to copy';
+      card.title = 'Haz clic para copiar';
       card.innerHTML =
         '<svg class="wb-icon wb-icon-lg" aria-hidden="true"><use href="#wb-icon-' + name + '"></use></svg>' +
         '<span class="icon-card-name">' + name + '</span>' +
-        '<span class="icon-card-copied">Copied!</span>';
+        '<span class="icon-card-copied">¡Copiado!</span>';
 
       card.addEventListener('click', function() {
         var snippet = copyMode === 'svg'
@@ -535,7 +535,7 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
     });
   }
 
-  /* ── Copy to clipboard ─────────────────────────────────── */
+  /* ── Copiar al portapapeles ─────────────────────────────── */
   function copyToClipboard(text, card) {
     var fallback = function() {
       var ta = document.createElement('textarea');
@@ -555,7 +555,7 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
     setTimeout(function() { card.classList.remove('is-copied'); }, 1200);
   }
 
-  /* ── Search ────────────────────────────────────────────── */
+  /* ── Búsqueda ───────────────────────────────────────────── */
   var searchInput = document.getElementById('iconSearch');
   var searchTimer;
   searchInput.addEventListener('input', function() {
@@ -566,7 +566,7 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
     }, 120);
   });
 
-  /* ── Copy mode toggle ──────────────────────────────────── */
+  /* ── Alternar modo de copia ─────────────────────────────── */
   document.getElementById('modeSvg').addEventListener('click', function() {
     copyMode = 'svg';
     document.getElementById('modeSvg').classList.add('is-active');
@@ -578,7 +578,7 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.
     document.getElementById('modeSvg').classList.remove('is-active');
   });
 
-  /* ── Dark mode toggle ──────────────────────────────────── */
+  /* ── Alternar modo oscuro ───────────────────────────────── */
   document.getElementById('modeBtn').addEventListener('click', function() {
     var html = document.documentElement;
     var current = html.getAttribute('data-mode');
