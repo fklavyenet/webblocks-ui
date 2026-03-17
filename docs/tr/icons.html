@@ -49,20 +49,17 @@
       padding: var(--wb-s3) var(--wb-s6);
       display: flex; align-items: center; justify-content: flex-end; gap: var(--wb-s3);
     }
-    .docs-lang-switch {
-      display: flex; border: 1px solid var(--wb-border);
-      border-radius: var(--wb-r-md); overflow: hidden;
-    }
-    .docs-lang-switch a {
+    /* ── Lang dropdown ──────────────────────────────────────── */
+    .docs-lang-btn {
+      display: flex; align-items: center; gap: 5px;
       padding: 3px 9px; font-size: 0.75rem; font-weight: 600;
-      text-decoration: none; color: var(--wb-muted);
-      border-right: 1px solid var(--wb-border);
+      border: 1px solid var(--wb-border); border-radius: var(--wb-r-md);
+      background: var(--wb-surface-2); color: var(--wb-text);
+      cursor: pointer; white-space: nowrap; letter-spacing: 0.02em;
       transition: background var(--wb-t), color var(--wb-t);
-      letter-spacing: 0.02em;
     }
-    .docs-lang-switch a:last-child { border-right: none; }
-    .docs-lang-switch a:hover { background: var(--wb-surface-3); color: var(--wb-text); }
-    .docs-lang-switch a.is-active { background: var(--wb-accent); color: var(--wb-accent-on); }
+    .docs-lang-btn:hover { background: var(--wb-surface-3); }
+    .docs-lang-btn svg { flex-shrink: 0; color: var(--wb-muted); }
     /* ── Page header ─────────────────────────────────────── */
     .docs-page-header {
       padding: var(--wb-s10) var(--wb-s8) var(--wb-s8);
@@ -259,11 +256,15 @@
 
     <!-- Topbar -->
     <div class="docs-topbar">
-      <div class="docs-lang-switch">
-        <a href="../icons.html">EN</a>
-        <a href="icons.html" class="is-active">TR</a>
-        <a href="../de/icons.html">DE</a>
-        <a href="../es/icons.html">ES</a>
+      <div class="wb-dropdown">
+        <button class="docs-lang-btn" data-wb-toggle="dropdown">
+          TR <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="wb-dropdown-menu">
+            <a href="../icons.html" class="wb-dropdown-item">EN <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">English</span></a>
+            <a href="../de/icons.html" class="wb-dropdown-item">DE <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">Deutsch</span></a>
+            <a href="../es/icons.html" class="wb-dropdown-item">ES <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">Español</span></a>
+        </div>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          style="font-size:0.8rem;color:var(--wb-muted);text-decoration:none;">GitHub</a>
