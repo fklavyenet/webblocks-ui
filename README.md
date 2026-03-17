@@ -279,14 +279,33 @@ Colors: `wb-avatar-green`, `wb-avatar-red`, `wb-avatar-orange`, `wb-avatar-viole
 ### Toast
 
 ```html
-<!-- Container — place near </body> -->
-<div class="wb-toast-container wb-toast-top-right" id="toastArea"></div>
-
-<!-- Toast item (add/remove dynamically) -->
-<div class="wb-toast wb-toast-success">Saved successfully.</div>
+<!-- Container is created automatically — no HTML needed for programmatic toasts -->
 ```
 
-Position variants: `wb-toast-top-right` (default), `wb-toast-top-center`, `wb-toast-top-left`, `wb-toast-bottom-right`, `wb-toast-bottom-center`, `wb-toast-bottom-left`
+```js
+// Programmatic (recommended)
+WBToast.show('Saved successfully');
+WBToast.show('Something went wrong', { type: 'danger' });
+WBToast.show('Upload complete', {
+  type: 'success',
+  title: 'Done',
+  position: 'top-right',   // top-right | top-center | top-left | bottom-right | bottom-center | bottom-left
+  duration: 4000,           // ms, 0 = no auto-dismiss
+  closable: true
+});
+```
+
+```html
+<!-- Manual HTML toast -->
+<div class="wb-toast-container wb-toast-top-right" id="toastArea"></div>
+
+<div class="wb-toast wb-toast-success">
+  <div class="wb-toast-body">Saved successfully.</div>
+  <button class="wb-toast-close" data-wb-dismiss="toast">&times;</button>
+</div>
+```
+
+Variants: `wb-toast-success`, `wb-toast-warning`, `wb-toast-danger`, `wb-toast-info`
 
 ### Skeleton
 
@@ -309,7 +328,7 @@ Position variants: `wb-toast-top-right` (default), `wb-toast-top-center`, `wb-to
 
 ### Tooltip
 
-Pure CSS — no JavaScript required.
+Pure CSS — no JavaScript required for hover/focus.
 
 ```html
 <!-- Default (top) -->
@@ -323,6 +342,9 @@ Pure CSS — no JavaScript required.
 <!-- Multi-line -->
 <button data-wb-tooltip="This is a longer tooltip that wraps to multiple lines."
         data-wb-tooltip-wrap>Info</button>
+
+<!-- Show delay (JS required) -->
+<button data-wb-tooltip="Delayed" data-wb-tooltip-delay="400">Hover me</button>
 ```
 
 Triggers on `hover` and `focus-visible` (keyboard accessible).
@@ -330,14 +352,31 @@ Triggers on `hover` and `focus-visible` (keyboard accessible).
 ### Popover
 
 ```html
-<div class="wb-popover wb-popover-bottom is-open">
-  <div class="wb-popover-arrow"></div>
-  <div class="wb-popover-header">Title</div>
-  <div class="wb-popover-body">Popover content here.</div>
+<div class="wb-popover" data-wb-popover>
+  <button class="wb-btn wb-btn-secondary" data-wb-toggle="popover">Info</button>
+  <div class="wb-popover-panel">
+    <div class="wb-popover-header">
+      <span class="wb-popover-title">Title</span>
+      <button class="wb-popover-close" data-wb-dismiss="popover">&times;</button>
+    </div>
+    <div class="wb-popover-body">Popover content here.</div>
+  </div>
 </div>
 ```
 
-Placements: `wb-popover-top`, `wb-popover-right`, `wb-popover-bottom`, `wb-popover-left`
+Placements (add to wrapper): `wb-popover-top`, `wb-popover-right`, `wb-popover-left`, `wb-popover-end`
+
+### Alert (dismissible)
+
+```html
+<div class="wb-alert wb-alert-info wb-alert-dismiss">
+  <span class="wb-alert-title">Heads up!</span>
+  This is a dismissible alert.
+  <button class="wb-alert-close" data-wb-dismiss="alert" aria-label="Close">&times;</button>
+</div>
+```
+
+`data-wb-dismiss="alert"` triggers `WBDismiss` — the alert fades out and is removed from the DOM.
 
 ### Drawer
 
@@ -535,7 +574,7 @@ Modifier: `wb-toolbar-inset` adds horizontal padding for use inside a card.
 
 ## Icons
 
-WebBlocks ships a curated set of **130 Lucide icons** as both an SVG sprite and a CSS icon file.
+WebBlocks ships a curated set of **133 Lucide icons** as both an SVG sprite and a CSS icon file.
 
 **For users:** Use the pre-built icon files from `dist/`.
 
@@ -653,6 +692,39 @@ WebBlocks UI is plain HTML and CSS — it works in any Laravel Blade template wi
 
 No Blade components, no wrappers — HTML stays HTML.
 
+### AJAX Toggle
+
+Checkbox değiştiğinde otomatik olarak JSON POST atar. Laravel admin panelleri için tasarlandı.
+
+```html
+<input type="checkbox"
+       class="wb-switch-input"
+       data-wb-ajax-toggle
+       data-wb-url="/admin/posts/toggle"
+       data-wb-field="publish"
+       data-wb-id="42"
+       checked>
+```
+
+POST body:
+```json
+{ "id": "42", "name": "publish", "checked": "true" }
+```
+
+| Attribute | Açıklama |
+|---|---|
+| `data-wb-ajax-toggle` | Marker — gerekli |
+| `data-wb-url` | POST endpoint — gerekli |
+| `data-wb-field` | Alan adı (`name` olarak gönderilir) — gerekli |
+| `data-wb-id` | Kayıt ID'si — gerekli |
+| `data-wb-feedback` | `toast` (default) \| `none` |
+| `data-wb-success-msg` | Özel başarı toast metni |
+| `data-wb-error-msg` | Özel hata toast metni |
+
+- `X-CSRF-TOKEN` header `<meta name="csrf-token">` den otomatik okunur
+- Hata durumunda checkbox önceki değerine döner
+- HTTP 200–299 ve/veya `{ "success": true }` JSON yanıtı başarı olarak kabul edilir
+
 ---
 
 ## JavaScript API
@@ -703,6 +775,34 @@ WBCommandPalette.register('#myCmdPalette', {
     // called on every keystroke; results = matching wb-cmd-result NodeList
   }
 })
+
+// Toast
+WBToast.show('Message')
+WBToast.show('Saved', { type: 'success', position: 'top-right', duration: 4000 })
+WBToast.dismiss(toastEl)
+
+// Popover
+WBPopover.open(wrapperEl)
+WBPopover.close(wrapperEl)
+WBPopover.closeAll()
+
+// Tooltip
+WBTooltip.show(el)
+WBTooltip.hide(el)
+WBTooltip.hideAll()
+
+// Dismiss (alert / banner)
+WBDismiss.dismiss(el)
+
+// AJAX Toggle
+// Fired automatically on checkbox change — no manual call needed.
+// Listen to events:
+document.addEventListener('wb:ajax-toggle:success', function (e) {
+  console.log(e.detail) // { id, field, checked, response }
+})
+document.addEventListener('wb:ajax-toggle:error', function (e) {
+  console.log(e.detail) // { id, field, checked, status, error }
+})
 ```
 
 ---
@@ -741,8 +841,8 @@ webblocks-ui/
 ├── dist/
 │   ├── webblocks-ui.css         ← main stylesheet (always include)
 │   ├── webblocks-ui.js          ← main JS (always include)
-│   ├── webblocks-icons.svg      ← SVG sprite (120 icons, Pattern 2)
-│   └── webblocks-icons.css      ← icon classes (120 icons, Pattern 1 — opt-in)
+│   ├── webblocks-icons.svg      ← SVG sprite (133 icons, Pattern 2)
+│   └── webblocks-icons.css      ← icon classes (133 icons, Pattern 1 — opt-in)
 ├── src/
 │   ├── css/
 │   │   ├── foundation/      tokens, dark, presets, accents, radius,
@@ -767,7 +867,11 @@ webblocks-ui/
 │       ├── sidebar.js       mobile sidebar + backdrop
 │       ├── nav-group.js     collapsible sidebar nav groups
 │       ├── drawer.js        drawer with focus trap + Escape
-│       └── command-palette.js  Cmd/Ctrl+K palette with ↑↓↵Esc
+│       ├── command-palette.js  Cmd/Ctrl+K palette with ↑↓↵Esc
+│       ├── toast.js         programmatic toasts + auto-dismiss
+│       ├── popover.js       toggle, Escape + outside-click
+│       ├── tooltip.js       programmatic show/hide + delay
+│       └── dismiss.js       alert/banner dismiss with animation
 ├── examples/
 │   ├── core/index.html      V1 component reference
 │   ├── v2/

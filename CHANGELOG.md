@@ -6,6 +6,51 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.2.5] — 2026-03-17
+
+### Added
+- `src/js/ajax-toggle.js` — `WBAjaxToggle` module: AJAX POST on checkbox change
+  - Attribute convention: `data-wb-ajax-toggle`, `data-wb-url`, `data-wb-field`, `data-wb-id`
+  - POST body: `{ "id": "42", "name": "publish", "checked": "true" }`
+  - `X-CSRF-TOKEN` header auto-read from `<meta name="csrf-token">` (Laravel compatible)
+  - Failure reverts checkbox to previous state
+  - `data-wb-feedback="toast|none"` — default `toast`; uses `WBToast` for success/error
+  - Accepts HTTP 200–299 and/or `{ "success": true }` JSON body as success signal
+  - Custom events: `wb:ajax-toggle:success` / `wb:ajax-toggle:error` (bubble on checkbox)
+  - `data-wb-success-msg` / `data-wb-error-msg` for custom toast messages
+
+### Changed
+- `build.sh` — added `ajax-toggle.js` to JS concat order (after `dismiss.js`)
+- `dist/webblocks-ui.js` rebuilt: 2015 → 2208 lines
+
+### Notes
+- Zero breaking changes
+- Designed for Laravel admin panels; works with any backend returning 2xx on success
+
+---
+
+## [2.2.4] — 2026-03-17
+
+### Added
+- `src/js/toast.js` — `WBToast` module: programmatic `WBToast.show(msg, opts)` with type, title, position, duration, and optional close button
+- `src/js/popover.js` — `WBPopover` module: `data-wb-toggle="popover"` toggle, Escape key and outside-click to close, `WBPopover.open/close/closeAll()` API
+- `src/js/tooltip.js` — `WBTooltip` module: programmatic `show/hide/hideAll()` + `data-wb-tooltip-delay` support (CSS still handles hover/focus automatically)
+- `src/js/dismiss.js` — `WBDismiss` module: centralised `data-wb-dismiss="alert|banner"` handler with `is-leaving` animation
+- `alert.css` — `is-leaving` fade + slide-up transition for dismissed alerts
+
+### Changed
+- `build.sh` — added 4 new JS modules to concat order (after `command-palette.js`)
+- `dist/webblocks-ui.js` rebuilt: 1499 → 2015 lines
+- `dist/webblocks-ui.css` rebuilt: 6520 → 6540 lines
+
+### Notes
+- Zero breaking changes — existing projects unaffected
+- Toast containers are created automatically in `<body>` on first call; no HTML required
+- Popover CSS was already complete; this release adds the JS toggle behaviour
+- Tooltip CSS handles all hover/focus states; JS module is opt-in for programmatic control
+
+---
+
 ## [2.2.0] — 2026-03-16
 
 ### Added

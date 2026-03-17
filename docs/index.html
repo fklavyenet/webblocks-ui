@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI — Framework-agnostic UI Kit</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <style>
+    /* ── Docs shell ─────────────────────────────────────── */
+    .docs-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    .docs-sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      background: var(--wb-surface);
+      border-right: 1px solid var(--wb-border);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: var(--wb-s6) 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .docs-sidebar-brand {
+      padding: 0 var(--wb-s5) var(--wb-s5);
+      border-bottom: 1px solid var(--wb-border);
+      margin-bottom: var(--wb-s4);
+    }
+    .docs-sidebar-brand a {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--wb-text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--wb-s2);
+    }
+    .docs-sidebar-brand span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--wb-accent-on);
+      background: var(--wb-accent);
+      padding: 2px 6px;
+      border-radius: var(--wb-r-full);
+    }
+    .docs-nav-section {
+      padding: var(--wb-s2) var(--wb-s5) var(--wb-s1);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--wb-muted);
+    }
+    .docs-nav-link {
+      display: block;
+      padding: var(--wb-s2) var(--wb-s5);
+      font-size: 0.875rem;
+      color: var(--wb-muted);
+      text-decoration: none;
+      border-radius: 0;
+      transition: color var(--wb-t), background var(--wb-t);
+    }
+    .docs-nav-link:hover { color: var(--wb-text); background: var(--wb-surface-2); }
+    .docs-nav-link.is-active {
+      color: var(--wb-accent);
+      background: var(--wb-accent-softer);
+      font-weight: 500;
+      border-right: 2px solid var(--wb-accent);
+    }
+    .docs-main {
+      flex: 1;
+      min-width: 0;
+    }
+    .docs-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--wb-surface);
+      border-bottom: 1px solid var(--wb-border);
+      padding: var(--wb-s3) var(--wb-s6);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--wb-s3);
+    }
+    .docs-content {
+      max-width: 860px;
+      padding: var(--wb-s10) var(--wb-s8);
+    }
+    /* ── Hero ────────────────────────────────────────────── */
+    .docs-hero {
+      padding: var(--wb-s12) var(--wb-s8) var(--wb-s10);
+      background: linear-gradient(135deg, var(--wb-accent-softer) 0%, var(--wb-surface) 60%);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--wb-s2);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--wb-accent-text);
+      background: var(--wb-accent-soft);
+      border: 1px solid var(--wb-accent-border);
+      padding: 3px 10px;
+      border-radius: var(--wb-r-full);
+      margin-bottom: var(--wb-s4);
+    }
+    .docs-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--wb-text);
+      margin: 0 0 var(--wb-s4);
+      letter-spacing: -0.02em;
+    }
+    .docs-hero h1 em {
+      font-style: normal;
+      color: var(--wb-accent);
+    }
+    .docs-hero-lead {
+      font-size: 1.15rem;
+      color: var(--wb-muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin: 0 0 var(--wb-s7);
+    }
+    .docs-hero-actions {
+      display: flex;
+      gap: var(--wb-s3);
+      flex-wrap: wrap;
+    }
+    .docs-hero-meta {
+      margin-top: var(--wb-s8);
+      display: flex;
+      gap: var(--wb-s6);
+      flex-wrap: wrap;
+    }
+    .docs-hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .docs-hero-stat strong {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--wb-text);
+      line-height: 1;
+    }
+    .docs-hero-stat span {
+      font-size: 0.8rem;
+      color: var(--wb-muted);
+      margin-top: 2px;
+    }
+    /* ── Feature grid ────────────────────────────────────── */
+    .docs-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--wb-s5);
+      margin: var(--wb-s8) 0;
+    }
+    .docs-feature-card {
+      background: var(--wb-surface);
+      border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-lg);
+      padding: var(--wb-s5);
+    }
+    .docs-feature-icon {
+      width: 2.2rem;
+      height: 2.2rem;
+      background: var(--wb-accent-softer);
+      border-radius: var(--wb-r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--wb-s3);
+      font-size: 1.1rem;
+    }
+    .docs-feature-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--wb-text);
+      margin: 0 0 var(--wb-s2);
+    }
+    .docs-feature-card p {
+      font-size: 0.85rem;
+      color: var(--wb-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    /* ── Quick install ───────────────────────────────────── */
+    .docs-install {
+      background: var(--wb-surface);
+      border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-lg);
+      overflow: hidden;
+      margin: var(--wb-s6) 0;
+    }
+    .docs-install-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--wb-border);
+      background: var(--wb-surface-2);
+    }
+    .docs-install-tab {
+      padding: var(--wb-s3) var(--wb-s5);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--wb-muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color var(--wb-t);
+    }
+    .docs-install-tab.is-active {
+      color: var(--wb-accent);
+      border-bottom-color: var(--wb-accent);
+      background: var(--wb-surface);
+    }
+    .docs-install-body { padding: var(--wb-s5); }
+    /* ── Code block ──────────────────────────────────────── */
+    .wb-code {
+      background: var(--wb-surface-2);
+      border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-md);
+      padding: var(--wb-s4) var(--wb-s5);
+      font-family: var(--wb-font-mono);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      white-space: pre;
+      color: var(--wb-text);
+      margin: var(--wb-s3) 0;
+      position: relative;
+    }
+    .wb-code-inline {
+      font-family: var(--wb-font-mono);
+      font-size: 0.82em;
+      background: var(--wb-surface-2);
+      border: 1px solid var(--wb-border);
+      padding: 1px 6px;
+      border-radius: var(--wb-r-sm);
+      color: var(--wb-accent-text);
+    }
+    /* ── Page section headers ────────────────────────────── */
+    .docs-section {
+      padding: var(--wb-s10) var(--wb-s8);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-section:last-child { border-bottom: none; }
+    .docs-section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--wb-text);
+      margin: 0 0 var(--wb-s2);
+      letter-spacing: -0.01em;
+    }
+    .docs-section-lead {
+      font-size: 0.95rem;
+      color: var(--wb-muted);
+      margin: 0 0 var(--wb-s6);
+      line-height: 1.6;
+    }
+    /* ── CTA section ─────────────────────────────────────── */
+    .docs-cta {
+      background: var(--wb-accent-softer);
+      border: 1px solid var(--wb-accent-border);
+      border-radius: var(--wb-r-lg);
+      padding: var(--wb-s8);
+      text-align: center;
+      margin: var(--wb-s8) 0;
+    }
+    .docs-cta h2 { font-size: 1.4rem; font-weight: 700; margin: 0 0 var(--wb-s3); }
+    .docs-cta p  { color: var(--wb-muted); margin: 0 0 var(--wb-s5); }
+    /* ── Theme toggle ────────────────────────────────────── */
+    .docs-mode-btn {
+      width: 2rem; height: 2rem;
+      border-radius: var(--wb-r-md);
+      border: 1px solid var(--wb-border);
+      background: var(--wb-surface-2);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--wb-muted);
+      transition: background var(--wb-t), color var(--wb-t);
+    }
+    .docs-mode-btn:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .docs-sidebar { display: none; }
+      .docs-hero h1 { font-size: 2rem; }
+      .docs-hero, .docs-section { padding-left: var(--wb-s5); padding-right: var(--wb-s5); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="docs-sidebar">
+    <div class="docs-sidebar-brand">
+      <a href="index.html">
+        WebBlocks UI
+        <span>v2.2</span>
+      </a>
+    </div>
+
+    <div class="docs-nav-section">Overview</div>
+    <a href="index.html" class="docs-nav-link is-active">Introduction</a>
+    <a href="getting-started.html" class="docs-nav-link">Getting Started</a>
+
+    <div class="docs-nav-section">Guides</div>
+    <a href="foundation.html" class="docs-nav-link">Foundation & Tokens</a>
+    <a href="layout.html" class="docs-nav-link">Layouts</a>
+
+    <div class="docs-nav-section">Reference</div>
+    <a href="components.html" class="docs-nav-link">Components</a>
+    <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
+    <a href="icons.html" class="docs-nav-link">Icons</a>
+  </aside>
+
+  <!-- ── Main ───────────────────────────────────────────── -->
+  <main class="docs-main">
+
+    <!-- Topbar -->
+    <div class="docs-topbar">
+      <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
+         class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+        </svg>
+        GitHub
+      </a>
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Toggle theme">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+
+    <!-- Hero -->
+    <section class="docs-hero">
+      <div class="docs-hero-badge">
+        ✦ Zero dependencies · Plain HTML/CSS/JS
+      </div>
+      <h1>Build admin panels<br>with <em>WebBlocks UI</em></h1>
+      <p class="docs-hero-lead">
+        A framework-agnostic UI kit for admin dashboards, SaaS control panels, and CMS back-ends.
+        No npm, no build step, no lock-in — just HTML and CSS custom properties.
+      </p>
+      <div class="docs-hero-actions">
+        <a href="getting-started.html" class="wb-btn wb-btn-primary wb-btn-lg">Get started →</a>
+        <a href="components.html" class="wb-btn wb-btn-outline wb-btn-lg">Browse components</a>
+      </div>
+      <div class="docs-hero-meta">
+        <div class="docs-hero-stat"><strong>40+</strong><span>Components</span></div>
+        <div class="docs-hero-stat"><strong>133</strong><span>Icons</span></div>
+        <div class="docs-hero-stat"><strong>13</strong><span>JS Modules</span></div>
+        <div class="docs-hero-stat"><strong>0</strong><span>Dependencies</span></div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">Why WebBlocks UI?</h2>
+      <p class="docs-section-lead">Designed for teams who want a solid, consistent admin UI without the overhead of a full JS framework.</p>
+
+      <div class="docs-features">
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">⚡</div>
+          <h3>No build step</h3>
+          <p>Drop two files — <code class="wb-code-inline">webblocks-ui.css</code> and <code class="wb-code-inline">webblocks-ui.js</code> — and you're done. Works from a CDN.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🎨</div>
+          <h3>Multi-axis theme engine</h3>
+          <p>Switch accent color, dark mode, density, radius, shadow, and font family — all via <code class="wb-code-inline">data-*</code> attributes on <code class="wb-code-inline">&lt;html&gt;</code>.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🧩</div>
+          <h3>Framework agnostic</h3>
+          <p>Works with Laravel Blade, Django templates, Rails ERB, Twig, or plain HTML. No wrappers, no components — HTML stays HTML.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🪄</div>
+          <h3>Vanilla JS modules</h3>
+          <p>13 IIFE modules for modals, drawers, dropdowns, toasts, AJAX toggles and more. Each exposes a clean <code class="wb-code-inline">window.WB*</code> API.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🎯</div>
+          <h3>Design token system</h3>
+          <p>All sizes, colors, radii, shadows and spacing are CSS custom properties. Override any token to match your brand.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🔷</div>
+          <h3>133 Lucide icons</h3>
+          <p>SVG sprite + CSS mask-image pattern. Use <code class="wb-code-inline">&lt;i class="wb-icon wb-icon-settings"&gt;</code> or the SVG <code class="wb-code-inline">&lt;use&gt;</code> pattern.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick install -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">Quick install</h2>
+      <p class="docs-section-lead">Add two tags to your HTML and start building.</p>
+
+      <div class="docs-install">
+        <div class="docs-install-tabs">
+          <button class="docs-install-tab is-active">CDN (jsDelivr)</button>
+          <button class="docs-install-tab">Self-hosted</button>
+        </div>
+        <div class="docs-install-body">
+          <pre class="wb-code">&lt;!-- In &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
+
+&lt;!-- Before &lt;/body&gt; --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+        </div>
+      </div>
+
+      <p style="margin:var(--wb-s4) 0 var(--wb-s2); font-size:0.9rem; color:var(--wb-muted);">
+        Set the theme on your <code class="wb-code-inline">&lt;html&gt;</code> element:
+      </p>
+      <pre class="wb-code">&lt;html data-mode="light" data-accent="ocean"&gt;</pre>
+
+      <p style="margin:var(--wb-s5) 0 var(--wb-s2); font-size:0.9rem; color:var(--wb-muted);">
+        Write a component:
+      </p>
+      <pre class="wb-code">&lt;button class="wb-btn wb-btn-primary"&gt;Save changes&lt;/button&gt;
+
+&lt;div class="wb-alert wb-alert-success"&gt;
+  Record saved successfully.
+&lt;/div&gt;</pre>
+
+      <div style="margin-top:var(--wb-s5)">
+        <a href="getting-started.html" class="wb-btn wb-btn-primary">Full setup guide →</a>
+      </div>
+    </section>
+
+    <!-- Pages overview -->
+    <section class="docs-section">
+      <h2 class="docs-section-title">Explore the docs</h2>
+      <p class="docs-section-lead">Everything you need to build and customise your UI.</p>
+
+      <div class="docs-features">
+        <a href="getting-started.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">🚀</div>
+          <h3>Getting Started</h3>
+          <p>Installation, first page, theme setup, and Laravel integration.</p>
+        </a>
+        <a href="foundation.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">🏗️</div>
+          <h3>Foundation & Tokens</h3>
+          <p>Design tokens, dark mode, accent colors, presets, and all theme axes.</p>
+        </a>
+        <a href="components.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">🧱</div>
+          <h3>Components</h3>
+          <p>Buttons, cards, modals, tables, forms, toasts, popovers, and 30+ more.</p>
+        </a>
+        <a href="layout.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">📐</div>
+          <h3>Layouts</h3>
+          <p>Dashboard shell, sidebar, auth shell, settings shell, content shell.</p>
+        </a>
+        <a href="javascript.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">⚙️</div>
+          <h3>JavaScript API</h3>
+          <p>All 13 JS modules — WBModal, WBToast, WBAjaxToggle, WBTheme and more.</p>
+        </a>
+        <a href="icons.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">🔷</div>
+          <h3>Icons</h3>
+          <p>133 Lucide icons — searchable gallery with copy-ready code snippets.</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="../dist/webblocks-ui.js"></script>
+<script>
+  // Load SVG sprite
+  fetch('../dist/webblocks-icons.svg')
+    .then(r => r.text())
+    .then(svg => {
+      const div = document.createElement('div');
+      div.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      div.innerHTML = svg;
+      document.body.insertBefore(div, document.body.firstChild);
+    });
+
+  // Install tab switcher
+  document.querySelectorAll('.docs-install-tab').forEach(function(tab, i, tabs) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+    });
+  });
+</script>
+</body>
+</html>

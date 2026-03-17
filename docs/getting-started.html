@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <style>
+    /* ── Docs shell ─────────────────────────────────────── */
+    .docs-layout { display: flex; min-height: 100vh; }
+    .docs-sidebar {
+      width: 240px; flex-shrink: 0;
+      background: var(--wb-surface);
+      border-right: 1px solid var(--wb-border);
+      position: sticky; top: 0; height: 100vh;
+      overflow-y: auto; padding: var(--wb-s6) 0;
+      display: flex; flex-direction: column;
+    }
+    .docs-sidebar-brand {
+      padding: 0 var(--wb-s5) var(--wb-s5);
+      border-bottom: 1px solid var(--wb-border);
+      margin-bottom: var(--wb-s4);
+    }
+    .docs-sidebar-brand a {
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--wb-text); text-decoration: none;
+      display: flex; align-items: center; gap: var(--wb-s2);
+    }
+    .docs-sidebar-brand span {
+      font-size: 0.7rem; font-weight: 500;
+      color: var(--wb-accent-on); background: var(--wb-accent);
+      padding: 2px 6px; border-radius: var(--wb-r-full);
+    }
+    .docs-nav-section {
+      padding: var(--wb-s2) var(--wb-s5) var(--wb-s1);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--wb-muted);
+    }
+    .docs-nav-link {
+      display: block; padding: var(--wb-s2) var(--wb-s5);
+      font-size: 0.875rem; color: var(--wb-muted);
+      text-decoration: none; border-radius: 0;
+      transition: color var(--wb-t), background var(--wb-t);
+    }
+    .docs-nav-link:hover { color: var(--wb-text); background: var(--wb-surface-2); }
+    .docs-nav-link.is-active {
+      color: var(--wb-accent); background: var(--wb-accent-softer);
+      font-weight: 500; border-right: 2px solid var(--wb-accent);
+    }
+    .docs-main { flex: 1; min-width: 0; }
+    .docs-topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--wb-surface); border-bottom: 1px solid var(--wb-border);
+      padding: var(--wb-s3) var(--wb-s6);
+      display: flex; align-items: center; justify-content: flex-end; gap: var(--wb-s3);
+    }
+    .docs-content { max-width: 860px; padding: var(--wb-s10) var(--wb-s8); }
+    /* ── Page header ─────────────────────────────────────── */
+    .docs-page-header {
+      padding: var(--wb-s10) var(--wb-s8) var(--wb-s8);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-page-header h1 {
+      font-size: 2.2rem; font-weight: 800;
+      line-height: 1.15; color: var(--wb-text);
+      margin: 0 0 var(--wb-s3); letter-spacing: -0.02em;
+    }
+    .docs-page-header p {
+      font-size: 1rem; color: var(--wb-muted);
+      margin: 0; line-height: 1.7; max-width: 600px;
+    }
+    /* ── Code block ──────────────────────────────────────── */
+    .wb-code {
+      background: var(--wb-surface-2); border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-md); padding: var(--wb-s4) var(--wb-s5);
+      font-family: var(--wb-font-mono); font-size: 0.82rem;
+      line-height: 1.7; overflow-x: auto; white-space: pre;
+      color: var(--wb-text); margin: var(--wb-s3) 0; position: relative;
+    }
+    .wb-code-inline {
+      font-family: var(--wb-font-mono); font-size: 0.82em;
+      background: var(--wb-surface-2); border: 1px solid var(--wb-border);
+      padding: 1px 6px; border-radius: var(--wb-r-sm);
+      color: var(--wb-accent-text);
+    }
+    /* ── Section ─────────────────────────────────────────── */
+    .docs-section {
+      padding: var(--wb-s10) var(--wb-s8);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-section:last-child { border-bottom: none; }
+    .docs-section-title {
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--wb-text); margin: 0 0 var(--wb-s2);
+      letter-spacing: -0.01em;
+    }
+    .docs-section-lead {
+      font-size: 0.95rem; color: var(--wb-muted);
+      margin: 0 0 var(--wb-s6); line-height: 1.6;
+    }
+    /* ── Subsection ──────────────────────────────────────── */
+    .docs-sub-title {
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--wb-text); margin: var(--wb-s7) 0 var(--wb-s3);
+    }
+    .docs-sub-title:first-child { margin-top: 0; }
+    /* ── Steps ───────────────────────────────────────────── */
+    .docs-steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+    .docs-steps > li {
+      counter-increment: step;
+      position: relative;
+      padding: var(--wb-s4) 0 var(--wb-s4) var(--wb-s10);
+      border-left: 2px solid var(--wb-border);
+      margin-left: var(--wb-s4);
+    }
+    .docs-steps > li:last-child { border-left-color: transparent; }
+    .docs-steps > li::before {
+      content: counter(step);
+      position: absolute; left: calc(-1 * var(--wb-s4) - 1px);
+      top: var(--wb-s4);
+      transform: translateX(-50%);
+      width: 1.75rem; height: 1.75rem;
+      background: var(--wb-accent); color: var(--wb-accent-on);
+      border-radius: var(--wb-r-full);
+      font-size: 0.75rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .docs-steps > li h3 {
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--wb-text); margin: 0 0 var(--wb-s2);
+    }
+    .docs-steps > li p {
+      font-size: 0.875rem; color: var(--wb-muted);
+      margin: 0 0 var(--wb-s3); line-height: 1.6;
+    }
+    /* ── Table ───────────────────────────────────────────── */
+    .docs-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.875rem; margin: var(--wb-s4) 0;
+    }
+    .docs-table th {
+      text-align: left; padding: var(--wb-s2) var(--wb-s4);
+      border-bottom: 2px solid var(--wb-border);
+      font-weight: 600; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--wb-muted);
+    }
+    .docs-table td {
+      padding: var(--wb-s3) var(--wb-s4);
+      border-bottom: 1px solid var(--wb-border);
+      vertical-align: top; color: var(--wb-text);
+    }
+    .docs-table tr:last-child td { border-bottom: none; }
+    .docs-table td:first-child { color: var(--wb-accent-text); font-family: var(--wb-font-mono); font-size: 0.8rem; }
+    /* ── Callout ─────────────────────────────────────────── */
+    .docs-callout {
+      background: var(--wb-accent-softer);
+      border: 1px solid var(--wb-accent-border);
+      border-left: 3px solid var(--wb-accent);
+      border-radius: var(--wb-r-md);
+      padding: var(--wb-s4) var(--wb-s5);
+      font-size: 0.875rem;
+      color: var(--wb-text);
+      margin: var(--wb-s5) 0;
+      line-height: 1.6;
+    }
+    .docs-callout strong { color: var(--wb-accent-text); }
+    .docs-callout-warning {
+      background: var(--wb-warning-soft);
+      border-color: var(--wb-warning);
+      border-left-color: var(--wb-warning-dark);
+    }
+    .docs-callout-warning strong { color: var(--wb-warning-dark); }
+    /* ── Mode toggle ─────────────────────────────────────── */
+    .docs-mode-btn {
+      width: 2rem; height: 2rem;
+      border-radius: var(--wb-r-md);
+      border: 1px solid var(--wb-border);
+      background: var(--wb-surface-2);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--wb-muted);
+      transition: background var(--wb-t), color var(--wb-t);
+    }
+    .docs-mode-btn:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .docs-sidebar { display: none; }
+      .docs-page-header, .docs-section { padding-left: var(--wb-s5); padding-right: var(--wb-s5); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="docs-sidebar">
+    <div class="docs-sidebar-brand">
+      <a href="index.html">WebBlocks UI <span>v2.2</span></a>
+    </div>
+
+    <div class="docs-nav-section">Overview</div>
+    <a href="index.html" class="docs-nav-link">Introduction</a>
+    <a href="getting-started.html" class="docs-nav-link is-active">Getting Started</a>
+
+    <div class="docs-nav-section">Guides</div>
+    <a href="foundation.html" class="docs-nav-link">Foundation & Tokens</a>
+    <a href="layout.html" class="docs-nav-link">Layouts</a>
+
+    <div class="docs-nav-section">Reference</div>
+    <a href="components.html" class="docs-nav-link">Components</a>
+    <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
+    <a href="icons.html" class="docs-nav-link">Icons</a>
+  </aside>
+
+  <!-- ── Main ───────────────────────────────────────────── -->
+  <main class="docs-main">
+
+    <!-- Topbar -->
+    <div class="docs-topbar">
+      <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
+         class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+        </svg>
+        GitHub
+      </a>
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Toggle theme">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+
+    <!-- Page header -->
+    <div class="docs-page-header">
+      <h1>Getting Started</h1>
+      <p>Install WebBlocks UI, write your first page, set up theming, and integrate with Laravel — in under five minutes.</p>
+    </div>
+
+    <!-- ── 1. Installation ──────────────────────────────── -->
+    <section class="docs-section" id="installation">
+      <h2 class="docs-section-title">Installation</h2>
+      <p class="docs-section-lead">
+        WebBlocks UI has no build step and zero dependencies. Pick the method that fits your project.
+      </p>
+
+      <h3 class="docs-sub-title">CDN (recommended for most projects)</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        The fastest way to get started. Files are served via jsDelivr from GitHub releases.
+      </p>
+      <pre class="wb-code">&lt;!-- Add to &lt;head&gt; --&gt;
+&lt;link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
+
+&lt;!-- Add before &lt;/body&gt; --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Self-hosted</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Download <code class="wb-code-inline">webblocks-ui.css</code> and <code class="wb-code-inline">webblocks-ui.js</code>
+        from the <a href="https://github.com/fklavyenet/webblocks-ui/tree/master/dist" style="color:var(--wb-accent)">GitHub <code class="wb-code-inline">dist/</code> folder</a>
+        and serve them from your own server.
+      </p>
+      <pre class="wb-code">&lt;link rel="stylesheet" href="/assets/webblocks-ui.css"&gt;
+&lt;script src="/assets/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Optional: Icons</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        For <code class="wb-code-inline">&lt;i&gt;</code>-tag icon support, also include the icons CSS file.
+        The SVG sprite is loaded separately (see below).
+      </p>
+      <pre class="wb-code">&lt;!-- Optional: adds wb-icon-* classes for &lt;i&gt; tag usage --&gt;
+&lt;link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.css"&gt;</pre>
+
+      <div class="docs-callout" style="margin-top:var(--wb-s5)">
+        <strong>Note:</strong> The icons CSS uses <code class="wb-code-inline">mask-image</code> which requires a modern browser
+        (Chrome 79+, Firefox 53+, Safari 15.4+). It is opt-in and kept in a separate file to avoid bloating the main bundle.
+      </div>
+    </section>
+
+    <!-- ── 2. First page ────────────────────────────────── -->
+    <section class="docs-section" id="first-page">
+      <h2 class="docs-section-title">Your first page</h2>
+      <p class="docs-section-lead">
+        The minimal HTML skeleton. The <code class="wb-code-inline">data-mode</code> and
+        <code class="wb-code-inline">data-accent</code> attributes on <code class="wb-code-inline">&lt;html&gt;</code>
+        activate the theme engine.
+      </p>
+
+      <pre class="wb-code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en" data-mode="light" data-accent="ocean"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My App&lt;/title&gt;
+  &lt;link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;button class="wb-btn wb-btn-primary"&gt;Hello, WebBlocks UI!&lt;/button&gt;
+
+  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Loading the SVG icon sprite</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        If you use inline SVG icons (<code class="wb-code-inline">&lt;svg&gt;&lt;use href="#wb-icon-..."&gt;&lt;/use&gt;&lt;/svg&gt;</code>),
+        load the sprite with a small fetch snippet after your JS:
+      </p>
+      <pre class="wb-code">&lt;script&gt;
+fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg')
+  .then(function(r) { return r.text(); })
+  .then(function(svg) {
+    var div = document.createElement('div');
+    div.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+    div.innerHTML = svg;
+    document.body.insertBefore(div, document.body.firstChild);
+  });
+&lt;/script&gt;</pre>
+
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
+        After loading, reference any icon like this:
+      </p>
+      <pre class="wb-code">&lt;svg class="wb-icon" aria-hidden="true"&gt;
+  &lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;
+&lt;/svg&gt;</pre>
+    </section>
+
+    <!-- ── 3. Theme setup ───────────────────────────────── -->
+    <section class="docs-section" id="theme-setup">
+      <h2 class="docs-section-title">Theme setup</h2>
+      <p class="docs-section-lead">
+        WebBlocks UI has a multi-axis theme engine. All axes are set on the
+        <code class="wb-code-inline">&lt;html&gt;</code> element via <code class="wb-code-inline">data-*</code> attributes.
+      </p>
+
+      <table class="docs-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Values</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>data-mode</td>
+            <td><code class="wb-code-inline">light</code> · <code class="wb-code-inline">dark</code> · <code class="wb-code-inline">auto</code></td>
+            <td>light</td>
+          </tr>
+          <tr>
+            <td>data-accent</td>
+            <td><code class="wb-code-inline">ocean</code> · <code class="wb-code-inline">forest</code> · <code class="wb-code-inline">sunset</code> · <code class="wb-code-inline">royal</code> · <code class="wb-code-inline">mint</code> · <code class="wb-code-inline">amber</code> · <code class="wb-code-inline">rose</code> · <code class="wb-code-inline">slate-fire</code></td>
+            <td>ocean</td>
+          </tr>
+          <tr>
+            <td>data-preset</td>
+            <td><code class="wb-code-inline">modern</code> · <code class="wb-code-inline">minimal</code> · <code class="wb-code-inline">rounded</code> · <code class="wb-code-inline">bold</code> · <code class="wb-code-inline">editorial</code></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>data-radius</td>
+            <td><code class="wb-code-inline">sharp</code> · <code class="wb-code-inline">soft</code></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>data-density</td>
+            <td><code class="wb-code-inline">compact</code> · <code class="wb-code-inline">comfortable</code></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>data-shadow</td>
+            <td><code class="wb-code-inline">flat</code> · <code class="wb-code-inline">soft</code></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>data-font</td>
+            <td><code class="wb-code-inline">system</code> · <code class="wb-code-inline">modern</code> · <code class="wb-code-inline">editorial</code></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>data-border</td>
+            <td><code class="wb-code-inline">none</code> · <code class="wb-code-inline">subtle</code> · <code class="wb-code-inline">medium</code> · <code class="wb-code-inline">bold</code> · <code class="wb-code-inline">dashed</code></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title">Combining axes</h3>
+      <pre class="wb-code">&lt;!-- Dark mode, forest accent, compact density, sharp radius --&gt;
+&lt;html data-mode="dark" data-accent="forest" data-density="compact" data-radius="sharp"&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Using presets</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Presets bundle multiple axes into a named style. Individual axis attributes override preset values.
+      </p>
+      <pre class="wb-code">&lt;!-- Apply the "rounded" preset, then override just the accent color --&gt;
+&lt;html data-preset="rounded" data-accent="rose"&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Runtime theme switching</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Use the <code class="wb-code-inline">WBTheme</code> JS API to switch axes at runtime.
+        Built-in <code class="wb-code-inline">data-wb-mode-cycle</code> and
+        <code class="wb-code-inline">data-wb-mode-set</code> attributes make wire-up effortless.
+      </p>
+      <pre class="wb-code">&lt;!-- Cycle through light → dark → auto on click --&gt;
+&lt;button data-wb-mode-cycle&gt;Toggle dark mode&lt;/button&gt;
+
+&lt;!-- Set a specific mode --&gt;
+&lt;button data-wb-mode-set="dark"&gt;Dark&lt;/button&gt;
+&lt;button data-wb-mode-set="light"&gt;Light&lt;/button&gt;
+
+&lt;!-- Set accent color --&gt;
+&lt;button data-wb-accent-set="forest"&gt;Forest accent&lt;/button&gt;</pre>
+
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4);margin-bottom:var(--wb-s3)">
+        Or call the JS API directly:
+      </p>
+      <pre class="wb-code">WBTheme.setMode('dark');
+WBTheme.setAccent('sunset');
+WBTheme.setPreset('rounded');
+WBTheme.setDensity('compact');</pre>
+
+      <div class="docs-callout" style="margin-top:var(--wb-s5)">
+        <strong>Note:</strong> <code class="wb-code-inline">data-mode</code> is the correct attribute name —
+        not <code class="wb-code-inline">data-theme</code>. <code class="wb-code-inline">WBTheme</code> persists the
+        user's choice in <code class="wb-code-inline">localStorage</code> automatically.
+      </div>
+    </section>
+
+    <!-- ── 4. First component ───────────────────────────── -->
+    <section class="docs-section" id="first-component">
+      <h2 class="docs-section-title">Writing components</h2>
+      <p class="docs-section-lead">
+        Every WebBlocks UI component uses a <code class="wb-code-inline">wb-</code> prefix.
+        Components are plain HTML — no custom elements, no JS framework required.
+      </p>
+
+      <h3 class="docs-sub-title">Button variants</h3>
+      <pre class="wb-code">&lt;button class="wb-btn wb-btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-outline"&gt;Outline&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-danger"&gt;Delete&lt;/button&gt;
+
+&lt;!-- Sizes --&gt;
+&lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Small&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-primary wb-btn-lg"&gt;Large&lt;/button&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Card</h3>
+      <pre class="wb-code">&lt;div class="wb-card"&gt;
+  &lt;div class="wb-card-header"&gt;
+    &lt;h3 class="wb-card-title"&gt;Card title&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body"&gt;
+    Card content goes here.
+  &lt;/div&gt;
+  &lt;div class="wb-card-footer"&gt;
+    &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Save&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Alert</h3>
+      <pre class="wb-code">&lt;div class="wb-alert wb-alert-success"&gt;Record saved successfully.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-danger"&gt;Something went wrong.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-warning"&gt;Please review before publishing.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-info"&gt;Your session expires in 10 minutes.&lt;/div&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Form field</h3>
+      <pre class="wb-code">&lt;div class="wb-field"&gt;
+  &lt;label class="wb-label"&gt;Email&lt;/label&gt;
+  &lt;input type="email" class="wb-input" placeholder="you@example.com"&gt;
+  &lt;p class="wb-field-hint"&gt;We'll never share your email.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- With error state --&gt;
+&lt;div class="wb-field"&gt;
+  &lt;label class="wb-label"&gt;Name&lt;/label&gt;
+  &lt;input type="text" class="wb-input is-invalid" value="x"&gt;
+  &lt;p class="wb-field-error"&gt;Name must be at least 2 characters.&lt;/p&gt;
+&lt;/div&gt;</pre>
+
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s6)">
+        See the <a href="components.html" style="color:var(--wb-accent)">Components reference</a>
+        for all 40+ components with live examples and copy-ready code.
+      </p>
+    </section>
+
+    <!-- ── 5. Dashboard shell ───────────────────────────── -->
+    <section class="docs-section" id="dashboard-shell">
+      <h2 class="docs-section-title">Dashboard shell</h2>
+      <p class="docs-section-lead">
+        The dashboard shell provides the outer frame for admin panels: a collapsible sidebar, sticky topbar, and scrollable content area.
+      </p>
+
+      <pre class="wb-code">&lt;div class="wb-dashboard-shell"&gt;
+
+  &lt;!-- Sidebar --&gt;
+  &lt;aside class="wb-sidebar"&gt;
+    &lt;div class="wb-sidebar-brand"&gt;
+      &lt;a href="#"&gt;My App&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;nav class="wb-sidebar-nav"&gt;
+      &lt;a href="#" class="wb-sidebar-link is-active"&gt;Dashboard&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Users&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Settings&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/aside&gt;
+
+  &lt;!-- Main area --&gt;
+  &lt;div class="wb-dashboard-body"&gt;
+    &lt;!-- Topbar --&gt;
+    &lt;header class="wb-navbar"&gt;
+      &lt;button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-toggle="sidebar"&gt;
+        ☰ Menu
+      &lt;/button&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Content --&gt;
+    &lt;main class="wb-dashboard-main"&gt;
+      &lt;div class="wb-container"&gt;
+        &lt;h1&gt;Page title&lt;/h1&gt;
+        &lt;p&gt;Page content…&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;</pre>
+
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
+        See the <a href="layout.html" style="color:var(--wb-accent)">Layouts page</a> for full shell breakdowns and all layout variants.
+      </p>
+    </section>
+
+    <!-- ── 6. Laravel integration ───────────────────────── -->
+    <section class="docs-section" id="laravel">
+      <h2 class="docs-section-title">Laravel integration</h2>
+      <p class="docs-section-lead">
+        WebBlocks UI works with any template language. Here's how to integrate it into a Laravel Blade project.
+      </p>
+
+      <h3 class="docs-sub-title">Recommended approach: CDN via layout</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Add the CDN links to your base Blade layout:
+      </p>
+      <pre class="wb-code">&lt;!-- resources/views/layouts/app.blade.php --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+      data-mode="light"
+      data-accent="ocean"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;@yield('title', config('app.name'))&lt;/title&gt;
+
+    &lt;link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
+
+    @stack('styles')
+&lt;/head&gt;
+&lt;body&gt;
+
+  @yield('content')
+
+  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;
+  @stack('scripts')
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Self-hosted via public folder</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Copy <code class="wb-code-inline">dist/</code> files into your Laravel <code class="wb-code-inline">public/</code> directory and reference with the <code class="wb-code-inline">asset()</code> helper:
+      </p>
+      <pre class="wb-code">&lt;!-- public/vendor/webblocks-ui/webblocks-ui.css --&gt;
+&lt;link rel="stylesheet" href="{{ asset('vendor/webblocks-ui/webblocks-ui.css') }}"&gt;
+&lt;script src="{{ asset('vendor/webblocks-ui/webblocks-ui.js') }}"&gt;&lt;/script&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">CSRF meta tag for AJAX modules</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        If you use <code class="wb-code-inline">WBAjaxToggle</code> or other AJAX features,
+        add the CSRF meta tag and the module reads it automatically:
+      </p>
+      <pre class="wb-code">&lt;!-- In &lt;head&gt; --&gt;
+&lt;meta name="csrf-token" content="{{ csrf_token() }}"&gt;</pre>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Example: AJAX checkbox toggle</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Toggle a model's status with a single checkbox and no custom JS:
+      </p>
+      <pre class="wb-code">&lt;!-- In a Blade view --&gt;
+&lt;input
+  type="checkbox"
+  class="wb-switch"
+  data-wb-ajax-toggle
+  data-wb-url="{{ route('users.toggle-active', $user) }}"
+  data-wb-field="is_active"
+  data-wb-success="Status updated"
+  {{ $user->is_active ? 'checked' : '' }}
+&gt;</pre>
+
+      <div class="docs-callout" style="margin-top:var(--wb-s5)">
+        <strong>Important:</strong> WebBlocks UI uses plain HTML classes — there are no Blade components or
+        Blade directives. HTML stays HTML, which means your templates work identically in Laravel, plain PHP,
+        Django, Rails, or any other framework.
+      </div>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Vite users</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        You can mix WebBlocks UI (CDN or public folder) with Vite for your own app code. There is no need to import WebBlocks UI through Vite — it is intentionally kept outside the build pipeline.
+      </p>
+      <pre class="wb-code">&lt;!-- Use CDN for WebBlocks UI, Vite for your own styles/scripts --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
+@vite(['resources/css/app.css', 'resources/js/app.js'])</pre>
+    </section>
+
+    <!-- ── 7. Next steps ────────────────────────────────── -->
+    <section class="docs-section" id="next-steps">
+      <h2 class="docs-section-title">Next steps</h2>
+      <p class="docs-section-lead">You're set up. Here's where to go from here.</p>
+
+      <ol class="docs-steps">
+        <li>
+          <h3>Explore the token system</h3>
+          <p>Learn how design tokens work and how to override them to match your brand.</p>
+          <a href="foundation.html" class="wb-btn wb-btn-outline wb-btn-sm">Foundation &amp; Tokens →</a>
+        </li>
+        <li>
+          <h3>Browse all components</h3>
+          <p>Buttons, cards, modals, drawers, tables, forms, toasts and 30+ more.</p>
+          <a href="components.html" class="wb-btn wb-btn-outline wb-btn-sm">Components →</a>
+        </li>
+        <li>
+          <h3>Set up a dashboard layout</h3>
+          <p>Dashboard shell, sidebar navigation, settings shell, and content shell.</p>
+          <a href="layout.html" class="wb-btn wb-btn-outline wb-btn-sm">Layouts →</a>
+        </li>
+        <li>
+          <h3>Learn the JavaScript API</h3>
+          <p>WBModal, WBDrawer, WBToast, WBAjaxToggle, WBTheme and 8 more modules.</p>
+          <a href="javascript.html" class="wb-btn wb-btn-outline wb-btn-sm">JavaScript API →</a>
+        </li>
+        <li>
+          <h3>Browse the icon set</h3>
+          <p>133 Lucide icons with copy-ready SVG and <code class="wb-code-inline">&lt;i&gt;</code>-tag snippets.</p>
+          <a href="icons.html" class="wb-btn wb-btn-outline wb-btn-sm">Icons →</a>
+        </li>
+      </ol>
+    </section>
+
+  </main>
+</div>
+
+<script src="../dist/webblocks-ui.js"></script>
+<script>
+  fetch('../dist/webblocks-icons.svg')
+    .then(function(r) { return r.text(); })
+    .then(function(svg) {
+      var div = document.createElement('div');
+      div.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      div.innerHTML = svg;
+      document.body.insertBefore(div, document.body.firstChild);
+    });
+</script>
+</body>
+</html>
