@@ -180,10 +180,16 @@
     var mode = ls(MODE_KEY) || DEFAULT_MODE;
     var iconMap = { light: 'sun', dark: 'moon', auto: 'sun-moon' };
     var icon = iconMap[mode] || 'sun-moon';
+    var xlinkNS = 'http://www.w3.org/1999/xlink';
     document.querySelectorAll('[data-wb-mode-cycle]').forEach(function (btn) {
       // Update SVG <use> href if present
+      // Use both href and xlink:href for maximum browser compatibility
       var use = btn.querySelector('use');
-      if (use) use.setAttribute('href', '#wb-icon-' + icon);
+      if (use) {
+        var href = '#wb-icon-' + icon;
+        use.setAttribute('href', href);
+        use.setAttributeNS(xlinkNS, 'xlink:href', href);
+      }
       // Update <i> class if present
       var i = btn.querySelector('i.wb-icon');
       if (i) {
