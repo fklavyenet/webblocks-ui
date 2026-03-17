@@ -15,3 +15,8 @@ Thumbs.db
 *.log
 .env
 
+# Test output
+.tmp-test/
+test-results/
+playwright-report/
+
