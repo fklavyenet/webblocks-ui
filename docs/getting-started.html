@@ -255,14 +255,52 @@
 &lt;!-- Add before &lt;/body&gt; --&gt;
 &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Self-hosted</h3>
-      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Download <code class="wb-code-inline">webblocks-ui.css</code> and <code class="wb-code-inline">webblocks-ui.js</code>
-        from the <a href="https://github.com/fklavyenet/webblocks-ui/tree/master/dist" style="color:var(--wb-accent)">GitHub <code class="wb-code-inline">dist/</code> folder</a>
-        and serve them from your own server.
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Download &amp; Self-host</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s4)">
+        Download the built files and serve them from your own server — no internet dependency, no CDN.
       </p>
+
+      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:0 0 var(--wb-s2)">Option A — Download latest release (ZIP)</p>
+      <ol style="font-size:0.875rem;color:var(--wb-muted);line-height:1.9;margin:0 0 var(--wb-s4);padding-left:var(--wb-s6)">
+        <li>Go to <a href="https://github.com/fklavyenet/webblocks-ui/releases/latest" target="_blank" style="color:var(--wb-accent)">github.com/fklavyenet/webblocks-ui/releases/latest</a></li>
+        <li>Under <strong style="color:var(--wb-text)">Assets</strong>, click <strong style="color:var(--wb-text)">Source code (zip)</strong> to download</li>
+        <li>Extract the ZIP, copy the <code class="wb-code-inline">dist/</code> folder into your project</li>
+        <li>Reference the files with a relative path:</li>
+      </ol>
       <pre class="wb-code">&lt;link rel="stylesheet" href="/assets/webblocks-ui.css"&gt;
 &lt;script src="/assets/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+
+      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:var(--wb-s6) 0 var(--wb-s2)">Option B — Clone with git</p>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Clone the full repository and use the <code class="wb-code-inline">dist/</code> files directly.
+        Pull to update to the latest version at any time.
+      </p>
+      <pre class="wb-code"># Clone the repository
+git clone https://github.com/fklavyenet/webblocks-ui.git
+
+# Or clone a specific tagged version
+git clone --branch v2.2.5 --depth 1 https://github.com/fklavyenet/webblocks-ui.git
+
+# Files you need are in dist/
+#   dist/webblocks-ui.css
+#   dist/webblocks-ui.js
+#   dist/webblocks-icons.svg   (for SVG sprite icons)
+#   dist/webblocks-icons.css   (for &lt;i&gt; tag icons, opt-in)</pre>
+
+      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:var(--wb-s6) 0 var(--wb-s2)">Option C — Direct file download</p>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Download individual files directly from the GitHub repository without cloning:
+      </p>
+      <pre class="wb-code"># Download built files directly (curl)
+curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/webblocks-ui.css
+curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/webblocks-ui.js
+curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/webblocks-icons.svg
+curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/webblocks-icons.css</pre>
+
+      <div class="docs-callout" style="margin-top:var(--wb-s4)">
+        <strong>Which option to choose?</strong> Use CDN for quick prototypes. Use ZIP/git clone for
+        production projects where you want full control over versioning and offline availability.
+      </div>
 
       <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Optional: Icons</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">

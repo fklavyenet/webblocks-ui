@@ -407,15 +407,50 @@
 
       <div class="docs-install">
         <div class="docs-install-tabs">
-          <button class="docs-install-tab is-active">CDN (jsDelivr)</button>
-          <button class="docs-install-tab">Self-hosted</button>
+          <button class="docs-install-tab is-active" data-tab="cdn">CDN (jsDelivr)</button>
+          <button class="docs-install-tab" data-tab="download">Download</button>
+          <button class="docs-install-tab" data-tab="git">git clone</button>
         </div>
         <div class="docs-install-body">
-          <pre class="wb-code">&lt;!-- In &lt;head&gt; --&gt;
+          <div class="docs-install-panel" data-panel="cdn">
+            <pre class="wb-code" style="margin:0">&lt;!-- In &lt;head&gt; --&gt;
 &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
 
 &lt;!-- Before &lt;/body&gt; --&gt;
 &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+          </div>
+          <div class="docs-install-panel" data-panel="download" style="display:none">
+            <pre class="wb-code" style="margin:0"># 1. Go to the Releases page and download the latest ZIP:
+#    https://github.com/fklavyenet/webblocks-ui/releases/latest
+#    → Assets → Source code (zip)
+
+# 2. Extract and copy the dist/ folder into your project:
+your-project/
+└── assets/
+    ├── webblocks-ui.css
+    ├── webblocks-ui.js
+    ├── webblocks-icons.svg   (optional — for SVG sprite icons)
+    └── webblocks-icons.css   (optional — for &lt;i&gt; tag icons)</pre>
+            <pre class="wb-code" style="margin:var(--wb-s3) 0 0">&lt;!-- Reference your local copies --&gt;
+&lt;link rel="stylesheet" href="/assets/webblocks-ui.css"&gt;
+&lt;script src="/assets/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+          </div>
+          <div class="docs-install-panel" data-panel="git" style="display:none">
+            <pre class="wb-code" style="margin:0"># Clone a specific tagged version (recommended)
+git clone --branch v2.2.5 --depth 1 https://github.com/fklavyenet/webblocks-ui.git
+
+# Or clone master for the latest development build
+git clone https://github.com/fklavyenet/webblocks-ui.git
+
+# Built files are in dist/
+#   dist/webblocks-ui.css
+#   dist/webblocks-ui.js
+#   dist/webblocks-icons.svg
+#   dist/webblocks-icons.css
+
+# Pull updates later
+git pull</pre>
+          </div>
         </div>
       </div>
 
@@ -493,10 +528,14 @@
     });
 
   // Install tab switcher
-  document.querySelectorAll('.docs-install-tab').forEach(function(tab, i, tabs) {
+  document.querySelectorAll('.docs-install-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
-      tabs.forEach(function(t) { t.classList.remove('is-active'); });
+      document.querySelectorAll('.docs-install-tab').forEach(function(t) { t.classList.remove('is-active'); });
       tab.classList.add('is-active');
+      var target = tab.getAttribute('data-tab');
+      document.querySelectorAll('.docs-install-panel').forEach(function(p) {
+        p.style.display = p.getAttribute('data-panel') === target ? '' : 'none';
+      });
     });
   });
 </script>
