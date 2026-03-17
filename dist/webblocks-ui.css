@@ -2193,7 +2193,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   animation: wb-dropdown-in 0.12s ease;
 }
 
-.wb-dropdown.is-open .wb-dropdown-menu {
+.wb-dropdown.is-open .wb-dropdown-menu,
+.wb-dropdown-menu.is-open {
   display: block;
 }
 
