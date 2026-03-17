@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="light" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI — Framework Bağımsız UI Kit</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
+  <style>
+    .docs-layout { display: flex; min-height: 100vh; }
+    .docs-sidebar {
+      width: 240px; flex-shrink: 0;
+      background: var(--wb-surface); border-right: 1px solid var(--wb-border);
+      position: sticky; top: 0; height: 100vh;
+      overflow-y: auto; padding: var(--wb-s6) 0;
+      display: flex; flex-direction: column;
+    }
+    .docs-sidebar-brand {
+      padding: 0 var(--wb-s5) var(--wb-s5);
+      border-bottom: 1px solid var(--wb-border); margin-bottom: var(--wb-s4);
+    }
+    .docs-sidebar-brand a {
+      font-size: 1.1rem; font-weight: 700; color: var(--wb-text);
+      text-decoration: none; display: flex; align-items: center; gap: var(--wb-s2);
+    }
+    .docs-sidebar-brand span {
+      font-size: 0.7rem; font-weight: 500; color: var(--wb-accent-on);
+      background: var(--wb-accent); padding: 2px 6px; border-radius: var(--wb-r-full);
+    }
+    .docs-nav-section {
+      padding: var(--wb-s2) var(--wb-s5) var(--wb-s1);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--wb-muted);
+    }
+    .docs-nav-link {
+      display: block; padding: var(--wb-s2) var(--wb-s5);
+      font-size: 0.875rem; color: var(--wb-muted); text-decoration: none;
+      transition: color var(--wb-t), background var(--wb-t);
+    }
+    .docs-nav-link:hover { color: var(--wb-text); background: var(--wb-surface-2); }
+    .docs-nav-link.is-active {
+      color: var(--wb-accent); background: var(--wb-accent-softer);
+      font-weight: 500; border-right: 2px solid var(--wb-accent);
+    }
+    .docs-main { flex: 1; min-width: 0; }
+    .docs-topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--wb-surface); border-bottom: 1px solid var(--wb-border);
+      padding: var(--wb-s3) var(--wb-s6);
+      display: flex; align-items: center; justify-content: flex-end; gap: var(--wb-s3);
+    }
+    .wb-code-inline {
+      font-family: var(--wb-font-mono); font-size: 0.82em;
+      background: var(--wb-surface-2); border: 1px solid var(--wb-border);
+      padding: 1px 6px; border-radius: var(--wb-r-sm); color: var(--wb-accent-text);
+    }
+    .docs-section {
+      padding: var(--wb-s10) var(--wb-s8); border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-section:last-child { border-bottom: none; }
+    .docs-section-title {
+      font-size: 1.5rem; font-weight: 700; color: var(--wb-text);
+      margin: 0 0 var(--wb-s2); letter-spacing: -0.01em;
+    }
+    .docs-section-lead {
+      font-size: 0.95rem; color: var(--wb-muted); margin: 0 0 var(--wb-s6); line-height: 1.6;
+    }
+    .docs-features {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--wb-s4);
+    }
+    .docs-feature-card {
+      padding: var(--wb-s5); border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-lg); background: var(--wb-surface);
+      transition: border-color var(--wb-t), box-shadow var(--wb-t);
+    }
+    .docs-feature-card:hover {
+      border-color: var(--wb-accent-border);
+      box-shadow: var(--wb-shadow-sm);
+    }
+    .docs-feature-icon { font-size: 1.5rem; margin-bottom: var(--wb-s3); }
+    .docs-feature-card h3 {
+      font-size: 0.95rem; font-weight: 600; color: var(--wb-text);
+      margin: 0 0 var(--wb-s2);
+    }
+    .docs-feature-card p { font-size: 0.85rem; color: var(--wb-muted); margin: 0; line-height: 1.6; }
+    .docs-hero {
+      padding: var(--wb-s14) var(--wb-s8) var(--wb-s10);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-hero-badge {
+      display: inline-flex; align-items: center;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--wb-accent-text); background: var(--wb-accent-softer);
+      border: 1px solid var(--wb-accent-border);
+      padding: var(--wb-s1) var(--wb-s3); border-radius: var(--wb-r-full);
+      margin-bottom: var(--wb-s5);
+    }
+    .docs-hero h1 {
+      font-size: 3rem; font-weight: 800; line-height: 1.1;
+      color: var(--wb-text); margin: 0 0 var(--wb-s5); letter-spacing: -0.03em;
+    }
+    .docs-hero h1 em { font-style: normal; color: var(--wb-accent); }
+    .docs-hero-lead {
+      font-size: 1.1rem; color: var(--wb-muted); max-width: 560px;
+      line-height: 1.7; margin: 0 0 var(--wb-s7);
+    }
+    .docs-hero-actions { display: flex; gap: var(--wb-s3); flex-wrap: wrap; margin-bottom: var(--wb-s8); }
+    .docs-hero-meta { display: flex; gap: var(--wb-s6); flex-wrap: wrap; }
+    .docs-hero-stat { display: flex; flex-direction: column; }
+    .docs-hero-stat strong { font-size: 1.5rem; font-weight: 800; color: var(--wb-text); line-height: 1; }
+    .docs-hero-stat span { font-size: 0.75rem; color: var(--wb-muted); margin-top: 2px; }
+    .docs-install {
+      border: 1px solid var(--wb-border); border-radius: var(--wb-r-lg); overflow: hidden;
+      margin-top: var(--wb-s4);
+    }
+    .docs-install-tabs {
+      display: flex; background: var(--wb-surface-2);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-install-tab {
+      padding: var(--wb-s3) var(--wb-s5); font-size: 0.85rem; font-weight: 500;
+      border: none; background: transparent; cursor: pointer; color: var(--wb-muted);
+      border-right: 1px solid var(--wb-border);
+      transition: color var(--wb-t), background var(--wb-t);
+    }
+    .docs-install-tab:last-child { border-right: none; }
+    .docs-install-tab.is-active { color: var(--wb-accent); background: var(--wb-surface); }
+    .docs-install-tab:not(.is-active):hover { color: var(--wb-text); background: var(--wb-surface-3); }
+    .docs-install-body { padding: 0; }
+    .wb-code {
+      background: var(--wb-surface-2); border: none;
+      padding: var(--wb-s5); font-family: var(--wb-font-mono); font-size: 0.82rem;
+      line-height: 1.7; overflow-x: auto; white-space: pre; color: var(--wb-text); margin: 0;
+    }
+    .docs-mode-btn {
+      width: 2rem; height: 2rem; border-radius: var(--wb-r-md);
+      border: 1px solid var(--wb-border); background: var(--wb-surface-2);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--wb-muted); transition: background var(--wb-t), color var(--wb-t);
+    }
+    .docs-mode-btn:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    .docs-lang-switch {
+      display: flex; border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-md); overflow: hidden;
+    }
+    .docs-lang-switch a {
+      padding: 3px 9px; font-size: 0.75rem; font-weight: 600;
+      text-decoration: none; color: var(--wb-muted);
+      border-right: 1px solid var(--wb-border);
+      transition: background var(--wb-t), color var(--wb-t);
+      letter-spacing: 0.02em;
+    }
+    .docs-lang-switch a:last-child { border-right: none; }
+    .docs-lang-switch a:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    .docs-lang-switch a.is-active { background: var(--wb-accent); color: var(--wb-accent-on); }
+    @media (max-width: 768px) {
+      .docs-sidebar { display: none; }
+      .docs-hero h1 { font-size: 2rem; }
+      .docs-hero, .docs-section { padding-left: var(--wb-s5); padding-right: var(--wb-s5); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <aside class="docs-sidebar">
+    <div class="docs-sidebar-brand">
+      <a href="index.html">WebBlocks UI <span>v2.2</span></a>
+    </div>
+    <div class="docs-nav-section">Genel Bakış</div>
+    <a href="index.html" class="docs-nav-link is-active">Giriş</a>
+    <a href="getting-started.html" class="docs-nav-link">Başlarken</a>
+    <div class="docs-nav-section">Kılavuzlar</div>
+    <a href="../foundation.html" class="docs-nav-link">Temel &amp; Tokenlar</a>
+    <a href="../layout.html" class="docs-nav-link">Düzenler</a>
+    <div class="docs-nav-section">Referans</div>
+    <a href="../components.html" class="docs-nav-link">Bileşenler</a>
+    <a href="../javascript.html" class="docs-nav-link">JavaScript API</a>
+    <a href="../icons.html" class="docs-nav-link">İkonlar</a>
+  </aside>
+
+  <main class="docs-main">
+
+    <div class="docs-topbar">
+      <div class="docs-lang-switch">
+        <a href="../index.html">EN</a>
+        <a href="index.html" class="is-active">TR</a>
+        <a href="../de/index.html">DE</a>
+        <a href="../es/index.html">ES</a>
+      </div>
+      <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
+         class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+        </svg>
+        GitHub
+      </a>
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Temayı değiştir">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+
+    <section class="docs-hero">
+      <div class="docs-hero-badge">✦ Sıfır bağımlılık · Saf HTML/CSS/JS</div>
+      <h1>Admin paneller inşa et<br><em>WebBlocks UI</em> ile</h1>
+      <p class="docs-hero-lead">
+        Admin paneller, SaaS kontrol panelleri ve CMS arka yüzleri için framework bağımsız bir UI kiti.
+        npm yok, derleme adımı yok, kilitlenme yok — sadece HTML ve CSS özel özellikleri.
+      </p>
+      <div class="docs-hero-actions">
+        <a href="getting-started.html" class="wb-btn wb-btn-primary wb-btn-lg">Başla →</a>
+        <a href="../components.html" class="wb-btn wb-btn-outline wb-btn-lg">Bileşenlere göz at</a>
+      </div>
+      <div class="docs-hero-meta">
+        <div class="docs-hero-stat"><strong>40+</strong><span>Bileşen</span></div>
+        <div class="docs-hero-stat"><strong>133</strong><span>İkon</span></div>
+        <div class="docs-hero-stat"><strong>13</strong><span>JS Modülü</span></div>
+        <div class="docs-hero-stat"><strong>0</strong><span>Bağımlılık</span></div>
+      </div>
+    </section>
+
+    <section class="docs-section">
+      <h2 class="docs-section-title">Neden WebBlocks UI?</h2>
+      <p class="docs-section-lead">Tam bir JS framework'ünün yüküne girmeden sağlam, tutarlı bir admin arayüzü isteyen ekipler için tasarlandı.</p>
+      <div class="docs-features">
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">⚡</div>
+          <h3>Derleme adımı yok</h3>
+          <p>İki dosyayı bırak — <code class="wb-code-inline">webblocks-ui.css</code> ve <code class="wb-code-inline">webblocks-ui.js</code> — ve işin bitti. CDN'den çalışır.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🎨</div>
+          <h3>Çok eksenli tema motoru</h3>
+          <p>Vurgu rengi, karanlık mod, yoğunluk, yarıçap, gölge ve yazı tipi ailesi — hepsi <code class="wb-code-inline">&lt;html&gt;</code> üzerindeki <code class="wb-code-inline">data-*</code> nitelikleriyle.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🧩</div>
+          <h3>Framework bağımsız</h3>
+          <p>Laravel Blade, Django şablonları, Rails ERB, Twig veya saf HTML ile çalışır. Sarmalayıcı yok, bileşen yok — HTML, HTML olarak kalır.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🪄</div>
+          <h3>Vanilla JS modülleri</h3>
+          <p>Modal, drawer, dropdown, toast, AJAX toggle ve daha fazlası için 13 IIFE modülü. Her biri temiz bir <code class="wb-code-inline">window.WB*</code> API'si sunar.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🎯</div>
+          <h3>Tasarım token sistemi</h3>
+          <p>Tüm boyutlar, renkler, yarıçaplar, gölgeler ve boşluklar CSS özel özellikleridir. Markanıza uydurmak için herhangi bir tokeni geçersiz kıl.</p>
+        </div>
+        <div class="docs-feature-card">
+          <div class="docs-feature-icon">🔷</div>
+          <h3>133 Lucide ikonu</h3>
+          <p>SVG sprite + CSS mask-image deseni. <code class="wb-code-inline">&lt;i class="wb-icon wb-icon-settings"&gt;</code> veya SVG <code class="wb-code-inline">&lt;use&gt;</code> ile kullan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="docs-section" id="quick-install">
+      <h2 class="docs-section-title">Hızlı kurulum</h2>
+      <p class="docs-section-lead">HTML'inize iki etiket ekle ve inşa etmeye başla.</p>
+
+      <div class="docs-install">
+        <div class="docs-install-tabs">
+          <button class="docs-install-tab is-active" data-tab="cdn">CDN (jsDelivr)</button>
+          <button class="docs-install-tab" data-tab="download">İndir</button>
+          <button class="docs-install-tab" data-tab="git">git clone</button>
+        </div>
+        <div class="docs-install-body">
+          <div class="docs-install-panel" data-panel="cdn">
+            <pre class="wb-code">&lt;!-- &lt;head&gt; içine --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
+
+&lt;!-- &lt;/body&gt; öncesine --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+          </div>
+          <div class="docs-install-panel" data-panel="download" style="display:none">
+            <pre class="wb-code"># 1. En son sürüm ZIP'ini indir:
+#    https://github.com/fklavyenet/webblocks-ui/releases/latest
+#    → Assets → Source code (zip)
+
+# 2. ZIP'i aç, dist/ klasörünü projenize kopyala:
+projen/
+└── assets/
+    ├── webblocks-ui.css
+    ├── webblocks-ui.js
+    ├── webblocks-icons.svg
+    └── webblocks-icons.css</pre>
+            <pre class="wb-code" style="border-top:1px solid var(--wb-border)">&lt;link rel="stylesheet" href="/assets/webblocks-ui.css"&gt;
+&lt;script src="/assets/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+          </div>
+          <div class="docs-install-panel" data-panel="git" style="display:none">
+            <pre class="wb-code"># Belirli bir etiketli sürümü klonla (önerilir)
+git clone --branch v2.2.5 --depth 1 https://github.com/fklavyenet/webblocks-ui.git
+
+# dist/ klasöründeki dosyaları kullan
+#   dist/webblocks-ui.css
+#   dist/webblocks-ui.js</pre>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin:var(--wb-s4) 0 var(--wb-s2); font-size:0.9rem; color:var(--wb-muted);">
+        Temayı <code class="wb-code-inline">&lt;html&gt;</code> üzerinde ayarla:
+      </p>
+      <pre class="wb-code" style="border:1px solid var(--wb-border);border-radius:var(--wb-r-md)">&lt;html data-mode="light" data-accent="ocean"&gt;</pre>
+
+      <p style="margin:var(--wb-s5) 0 var(--wb-s2); font-size:0.9rem; color:var(--wb-muted);">
+        Bir bileşen yaz:
+      </p>
+      <pre class="wb-code" style="border:1px solid var(--wb-border);border-radius:var(--wb-r-md)">&lt;button class="wb-btn wb-btn-primary"&gt;Değişiklikleri kaydet&lt;/button&gt;
+
+&lt;div class="wb-alert wb-alert-success"&gt;
+  Kayıt başarıyla kaydedildi.
+&lt;/div&gt;</pre>
+
+      <div style="margin-top:var(--wb-s5)">
+        <a href="getting-started.html" class="wb-btn wb-btn-primary">Tam kurulum kılavuzu →</a>
+      </div>
+    </section>
+
+    <section class="docs-section">
+      <h2 class="docs-section-title">Dokümantasyonu keşfet</h2>
+      <p class="docs-section-lead">Arayüzünü oluşturmak ve özelleştirmek için ihtiyacın olan her şey.</p>
+      <div class="docs-features">
+        <a href="getting-started.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">🚀</div>
+          <h3>Başlarken</h3>
+          <p>Kurulum, ilk sayfa, tema ayarı ve Laravel entegrasyonu.</p>
+        </a>
+        <a href="../foundation.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">🏗️</div>
+          <h3>Temel &amp; Tokenlar</h3>
+          <p>Tasarım tokenleri, karanlık mod, vurgu renkleri, ön ayarlar ve tüm tema eksenleri.</p>
+        </a>
+        <a href="../components.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">🧱</div>
+          <h3>Bileşenler</h3>
+          <p>Düğmeler, kartlar, modallar, tablolar, formlar, toastlar, popover'lar ve 30+ daha.</p>
+        </a>
+        <a href="../layout.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">📐</div>
+          <h3>Düzenler</h3>
+          <p>Dashboard kabuğu, kenar çubuğu, auth kabuğu, ayarlar kabuğu, içerik kabuğu.</p>
+        </a>
+        <a href="../javascript.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">⚙️</div>
+          <h3>JavaScript API</h3>
+          <p>13 JS modülünün tümü — WBModal, WBToast, WBAjaxToggle, WBTheme ve daha fazlası.</p>
+        </a>
+        <a href="../icons.html" class="docs-feature-card" style="text-decoration:none;color:inherit">
+          <div class="docs-feature-icon">🔷</div>
+          <h3>İkonlar</h3>
+          <p>133 Lucide ikonu — kopyalamaya hazır kod parçacıklarıyla aranabilir galeri.</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"></script>
+<script>
+  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg')
+    .then(function(r) { return r.text(); })
+    .then(function(svg) {
+      var div = document.createElement('div');
+      div.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      div.innerHTML = svg;
+      document.body.insertBefore(div, document.body.firstChild);
+    });
+
+  document.querySelectorAll('.docs-install-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.docs-install-tab').forEach(function(t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      var target = tab.getAttribute('data-tab');
+      document.querySelectorAll('.docs-install-panel').forEach(function(p) {
+        p.style.display = p.getAttribute('data-panel') === target ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="light" data-accent="ocean">
+<html lang="tr" data-mode="light" data-accent="ocean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Getting Started — WebBlocks UI</title>
+  <title>Başlarken — WebBlocks UI</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
@@ -217,18 +217,18 @@
       <a href="index.html">WebBlocks UI <span>v2.2</span></a>
     </div>
 
-    <div class="docs-nav-section">Overview</div>
-    <a href="index.html" class="docs-nav-link">Introduction</a>
-    <a href="getting-started.html" class="docs-nav-link is-active">Getting Started</a>
+    <div class="docs-nav-section">Genel Bakış</div>
+    <a href="index.html" class="docs-nav-link">Giriş</a>
+    <a href="getting-started.html" class="docs-nav-link is-active">Başlarken</a>
 
-    <div class="docs-nav-section">Guides</div>
-    <a href="foundation.html" class="docs-nav-link">Foundation & Tokens</a>
-    <a href="layout.html" class="docs-nav-link">Layouts</a>
+    <div class="docs-nav-section">Kılavuzlar</div>
+    <a href="../foundation.html" class="docs-nav-link">Temel &amp; Tokenlar</a>
+    <a href="../layout.html" class="docs-nav-link">Düzenler</a>
 
-    <div class="docs-nav-section">Reference</div>
-    <a href="components.html" class="docs-nav-link">Components</a>
-    <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
-    <a href="icons.html" class="docs-nav-link">Icons</a>
+    <div class="docs-nav-section">Referans</div>
+    <a href="../components.html" class="docs-nav-link">Bileşenler</a>
+    <a href="../javascript.html" class="docs-nav-link">JavaScript API</a>
+    <a href="../icons.html" class="docs-nav-link">İkonlar</a>
   </aside>
 
   <!-- ── Main ───────────────────────────────────────────── -->
@@ -237,10 +237,10 @@
     <!-- Topbar -->
     <div class="docs-topbar">
       <div class="docs-lang-switch">
-        <a href="getting-started.html" class="is-active">EN</a>
-        <a href="tr/getting-started.html">TR</a>
-        <a href="de/getting-started.html">DE</a>
-        <a href="es/getting-started.html">ES</a>
+        <a href="../getting-started.html">EN</a>
+        <a href="getting-started.html" class="is-active">TR</a>
+        <a href="../de/getting-started.html">DE</a>
+        <a href="../es/getting-started.html">ES</a>
       </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
@@ -249,127 +249,127 @@
         </svg>
         GitHub
       </a>
-      <button class="docs-mode-btn" data-wb-mode-cycle title="Toggle theme">
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Temayı değiştir">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
     </div>
 
     <!-- Page header -->
     <div class="docs-page-header">
-      <h1>Getting Started</h1>
-      <p>Install WebBlocks UI, write your first page, set up theming, and integrate with Laravel — in under five minutes.</p>
+      <h1>Başlarken</h1>
+      <p>WebBlocks UI'ı kur, ilk sayfanı oluştur, tema ayarını yap ve Laravel ile entegre et — beş dakikadan kısa sürede.</p>
     </div>
 
-    <!-- ── 1. Installation ──────────────────────────────── -->
-    <section class="docs-section" id="installation">
-      <h2 class="docs-section-title">Installation</h2>
+    <!-- ── 1. Kurulum ──────────────────────────────────── -->
+    <section class="docs-section" id="kurulum">
+      <h2 class="docs-section-title">Kurulum</h2>
       <p class="docs-section-lead">
-        WebBlocks UI has no build step and zero dependencies. Pick the method that fits your project.
+        WebBlocks UI'ın derleme adımı yoktur ve sıfır bağımlılığı vardır. Projenize en uygun yöntemi seçin.
       </p>
 
-      <h3 class="docs-sub-title">CDN (recommended for most projects)</h3>
+      <h3 class="docs-sub-title">CDN (çoğu proje için önerilir)</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        The fastest way to get started. Files are served via jsDelivr from GitHub releases.
+        Başlamanın en hızlı yolu. Dosyalar GitHub sürümlerinden jsDelivr aracılığıyla sunulur.
       </p>
-      <pre class="wb-code">&lt;!-- Add to &lt;head&gt; --&gt;
+      <pre class="wb-code">&lt;!-- &lt;head&gt; içine ekle --&gt;
 &lt;link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
 
-&lt;!-- Add before &lt;/body&gt; --&gt;
+&lt;!-- &lt;/body&gt; öncesine ekle --&gt;
 &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Download &amp; Self-host</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">İndir &amp; Kendi Sunucunda Barındır</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s4)">
-        Download the built files and serve them from your own server — no internet dependency, no CDN.
+        Derlenmiş dosyaları indir ve kendi sunucundan sun — internet bağımlılığı yok, CDN yok.
       </p>
 
-      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:0 0 var(--wb-s2)">Option A — Download latest release (ZIP)</p>
+      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:0 0 var(--wb-s2)">Seçenek A — Son sürümü indir (ZIP)</p>
       <ol style="font-size:0.875rem;color:var(--wb-muted);line-height:1.9;margin:0 0 var(--wb-s4);padding-left:var(--wb-s6)">
-        <li>Go to <a href="https://github.com/fklavyenet/webblocks-ui/releases/latest" target="_blank" style="color:var(--wb-accent)">github.com/fklavyenet/webblocks-ui/releases/latest</a></li>
-        <li>Under <strong style="color:var(--wb-text)">Assets</strong>, click <strong style="color:var(--wb-text)">Source code (zip)</strong> to download</li>
-        <li>Extract the ZIP, copy the <code class="wb-code-inline">dist/</code> folder into your project</li>
-        <li>Reference the files with a relative path:</li>
+        <li><a href="https://github.com/fklavyenet/webblocks-ui/releases/latest" target="_blank" style="color:var(--wb-accent)">github.com/fklavyenet/webblocks-ui/releases/latest</a> adresine git</li>
+        <li><strong style="color:var(--wb-text)">Assets</strong> altında <strong style="color:var(--wb-text)">Source code (zip)</strong> seçeneğine tıkla</li>
+        <li>ZIP'i çıkar, <code class="wb-code-inline">dist/</code> klasörünü projenize kopyala</li>
+        <li>Dosyalara göreli yol ile referans ver:</li>
       </ol>
       <pre class="wb-code">&lt;link rel="stylesheet" href="/assets/webblocks-ui.css"&gt;
 &lt;script src="/assets/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
 
-      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:var(--wb-s6) 0 var(--wb-s2)">Option B — Clone with git</p>
+      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:var(--wb-s6) 0 var(--wb-s2)">Seçenek B — git ile klonla</p>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Clone the full repository and use the <code class="wb-code-inline">dist/</code> files directly.
-        Pull to update to the latest version at any time.
+        Tam depoyu klonla ve <code class="wb-code-inline">dist/</code> dosyalarını doğrudan kullan.
+        İstediğin zaman çekerek en son sürüme geçebilirsin.
       </p>
-      <pre class="wb-code"># Clone the repository
+      <pre class="wb-code"># Depoyu klonla
 git clone https://github.com/fklavyenet/webblocks-ui.git
 
-# Or clone a specific tagged version
+# Ya da belirli bir etiketli sürümü klonla
 git clone --branch v2.2.5 --depth 1 https://github.com/fklavyenet/webblocks-ui.git
 
-# Files you need are in dist/
+# İhtiyacın olan dosyalar dist/ içinde:
 #   dist/webblocks-ui.css
 #   dist/webblocks-ui.js
-#   dist/webblocks-icons.svg   (for SVG sprite icons)
-#   dist/webblocks-icons.css   (for &lt;i&gt; tag icons, opt-in)</pre>
+#   dist/webblocks-icons.svg   (SVG sprite ikonlar için)
+#   dist/webblocks-icons.css   (&lt;i&gt; etiketi ikonları için, isteğe bağlı)</pre>
 
-      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:var(--wb-s6) 0 var(--wb-s2)">Option C — Direct file download</p>
+      <p class="docs-sub-title" style="font-size:0.875rem;font-weight:600;margin:var(--wb-s6) 0 var(--wb-s2)">Seçenek C — Doğrudan dosya indirme</p>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Download individual files directly from the GitHub repository without cloning:
+        Klonlamadan GitHub deposundan tek tek dosyaları indir:
       </p>
-      <pre class="wb-code"># Download built files directly (curl)
+      <pre class="wb-code"># Derlenmiş dosyaları doğrudan indir (curl)
 curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/webblocks-ui.css
 curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/webblocks-ui.js
 curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/webblocks-icons.svg
 curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/webblocks-icons.css</pre>
 
       <div class="docs-callout" style="margin-top:var(--wb-s4)">
-        <strong>Which option to choose?</strong> Use CDN for quick prototypes. Use ZIP/git clone for
-        production projects where you want full control over versioning and offline availability.
+        <strong>Hangi seçeneği kullanmalısın?</strong> Hızlı prototipler için CDN'i kullan. Sürüm kontrolü ve çevrimdışı
+        erişim üzerinde tam kontrol istediğin üretim projeleri için ZIP/git clone tercih et.
       </div>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Optional: Icons</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">İsteğe bağlı: İkonlar</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        For <code class="wb-code-inline">&lt;i&gt;</code>-tag icon support, also include the icons CSS file.
-        The SVG sprite is loaded separately (see below).
+        <code class="wb-code-inline">&lt;i&gt;</code> etiketi ikon desteği için ikon CSS dosyasını da dahil et.
+        SVG sprite ayrı olarak yüklenir (aşağıya bak).
       </p>
-      <pre class="wb-code">&lt;!-- Optional: adds wb-icon-* classes for &lt;i&gt; tag usage --&gt;
+      <pre class="wb-code">&lt;!-- İsteğe bağlı: &lt;i&gt; etiketi kullanımı için wb-icon-* sınıfları ekler --&gt;
 &lt;link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.css"&gt;</pre>
 
       <div class="docs-callout" style="margin-top:var(--wb-s5)">
-        <strong>Note:</strong> The icons CSS uses <code class="wb-code-inline">mask-image</code> which requires a modern browser
-        (Chrome 79+, Firefox 53+, Safari 15.4+). It is opt-in and kept in a separate file to avoid bloating the main bundle.
+        <strong>Not:</strong> İkon CSS'i <code class="wb-code-inline">mask-image</code> kullanır ve modern tarayıcı gerektirir
+        (Chrome 79+, Firefox 53+, Safari 15.4+). İsteğe bağlıdır ve ana paketi şişirmemek için ayrı bir dosyada tutulur.
       </div>
     </section>
 
-    <!-- ── 2. First page ────────────────────────────────── -->
-    <section class="docs-section" id="first-page">
-      <h2 class="docs-section-title">Your first page</h2>
+    <!-- ── 2. İlk sayfa ──────────────────────────────── -->
+    <section class="docs-section" id="ilk-sayfa">
+      <h2 class="docs-section-title">İlk sayfan</h2>
       <p class="docs-section-lead">
-        The minimal HTML skeleton. The <code class="wb-code-inline">data-mode</code> and
-        <code class="wb-code-inline">data-accent</code> attributes on <code class="wb-code-inline">&lt;html&gt;</code>
-        activate the theme engine.
+        Minimal HTML iskeleti. <code class="wb-code-inline">data-mode</code> ve
+        <code class="wb-code-inline">data-accent</code> nitelikleri <code class="wb-code-inline">&lt;html&gt;</code>
+        üzerinde tema motorunu etkinleştirir.
       </p>
 
       <pre class="wb-code">&lt;!DOCTYPE html&gt;
-&lt;html lang="en" data-mode="light" data-accent="ocean"&gt;
+&lt;html lang="tr" data-mode="light" data-accent="ocean"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;My App&lt;/title&gt;
+  &lt;title&gt;Uygulamam&lt;/title&gt;
   &lt;link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
-  &lt;button class="wb-btn wb-btn-primary"&gt;Hello, WebBlocks UI!&lt;/button&gt;
+  &lt;button class="wb-btn wb-btn-primary"&gt;Merhaba, WebBlocks UI!&lt;/button&gt;
 
   &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Loading the SVG icon sprite</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">SVG ikon sprite'ını yükleme</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        If you use inline SVG icons (<code class="wb-code-inline">&lt;svg&gt;&lt;use href="#wb-icon-..."&gt;&lt;/use&gt;&lt;/svg&gt;</code>),
-        load the sprite with a small fetch snippet after your JS:
+        Satır içi SVG ikonları (<code class="wb-code-inline">&lt;svg&gt;&lt;use href="#wb-icon-..."&gt;&lt;/use&gt;&lt;/svg&gt;</code>) kullanıyorsan,
+        JS'inden sonra küçük bir fetch parçacığıyla sprite'ı yükle:
       </p>
       <pre class="wb-code">&lt;script&gt;
 fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-icons.svg')
@@ -383,27 +383,27 @@ fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks
 &lt;/script&gt;</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        After loading, reference any icon like this:
+        Yükledikten sonra herhangi bir ikonu şöyle kullanabilirsin:
       </p>
       <pre class="wb-code">&lt;svg class="wb-icon" aria-hidden="true"&gt;
   &lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;
 &lt;/svg&gt;</pre>
     </section>
 
-    <!-- ── 3. Theme setup ───────────────────────────────── -->
-    <section class="docs-section" id="theme-setup">
-      <h2 class="docs-section-title">Theme setup</h2>
+    <!-- ── 3. Tema ayarı ───────────────────────────────── -->
+    <section class="docs-section" id="tema-ayari">
+      <h2 class="docs-section-title">Tema ayarı</h2>
       <p class="docs-section-lead">
-        WebBlocks UI has a multi-axis theme engine. All axes are set on the
-        <code class="wb-code-inline">&lt;html&gt;</code> element via <code class="wb-code-inline">data-*</code> attributes.
+        WebBlocks UI çok eksenli bir tema motoruna sahiptir. Tüm eksenler
+        <code class="wb-code-inline">&lt;html&gt;</code> öğesinde <code class="wb-code-inline">data-*</code> nitelikleri aracılığıyla ayarlanır.
       </p>
 
       <table class="docs-table">
         <thead>
           <tr>
-            <th>Attribute</th>
-            <th>Values</th>
-            <th>Default</th>
+            <th>Nitelik</th>
+            <th>Değerler</th>
+            <th>Varsayılan</th>
           </tr>
         </thead>
         <tbody>
@@ -450,35 +450,35 @@ fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks
         </tbody>
       </table>
 
-      <h3 class="docs-sub-title">Combining axes</h3>
-      <pre class="wb-code">&lt;!-- Dark mode, forest accent, compact density, sharp radius --&gt;
+      <h3 class="docs-sub-title">Eksenleri birleştirme</h3>
+      <pre class="wb-code">&lt;!-- Karanlık mod, forest vurgu, kompakt yoğunluk, keskin yarıçap --&gt;
 &lt;html data-mode="dark" data-accent="forest" data-density="compact" data-radius="sharp"&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Using presets</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Ön ayarları kullanma</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Presets bundle multiple axes into a named style. Individual axis attributes override preset values.
+        Ön ayarlar birden fazla ekseni adlandırılmış bir stilde bir araya getirir. Tekil eksen nitelikleri ön ayar değerlerini geçersiz kılar.
       </p>
-      <pre class="wb-code">&lt;!-- Apply the "rounded" preset, then override just the accent color --&gt;
+      <pre class="wb-code">&lt;!-- "rounded" ön ayarını uygula, yalnızca vurgu rengini geçersiz kıl --&gt;
 &lt;html data-preset="rounded" data-accent="rose"&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Runtime theme switching</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Çalışma zamanında tema değiştirme</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Use the <code class="wb-code-inline">WBTheme</code> JS API to switch axes at runtime.
-        Built-in <code class="wb-code-inline">data-wb-mode-cycle</code> and
-        <code class="wb-code-inline">data-wb-mode-set</code> attributes make wire-up effortless.
+        Eksenleri çalışma zamanında değiştirmek için <code class="wb-code-inline">WBTheme</code> JS API'sini kullan.
+        Yerleşik <code class="wb-code-inline">data-wb-mode-cycle</code> ve
+        <code class="wb-code-inline">data-wb-mode-set</code> nitelikleri bağlamayı zahmetsiz kılar.
       </p>
-      <pre class="wb-code">&lt;!-- Cycle through light → dark → auto on click --&gt;
-&lt;button data-wb-mode-cycle&gt;Toggle dark mode&lt;/button&gt;
+      <pre class="wb-code">&lt;!-- Tıklamada light → dark → auto arasında geçiş --&gt;
+&lt;button data-wb-mode-cycle&gt;Karanlık modu değiştir&lt;/button&gt;
 
-&lt;!-- Set a specific mode --&gt;
-&lt;button data-wb-mode-set="dark"&gt;Dark&lt;/button&gt;
-&lt;button data-wb-mode-set="light"&gt;Light&lt;/button&gt;
+&lt;!-- Belirli bir mod ayarla --&gt;
+&lt;button data-wb-mode-set="dark"&gt;Karanlık&lt;/button&gt;
+&lt;button data-wb-mode-set="light"&gt;Aydınlık&lt;/button&gt;
 
-&lt;!-- Set accent color --&gt;
-&lt;button data-wb-accent-set="forest"&gt;Forest accent&lt;/button&gt;</pre>
+&lt;!-- Vurgu rengini ayarla --&gt;
+&lt;button data-wb-accent-set="forest"&gt;Forest vurgu&lt;/button&gt;</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4);margin-bottom:var(--wb-s3)">
-        Or call the JS API directly:
+        Ya da JS API'sini doğrudan çağır:
       </p>
       <pre class="wb-code">WBTheme.setMode('dark');
 WBTheme.setAccent('sunset');
@@ -486,104 +486,104 @@ WBTheme.setPreset('rounded');
 WBTheme.setDensity('compact');</pre>
 
       <div class="docs-callout" style="margin-top:var(--wb-s5)">
-        <strong>Note:</strong> <code class="wb-code-inline">data-mode</code> is the correct attribute name —
-        not <code class="wb-code-inline">data-theme</code>. <code class="wb-code-inline">WBTheme</code> persists the
-        user's choice in <code class="wb-code-inline">localStorage</code> automatically.
+        <strong>Not:</strong> Doğru nitelik adı <code class="wb-code-inline">data-mode</code>'dur —
+        <code class="wb-code-inline">data-theme</code> değil. <code class="wb-code-inline">WBTheme</code> kullanıcının
+        tercihini otomatik olarak <code class="wb-code-inline">localStorage</code>'a kaydeder.
       </div>
     </section>
 
-    <!-- ── 4. First component ───────────────────────────── -->
-    <section class="docs-section" id="first-component">
-      <h2 class="docs-section-title">Writing components</h2>
+    <!-- ── 4. Bileşen yazma ──────────────────────────────── -->
+    <section class="docs-section" id="ilk-bilesen">
+      <h2 class="docs-section-title">Bileşen yazma</h2>
       <p class="docs-section-lead">
-        Every WebBlocks UI component uses a <code class="wb-code-inline">wb-</code> prefix.
-        Components are plain HTML — no custom elements, no JS framework required.
+        Her WebBlocks UI bileşeni <code class="wb-code-inline">wb-</code> ön ekini kullanır.
+        Bileşenler düz HTML'dir — özel öğe veya JS framework gerekmez.
       </p>
 
-      <h3 class="docs-sub-title">Button variants</h3>
+      <h3 class="docs-sub-title">Buton varyantları</h3>
       <pre class="wb-code">&lt;button class="wb-btn wb-btn-primary"&gt;Primary&lt;/button&gt;
 &lt;button class="wb-btn wb-btn-outline"&gt;Outline&lt;/button&gt;
 &lt;button class="wb-btn wb-btn-ghost"&gt;Ghost&lt;/button&gt;
-&lt;button class="wb-btn wb-btn-danger"&gt;Delete&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-danger"&gt;Sil&lt;/button&gt;
 
-&lt;!-- Sizes --&gt;
-&lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Small&lt;/button&gt;
-&lt;button class="wb-btn wb-btn-primary wb-btn-lg"&gt;Large&lt;/button&gt;</pre>
+&lt;!-- Boyutlar --&gt;
+&lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Küçük&lt;/button&gt;
+&lt;button class="wb-btn wb-btn-primary wb-btn-lg"&gt;Büyük&lt;/button&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Card</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Kart</h3>
       <pre class="wb-code">&lt;div class="wb-card"&gt;
   &lt;div class="wb-card-header"&gt;
-    &lt;h3 class="wb-card-title"&gt;Card title&lt;/h3&gt;
+    &lt;h3 class="wb-card-title"&gt;Kart başlığı&lt;/h3&gt;
   &lt;/div&gt;
   &lt;div class="wb-card-body"&gt;
-    Card content goes here.
+    Kart içeriği buraya gelir.
   &lt;/div&gt;
   &lt;div class="wb-card-footer"&gt;
-    &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Save&lt;/button&gt;
+    &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Kaydet&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Alert</h3>
-      <pre class="wb-code">&lt;div class="wb-alert wb-alert-success"&gt;Record saved successfully.&lt;/div&gt;
-&lt;div class="wb-alert wb-alert-danger"&gt;Something went wrong.&lt;/div&gt;
-&lt;div class="wb-alert wb-alert-warning"&gt;Please review before publishing.&lt;/div&gt;
-&lt;div class="wb-alert wb-alert-info"&gt;Your session expires in 10 minutes.&lt;/div&gt;</pre>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Uyarı</h3>
+      <pre class="wb-code">&lt;div class="wb-alert wb-alert-success"&gt;Kayıt başarıyla kaydedildi.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-danger"&gt;Bir şeyler yanlış gitti.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-warning"&gt;Yayınlamadan önce lütfen inceleyin.&lt;/div&gt;
+&lt;div class="wb-alert wb-alert-info"&gt;Oturumunuz 10 dakika içinde sona eriyor.&lt;/div&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Form field</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Form alanı</h3>
       <pre class="wb-code">&lt;div class="wb-field"&gt;
-  &lt;label class="wb-label"&gt;Email&lt;/label&gt;
-  &lt;input type="email" class="wb-input" placeholder="you@example.com"&gt;
-  &lt;p class="wb-field-hint"&gt;We'll never share your email.&lt;/p&gt;
+  &lt;label class="wb-label"&gt;E-posta&lt;/label&gt;
+  &lt;input type="email" class="wb-input" placeholder="siz@ornek.com"&gt;
+  &lt;p class="wb-field-hint"&gt;E-postanızı asla paylaşmayacağız.&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;!-- With error state --&gt;
+&lt;!-- Hata durumu --&gt;
 &lt;div class="wb-field"&gt;
-  &lt;label class="wb-label"&gt;Name&lt;/label&gt;
+  &lt;label class="wb-label"&gt;İsim&lt;/label&gt;
   &lt;input type="text" class="wb-input is-invalid" value="x"&gt;
-  &lt;p class="wb-field-error"&gt;Name must be at least 2 characters.&lt;/p&gt;
+  &lt;p class="wb-field-error"&gt;İsim en az 2 karakter olmalıdır.&lt;/p&gt;
 &lt;/div&gt;</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s6)">
-        See the <a href="components.html" style="color:var(--wb-accent)">Components reference</a>
-        for all 40+ components with live examples and copy-ready code.
+        Canlı örnekler ve kopyalamaya hazır kodlar için
+        <a href="../components.html" style="color:var(--wb-accent)">Bileşenler referansına</a> bakın (40+ bileşen).
       </p>
     </section>
 
-    <!-- ── 5. Dashboard shell ───────────────────────────── -->
-    <section class="docs-section" id="dashboard-shell">
-      <h2 class="docs-section-title">Dashboard shell</h2>
+    <!-- ── 5. Dashboard kabuğu ──────────────────────────── -->
+    <section class="docs-section" id="dashboard-kabugu">
+      <h2 class="docs-section-title">Dashboard kabuğu</h2>
       <p class="docs-section-lead">
-        The dashboard shell provides the outer frame for admin panels: a collapsible sidebar, sticky topbar, and scrollable content area.
+        Dashboard kabuğu admin panellerin dış çerçevesini sağlar: katlanabilir kenar çubuğu, yapışkan üst çubuk ve kaydırılabilir içerik alanı.
       </p>
 
       <pre class="wb-code">&lt;div class="wb-dashboard-shell"&gt;
 
-  &lt;!-- Sidebar --&gt;
+  &lt;!-- Kenar çubuğu --&gt;
   &lt;aside class="wb-sidebar"&gt;
     &lt;div class="wb-sidebar-brand"&gt;
-      &lt;a href="#"&gt;My App&lt;/a&gt;
+      &lt;a href="#"&gt;Uygulamam&lt;/a&gt;
     &lt;/div&gt;
     &lt;nav class="wb-sidebar-nav"&gt;
       &lt;a href="#" class="wb-sidebar-link is-active"&gt;Dashboard&lt;/a&gt;
-      &lt;a href="#" class="wb-sidebar-link"&gt;Users&lt;/a&gt;
-      &lt;a href="#" class="wb-sidebar-link"&gt;Settings&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Kullanıcılar&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Ayarlar&lt;/a&gt;
     &lt;/nav&gt;
   &lt;/aside&gt;
 
-  &lt;!-- Main area --&gt;
+  &lt;!-- Ana alan --&gt;
   &lt;div class="wb-dashboard-body"&gt;
-    &lt;!-- Topbar --&gt;
+    &lt;!-- Üst çubuk --&gt;
     &lt;header class="wb-navbar"&gt;
       &lt;button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-toggle="sidebar"&gt;
-        ☰ Menu
+        ☰ Menü
       &lt;/button&gt;
     &lt;/header&gt;
 
-    &lt;!-- Content --&gt;
+    &lt;!-- İçerik --&gt;
     &lt;main class="wb-dashboard-main"&gt;
       &lt;div class="wb-container"&gt;
-        &lt;h1&gt;Page title&lt;/h1&gt;
-        &lt;p&gt;Page content…&lt;/p&gt;
+        &lt;h1&gt;Sayfa başlığı&lt;/h1&gt;
+        &lt;p&gt;Sayfa içeriği…&lt;/p&gt;
       &lt;/div&gt;
     &lt;/main&gt;
   &lt;/div&gt;
@@ -591,20 +591,20 @@ WBTheme.setDensity('compact');</pre>
 &lt;/div&gt;</pre>
 
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        See the <a href="layout.html" style="color:var(--wb-accent)">Layouts page</a> for full shell breakdowns and all layout variants.
+        Tam kabuk dökümleri ve tüm düzen varyantları için <a href="../layout.html" style="color:var(--wb-accent)">Düzenler sayfasına</a> bakın.
       </p>
     </section>
 
-    <!-- ── 6. Laravel integration ───────────────────────── -->
+    <!-- ── 6. Laravel entegrasyonu ───────────────────────── -->
     <section class="docs-section" id="laravel">
-      <h2 class="docs-section-title">Laravel integration</h2>
+      <h2 class="docs-section-title">Laravel entegrasyonu</h2>
       <p class="docs-section-lead">
-        WebBlocks UI works with any template language. Here's how to integrate it into a Laravel Blade project.
+        WebBlocks UI herhangi bir şablon diliyle çalışır. İşte Laravel Blade projesine nasıl entegre edeceğin.
       </p>
 
-      <h3 class="docs-sub-title">Recommended approach: CDN via layout</h3>
+      <h3 class="docs-sub-title">Önerilen yaklaşım: Layout üzerinden CDN</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Add the CDN links to your base Blade layout:
+        CDN bağlantılarını temel Blade layout'una ekle:
       </p>
       <pre class="wb-code">&lt;!-- resources/views/layouts/app.blade.php --&gt;
 &lt;!DOCTYPE html&gt;
@@ -630,82 +630,82 @@ WBTheme.setDensity('compact');</pre>
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Self-hosted via public folder</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">public klasöründe kendi sunucunda barındır</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Copy <code class="wb-code-inline">dist/</code> files into your Laravel <code class="wb-code-inline">public/</code> directory and reference with the <code class="wb-code-inline">asset()</code> helper:
+        <code class="wb-code-inline">dist/</code> dosyalarını Laravel'in <code class="wb-code-inline">public/</code> dizinine kopyala ve <code class="wb-code-inline">asset()</code> yardımcısıyla referans ver:
       </p>
       <pre class="wb-code">&lt;!-- public/vendor/webblocks-ui/webblocks-ui.css --&gt;
 &lt;link rel="stylesheet" href="{{ asset('vendor/webblocks-ui/webblocks-ui.css') }}"&gt;
 &lt;script src="{{ asset('vendor/webblocks-ui/webblocks-ui.js') }}"&gt;&lt;/script&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">CSRF meta tag for AJAX modules</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">AJAX modülleri için CSRF meta etiketi</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        If you use <code class="wb-code-inline">WBAjaxToggle</code> or other AJAX features,
-        add the CSRF meta tag and the module reads it automatically:
+        <code class="wb-code-inline">WBAjaxToggle</code> veya diğer AJAX özelliklerini kullanıyorsan,
+        CSRF meta etiketini ekle — modül bunu otomatik olarak okur:
       </p>
-      <pre class="wb-code">&lt;!-- In &lt;head&gt; --&gt;
+      <pre class="wb-code">&lt;!-- &lt;head&gt; içinde --&gt;
 &lt;meta name="csrf-token" content="{{ csrf_token() }}"&gt;</pre>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Example: AJAX checkbox toggle</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Örnek: AJAX onay kutusu geçişi</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        Toggle a model's status with a single checkbox and no custom JS:
+        Özel JS yazmadan tek bir onay kutusuyla bir modelin durumunu değiştir:
       </p>
-      <pre class="wb-code">&lt;!-- In a Blade view --&gt;
+      <pre class="wb-code">&lt;!-- Blade görünümünde --&gt;
 &lt;input
   type="checkbox"
   class="wb-switch"
   data-wb-ajax-toggle
   data-wb-url="{{ route('users.toggle-active', $user) }}"
   data-wb-field="is_active"
-  data-wb-success="Status updated"
+  data-wb-success="Durum güncellendi"
   {{ $user->is_active ? 'checked' : '' }}
 &gt;</pre>
 
       <div class="docs-callout" style="margin-top:var(--wb-s5)">
-        <strong>Important:</strong> WebBlocks UI uses plain HTML classes — there are no Blade components or
-        Blade directives. HTML stays HTML, which means your templates work identically in Laravel, plain PHP,
-        Django, Rails, or any other framework.
+        <strong>Önemli:</strong> WebBlocks UI düz HTML sınıfları kullanır — Blade bileşeni veya
+        Blade yönergesi yoktur. HTML, HTML olarak kalır; bu da şablonların Laravel, plain PHP,
+        Django, Rails veya herhangi bir framework'te aynı şekilde çalıştığı anlamına gelir.
       </div>
 
-      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Vite users</h3>
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Vite kullanıcıları</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
-        You can mix WebBlocks UI (CDN or public folder) with Vite for your own app code. There is no need to import WebBlocks UI through Vite — it is intentionally kept outside the build pipeline.
+        WebBlocks UI'ı (CDN veya public klasörü) kendi uygulama kodun için Vite ile birleştirebilirsin. WebBlocks UI'ı Vite üzerinden içe aktarmana gerek yoktur — kasıtlı olarak derleme sürecinin dışında tutulmuştur.
       </p>
-      <pre class="wb-code">&lt;!-- Use CDN for WebBlocks UI, Vite for your own styles/scripts --&gt;
+      <pre class="wb-code">&lt;!-- WebBlocks UI için CDN, kendi stil/scriptler için Vite --&gt;
 &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.2.5/dist/webblocks-ui.css"&gt;
 @vite(['resources/css/app.css', 'resources/js/app.js'])</pre>
     </section>
 
-    <!-- ── 7. Next steps ────────────────────────────────── -->
-    <section class="docs-section" id="next-steps">
-      <h2 class="docs-section-title">Next steps</h2>
-      <p class="docs-section-lead">You're set up. Here's where to go from here.</p>
+    <!-- ── 7. Sonraki adımlar ─────────────────────────────── -->
+    <section class="docs-section" id="sonraki-adimlar">
+      <h2 class="docs-section-title">Sonraki adımlar</h2>
+      <p class="docs-section-lead">Her şey hazır. Buradan nereye gidebileceğin.</p>
 
       <ol class="docs-steps">
         <li>
-          <h3>Explore the token system</h3>
-          <p>Learn how design tokens work and how to override them to match your brand.</p>
-          <a href="foundation.html" class="wb-btn wb-btn-outline wb-btn-sm">Foundation &amp; Tokens →</a>
+          <h3>Token sistemini keşfet</h3>
+          <p>Tasarım tokenlerinin nasıl çalıştığını ve markanla eşleştirmek için nasıl geçersiz kılınacağını öğren.</p>
+          <a href="../foundation.html" class="wb-btn wb-btn-outline wb-btn-sm">Temel &amp; Tokenlar →</a>
         </li>
         <li>
-          <h3>Browse all components</h3>
-          <p>Buttons, cards, modals, drawers, tables, forms, toasts and 30+ more.</p>
-          <a href="components.html" class="wb-btn wb-btn-outline wb-btn-sm">Components →</a>
+          <h3>Tüm bileşenlere göz at</h3>
+          <p>Butonlar, kartlar, modallar, drawer'lar, tablolar, formlar, toastlar ve 30'dan fazlası.</p>
+          <a href="../components.html" class="wb-btn wb-btn-outline wb-btn-sm">Bileşenler →</a>
         </li>
         <li>
-          <h3>Set up a dashboard layout</h3>
-          <p>Dashboard shell, sidebar navigation, settings shell, and content shell.</p>
-          <a href="layout.html" class="wb-btn wb-btn-outline wb-btn-sm">Layouts →</a>
+          <h3>Dashboard düzeni kur</h3>
+          <p>Dashboard kabuğu, kenar çubuğu navigasyonu, ayarlar kabuğu ve içerik kabuğu.</p>
+          <a href="../layout.html" class="wb-btn wb-btn-outline wb-btn-sm">Düzenler →</a>
         </li>
         <li>
-          <h3>Learn the JavaScript API</h3>
-          <p>WBModal, WBDrawer, WBToast, WBAjaxToggle, WBTheme and 8 more modules.</p>
-          <a href="javascript.html" class="wb-btn wb-btn-outline wb-btn-sm">JavaScript API →</a>
+          <h3>JavaScript API'yi öğren</h3>
+          <p>WBModal, WBDrawer, WBToast, WBAjaxToggle, WBTheme ve 8 modül daha.</p>
+          <a href="../javascript.html" class="wb-btn wb-btn-outline wb-btn-sm">JavaScript API →</a>
         </li>
         <li>
-          <h3>Browse the icon set</h3>
-          <p>133 Lucide icons with copy-ready SVG and <code class="wb-code-inline">&lt;i&gt;</code>-tag snippets.</p>
-          <a href="icons.html" class="wb-btn wb-btn-outline wb-btn-sm">Icons →</a>
+          <h3>İkon setine göz at</h3>
+          <p>Kopyalamaya hazır SVG ve <code class="wb-code-inline">&lt;i&gt;</code> etiketi parçacıklarıyla 133 Lucide ikonu.</p>
+          <a href="../icons.html" class="wb-btn wb-btn-outline wb-btn-sm">İkonlar →</a>
         </li>
       </ol>
     </section>

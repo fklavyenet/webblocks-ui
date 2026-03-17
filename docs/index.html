@@ -287,6 +287,23 @@
       transition: background var(--wb-t), color var(--wb-t);
     }
     .docs-mode-btn:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    /* ── Lang switcher ───────────────────────────────────── */
+    .docs-lang-switch {
+      display: flex; border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-md); overflow: hidden;
+    }
+    .docs-lang-switch a {
+      padding: 3px 9px; font-size: 0.75rem; font-weight: 600;
+      text-decoration: none; color: var(--wb-muted);
+      border-right: 1px solid var(--wb-border);
+      transition: background var(--wb-t), color var(--wb-t);
+      letter-spacing: 0.02em;
+    }
+    .docs-lang-switch a:last-child { border-right: none; }
+    .docs-lang-switch a:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    .docs-lang-switch a.is-active {
+      background: var(--wb-accent); color: var(--wb-accent-on);
+    }
     /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 768px) {
       .docs-sidebar { display: none; }
@@ -327,6 +344,12 @@
 
     <!-- Topbar -->
     <div class="docs-topbar">
+      <div class="docs-lang-switch">
+        <a href="index.html" class="is-active">EN</a>
+        <a href="tr/index.html">TR</a>
+        <a href="de/index.html">DE</a>
+        <a href="es/index.html">ES</a>
+      </div>
       <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
          class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
