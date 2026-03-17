@@ -504,6 +504,9 @@
 
     // Expose preset definitions for tooling / UI builders
     presets: PRESETS,
+
+    // Re-sync cycle button icons — call after injecting SVG sprite into DOM
+    sync: syncCycleButtons,
   };
 
 })();
