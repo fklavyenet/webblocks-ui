@@ -105,6 +105,7 @@
 .wb-font-medium  { font-weight: 500; }
 .wb-font-semibold { font-weight: 600; }
 .wb-font-bold    { font-weight: 700; }
+.wb-mono         { font-family: var(--wb-font-mono) !important; }
 
 .wb-text-left    { text-align: left; }
 .wb-text-center  { text-align: center; }

@@ -220,3 +220,89 @@
   display: grid;
   gap: var(--wb-s4);
 }
+
+/* ── Input Group (prefix / suffix addon) ─────────────────── */
+/*
+  Usage:
+  <div class="wb-input-group">
+    <span class="wb-input-addon">/var/www</span>
+    <input class="wb-input" type="text">
+  </div>
+
+  <div class="wb-input-group">
+    <input class="wb-input" type="text">
+    <button class="wb-btn wb-btn-secondary wb-input-addon-btn">Go</button>
+  </div>
+*/
+.wb-input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.wb-input-group .wb-input,
+.wb-input-group .wb-select {
+  flex: 1 1 0%;
+  min-width: 0;
+  border-radius: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Prefix addon */
+.wb-input-group .wb-input-addon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55em 0.85em;
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  color: var(--wb-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Prefix (left) */
+.wb-input-group .wb-input-addon:first-child {
+  border-right: none;
+  border-radius: var(--wb-r-md) 0 0 var(--wb-r-md);
+}
+
+/* Suffix (right) */
+.wb-input-group .wb-input-addon:last-child {
+  border-left: none;
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
+
+/* Button addon */
+.wb-input-group .wb-input-addon-btn {
+  flex-shrink: 0;
+  border-radius: 0;
+  margin-left: -1px;
+}
+.wb-input-group .wb-input-addon-btn:last-child {
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
+.wb-input-group .wb-input-addon-btn:first-child {
+  border-radius: var(--wb-r-md) 0 0 var(--wb-r-md);
+  margin-left: 0;
+  margin-right: -1px;
+}
+
+/* When input is in the middle (addon on both sides) */
+.wb-input-group .wb-input:not(:first-child):not(:last-child),
+.wb-input-group .wb-select:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+/* First child is input (no prefix) */
+.wb-input-group .wb-input:first-child,
+.wb-input-group .wb-select:first-child {
+  border-radius: var(--wb-r-md) 0 0 var(--wb-r-md);
+}
+
+/* Last child is input (no suffix) */
+.wb-input-group .wb-input:last-child,
+.wb-input-group .wb-select:last-child {
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}

@@ -1,0 +1,167 @@
+/* ============================================================
+   WebBlocks UI — Radio Card (wb-radio-card)
+   Bootstrap btn-check equivalent: hidden radio/checkbox inputs
+   styled as selectable card buttons.
+
+   Usage:
+   <div class="wb-radio-group">
+     <label class="wb-radio-card">
+       <input type="radio" name="plan" value="starter">
+       <span class="wb-radio-card-body">
+         <strong>Starter</strong>
+         <span>$9 / month</span>
+       </span>
+     </label>
+     <label class="wb-radio-card">
+       <input type="radio" name="plan" value="pro">
+       <span class="wb-radio-card-body">
+         <strong>Pro</strong>
+         <span>$29 / month</span>
+       </span>
+     </label>
+   </div>
+
+   Works with type="radio" or type="checkbox".
+   ============================================================ */
+
+/* ── Group wrapper ────────────────────────────────────────── */
+.wb-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-s3);
+}
+
+.wb-radio-group--stack {
+  flex-direction: column;
+}
+
+/* ── Card label ───────────────────────────────────────────── */
+.wb-radio-card {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide the native input visually but keep it accessible */
+.wb-radio-card input[type="radio"],
+.wb-radio-card input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.wb-radio-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  padding: var(--wb-s3) var(--wb-s4);
+  border: 2px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface);
+  color: var(--wb-text);
+  font-size: 0.9rem;
+  transition:
+    border-color var(--wb-t),
+    background var(--wb-t),
+    box-shadow var(--wb-t);
+  min-width: 7rem;
+}
+
+.wb-radio-card:hover .wb-radio-card-body {
+  border-color: var(--wb-accent-border);
+  background: var(--wb-accent-softer);
+}
+
+/* Checked state */
+.wb-radio-card input:checked + .wb-radio-card-body {
+  border-color: var(--wb-accent);
+  background: var(--wb-accent-soft);
+  color: var(--wb-accent-text);
+  box-shadow: 0 0 0 3px var(--wb-accent-ring-rgb, 37 99 235) / 0.15;
+}
+
+/* Focus visible */
+.wb-radio-card input:focus-visible + .wb-radio-card-body {
+  outline: 2px solid var(--wb-accent);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+.wb-radio-card input:disabled + .wb-radio-card-body {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Compact (pill-style toggle buttons) ─────────────────── */
+/*
+  <div class="wb-btn-check-group">
+    <label class="wb-btn-check">
+      <input type="radio" name="view" value="list">
+      <span>List</span>
+    </label>
+    <label class="wb-btn-check">
+      <input type="radio" name="view" value="grid">
+      <span>Grid</span>
+    </label>
+  </div>
+*/
+.wb-btn-check-group {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  overflow: hidden;
+  background: var(--wb-surface-2);
+}
+
+.wb-btn-check {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+}
+
+.wb-btn-check input[type="radio"],
+.wb-btn-check input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.wb-btn-check span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: 0.4em 0.9em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  transition: background var(--wb-t), color var(--wb-t);
+}
+
+.wb-btn-check:hover span {
+  color: var(--wb-text);
+  background: var(--wb-surface);
+}
+
+.wb-btn-check input:checked + span {
+  background: var(--wb-accent);
+  color: var(--wb-accent-on);
+}
+
+.wb-btn-check input:focus-visible + span {
+  outline: 2px solid var(--wb-accent);
+  outline-offset: -2px;
+}
+
+.wb-btn-check input:disabled + span {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

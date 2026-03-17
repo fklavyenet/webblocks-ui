@@ -1,0 +1,95 @@
+/* ============================================================
+   WebBlocks UI — Collapse (wb-collapse)
+   Standalone accordion-free collapsible.
+   JS triggers: data-wb-collapse="target-id"
+   State class: is-open on .wb-collapse
+
+   Usage:
+   <button data-wb-collapse="details" class="wb-btn wb-btn-secondary">
+     Toggle
+   </button>
+   <div class="wb-collapse" id="details">
+     <div class="wb-collapse-body">
+       Content here...
+     </div>
+   </div>
+   ============================================================ */
+
+.wb-collapse {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.28s ease, opacity 0.22s ease;
+  opacity: 0;
+}
+
+.wb-collapse.is-open {
+  max-height: 2000px; /* large enough for any content */
+  opacity: 1;
+}
+
+.wb-collapse-body {
+  padding-top: var(--wb-s3);
+}
+
+/* ── Bordered variant ─────────────────────────────────────── */
+.wb-collapse-panel {
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  overflow: hidden;
+}
+
+.wb-collapse-panel .wb-collapse-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s2);
+  width: 100%;
+  padding: var(--wb-s3) var(--wb-s4);
+  background: var(--wb-surface);
+  border: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--wb-t);
+}
+
+.wb-collapse-panel .wb-collapse-trigger:hover {
+  background: var(--wb-surface-2);
+}
+
+.wb-collapse-panel .wb-collapse-trigger:focus-visible {
+  outline: 2px solid var(--wb-accent);
+  outline-offset: -2px;
+}
+
+/* Chevron indicator */
+.wb-collapse-panel .wb-collapse-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: transform var(--wb-t);
+}
+
+.wb-collapse-panel.is-open .wb-collapse-icon {
+  transform: rotate(180deg);
+}
+
+.wb-collapse-panel .wb-collapse {
+  border-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.28s ease, opacity 0.22s ease;
+}
+
+.wb-collapse-panel.is-open .wb-collapse {
+  max-height: 2000px;
+  opacity: 1;
+  border-top: 1px solid var(--wb-border);
+}
+
+.wb-collapse-panel .wb-collapse-body {
+  padding: var(--wb-s4);
+  padding-top: var(--wb-s4);
+}

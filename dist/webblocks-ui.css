@@ -1818,6 +1818,92 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: grid;
   gap: var(--wb-s4);
 }
+
+/* ── Input Group (prefix / suffix addon) ─────────────────── */
+/*
+  Usage:
+  <div class="wb-input-group">
+    <span class="wb-input-addon">/var/www</span>
+    <input class="wb-input" type="text">
+  </div>
+
+  <div class="wb-input-group">
+    <input class="wb-input" type="text">
+    <button class="wb-btn wb-btn-secondary wb-input-addon-btn">Go</button>
+  </div>
+*/
+.wb-input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.wb-input-group .wb-input,
+.wb-input-group .wb-select {
+  flex: 1 1 0%;
+  min-width: 0;
+  border-radius: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Prefix addon */
+.wb-input-group .wb-input-addon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55em 0.85em;
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  color: var(--wb-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Prefix (left) */
+.wb-input-group .wb-input-addon:first-child {
+  border-right: none;
+  border-radius: var(--wb-r-md) 0 0 var(--wb-r-md);
+}
+
+/* Suffix (right) */
+.wb-input-group .wb-input-addon:last-child {
+  border-left: none;
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
+
+/* Button addon */
+.wb-input-group .wb-input-addon-btn {
+  flex-shrink: 0;
+  border-radius: 0;
+  margin-left: -1px;
+}
+.wb-input-group .wb-input-addon-btn:last-child {
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
+.wb-input-group .wb-input-addon-btn:first-child {
+  border-radius: var(--wb-r-md) 0 0 var(--wb-r-md);
+  margin-left: 0;
+  margin-right: -1px;
+}
+
+/* When input is in the middle (addon on both sides) */
+.wb-input-group .wb-input:not(:first-child):not(:last-child),
+.wb-input-group .wb-select:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+/* First child is input (no prefix) */
+.wb-input-group .wb-input:first-child,
+.wb-input-group .wb-select:first-child {
+  border-radius: var(--wb-r-md) 0 0 var(--wb-r-md);
+}
+
+/* Last child is input (no suffix) */
+.wb-input-group .wb-input:last-child,
+.wb-input-group .wb-select:last-child {
+  border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
+}
 /* ============================================================
    WebBlocks UI — Table (wb-table)
    ============================================================ */
@@ -5002,6 +5088,268 @@ i.wb-icon {
 .wb-icon-wrap-info    { background: var(--wb-info-soft);    color: var(--wb-info); }
 .wb-icon-wrap-muted   { background: var(--wb-surface-2);    color: var(--wb-muted); }
 /* ============================================================
+   WebBlocks UI — Radio Card (wb-radio-card)
+   Bootstrap btn-check equivalent: hidden radio/checkbox inputs
+   styled as selectable card buttons.
+
+   Usage:
+   <div class="wb-radio-group">
+     <label class="wb-radio-card">
+       <input type="radio" name="plan" value="starter">
+       <span class="wb-radio-card-body">
+         <strong>Starter</strong>
+         <span>$9 / month</span>
+       </span>
+     </label>
+     <label class="wb-radio-card">
+       <input type="radio" name="plan" value="pro">
+       <span class="wb-radio-card-body">
+         <strong>Pro</strong>
+         <span>$29 / month</span>
+       </span>
+     </label>
+   </div>
+
+   Works with type="radio" or type="checkbox".
+   ============================================================ */
+
+/* ── Group wrapper ────────────────────────────────────────── */
+.wb-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-s3);
+}
+
+.wb-radio-group--stack {
+  flex-direction: column;
+}
+
+/* ── Card label ───────────────────────────────────────────── */
+.wb-radio-card {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide the native input visually but keep it accessible */
+.wb-radio-card input[type="radio"],
+.wb-radio-card input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.wb-radio-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  padding: var(--wb-s3) var(--wb-s4);
+  border: 2px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface);
+  color: var(--wb-text);
+  font-size: 0.9rem;
+  transition:
+    border-color var(--wb-t),
+    background var(--wb-t),
+    box-shadow var(--wb-t);
+  min-width: 7rem;
+}
+
+.wb-radio-card:hover .wb-radio-card-body {
+  border-color: var(--wb-accent-border);
+  background: var(--wb-accent-softer);
+}
+
+/* Checked state */
+.wb-radio-card input:checked + .wb-radio-card-body {
+  border-color: var(--wb-accent);
+  background: var(--wb-accent-soft);
+  color: var(--wb-accent-text);
+  box-shadow: 0 0 0 3px var(--wb-accent-ring-rgb, 37 99 235) / 0.15;
+}
+
+/* Focus visible */
+.wb-radio-card input:focus-visible + .wb-radio-card-body {
+  outline: 2px solid var(--wb-accent);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+.wb-radio-card input:disabled + .wb-radio-card-body {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Compact (pill-style toggle buttons) ─────────────────── */
+/*
+  <div class="wb-btn-check-group">
+    <label class="wb-btn-check">
+      <input type="radio" name="view" value="list">
+      <span>List</span>
+    </label>
+    <label class="wb-btn-check">
+      <input type="radio" name="view" value="grid">
+      <span>Grid</span>
+    </label>
+  </div>
+*/
+.wb-btn-check-group {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  overflow: hidden;
+  background: var(--wb-surface-2);
+}
+
+.wb-btn-check {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+}
+
+.wb-btn-check input[type="radio"],
+.wb-btn-check input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.wb-btn-check span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s1);
+  padding: 0.4em 0.9em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  transition: background var(--wb-t), color var(--wb-t);
+}
+
+.wb-btn-check:hover span {
+  color: var(--wb-text);
+  background: var(--wb-surface);
+}
+
+.wb-btn-check input:checked + span {
+  background: var(--wb-accent);
+  color: var(--wb-accent-on);
+}
+
+.wb-btn-check input:focus-visible + span {
+  outline: 2px solid var(--wb-accent);
+  outline-offset: -2px;
+}
+
+.wb-btn-check input:disabled + span {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+/* ============================================================
+   WebBlocks UI — Collapse (wb-collapse)
+   Standalone accordion-free collapsible.
+   JS triggers: data-wb-collapse="target-id"
+   State class: is-open on .wb-collapse
+
+   Usage:
+   <button data-wb-collapse="details" class="wb-btn wb-btn-secondary">
+     Toggle
+   </button>
+   <div class="wb-collapse" id="details">
+     <div class="wb-collapse-body">
+       Content here...
+     </div>
+   </div>
+   ============================================================ */
+
+.wb-collapse {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.28s ease, opacity 0.22s ease;
+  opacity: 0;
+}
+
+.wb-collapse.is-open {
+  max-height: 2000px; /* large enough for any content */
+  opacity: 1;
+}
+
+.wb-collapse-body {
+  padding-top: var(--wb-s3);
+}
+
+/* ── Bordered variant ─────────────────────────────────────── */
+.wb-collapse-panel {
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  overflow: hidden;
+}
+
+.wb-collapse-panel .wb-collapse-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s2);
+  width: 100%;
+  padding: var(--wb-s3) var(--wb-s4);
+  background: var(--wb-surface);
+  border: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--wb-text);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--wb-t);
+}
+
+.wb-collapse-panel .wb-collapse-trigger:hover {
+  background: var(--wb-surface-2);
+}
+
+.wb-collapse-panel .wb-collapse-trigger:focus-visible {
+  outline: 2px solid var(--wb-accent);
+  outline-offset: -2px;
+}
+
+/* Chevron indicator */
+.wb-collapse-panel .wb-collapse-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: transform var(--wb-t);
+}
+
+.wb-collapse-panel.is-open .wb-collapse-icon {
+  transform: rotate(180deg);
+}
+
+.wb-collapse-panel .wb-collapse {
+  border-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.28s ease, opacity 0.22s ease;
+}
+
+.wb-collapse-panel.is-open .wb-collapse {
+  max-height: 2000px;
+  opacity: 1;
+  border-top: 1px solid var(--wb-border);
+}
+
+.wb-collapse-panel .wb-collapse-body {
+  padding: var(--wb-s4);
+  padding-top: var(--wb-s4);
+}
+/* ============================================================
    WebBlocks UI — Container & Layout Primitives
    ============================================================ */
 
@@ -6433,6 +6781,7 @@ i.wb-icon {
 .wb-font-medium  { font-weight: 500; }
 .wb-font-semibold { font-weight: 600; }
 .wb-font-bold    { font-weight: 700; }
+.wb-mono         { font-family: var(--wb-font-mono) !important; }
 
 .wb-text-left    { text-align: left; }
 .wb-text-center  { text-align: center; }
@@ -6537,4 +6886,152 @@ i.wb-icon {
 
 @media (min-width: 769px) {
   .wb-visible-mobile { display: none !important; }
+}
+/* ============================================================
+   WebBlocks UI — Grid System
+   Bootstrap-compatible 12-column grid via CSS Grid.
+   Usage:
+     <div class="wb-row">
+       <div class="wb-col-md-8">main</div>
+       <div class="wb-col-md-4">sidebar</div>
+     </div>
+   ============================================================ */
+
+/* ── Row ──────────────────────────────────────────────────── */
+
+.wb-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--wb-s4);
+}
+
+.wb-row-gap-2 { gap: var(--wb-s2); }
+.wb-row-gap-4 { gap: var(--wb-s4); }
+.wb-row-gap-6 { gap: var(--wb-s6); }
+.wb-row-gap-8 { gap: var(--wb-s8); }
+
+/* ── Columns — default (mobile-first, all breakpoints) ───── */
+
+.wb-col-1  { grid-column: span 1; }
+.wb-col-2  { grid-column: span 2; }
+.wb-col-3  { grid-column: span 3; }
+.wb-col-4  { grid-column: span 4; }
+.wb-col-5  { grid-column: span 5; }
+.wb-col-6  { grid-column: span 6; }
+.wb-col-7  { grid-column: span 7; }
+.wb-col-8  { grid-column: span 8; }
+.wb-col-9  { grid-column: span 9; }
+.wb-col-10 { grid-column: span 10; }
+.wb-col-11 { grid-column: span 11; }
+.wb-col-12 { grid-column: span 12; }
+.wb-col    { grid-column: span 1; flex: 1; } /* auto */
+
+/* ── Columns — sm (≥576px) ────────────────────────────────── */
+
+@media (min-width: 576px) {
+  .wb-col-sm-1  { grid-column: span 1; }
+  .wb-col-sm-2  { grid-column: span 2; }
+  .wb-col-sm-3  { grid-column: span 3; }
+  .wb-col-sm-4  { grid-column: span 4; }
+  .wb-col-sm-5  { grid-column: span 5; }
+  .wb-col-sm-6  { grid-column: span 6; }
+  .wb-col-sm-7  { grid-column: span 7; }
+  .wb-col-sm-8  { grid-column: span 8; }
+  .wb-col-sm-9  { grid-column: span 9; }
+  .wb-col-sm-10 { grid-column: span 10; }
+  .wb-col-sm-11 { grid-column: span 11; }
+  .wb-col-sm-12 { grid-column: span 12; }
+}
+
+/* ── Columns — md (≥768px) ────────────────────────────────── */
+
+@media (min-width: 768px) {
+  .wb-col-md-1  { grid-column: span 1; }
+  .wb-col-md-2  { grid-column: span 2; }
+  .wb-col-md-3  { grid-column: span 3; }
+  .wb-col-md-4  { grid-column: span 4; }
+  .wb-col-md-5  { grid-column: span 5; }
+  .wb-col-md-6  { grid-column: span 6; }
+  .wb-col-md-7  { grid-column: span 7; }
+  .wb-col-md-8  { grid-column: span 8; }
+  .wb-col-md-9  { grid-column: span 9; }
+  .wb-col-md-10 { grid-column: span 10; }
+  .wb-col-md-11 { grid-column: span 11; }
+  .wb-col-md-12 { grid-column: span 12; }
+}
+
+/* ── Columns — lg (≥992px) ────────────────────────────────── */
+
+@media (min-width: 992px) {
+  .wb-col-lg-1  { grid-column: span 1; }
+  .wb-col-lg-2  { grid-column: span 2; }
+  .wb-col-lg-3  { grid-column: span 3; }
+  .wb-col-lg-4  { grid-column: span 4; }
+  .wb-col-lg-5  { grid-column: span 5; }
+  .wb-col-lg-6  { grid-column: span 6; }
+  .wb-col-lg-7  { grid-column: span 7; }
+  .wb-col-lg-8  { grid-column: span 8; }
+  .wb-col-lg-9  { grid-column: span 9; }
+  .wb-col-lg-10 { grid-column: span 10; }
+  .wb-col-lg-11 { grid-column: span 11; }
+  .wb-col-lg-12 { grid-column: span 12; }
+}
+
+/* ── Columns — xl (≥1200px) ───────────────────────────────── */
+
+@media (min-width: 1200px) {
+  .wb-col-xl-1  { grid-column: span 1; }
+  .wb-col-xl-2  { grid-column: span 2; }
+  .wb-col-xl-3  { grid-column: span 3; }
+  .wb-col-xl-4  { grid-column: span 4; }
+  .wb-col-xl-5  { grid-column: span 5; }
+  .wb-col-xl-6  { grid-column: span 6; }
+  .wb-col-xl-7  { grid-column: span 7; }
+  .wb-col-xl-8  { grid-column: span 8; }
+  .wb-col-xl-9  { grid-column: span 9; }
+  .wb-col-xl-10 { grid-column: span 10; }
+  .wb-col-xl-11 { grid-column: span 11; }
+  .wb-col-xl-12 { grid-column: span 12; }
+}
+
+/* ── Mobile fallback: all cols stack full-width below sm ──── */
+
+@media (max-width: 575px) {
+  .wb-row > [class*="wb-col-"] {
+    grid-column: span 12;
+  }
+}
+
+/* ── Column offset ────────────────────────────────────────── */
+
+.wb-col-offset-1  { grid-column-start: 2; }
+.wb-col-offset-2  { grid-column-start: 3; }
+.wb-col-offset-3  { grid-column-start: 4; }
+.wb-col-offset-4  { grid-column-start: 5; }
+.wb-col-offset-6  { grid-column-start: 7; }
+
+/* ── Alignment helpers on row ─────────────────────────────── */
+
+.wb-row-center  { justify-items: center; }
+.wb-row-end     { justify-items: end; }
+.wb-row-stretch { align-items: stretch; }
+.wb-row-top     { align-items: start; }
+.wb-row-middle  { align-items: center; }
+.wb-row-bottom  { align-items: end; }
+
+/* ── Simple two/three/four column preset grids ────────────── */
+
+.wb-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--wb-s4); }
+.wb-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--wb-s4); }
+.wb-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--wb-s4); }
+
+@media (max-width: 768px) {
+  .wb-grid-3,
+  .wb-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 575px) {
+  .wb-grid-2,
+  .wb-grid-3,
+  .wb-grid-4 { grid-template-columns: 1fr; }
 }

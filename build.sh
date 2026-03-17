@@ -57,6 +57,8 @@ cat \
   "$ROOT/src/css/components/tooltip.css" \
   "$ROOT/src/css/components/toolbar.css" \
   "$ROOT/src/css/components/icons.css" \
+  "$ROOT/src/css/components/radio-card.css" \
+  "$ROOT/src/css/components/collapse.css" \
   "$ROOT/src/css/layouts/container.css" \
   "$ROOT/src/css/layouts/navbar.css" \
   "$ROOT/src/css/layouts/sidebar.css" \
@@ -65,6 +67,7 @@ cat \
   "$ROOT/src/css/layouts/settings-shell.css" \
   "$ROOT/src/css/layouts/content-shell.css" \
   "$ROOT/src/css/utilities/helpers.css" \
+  "$ROOT/src/css/utilities/grid.css" \
   > "$CSS_OUT"
 
 CSS_LINES=$(wc -l < "$CSS_OUT")
@@ -89,6 +92,7 @@ cat \
   "$ROOT/src/js/tooltip.js" \
   "$ROOT/src/js/dismiss.js" \
   "$ROOT/src/js/ajax-toggle.js" \
+  "$ROOT/src/js/collapse.js" \
   > "$JS_OUT"
 
 JS_LINES=$(wc -l < "$JS_OUT")
