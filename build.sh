@@ -84,6 +84,10 @@ cat \
   "$ROOT/src/js/nav-group.js" \
   "$ROOT/src/js/drawer.js" \
   "$ROOT/src/js/command-palette.js" \
+  "$ROOT/src/js/toast.js" \
+  "$ROOT/src/js/popover.js" \
+  "$ROOT/src/js/tooltip.js" \
+  "$ROOT/src/js/dismiss.js" \
   > "$JS_OUT"
 
 JS_LINES=$(wc -l < "$JS_OUT")

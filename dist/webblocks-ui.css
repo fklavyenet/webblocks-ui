@@ -1588,6 +1588,14 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   transition: opacity var(--wb-t);
 }
 .wb-alert-close:hover { opacity: 1; }
+
+/* ── Dismiss animation ────────────────────────────────────── */
+.wb-alert.is-leaving {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+}
 /* ============================================================
    WebBlocks UI — Form Elements
    (wb-input, wb-select, wb-textarea, wb-checkbox, wb-radio,
