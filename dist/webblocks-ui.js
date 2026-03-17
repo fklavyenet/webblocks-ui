@@ -1585,3 +1585,431 @@
   };
 
 })();
+/* ============================================================
+   WebBlocks UI — Toast (toast.js)
+
+   Usage (programmatic):
+     WBToast.show('Saved successfully', { type: 'success' });
+     WBToast.show('Something went wrong', { type: 'danger', duration: 6000 });
+     WBToast.show('Upload complete', {
+       type: 'success',
+       title: 'Done',
+       position: 'top-right',
+       duration: 4000
+     });
+     WBToast.show('Manual', { duration: 0 }); // no auto-dismiss
+
+   Usage (HTML declarative — dismiss button):
+     <div class="wb-toast wb-toast-success" id="myToast">
+       <div class="wb-toast-body">Message</div>
+       <button class="wb-toast-close" data-wb-dismiss="toast">&times;</button>
+     </div>
+
+   Options:
+     message   {string}  Toast text (required)
+     title     {string}  Optional bold title above message
+     type      {string}  success | warning | danger | info (default: none)
+     position  {string}  top-right | top-center | top-left |
+                         bottom-right (default) | bottom-center | bottom-left
+     duration  {number}  ms before auto-dismiss (default: 4000, 0 = no auto-dismiss)
+     closable  {boolean} show close button (default: true)
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  // ── Container cache ───────────────────────────────────────
+  var containers = {};
+
+  var POSITIONS = [
+    'top-right', 'top-center', 'top-left',
+    'bottom-right', 'bottom-center', 'bottom-left'
+  ];
+
+  function getContainer(position) {
+    position = position || 'bottom-right';
+    if (containers[position]) return containers[position];
+
+    var el = document.createElement('div');
+    el.className = 'wb-toast-container';
+    if (position !== 'bottom-right') {
+      el.classList.add('wb-toast-container-' + position);
+    }
+    document.body.appendChild(el);
+    containers[position] = el;
+    return el;
+  }
+
+  // ── Dismiss a toast element ───────────────────────────────
+
+  function dismiss(toast) {
+    if (!toast || toast.classList.contains('is-leaving')) return;
+    toast.classList.add('is-leaving');
+
+    var done = false;
+    function remove() {
+      if (done) return;
+      done = true;
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+      WBDom.emit(toast, 'wb:toast:close');
+    }
+
+    toast.addEventListener('animationend', remove, { once: true });
+    setTimeout(remove, 300); // fallback
+  }
+
+  // ── Icon SVG per type ─────────────────────────────────────
+
+  var ICONS = {
+    success: '<svg class="wb-toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--wb-success)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+    warning: '<svg class="wb-toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--wb-warning)"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    danger:  '<svg class="wb-toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--wb-danger)"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+    info:    '<svg class="wb-toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--wb-info)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+  };
+
+  // ── Show ──────────────────────────────────────────────────
+
+  function show(message, opts) {
+    opts = opts || {};
+
+    var type      = opts.type     || null;
+    var title     = opts.title    || null;
+    var position  = POSITIONS.indexOf(opts.position) !== -1 ? opts.position : 'bottom-right';
+    var duration  = opts.duration !== undefined ? opts.duration : 4000;
+    var closable  = opts.closable !== false;
+
+    var toast = document.createElement('div');
+    toast.className = 'wb-toast' + (type ? ' wb-toast-' + type : '');
+
+    var html = '';
+
+    // Icon
+    if (type && ICONS[type]) {
+      html += ICONS[type];
+    }
+
+    // Body
+    html += '<div class="wb-toast-body">';
+    if (title) {
+      html += '<span class="wb-toast-title">' + _escape(title) + '</span>';
+    }
+    html += _escape(message);
+    html += '</div>';
+
+    // Close button
+    if (closable) {
+      html += '<button class="wb-toast-close" data-wb-dismiss="toast" aria-label="Close">&times;</button>';
+    }
+
+    toast.innerHTML = html;
+
+    var container = getContainer(position);
+    container.appendChild(toast);
+
+    WBDom.emit(toast, 'wb:toast:open');
+
+    // Auto-dismiss
+    if (duration > 0) {
+      setTimeout(function () { dismiss(toast); }, duration);
+    }
+
+    return toast;
+  }
+
+  // ── HTML escape helper ────────────────────────────────────
+
+  function _escape(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ── Event delegation — dismiss button ────────────────────
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-wb-dismiss="toast"]');
+    if (!btn) return;
+    var toast = btn.closest('.wb-toast');
+    if (toast) dismiss(toast);
+  });
+
+  // ── Public API ────────────────────────────────────────────
+
+  window.WBToast = {
+    show:    show,
+    dismiss: dismiss
+  };
+
+})();
+/* ============================================================
+   WebBlocks UI — Popover (popover.js)
+
+   Usage (HTML):
+     <div class="wb-popover" data-wb-popover>
+       <button class="wb-btn wb-btn-secondary" data-wb-toggle="popover">
+         Info
+       </button>
+       <div class="wb-popover-panel">
+         <div class="wb-popover-body">Content here</div>
+       </div>
+     </div>
+
+   Placement modifiers (on .wb-popover wrapper):
+     wb-popover-top | wb-popover-right | wb-popover-left | wb-popover-end
+
+   Dismiss:
+     <button data-wb-dismiss="popover">Close</button>
+
+   JS API:
+     WBPopover.open(wrapperEl)
+     WBPopover.close(wrapperEl)
+     WBPopover.closeAll()
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var active = null;
+
+  // ── Open ──────────────────────────────────────────────────
+
+  function open(wrapper) {
+    if (!wrapper) return;
+    if (active && active !== wrapper) close(active);
+
+    wrapper.classList.add('is-open');
+    active = wrapper;
+    WBDom.emit(wrapper, 'wb:popover:open');
+  }
+
+  // ── Close ─────────────────────────────────────────────────
+
+  function close(wrapper) {
+    if (!wrapper) wrapper = active;
+    if (!wrapper) return;
+
+    wrapper.classList.remove('is-open');
+    if (active === wrapper) active = null;
+    WBDom.emit(wrapper, 'wb:popover:close');
+  }
+
+  function closeAll() {
+    document.querySelectorAll('.wb-popover.is-open').forEach(function (el) {
+      close(el);
+    });
+    active = null;
+  }
+
+  // ── Event delegation ──────────────────────────────────────
+
+  document.addEventListener('click', function (e) {
+    // Toggle trigger
+    var trigger = e.target.closest('[data-wb-toggle="popover"]');
+    if (trigger) {
+      e.stopPropagation();
+      var wrapper = trigger.closest('[data-wb-popover]') || trigger.closest('.wb-popover');
+      if (!wrapper) return;
+      if (wrapper.classList.contains('is-open')) {
+        close(wrapper);
+      } else {
+        open(wrapper);
+      }
+      return;
+    }
+
+    // Dismiss button inside popover
+    var dismiss = e.target.closest('[data-wb-dismiss="popover"]');
+    if (dismiss) {
+      var wrapper = dismiss.closest('.wb-popover');
+      if (wrapper) close(wrapper);
+      return;
+    }
+
+    // Click outside — close active popover
+    if (active && !active.contains(e.target)) {
+      close(active);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && active) close(active);
+  });
+
+  // ── Public API ────────────────────────────────────────────
+
+  window.WBPopover = {
+    open:     open,
+    close:    close,
+    closeAll: closeAll
+  };
+
+})();
+/* ============================================================
+   WebBlocks UI — Tooltip (tooltip.js)
+
+   The tooltip appearance is handled entirely by CSS via the
+   [data-wb-tooltip] attribute. This JS module adds:
+
+   1. Programmatic show/hide API.
+   2. Support for tooltips on disabled elements (which don't
+      receive :hover). Wrap the disabled element in a
+      <span data-wb-tooltip="..."> to work around this.
+   3. data-wb-tooltip-delay — show delay in ms (default: 0).
+
+   Usage (HTML — pure CSS, no JS needed):
+     <button data-wb-tooltip="Save changes">Save</button>
+
+   Usage (programmatic):
+     WBTooltip.show(el);     // force show
+     WBTooltip.hide(el);     // force hide
+     WBTooltip.hideAll();    // hide all forced tooltips
+
+   Forced show/hide works by toggling .wb-tooltip-force-show
+   and .wb-tooltip-force-hide classes. Pair these with CSS
+   rules if custom programmatic behavior is needed.
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  // ── Delay support ─────────────────────────────────────────
+  // Reads data-wb-tooltip-delay from element.
+  // Default: 0ms. Hover intent: add a small delay like 300.
+
+  var timers = new WeakMap ? new WeakMap() : null;
+
+  function getDelay(el) {
+    var d = parseInt(el.getAttribute('data-wb-tooltip-delay'), 10);
+    return isNaN(d) ? 0 : d;
+  }
+
+  // ── Programmatic show/hide ────────────────────────────────
+
+  function show(el) {
+    if (!el) return;
+    el.classList.remove('wb-tooltip-force-hide');
+    el.classList.add('wb-tooltip-force-show');
+    WBDom.emit(el, 'wb:tooltip:show');
+  }
+
+  function hide(el) {
+    if (!el) return;
+    el.classList.remove('wb-tooltip-force-show');
+    el.classList.add('wb-tooltip-force-hide');
+    WBDom.emit(el, 'wb:tooltip:hide');
+  }
+
+  function hideAll() {
+    document.querySelectorAll('.wb-tooltip-force-show').forEach(function (el) {
+      hide(el);
+    });
+  }
+
+  // ── Delayed hover (optional enhancement) ─────────────────
+  // Only activates on elements with data-wb-tooltip-delay set.
+
+  document.addEventListener('mouseover', function (e) {
+    var el = e.target.closest('[data-wb-tooltip][data-wb-tooltip-delay]');
+    if (!el || !timers) return;
+
+    var delay = getDelay(el);
+    if (delay <= 0) return;
+
+    // Clear any pending hide timer
+    clearTimeout(timers.get(el));
+
+    // Schedule show
+    timers.set(el, setTimeout(function () {
+      show(el);
+    }, delay));
+  });
+
+  document.addEventListener('mouseout', function (e) {
+    var el = e.target.closest('[data-wb-tooltip][data-wb-tooltip-delay]');
+    if (!el || !timers) return;
+
+    clearTimeout(timers.get(el));
+
+    // Reset forced state when mouse leaves — let CSS take over
+    el.classList.remove('wb-tooltip-force-show', 'wb-tooltip-force-hide');
+  });
+
+  // ── Public API ────────────────────────────────────────────
+
+  window.WBTooltip = {
+    show:    show,
+    hide:    hide,
+    hideAll: hideAll
+  };
+
+})();
+/* ============================================================
+   WebBlocks UI — Dismiss (dismiss.js)
+
+   Centralised handler for dismissible components that use
+   data-wb-dismiss. Currently handles:
+
+     alert     — removes .wb-alert from DOM (with animation)
+     toast     — handled by toast.js; included here for completeness
+     banner    — generic dismissible banner (.wb-banner)
+
+   Usage:
+     <div class="wb-alert wb-alert-info wb-alert-dismiss" id="myAlert">
+       <span class="wb-alert-title">Heads up!</span>
+       This is a dismissible alert.
+       <button class="wb-alert-close" data-wb-dismiss="alert" aria-label="Close">&times;</button>
+     </div>
+
+   JS API:
+     WBDismiss.dismiss(element)   // dismiss a .wb-alert / .wb-banner by element or selector
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  // ── Dismiss a single element ──────────────────────────────
+
+  function dismiss(el) {
+    if (!el || el.classList.contains('is-leaving')) return;
+
+    el.classList.add('is-leaving');
+    WBDom.emit(el, 'wb:dismiss');
+
+    var done = false;
+    function remove() {
+      if (done) return;
+      done = true;
+      if (el.parentNode) el.parentNode.removeChild(el);
+      WBDom.emit(document, 'wb:dismissed', { element: el });
+    }
+
+    el.addEventListener('transitionend', remove, { once: true });
+    setTimeout(remove, 400); // fallback
+  }
+
+  // ── Event delegation ──────────────────────────────────────
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-wb-dismiss="alert"]');
+    if (btn) {
+      var alert = btn.closest('.wb-alert');
+      if (alert) dismiss(alert);
+      return;
+    }
+
+    var bannerBtn = e.target.closest('[data-wb-dismiss="banner"]');
+    if (bannerBtn) {
+      var banner = bannerBtn.closest('.wb-banner');
+      if (banner) dismiss(banner);
+    }
+  });
+
+  // ── Public API ────────────────────────────────────────────
+
+  window.WBDismiss = {
+    dismiss: dismiss
+  };
+
+})();
