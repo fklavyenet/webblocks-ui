@@ -50,14 +50,14 @@
     group.classList.add('is-open');
     var toggle = group.querySelector('.wb-nav-group-toggle');
     if (toggle) toggle.setAttribute('aria-expanded', 'true');
-    group.dispatchEvent(new CustomEvent('wb:navgroup:open', { bubbles: true }));
+    WBDom.emit(group, 'wb:navgroup:open');
   }
 
   function closeGroup(group) {
     group.classList.remove('is-open');
     var toggle = group.querySelector('.wb-nav-group-toggle');
     if (toggle) toggle.setAttribute('aria-expanded', 'false');
-    group.dispatchEvent(new CustomEvent('wb:navgroup:close', { bubbles: true }));
+    WBDom.emit(group, 'wb:navgroup:close');
   }
 
   // ── Auto-open groups with active children ─────────────────

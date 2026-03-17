@@ -44,10 +44,7 @@
     }
 
     // Emit event
-    container.dispatchEvent(new CustomEvent('wb:tabs:change', {
-      bubbles: true,
-      detail: { tabId: targetId }
-    }));
+    WBDom.emit(container, 'wb:tabs:change', { tabId: targetId });
   }
 
   // ── Keyboard navigation ────────────────────────────────────

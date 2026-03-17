@@ -41,7 +41,7 @@
 
     // Sync trigger button aria
     syncTriggers(sidebar, true);
-    sidebar.dispatchEvent(new CustomEvent('wb:sidebar:open', { bubbles: true }));
+    WBDom.emit(sidebar, 'wb:sidebar:open');
   }
 
   function close(sidebar) {
@@ -51,7 +51,7 @@
     document.body.style.overflow = '';
 
     syncTriggers(sidebar, false);
-    sidebar.dispatchEvent(new CustomEvent('wb:sidebar:close', { bubbles: true }));
+    WBDom.emit(sidebar, 'wb:sidebar:close');
   }
 
   function toggle(sidebar) {
@@ -73,22 +73,17 @@
 
   // ── Close sidebar on desktop resize ───────────────────────
 
-  window.addEventListener('resize', function () {
-    clearTimeout(window._wbSidebarResizeTimer);
-    window._wbSidebarResizeTimer = setTimeout(function () {
-      if (window.innerWidth > 768) {
-        document.querySelectorAll('.wb-sidebar.is-open').forEach(function (sidebar) {
-          // Remove open state but don't trigger close animations —
-          // CSS will show sidebar on desktop anyway
-          sidebar.classList.remove('is-open');
-          var backdrop = getBackdrop(sidebar);
-          if (backdrop) backdrop.classList.remove('is-open');
-          document.body.style.overflow = '';
-          syncTriggers(sidebar, false);
-        });
-      }
-    }, 100);
-  });
+  window.addEventListener('resize', WBDom.debounce(function () {
+    if (window.innerWidth > 768) {
+      document.querySelectorAll('.wb-sidebar.is-open').forEach(function (sidebar) {
+        sidebar.classList.remove('is-open');
+        var backdrop = getBackdrop(sidebar);
+        if (backdrop) backdrop.classList.remove('is-open');
+        document.body.style.overflow = '';
+        syncTriggers(sidebar, false);
+      });
+    }
+  }, 100));
 
   // ── Event delegation ──────────────────────────────────────
 

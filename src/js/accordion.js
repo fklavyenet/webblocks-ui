@@ -81,10 +81,7 @@
     }
 
     // Emit event
-    trigger.dispatchEvent(new CustomEvent('wb:accordion:toggle', {
-      bubbles: true,
-      detail: { open: isOpen(trigger) }
-    }));
+    WBDom.emit(trigger, 'wb:accordion:toggle', { open: isOpen(trigger) });
   }
 
   // ── Recalculate open heights (e.g. after resize) ──────────
@@ -106,11 +103,7 @@
     }
   });
 
-  window.addEventListener('resize', function () {
-    // Debounce
-    clearTimeout(window._wbAccordionResizeTimer);
-    window._wbAccordionResizeTimer = setTimeout(recalc, 150);
-  });
+  window.addEventListener('resize', WBDom.debounce(recalc, 150));
 
   // ── Public API ─────────────────────────────────────────────
 

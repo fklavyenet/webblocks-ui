@@ -88,12 +88,12 @@
   };
 
   // ── localStorage helper ───────────────────────────────────
+  // Delegates to WBStorage (utils/storage.js)
+
   function ls(key, val) {
-    try {
-      if (val === undefined) return localStorage.getItem(key);
-      if (val === null) { localStorage.removeItem(key); return; }
-      localStorage.setItem(key, val);
-    } catch (e) {}
+    if (val === undefined) return WBStorage.get(key);
+    if (val === null) { WBStorage.remove(key); return; }
+    WBStorage.set(key, val);
   }
 
   // ── OS dark preference ────────────────────────────────────
