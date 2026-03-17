@@ -88,6 +88,7 @@ cat \
   "$ROOT/src/js/popover.js" \
   "$ROOT/src/js/tooltip.js" \
   "$ROOT/src/js/dismiss.js" \
+  "$ROOT/src/js/ajax-toggle.js" \
   > "$JS_OUT"
 
 JS_LINES=$(wc -l < "$JS_OUT")
