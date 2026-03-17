@@ -1,17 +1,29 @@
 /* ============================================================
    WebBlocks UI — Tabs (tabs.js)
 
-   Usage:
+   Usage (two equivalent patterns):
+
+   Pattern A — attribute-based:
      <div class="wb-tabs" data-wb-tabs>
        <div class="wb-tabs-nav" role="tablist">
-         <button class="wb-tabs-btn is-active" data-wb-tab="panel1" role="tab"
-                 aria-selected="true" aria-controls="panel1">Tab 1</button>
-         <button class="wb-tabs-btn" data-wb-tab="panel2" role="tab"
-                 aria-selected="false" aria-controls="panel2">Tab 2</button>
+         <button class="wb-tabs-btn is-active" data-wb-tab="panel1">Tab 1</button>
+         <button class="wb-tabs-btn" data-wb-tab="panel2">Tab 2</button>
        </div>
        <div class="wb-tabs-panels">
-         <div class="wb-tabs-panel is-active" id="panel1" role="tabpanel">Content 1</div>
-         <div class="wb-tabs-panel" id="panel2" role="tabpanel">Content 2</div>
+         <div class="wb-tabs-panel is-active" id="panel1">Content 1</div>
+         <div class="wb-tabs-panel" id="panel2">Content 2</div>
+       </div>
+     </div>
+
+   Pattern B — class-based (simpler):
+     <div class="wb-tabs">
+       <div class="wb-tab-list">
+         <button class="wb-tab-item is-active" data-wb-tab="panel1">Tab 1</button>
+         <button class="wb-tab-item" data-wb-tab="panel2">Tab 2</button>
+       </div>
+       <div class="wb-tab-panels">
+         <div class="wb-tab-panel is-active" id="panel1">Content 1</div>
+         <div class="wb-tab-panel" id="panel2">Content 2</div>
        </div>
      </div>
    ============================================================ */
@@ -19,14 +31,18 @@
 (function () {
   'use strict';
 
+  // Accept both wb-tabs-btn and wb-tab-item; both wb-tabs-panel and wb-tab-panel
+  var BTN_SEL   = '.wb-tabs-btn[data-wb-tab], .wb-tab-item[data-wb-tab]';
+  var PANEL_SEL = '.wb-tabs-panel, .wb-tab-panel';
+
   function activate(container, targetId) {
     // Deactivate all tabs + panels in this container
-    container.querySelectorAll('.wb-tabs-btn').forEach(function (btn) {
+    container.querySelectorAll(BTN_SEL).forEach(function (btn) {
       btn.classList.remove('is-active');
       btn.setAttribute('aria-selected', 'false');
       btn.setAttribute('tabindex', '-1');
     });
-    container.querySelectorAll('.wb-tabs-panel').forEach(function (panel) {
+    container.querySelectorAll(PANEL_SEL).forEach(function (panel) {
       panel.classList.remove('is-active');
     });
 
@@ -50,7 +66,7 @@
   // ── Keyboard navigation ────────────────────────────────────
 
   function handleKeydown(e, container) {
-    var btns = Array.from(container.querySelectorAll('.wb-tabs-btn'));
+    var btns = Array.from(container.querySelectorAll(BTN_SEL));
     var idx  = btns.indexOf(document.activeElement);
     if (idx === -1) return;
 
@@ -75,18 +91,18 @@
   // ── Event delegation ──────────────────────────────────────
 
   document.addEventListener('click', function (e) {
-    var btn = e.target.closest('.wb-tabs-btn[data-wb-tab]');
+    var btn = e.target.closest('.wb-tabs-btn[data-wb-tab], .wb-tab-item[data-wb-tab]');
     if (!btn) return;
-    var container = btn.closest('[data-wb-tabs]');
+    var container = btn.closest('.wb-tabs');
     if (!container) return;
     e.preventDefault();
     activate(container, btn.getAttribute('data-wb-tab'));
   });
 
   document.addEventListener('keydown', function (e) {
-    var btn = e.target.closest('.wb-tabs-btn');
+    var btn = e.target.closest('.wb-tabs-btn, .wb-tab-item');
     if (!btn) return;
-    var container = btn.closest('[data-wb-tabs]');
+    var container = btn.closest('.wb-tabs');
     if (!container) return;
     handleKeydown(e, container);
   });

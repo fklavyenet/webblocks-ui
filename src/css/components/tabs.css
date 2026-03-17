@@ -1,6 +1,9 @@
 /* ============================================================
    WebBlocks UI — Tabs (wb-tabs)
    JS: data-wb-tab="panel-id" on buttons, panels have matching id
+   Two class patterns supported:
+     Pattern A: .wb-tabs-btn / .wb-tabs-panel / .wb-tabs-nav
+     Pattern B: .wb-tab-item / .wb-tab-panel / .wb-tab-list
    ============================================================ */
 
 .wb-tabs {
@@ -8,7 +11,8 @@
   flex-direction: column;
 }
 
-.wb-tabs-nav {
+.wb-tabs-nav,
+.wb-tab-list {
   display: flex;
   align-items: flex-end;
   gap: 0;
@@ -16,7 +20,10 @@
   overflow-x: auto;
 }
 
-.wb-tab {
+/* wb-tab = Pattern A button; wb-tabs-btn = alias; wb-tab-item = Pattern B */
+.wb-tab,
+.wb-tabs-btn,
+.wb-tab-item {
   display: inline-flex;
   align-items: center;
   gap: var(--wb-s1);
@@ -34,31 +41,41 @@
   transition: color var(--wb-t), border-color var(--wb-t);
 }
 
-.wb-tab:hover {
+.wb-tab:hover,
+.wb-tabs-btn:hover,
+.wb-tab-item:hover {
   color: var(--wb-text);
 }
 
-.wb-tab.is-active {
+.wb-tab.is-active,
+.wb-tabs-btn.is-active,
+.wb-tab-item.is-active {
   color: var(--wb-primary);
   border-bottom-color: var(--wb-primary);
 }
 
-.wb-tab:focus-visible {
+.wb-tab:focus-visible,
+.wb-tabs-btn:focus-visible,
+.wb-tab-item:focus-visible {
   outline: 2px solid var(--wb-primary);
   outline-offset: -2px;
 }
 
-.wb-tab-panel {
+/* wb-tab-panel used in both patterns; wb-tabs-panel = Pattern A alias */
+.wb-tab-panel,
+.wb-tabs-panel {
   display: none;
   padding: var(--wb-s5) 0;
 }
 
-.wb-tab-panel.is-active {
+.wb-tab-panel.is-active,
+.wb-tabs-panel.is-active {
   display: block;
 }
 
 /* ── Pill variant ─────────────────────────────────────────── */
-.wb-tabs-pills .wb-tabs-nav {
+.wb-tabs-pills .wb-tabs-nav,
+.wb-tabs-pills .wb-tab-list {
   border-bottom: none;
   gap: var(--wb-s1);
   padding: var(--wb-s2);
@@ -66,19 +83,24 @@
   border-radius: var(--wb-r-lg);
 }
 
-.wb-tabs-pills .wb-tab {
+.wb-tabs-pills .wb-tab,
+.wb-tabs-pills .wb-tabs-btn,
+.wb-tabs-pills .wb-tab-item {
   border-bottom: none;
   border-radius: var(--wb-r-md);
   padding: var(--wb-s2) var(--wb-s3);
   margin: 0;
 }
 
-.wb-tabs-pills .wb-tab.is-active {
+.wb-tabs-pills .wb-tab.is-active,
+.wb-tabs-pills .wb-tabs-btn.is-active,
+.wb-tabs-pills .wb-tab-item.is-active {
   background: var(--wb-surface);
   color: var(--wb-primary);
   box-shadow: var(--wb-shadow-sm);
 }
 
-.wb-tabs-pills .wb-tab-panel {
+.wb-tabs-pills .wb-tab-panel,
+.wb-tabs-pills .wb-tabs-panel {
   padding-top: var(--wb-s4);
 }

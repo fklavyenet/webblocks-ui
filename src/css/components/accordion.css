@@ -1,6 +1,7 @@
 /* ============================================================
    WebBlocks UI — Accordion (wb-accordion)
-   JS: data-wb-accordion-trigger on buttons
+   JS: data-wb-accordion-trigger on buttons (Pattern A)
+       OR .wb-accordion-trigger class only (Pattern B)
    ============================================================ */
 
 .wb-accordion {
@@ -55,7 +56,8 @@
   transform: rotate(180deg);
 }
 
-.wb-accordion-content {
+.wb-accordion-content,
+.wb-accordion-body {
   display: none;
   padding: 0 var(--wb-s5) var(--wb-s5);
   font-size: 0.9rem;
@@ -63,7 +65,8 @@
   line-height: 1.7;
 }
 
-.wb-accordion-item.is-open .wb-accordion-content {
+.wb-accordion-item.is-open .wb-accordion-content,
+.wb-accordion-item.is-open .wb-accordion-body {
   display: block;
 }
 
