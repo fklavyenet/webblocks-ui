@@ -761,34 +761,47 @@ WBToast.show('Mitte unten!', { position: 'bottom-center' });</pre>
       <p class="docs-section-lead">Verankertes Overlay mit reichhaltigem Inhalt. Unterstützt vier Positionierungsvarianten.</p>
 
       <div class="docs-preview" style="padding-bottom:var(--wb-s12);gap:var(--wb-s8);flex-wrap:wrap">
-        <div class="wb-popover wb-popover-top">
-          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Oben (Standard)</button>
+        <div class="wb-popover">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Unten (Standard)</button>
           <div class="wb-popover-panel">
             <div class="wb-popover-title">Popover-Titel</div>
-            <div class="wb-popover-body">Hilfreiche Info hier.
+            <div class="wb-popover-body">Öffnet unterhalb des Auslösers.</div>
           </div>
         </div>
-        </div>
-        <div class="wb-popover wb-popover-bottom">
-          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Unten</button>
+        <div class="wb-popover wb-popover-top">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Oben</button>
           <div class="wb-popover-panel">
-            <div class="wb-popover-title">Unteres Popover</div>
-            <div class="wb-popover-body">Öffnet unterhalb des Auslösers.
+            <div class="wb-popover-title">Oberes Popover</div>
+            <div class="wb-popover-body">Öffnet oberhalb des Auslösers.</div>
           </div>
         </div>
+        <div class="wb-popover wb-popover-right">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Rechts</button>
+          <div class="wb-popover-panel">
+            <div class="wb-popover-title">Rechtes Popover</div>
+            <div class="wb-popover-body">Öffnet rechts vom Auslöser.</div>
+          </div>
+        </div>
+        <div class="wb-popover wb-popover-left">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Links</button>
+          <div class="wb-popover-panel">
+            <div class="wb-popover-title">Linkes Popover</div>
+            <div class="wb-popover-body">Öffnet links vom Auslöser.</div>
+          </div>
         </div>
       </div>
-      <pre class="wb-code">&lt;div class="wb-popover wb-popover-top"&gt;
+      <pre class="wb-code">&lt;!-- Unten (Standard) --&gt;
+&lt;div class="wb-popover"&gt;
   &lt;button class="wb-btn wb-btn-outline" data-wb-toggle="popover"&gt;
     Klick mich
   &lt;/button&gt;
-    &lt;div class="wb-popover-panel"&gt;
+  &lt;div class="wb-popover-panel"&gt;
     &lt;div class="wb-popover-title"&gt;Popover-Titel&lt;/div&gt;
     &lt;div class="wb-popover-body"&gt;Popover-Inhalt hier.&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Positionen: wb-popover-top / -right / -bottom / -left --&gt;</pre>
+&lt;!-- Positionen: wb-popover-top / -right / -left / -end --&gt;</pre>
     </section>
 
     <!-- ── Tooltip ──────────────────────────────────────── -->

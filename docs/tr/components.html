@@ -749,34 +749,47 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
       <p class="docs-section-lead">Zengin içerikli bağlantılı katman. Dört yerleşim varyantını destekler.</p>
 
       <div class="docs-preview" style="padding-bottom:var(--wb-s12);gap:var(--wb-s8);flex-wrap:wrap">
-        <div class="wb-popover wb-popover-top">
-          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Üst (varsayılan)</button>
+        <div class="wb-popover">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Alt (varsayılan)</button>
           <div class="wb-popover-panel">
             <div class="wb-popover-title">Popover başlığı</div>
-            <div class="wb-popover-body">Burada yardımcı bilgi var.
+            <div class="wb-popover-body">Tetikleyicinin altında açılır.</div>
           </div>
         </div>
-        </div>
-        <div class="wb-popover wb-popover-bottom">
-          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Alt</button>
+        <div class="wb-popover wb-popover-top">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Üst</button>
           <div class="wb-popover-panel">
-            <div class="wb-popover-title">Alt popover</div>
-            <div class="wb-popover-body">Tetikleyicinin altında açılır.
+            <div class="wb-popover-title">Üst popover</div>
+            <div class="wb-popover-body">Tetikleyicinin üstünde açılır.</div>
           </div>
         </div>
+        <div class="wb-popover wb-popover-right">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Sağ</button>
+          <div class="wb-popover-panel">
+            <div class="wb-popover-title">Sağ popover</div>
+            <div class="wb-popover-body">Tetikleyicinin sağında açılır.</div>
+          </div>
+        </div>
+        <div class="wb-popover wb-popover-left">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Sol</button>
+          <div class="wb-popover-panel">
+            <div class="wb-popover-title">Sol popover</div>
+            <div class="wb-popover-body">Tetikleyicinin solunda açılır.</div>
+          </div>
         </div>
       </div>
-      <pre class="wb-code">&lt;div class="wb-popover wb-popover-top"&gt;
+      <pre class="wb-code">&lt;!-- Alt (varsayılan) --&gt;
+&lt;div class="wb-popover"&gt;
   &lt;button class="wb-btn wb-btn-outline" data-wb-toggle="popover"&gt;
     Tıklayın
   &lt;/button&gt;
-    &lt;div class="wb-popover-panel"&gt;
+  &lt;div class="wb-popover-panel"&gt;
     &lt;div class="wb-popover-title"&gt;Popover başlığı&lt;/div&gt;
     &lt;div class="wb-popover-body"&gt;Popover içeriği buraya.&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Yerleşimler: wb-popover-top / -right / -bottom / -left --&gt;</pre>
+&lt;!-- Yerleşimler: wb-popover-top / -right / -left / -end --&gt;</pre>
     </section>
 
     <!-- ── Tooltip ──────────────────────────────────────── -->

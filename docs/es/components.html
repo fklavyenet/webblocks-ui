@@ -761,34 +761,47 @@ WBToast.show('¡Centro abajo!', { position: 'bottom-center' });</pre>
       <p class="docs-section-lead">Overlay anclado con contenido enriquecido. Soporta cuatro variantes de posicionamiento.</p>
 
       <div class="docs-preview" style="padding-bottom:var(--wb-s12);gap:var(--wb-s8);flex-wrap:wrap">
-        <div class="wb-popover wb-popover-top">
-          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Arriba (por defecto)</button>
+        <div class="wb-popover">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Abajo (por defecto)</button>
           <div class="wb-popover-panel">
             <div class="wb-popover-title">Título del popover</div>
-            <div class="wb-popover-body">Información útil aquí.
+            <div class="wb-popover-body">Se abre debajo del activador.</div>
           </div>
         </div>
-        </div>
-        <div class="wb-popover wb-popover-bottom">
-          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Abajo</button>
+        <div class="wb-popover wb-popover-top">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Arriba</button>
           <div class="wb-popover-panel">
-            <div class="wb-popover-title">Popover inferior</div>
-            <div class="wb-popover-body">Se abre debajo del activador.
+            <div class="wb-popover-title">Popover superior</div>
+            <div class="wb-popover-body">Se abre encima del activador.</div>
           </div>
         </div>
+        <div class="wb-popover wb-popover-right">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Derecha</button>
+          <div class="wb-popover-panel">
+            <div class="wb-popover-title">Popover derecho</div>
+            <div class="wb-popover-body">Se abre a la derecha del activador.</div>
+          </div>
+        </div>
+        <div class="wb-popover wb-popover-left">
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="popover">Izquierda</button>
+          <div class="wb-popover-panel">
+            <div class="wb-popover-title">Popover izquierdo</div>
+            <div class="wb-popover-body">Se abre a la izquierda del activador.</div>
+          </div>
         </div>
       </div>
-      <pre class="wb-code">&lt;div class="wb-popover wb-popover-top"&gt;
+      <pre class="wb-code">&lt;!-- Abajo (por defecto) --&gt;
+&lt;div class="wb-popover"&gt;
   &lt;button class="wb-btn wb-btn-outline" data-wb-toggle="popover"&gt;
     Haz clic
   &lt;/button&gt;
-    &lt;div class="wb-popover-panel"&gt;
+  &lt;div class="wb-popover-panel"&gt;
     &lt;div class="wb-popover-title"&gt;Título del popover&lt;/div&gt;
     &lt;div class="wb-popover-body"&gt;Contenido del popover aquí.&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Posiciones: wb-popover-top / -right / -bottom / -left --&gt;</pre>
+&lt;!-- Posiciones: wb-popover-top / -right / -left / -end --&gt;</pre>
     </section>
 
     <!-- ── Tooltip ──────────────────────────────────────── -->
