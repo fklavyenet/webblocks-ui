@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Getting Started — WebBlocks UI</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
     .docs-layout { display: flex; min-height: 100vh; }
@@ -272,10 +272,10 @@
       </p>
       <pre class="wb-code">&lt;!-- Add to &lt;head&gt; --&gt;
 &lt;link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css"&gt;
+      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css"&gt;
 
 &lt;!-- Add before &lt;/body&gt; --&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
 
       <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Download &amp; Self-host</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s4)">
@@ -331,7 +331,7 @@ curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/we
       </p>
       <pre class="wb-code">&lt;!-- Optional: adds wb-icon-* classes for &lt;i&gt; tag usage --&gt;
 &lt;link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-icons.css"&gt;</pre>
+      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.css"&gt;</pre>
 
       <div class="docs-callout" style="margin-top:var(--wb-s5)">
         <strong>Note:</strong> The icons CSS uses <code class="wb-code-inline">mask-image</code> which requires a modern browser
@@ -355,13 +355,13 @@ curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/we
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
   &lt;title&gt;My App&lt;/title&gt;
   &lt;link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css"&gt;
+        href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
   &lt;button class="wb-btn wb-btn-primary"&gt;Hello, WebBlocks UI!&lt;/button&gt;
 
-  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;
+  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 
@@ -371,7 +371,7 @@ curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/we
         load the sprite with a small fetch snippet after your JS:
       </p>
       <pre class="wb-code">&lt;script&gt;
-fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-icons.svg')
+fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.svg')
   .then(function(r) { return r.text(); })
   .then(function(svg) {
     var parser = new DOMParser();
@@ -617,7 +617,7 @@ WBTheme.setDensity('compact');</pre>
     &lt;title&gt;@yield('title', config('app.name'))&lt;/title&gt;
 
     &lt;link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css"&gt;
+          href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css"&gt;
 
     @stack('styles')
 &lt;/head&gt;
@@ -625,7 +625,7 @@ WBTheme.setDensity('compact');</pre>
 
   @yield('content')
 
-  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;
+  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js"&gt;&lt;/script&gt;
   @stack('scripts')
 &lt;/body&gt;
 &lt;/html&gt;</pre>
@@ -672,7 +672,7 @@ WBTheme.setDensity('compact');</pre>
         You can mix WebBlocks UI (CDN or public folder) with Vite for your own app code. There is no need to import WebBlocks UI through Vite — it is intentionally kept outside the build pipeline.
       </p>
       <pre class="wb-code">&lt;!-- Use CDN for WebBlocks UI, Vite for your own styles/scripts --&gt;
-&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css"&gt;
 @vite(['resources/css/app.css', 'resources/js/app.js'])</pre>
     </section>
 
@@ -713,9 +713,9 @@ WBTheme.setDensity('compact');</pre>
   </main>
 </div>
 
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js"></script>
 <script>
-  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-icons.svg')
+  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.svg')
     .then(function(r) { return r.text(); })
     .then(function(svg) {
       var parser = new DOMParser();

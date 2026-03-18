@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Başlarken — WebBlocks UI</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css">
   <style>
     /* ── Docs shell ─────────────────────────────────────── */
     .docs-layout { display: flex; min-height: 100vh; }
@@ -272,10 +272,10 @@
       </p>
       <pre class="wb-code">&lt;!-- &lt;head&gt; içine ekle --&gt;
 &lt;link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css"&gt;
+      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css"&gt;
 
 &lt;!-- &lt;/body&gt; öncesine ekle --&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js"&gt;&lt;/script&gt;</pre>
 
       <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">İndir &amp; Kendi Sunucunda Barındır</h3>
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s4)">
@@ -331,7 +331,7 @@ curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/we
       </p>
       <pre class="wb-code">&lt;!-- İsteğe bağlı: &lt;i&gt; etiketi kullanımı için wb-icon-* sınıfları ekler --&gt;
 &lt;link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-icons.css"&gt;</pre>
+      href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.css"&gt;</pre>
 
       <div class="docs-callout" style="margin-top:var(--wb-s5)">
         <strong>Not:</strong> İkon CSS'i <code class="wb-code-inline">mask-image</code> kullanır ve modern tarayıcı gerektirir
@@ -355,13 +355,13 @@ curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/we
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
   &lt;title&gt;Uygulamam&lt;/title&gt;
   &lt;link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css"&gt;
+        href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
   &lt;button class="wb-btn wb-btn-primary"&gt;Merhaba, WebBlocks UI!&lt;/button&gt;
 
-  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;
+  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 
@@ -371,7 +371,7 @@ curl -O https://raw.githubusercontent.com/fklavyenet/webblocks-ui/v2.2.5/dist/we
         JS'inden sonra küçük bir fetch parçacığıyla sprite'ı yükle:
       </p>
       <pre class="wb-code">&lt;script&gt;
-fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-icons.svg')
+fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.svg')
   .then(function(r) { return r.text(); })
   .then(function(svg) {
     var parser = new DOMParser();
@@ -617,7 +617,7 @@ WBTheme.setDensity('compact');</pre>
     &lt;title&gt;@yield('title', config('app.name'))&lt;/title&gt;
 
     &lt;link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css"&gt;
+          href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css"&gt;
 
     @stack('styles')
 &lt;/head&gt;
@@ -625,7 +625,7 @@ WBTheme.setDensity('compact');</pre>
 
   @yield('content')
 
-  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.js"&gt;&lt;/script&gt;
+  &lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js"&gt;&lt;/script&gt;
   @stack('scripts')
 &lt;/body&gt;
 &lt;/html&gt;</pre>
@@ -672,7 +672,7 @@ WBTheme.setDensity('compact');</pre>
         WebBlocks UI'ı (CDN veya public klasörü) kendi uygulama kodun için Vite ile birleştirebilirsin. WebBlocks UI'ı Vite üzerinden içe aktarmana gerek yoktur — kasıtlı olarak derleme sürecinin dışında tutulmuştur.
       </p>
       <pre class="wb-code">&lt;!-- WebBlocks UI için CDN, kendi stil/scriptler için Vite --&gt;
-&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.css"&gt;
 @vite(['resources/css/app.css', 'resources/js/app.js'])</pre>
     </section>
 
@@ -713,9 +713,9 @@ WBTheme.setDensity('compact');</pre>
   </main>
 </div>
 
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js"></script>
 <script>
-  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.5/dist/webblocks-icons.svg')
+  fetch('https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.svg')
     .then(function(r) { return r.text(); })
     .then(function(svg) {
       var parser = new DOMParser();
