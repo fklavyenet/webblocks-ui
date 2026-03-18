@@ -2243,6 +2243,14 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   background: var(--wb-primary-soft);
   outline: none;
 }
+.wb-dropdown-item.is-active {
+  color: var(--wb-accent-text);
+  background: var(--wb-accent-softer);
+  font-weight: 600;
+}
+.wb-dropdown-item.is-active:hover {
+  background: var(--wb-accent-soft);
+}
 
 .wb-dropdown-item-danger {
   color: var(--wb-danger);
