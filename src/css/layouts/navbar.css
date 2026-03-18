@@ -193,3 +193,73 @@
     display: none !important;
   }
 }
+
+/* ── Stacked (two-row) navbar ─────────────────────────────── */
+
+.wb-navbar-stacked {
+  flex-direction: column;
+  height: auto;
+  padding-inline: 0;
+  gap: 0;
+}
+
+.wb-navbar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  width: 100%;
+  padding-inline: var(--wb-s6);
+}
+
+/* Top row: standard navbar height */
+.wb-navbar-stacked .wb-navbar-row:first-child {
+  height: var(--wb-navbar-h, 56px);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+/* Sub row: secondary nav links */
+.wb-navbar-sub {
+  min-height: 40px;
+  border-bottom: 1px solid var(--wb-border);
+  gap: 0;
+  padding-inline: var(--wb-s4);
+}
+
+/* Remove the base border when stacked (rows handle their own borders) */
+.wb-navbar-stacked {
+  border-bottom: none;
+}
+
+/* Sub-row link style — tab-like underline indicator */
+.wb-navbar-sub .wb-navbar-link {
+  border-radius: 0;
+  padding: 0.5em 0.75em;
+  font-size: 0.875rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px; /* overlap row border-bottom */
+}
+
+.wb-navbar-sub .wb-navbar-link:hover {
+  background: transparent;
+  color: var(--wb-text);
+  border-bottom-color: var(--wb-border);
+}
+
+.wb-navbar-sub .wb-navbar-link.is-active {
+  color: var(--wb-accent);
+  background: transparent;
+  border-bottom-color: var(--wb-accent);
+}
+
+/* Responsive: collapse sub-row on mobile */
+@media (max-width: 768px) {
+  .wb-navbar-sub {
+    display: none;
+  }
+
+  .wb-navbar-sub.is-open {
+    display: flex;
+    flex-wrap: wrap;
+    padding-block: var(--wb-s2);
+  }
+}
