@@ -5734,6 +5734,15 @@ i.wb-icon {
   padding-inline: var(--wb-s6);
 }
 
+/* wb-navbar-start takes all available space; wb-navbar-end stays flush right */
+.wb-navbar-start {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  flex: 1;
+  min-width: 0;
+}
+
 /* Top row: standard navbar height */
 .wb-navbar-stacked .wb-navbar-row:first-child {
   height: var(--wb-navbar-h, 56px);
