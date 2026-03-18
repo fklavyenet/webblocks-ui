@@ -44,6 +44,21 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
+/* ── Container wrapper support ───────────────────────────── */
+/* When a container is used as the direct child of .wb-navbar,
+   re-apply the flex context so navbar children align correctly. */
+
+.wb-navbar > .wb-container,
+.wb-navbar > .wb-container-full,
+.wb-navbar > .wb-container-lg,
+.wb-navbar > .wb-container-xl {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  width: 100%;
+  padding-inline: 0;
+}
+
 /* ── Brand / logo ─────────────────────────────────────────── */
 
 .wb-navbar-brand {
