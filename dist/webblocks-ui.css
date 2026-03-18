@@ -6930,6 +6930,12 @@ i.wb-icon {
 .wb-capitalize     { text-transform: capitalize; }
 .wb-nowrap         { white-space: nowrap; }
 
+.wb-tracking-tight  { letter-spacing: -0.025em; }
+.wb-tracking-normal { letter-spacing: 0; }
+.wb-tracking-wide   { letter-spacing: 0.05em; }
+.wb-tracking-wider  { letter-spacing: 0.1em; }
+.wb-tracking-widest { letter-spacing: 0.15em; }
+
 /* ── Color helpers ────────────────────────────────────────── */
 
 .wb-text-primary  { color: var(--wb-primary) !important; }
