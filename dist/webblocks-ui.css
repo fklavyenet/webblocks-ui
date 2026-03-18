@@ -2315,7 +2315,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   padding: var(--wb-s2) var(--wb-s4);
   border: none;
   border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
   background: none;
   color: var(--wb-muted);
   font: inherit;
@@ -2336,7 +2335,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-tabs-btn.is-active,
 .wb-tab-item.is-active {
   color: var(--wb-primary);
-  border-bottom-color: var(--wb-primary);
+  box-shadow: inset 0 -2px 0 var(--wb-primary);
 }
 
 .wb-tab:focus-visible,
