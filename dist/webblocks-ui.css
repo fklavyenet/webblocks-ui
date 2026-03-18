@@ -2297,6 +2297,12 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   gap: 0;
   border-bottom: 2px solid var(--wb-border);
   overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.wb-tabs-nav::-webkit-scrollbar,
+.wb-tab-list::-webkit-scrollbar {
+  display: none;
 }
 
 /* wb-tab = Pattern A button; wb-tabs-btn = alias; wb-tab-item = Pattern B */
