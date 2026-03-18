@@ -13,6 +13,10 @@
   color: var(--wb-text);
   font-size: 0.9rem;
   line-height: 1.5;
+  margin-bottom: var(--wb-s3);
+}
+.wb-alert:last-child {
+  margin-bottom: 0;
 }
 
 .wb-alert-icon {
