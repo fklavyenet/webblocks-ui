@@ -141,6 +141,22 @@
       color: var(--wb-accent-text); border-color: var(--wb-accent-border);
       background: var(--wb-accent-softer);
     }
+    /* ── TOC group label ─────────────────────────────────── */
+    .docs-toc-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--wb-muted);
+      padding: var(--wb-s2) var(--wb-s1) 0;
+      width: 100%;
+    }
+    /* ── Component group heading ─────────────────────────── */
+    .docs-group-heading {
+      padding: var(--wb-s3) var(--wb-s8);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--wb-accent-text);
+      background: var(--wb-accent-softer);
+      border-top: 1px solid var(--wb-accent-border);
+      border-bottom: 1px solid var(--wb-accent-border);
+    }
     /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 768px) {
       .docs-sidebar { display: none; }
@@ -208,33 +224,47 @@
     <!-- ── On-page nav ──────────────────────────────────── -->
     <section class="docs-section" style="padding-top:var(--wb-s6);padding-bottom:var(--wb-s6)">
       <div class="docs-toc">
+        <span class="docs-toc-label">Temel</span>
         <a href="#buttons">Düğmeler</a>
         <a href="#badges">Rozetler</a>
-        <a href="#alerts">Uyarılar</a>
-        <a href="#cards">Kartlar</a>
-        <a href="#stats">İstatistik Kartları</a>
-        <a href="#forms">Formlar</a>
-        <a href="#tables">Tablolar</a>
-        <a href="#modal">Modal</a>
-        <a href="#drawer">Çekmece</a>
-        <a href="#dropdown">Açılır Menü</a>
-        <a href="#tabs">Sekmeler</a>
-        <a href="#accordion">Akordeon</a>
-        <a href="#toast">Toast</a>
-        <a href="#popover">Popover</a>
-        <a href="#tooltip">Araç İpucu</a>
         <a href="#avatar">Avatar</a>
-        <a href="#pagination">Sayfalama</a>
-        <a href="#breadcrumb">Breadcrumb</a>
+        <a href="#divider">Ayraç</a>
+
+        <span class="docs-toc-label">Geri Bildirim</span>
+        <a href="#alerts">Uyarılar</a>
+        <a href="#toast">Toast</a>
         <a href="#skeleton">Skeleton</a>
         <a href="#empty">Boş Durum</a>
         <a href="#spinner">Spinner &amp; Yükleniyor</a>
-        <a href="#divider">Ayraç</a>
+
+        <span class="docs-toc-label">Veri &amp; Tablolar</span>
+        <a href="#cards">Kartlar</a>
+        <a href="#stats">İstatistik Kartları</a>
+        <a href="#tables">Tablolar</a>
         <a href="#list">Liste Grubu</a>
         <a href="#filter-bar">Filtre Çubuğu</a>
         <a href="#action-menu">Eylem Menüsü</a>
+
+        <span class="docs-toc-label">Formlar</span>
+        <a href="#forms">Formlar</a>
+
+        <span class="docs-toc-label">Navigasyon</span>
+        <a href="#tabs">Sekmeler</a>
+        <a href="#accordion">Akordeon</a>
+        <a href="#pagination">Sayfalama</a>
+        <a href="#breadcrumb">Breadcrumb</a>
+
+        <span class="docs-toc-label">Katmanlar</span>
+        <a href="#modal">Modal</a>
+        <a href="#drawer">Çekmece</a>
+        <a href="#dropdown">Açılır Menü</a>
+        <a href="#popover">Popover</a>
+        <a href="#tooltip">Araç İpucu</a>
       </div>
     </section>
+
+    <!-- ── TEMEL ────────────────────────────────────────── -->
+    <div class="docs-group-heading">Temel</div>
 
     <!-- ── Buttons ──────────────────────────────────────── -->
     <section class="docs-section" id="buttons">
@@ -299,6 +329,52 @@
 &lt;span class="wb-badge wb-badge-info"&gt;Info&lt;/span&gt;</pre>
     </section>
 
+    <!-- ── Avatar ───────────────────────────────────────── -->
+    <section class="docs-section" id="avatar">
+      <h2 class="docs-section-title">Avatar</h2>
+      <p class="docs-section-lead">Boyut varyantları ve baş harfli yedekle kullanıcı resmi yer tutucusu.</p>
+
+      <div class="docs-preview" style="align-items:center;gap:var(--wb-s4)">
+        <span class="wb-avatar wb-avatar-xl">JD</span>
+        <span class="wb-avatar wb-avatar-lg">AB</span>
+        <span class="wb-avatar">CD</span>
+        <span class="wb-avatar wb-avatar-sm">EF</span>
+        <img src="https://i.pravatar.cc/48?img=5" class="wb-avatar" alt="Kullanıcı">
+      </div>
+      <pre class="wb-code">&lt;!-- Baş harfler --&gt;
+&lt;span class="wb-avatar wb-avatar-xl"&gt;JD&lt;/span&gt;
+&lt;span class="wb-avatar wb-avatar-lg"&gt;AB&lt;/span&gt;
+&lt;span class="wb-avatar"&gt;CD&lt;/span&gt;
+&lt;span class="wb-avatar wb-avatar-sm"&gt;EF&lt;/span&gt;
+
+&lt;!-- Resim --&gt;
+&lt;img src="user.jpg" class="wb-avatar" alt="User"&gt;</pre>
+    </section>
+
+    <!-- ── Divider ───────────────────────────────────────── -->
+    <section class="docs-section" id="divider">
+      <h2 class="docs-section-title">Ayraç</h2>
+      <p class="docs-section-lead">Yatay, dikey veya etiketli ayırıcı çizgiler.</p>
+
+      <div class="docs-preview docs-preview-col" style="width:100%">
+        <div class="wb-divider"></div>
+        <div class="wb-divider wb-divider-labeled"><span>veya şununla devam et</span></div>
+      </div>
+      <pre class="wb-code">&lt;!-- Basit --&gt;
+&lt;div class="wb-divider"&gt;&lt;/div&gt;
+
+&lt;!-- Etiketli --&gt;
+&lt;div class="wb-divider wb-divider-labeled"&gt;
+  &lt;span&gt;or continue with&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Dikey (flex kapsayıcı içinde) --&gt;
+&lt;div class="wb-divider wb-divider-vertical"&gt;&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── GERİ BİLDİRİM ────────────────────────────────── -->
+    <div class="docs-group-heading">Geri Bildirim</div>
+
     <!-- ── Alerts ───────────────────────────────────────── -->
     <section class="docs-section" id="alerts">
       <h2 class="docs-section-title">Uyarılar</h2>
@@ -327,6 +403,108 @@
   &lt;button class="wb-alert-close" data-wb-dismiss="alert" aria-label="Close"&gt;&amp;times;&lt;/button&gt;
 &lt;/div&gt;</pre>
     </section>
+
+    <!-- ── Toast ────────────────────────────────────────── -->
+    <section class="docs-section" id="toast">
+      <h2 class="docs-section-title">Toast</h2>
+      <p class="docs-section-lead">Programatik bildirim mesajları. <code class="wb-code-inline">WBToast.show()</code> ile gösterilir.</p>
+
+      <div class="docs-preview" style="gap:var(--wb-s3);flex-wrap:wrap">
+        <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="WBToast.show('Ayarlar kaydedildi.')">Varsayılan toast</button>
+        <button class="wb-btn wb-btn-success wb-btn-sm" onclick="WBToast.show('Kayıt oluşturuldu!', {type:'success'})">Başarı</button>
+        <button class="wb-btn wb-btn-danger wb-btn-sm" onclick="WBToast.show('Bir şeyler ters gitti.', {type:'error'})">Hata</button>
+        <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="WBToast.show('Lütfen inceleyin.', {type:'warning'})">Uyarı</button>
+      </div>
+      <pre class="wb-code">// Temel
+WBToast.show('Settings saved.');
+
+// Türle birlikte
+WBToast.show('Record created!', { type: 'success' });
+WBToast.show('Something went wrong.', { type: 'error' });
+WBToast.show('Please review.', { type: 'warning' });
+
+// Özel süre (ms)
+WBToast.show('Auto-closes in 2s.', { duration: 2000 });
+
+// Konum ile (varsayılan: top-right)
+WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
+
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
+        Konum değerleri: <code class="wb-code-inline">top-right</code> · <code class="wb-code-inline">top-center</code> · <code class="wb-code-inline">top-left</code> · <code class="wb-code-inline">bottom-center</code> · <code class="wb-code-inline">bottom-left</code>
+      </p>
+    </section>
+
+    <!-- ── Skeleton ──────────────────────────────────────── -->
+    <section class="docs-section" id="skeleton">
+      <h2 class="docs-section-title">Skeleton</h2>
+      <p class="docs-section-lead">İçerik alanları için yükleme yer tutucusu.</p>
+
+      <div class="docs-preview docs-preview-col" style="max-width:320px">
+        <div class="wb-skeleton" style="height:1rem;width:60%"></div>
+        <div class="wb-skeleton" style="height:1rem;width:90%"></div>
+        <div class="wb-skeleton" style="height:1rem;width:75%"></div>
+        <div class="wb-skeleton" style="height:2.5rem;width:120px;border-radius:var(--wb-r-md)"></div>
+      </div>
+      <pre class="wb-code">&lt;div class="wb-skeleton" style="height:1rem; width:60%"&gt;&lt;/div&gt;
+&lt;div class="wb-skeleton" style="height:1rem; width:90%"&gt;&lt;/div&gt;
+&lt;div class="wb-skeleton" style="height:1rem; width:75%"&gt;&lt;/div&gt;
+&lt;div class="wb-skeleton" style="height:2.5rem; width:120px; border-radius:var(--wb-r-md)"&gt;&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── Empty state ───────────────────────────────────── -->
+    <section class="docs-section" id="empty">
+      <h2 class="docs-section-title">Boş Durum</h2>
+      <p class="docs-section-lead">Bir liste veya tabloda veri olmadığında gösterilen yer tutucu.</p>
+
+      <div class="docs-preview" style="justify-content:center">
+        <div class="wb-empty">
+          <div class="wb-empty-icon">📭</div>
+          <h4 class="wb-empty-title">Sonuç bulunamadı</h4>
+          <p class="wb-empty-desc">Arama veya filtrenizi ayarlamayı deneyin.</p>
+          <button class="wb-btn wb-btn-primary wb-btn-sm">Filtreleri temizle</button>
+        </div>
+      </div>
+      <pre class="wb-code">&lt;div class="wb-empty"&gt;
+  &lt;div class="wb-empty-icon"&gt;📭&lt;/div&gt;
+  &lt;h4 class="wb-empty-title"&gt;No results found&lt;/h4&gt;
+  &lt;p class="wb-empty-desc"&gt;Try adjusting your search or filter.&lt;/p&gt;
+  &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Clear filters&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── Spinner & Loading ─────────────────────────────── -->
+    <section class="docs-section" id="spinner">
+      <h2 class="docs-section-title">Spinner &amp; Yükleniyor</h2>
+      <p class="docs-section-lead">Sayfa düzeyinde geçişler için satır içi spinner, ilerleme çubuğu ve yükleme çubuğu.</p>
+
+      <h3 class="docs-sub-title">Spinner</h3>
+      <div class="docs-preview" style="align-items:center;gap:var(--wb-s5)">
+        <div class="wb-spinner wb-spinner-sm"></div>
+        <div class="wb-spinner"></div>
+        <div class="wb-spinner wb-spinner-lg"></div>
+      </div>
+      <pre class="wb-code">&lt;div class="wb-spinner wb-spinner-sm"&gt;&lt;/div&gt;
+&lt;div class="wb-spinner"&gt;&lt;/div&gt;
+&lt;div class="wb-spinner wb-spinner-lg"&gt;&lt;/div&gt;</pre>
+
+      <h3 class="docs-sub-title">İlerleme çubuğu</h3>
+      <div class="docs-preview docs-preview-col" style="width:100%">
+        <div class="wb-progress-bar"><div class="wb-progress-fill" style="width:65%"></div></div>
+        <div class="wb-progress-bar"><div class="wb-progress-fill wb-progress-success" style="width:40%"></div></div>
+        <div class="wb-progress-bar"><div class="wb-progress-fill wb-progress-danger" style="width:85%"></div></div>
+      </div>
+      <pre class="wb-code">&lt;div class="wb-progress-bar"&gt;
+  &lt;div class="wb-progress-fill" style="width:65%"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Anlamsal varyantlar --&gt;
+&lt;div class="wb-progress-bar"&gt;
+  &lt;div class="wb-progress-fill wb-progress-success" style="width:40%"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── VERİ & TABLOLAR ───────────────────────────────── -->
+    <div class="docs-group-heading">Veri &amp; Tablolar</div>
 
     <!-- ── Cards ────────────────────────────────────────── -->
     <section class="docs-section" id="cards">
@@ -391,6 +569,152 @@
   &lt;div class="wb-stat-change wb-stat-up"&gt;+8.4% this month&lt;/div&gt;
 &lt;/div&gt;</pre>
     </section>
+
+    <!-- ── Tables ───────────────────────────────────────── -->
+    <section class="docs-section" id="tables">
+      <h2 class="docs-section-title">Tablolar</h2>
+      <p class="docs-section-lead">İsteğe bağlı çizgili ve hover değiştiricileriyle duyarlı veri tabloları.</p>
+
+      <div class="docs-preview" style="display:block">
+        <table class="wb-table wb-table-striped">
+          <thead>
+            <tr>
+              <th>Ad</th>
+              <th>Rol</th>
+              <th>Durum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Alice Chen</td>
+              <td>Yönetici</td>
+              <td><span class="wb-badge wb-badge-success">Aktif</span></td>
+            </tr>
+            <tr>
+              <td>Bob Ross</td>
+              <td>Editör</td>
+              <td><span class="wb-badge wb-badge-warning">Beklemede</span></td>
+            </tr>
+            <tr>
+              <td>Carol White</td>
+              <td>Görüntüleyici</td>
+              <td><span class="wb-badge wb-badge-danger">Pasif</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pre class="wb-code">&lt;table class="wb-table wb-table-striped"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Alice Chen&lt;/td&gt;
+      &lt;td&gt;Admin&lt;/td&gt;
+      &lt;td&gt;&lt;span class="wb-badge wb-badge-success"&gt;Active&lt;/span&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
+        Değiştiriciler: <code class="wb-code-inline">wb-table-striped</code> · <code class="wb-code-inline">wb-table-hover</code> · <code class="wb-code-inline">wb-table-bordered</code> · <code class="wb-code-inline">wb-table-sm</code>
+      </p>
+    </section>
+
+    <!-- ── List Group ────────────────────────────────────── -->
+    <section class="docs-section" id="list">
+      <h2 class="docs-section-title">Liste Grubu</h2>
+      <p class="docs-section-lead">Dikey yığılmış öğe listesi.</p>
+
+      <div class="docs-preview" style="min-width:260px">
+        <ul class="wb-list">
+          <li class="wb-list-item is-active">Dashboard</li>
+          <li class="wb-list-item">Kullanıcılar</li>
+          <li class="wb-list-item">Raporlar</li>
+          <li class="wb-list-item">Ayarlar</li>
+        </ul>
+      </div>
+      <pre class="wb-code">&lt;ul class="wb-list"&gt;
+  &lt;li class="wb-list-item is-active"&gt;Dashboard&lt;/li&gt;
+  &lt;li class="wb-list-item"&gt;Users&lt;/li&gt;
+  &lt;li class="wb-list-item"&gt;Reports&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Değiştiriciler: wb-list-flush · wb-list-compact · wb-list-numbered --&gt;</pre>
+    </section>
+
+    <!-- ── Filter bar ────────────────────────────────────── -->
+    <section class="docs-section" id="filter-bar">
+      <h2 class="docs-section-title">Filtre Çubuğu</h2>
+      <p class="docs-section-lead">Veri tabloları için arama ve filtre satırı.</p>
+
+      <div class="docs-preview docs-preview-col" style="width:100%">
+        <div class="wb-filter-bar">
+          <div class="wb-search-bar">
+            <svg class="wb-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" class="wb-search-input" placeholder="Kullanıcı ara…">
+          </div>
+          <select class="wb-select" style="width:auto">
+            <option>Tüm roller</option>
+            <option>Yönetici</option>
+            <option>Editör</option>
+          </select>
+          <button class="wb-btn wb-btn-outline wb-btn-sm">Dışa aktar</button>
+        </div>
+        <div style="display:flex;gap:var(--wb-s2);flex-wrap:wrap">
+          <span class="wb-filter-chip is-active">Tümü</span>
+          <span class="wb-filter-chip">Aktif</span>
+          <span class="wb-filter-chip">Beklemede</span>
+          <span class="wb-filter-chip">Pasif</span>
+        </div>
+      </div>
+      <pre class="wb-code">&lt;div class="wb-filter-bar"&gt;
+  &lt;div class="wb-search-bar"&gt;
+    &lt;svg class="wb-search-icon"&gt;...&lt;/svg&gt;
+    &lt;input type="search" class="wb-search-input" placeholder="Search…"&gt;
+  &lt;/div&gt;
+  &lt;select class="wb-select"&gt;...&lt;/select&gt;
+  &lt;button class="wb-btn wb-btn-outline wb-btn-sm"&gt;Export&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Filtre çipleri --&gt;
+&lt;span class="wb-filter-chip is-active"&gt;All&lt;/span&gt;
+&lt;span class="wb-filter-chip"&gt;Active&lt;/span&gt;
+&lt;span class="wb-filter-chip"&gt;Pending&lt;/span&gt;</pre>
+    </section>
+
+    <!-- ── Action menu ───────────────────────────────────── -->
+    <section class="docs-section" id="action-menu">
+      <h2 class="docs-section-title">Eylem Menüsü</h2>
+      <p class="docs-section-lead">Tablo satırları veya başlıkları için eylem düğmeleri ve durum pilleri araç çubuğu.</p>
+
+      <div class="docs-preview docs-preview-col" style="width:100%">
+        <div class="wb-action-group">
+          <button class="wb-action-btn">Düzenle</button>
+          <button class="wb-action-btn">Önizle</button>
+          <button class="wb-action-btn wb-action-btn-danger">Sil</button>
+        </div>
+        <div style="display:flex;gap:var(--wb-s3);align-items:center">
+          <span class="wb-status-pill wb-status-active">Aktif</span>
+          <span class="wb-status-pill wb-status-pending">Beklemede</span>
+          <span class="wb-status-pill wb-status-inactive">Pasif</span>
+          <span class="wb-status-pill wb-status-danger">Hata</span>
+        </div>
+      </div>
+      <pre class="wb-code">&lt;div class="wb-action-group"&gt;
+  &lt;button class="wb-action-btn"&gt;Edit&lt;/button&gt;
+  &lt;button class="wb-action-btn"&gt;Preview&lt;/button&gt;
+  &lt;button class="wb-action-btn wb-action-btn-danger"&gt;Delete&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Durum pilleri --&gt;
+&lt;span class="wb-status-pill wb-status-active"&gt;Active&lt;/span&gt;
+&lt;span class="wb-status-pill wb-status-pending"&gt;Pending&lt;/span&gt;
+&lt;span class="wb-status-pill wb-status-inactive"&gt;Inactive&lt;/span&gt;</pre>
+    </section>
+
+    <!-- ── FORMLAR ───────────────────────────────────────── -->
+    <div class="docs-group-heading">Formlar</div>
 
     <!-- ── Forms ────────────────────────────────────────── -->
     <section class="docs-section" id="forms">
@@ -481,56 +805,136 @@
 &lt;/label&gt;</pre>
     </section>
 
-    <!-- ── Tables ───────────────────────────────────────── -->
-    <section class="docs-section" id="tables">
-      <h2 class="docs-section-title">Tablolar</h2>
-      <p class="docs-section-lead">İsteğe bağlı çizgili ve hover değiştiricileriyle duyarlı veri tabloları.</p>
+    <!-- ── NAVİGASYON ────────────────────────────────────── -->
+    <div class="docs-group-heading">Navigasyon</div>
 
-      <div class="docs-preview" style="display:block">
-        <table class="wb-table wb-table-striped">
-          <thead>
-            <tr>
-              <th>Ad</th>
-              <th>Rol</th>
-              <th>Durum</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Alice Chen</td>
-              <td>Yönetici</td>
-              <td><span class="wb-badge wb-badge-success">Aktif</span></td>
-            </tr>
-            <tr>
-              <td>Bob Ross</td>
-              <td>Editör</td>
-              <td><span class="wb-badge wb-badge-warning">Beklemede</span></td>
-            </tr>
-            <tr>
-              <td>Carol White</td>
-              <td>Görüntüleyici</td>
-              <td><span class="wb-badge wb-badge-danger">Pasif</span></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- ── Tabs ─────────────────────────────────────────── -->
+    <section class="docs-section" id="tabs">
+      <h2 class="docs-section-title">Sekmeler</h2>
+      <p class="docs-section-lead">Sekmeli içerik paneli. JS geçişi yönetir; <code class="wb-code-inline">is-active</code> geçerli sekmeyi ve paneli işaretler.</p>
+
+      <div class="docs-preview docs-preview-col" style="width:100%">
+        <div class="wb-tabs" id="demo-tabs">
+          <div class="wb-tab-list">
+            <button class="wb-tab-item is-active" data-wb-tab="tab1">Genel Bakış</button>
+            <button class="wb-tab-item" data-wb-tab="tab2">Etkinlik</button>
+            <button class="wb-tab-item" data-wb-tab="tab3">Ayarlar</button>
+          </div>
+          <div class="wb-tab-panels">
+            <div class="wb-tab-panel is-active" id="tab1">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Genel bakış paneli içeriği.</p>
+            </div>
+            <div class="wb-tab-panel" id="tab2">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Etkinlik paneli içeriği.</p>
+            </div>
+            <div class="wb-tab-panel" id="tab3">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Ayarlar paneli içeriği.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <pre class="wb-code">&lt;table class="wb-table wb-table-striped"&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice Chen&lt;/td&gt;
-      &lt;td&gt;Admin&lt;/td&gt;
-      &lt;td&gt;&lt;span class="wb-badge wb-badge-success"&gt;Active&lt;/span&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</pre>
-
-      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        Değiştiriciler: <code class="wb-code-inline">wb-table-striped</code> · <code class="wb-code-inline">wb-table-hover</code> · <code class="wb-code-inline">wb-table-bordered</code> · <code class="wb-code-inline">wb-table-sm</code>
-      </p>
+      <pre class="wb-code">&lt;div class="wb-tabs" id="my-tabs"&gt;
+  &lt;div class="wb-tab-list"&gt;
+    &lt;button class="wb-tab-item is-active" data-wb-tab="tab1"&gt;Overview&lt;/button&gt;
+    &lt;button class="wb-tab-item" data-wb-tab="tab2"&gt;Activity&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-tab-panels"&gt;
+    &lt;div class="wb-tab-panel is-active" id="tab1"&gt;Overview content&lt;/div&gt;
+    &lt;div class="wb-tab-panel" id="tab2"&gt;Activity content&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
     </section>
+
+    <!-- ── Accordion ────────────────────────────────────── -->
+    <section class="docs-section" id="accordion">
+      <h2 class="docs-section-title">Akordeon</h2>
+      <p class="docs-section-lead">Daraltılabilir içerik bölümleri.</p>
+
+      <div class="docs-preview docs-preview-col" style="width:100%">
+        <div class="wb-accordion">
+          <div class="wb-accordion-item is-open">
+            <button class="wb-accordion-trigger">WebBlocks UI nedir?</button>
+            <div class="wb-accordion-body">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Yönetim panelleri ve gösterge tabloları için sıfır bağımlılıklı bir UI kiti.</p>
+            </div>
+          </div>
+          <div class="wb-accordion-item">
+            <button class="wb-accordion-trigger">npm gerekli mi?</button>
+            <div class="wb-accordion-body">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Hayır. İki script etiketi ekleyin ve hazırsınız.</p>
+            </div>
+          </div>
+          <div class="wb-accordion-item">
+            <button class="wb-accordion-trigger">Laravel ile kullanabilir miyim?</button>
+            <div class="wb-accordion-body">
+              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Evet — her şablon motoruyla çalışır. HTML, HTML olarak kalır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <pre class="wb-code">&lt;div class="wb-accordion"&gt;
+  &lt;div class="wb-accordion-item is-open"&gt;
+    &lt;button class="wb-accordion-trigger"&gt;Birinci soru?&lt;/button&gt;
+    &lt;div class="wb-accordion-body"&gt;Cevap metni buraya.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-accordion-item"&gt;
+    &lt;button class="wb-accordion-trigger"&gt;İkinci soru?&lt;/button&gt;
+    &lt;div class="wb-accordion-body"&gt;Cevap metni buraya.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── Pagination ────────────────────────────────────── -->
+    <section class="docs-section" id="pagination">
+      <h2 class="docs-section-title">Sayfalama</h2>
+      <p class="docs-section-lead">Sayfa gezinme bağlantıları.</p>
+
+      <div class="docs-preview">
+        <nav class="wb-pagination">
+          <a href="#" class="wb-page-item wb-page-prev">← Önceki</a>
+          <a href="#" class="wb-page-item">1</a>
+          <a href="#" class="wb-page-item is-active">2</a>
+          <a href="#" class="wb-page-item">3</a>
+          <span class="wb-page-item wb-page-ellipsis">…</span>
+          <a href="#" class="wb-page-item">10</a>
+          <a href="#" class="wb-page-item wb-page-next">Sonraki →</a>
+        </nav>
+      </div>
+      <pre class="wb-code">&lt;nav class="wb-pagination"&gt;
+  &lt;a href="#" class="wb-page-item wb-page-prev"&gt;← Prev&lt;/a&gt;
+  &lt;a href="#" class="wb-page-item"&gt;1&lt;/a&gt;
+  &lt;a href="#" class="wb-page-item is-active"&gt;2&lt;/a&gt;
+  &lt;a href="#" class="wb-page-item"&gt;3&lt;/a&gt;
+  &lt;span class="wb-page-item wb-page-ellipsis"&gt;…&lt;/span&gt;
+  &lt;a href="#" class="wb-page-item wb-page-next"&gt;Next →&lt;/a&gt;
+&lt;/nav&gt;</pre>
+    </section>
+
+    <!-- ── Breadcrumb ────────────────────────────────────── -->
+    <section class="docs-section" id="breadcrumb">
+      <h2 class="docs-section-title">Breadcrumb</h2>
+      <p class="docs-section-lead">Hiyerarşik gezinme izi.</p>
+
+      <div class="docs-preview">
+        <nav class="wb-breadcrumb">
+          <a href="#" class="wb-crumb">Ana Sayfa</a>
+          <span class="wb-crumb-sep">/</span>
+          <a href="#" class="wb-crumb">Kullanıcılar</a>
+          <span class="wb-crumb-sep">/</span>
+          <span class="wb-crumb is-active">Alice Chen</span>
+        </nav>
+      </div>
+      <pre class="wb-code">&lt;nav class="wb-breadcrumb"&gt;
+  &lt;a href="#" class="wb-crumb"&gt;Home&lt;/a&gt;
+  &lt;span class="wb-crumb-sep"&gt;/&lt;/span&gt;
+  &lt;a href="#" class="wb-crumb"&gt;Users&lt;/a&gt;
+  &lt;span class="wb-crumb-sep"&gt;/&lt;/span&gt;
+  &lt;span class="wb-crumb is-active"&gt;Alice Chen&lt;/span&gt;
+&lt;/nav&gt;</pre>
+    </section>
+
+    <!-- ── KATMANLAR ─────────────────────────────────────── -->
+    <div class="docs-group-heading">Katmanlar</div>
 
     <!-- ── Modal ────────────────────────────────────────── -->
     <section class="docs-section" id="modal">
@@ -637,112 +1041,6 @@ WBModal.close('my-modal');</pre>
 &lt;/div&gt;</pre>
     </section>
 
-    <!-- ── Tabs ─────────────────────────────────────────── -->
-    <section class="docs-section" id="tabs">
-      <h2 class="docs-section-title">Sekmeler</h2>
-      <p class="docs-section-lead">Sekmeli içerik paneli. JS geçişi yönetir; <code class="wb-code-inline">is-active</code> geçerli sekmeyi ve paneli işaretler.</p>
-
-      <div class="docs-preview docs-preview-col" style="width:100%">
-        <div class="wb-tabs" id="demo-tabs">
-          <div class="wb-tab-list">
-            <button class="wb-tab-item is-active" data-wb-tab="tab1">Genel Bakış</button>
-            <button class="wb-tab-item" data-wb-tab="tab2">Etkinlik</button>
-            <button class="wb-tab-item" data-wb-tab="tab3">Ayarlar</button>
-          </div>
-          <div class="wb-tab-panels">
-            <div class="wb-tab-panel is-active" id="tab1">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Genel bakış paneli içeriği.</p>
-            </div>
-            <div class="wb-tab-panel" id="tab2">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Etkinlik paneli içeriği.</p>
-            </div>
-            <div class="wb-tab-panel" id="tab3">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Ayarlar paneli içeriği.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <pre class="wb-code">&lt;div class="wb-tabs" id="my-tabs"&gt;
-  &lt;div class="wb-tab-list"&gt;
-    &lt;button class="wb-tab-item is-active" data-wb-tab="tab1"&gt;Overview&lt;/button&gt;
-    &lt;button class="wb-tab-item" data-wb-tab="tab2"&gt;Activity&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div class="wb-tab-panels"&gt;
-    &lt;div class="wb-tab-panel is-active" id="tab1"&gt;Overview content&lt;/div&gt;
-    &lt;div class="wb-tab-panel" id="tab2"&gt;Activity content&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</pre>
-    </section>
-
-    <!-- ── Accordion ────────────────────────────────────── -->
-    <section class="docs-section" id="accordion">
-      <h2 class="docs-section-title">Akordeon</h2>
-      <p class="docs-section-lead">Daraltılabilir içerik bölümleri.</p>
-
-      <div class="docs-preview docs-preview-col" style="width:100%">
-        <div class="wb-accordion">
-          <div class="wb-accordion-item is-open">
-            <button class="wb-accordion-trigger">WebBlocks UI nedir?</button>
-            <div class="wb-accordion-body">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Yönetim panelleri ve gösterge tabloları için sıfır bağımlılıklı bir UI kiti.</p>
-            </div>
-          </div>
-          <div class="wb-accordion-item">
-            <button class="wb-accordion-trigger">npm gerekli mi?</button>
-            <div class="wb-accordion-body">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Hayır. İki script etiketi ekleyin ve hazırsınız.</p>
-            </div>
-          </div>
-          <div class="wb-accordion-item">
-            <button class="wb-accordion-trigger">Laravel ile kullanabilir miyim?</button>
-            <div class="wb-accordion-body">
-              <p style="margin:0;font-size:0.875rem;color:var(--wb-muted)">Evet — her şablon motoruyla çalışır. HTML, HTML olarak kalır.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <pre class="wb-code">&lt;div class="wb-accordion"&gt;
-  &lt;div class="wb-accordion-item is-open"&gt;
-    &lt;button class="wb-accordion-trigger"&gt;Birinci soru?&lt;/button&gt;
-    &lt;div class="wb-accordion-body"&gt;Cevap metni buraya.&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class="wb-accordion-item"&gt;
-    &lt;button class="wb-accordion-trigger"&gt;İkinci soru?&lt;/button&gt;
-    &lt;div class="wb-accordion-body"&gt;Cevap metni buraya.&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</pre>
-    </section>
-
-    <!-- ── Toast ────────────────────────────────────────── -->
-    <section class="docs-section" id="toast">
-      <h2 class="docs-section-title">Toast</h2>
-      <p class="docs-section-lead">Programatik bildirim mesajları. <code class="wb-code-inline">WBToast.show()</code> ile gösterilir.</p>
-
-      <div class="docs-preview" style="gap:var(--wb-s3);flex-wrap:wrap">
-        <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="WBToast.show('Ayarlar kaydedildi.')">Varsayılan toast</button>
-        <button class="wb-btn wb-btn-success wb-btn-sm" onclick="WBToast.show('Kayıt oluşturuldu!', {type:'success'})">Başarı</button>
-        <button class="wb-btn wb-btn-danger wb-btn-sm" onclick="WBToast.show('Bir şeyler ters gitti.', {type:'error'})">Hata</button>
-        <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="WBToast.show('Lütfen inceleyin.', {type:'warning'})">Uyarı</button>
-      </div>
-      <pre class="wb-code">// Temel
-WBToast.show('Settings saved.');
-
-// Türle birlikte
-WBToast.show('Record created!', { type: 'success' });
-WBToast.show('Something went wrong.', { type: 'error' });
-WBToast.show('Please review.', { type: 'warning' });
-
-// Özel süre (ms)
-WBToast.show('Auto-closes in 2s.', { duration: 2000 });
-
-// Konum ile (varsayılan: top-right)
-WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
-
-      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
-        Konum değerleri: <code class="wb-code-inline">top-right</code> · <code class="wb-code-inline">top-center</code> · <code class="wb-code-inline">top-left</code> · <code class="wb-code-inline">bottom-center</code> · <code class="wb-code-inline">bottom-left</code>
-      </p>
-    </section>
-
     <!-- ── Popover ──────────────────────────────────────── -->
     <section class="docs-section" id="popover">
       <h2 class="docs-section-title">Popover</h2>
@@ -808,259 +1106,6 @@ WBToast.show('Bottom center!', { position: 'bottom-center' });</pre>
 &lt;/button&gt;
 
 &lt;!-- Yerleşimler: top (varsayılan) / right / bottom / left --&gt;</pre>
-    </section>
-
-    <!-- ── Avatar ───────────────────────────────────────── -->
-    <section class="docs-section" id="avatar">
-      <h2 class="docs-section-title">Avatar</h2>
-      <p class="docs-section-lead">Boyut varyantları ve baş harfli yedekle kullanıcı resmi yer tutucusu.</p>
-
-      <div class="docs-preview" style="align-items:center;gap:var(--wb-s4)">
-        <span class="wb-avatar wb-avatar-xl">JD</span>
-        <span class="wb-avatar wb-avatar-lg">AB</span>
-        <span class="wb-avatar">CD</span>
-        <span class="wb-avatar wb-avatar-sm">EF</span>
-        <img src="https://i.pravatar.cc/48?img=5" class="wb-avatar" alt="Kullanıcı">
-      </div>
-      <pre class="wb-code">&lt;!-- Baş harfler --&gt;
-&lt;span class="wb-avatar wb-avatar-xl"&gt;JD&lt;/span&gt;
-&lt;span class="wb-avatar wb-avatar-lg"&gt;AB&lt;/span&gt;
-&lt;span class="wb-avatar"&gt;CD&lt;/span&gt;
-&lt;span class="wb-avatar wb-avatar-sm"&gt;EF&lt;/span&gt;
-
-&lt;!-- Resim --&gt;
-&lt;img src="user.jpg" class="wb-avatar" alt="User"&gt;</pre>
-    </section>
-
-    <!-- ── Pagination ────────────────────────────────────── -->
-    <section class="docs-section" id="pagination">
-      <h2 class="docs-section-title">Sayfalama</h2>
-      <p class="docs-section-lead">Sayfa gezinme bağlantıları.</p>
-
-      <div class="docs-preview">
-        <nav class="wb-pagination">
-          <a href="#" class="wb-page-item wb-page-prev">← Önceki</a>
-          <a href="#" class="wb-page-item">1</a>
-          <a href="#" class="wb-page-item is-active">2</a>
-          <a href="#" class="wb-page-item">3</a>
-          <span class="wb-page-item wb-page-ellipsis">…</span>
-          <a href="#" class="wb-page-item">10</a>
-          <a href="#" class="wb-page-item wb-page-next">Sonraki →</a>
-        </nav>
-      </div>
-      <pre class="wb-code">&lt;nav class="wb-pagination"&gt;
-  &lt;a href="#" class="wb-page-item wb-page-prev"&gt;← Prev&lt;/a&gt;
-  &lt;a href="#" class="wb-page-item"&gt;1&lt;/a&gt;
-  &lt;a href="#" class="wb-page-item is-active"&gt;2&lt;/a&gt;
-  &lt;a href="#" class="wb-page-item"&gt;3&lt;/a&gt;
-  &lt;span class="wb-page-item wb-page-ellipsis"&gt;…&lt;/span&gt;
-  &lt;a href="#" class="wb-page-item wb-page-next"&gt;Next →&lt;/a&gt;
-&lt;/nav&gt;</pre>
-    </section>
-
-    <!-- ── Breadcrumb ────────────────────────────────────── -->
-    <section class="docs-section" id="breadcrumb">
-      <h2 class="docs-section-title">Breadcrumb</h2>
-      <p class="docs-section-lead">Hiyerarşik gezinme izi.</p>
-
-      <div class="docs-preview">
-        <nav class="wb-breadcrumb">
-          <a href="#" class="wb-crumb">Ana Sayfa</a>
-          <span class="wb-crumb-sep">/</span>
-          <a href="#" class="wb-crumb">Kullanıcılar</a>
-          <span class="wb-crumb-sep">/</span>
-          <span class="wb-crumb is-active">Alice Chen</span>
-        </nav>
-      </div>
-      <pre class="wb-code">&lt;nav class="wb-breadcrumb"&gt;
-  &lt;a href="#" class="wb-crumb"&gt;Home&lt;/a&gt;
-  &lt;span class="wb-crumb-sep"&gt;/&lt;/span&gt;
-  &lt;a href="#" class="wb-crumb"&gt;Users&lt;/a&gt;
-  &lt;span class="wb-crumb-sep"&gt;/&lt;/span&gt;
-  &lt;span class="wb-crumb is-active"&gt;Alice Chen&lt;/span&gt;
-&lt;/nav&gt;</pre>
-    </section>
-
-    <!-- ── Skeleton ──────────────────────────────────────── -->
-    <section class="docs-section" id="skeleton">
-      <h2 class="docs-section-title">Skeleton</h2>
-      <p class="docs-section-lead">İçerik alanları için yükleme yer tutucusu.</p>
-
-      <div class="docs-preview docs-preview-col" style="max-width:320px">
-        <div class="wb-skeleton" style="height:1rem;width:60%"></div>
-        <div class="wb-skeleton" style="height:1rem;width:90%"></div>
-        <div class="wb-skeleton" style="height:1rem;width:75%"></div>
-        <div class="wb-skeleton" style="height:2.5rem;width:120px;border-radius:var(--wb-r-md)"></div>
-      </div>
-      <pre class="wb-code">&lt;div class="wb-skeleton" style="height:1rem; width:60%"&gt;&lt;/div&gt;
-&lt;div class="wb-skeleton" style="height:1rem; width:90%"&gt;&lt;/div&gt;
-&lt;div class="wb-skeleton" style="height:1rem; width:75%"&gt;&lt;/div&gt;
-&lt;div class="wb-skeleton" style="height:2.5rem; width:120px; border-radius:var(--wb-r-md)"&gt;&lt;/div&gt;</pre>
-    </section>
-
-    <!-- ── Empty state ───────────────────────────────────── -->
-    <section class="docs-section" id="empty">
-      <h2 class="docs-section-title">Boş Durum</h2>
-      <p class="docs-section-lead">Bir liste veya tabloda veri olmadığında gösterilen yer tutucu.</p>
-
-      <div class="docs-preview" style="justify-content:center">
-        <div class="wb-empty">
-          <div class="wb-empty-icon">📭</div>
-          <h4 class="wb-empty-title">Sonuç bulunamadı</h4>
-          <p class="wb-empty-desc">Arama veya filtrenizi ayarlamayı deneyin.</p>
-          <button class="wb-btn wb-btn-primary wb-btn-sm">Filtreleri temizle</button>
-        </div>
-      </div>
-      <pre class="wb-code">&lt;div class="wb-empty"&gt;
-  &lt;div class="wb-empty-icon"&gt;📭&lt;/div&gt;
-  &lt;h4 class="wb-empty-title"&gt;No results found&lt;/h4&gt;
-  &lt;p class="wb-empty-desc"&gt;Try adjusting your search or filter.&lt;/p&gt;
-  &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Clear filters&lt;/button&gt;
-&lt;/div&gt;</pre>
-    </section>
-
-    <!-- ── Spinner & Loading ─────────────────────────────── -->
-    <section class="docs-section" id="spinner">
-      <h2 class="docs-section-title">Spinner &amp; Yükleniyor</h2>
-      <p class="docs-section-lead">Sayfa düzeyinde geçişler için satır içi spinner, ilerleme çubuğu ve yükleme çubuğu.</p>
-
-      <h3 class="docs-sub-title">Spinner</h3>
-      <div class="docs-preview" style="align-items:center;gap:var(--wb-s5)">
-        <div class="wb-spinner wb-spinner-sm"></div>
-        <div class="wb-spinner"></div>
-        <div class="wb-spinner wb-spinner-lg"></div>
-      </div>
-      <pre class="wb-code">&lt;div class="wb-spinner wb-spinner-sm"&gt;&lt;/div&gt;
-&lt;div class="wb-spinner"&gt;&lt;/div&gt;
-&lt;div class="wb-spinner wb-spinner-lg"&gt;&lt;/div&gt;</pre>
-
-      <h3 class="docs-sub-title">İlerleme çubuğu</h3>
-      <div class="docs-preview docs-preview-col" style="width:100%">
-        <div class="wb-progress-bar"><div class="wb-progress-fill" style="width:65%"></div></div>
-        <div class="wb-progress-bar"><div class="wb-progress-fill wb-progress-success" style="width:40%"></div></div>
-        <div class="wb-progress-bar"><div class="wb-progress-fill wb-progress-danger" style="width:85%"></div></div>
-      </div>
-      <pre class="wb-code">&lt;div class="wb-progress-bar"&gt;
-  &lt;div class="wb-progress-fill" style="width:65%"&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Anlamsal varyantlar --&gt;
-&lt;div class="wb-progress-bar"&gt;
-  &lt;div class="wb-progress-fill wb-progress-success" style="width:40%"&gt;&lt;/div&gt;
-&lt;/div&gt;</pre>
-    </section>
-
-    <!-- ── Divider ───────────────────────────────────────── -->
-    <section class="docs-section" id="divider">
-      <h2 class="docs-section-title">Ayraç</h2>
-      <p class="docs-section-lead">Yatay, dikey veya etiketli ayırıcı çizgiler.</p>
-
-      <div class="docs-preview docs-preview-col" style="width:100%">
-        <div class="wb-divider"></div>
-        <div class="wb-divider wb-divider-labeled"><span>veya şununla devam et</span></div>
-      </div>
-      <pre class="wb-code">&lt;!-- Basit --&gt;
-&lt;div class="wb-divider"&gt;&lt;/div&gt;
-
-&lt;!-- Etiketli --&gt;
-&lt;div class="wb-divider wb-divider-labeled"&gt;
-  &lt;span&gt;or continue with&lt;/span&gt;
-&lt;/div&gt;
-
-&lt;!-- Dikey (flex kapsayıcı içinde) --&gt;
-&lt;div class="wb-divider wb-divider-vertical"&gt;&lt;/div&gt;</pre>
-    </section>
-
-    <!-- ── List Group ────────────────────────────────────── -->
-    <section class="docs-section" id="list">
-      <h2 class="docs-section-title">Liste Grubu</h2>
-      <p class="docs-section-lead">Dikey yığılmış öğe listesi.</p>
-
-      <div class="docs-preview" style="min-width:260px">
-        <ul class="wb-list">
-          <li class="wb-list-item is-active">Dashboard</li>
-          <li class="wb-list-item">Kullanıcılar</li>
-          <li class="wb-list-item">Raporlar</li>
-          <li class="wb-list-item">Ayarlar</li>
-        </ul>
-      </div>
-      <pre class="wb-code">&lt;ul class="wb-list"&gt;
-  &lt;li class="wb-list-item is-active"&gt;Dashboard&lt;/li&gt;
-  &lt;li class="wb-list-item"&gt;Users&lt;/li&gt;
-  &lt;li class="wb-list-item"&gt;Reports&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!-- Değiştiriciler: wb-list-flush · wb-list-compact · wb-list-numbered --&gt;</pre>
-    </section>
-
-    <!-- ── Filter bar ────────────────────────────────────── -->
-    <section class="docs-section" id="filter-bar">
-      <h2 class="docs-section-title">Filtre Çubuğu</h2>
-      <p class="docs-section-lead">Veri tabloları için arama ve filtre satırı.</p>
-
-      <div class="docs-preview docs-preview-col" style="width:100%">
-        <div class="wb-filter-bar">
-          <div class="wb-search-bar">
-            <svg class="wb-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="search" class="wb-search-input" placeholder="Kullanıcı ara…">
-          </div>
-          <select class="wb-select" style="width:auto">
-            <option>Tüm roller</option>
-            <option>Yönetici</option>
-            <option>Editör</option>
-          </select>
-          <button class="wb-btn wb-btn-outline wb-btn-sm">Dışa aktar</button>
-        </div>
-        <div style="display:flex;gap:var(--wb-s2);flex-wrap:wrap">
-          <span class="wb-filter-chip is-active">Tümü</span>
-          <span class="wb-filter-chip">Aktif</span>
-          <span class="wb-filter-chip">Beklemede</span>
-          <span class="wb-filter-chip">Pasif</span>
-        </div>
-      </div>
-      <pre class="wb-code">&lt;div class="wb-filter-bar"&gt;
-  &lt;div class="wb-search-bar"&gt;
-    &lt;svg class="wb-search-icon"&gt;...&lt;/svg&gt;
-    &lt;input type="search" class="wb-search-input" placeholder="Search…"&gt;
-  &lt;/div&gt;
-  &lt;select class="wb-select"&gt;...&lt;/select&gt;
-  &lt;button class="wb-btn wb-btn-outline wb-btn-sm"&gt;Export&lt;/button&gt;
-&lt;/div&gt;
-
-&lt;!-- Filtre çipleri --&gt;
-&lt;span class="wb-filter-chip is-active"&gt;All&lt;/span&gt;
-&lt;span class="wb-filter-chip"&gt;Active&lt;/span&gt;
-&lt;span class="wb-filter-chip"&gt;Pending&lt;/span&gt;</pre>
-    </section>
-
-    <!-- ── Action menu ───────────────────────────────────── -->
-    <section class="docs-section" id="action-menu">
-      <h2 class="docs-section-title">Eylem Menüsü</h2>
-      <p class="docs-section-lead">Tablo satırları veya başlıkları için eylem düğmeleri ve durum pilleri araç çubuğu.</p>
-
-      <div class="docs-preview docs-preview-col" style="width:100%">
-        <div class="wb-action-group">
-          <button class="wb-action-btn">Düzenle</button>
-          <button class="wb-action-btn">Önizle</button>
-          <button class="wb-action-btn wb-action-btn-danger">Sil</button>
-        </div>
-        <div style="display:flex;gap:var(--wb-s3);align-items:center">
-          <span class="wb-status-pill wb-status-active">Aktif</span>
-          <span class="wb-status-pill wb-status-pending">Beklemede</span>
-          <span class="wb-status-pill wb-status-inactive">Pasif</span>
-          <span class="wb-status-pill wb-status-danger">Hata</span>
-        </div>
-      </div>
-      <pre class="wb-code">&lt;div class="wb-action-group"&gt;
-  &lt;button class="wb-action-btn"&gt;Edit&lt;/button&gt;
-  &lt;button class="wb-action-btn"&gt;Preview&lt;/button&gt;
-  &lt;button class="wb-action-btn wb-action-btn-danger"&gt;Delete&lt;/button&gt;
-&lt;/div&gt;
-
-&lt;!-- Durum pilleri --&gt;
-&lt;span class="wb-status-pill wb-status-active"&gt;Active&lt;/span&gt;
-&lt;span class="wb-status-pill wb-status-pending"&gt;Pending&lt;/span&gt;
-&lt;span class="wb-status-pill wb-status-inactive"&gt;Inactive&lt;/span&gt;</pre>
     </section>
 
   </main>
