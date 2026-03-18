@@ -5546,6 +5546,11 @@ i.wb-icon {
   z-index: var(--wb-z-navbar, 100);
 }
 
+/* Static (non-sticky) variant */
+.wb-navbar--static {
+  position: static;
+}
+
 /* Frosted-glass variant */
 .wb-navbar-glass {
   background: color-mix(in srgb, var(--wb-surface) 80%, transparent);
