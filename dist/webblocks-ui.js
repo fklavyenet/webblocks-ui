@@ -1287,7 +1287,9 @@
      </div>
 
      <!-- Backdrop (optional, add before </body>) -->
-     <div class="wb-drawer-backdrop" data-wb-dismiss="drawer"></div>
+     <div class="wb-drawer-backdrop"></div>
+
+     Clicking outside the drawer panel (on the backdrop) closes it automatically.
    ============================================================ */
 
 (function () {
@@ -1356,11 +1358,19 @@
       return;
     }
 
-    // Dismiss
+    // Dismiss button (data-wb-dismiss="drawer")
     var dismiss = e.target.closest('[data-wb-dismiss="drawer"]');
     if (dismiss) {
       close(activeDrawer);
       return;
+    }
+
+    // Backdrop click — close if click is outside the active drawer panel
+    if (activeDrawer && !activeDrawer.contains(e.target)) {
+      var backdrop = getBackdrop();
+      if (backdrop && backdrop.classList.contains('is-open')) {
+        close(activeDrawer);
+      }
     }
   });
 
