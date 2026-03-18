@@ -37,7 +37,7 @@
 }
 html[data-mode="dark"] .wb-alert-info,
 html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-info {
-  color: #7dd3fc;
+  color: var(--wb-info-light);
 }
 
 .wb-alert-success {
@@ -47,7 +47,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-info {
 }
 html[data-mode="dark"] .wb-alert-success,
 html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-success {
-  color: #86efac;
+  color: var(--wb-success-light);
 }
 
 .wb-alert-warning {
@@ -57,7 +57,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-success {
 }
 html[data-mode="dark"] .wb-alert-warning,
 html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-warning {
-  color: #fed7aa;
+  color: var(--wb-warning-light);
 }
 
 .wb-alert-danger {
@@ -67,7 +67,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-warning {
 }
 html[data-mode="dark"] .wb-alert-danger,
 html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
-  color: #fca5a5;
+  color: var(--wb-danger-light);
 }
 
 /* ── Dismissible ──────────────────────────────────────────── */

@@ -11,7 +11,7 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--wb-overlay);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   z-index: calc(var(--wb-z-modal) - 10);

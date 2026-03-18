@@ -42,21 +42,25 @@
   --wb-primary-soft: var(--wb-accent-soft);
 
   /* ── Semantic ─────────────────────────────────────────── */
-  --wb-success:      #15803d;
-  --wb-success-dark: #166534;
-  --wb-success-soft: #dcfce7;
+  --wb-success:       #15803d;
+  --wb-success-dark:  #166534;
+  --wb-success-soft:  #dcfce7;
+  --wb-success-light: #86efac;
 
-  --wb-warning:      #b45309;
-  --wb-warning-dark: #92400e;
-  --wb-warning-soft: #ffedd5;
+  --wb-warning:       #b45309;
+  --wb-warning-dark:  #92400e;
+  --wb-warning-soft:  #ffedd5;
+  --wb-warning-light: #fed7aa;
 
-  --wb-danger:       #b91c1c;
-  --wb-danger-dark:  #991b1b;
-  --wb-danger-soft:  #fee2e2;
+  --wb-danger:        #b91c1c;
+  --wb-danger-dark:   #991b1b;
+  --wb-danger-soft:   #fee2e2;
+  --wb-danger-light:  #fca5a5;
 
-  --wb-info:         #0369a1;
-  --wb-info-dark:    #075985;
-  --wb-info-soft:    #e0f2fe;
+  --wb-info:          #0369a1;
+  --wb-info-dark:     #075985;
+  --wb-info-soft:     #e0f2fe;
+  --wb-info-light:    #7dd3fc;
 
   /* ── Typography ───────────────────────────────────────── */
   --wb-font:         Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -103,6 +107,12 @@
   /* ── Transitions ──────────────────────────────────────── */
   --wb-t:   0.18s ease;
   --wb-t-f: 0.10s ease;
+
+  /* ── Overlays ─────────────────────────────────────────── */
+  --wb-overlay:       rgba(0, 0, 0, 0.5);    /* modal/drawer backdrop */
+  --wb-overlay-dark:  rgba(0, 0, 0, 0.55);   /* command-palette backdrop */
+  --wb-overlay-white: rgba(255, 255, 255, 0.3); /* spinner-white track */
+  --wb-white:         #ffffff;               /* always-white (switch knob, etc.) */
 
   /* ── Z-index ──────────────────────────────────────────── */
   --wb-z-dropdown: 100;

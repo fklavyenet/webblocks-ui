@@ -47,14 +47,14 @@
 
 .wb-btn-primary {
   background: var(--wb-primary);
-  color: #fff;
+  color: var(--wb-accent-on);
   border-color: var(--wb-primary);
 }
 .wb-btn-primary:hover {
   background: var(--wb-primary-dark);
   border-color: var(--wb-primary-dark);
   text-decoration: none;
-  color: #fff;
+  color: var(--wb-accent-on);
 }
 
 .wb-btn-secondary {
@@ -90,26 +90,26 @@
 
 .wb-btn-danger {
   background: var(--wb-danger);
-  color: #fff;
+  color: var(--wb-white);
   border-color: var(--wb-danger);
 }
 .wb-btn-danger:hover {
   background: var(--wb-danger-dark);
   border-color: var(--wb-danger-dark);
   text-decoration: none;
-  color: #fff;
+  color: var(--wb-white);
 }
 
 .wb-btn-success {
   background: var(--wb-success);
-  color: #fff;
+  color: var(--wb-white);
   border-color: var(--wb-success);
 }
 .wb-btn-success:hover {
   background: var(--wb-success-dark);
   border-color: var(--wb-success-dark);
   text-decoration: none;
-  color: #fff;
+  color: var(--wb-white);
 }
 
 /* ── Sizes ────────────────────────────────────────────────── */

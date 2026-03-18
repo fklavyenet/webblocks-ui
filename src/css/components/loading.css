@@ -43,8 +43,8 @@
 /* ── Spinner color variants ───────────────────────────────── */
 
 .wb-spinner-white {
-  border-color: rgba(255,255,255,0.3);
-  border-top-color: #fff;
+  border-color: var(--wb-overlay-white);
+  border-top-color: var(--wb-white);
 }
 
 .wb-spinner-muted {

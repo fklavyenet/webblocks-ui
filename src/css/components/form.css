@@ -157,7 +157,7 @@
   width: 1.05rem;
   height: 1.05rem;
   border-radius: var(--wb-r-full);
-  background: #fff;
+  background: var(--wb-white);
   box-shadow: var(--wb-shadow-sm);
   transition: transform var(--wb-t);
 }

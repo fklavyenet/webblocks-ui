@@ -42,21 +42,25 @@
   --wb-primary-soft: var(--wb-accent-soft);
 
   /* ── Semantic ─────────────────────────────────────────── */
-  --wb-success:      #15803d;
-  --wb-success-dark: #166534;
-  --wb-success-soft: #dcfce7;
+  --wb-success:       #15803d;
+  --wb-success-dark:  #166534;
+  --wb-success-soft:  #dcfce7;
+  --wb-success-light: #86efac;
 
-  --wb-warning:      #b45309;
-  --wb-warning-dark: #92400e;
-  --wb-warning-soft: #ffedd5;
+  --wb-warning:       #b45309;
+  --wb-warning-dark:  #92400e;
+  --wb-warning-soft:  #ffedd5;
+  --wb-warning-light: #fed7aa;
 
-  --wb-danger:       #b91c1c;
-  --wb-danger-dark:  #991b1b;
-  --wb-danger-soft:  #fee2e2;
+  --wb-danger:        #b91c1c;
+  --wb-danger-dark:   #991b1b;
+  --wb-danger-soft:   #fee2e2;
+  --wb-danger-light:  #fca5a5;
 
-  --wb-info:         #0369a1;
-  --wb-info-dark:    #075985;
-  --wb-info-soft:    #e0f2fe;
+  --wb-info:          #0369a1;
+  --wb-info-dark:     #075985;
+  --wb-info-soft:     #e0f2fe;
+  --wb-info-light:    #7dd3fc;
 
   /* ── Typography ───────────────────────────────────────── */
   --wb-font:         Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -104,6 +108,12 @@
   --wb-t:   0.18s ease;
   --wb-t-f: 0.10s ease;
 
+  /* ── Overlays ─────────────────────────────────────────── */
+  --wb-overlay:       rgba(0, 0, 0, 0.5);    /* modal/drawer backdrop */
+  --wb-overlay-dark:  rgba(0, 0, 0, 0.55);   /* command-palette backdrop */
+  --wb-overlay-white: rgba(255, 255, 255, 0.3); /* spinner-white track */
+  --wb-white:         #ffffff;               /* always-white (switch knob, etc.) */
+
   /* ── Z-index ──────────────────────────────────────────── */
   --wb-z-dropdown: 100;
   --wb-z-modal:    200;
@@ -140,6 +150,9 @@ html[data-mode="dark"] {
   --wb-danger-soft:  rgba(185,28,28,0.22);
   --wb-info-soft:    rgba(3,105,161,0.20);
 
+  --wb-overlay:      rgba(0, 0, 0, 0.65);
+  --wb-overlay-dark: rgba(0, 0, 0, 0.70);
+
   --wb-shadow-sm: 0 1px 3px rgba(0,0,0,0.30);
   --wb-shadow-md: 0 4px 14px rgba(0,0,0,0.35);
   --wb-shadow-lg: 0 12px 36px rgba(0,0,0,0.45);
@@ -167,6 +180,9 @@ html[data-mode="dark"] {
     --wb-warning-soft: rgba(180,83,9,0.20);
     --wb-danger-soft:  rgba(185,28,28,0.22);
     --wb-info-soft:    rgba(3,105,161,0.20);
+
+    --wb-overlay:      rgba(0, 0, 0, 0.65);
+    --wb-overlay-dark: rgba(0, 0, 0, 0.70);
 
     --wb-shadow-sm: 0 1px 3px rgba(0,0,0,0.30);
     --wb-shadow-md: 0 4px 14px rgba(0,0,0,0.35);
@@ -1220,14 +1236,14 @@ textarea::placeholder {
 
 .wb-btn-primary {
   background: var(--wb-primary);
-  color: #fff;
+  color: var(--wb-accent-on);
   border-color: var(--wb-primary);
 }
 .wb-btn-primary:hover {
   background: var(--wb-primary-dark);
   border-color: var(--wb-primary-dark);
   text-decoration: none;
-  color: #fff;
+  color: var(--wb-accent-on);
 }
 
 .wb-btn-secondary {
@@ -1263,26 +1279,26 @@ textarea::placeholder {
 
 .wb-btn-danger {
   background: var(--wb-danger);
-  color: #fff;
+  color: var(--wb-white);
   border-color: var(--wb-danger);
 }
 .wb-btn-danger:hover {
   background: var(--wb-danger-dark);
   border-color: var(--wb-danger-dark);
   text-decoration: none;
-  color: #fff;
+  color: var(--wb-white);
 }
 
 .wb-btn-success {
   background: var(--wb-success);
-  color: #fff;
+  color: var(--wb-white);
   border-color: var(--wb-success);
 }
 .wb-btn-success:hover {
   background: var(--wb-success-dark);
   border-color: var(--wb-success-dark);
   text-decoration: none;
-  color: #fff;
+  color: var(--wb-white);
 }
 
 /* ── Sizes ────────────────────────────────────────────────── */
@@ -1534,7 +1550,7 @@ textarea::placeholder {
 }
 html[data-mode="dark"] .wb-alert-info,
 html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-info {
-  color: #7dd3fc;
+  color: var(--wb-info-light);
 }
 
 .wb-alert-success {
@@ -1544,7 +1560,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-info {
 }
 html[data-mode="dark"] .wb-alert-success,
 html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-success {
-  color: #86efac;
+  color: var(--wb-success-light);
 }
 
 .wb-alert-warning {
@@ -1554,7 +1570,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-success {
 }
 html[data-mode="dark"] .wb-alert-warning,
 html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-warning {
-  color: #fed7aa;
+  color: var(--wb-warning-light);
 }
 
 .wb-alert-danger {
@@ -1564,7 +1580,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-warning {
 }
 html[data-mode="dark"] .wb-alert-danger,
 html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
-  color: #fca5a5;
+  color: var(--wb-danger-light);
 }
 
 /* ── Dismissible ──────────────────────────────────────────── */
@@ -1756,7 +1772,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   width: 1.05rem;
   height: 1.05rem;
   border-radius: var(--wb-r-full);
-  background: #fff;
+  background: var(--wb-white);
   box-shadow: var(--wb-shadow-sm);
   transition: transform var(--wb-t);
 }
@@ -2030,7 +2046,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--wb-overlay);
   backdrop-filter: blur(2px);
 }
 
@@ -2489,7 +2505,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-page-item.is-active {
   background: var(--wb-primary);
   border-color: var(--wb-primary);
-  color: #fff;
+  color: var(--wb-accent-on);
   cursor: default;
 }
 
@@ -3355,7 +3371,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   padding: 0 0.3em;
   border-radius: var(--wb-r-full);
   background: var(--wb-primary);
-  color: #fff;
+  color: var(--wb-accent-on);
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1;
@@ -3628,8 +3644,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 /* ── Spinner color variants ───────────────────────────────── */
 
 .wb-spinner-white {
-  border-color: rgba(255,255,255,0.3);
-  border-top-color: #fff;
+  border-color: var(--wb-overlay-white);
+  border-top-color: var(--wb-white);
 }
 
 .wb-spinner-muted {
@@ -3940,7 +3956,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--wb-overlay);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   z-index: calc(var(--wb-z-modal) - 10);
@@ -4132,7 +4148,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--wb-overlay-dark);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: calc(var(--wb-z-modal) + 50);
