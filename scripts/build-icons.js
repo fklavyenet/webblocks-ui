@@ -50,7 +50,9 @@ console.log(`Generated dist/webblocks-icons.svg — ${icons.length} icons`);
 // Allows Bootstrap-style usage: <i class="wb-icon wb-icon-settings"></i>
 
 function toDataUri(inner) {
-  const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+  // Collapse newlines and extra whitespace so multi-line symbols produce valid single-line CSS URLs
+  const flat = inner.replace(/\s*\n\s*/g, ' ').trim();
+  const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${flat}</svg>`;
   const encoded = svgStr
     .replace(/"/g, "'")
     .replace(/#/g, '%23')
