@@ -1,244 +1,67 @@
 #!/usr/bin/env node
-// ⚠️  DEVELOPMENT TOOL ONLY — Do not run in production/user projects
+// WebBlocks UI — Icon Build Script
 //
-// Regenerates dist/webblocks-icons.svg from 130 selected Lucide icons.
-// Fetches icons directly from Lucide CDN (UMD bundle) — requires internet.
+// Reads src/css/icons/webblocks-icons.svg (source of truth),
+// copies it to dist/, and generates dist/webblocks-icons.css.
 //
-// FOR DEVELOPERS ONLY:
-//   When updating icon list, run: node scripts/build-icons.js
-//   Then commit the updated dist/webblocks-icons.* files to git.
+// Run via:  node scripts/build-icons.js  (or ./build.sh)
 //
-// FOR USERS:
-//   Do NOT run this script. Use pre-built icons from dist/ directory.
-//   dist/webblocks-icons.svg and dist/webblocks-icons.css are ready to use.
+// To update the icon list from Lucide CDN, run:
+//   node scripts/update-icons.js
 
 const fs   = require('fs');
 const path = require('path');
-const https = require('https');
 
-// ── Icon list (130 curated icons from Lucide) ──
-const ICONS = [
-  // navigation
-  'Menu','PanelLeft','PanelRight','Sidebar',
-  'ChevronLeft','ChevronRight','ChevronUp','ChevronDown',
-  'ArrowLeft','ArrowRight','ArrowUpCircle','LogOut',
-  // actions
-  'Plus','Minus','X','Check',
-  'Pencil','Trash','Trash2','Copy','Save','Download','Upload',
-  'RotateCw','RotateCcw','Repeat',
-  // content_editor
-  'FileText','Files','StickyNote','Heading',
-  'Type','List','ListOrdered','Quote','Code','PenTool',
-  // media
-  'Image','Camera','Video','Play',
-  'Pause','Volume2','Mic','Music','Film','Clapperboard',
-  // files_folders
-  'Folder','FolderOpen','FolderTree','File',
-  'FilePlus','FileCode','FileImage','FileArchive','FileSearch','Receipt',
-  'FolderPlus','FileX','FileLock',
-  // commerce
-  'ShoppingCart','ShoppingBag','Store','Package',
-  'CreditCard','Wallet','BadgePercent','Banknote','HandCoins','ReceiptText',
-  'Calculator',
-  // communication
-  'Mail','Send','Inbox','MessageSquare',
-  'MessagesSquare','Phone','Bell','BellRing','AtSign','Globe',
-  'Languages',
-  // users_security
-  'User','UserRound','Users','Contact',
-  'BadgeCheck','Shield','ShieldCheck','Lock','KeyRound','Fingerprint',
-  'UserPlus','LockOpen','Ban',
-  // settings_system
-  'Settings','SlidersHorizontal','ToggleLeft','ToggleRight',
-  'Wrench','Hammer','Bug','Database','Server','Plug',
-  'Cpu','Terminal','MemoryStick',
-  // charts_dashboard
-  'LayoutDashboard','BarChart','BarChart2','BarChart3','LineChart','PieChart',
-  'AreaChart','Activity','Gauge','Target','TrendingUp','Calendar',
-  'History',
-  // layout_design
-  'Home','Layout','LayoutGrid','Columns2','Rows2','Square',
-  'RectangleHorizontal','Maximize2','Minimize2','MousePointer2','Palette','Sparkles',
-  // theme_mode
-  'Sun','Moon','SunMoon',
-  // devices_integration
-  'Monitor','Laptop','TabletSmartphone','Smartphone',
-  'Tablet','Watch','Printer','Router','Wifi','Cloud',
-  // feedback_status
-  'Info','HelpCircle','CircleHelp',
-  'OctagonAlert','TriangleAlert','Circle','Rocket',
-];
+const ROOT     = path.join(__dirname, '..');
+const SRC_SVG  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.svg');
+const DIST_DIR = path.join(ROOT, 'dist');
+const DIST_SVG = path.join(DIST_DIR, 'webblocks-icons.svg');
+const DIST_CSS = path.join(DIST_DIR, 'webblocks-icons.css');
 
-// kebab-case helper (PascalCase → kebab-case)
-function toKebab(str) {
-  return str
-    .replace(/([A-Z])/g, (m, c, i) => (i > 0 ? '-' : '') + c.toLowerCase())
-    .replace(/--+/g, '-');
+// ── Read source SVG ──────────────────────────────────────────
+if (!fs.existsSync(SRC_SVG)) {
+  console.error(`Error: source file not found: ${SRC_SVG}`);
+  console.error('Run: node scripts/update-icons.js  to generate it.');
+  process.exit(1);
 }
 
-// Render a single Lucide node to SVG string
-function renderNode(node) {
-  const [tag, attrs, ...children] = node;
-  const attrStr = Object.entries(attrs || {})
-    .map(([k, v]) => `${k}="${v}"`)
-    .join(' ');
-  const inner = (children || []).map(renderNode).join('');
-  if (inner || tag === 'g') {
-    return `<${tag}${attrStr ? ' ' + attrStr : ''}>${inner}</${tag}>`;
-  }
-  return `<${tag}${attrStr ? ' ' + attrStr : ''}/>`;
+const svg = fs.readFileSync(SRC_SVG, 'utf8');
+
+// ── Extract symbol IDs and their path data ───────────────────
+// Match each <symbol id="wb-icon-*">...</symbol>
+const symbolRe = /<symbol\s+id="(wb-icon-[^"]+)"[^>]*>([\s\S]*?)<\/symbol>/g;
+const icons = [];
+let m;
+while ((m = symbolRe.exec(svg)) !== null) {
+  icons.push({ id: m[1], inner: m[2].trim() });
 }
 
-// ── Fetch Lucide UMD bundle from CDN ────────────────────────
-function fetchLucideBundle() {
-  return new Promise((resolve, reject) => {
-    https.get('https://unpkg.com/lucide@0.577.0/dist/umd/lucide.js', (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve(data);
-        } catch (e) {
-          reject(e);
-        }
-      });
-    }).on('error', reject);
-  });
+if (icons.length === 0) {
+  console.error('Error: no <symbol> elements found in source SVG.');
+  process.exit(1);
 }
 
-// ── Parse UMD bundle to extract icon definitions ────────────
-function parseIconsFromBundle(bundleCode) {
-  const lucideIcons = {};
-  
-  // Extract all export statements to find icon names
-  const exports = new Map();
-  const exportPattern = /exports\.([A-Z][a-zA-Z0-9]*)\s*=\s*([a-zA-Z_][a-zA-Z0-9]*);/g;
-  let match;
-  
-  while ((match = exportPattern.exec(bundleCode)) !== null) {
-    exports.set(match[1], match[2]); // iconName -> variableName
-  }
-  
-  // Now find each icon's const declaration
-  for (const [iconName, varName] of exports) {
-    // Look for: const Menu = [...];
-    // We need to match nested brackets, so use a helper
-    const constStart = bundleCode.indexOf(`const ${varName} = [`);
-    if (constStart === -1) continue;
-    
-    let braceCount = 0;
-    let bracketCount = 0;
-    let idx = constStart + `const ${varName} = `.length;
-    let startIdx = idx;
-    let foundEnd = false;
-    
-    while (idx < bundleCode.length && !foundEnd) {
-      const char = bundleCode[idx];
-      if (char === '{') braceCount++;
-      else if (char === '}') braceCount--;
-      else if (char === '[') bracketCount++;
-      else if (char === ']') {
-        bracketCount--;
-        if (bracketCount === 0 && braceCount === 0) {
-          foundEnd = true;
-          idx++;
-          break;
-        }
-      }
-      idx++;
-    }
-    
-    if (foundEnd) {
-      const iconDef = bundleCode.substring(startIdx, idx);
-      try {
-        lucideIcons[iconName] = eval(iconDef);
-      } catch (e) {
-        // Skip malformed definitions
-      }
-    }
-  }
-  
-  return lucideIcons;
+// ── Copy SVG to dist/ ────────────────────────────────────────
+fs.mkdirSync(DIST_DIR, { recursive: true });
+fs.copyFileSync(SRC_SVG, DIST_SVG);
+console.log(`Generated dist/webblocks-icons.svg — ${icons.length} icons`);
+
+// ── Generate CSS mask-image file ─────────────────────────────
+// Allows Bootstrap-style usage: <i class="wb-icon wb-icon-settings"></i>
+
+function toDataUri(inner) {
+  const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+  const encoded = svgStr
+    .replace(/"/g, "'")
+    .replace(/#/g, '%23')
+    .replace(/</g, '%3C')
+    .replace(/>/g, '%3E');
+  return `url("data:image/svg+xml,${encoded}")`;
 }
 
-// ── Main: Fetch, parse, and generate ────────────────────────
-(async function main() {
-  try {
-    console.log('Fetching Lucide bundle from CDN...');
-    const bundleCode = await fetchLucideBundle();
-    console.log(`Bundle fetched (${bundleCode.length} bytes)`);
-    
-    const lucide = parseIconsFromBundle(bundleCode);
-    console.log(`Parsed ${Object.keys(lucide).length} icons from bundle`);
-    
-    let symbols = '';
-    let missing = [];
-    
-    for (const name of ICONS) {
-      const icon = lucide[name];
-      if (!icon) {
-        missing.push(name);
-        continue;
-      }
-      const id = toKebab(name);
-      // icon is array of [tag, attrs, ...children] tuples
-      const inner = icon.map(renderNode).join('\n    ');
-      symbols += `  <symbol id="wb-icon-${id}" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    ${inner}
-  </symbol>\n`;
-    }
-    
-    if (missing.length) {
-      console.warn('Missing icons:', missing.join(', '));
-    }
-    
-    const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  WebBlocks Icon Sprite — Lucide 0.577.0
-  130 icons in 12 categories.
-
-  Usage:
-    <svg class="wb-icon" aria-hidden="true">
-      <use href="/dist/webblocks-icons.svg#settings"></use>
-    </svg>
-
-  Or inline (for same-origin restriction workaround):
-    Define a hidden <svg> with all <symbol> tags at top of <body>,
-    then reference with <use href="#icon-name">.
--->
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-${symbols}</svg>
-`;
-    
-    const outPath = path.join(__dirname, '..', 'dist', 'webblocks-icons.svg');
-    fs.mkdirSync(path.dirname(outPath), { recursive: true });
-    fs.writeFileSync(outPath, svg, 'utf8');
-    
-    const count = (svg.match(/<symbol /g) || []).length;
-    console.log(`Generated dist/webblocks-icons.svg — ${count} icons`);
-    
-    // ── Generate CSS mask-image file ─────────────────────────────
-    // Allows Bootstrap-style usage: <i class="wb-icon wb-icon-settings"></i>
-    
-    function renderSvgDataUri(name) {
-      const icon = lucide[name];
-      if (!icon) return null;
-      const inner = icon.map(renderNode).join('');
-      const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
-      // Encode for use in CSS url()
-      const encoded = svgStr
-        .replace(/"/g, "'")
-        .replace(/#/g, '%23')
-        .replace(/</g, '%3C')
-        .replace(/>/g, '%3E');
-      return `url("data:image/svg+xml,${encoded}")`;
-    }
-    
-    let cssRules = `/* ============================================================
+let cssRules = `/* ============================================================
    WebBlocks UI — Icon Font-Style CSS
-   Generated from Lucide 0.577.0
+   Auto-generated from src/css/icons/webblocks-icons.svg
 
    Bootstrap-style usage:
      <i class="wb-icon wb-icon-settings"></i>
@@ -252,21 +75,12 @@ ${symbols}</svg>
    ============================================================ */
 
 `;
-    
-    for (const name of ICONS) {
-      const id = toKebab(name);
-      const uri = renderSvgDataUri(name);
-      if (!uri) continue;
-      cssRules += `.wb-icon-${id} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
-    }
-    
-    const cssOutPath = path.join(__dirname, '..', 'dist', 'webblocks-icons.css');
-    fs.writeFileSync(cssOutPath, cssRules, 'utf8');
-    
-    const cssCount = (cssRules.match(/\.wb-icon-[a-z]/g) || []).length;
-    console.log(`Generated dist/webblocks-icons.css — ${cssCount} icon classes`);
-  } catch (err) {
-    console.error('Error:', err.message);
-    process.exit(1);
-  }
-})();
+
+for (const { id, inner } of icons) {
+  const uri = toDataUri(inner);
+  cssRules += `.${id} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
+}
+
+fs.writeFileSync(DIST_CSS, cssRules, 'utf8');
+const cssCount = icons.length;
+console.log(`Generated dist/webblocks-icons.css — ${cssCount} icon classes`);

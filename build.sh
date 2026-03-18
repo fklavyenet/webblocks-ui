@@ -98,43 +98,12 @@ cat \
 JS_LINES=$(wc -l < "$JS_OUT")
 echo "  -> dist/webblocks-ui.js   ($JS_LINES lines)"
 
-echo "Building icon CSS..."
+echo "Building icons..."
 
 if command -v node &> /dev/null; then
   node "$ROOT/scripts/build-icons.js"
 else
   echo "  -> Skipped (node not found — run: node scripts/build-icons.js)"
-fi
-
-echo ""
-echo "Checking icons in examples/..."
-
-SPRITE="$DIST/webblocks-icons.svg"
-EXAMPLES=$(find "$ROOT/examples" -name "*.html" ! -path "*/v1/*" ! -path "*/core/*" ! -path "*/auth/*" ! -path "*/website/*")
-
-# Utility modifiers — not icon names
-SKIP="sm|lg|xl|xs|2xl|btn|wrap|wrap-sm|wrap-lg|wrap-circle|wrap-success|wrap-warning|wrap-danger|wrap-info|wrap-muted|accent|success|warning|danger|info|muted|thin|bold|medium|card|solo|on"
-
-MISSING=0
-while IFS= read -r icon; do
-  if ! grep -q "id=\"$icon\"" "$SPRITE"; then
-    if [ $MISSING -eq 0 ]; then
-      echo "  MISSING icons (not in sprite):"
-    fi
-    # find which files use it
-    FILES=$(grep -rl "wb-icon-$icon" "$ROOT/examples" | sed "s|$ROOT/||" | tr '\n' ' ')
-    echo "    wb-icon-$icon  ($FILES)"
-    MISSING=$((MISSING + 1))
-  fi
-done < <(grep -oh 'wb-icon-[a-z0-9-]*' $EXAMPLES 2>/dev/null \
-  | sed 's/wb-icon-//' \
-  | grep -Ewv "$SKIP" \
-  | sort -u)
-
-if [ $MISSING -eq 0 ]; then
-  echo "  All icons OK ($(grep -oh 'wb-icon-[a-z0-9-]*' $EXAMPLES 2>/dev/null | sed 's/wb-icon-//' | grep -Ewv "$SKIP" | sort -u | wc -l | tr -d ' ') unique icons verified)"
-else
-  echo "  $MISSING missing icon(s) — replace with available sprite IDs"
 fi
 
 echo ""
