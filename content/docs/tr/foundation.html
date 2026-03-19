@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="light" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temel & Tokenlar — WebBlocks UI</title>
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
+  <style>
+    /* ── Docs shell ─────────────────────────────────────── */
+    .docs-layout { display: flex; min-height: 100vh; }
+    .docs-sidebar {
+      width: 240px; flex-shrink: 0;
+      background: var(--wb-surface); border-right: 1px solid var(--wb-border);
+      position: sticky; top: 0; height: 100vh;
+      overflow-y: auto; padding: var(--wb-s6) 0;
+      display: flex; flex-direction: column;
+    }
+    .docs-sidebar-brand {
+      padding: 0 var(--wb-s5) var(--wb-s5);
+      border-bottom: 1px solid var(--wb-border); margin-bottom: var(--wb-s4);
+    }
+    .docs-sidebar-brand a {
+      font-size: 1.1rem; font-weight: 700; color: var(--wb-text);
+      text-decoration: none; display: flex; align-items: center; gap: var(--wb-s2);
+    }
+    .docs-sidebar-brand span {
+      font-size: 0.7rem; font-weight: 500; color: var(--wb-accent-on);
+      background: var(--wb-accent); padding: 2px 6px; border-radius: var(--wb-r-full);
+    }
+    .docs-nav-section {
+      padding: var(--wb-s3) var(--wb-s4) var(--wb-s1);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--wb-muted);
+    }
+    .docs-nav-link {
+      display: block; padding: var(--wb-s2) var(--wb-s4) var(--wb-s2) var(--wb-s7);
+      font-size: 0.875rem; color: var(--wb-muted); text-decoration: none;
+      transition: color var(--wb-t), background var(--wb-t);
+    }
+    .docs-nav-link:hover { color: var(--wb-text); background: var(--wb-surface-2); }
+    .docs-nav-link.is-active {
+      color: var(--wb-accent); background: var(--wb-accent-softer);
+      font-weight: 500; border-right: 2px solid var(--wb-accent);
+    }
+    .docs-main { flex: 1; min-width: 0; }
+    .docs-topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--wb-surface); border-bottom: 1px solid var(--wb-border);
+      padding: var(--wb-s3) var(--wb-s6);
+      display: flex; align-items: center; justify-content: flex-end; gap: var(--wb-s3);
+    }
+    /* ── Lang dropdown ──────────────────────────────────────── */
+    .docs-lang-btn {
+      display: flex; align-items: center; gap: 5px;
+      padding: 3px 9px; font-size: 0.75rem; font-weight: 600;
+      border: 1px solid var(--wb-border); border-radius: var(--wb-r-md);
+      background: var(--wb-surface-2); color: var(--wb-text);
+      cursor: pointer; white-space: nowrap; letter-spacing: 0.02em;
+      transition: background var(--wb-t), color var(--wb-t);
+    }
+    .docs-lang-btn:hover { background: var(--wb-surface-3); }
+    .docs-lang-btn svg { flex-shrink: 0; color: var(--wb-muted); }
+    /* ── Page header ─────────────────────────────────────── */
+    .docs-page-header {
+      padding: var(--wb-s10) var(--wb-s8) var(--wb-s8);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-page-header h1 {
+      font-size: 2.2rem; font-weight: 800; line-height: 1.15;
+      color: var(--wb-text); margin: 0 0 var(--wb-s3); letter-spacing: -0.02em;
+    }
+    .docs-page-header p {
+      font-size: 1rem; color: var(--wb-muted); margin: 0; line-height: 1.7; max-width: 600px;
+    }
+    /* ── Code block ──────────────────────────────────────── */
+    .wb-code {
+      background: var(--wb-surface-2); border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-md); padding: var(--wb-s4) var(--wb-s5);
+      font-family: var(--wb-font-mono); font-size: 0.82rem;
+      line-height: 1.7; overflow-x: auto; white-space: pre;
+      color: var(--wb-text); margin: var(--wb-s3) 0;
+    }
+    .wb-code-inline {
+      font-family: var(--wb-font-mono); font-size: 0.82em;
+      background: var(--wb-surface-2); border: 1px solid var(--wb-border);
+      padding: 1px 6px; border-radius: var(--wb-r-sm); color: var(--wb-accent-text);
+    }
+    /* ── Section ─────────────────────────────────────────── */
+    .docs-section {
+      padding: var(--wb-s10) var(--wb-s8); border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-section:last-child { border-bottom: none; }
+    .docs-section-title {
+      font-size: 1.5rem; font-weight: 700; color: var(--wb-text);
+      margin: 0 0 var(--wb-s2); letter-spacing: -0.01em;
+    }
+    .docs-section-lead {
+      font-size: 0.95rem; color: var(--wb-muted); margin: 0 0 var(--wb-s6); line-height: 1.6;
+    }
+    .docs-sub-title {
+      font-size: 1.05rem; font-weight: 600; color: var(--wb-text);
+      margin: var(--wb-s7) 0 var(--wb-s3);
+    }
+    .docs-sub-title:first-child { margin-top: 0; }
+    /* ── Token table ─────────────────────────────────────── */
+    .docs-table {
+      width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: var(--wb-s4) 0;
+    }
+    .docs-table th {
+      text-align: left; padding: var(--wb-s2) var(--wb-s4);
+      border-bottom: 2px solid var(--wb-border);
+      font-weight: 600; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.04em; color: var(--wb-muted);
+    }
+    .docs-table td {
+      padding: var(--wb-s3) var(--wb-s4); border-bottom: 1px solid var(--wb-border);
+      vertical-align: top; color: var(--wb-text);
+    }
+    .docs-table tr:last-child td { border-bottom: none; }
+    .docs-table td:first-child {
+      color: var(--wb-accent-text); font-family: var(--wb-font-mono); font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    /* ── Callout ─────────────────────────────────────────── */
+    .docs-callout {
+      background: var(--wb-accent-softer); border: 1px solid var(--wb-accent-border);
+      border-left: 3px solid var(--wb-accent); border-radius: var(--wb-r-md);
+      padding: var(--wb-s4) var(--wb-s5); font-size: 0.875rem;
+      color: var(--wb-text); margin: var(--wb-s5) 0; line-height: 1.6;
+    }
+    .docs-callout strong { color: var(--wb-accent-text); }
+    /* ── Accent swatches ─────────────────────────────────── */
+    .accent-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--wb-s4); margin: var(--wb-s5) 0;
+    }
+    .accent-swatch {
+      border-radius: var(--wb-r-md); overflow: hidden;
+      border: 1px solid var(--wb-border);
+      cursor: pointer; transition: transform var(--wb-t);
+    }
+    .accent-swatch:hover { transform: translateY(-2px); }
+    .accent-swatch-bar { height: 56px; }
+    .accent-swatch-label {
+      padding: var(--wb-s2) var(--wb-s3);
+      background: var(--wb-surface); font-size: 0.8rem; font-weight: 500;
+      color: var(--wb-text);
+    }
+    .accent-ocean     { background: #2563eb; }
+    .accent-forest    { background: #16a34a; }
+    .accent-sunset    { background: #ea580c; }
+    .accent-royal     { background: #7c3aed; }
+    .accent-mint      { background: #0d9488; }
+    .accent-amber     { background: #d97706; }
+    .accent-rose      { background: #e11d48; }
+    .accent-slate-fire { background: linear-gradient(135deg, #475569 0%, #ef4444 100%); }
+    /* ── Mode toggle ─────────────────────────────────────── */
+    .docs-mode-btn {
+      width: 2rem; height: 2rem; border-radius: var(--wb-r-md);
+      border: 1px solid var(--wb-border); background: var(--wb-surface-2);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--wb-muted); transition: background var(--wb-t), color var(--wb-t);
+    }
+    .docs-mode-btn:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .docs-sidebar { display: none; }
+      .docs-page-header, .docs-section { padding-left: var(--wb-s5); padding-right: var(--wb-s5); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="docs-sidebar">
+    <div class="docs-sidebar-brand">
+      <a href="index.html">WebBlocks UI <span>TR</span></a>
+    </div>
+
+    <div class="docs-nav-section">Genel Bakış</div>
+    <a href="index.html" class="docs-nav-link">Giriş</a>
+    <a href="getting-started.html" class="docs-nav-link">Başlarken</a>
+
+    <div class="docs-nav-section">Kılavuzlar</div>
+    <a href="foundation.html" class="docs-nav-link is-active">Temel & Tokenlar</a>
+    <a href="layout.html" class="docs-nav-link">Düzenler</a>
+
+    <div class="docs-nav-section">Referans</div>
+    <a href="components.html" class="docs-nav-link">Bileşenler</a>
+    <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
+    <a href="icons.html" class="docs-nav-link">İkonlar</a>
+    <a href="utilities.html" class="docs-nav-link">Yardımcı Sınıflar</a>
+  </aside>
+
+  <!-- ── Main ───────────────────────────────────────────── -->
+  <main class="docs-main">
+
+    <!-- Topbar -->
+    <div class="docs-topbar">
+      <div class="wb-dropdown">
+        <button class="docs-lang-btn" data-wb-toggle="dropdown">
+          TR <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="wb-dropdown-menu">
+            <a href="../foundation.html" class="wb-dropdown-item">EN <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">English</span></a>
+            <a href="../de/foundation.html" class="wb-dropdown-item">DE <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">Deutsch</span></a>
+            <a href="../es/foundation.html" class="wb-dropdown-item">ES <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">Español</span></a>
+        </div>
+      </div>
+      <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
+         class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+        </svg>
+        GitHub
+      </a>
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Temayı değiştir">
+        <svg class="wb-icon" aria-hidden="true"><use href=""></use></svg>
+      </button>
+    </div>
+
+    <!-- Page header -->
+    <div class="docs-page-header">
+      <h1>Temel &amp; Tokenlar</h1>
+      <p>Her bileşene güç veren tasarım token sistemi — yüzeyler, renkler, boşluklar, tipografi ve çok eksenli tema motoru.</p>
+    </div>
+
+    <!-- ── Tasarım tokenları ───────────────────────────── -->
+    <section class="docs-section" id="tokens">
+      <h2 class="docs-section-title">Tasarım tokenları</h2>
+      <p class="docs-section-lead">
+        Tüm değerler (renkler, boyutlar, yarıçaplar, gölgeler, boşluklar)
+        <code class="wb-code-inline">tokens.css</code> dosyasında tanımlanmış CSS özel özellikleridir.
+        Bileşenler hiçbir zaman sabit değer kullanmaz — her zaman bir tokena referans verir.
+        Markanıza uyarlamak için istediğiniz tokeni geçersiz kılabilirsiniz.
+      </p>
+
+      <div class="docs-callout">
+        <strong>Kural:</strong> Kendi bileşenlerinizde de her zaman token kullanın.
+        Tema değişiminde etkilenebilecek hiçbir renk, boyut veya yarıçapı sabit değer olarak yazmayın.
+      </div>
+
+      <h3 class="docs-sub-title">Yüzeyler &amp; metin</h3>
+      <table class="docs-table">
+        <thead><tr><th>Token</th><th>Varsayılan (açık)</th><th>Kullanım</th></tr></thead>
+        <tbody>
+          <tr><td>--wb-bg</td><td>#f4f6fb</td><td>Sayfa arka planı</td></tr>
+          <tr><td>--wb-surface</td><td>#ffffff</td><td>Kartlar, paneller, modaller</td></tr>
+          <tr><td>--wb-surface-2</td><td>#edf1f7</td><td>Hafif arka planlar, tablo satırları</td></tr>
+          <tr><td>--wb-surface-3</td><td>#e2e8f2</td><td>Hover durumları, ayraçlar</td></tr>
+          <tr><td>--wb-text</td><td>#18212f</td><td>Birincil metin</td></tr>
+          <tr><td>--wb-muted</td><td>#5a6a84</td><td>İkincil metin, etiketler, yer tutucular</td></tr>
+          <tr><td>--wb-border</td><td>#d6e0ee</td><td>Tüm kenarlıklar ve ayraçlar</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Anlamsal renkler</h3>
+      <table class="docs-table">
+        <thead><tr><th>Token</th><th>Varyantlar</th><th>Kullanım</th></tr></thead>
+        <tbody>
+          <tr><td>--wb-success</td><td>-dark · -soft</td><td>Başarı uyarıları, rozetler, ikonlar</td></tr>
+          <tr><td>--wb-warning</td><td>-dark · -soft</td><td>Uyarı bildirimleri, dikkat durumları</td></tr>
+          <tr><td>--wb-danger</td><td>-dark · -soft</td><td>Hata durumları, yıkıcı işlemler</td></tr>
+          <tr><td>--wb-info</td><td>-dark · -soft</td><td>Bilgi uyarıları, ipuçları</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Boşluk skalası (4px taban)</h3>
+      <table class="docs-table">
+        <thead><tr><th>Token</th><th>Değer</th><th>Token</th><th>Değer</th></tr></thead>
+        <tbody>
+          <tr><td>--wb-s1</td><td>4px</td><td>--wb-s8</td><td>32px</td></tr>
+          <tr><td>--wb-s2</td><td>8px</td><td>--wb-s10</td><td>40px</td></tr>
+          <tr><td>--wb-s3</td><td>12px</td><td>--wb-s12</td><td>48px</td></tr>
+          <tr><td>--wb-s4</td><td>16px</td><td>--wb-s16</td><td>64px</td></tr>
+          <tr><td>--wb-s5</td><td>20px</td><td>--wb-s20</td><td>80px</td></tr>
+          <tr><td>--wb-s6</td><td>24px</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Kenar yarıçapı</h3>
+      <table class="docs-table">
+        <thead><tr><th>Token</th><th>Değer</th></tr></thead>
+        <tbody>
+          <tr><td>--wb-r-sm</td><td>5px</td></tr>
+          <tr><td>--wb-r-md</td><td>9px</td></tr>
+          <tr><td>--wb-r-lg</td><td>14px</td></tr>
+          <tr><td>--wb-r-xl</td><td>20px</td></tr>
+          <tr><td>--wb-r-full</td><td>9999px (hap/daire)</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Tipografi</h3>
+      <table class="docs-table">
+        <thead><tr><th>Token</th><th>Açıklama</th></tr></thead>
+        <tbody>
+          <tr><td>--wb-font</td><td>Gövde yazı tipi yığını (Inter, system-ui yedekleri)</td></tr>
+          <tr><td>--wb-font-heading</td><td>Başlık yazı tipi yığını (varsayılan olarak gövde ile aynı)</td></tr>
+          <tr><td>--wb-font-mono</td><td>Sabit genişlikli yığın (Cascadia Code, Menlo, Consolas)</td></tr>
+          <tr><td>--wb-font-size-xs/sm/md/lg/xl</td><td>0.75 / 0.875 / 1 / 1.125 / 1.25 rem</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Gölgeler</h3>
+      <table class="docs-table">
+        <thead><tr><th>Token</th><th>Kullanım</th></tr></thead>
+        <tbody>
+          <tr><td>--wb-shadow-sm</td><td>Hafif yükseklik (kartlar, girdiler)</td></tr>
+          <tr><td>--wb-shadow-md</td><td>Açılır menüler, popoverlar</td></tr>
+          <tr><td>--wb-shadow-lg</td><td>Modaller, çekmeceler</td></tr>
+          <tr><td>--wb-shadow-xl</td><td>Komut paleti, yüksek yüzen katmanlar</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Z-index skalası</h3>
+      <table class="docs-table">
+        <thead><tr><th>Token</th><th>Değer</th><th>Kullanım</th></tr></thead>
+        <tbody>
+          <tr><td>--wb-z-dropdown</td><td>100</td><td>Açılır menüler, popoverlar, araç ipuçları</td></tr>
+          <tr><td>--wb-z-modal</td><td>200</td><td>Modaller, çekmeceler, onay diyalogları</td></tr>
+          <tr><td>--wb-z-toast</td><td>300</td><td>Toast bildirimleri</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s8)">Token geçersiz kılma</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Kendi CSS'inizde <code class="wb-code-inline">:root</code> veya kapsamlı bir seçici
+        hedefleyerek herhangi bir tokeni geçersiz kılabilirsiniz:
+      </p>
+      <pre class="wb-code">/* Global geçersiz kılma */
+:root {
+  --wb-font: 'Geist', sans-serif;
+  --wb-r-md: 12px;
+}
+
+/* Kapsamlı geçersiz kılma — yalnızca bir bölümü etkiler */
+.my-hero {
+  --wb-accent: #8b5cf6;
+}</pre>
+    </section>
+
+    <!-- ── Vurgu renkleri ──────────────────────────────── -->
+    <section class="docs-section" id="accent-colors">
+      <h2 class="docs-section-title">Vurgu renkleri</h2>
+      <p class="docs-section-lead">
+        Tüm arayüzü farklı bir renk düzenine geçirmek için
+        <code class="wb-code-inline">&lt;html&gt;</code> öğesine
+        <code class="wb-code-inline">data-accent</code> ayarlayın. Her vurgu 12 token tanımlar.
+      </p>
+
+      <div class="accent-grid">
+        <div class="accent-swatch" onclick="document.documentElement.setAttribute('data-accent','ocean')" title="data-accent=&quot;ocean&quot;">
+          <div class="accent-swatch-bar accent-ocean"></div>
+          <div class="accent-swatch-label">ocean</div>
+        </div>
+        <div class="accent-swatch" onclick="document.documentElement.setAttribute('data-accent','forest')" title="data-accent=&quot;forest&quot;">
+          <div class="accent-swatch-bar accent-forest"></div>
+          <div class="accent-swatch-label">forest</div>
+        </div>
+        <div class="accent-swatch" onclick="document.documentElement.setAttribute('data-accent','sunset')" title="data-accent=&quot;sunset&quot;">
+          <div class="accent-swatch-bar accent-sunset"></div>
+          <div class="accent-swatch-label">sunset</div>
+        </div>
+        <div class="accent-swatch" onclick="document.documentElement.setAttribute('data-accent','royal')" title="data-accent=&quot;royal&quot;">
+          <div class="accent-swatch-bar accent-royal"></div>
+          <div class="accent-swatch-label">royal</div>
+        </div>
+        <div class="accent-swatch" onclick="document.documentElement.setAttribute('data-accent','mint')" title="data-accent=&quot;mint&quot;">
+          <div class="accent-swatch-bar accent-mint"></div>
+          <div class="accent-swatch-label">mint</div>
+        </div>
+        <div class="accent-swatch" onclick="document.documentElement.setAttribute('data-accent','amber')" title="data-accent=&quot;amber&quot;">
+          <div class="accent-swatch-bar accent-amber"></div>
+          <div class="accent-swatch-label">amber</div>
+        </div>
+        <div class="accent-swatch" onclick="document.documentElement.setAttribute('data-accent','rose')" title="data-accent=&quot;rose&quot;">
+          <div class="accent-swatch-bar accent-rose"></div>
+          <div class="accent-swatch-label">rose</div>
+        </div>
+        <div class="accent-swatch" onclick="document.documentElement.setAttribute('data-accent','slate-fire')" title="data-accent=&quot;slate-fire&quot;">
+          <div class="accent-swatch-bar accent-slate-fire"></div>
+          <div class="accent-swatch-label">slate-fire</div>
+        </div>
+      </div>
+
+      <p style="font-size:0.8rem;color:var(--wb-muted);margin-bottom:var(--wb-s5)">
+        Vurguyu bu sayfada önizlemek için yukarıdaki renk kutusuna tıklayın.
+      </p>
+
+      <h3 class="docs-sub-title">Vurgu token seti (vurgu başına 12 token)</h3>
+      <table class="docs-table">
+        <thead><tr><th>Token</th><th>Kullanım</th></tr></thead>
+        <tbody>
+          <tr><td>--wb-accent</td><td>Birincil vurgu — düğme arka planları, aktif durumlar</td></tr>
+          <tr><td>--wb-accent-hover</td><td>Vurgu renkli öğelerin hover durumu</td></tr>
+          <tr><td>--wb-accent-active</td><td>Aktif / basılı durum</td></tr>
+          <tr><td>--wb-accent-soft</td><td>Tonlu arka plan (rozetler, çipler)</td></tr>
+          <tr><td>--wb-accent-softer</td><td>Çok hafif ton (sayfa bölümleri, açıklamalar)</td></tr>
+          <tr><td>--wb-accent-border</td><td>Vurgu tonlu kenarlık</td></tr>
+          <tr><td>--wb-accent-text</td><td>Açık arka plan üzerinde vurgu metni</td></tr>
+          <tr><td>--wb-accent-on</td><td>Vurgu arka planı üzerinde metin rengi (genellikle beyaz)</td></tr>
+          <tr><td>--wb-accent-ring</td><td>Odak halkası rengi</td></tr>
+          <tr><td>--wb-accent-ring-rgb</td><td>Opaklıklı rgba() odak halkası için RGB değerleri</td></tr>
+          <tr><td>--wb-accent-selection</td><td>Metin seçim arka planı</td></tr>
+          <tr><td>--wb-accent-glow-rgb</td><td>Parıltı efektleri için RGB değerleri</td></tr>
+        </tbody>
+      </table>
+
+      <div class="docs-callout" style="margin-top:var(--wb-s5)">
+        <strong>Geriye dönük uyumluluk:</strong> <code class="wb-code-inline">--wb-primary</code>,
+        <code class="wb-code-inline">--wb-primary-dark</code> ve <code class="wb-code-inline">--wb-primary-soft</code>
+        eşdeğer <code class="wb-code-inline">--wb-accent*</code> tokenlarına yönlendiren takma adlardır.
+        Yeni kodda her zaman <code class="wb-code-inline">--wb-accent*</code> kullanın.
+      </div>
+    </section>
+
+    <!-- ── Karanlık mod ────────────────────────────────── -->
+    <section class="docs-section" id="dark-mode">
+      <h2 class="docs-section-title">Karanlık mod</h2>
+      <p class="docs-section-lead">
+        Karanlık mod, <code class="wb-code-inline">&lt;html&gt;</code> üzerindeki
+        <code class="wb-code-inline">data-mode</code> özniteliği ile kontrol edilir. Üç değer desteklenir.
+      </p>
+
+      <table class="docs-table">
+        <thead><tr><th>Değer</th><th>Davranış</th></tr></thead>
+        <tbody>
+          <tr><td>light</td><td>Her zaman açık mod</td></tr>
+          <tr><td>dark</td><td>Her zaman karanlık mod</td></tr>
+          <tr><td>auto</td><td><code class="wb-code-inline">prefers-color-scheme</code> sistem ayarını izler</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Karanlık mod nasıl çalışır</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Karanlık mod, <code class="wb-code-inline">dark.css</code> dosyasındaki
+        <code class="wb-code-inline">[data-mode="dark"]</code> seçicisi aracılığıyla yüzey, metin ve
+        kenarlık tokenlarını geçersiz kılar. Tüm bileşen stilleri yeni değerleri otomatik olarak devralır —
+        ayrıca karanlık mod sınıf varyantlarına gerek yoktur.
+      </p>
+      <pre class="wb-code">&lt;!-- Statik --&gt;
+&lt;html data-mode="dark"&gt;
+
+&lt;!-- Kullanıcı tarafından değiştirilebilir --&gt;
+&lt;button data-wb-mode-cycle&gt;Modu değiştir&lt;/button&gt;
+
+&lt;!-- Programatik olarak ayarlama --&gt;
+&lt;script&gt;WBTheme.setMode('dark');&lt;/script&gt;</pre>
+
+      <div class="docs-callout">
+        <strong>localStorage kalıcılığı:</strong> <code class="wb-code-inline">WBTheme</code>,
+        kullanıcının mod tercihini <code class="wb-code-inline">localStorage</code> içinde
+        <code class="wb-code-inline">wb-mode</code> anahtarıyla saklar ve bir sonraki sayfa yüklemesinde
+        geri yükler. Yanlış modun görünmesini önlemek için HTML'de başlangıç
+        <code class="wb-code-inline">data-mode</code> değerini ayarlayın.
+      </div>
+    </section>
+
+    <!-- ── Önayarlar ───────────────────────────────────── -->
+    <section class="docs-section" id="presets">
+      <h2 class="docs-section-title">Önayarlar</h2>
+      <p class="docs-section-lead">
+        Önayarlar, birden fazla ekseni aynı anda ayarlayan adlandırılmış paketlerdir —
+        yarıçap, gölge, yoğunluk, yazı tipi ve kenarlık. Tutarlı bir görünüm için başlangıç
+        noktası olarak kullanın; bireysel eksenler herhangi bir önayar değerini hâlâ geçersiz kılabilir.
+      </p>
+
+      <table class="docs-table">
+        <thead><tr><th>Önayar</th><th>Yarıçap</th><th>Gölge</th><th>Yoğunluk</th><th>Yazı Tipi</th><th>Kenarlık</th></tr></thead>
+        <tbody>
+          <tr><td>modern</td><td>varsayılan</td><td>varsayılan</td><td>varsayılan</td><td>modern</td><td>subtle</td></tr>
+          <tr><td>minimal</td><td>sharp</td><td>flat</td><td>compact</td><td>system</td><td>subtle</td></tr>
+          <tr><td>rounded</td><td>soft</td><td>soft</td><td>comfortable</td><td>modern</td><td>none</td></tr>
+          <tr><td>bold</td><td>sharp</td><td>varsayılan</td><td>varsayılan</td><td>modern</td><td>bold</td></tr>
+          <tr><td>editorial</td><td>sharp</td><td>flat</td><td>comfortable</td><td>editorial</td><td>medium</td></tr>
+        </tbody>
+      </table>
+
+      <pre class="wb-code">&lt;!-- "rounded" önayarını uygula, yalnızca vurguyu geçersiz kıl --&gt;
+&lt;html data-preset="rounded" data-accent="rose"&gt;
+
+&lt;!-- "minimal" uygula, yarıçapı soft olarak geçersiz kıl --&gt;
+&lt;html data-preset="minimal" data-radius="soft"&gt;</pre>
+
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
+        Önayarlar CSS şelale sırasında bireysel eksen özniteliklerinden önce uygulanır,
+        dolayısıyla bireysel eksenler her zaman önceliklidir.
+      </p>
+    </section>
+
+    <!-- ── Tema eksenleri ──────────────────────────────── -->
+    <section class="docs-section" id="axes">
+      <h2 class="docs-section-title">Tema eksenleri</h2>
+      <p class="docs-section-lead">
+        Karanlık mod ve vurgunun ötesinde, beş ek eksen arayüzünüzün görsel kişiliğini ayarlamanıza olanak tanır.
+      </p>
+
+      <h3 class="docs-sub-title">Yarıçap — <code class="wb-code-inline">data-radius</code></h3>
+      <table class="docs-table">
+        <thead><tr><th>Değer</th><th>Etki</th></tr></thead>
+        <tbody>
+          <tr><td>sharp</td><td>Tüm kenar yarıçaplarını azaltır — daha yapılandırılmış, kurumsal his</td></tr>
+          <tr><td>soft</td><td>Tüm kenar yarıçaplarını artırır — arkadaşça, tüketiciye yönelik his</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Yoğunluk — <code class="wb-code-inline">data-density</code></h3>
+      <table class="docs-table">
+        <thead><tr><th>Değer</th><th>Etki</th></tr></thead>
+        <tbody>
+          <tr><td>compact</td><td>Düğme, girdi, tablo satırlarındaki dolguyu azaltır — ekranda daha fazla içerik</td></tr>
+          <tr><td>comfortable</td><td>Dolguyu artırır — daha fazla nefes alanı, dokunmatik için daha iyi</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Gölge — <code class="wb-code-inline">data-shadow</code></h3>
+      <table class="docs-table">
+        <thead><tr><th>Değer</th><th>Etki</th></tr></thead>
+        <tbody>
+          <tr><td>flat</td><td>Gölgeleri kaldırır — kenarlık tabanlı derinlik, temiz ve minimal</td></tr>
+          <tr><td>soft</td><td>Gölge bulanıklığını ve opaklığını artırır — daha yüksek, premium his</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Yazı Tipi — <code class="wb-code-inline">data-font</code></h3>
+      <table class="docs-table">
+        <thead><tr><th>Değer</th><th>Yazı tipi yığını</th></tr></thead>
+        <tbody>
+          <tr><td>system</td><td>Yerel işletim sistemi yazı tipi yığını — web fontu yüklenmez</td></tr>
+          <tr><td>modern</td><td>Inter (CDN) — temiz, son derece okunabilir</td></tr>
+          <tr><td>editorial</td><td>Playfair Display (CDN) + Inter — editoryal, yayıncılık hissi</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Kenarlık — <code class="wb-code-inline">data-border</code></h3>
+      <table class="docs-table">
+        <thead><tr><th>Değer</th><th>Etki</th></tr></thead>
+        <tbody>
+          <tr><td>none</td><td>Kenarlıkları kaldırır — yüzeyler yalnızca gölgelerle tanımlanır</td></tr>
+          <tr><td>subtle</td><td>Hafif kenarlıklar (varsayılan)</td></tr>
+          <tr><td>medium</td><td>Orta ağırlıklı kenarlıklar</td></tr>
+          <tr><td>bold</td><td>Kalın kenarlıklar — güçlü görsel yapı</td></tr>
+          <tr><td>dashed</td><td>Kesik kenarlıklar — belirgin, teknik his</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="docs-sub-title" style="margin-top:var(--wb-s7)">Tüm eksenleri birleştirme</h3>
+      <pre class="wb-code">&lt;!-- Tek satır özel CSS yazmadan maksimum özelleştirme --&gt;
+&lt;html
+  data-mode="dark"
+  data-accent="royal"
+  data-preset="rounded"
+  data-density="comfortable"
+  data-font="modern"
+&gt;</pre>
+    </section>
+
+    <!-- ── Özel token geçersiz kılmaları ──────────────── -->
+    <section class="docs-section" id="custom-tokens">
+      <h2 class="docs-section-title">Özel token geçersiz kılmaları</h2>
+      <p class="docs-section-lead">
+        Yerleşik eksenlerin ötesine geçen markaya özgü özelleştirme için, tokenları doğrudan
+        kendi CSS'inizde geçersiz kılın.
+      </p>
+
+      <pre class="wb-code">/* ── Marka yazı tipi ─────────────────────────────── */
+:root {
+  --wb-font:         'DM Sans', sans-serif;
+  --wb-font-heading: 'DM Serif Display', serif;
+}
+
+/* ── Özel vurgu (8 yerleşik dışında) ───────────────── */
+:root {
+  --wb-accent:           #0f766e;
+  --wb-accent-hover:     #0d6e66;
+  --wb-accent-active:    #0b605a;
+  --wb-accent-soft:      #ccfbf1;
+  --wb-accent-softer:    #f0fdf4;
+  --wb-accent-border:    #5eead4;
+  --wb-accent-text:      #0d6e66;
+  --wb-accent-on:        #ffffff;
+  --wb-accent-ring:      rgb(15 118 110);
+  --wb-accent-ring-rgb:  15 118 110;
+  --wb-accent-selection: #ccfbf1;
+  --wb-accent-glow-rgb:  15 118 110;
+}
+
+/* ── Yoğun veri tablosu için daha sıkı boşluk ───────── */
+.my-data-table {
+  --wb-s3: 0.5rem;
+  --wb-s4: 0.75rem;
+}</pre>
+    </section>
+
+  </main>
+</div>
+
+<script src="../../../packages/webblocks/dist/webblocks-ui.js"></script>
+<script>
+  fetch('../../../packages/webblocks/dist/webblocks-icons.svg')
+    .then(function(r) { return r.text(); })
+    .then(function(svg) {
+      var parser = new DOMParser();
+      var svgEl = parser.parseFromString(svg, 'image/svg+xml').documentElement;
+      svgEl.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      document.body.insertBefore(svgEl, document.body.firstChild);
+      if (window.WBTheme) window.WBTheme.sync();
+    });
+</script>
+</body>
+</html>

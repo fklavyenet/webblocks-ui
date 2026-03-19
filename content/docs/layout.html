@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout - WebBlocks UI</title>
+  <meta name="description" content="Layout shells and composition patterns in WebBlocks UI: container, navbar, sidebar, dashboard, auth, settings, and content shells.">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Layout</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link">Docs</a>
+        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="layout.html" class="wb-site-nav-link is-active">Layout</a>
+        <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Shells before ornament</div>
+          <h1 class="wb-page-title">Page structure decides the <em>rhythm</em>.</h1>
+          <p class="wb-page-lead">
+            WebBlocks treats layout as a first-class layer. A dashboard shell should not feel like a content shell with extra pieces bolted on.
+            An auth page should not inherit the density of an admin index. Different jobs deserve different structures.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>Rule of thumb</h2>
+          <ul class="wb-site-principles">
+            <li><span class="wb-site-key">Start with the page job</span><p>Choose document, dashboard, auth, settings, or content before choosing components.</p></li>
+            <li><span class="wb-site-key">Use fewer wrappers</span><p>Most layout primitives are already in the system. Avoid adding anonymous divs without purpose.</p></li>
+            <li><span class="wb-site-key">Let spacing carry structure</span><p>Containers, sections, stacks, clusters, and splits do most of the work.</p></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Primitives</div>
+          <h2 class="wb-site-section-title">Container, section, stack, cluster, split, grid.</h2>
+          <p>
+            These are the base composition tools. They solve width, vertical rhythm, horizontal grouping, and repeatable distribution without inventing a second utility language.
+          </p>
+        </div>
+        <div class="wb-site-column-list">
+          <article><h3><code>wb-container</code></h3><p>Constrains the measure of the page and keeps side padding consistent.</p></article>
+          <article><h3><code>wb-section</code></h3><p>Defines vertical spacing for major page bands.</p></article>
+          <article><h3><code>wb-stack</code>, <code>wb-cluster</code>, <code>wb-split</code></h3><p>Handle common content relationships without bespoke layout CSS in every file.</p></article>
+          <article><h3><code>wb-grid</code></h3><p>Provides fixed and auto-fill grid patterns when repetition is actually needed.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Navigation shell</div>
+          <h2 class="wb-site-section-title">Navbar and sidebar are structural, not decorative.</h2>
+          <p>
+            Navigation components set the frame of an application. The navbar manages top-level movement and actions. The sidebar manages persistent hierarchy.
+          </p>
+        </div>
+
+        <article class="wb-site-sample">
+          <div class="wb-site-sample-head">
+            <h3>Application frame</h3>
+            <span>navbar + sidebar</span>
+          </div>
+          <div class="wb-site-sample-body wb-stack-4">
+            <header class="wb-navbar">
+              <div class="wb-navbar-brand">Atlas</div>
+              <span class="wb-navbar-spacer"></span>
+              <div class="wb-navbar-end">
+                <a href="#" class="wb-navbar-link is-active">Overview</a>
+                <a href="#" class="wb-navbar-link">Billing</a>
+              </div>
+            </header>
+            <aside class="wb-sidebar wb-block wb-relative wb-inset-0 wb-w-full" aria-label="Sidebar example">
+              <div class="wb-sidebar-nav">
+                <div class="wb-sidebar-section">
+                  <span class="wb-sidebar-label">Workspace</span>
+                  <a class="wb-sidebar-link is-active" href="#"><i class="wb-icon wb-icon-home wb-icon-sm"></i> Overview</a>
+                  <a class="wb-sidebar-link" href="#"><i class="wb-icon wb-icon-users wb-icon-sm"></i> Members</a>
+                  <a class="wb-sidebar-link" href="#"><i class="wb-icon wb-icon-settings wb-icon-sm"></i> Settings</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Full-page shells</div>
+          <h2 class="wb-site-section-title">Different shells for different page types.</h2>
+          <p>
+            A dashboard wants persistent navigation. An auth page wants focus and centering. A settings page wants long-form form structure.
+            A content page wants readable measure. These are different problems and WebBlocks keeps them separate.
+          </p>
+        </div>
+
+        <div class="wb-site-table">
+          <div class="wb-site-table-row">
+            <div class="wb-site-table-label">Dashboard</div>
+            <div><code>wb-dashboard-shell</code></div>
+            <div>For application back offices, with persistent navigation and a scrollable main area.</div>
+          </div>
+          <div class="wb-site-table-row">
+            <div class="wb-site-table-label">Auth</div>
+            <div><code>wb-auth</code></div>
+            <div>For login, register, and narrow entry flows that need visual quiet.</div>
+          </div>
+          <div class="wb-site-table-row">
+            <div class="wb-site-table-label">Settings</div>
+            <div><code>wb-settings-shell</code></div>
+            <div>For preference-heavy pages with a local nav and stacked settings sections.</div>
+          </div>
+          <div class="wb-site-table-row">
+            <div class="wb-site-table-label">Content</div>
+            <div><code>wb-content-shell</code></div>
+            <div>For docs, articles, legal pages, and text-first views with better prose defaults.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Settings and content</div>
+          <h2 class="wb-site-section-title">Two calmer shells for slower pages.</h2>
+          <p>
+            These two layouts show the difference between task-oriented settings work and text-oriented reading work.
+          </p>
+        </div>
+
+        <div class="wb-site-samples">
+          <article class="wb-site-sample">
+            <div class="wb-site-sample-head">
+              <h3>Settings shell</h3>
+              <span>nav plus stacked sections</span>
+            </div>
+            <div class="wb-site-sample-body">
+              <div class="wb-settings-shell wb-site-settings-demo">
+                <aside class="wb-settings-nav wb-site-settings-demo-nav">
+                  <div class="wb-settings-nav-header">Account</div>
+                  <a class="wb-settings-nav-link is-active" href="#">Profile</a>
+                  <a class="wb-settings-nav-link" href="#">Security</a>
+                </aside>
+                <div class="wb-settings-body">
+                  <div class="wb-settings-section">
+                    <div class="wb-settings-section-header">
+                      <div>
+                        <div class="wb-settings-section-title">Notifications</div>
+                        <p class="wb-settings-section-desc">Long-form preference pages are easier to scan in blocks.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="wb-site-sample">
+            <div class="wb-site-sample-head">
+              <h3>Content shell</h3>
+              <span>narrow reading measure</span>
+            </div>
+            <div class="wb-site-sample-body">
+              <div class="wb-content-shell wb-content-shell-narrow">
+                <header class="wb-content-header">
+                  <h2 class="wb-content-title">Documentation should feel like reading, not dashboard admin.</h2>
+                </header>
+                <div class="wb-content-body">
+                  <p>Content shells keep long text comfortable while preserving the same token system and class vocabulary.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Skeleton</div>
+          <h2 class="wb-site-section-title">A page shell can stay explicit in the markup.</h2>
+          <p>
+            The layout layer is there so you do not have to improvise wrappers every time. This is the level of visibility the project tries to preserve.
+          </p>
+        </div>
+
+        <pre class="wb-site-pre"><code>&lt;div class="wb-settings-shell"&gt;
+  &lt;aside class="wb-settings-nav"&gt;...&lt;/aside&gt;
+  &lt;div class="wb-settings-body"&gt;
+    &lt;div class="wb-settings-section"&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Layout primitives and full-page shells for WebBlocks UI.</div>
+      <div><a href="components.html" class="wb-site-nav-link">Components</a> <a href="../examples/index.html" class="wb-site-nav-link">Examples</a></div>
+    </div>
+  </footer>
+</body>
+</html>

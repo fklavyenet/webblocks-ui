@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yardımcı Sınıflar - WebBlocks UI</title>
+  <meta name="description" content="WebBlocks UI yardımcı sınıfları: display, flex, spacing, typography, color, border, shadow, position ve responsive visibility.">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Yardımcı Sınıflar</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
+        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="layout.html" class="wb-site-nav-link">Layout</a>
+        <a href="../../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Son düzeltmeler</div>
+          <h1 class="wb-page-title">Yardımcı sınıflar <em>küçük ayarlamalar</em> içindir, ikinci bir tasarım sistemi için değil.</h1>
+          <p class="wb-page-lead">
+            WebBlocks; display, flex, spacing, typography, color, border, shadow, position ve visibility yardımcılarını içerir.
+            Amaç bileşen ve layout katmanlarını değiştirmek değil, onları tamamlamaktır.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>Doğru kullanım</h2>
+          <ul class="wb-site-principles">
+            <li><span class="wb-site-key">Önce yapı</span><p>Önce layout primitive'leri ve bileşen varsayılanlarını kullan, sonra helper ekle.</p></li>
+            <li><span class="wb-site-key">Yerel tut</span><p>Bir ya da iki ayarlama yeterliyse utility uygundur.</p></li>
+            <li><span class="wb-site-key">Aşırı biriktirme</span><p>Markup yardımcılarla doluyorsa karar yanlış katmanda veriliyor olabilir.</p></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Gruplar</div>
+          <h2 class="wb-site-section-title">Yardımcılar sık yapılan son dokunuşları kapsar.</h2>
+          <p>Adlandırma ritmi geri kalan sistemle aynıdır: kısa, doğrudan ve `wb-` önekli.</p>
+        </div>
+        <ul class="wb-site-chip-list">
+          <li class="wb-site-chip">display</li>
+          <li class="wb-site-chip">flex</li>
+          <li class="wb-site-chip">gap</li>
+          <li class="wb-site-chip">margin</li>
+          <li class="wb-site-chip">padding</li>
+          <li class="wb-site-chip">text</li>
+          <li class="wb-site-chip">font</li>
+          <li class="wb-site-chip">color</li>
+          <li class="wb-site-chip">border</li>
+          <li class="wb-site-chip">radius</li>
+          <li class="wb-site-chip">shadow</li>
+          <li class="wb-site-chip">position</li>
+          <li class="wb-site-chip">cursor</li>
+          <li class="wb-site-chip">opacity</li>
+          <li class="wb-site-chip">responsive visibility</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Örnek</div>
+          <h2 class="wb-site-section-title">Bir layout'u bitirmek için birkaç utility yeterlidir.</h2>
+          <p>Sağlıklı kullanım şudur: ana işi bileşen yapar, utility ise sadece spacing ve alignment ayarı yapar.</p>
+        </div>
+        <pre class="wb-site-pre"><code>&lt;div class="wb-card wb-mt-4"&gt;
+  &lt;div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3"&gt;
+    &lt;strong class="wb-text-lg"&gt;Aktivite&lt;/strong&gt;
+    &lt;span class="wb-badge wb-badge-success wb-badge-dot"&gt;Canlı&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body wb-p-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Sınır</div>
+          <h2 class="wb-site-section-title">Sayfanın tamamı utility gibi görünmeye başladığında dur.</h2>
+          <p>
+            Markup bir helper duvarına dönüşüyorsa kararı tekrar bileşen veya layout katmanına taşı.
+            Sistem, utility'ler ölçülü kaldığında daha okunabilir olur.
+          </p>
+        </div>
+        <div class="wb-callout wb-callout-accent">
+          Utility ile ayarla. Bileşen ve layout ile tanımla.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Yardımcı sınıflar ilk katman değil, son katmandır.</div>
+      <div><a href="foundation.html" class="wb-site-nav-link">Temel</a> <a href="javascript.html" class="wb-site-nav-link">JavaScript</a></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,69 @@
+/* ============================================================
+   WebBlocks UI — Link List / Index List
+   ============================================================ */
+
+.wb-link-list {
+  display: grid;
+  gap: 1px;
+  background: var(--wb-border);
+  border: 1px solid var(--wb-border);
+}
+
+.wb-link-list-item {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: var(--wb-s5);
+  align-items: start;
+  padding: var(--wb-s5);
+  background: var(--wb-surface);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--wb-t), color var(--wb-t);
+}
+
+.wb-link-list-item:hover {
+  background: var(--wb-surface-2);
+  text-decoration: none;
+}
+
+.wb-link-list-main {
+  min-width: 0;
+}
+
+.wb-link-list-title {
+  display: block;
+  margin: 0 0 var(--wb-s1);
+  font-size: var(--wb-font-size-md);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--wb-text);
+}
+
+.wb-link-list-meta {
+  display: block;
+  font-size: var(--wb-font-size-sm);
+  color: var(--wb-muted);
+}
+
+.wb-link-list-desc {
+  font-size: var(--wb-font-size-sm);
+  line-height: var(--wb-line-height-relaxed);
+  color: var(--wb-muted);
+}
+
+.wb-link-list-desc code,
+.wb-link-list-meta code {
+  font-family: var(--wb-font-mono);
+  font-size: 0.82em;
+  color: var(--wb-accent-text);
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  padding: 0.08em 0.4em;
+  border-radius: var(--wb-r-sm);
+}
+
+@media (max-width: 960px) {
+  .wb-link-list-item {
+    grid-template-columns: 1fr;
+  }
+}

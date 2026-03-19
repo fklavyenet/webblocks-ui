@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs - WebBlocks UI</title>
+  <meta name="description" content="Documentation for WebBlocks UI: foundations, layouts, components, utilities, icons, and JavaScript modules.">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Documentation</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
+        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="layout.html" class="wb-site-nav-link">Layout</a>
+        <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Read from the inside out</div>
+          <h1 class="wb-page-title">The docs begin with <em>structure</em>, not promotion.</h1>
+          <p class="wb-page-lead">
+            Start with foundations, because every other file depends on them. Then move into layouts,
+            then components, then utilities and JavaScript. The system is intentionally ordered so you can
+            understand how a page comes together without guessing where a behavior or token originated.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>What to expect</h2>
+          <ul class="wb-site-principles">
+            <li>
+              <span class="wb-site-key">Foundations first</span>
+              <p>Colors, spacing, radius, shadows, type, and theme axes are the base layer.</p>
+            </li>
+            <li>
+              <span class="wb-site-key">Layouts before flourishes</span>
+              <p>Containers and shells determine how the interface breathes before individual widgets do.</p>
+            </li>
+            <li>
+              <span class="wb-site-key">Components by job</span>
+              <p>Inputs, navigation, feedback, overlays, and data display are easier to learn in groups.</p>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Reading order</div>
+          <h2 class="wb-site-section-title">A practical path through the system.</h2>
+          <p>
+            If you are new to the library, follow this order. It mirrors the order of the build and the way a real page is assembled.
+          </p>
+        </div>
+
+        <div class="wb-site-panel wb-p-6">
+          <ol class="wb-site-steps">
+            <li>
+              <strong>Foundation</strong>
+              <p>Read the token system, theme axes, and the rules around accent, radius, border, density, and font.</p>
+            </li>
+            <li>
+              <strong>Layouts</strong>
+              <p>Choose the shell first: container, dashboard, auth, settings, or content.</p>
+            </li>
+            <li>
+              <strong>Components</strong>
+              <p>Add the pieces the page needs: forms, tables, alerts, overlays, lists, filters, navigation.</p>
+            </li>
+            <li>
+              <strong>Utilities and JS</strong>
+              <p>Only then reach for spacing helpers, visibility helpers, and behavioral modules.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Map</div>
+          <h2 class="wb-site-section-title">Each document has a specific job.</h2>
+          <p>
+            The docs are easier to keep lean when every page has one responsibility. These are the main entry points.
+          </p>
+        </div>
+
+        <div class="wb-link-list">
+          <a href="getting-started.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Getting Started</span>
+              <span class="wb-link-list-meta">Install, include, and first markup</span>
+            </div>
+            <div class="wb-link-list-desc">Use this when you need the first page up quickly and want the minimum correct setup.</div>
+          </a>
+          <a href="foundation.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Foundation</span>
+              <span class="wb-link-list-meta">Tokens and theme axes</span>
+            </div>
+            <div class="wb-link-list-desc">Read this to understand where color, spacing, type, border, and density choices actually come from.</div>
+          </a>
+          <a href="layout.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Layout</span>
+              <span class="wb-link-list-meta">Page shells and composition</span>
+            </div>
+            <div class="wb-link-list-desc">Choose the shape of the page before choosing the details inside it.</div>
+          </a>
+          <a href="components.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Components</span>
+              <span class="wb-link-list-meta">Primitives grouped by function</span>
+            </div>
+            <div class="wb-link-list-desc">Buttons, form controls, tables, overlays, list patterns, feedback, and richer interaction pieces.</div>
+          </a>
+          <a href="javascript.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">JavaScript API</span>
+              <span class="wb-link-list-meta">Named modules and hooks</span>
+            </div>
+            <div class="wb-link-list-desc">See which modules expose public APIs and which data attributes trigger behavior.</div>
+          </a>
+          <a href="icons.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Icons</span>
+              <span class="wb-link-list-meta">Sprite and class-based usage</span>
+            </div>
+            <div class="wb-link-list-desc">Pick between semantic SVG usage and fast <code>&lt;i&gt;</code> tag rendering.</div>
+          </a>
+          <a href="utilities.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Utilities</span>
+              <span class="wb-link-list-meta">Final adjustments</span>
+            </div>
+            <div class="wb-link-list-desc">Small single-purpose helpers for spacing, display, border, type, visibility, and positioning.</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Build model</div>
+          <h2 class="wb-site-section-title">The docs follow the build order because the build order matters.</h2>
+          <p>
+            WebBlocks is not assembled by an opaque toolchain. The final bundle is the result of an explicit file list.
+            If a token or layout primitive appears earlier in the build, it is because later layers depend on it.
+          </p>
+        </div>
+
+        <pre class="wb-site-pre"><code>foundation/
+base/
+components/
+layouts/
+utilities/
+
+./build.sh</code></pre>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Next routes</div>
+          <h2 class="wb-site-section-title">Continue in the direction you need.</h2>
+          <p>
+            If you already know the system, you do not need to read everything in order. Jump directly to the area that matches the page you are building.
+          </p>
+        </div>
+
+        <div class="wb-link-list">
+          <a href="components.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Go to Components</span>
+              <span class="wb-link-list-meta">Inputs, tables, overlays, feedback</span>
+            </div>
+            <div class="wb-link-list-desc">Use this when the structure is already clear and you need the actual interface pieces.</div>
+          </a>
+          <a href="layout.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Go to Layout</span>
+              <span class="wb-link-list-meta">Shells, containers, page rhythm</span>
+            </div>
+            <div class="wb-link-list-desc">Use this when you are shaping a page or deciding how navigation and content should live together.</div>
+          </a>
+          <a href="../examples/index.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Open Examples</span>
+              <span class="wb-link-list-meta">Complete pages</span>
+            </div>
+            <div class="wb-link-list-desc">Use this when you want to inspect a whole page instead of reading isolated reference notes.</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Documentation for the source-first WebBlocks UI system.</div>
+      <div><a href="../../packages/webblocks/README.md" class="wb-site-nav-link">README</a> <a href="../../packages/webblocks/CHANGELOG.md" class="wb-site-nav-link">Changelog</a></div>
+    </div>
+  </footer>
+</body>
+</html>

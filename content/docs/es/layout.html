@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es" data-mode="light" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diseño — WebBlocks UI</title>
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
+  <style>
+    /* ── Docs shell ─────────────────────────────────────── */
+    .docs-layout { display: flex; min-height: 100vh; }
+    .docs-sidebar {
+      width: 240px; flex-shrink: 0;
+      background: var(--wb-surface);
+      border-right: 1px solid var(--wb-border);
+      position: sticky; top: 0; height: 100vh;
+      overflow-y: auto; padding: var(--wb-s6) 0;
+      display: flex; flex-direction: column;
+    }
+    .docs-sidebar-brand {
+      padding: 0 var(--wb-s5) var(--wb-s5);
+      border-bottom: 1px solid var(--wb-border);
+      margin-bottom: var(--wb-s4);
+    }
+    .docs-sidebar-brand a {
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--wb-text); text-decoration: none;
+      display: flex; align-items: center; gap: var(--wb-s2);
+    }
+    .docs-sidebar-brand span {
+      font-size: 0.7rem; font-weight: 500;
+      color: var(--wb-accent-on); background: var(--wb-accent);
+      padding: 2px 6px; border-radius: var(--wb-r-full);
+    }
+    .docs-nav-section {
+      padding: var(--wb-s3) var(--wb-s4) var(--wb-s1);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--wb-muted);
+    }
+    .docs-nav-link {
+      display: block; padding: var(--wb-s2) var(--wb-s4) var(--wb-s2) var(--wb-s7);
+      font-size: 0.875rem; color: var(--wb-muted);
+      text-decoration: none;
+      transition: color var(--wb-t), background var(--wb-t);
+    }
+    .docs-nav-link:hover { color: var(--wb-text); background: var(--wb-surface-2); }
+    .docs-nav-link.is-active {
+      color: var(--wb-accent); background: var(--wb-accent-softer);
+      font-weight: 500; border-right: 2px solid var(--wb-accent);
+    }
+    .docs-main { flex: 1; min-width: 0; }
+    .docs-topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--wb-surface); border-bottom: 1px solid var(--wb-border);
+      padding: var(--wb-s3) var(--wb-s6);
+      display: flex; align-items: center; justify-content: flex-end; gap: var(--wb-s3);
+    }
+    /* ── Page header ─────────────────────────────────────── */
+    .docs-page-header {
+      padding: var(--wb-s10) var(--wb-s8) var(--wb-s8);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-page-header h1 {
+      font-size: 2.2rem; font-weight: 800;
+      line-height: 1.15; color: var(--wb-text);
+      margin: 0 0 var(--wb-s3); letter-spacing: -0.02em;
+    }
+    .docs-page-header p {
+      font-size: 1rem; color: var(--wb-muted);
+      margin: 0; line-height: 1.7; max-width: 600px;
+    }
+    /* ── Code block ──────────────────────────────────────── */
+    .wb-code {
+      background: var(--wb-surface-2); border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-md); padding: var(--wb-s4) var(--wb-s5);
+      font-family: var(--wb-font-mono); font-size: 0.82rem;
+      line-height: 1.7; overflow-x: auto; white-space: pre;
+      color: var(--wb-text); margin: var(--wb-s3) 0;
+    }
+    .wb-code-inline {
+      font-family: var(--wb-font-mono); font-size: 0.82em;
+      background: var(--wb-surface-2); border: 1px solid var(--wb-border);
+      padding: 1px 6px; border-radius: var(--wb-r-sm);
+      color: var(--wb-accent-text);
+    }
+    /* ── Section ─────────────────────────────────────────── */
+    .docs-section {
+      padding: var(--wb-s10) var(--wb-s8);
+      border-bottom: 1px solid var(--wb-border);
+    }
+    .docs-section:last-child { border-bottom: none; }
+    .docs-section-title {
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--wb-text); margin: 0 0 var(--wb-s2);
+      letter-spacing: -0.01em;
+    }
+    .docs-section-lead {
+      font-size: 0.95rem; color: var(--wb-muted);
+      margin: 0 0 var(--wb-s6); line-height: 1.6;
+    }
+    .docs-sub-title {
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--wb-text); margin: var(--wb-s8) 0 var(--wb-s3);
+    }
+    .docs-sub-title:first-child { margin-top: 0; }
+    /* ── Callout ─────────────────────────────────────────── */
+    .docs-callout {
+      background: var(--wb-accent-softer); border: 1px solid var(--wb-accent-border);
+      border-left: 3px solid var(--wb-accent); border-radius: var(--wb-r-md);
+      padding: var(--wb-s4) var(--wb-s5); font-size: 0.875rem;
+      color: var(--wb-text); margin: var(--wb-s5) 0; line-height: 1.6;
+    }
+    .docs-callout strong { color: var(--wb-accent-text); }
+    /* ── Layout diagram ──────────────────────────────────── */
+    .layout-diagram {
+      border: 2px dashed var(--wb-border); border-radius: var(--wb-r-lg);
+      overflow-x: clip; font-size: 0.75rem; font-family: var(--wb-font-mono);
+      color: var(--wb-muted); margin: var(--wb-s5) 0;
+    }
+    .layout-diagram-row {
+      display: flex; border-bottom: 1px dashed var(--wb-border);
+    }
+    .layout-diagram-row:last-child { border-bottom: none; }
+    .layout-diagram-cell {
+      padding: var(--wb-s3) var(--wb-s4);
+      border-right: 1px dashed var(--wb-border);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--wb-surface-2);
+      font-weight: 500; text-align: center;
+    }
+    .layout-diagram-cell:last-child { border-right: none; }
+    .layout-diagram-cell.hl {
+      background: var(--wb-accent-softer); color: var(--wb-accent-text); font-weight: 600;
+    }
+    /* ── Table ───────────────────────────────────────────── */
+    .docs-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.875rem; margin: var(--wb-s4) 0;
+    }
+    .docs-table th {
+      text-align: left; padding: var(--wb-s2) var(--wb-s4);
+      border-bottom: 2px solid var(--wb-border);
+      font-weight: 600; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.04em; color: var(--wb-muted);
+    }
+    .docs-table td {
+      padding: var(--wb-s3) var(--wb-s4); border-bottom: 1px solid var(--wb-border);
+      vertical-align: top; color: var(--wb-text);
+    }
+    .docs-table tr:last-child td { border-bottom: none; }
+    .docs-table td:first-child {
+      color: var(--wb-accent-text); font-family: var(--wb-font-mono); font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    /* ── Mode toggle ─────────────────────────────────────── */
+    .docs-mode-btn {
+      width: 2rem; height: 2rem; border-radius: var(--wb-r-md);
+      border: 1px solid var(--wb-border); background: var(--wb-surface-2);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--wb-muted); transition: background var(--wb-t), color var(--wb-t);
+    }
+    .docs-mode-btn:hover { background: var(--wb-surface-3); color: var(--wb-text); }
+    /* ── Lang dropdown ──────────────────────────────────────── */
+    .docs-lang-btn {
+      display: flex; align-items: center; gap: 5px;
+      padding: 3px 9px; font-size: 0.75rem; font-weight: 600;
+      border: 1px solid var(--wb-border); border-radius: var(--wb-r-md);
+      background: var(--wb-surface-2); color: var(--wb-text);
+      cursor: pointer; white-space: nowrap; letter-spacing: 0.02em;
+      transition: background var(--wb-t), color var(--wb-t);
+    }
+    .docs-lang-btn:hover { background: var(--wb-surface-3); }
+    .docs-lang-btn svg { flex-shrink: 0; color: var(--wb-muted); }
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .docs-sidebar { display: none; }
+      .docs-page-header, .docs-section { padding-left: var(--wb-s5); padding-right: var(--wb-s5); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="docs-sidebar">
+    <div class="docs-sidebar-brand">
+      <a href="index.html">WebBlocks UI <span>ES</span></a>
+    </div>
+
+    <div class="docs-nav-section">Resumen</div>
+    <a href="index.html" class="docs-nav-link">Introducción</a>
+    <a href="getting-started.html" class="docs-nav-link">Primeros pasos</a>
+
+    <div class="docs-nav-section">Guías</div>
+    <a href="foundation.html" class="docs-nav-link">Fundamentos &amp; Tokens</a>
+    <a href="layout.html" class="docs-nav-link is-active">Diseño</a>
+
+    <div class="docs-nav-section">Referencia</div>
+    <a href="components.html" class="docs-nav-link">Componentes</a>
+    <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
+    <a href="icons.html" class="docs-nav-link">Iconos</a>
+    <a href="utilities.html" class="docs-nav-link">Utilidades</a>
+  </aside>
+
+  <!-- ── Main ───────────────────────────────────────────── -->
+  <main class="docs-main">
+
+    <!-- Topbar -->
+    <div class="docs-topbar">
+      <div class="wb-dropdown">
+        <button class="docs-lang-btn" data-wb-toggle="dropdown">
+          ES <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="wb-dropdown-menu">
+            <a href="../layout.html" class="wb-dropdown-item">EN <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">English</span></a>
+            <a href="../tr/layout.html" class="wb-dropdown-item">TR <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">Türkçe</span></a>
+            <a href="../de/layout.html" class="wb-dropdown-item">DE <span style="color:var(--wb-muted);font-weight:400;margin-left:4px">Deutsch</span></a>
+        </div>
+      </div>
+      <a href="https://github.com/fklavyenet/webblocks-ui" target="_blank"
+         class="wb-btn wb-btn-ghost wb-btn-sm" style="gap:var(--wb-s2)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+        </svg>
+        GitHub
+      </a>
+      <button class="docs-mode-btn" data-wb-mode-cycle title="Cambiar tema">
+        <svg class="wb-icon" aria-hidden="true"><use href=""></use></svg>
+      </button>
+    </div>
+
+    <!-- Page header -->
+    <div class="docs-page-header">
+      <h1>Diseño</h1>
+      <p>Estructuras de página completa para paneles de administración, páginas de autenticación, paneles de configuración y áreas de contenido.</p>
+    </div>
+
+    <!-- ── Dashboard shell ──────────────────────────────── -->
+    <section class="docs-section" id="dashboard-shell">
+      <h2 class="docs-section-title">Dashboard Shell</h2>
+      <p class="docs-section-lead">
+        El layout principal para paneles de administración. Una barra lateral de ancho fijo a la izquierda; la parte derecha contiene una barra superior fija y un área de contenido principal desplazable.
+      </p>
+
+      <div class="layout-diagram">
+        <div class="layout-diagram-row" style="height:48px">
+          <div class="layout-diagram-cell" style="width:140px">wb-sidebar</div>
+          <div class="layout-diagram-cell hl" style="flex:1">wb-navbar (barra superior fija)</div>
+        </div>
+        <div class="layout-diagram-row" style="min-height:160px">
+          <div class="layout-diagram-cell" style="width:140px;flex-direction:column;gap:4px">
+            <span>wb-sidebar-brand</span>
+            <span>wb-sidebar-nav</span>
+          </div>
+          <div class="layout-diagram-cell" style="flex:1">wb-dashboard-main</div>
+        </div>
+      </div>
+
+      <pre class="wb-code">&lt;div class="wb-dashboard-shell"&gt;
+
+  &lt;!-- Barra lateral --&gt;
+  &lt;aside class="wb-sidebar"&gt;
+    &lt;div class="wb-sidebar-brand"&gt;
+      &lt;a href="/"&gt;Mi App&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;nav class="wb-sidebar-nav"&gt;
+      &lt;a href="/dashboard" class="wb-sidebar-link is-active"&gt;Dashboard&lt;/a&gt;
+      &lt;a href="/users"     class="wb-sidebar-link"&gt;Usuarios&lt;/a&gt;
+      &lt;a href="/settings"  class="wb-sidebar-link"&gt;Configuración&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/aside&gt;
+
+  &lt;!-- Área principal --&gt;
+  &lt;div class="wb-dashboard-body"&gt;
+
+    &lt;!-- Barra de navegación superior --&gt;
+    &lt;header class="wb-navbar"&gt;
+      &lt;button class="wb-btn wb-btn-ghost wb-btn-sm"
+              data-wb-toggle="sidebar"&gt;☰&lt;/button&gt;
+      &lt;div style="flex:1"&gt;&lt;/div&gt;
+      &lt;span class="wb-avatar wb-avatar-sm"&gt;JD&lt;/span&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Contenido desplazable --&gt;
+    &lt;main class="wb-dashboard-main"&gt;
+      &lt;div class="wb-container"&gt;
+        &lt;h1&gt;Título de página&lt;/h1&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+      <h3 class="docs-sub-title">Colapso de barra lateral (móvil)</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        La barra lateral se oculta en móvil. <code class="wb-code-inline">data-wb-toggle="sidebar"</code> en cualquier botón la abre con un overlay de fondo. <code class="wb-code-inline">WBSidebar</code> lo gestiona automáticamente.
+      </p>
+      <pre class="wb-code">&lt;!-- Menú hamburguesa en la navbar --&gt;
+&lt;button data-wb-toggle="sidebar"&gt;☰ Menú&lt;/button&gt;
+
+&lt;!-- O por JS --&gt;
+WBSidebar.open();
+WBSidebar.close();</pre>
+
+      <h3 class="docs-sub-title">Grupos de navegación en la barra lateral</h3>
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
+        Usa <code class="wb-code-inline">wb-nav-group</code> para secciones colapsables dentro de la barra lateral.
+      </p>
+      <pre class="wb-code">&lt;nav class="wb-sidebar-nav"&gt;
+  &lt;a href="#" class="wb-sidebar-link is-active"&gt;Dashboard&lt;/a&gt;
+
+  &lt;div class="wb-nav-group"&gt;
+    &lt;button class="wb-nav-group-trigger"&gt;
+      Usuarios
+      &lt;svg class="wb-nav-group-chevron" ...&gt;...&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;div class="wb-nav-group-body"&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Todos los usuarios&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Roles&lt;/a&gt;
+      &lt;a href="#" class="wb-sidebar-link"&gt;Permisos&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;a href="#" class="wb-sidebar-link"&gt;Configuración&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- Modo acordeón: cierra los grupos hermanos al abrir uno --&gt;
+&lt;nav class="wb-sidebar-nav" data-wb-nav-group-accordion&gt;
+  ...
+&lt;/nav&gt;</pre>
+    </section>
+
+    <!-- ── Auth shell ────────────────────────────────────── -->
+    <section class="docs-section" id="auth-shell">
+      <h2 class="docs-section-title">Auth Shell</h2>
+      <p class="docs-section-lead">
+        Layout de tarjeta centrada para páginas de inicio de sesión, registro y restablecimiento de contraseña.
+      </p>
+
+      <div class="layout-diagram">
+        <div class="layout-diagram-row" style="min-height:120px">
+          <div class="layout-diagram-cell" style="flex:1;background:var(--wb-bg)">
+            wb-auth (pantalla completa)
+            <br>
+            <span style="font-size:0.7rem">↓ centrado</span>
+          </div>
+        </div>
+        <div class="layout-diagram-row" style="min-height:100px;justify-content:center">
+          <div class="layout-diagram-cell hl" style="width:320px">wb-auth-card</div>
+        </div>
+      </div>
+
+      <pre class="wb-code">&lt;div class="wb-auth"&gt;
+  &lt;div class="wb-auth-card"&gt;
+
+    &lt;div class="wb-auth-logo"&gt;
+      &lt;!-- Logo aquí --&gt;
+    &lt;/div&gt;
+
+    &lt;h1 class="wb-auth-title"&gt;Inicia sesión en tu cuenta&lt;/h1&gt;
+    &lt;p class="wb-auth-subtitle"&gt;Bienvenido de nuevo. Ingresa tus credenciales.&lt;/p&gt;
+
+    &lt;form class="wb-auth-form"&gt;
+      &lt;div class="wb-field"&gt;
+        &lt;label class="wb-label"&gt;Correo electrónico&lt;/label&gt;
+        &lt;input type="email" class="wb-input" autocomplete="email"&gt;
+      &lt;/div&gt;
+      &lt;div class="wb-field"&gt;
+        &lt;label class="wb-label"&gt;Contraseña&lt;/label&gt;
+        &lt;input type="password" class="wb-input" autocomplete="current-password"&gt;
+      &lt;/div&gt;
+      &lt;button type="submit" class="wb-btn wb-btn-primary" style="width:100%"&gt;
+        Iniciar sesión
+      &lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;p class="wb-auth-footer"&gt;
+      ¿No tienes cuenta? &lt;a href="/register"&gt;Regístrate&lt;/a&gt;
+    &lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── Settings shell ────────────────────────────────── -->
+    <section class="docs-section" id="settings-shell">
+      <h2 class="docs-section-title">Settings Shell</h2>
+      <p class="docs-section-lead">
+        Layout de dos columnas para páginas de configuración — una navegación izquierda fija y un área de contenido.
+        Generalmente se usa dentro del área de contenido principal del dashboard shell.
+      </p>
+
+      <div class="layout-diagram">
+        <div class="layout-diagram-row" style="min-height:120px">
+          <div class="layout-diagram-cell" style="width:180px">wb-settings-nav<br><span style="font-size:0.7rem">(fijo)</span></div>
+          <div class="layout-diagram-cell hl" style="flex:1">wb-settings-body</div>
+        </div>
+      </div>
+
+      <pre class="wb-code">&lt;div class="wb-settings-shell"&gt;
+
+  &lt;!-- Nav izquierda --&gt;
+  &lt;nav class="wb-settings-nav"&gt;
+    &lt;a href="#profile"   class="wb-settings-nav-link is-active"&gt;Perfil&lt;/a&gt;
+    &lt;a href="#security"  class="wb-settings-nav-link"&gt;Seguridad&lt;/a&gt;
+    &lt;a href="#billing"   class="wb-settings-nav-link"&gt;Facturación&lt;/a&gt;
+    &lt;a href="#team"      class="wb-settings-nav-link"&gt;Equipo&lt;/a&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Contenido --&gt;
+  &lt;div class="wb-settings-body"&gt;
+
+    &lt;section class="wb-settings-section" id="profile"&gt;
+      &lt;h2 class="wb-settings-title"&gt;Perfil&lt;/h2&gt;
+      &lt;p class="wb-settings-desc"&gt;Gestiona tu información de perfil público.&lt;/p&gt;
+      &lt;!-- campos del formulario --&gt;
+    &lt;/section&gt;
+
+    &lt;section class="wb-settings-section" id="security"&gt;
+      &lt;h2 class="wb-settings-title"&gt;Seguridad&lt;/h2&gt;
+      &lt;p class="wb-settings-desc"&gt;Actualiza tu contraseña y la configuración de 2FA.&lt;/p&gt;
+      &lt;!-- campos del formulario --&gt;
+    &lt;/section&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── Content shell ─────────────────────────────────── -->
+    <section class="docs-section" id="content-shell">
+      <h2 class="docs-section-title">Content Shell</h2>
+      <p class="docs-section-lead">
+        Layout de una columna con cabecera fija, cuerpo desplazable y pie de página opcional.
+        Útil para páginas de detalle, formularios y editores de página completa dentro del área principal del dashboard.
+      </p>
+
+      <div class="layout-diagram">
+        <div class="layout-diagram-row" style="height:44px">
+          <div class="layout-diagram-cell hl" style="flex:1">wb-content-header (fijo)</div>
+        </div>
+        <div class="layout-diagram-row" style="min-height:100px">
+          <div class="layout-diagram-cell" style="flex:1">wb-content-body (desplazable)</div>
+        </div>
+        <div class="layout-diagram-row" style="height:44px">
+          <div class="layout-diagram-cell" style="flex:1">wb-content-footer (opcional)</div>
+        </div>
+      </div>
+
+      <pre class="wb-code">&lt;div class="wb-content-shell"&gt;
+
+  &lt;div class="wb-content-header"&gt;
+    &lt;h2 class="wb-content-title"&gt;Editar usuario&lt;/h2&gt;
+    &lt;div class="wb-content-actions"&gt;
+      &lt;button class="wb-btn wb-btn-ghost wb-btn-sm"&gt;Descartar&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;Guardar cambios&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="wb-content-body"&gt;
+    &lt;!-- formulario / contenido aquí --&gt;
+  &lt;/div&gt;
+
+  &lt;div class="wb-content-footer"&gt;
+    &lt;!-- paginación / estado opcionales --&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── Container & Section ───────────────────────────── -->
+    <section class="docs-section" id="container">
+      <h2 class="docs-section-title">Contenedor &amp; Sección</h2>
+      <p class="docs-section-lead">
+        Restricción básica de ancho de contenido y ayudantes de espaciado vertical.
+      </p>
+
+      <table class="docs-table">
+        <thead><tr><th>Clase</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>wb-container</td><td>Contenedor de ancho máximo (<code class="wb-code-inline">--wb-content-w</code>, por defecto 1200px), centrado con márgenes automáticos</td></tr>
+          <tr><td>wb-container-sm</td><td>Contenedor estrecho (<code class="wb-code-inline">--wb-content-sm</code>, por defecto 720px)</td></tr>
+          <tr><td>wb-section</td><td>Bloque de espaciado vertical (<code class="wb-code-inline">--wb-s10</code> arriba/abajo)</td></tr>
+          <tr><td>wb-stack</td><td>Columna flex con espacio para apilar campos de formulario o tarjetas</td></tr>
+        </tbody>
+      </table>
+
+      <pre class="wb-code">&lt;!-- Limitar ancho del contenido --&gt;
+&lt;div class="wb-container"&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- Contenido estrecho (formularios, artículos) --&gt;
+&lt;div class="wb-container-sm"&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- Espaciado vertical de sección --&gt;
+&lt;section class="wb-section"&gt;
+  &lt;div class="wb-container"&gt;
+    ...
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- Layout en pila --&gt;
+&lt;div class="wb-stack"&gt;
+  &lt;div class="wb-field"&gt;...&lt;/div&gt;
+  &lt;div class="wb-field"&gt;...&lt;/div&gt;
+  &lt;button class="wb-btn wb-btn-primary"&gt;Enviar&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── Navbar ────────────────────────────────────────── -->
+    <section class="docs-section" id="navbar">
+      <h2 class="docs-section-title">Navbar</h2>
+      <p class="docs-section-lead">
+        Barra de navegación superior fija. Se puede usar de forma independiente (página de inicio) o como barra superior dentro de un dashboard shell.
+      </p>
+
+      <pre class="wb-code">&lt;header class="wb-navbar"&gt;
+  &lt;!-- Marca --&gt;
+  &lt;a href="/" class="wb-navbar-brand"&gt;Mi App&lt;/a&gt;
+
+  &lt;!-- Links de navegación --&gt;
+  &lt;nav class="wb-navbar-nav"&gt;
+    &lt;a href="#" class="wb-navbar-link is-active"&gt;Dashboard&lt;/a&gt;
+    &lt;a href="#" class="wb-navbar-link"&gt;Reportes&lt;/a&gt;
+    &lt;a href="#" class="wb-navbar-link"&gt;Configuración&lt;/a&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Lado derecho --&gt;
+  &lt;div class="wb-navbar-end"&gt;
+    &lt;button class="docs-mode-btn" data-wb-mode-cycle&gt;...&lt;/button&gt;
+    &lt;div class="wb-dropdown"&gt;
+      &lt;button class="wb-avatar wb-avatar-sm" data-wb-toggle="dropdown"&gt;JD&lt;/button&gt;
+      &lt;div class="wb-dropdown-menu"&gt;
+        &lt;a href="#" class="wb-dropdown-item"&gt;Mi perfil&lt;/a&gt;
+        &lt;a href="#" class="wb-dropdown-item"&gt;Configuración&lt;/a&gt;
+        &lt;div class="wb-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a href="/logout" class="wb-dropdown-item wb-dropdown-item-danger"&gt;Cerrar sesión&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</pre>
+    </section>
+
+    <!-- ── Toolbar ────────────────────────────────────────── -->
+    <section class="docs-section" id="toolbar">
+      <h2 class="docs-section-title">Toolbar</h2>
+      <p class="docs-section-lead">
+        Barra horizontal para acciones a nivel de página — normalmente colocada entre el título de la página y la tabla de contenido.
+      </p>
+
+      <pre class="wb-code">&lt;div class="wb-toolbar"&gt;
+  &lt;div class="wb-toolbar-start"&gt;
+    &lt;h2 class="wb-toolbar-title"&gt;Usuarios &lt;span class="wb-badge"&gt;248&lt;/span&gt;&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-toolbar-end"&gt;
+    &lt;button class="wb-btn wb-btn-outline wb-btn-sm"&gt;Exportar&lt;/button&gt;
+    &lt;button class="wb-btn wb-btn-primary wb-btn-sm"&gt;+ Nuevo usuario&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Barra de acciones masivas (mostrada cuando se seleccionan filas) --&gt;
+&lt;div class="wb-toolbar wb-toolbar-bulk"&gt;
+  &lt;span&gt;3 seleccionados&lt;/span&gt;
+  &lt;button class="wb-btn wb-btn-danger wb-btn-sm"&gt;Eliminar selección&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </section>
+
+    <!-- ── Command palette ───────────────────────────────── -->
+    <section class="docs-section" id="command-palette">
+      <h2 class="docs-section-title">Paleta de comandos</h2>
+      <p class="docs-section-lead">
+        Overlay de búsqueda/comando a pantalla completa activado por <kbd>Cmd+K</kbd> / <kbd>Ctrl+K</kbd>.
+        Regístralo una vez; WebBlocks gestiona el teclado, la búsqueda y la navegación.
+      </p>
+
+      <div style="margin-bottom:var(--wb-s4)">
+        <button class="wb-btn wb-btn-outline" onclick="WBCommandPalette.open('#docs-cmd-es')">
+          Abrir paleta de comandos <kbd style="font-size:0.75rem;border:1px solid var(--wb-border);padding:1px 5px;border-radius:4px">⌘K</kbd>
+        </button>
+      </div>
+
+      <pre class="wb-code">&lt;!-- HTML --&gt;
+&lt;div class="wb-cmd-backdrop" id="my-cmd"&gt;
+  &lt;div class="wb-cmd-dialog"&gt;
+    &lt;div class="wb-cmd-header"&gt;
+      &lt;svg class="wb-cmd-search-icon"&gt;...&lt;/svg&gt;
+      &lt;input type="text" class="wb-cmd-input" placeholder="Buscar o escribir un comando…"&gt;
+      &lt;kbd class="wb-cmd-esc"&gt;Esc&lt;/kbd&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-cmd-results"&gt;
+      &lt;div class="wb-cmd-group"&gt;
+        &lt;div class="wb-cmd-group-label"&gt;Páginas&lt;/div&gt;
+        &lt;a href="/dashboard" class="wb-cmd-result"&gt;Dashboard&lt;/a&gt;
+        &lt;a href="/users"     class="wb-cmd-result"&gt;Usuarios&lt;/a&gt;
+        &lt;a href="/settings"  class="wb-cmd-result"&gt;Configuración&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- JS --&gt;
+&lt;script&gt;
+WBCommandPalette.register('#my-cmd');
+&lt;/script&gt;</pre>
+
+      <p style="font-size:0.875rem;color:var(--wb-muted);margin-top:var(--wb-s4)">
+        Consulta la página de <a href="javascript.html#command-palette" style="color:var(--wb-accent)">JavaScript API</a> para ver todas las opciones de <code class="wb-code-inline">register()</code> incluyendo <code class="wb-code-inline">onSearch</code>.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<!-- Demo command palette -->
+<div class="wb-cmd-backdrop" id="docs-cmd-es">
+  <div class="wb-cmd-dialog">
+    <div class="wb-cmd-header">
+      <svg class="wb-cmd-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" class="wb-cmd-input" placeholder="Buscar en la documentación…">
+      <kbd class="wb-cmd-esc">Esc</kbd>
+    </div>
+    <div class="wb-cmd-results">
+      <div class="wb-cmd-group">
+        <div class="wb-cmd-group-label">Páginas</div>
+        <a href="getting-started.html" class="wb-cmd-result">Primeros pasos</a>
+        <a href="foundation.html" class="wb-cmd-result">Fundamentos &amp; Tokens</a>
+        <a href="components.html" class="wb-cmd-result">Componentes</a>
+        <a href="layout.html" class="wb-cmd-result">Diseño</a>
+        <a href="javascript.html" class="wb-cmd-result">JavaScript API</a>
+        <a href="icons.html" class="wb-cmd-result">Iconos</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../../packages/webblocks/dist/webblocks-ui.js"></script>
+<script>
+  fetch('../../../packages/webblocks/dist/webblocks-icons.svg')
+    .then(function(r) { return r.text(); })
+    .then(function(svg) {
+      var parser = new DOMParser();
+      var svgEl = parser.parseFromString(svg, 'image/svg+xml').documentElement;
+      svgEl.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      document.body.insertBefore(svgEl, document.body.firstChild);
+      if (window.WBTheme) window.WBTheme.sync();
+    });
+
+  WBCommandPalette.register('#docs-cmd-es');
+</script>
+</body>
+</html>

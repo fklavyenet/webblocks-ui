@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dienstprogramme - WebBlocks UI</title>
+  <meta name="description" content="Hilfsklassen in WebBlocks UI: Display, Flex, Spacing, Typografie, Farbe, Border, Shadow, Position und responsive Sichtbarkeit.">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Dienstprogramme</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
+        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="layout.html" class="wb-site-nav-link">Layout</a>
+        <a href="../../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Letzte Anpassungen</div>
+          <h1 class="wb-page-title">Hilfsklassen sind für <em>kleine Korrekturen</em> da, nicht für ein zweites Designsystem.</h1>
+          <p class="wb-page-lead">
+            WebBlocks enthält Helfer für Display, Flex, Spacing, Typografie, Farbe, Border, Shadow, Position und Visibility.
+            Sie sollen eine Komposition abschließen, nicht die Komponenten- und Layout-Ebene ersetzen.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>Gute Nutzung</h2>
+          <ul class="wb-site-principles">
+            <li><span class="wb-site-key">Struktur zuerst</span><p>Nutze zuerst Layout-Primitives und Komponenten-Defaults, dann erst Utilities.</p></li>
+            <li><span class="wb-site-key">Lokal halten</span><p>Eine Utility ist sinnvoll, wenn ein oder zwei Anpassungen das Problem lösen.</p></li>
+            <li><span class="wb-site-key">Nicht blind stapeln</span><p>Wenn viele Utilities zusammen auftauchen, liegt die Entscheidung vermutlich in der falschen Schicht.</p></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Gruppen</div>
+          <h2 class="wb-site-section-title">Die Helfer decken die häufigsten letzten Handgriffe ab.</h2>
+          <p>Die Benennung folgt dem Rest des Systems: kurz, direkt und mit `wb-`-Präfix.</p>
+        </div>
+        <ul class="wb-site-chip-list">
+          <li class="wb-site-chip">display</li>
+          <li class="wb-site-chip">flex</li>
+          <li class="wb-site-chip">gap</li>
+          <li class="wb-site-chip">margin</li>
+          <li class="wb-site-chip">padding</li>
+          <li class="wb-site-chip">text</li>
+          <li class="wb-site-chip">font</li>
+          <li class="wb-site-chip">color</li>
+          <li class="wb-site-chip">border</li>
+          <li class="wb-site-chip">radius</li>
+          <li class="wb-site-chip">shadow</li>
+          <li class="wb-site-chip">position</li>
+          <li class="wb-site-chip">cursor</li>
+          <li class="wb-site-chip">opacity</li>
+          <li class="wb-site-chip">responsive visibility</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Beispiel</div>
+          <h2 class="wb-site-section-title">Ein paar Utilities koennen ein Layout abschliessen, ohne es zu verstecken.</h2>
+          <p>Gesunde Nutzung bedeutet: Die Komponente erledigt die Hauptarbeit, Utilities justieren nur Spacing und Alignment.</p>
+        </div>
+        <pre class="wb-site-pre"><code>&lt;div class="wb-card wb-mt-4"&gt;
+  &lt;div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3"&gt;
+    &lt;strong class="wb-text-lg"&gt;Aktivitaet&lt;/strong&gt;
+    &lt;span class="wb-badge wb-badge-success wb-badge-dot"&gt;Live&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body wb-p-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Grenze</div>
+          <h2 class="wb-site-section-title">Wenn die ganze Seite wie Utilities aussieht, anhalten.</h2>
+          <p>
+            Wenn das Markup zu einer Wand aus Helfern wird, sollte die Entscheidung wieder in die Komponenten- oder Layout-Ebene zurueck.
+            Das System bleibt lesbarer, wenn Utilities bescheiden eingesetzt werden.
+          </p>
+        </div>
+        <div class="wb-callout wb-callout-accent">
+          Mit Utilities justieren. Mit Komponenten und Layouts definieren.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Utilities sind die letzte Schicht, nicht die erste.</div>
+      <div><a href="foundation.html" class="wb-site-nav-link">Grundlagen</a> <a href="javascript.html" class="wb-site-nav-link">JavaScript</a></div>
+    </div>
+  </footer>
+</body>
+</html>

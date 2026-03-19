@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI — Component Reference</title>
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../../../packages/webblocks/dist/webblocks-ui.js"></script>
+</head>
+<body>
+
+<!-- ── Navbar ──────────────────────────────────────────────── -->
+<nav class="wb-navbar">
+  <button class="wb-navbar-toggle" data-wb-toggle="sidebar" data-wb-target="#coreSidebar"
+          aria-expanded="false" aria-controls="coreSidebar" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="#" class="wb-navbar-brand">WebBlocks UI</a>
+  <span class="wb-navbar-spacer"></span>
+  <div class="wb-navbar-end">
+    <!-- Theme toggles -->
+    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="light" title="Light"><i class="wb-icon wb-icon-toggle-right wb-icon-sm"></i></button>
+    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="dark" title="Dark"><i class="wb-icon wb-icon-toggle-left wb-icon-sm"></i></button>
+    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="auto" title="Auto"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></button>
+  </div>
+</nav>
+
+<!-- ── Mobile drawer ──────────────────────────────────────── -->
+<div class="wb-navbar-drawer" id="coreDrawer">
+  <a class="wb-navbar-link is-active" href="#">Components</a>
+  <a class="wb-navbar-link" href="../admin/dashboard.html">Admin</a>
+  <a class="wb-navbar-link" href="../auth/login.html">Auth</a>
+</div>
+
+<div class="wb-dashboard-shell" style="min-height:calc(100vh - 56px)">
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+  <aside class="wb-sidebar" id="coreSidebar">
+    <nav class="wb-sidebar-nav">
+      <a class="wb-sidebar-link is-active" href="#buttons">Buttons</a>
+      <a class="wb-sidebar-link" href="#badges">Badges</a>
+      <a class="wb-sidebar-link" href="#cards">Cards</a>
+      <a class="wb-sidebar-link" href="#alerts">Alerts</a>
+      <a class="wb-sidebar-link" href="#forms">Forms</a>
+      <a class="wb-sidebar-link" href="#tables">Tables</a>
+      <a class="wb-sidebar-link" href="#modals">Modals</a>
+      <a class="wb-sidebar-link" href="#dropdowns">Dropdowns</a>
+      <a class="wb-sidebar-link" href="#tabs">Tabs</a>
+      <a class="wb-sidebar-link" href="#accordion">Accordion</a>
+      <a class="wb-sidebar-link" href="#avatars">Avatars</a>
+      <a class="wb-sidebar-link" href="#toasts">Toasts</a>
+      <a class="wb-sidebar-link" href="#empty">Empty State</a>
+      <a class="wb-sidebar-link" href="#skeleton">Skeleton</a>
+      <a class="wb-sidebar-link" href="#layout">Layout</a>
+      <div class="wb-sidebar-section">
+        <span class="wb-sidebar-label">Accent</span>
+        <button class="wb-sidebar-link" data-wb-accent-set="ocean">Ocean</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="forest">Forest</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="sunset">Sunset</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="royal">Royal</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="mint">Mint</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="amber">Amber</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="rose">Rose</button>
+        <button class="wb-sidebar-link" data-wb-accent-set="slate-fire">Slate Fire</button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ── Main content ──────────────────────────────────────── -->
+  <div class="wb-dashboard-body">
+    <main class="wb-dashboard-main">
+
+      <!-- BUTTONS -->
+      <section id="buttons" class="wb-stack-8">
+        <h2 class="wb-text-2xl wb-font-bold">Buttons</h2>
+        <div class="wb-cluster">
+          <button class="wb-btn wb-btn-primary">Primary</button>
+          <button class="wb-btn wb-btn-secondary">Secondary</button>
+          <button class="wb-btn wb-btn-outline">Outline</button>
+          <button class="wb-btn wb-btn-ghost">Ghost</button>
+          <button class="wb-btn wb-btn-danger">Danger</button>
+          <button class="wb-btn wb-btn-success">Success</button>
+        </div>
+        <div class="wb-cluster">
+          <button class="wb-btn wb-btn-primary wb-btn-sm">Small</button>
+          <button class="wb-btn wb-btn-primary">Default</button>
+          <button class="wb-btn wb-btn-primary wb-btn-lg">Large</button>
+          <button class="wb-btn wb-btn-primary" disabled>Disabled</button>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- BADGES -->
+      <section id="badges" class="wb-stack-8">
+        <h2 class="wb-text-2xl wb-font-bold">Badges</h2>
+        <div class="wb-cluster">
+          <span class="wb-badge wb-badge-primary">Primary</span>
+          <span class="wb-badge wb-badge-success">Success</span>
+          <span class="wb-badge wb-badge-warning">Warning</span>
+          <span class="wb-badge wb-badge-danger">Danger</span>
+          <span class="wb-badge wb-badge-neutral">Neutral</span>
+          <span class="wb-badge wb-badge-info">Info</span>
+        </div>
+        <div class="wb-cluster">
+          <span class="wb-badge wb-badge-primary wb-badge-sm">Small</span>
+          <span class="wb-badge wb-badge-primary">Default</span>
+          <span class="wb-badge wb-badge-primary wb-badge-lg">Large</span>
+          <span class="wb-badge wb-badge-success wb-badge-dot">Active</span>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- CARDS -->
+      <section id="cards">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Cards</h2>
+        <div class="wb-grid-3">
+          <div class="wb-card">
+            <div class="wb-card-header">Card Header</div>
+            <div class="wb-card-body">
+              <p>This is the card body with some content.</p>
+            </div>
+            <div class="wb-card-footer">
+              <button class="wb-btn wb-btn-primary wb-btn-sm">Action</button>
+            </div>
+          </div>
+          <div class="wb-stat">
+            <div class="wb-stat-label">Total Users</div>
+            <div class="wb-stat-value">1,284</div>
+            <div class="wb-stat-meta wb-stat-up">+12% this week</div>
+          </div>
+          <div class="wb-card wb-card-flat">
+            <div class="wb-card-body">
+              <p>Flat card — no shadow.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- ALERTS -->
+      <section id="alerts" class="wb-stack-4">
+        <h2 class="wb-text-2xl wb-font-bold">Alerts</h2>
+        <div class="wb-alert wb-alert-info">This is an informational alert.</div>
+        <div class="wb-alert wb-alert-success">Operation completed successfully.</div>
+        <div class="wb-alert wb-alert-warning">
+          <strong>Warning:</strong> Please review before continuing.
+        </div>
+        <div class="wb-alert wb-alert-danger wb-alert-dismissible">
+          <span>Something went wrong. Please try again.</span>
+          <button class="wb-alert-close" aria-label="Close">&times;</button>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- FORMS -->
+      <section id="forms">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Forms</h2>
+        <div class="wb-card" style="max-width:480px">
+          <div class="wb-card-body">
+            <div class="wb-stack-4">
+              <div class="wb-field">
+                <label class="wb-label">Full Name</label>
+                <input class="wb-input" type="text" placeholder="John Doe">
+              </div>
+              <div class="wb-field">
+                <label class="wb-label">Email</label>
+                <input class="wb-input" type="email" placeholder="john@example.com">
+              </div>
+              <div class="wb-field">
+                <label class="wb-label">Role</label>
+                <select class="wb-select">
+                  <option>Admin</option>
+                  <option>Editor</option>
+                  <option>Viewer</option>
+                </select>
+              </div>
+              <div class="wb-field">
+                <label class="wb-label">Notes</label>
+                <textarea class="wb-textarea" rows="3" placeholder="Optional notes..."></textarea>
+              </div>
+              <div class="wb-cluster-2">
+                <label class="wb-checkbox">
+                  <input type="checkbox" checked> Remember me
+                </label>
+                <label class="wb-switch">
+                  <input type="checkbox" checked>
+                  <span class="wb-switch-track"></span>
+                  Enable notifications
+                </label>
+              </div>
+              <div class="wb-cluster">
+                <label class="wb-radio"><input type="radio" name="role" checked> User</label>
+                <label class="wb-radio"><input type="radio" name="role"> Admin</label>
+              </div>
+              <button class="wb-btn wb-btn-primary">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- TABLES -->
+      <section id="tables">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Tables</h2>
+        <div class="wb-toolbar wb-mb-3">
+          <input class="wb-input wb-btn-sm" type="search" placeholder="Search...">
+          <div class="wb-toolbar-end">
+            <button class="wb-btn wb-btn-primary wb-btn-sm">Add User</button>
+          </div>
+        </div>
+        <div class="wb-overflow-x-auto">
+          <table class="wb-table wb-table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alice Johnson</td>
+                <td>alice@example.com</td>
+                <td>Admin</td>
+                <td><span class="wb-badge wb-badge-success wb-badge-dot">Active</span></td>
+                <td>
+                  <button class="wb-btn wb-btn-ghost wb-btn-sm">Edit</button>
+                  <button class="wb-btn wb-btn-ghost wb-btn-sm wb-text-danger">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Bob Smith</td>
+                <td>bob@example.com</td>
+                <td>Editor</td>
+                <td><span class="wb-badge wb-badge-warning">Pending</span></td>
+                <td>
+                  <button class="wb-btn wb-btn-ghost wb-btn-sm">Edit</button>
+                  <button class="wb-btn wb-btn-ghost wb-btn-sm wb-text-danger">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- MODALS -->
+      <section id="modals">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Modals</h2>
+        <div class="wb-cluster">
+          <button class="wb-btn wb-btn-primary" data-wb-toggle="modal" data-wb-target="#demoModal">Open Modal</button>
+          <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#confirmModal">Confirm Dialog</button>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- DROPDOWNS -->
+      <section id="dropdowns">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Dropdowns</h2>
+        <div class="wb-cluster">
+          <div class="wb-dropdown">
+            <button class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" aria-expanded="false">
+              Actions ▾
+            </button>
+            <ul class="wb-dropdown-menu">
+              <li><a class="wb-dropdown-item" href="#">Edit</a></li>
+              <li><a class="wb-dropdown-item" href="#">Duplicate</a></li>
+              <li class="wb-dropdown-divider"></li>
+              <li><a class="wb-dropdown-item wb-text-danger" href="#">Delete</a></li>
+            </ul>
+          </div>
+          <div class="wb-dropdown">
+            <button class="wb-btn wb-btn-outline" data-wb-toggle="dropdown" aria-expanded="false">
+              Filter ▾
+            </button>
+            <ul class="wb-dropdown-menu">
+              <li class="wb-dropdown-label">Status</li>
+              <li><a class="wb-dropdown-item" href="#">Active</a></li>
+              <li><a class="wb-dropdown-item" href="#">Inactive</a></li>
+              <li><a class="wb-dropdown-item" href="#">Pending</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- TABS -->
+      <section id="tabs">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Tabs</h2>
+        <div class="wb-stack-6">
+          <div class="wb-tabs" data-wb-tabs>
+            <div class="wb-tabs-nav" role="tablist">
+              <button class="wb-tabs-btn is-active" data-wb-tab="t1" role="tab" aria-selected="true" aria-controls="t1">Overview</button>
+              <button class="wb-tabs-btn" data-wb-tab="t2" role="tab" aria-selected="false" aria-controls="t2" tabindex="-1">Activity</button>
+              <button class="wb-tabs-btn" data-wb-tab="t3" role="tab" aria-selected="false" aria-controls="t3" tabindex="-1">Settings</button>
+            </div>
+            <div class="wb-tabs-panels">
+              <div class="wb-tabs-panel is-active" id="t1" role="tabpanel">
+                <p class="wb-mt-3">Overview tab content.</p>
+              </div>
+              <div class="wb-tabs-panel" id="t2" role="tabpanel">
+                <p class="wb-mt-3">Activity feed goes here.</p>
+              </div>
+              <div class="wb-tabs-panel" id="t3" role="tabpanel">
+                <p class="wb-mt-3">Settings panel content.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- ACCORDION -->
+      <section id="accordion" style="max-width:600px">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Accordion</h2>
+        <div class="wb-accordion" data-wb-accordion data-wb-accordion-single="true">
+          <div class="wb-accordion-item">
+            <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                    aria-expanded="true" aria-controls="acc1">
+              What is WebBlocks UI?
+              <span class="wb-accordion-icon"></span>
+            </button>
+            <div class="wb-accordion-content is-open" id="acc1" style="max-height:200px">
+              <div class="wb-accordion-body">
+                WebBlocks UI is a framework-agnostic UI kit built with plain HTML, CSS, and vanilla JavaScript.
+              </div>
+            </div>
+          </div>
+          <div class="wb-accordion-item">
+            <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                    aria-expanded="false" aria-controls="acc2">
+              Does it require a build step?
+              <span class="wb-accordion-icon"></span>
+            </button>
+            <div class="wb-accordion-content" id="acc2" style="max-height:0">
+              <div class="wb-accordion-body">
+                No build step required. Simply include the dist CSS and JS files and start using it.
+              </div>
+            </div>
+          </div>
+          <div class="wb-accordion-item">
+            <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                    aria-expanded="false" aria-controls="acc3">
+              Works with Laravel Blade?
+              <span class="wb-accordion-icon"></span>
+            </button>
+            <div class="wb-accordion-content" id="acc3" style="max-height:0">
+              <div class="wb-accordion-body">
+                Yes. WebBlocks UI works with any HTML template system — Laravel Blade, Craft Twig, or plain HTML.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- AVATARS -->
+      <section id="avatars">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Avatars</h2>
+        <div class="wb-cluster">
+          <div class="wb-avatar wb-avatar-xs">AX</div>
+          <div class="wb-avatar wb-avatar-sm">SM</div>
+          <div class="wb-avatar">MD</div>
+          <div class="wb-avatar wb-avatar-lg">LG</div>
+          <div class="wb-avatar wb-avatar-xl">XL</div>
+        </div>
+        <div class="wb-cluster wb-mt-3">
+          <div class="wb-avatar wb-avatar-green">GR</div>
+          <div class="wb-avatar wb-avatar-red">RD</div>
+          <div class="wb-avatar wb-avatar-orange">OR</div>
+          <div class="wb-avatar wb-avatar-violet">VL</div>
+          <div class="wb-avatar-group">
+            <div class="wb-avatar wb-avatar-sm">A1</div>
+            <div class="wb-avatar wb-avatar-sm wb-avatar-green">A2</div>
+            <div class="wb-avatar wb-avatar-sm wb-avatar-orange">A3</div>
+            <div class="wb-avatar wb-avatar-sm wb-avatar-count">+5</div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- TOASTS -->
+      <section id="toasts">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Toasts</h2>
+        <div class="wb-cluster wb-mb-4">
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="showToast('success')">Success Toast</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="showToast('danger')">Error Toast</button>
+          <button class="wb-btn wb-btn-outline wb-btn-sm" onclick="showToast('warning')">Warning Toast</button>
+        </div>
+        <!-- Static demo -->
+        <div class="wb-toast wb-toast-success">
+          <span class="wb-toast-icon"><i class="wb-icon wb-icon-check wb-icon-sm wb-icon-success"></i></span>
+          <span class="wb-toast-body">Changes saved successfully.</span>
+          <button class="wb-toast-close">&times;</button>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- EMPTY STATE -->
+      <section id="empty">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Empty State</h2>
+        <div class="wb-empty">
+          <div class="wb-empty-icon"><i class="wb-icon wb-icon-file-text wb-icon-2xl wb-icon-muted"></i></div>
+          <div class="wb-empty-title">No tasks yet</div>
+          <div class="wb-empty-text">Create your first task to get started.</div>
+          <button class="wb-btn wb-btn-primary wb-mt-3">Create Task</button>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- SKELETON -->
+      <section id="skeleton">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Skeleton</h2>
+        <div class="wb-skeleton-card">
+          <div class="wb-skeleton-header">
+            <div class="wb-skeleton wb-skeleton-avatar"></div>
+            <div class="wb-stack-2 wb-flex-1">
+              <div class="wb-skeleton wb-skeleton-line" style="width:60%"></div>
+              <div class="wb-skeleton wb-skeleton-line wb-skeleton-line-sm" style="width:40%"></div>
+            </div>
+          </div>
+          <div class="wb-stack-2 wb-mt-3">
+            <div class="wb-skeleton wb-skeleton-line"></div>
+            <div class="wb-skeleton wb-skeleton-line"></div>
+            <div class="wb-skeleton wb-skeleton-line" style="width:80%"></div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="wb-divider wb-divider-lg">
+
+      <!-- LAYOUT PRIMITIVES -->
+      <section id="layout">
+        <h2 class="wb-text-2xl wb-font-bold wb-mb-4">Layout Primitives</h2>
+        <div class="wb-stack-6">
+          <div>
+            <p class="wb-text-sm wb-text-muted wb-mb-2">wb-split</p>
+            <div class="wb-split" style="background:var(--wb-surface-2);padding:var(--wb-s3);border-radius:var(--wb-r-md)">
+              <span>Left content</span>
+              <button class="wb-btn wb-btn-primary wb-btn-sm">Action</button>
+            </div>
+          </div>
+          <div>
+            <p class="wb-text-sm wb-text-muted wb-mb-2">wb-cluster</p>
+            <div class="wb-cluster" style="background:var(--wb-surface-2);padding:var(--wb-s3);border-radius:var(--wb-r-md)">
+              <span class="wb-badge wb-badge-primary">Tag 1</span>
+              <span class="wb-badge wb-badge-success">Tag 2</span>
+              <span class="wb-badge wb-badge-neutral">Tag 3</span>
+              <span class="wb-badge wb-badge-warning">Tag 4</span>
+            </div>
+          </div>
+          <div>
+            <p class="wb-text-sm wb-text-muted wb-mb-2">wb-grid-3</p>
+            <div class="wb-grid-3" style="gap:var(--wb-s3)">
+              <div style="background:var(--wb-primary-soft);padding:var(--wb-s3);border-radius:var(--wb-r-md);text-align:center">Col 1</div>
+              <div style="background:var(--wb-primary-soft);padding:var(--wb-s3);border-radius:var(--wb-r-md);text-align:center">Col 2</div>
+              <div style="background:var(--wb-primary-soft);padding:var(--wb-s3);border-radius:var(--wb-r-md);text-align:center">Col 3</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div style="height:var(--wb-s12)"></div>
+
+    </main>
+  </div>
+
+</div>
+
+<!-- ── Modals ──────────────────────────────────────────────── -->
+<div class="wb-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-header">
+      <h5 class="wb-modal-title" id="demoModalTitle">Modal Title</h5>
+      <button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close">&times;</button>
+    </div>
+    <div class="wb-modal-body">
+      <p>This is the modal body. You can put any content here — forms, tables, images.</p>
+      <div class="wb-field wb-mt-3">
+        <label class="wb-label">Sample input</label>
+        <input class="wb-input" type="text" placeholder="Type something...">
+      </div>
+    </div>
+    <div class="wb-modal-footer">
+      <button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button>
+      <button class="wb-btn wb-btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="wb-modal wb-modal-sm" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-header">
+      <h5 class="wb-modal-title" id="confirmModalTitle">Confirm Delete</h5>
+      <button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close">&times;</button>
+    </div>
+    <div class="wb-modal-body">
+      <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+    </div>
+    <div class="wb-modal-footer">
+      <button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button>
+      <button class="wb-btn wb-btn-danger" data-wb-dismiss="modal">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast container ────────────────────────────────────── -->
+<div class="wb-toast-container wb-toast-top-right" id="toastContainer"></div>
+
+<script>
+function showToast(type) {
+  var messages = {
+    success: 'Changes saved successfully.',
+    danger: 'Something went wrong. Please try again.',
+    warning: 'Please review before continuing.'
+  };
+  var container = document.getElementById('toastContainer');
+  var toast = document.createElement('div');
+  toast.className = 'wb-toast wb-toast-' + type + ' wb-toast-enter';
+  toast.innerHTML =
+    '<span class="wb-toast-body">' + messages[type] + '</span>' +
+    '<button class="wb-toast-close" onclick="this.closest(\'.wb-toast\').remove()">&times;</button>';
+  container.appendChild(toast);
+  setTimeout(function () { toast.classList.remove('wb-toast-enter'); }, 10);
+  setTimeout(function () {
+    toast.classList.add('wb-toast-exit');
+    setTimeout(function () { toast.remove(); }, 300);
+  }, 3500);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilidades - WebBlocks UI</title>
+  <meta name="description" content="Clases utilitarias en WebBlocks UI: display, flex, spacing, typography, color, border, shadow, position y visibilidad responsive.">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Utilidades</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
+        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="layout.html" class="wb-site-nav-link">Layout</a>
+        <a href="../../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Ajustes finales</div>
+          <h1 class="wb-page-title">Las utilidades sirven para <em>correcciones pequenas</em>, no para un segundo sistema de diseno.</h1>
+          <p class="wb-page-lead">
+            WebBlocks incluye helpers para display, flex, spacing, typography, color, border, shadow, position y visibility.
+            Su trabajo es cerrar una composicion, no reemplazar la capa de componentes ni la de layouts.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>Buen uso</h2>
+          <ul class="wb-site-principles">
+            <li><span class="wb-site-key">Primero estructura</span><p>Usa primero los primitives de layout y los defaults de componentes, luego las utilidades.</p></li>
+            <li><span class="wb-site-key">Mantenlas locales</span><p>Una utility encaja bien cuando una o dos correcciones resuelven la pagina.</p></li>
+            <li><span class="wb-site-key">No apiles a ciegas</span><p>Si aparecen demasiadas utilidades juntas, la decision probablemente pertenece a otra capa.</p></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Grupos</div>
+          <h2 class="wb-site-section-title">Los helpers cubren los ajustes finales mas comunes.</h2>
+          <p>La nomenclatura sigue el mismo ritmo del resto del sistema: corta, literal y con prefijo `wb-`.</p>
+        </div>
+        <ul class="wb-site-chip-list">
+          <li class="wb-site-chip">display</li>
+          <li class="wb-site-chip">flex</li>
+          <li class="wb-site-chip">gap</li>
+          <li class="wb-site-chip">margin</li>
+          <li class="wb-site-chip">padding</li>
+          <li class="wb-site-chip">text</li>
+          <li class="wb-site-chip">font</li>
+          <li class="wb-site-chip">color</li>
+          <li class="wb-site-chip">border</li>
+          <li class="wb-site-chip">radius</li>
+          <li class="wb-site-chip">shadow</li>
+          <li class="wb-site-chip">position</li>
+          <li class="wb-site-chip">cursor</li>
+          <li class="wb-site-chip">opacity</li>
+          <li class="wb-site-chip">responsive visibility</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Ejemplo</div>
+          <h2 class="wb-site-section-title">Unas pocas utilidades pueden cerrar un layout sin ocultarlo.</h2>
+          <p>El uso sano es este: el componente hace casi todo el trabajo y las utilidades solo ajustan spacing y alignment.</p>
+        </div>
+        <pre class="wb-site-pre"><code>&lt;div class="wb-card wb-mt-4"&gt;
+  &lt;div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3"&gt;
+    &lt;strong class="wb-text-lg"&gt;Actividad&lt;/strong&gt;
+    &lt;span class="wb-badge wb-badge-success wb-badge-dot"&gt;En vivo&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body wb-p-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Limite</div>
+          <h2 class="wb-site-section-title">Si toda la pagina empieza a parecer una lista de utilidades, para.</h2>
+          <p>
+            Si el markup se convierte en una pared de helpers, la decision probablemente debe volver a la capa de componentes o layouts.
+            El sistema es mas legible cuando las utilidades se usan con medida.
+          </p>
+        </div>
+        <div class="wb-callout wb-callout-accent">
+          Ajusta con utilidades. Define con componentes y layouts.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Las utilidades son la ultima capa, no la primera.</div>
+      <div><a href="foundation.html" class="wb-site-nav-link">Fundamentos</a> <a href="javascript.html" class="wb-site-nav-link">JavaScript</a></div>
+    </div>
+  </footer>
+</body>
+</html>

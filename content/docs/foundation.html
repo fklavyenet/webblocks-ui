@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundation - WebBlocks UI</title>
+  <meta name="description" content="Foundation layer of WebBlocks UI: tokens, modes, accents, presets, typography, spacing, radius, border, and shadow.">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Foundation</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
+        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="layout.html" class="wb-site-nav-link">Layout</a>
+        <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Source of truth</div>
+          <h1 class="wb-page-title">The system begins with <em>tokens and axes</em>.</h1>
+          <p class="wb-page-lead">
+            The foundation layer decides surfaces, text, border, accent behavior, spacing scale, type scale, radius,
+            shadows, and layout widths. Everything else is built on top of those values.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>Foundation files</h2>
+          <ul class="wb-site-principles">
+            <li><span class="wb-site-key">tokens.css</span><p>Light mode defaults, semantic colors, spacing, type, radius, shadows, z-index, layout widths.</p></li>
+            <li><span class="wb-site-key">dark.css and axis files</span><p>Mode and individual axes that override the defaults when needed.</p></li>
+            <li><span class="wb-site-key">presets.css</span><p>Named bundles that combine multiple axis decisions into a coherent direction.</p></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Token groups</div>
+          <h2 class="wb-site-section-title">A small set of token families shapes the whole interface.</h2>
+          <p>New component work should consume these tokens instead of hardcoding color or size values.</p>
+        </div>
+        <div class="wb-site-mini-grid">
+          <div class="wb-site-panel wb-p-5">
+            <h2>Surface and text</h2>
+            <p><code>--wb-bg</code>, <code>--wb-surface</code>, <code>--wb-surface-2</code>, <code>--wb-text</code>, <code>--wb-muted</code></p>
+          </div>
+          <div class="wb-site-panel wb-p-5">
+            <h2>Accent and semantic color</h2>
+            <p><code>--wb-accent*</code> plus success, warning, danger, and info families.</p>
+          </div>
+          <div class="wb-site-panel wb-p-5">
+            <h2>Spacing and shape</h2>
+            <p><code>--wb-s1</code> to <code>--wb-s20</code>, <code>--wb-r-sm</code> to <code>--wb-r-full</code>.</p>
+          </div>
+          <div class="wb-site-panel wb-p-5">
+            <h2>Type and layout</h2>
+            <p>Base, heading, mono fonts plus layout widths, line heights, and stacking rhythm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Theme axes</div>
+          <h2 class="wb-site-section-title">The root attributes are the public face of the theme system.</h2>
+          <p>Each axis changes a narrow part of the visual language. That separation is what keeps the system predictable.</p>
+        </div>
+        <ul class="wb-site-chip-list">
+          <li class="wb-site-chip"><code>data-mode</code></li>
+          <li class="wb-site-chip"><code>data-accent</code></li>
+          <li class="wb-site-chip"><code>data-preset</code></li>
+          <li class="wb-site-chip"><code>data-radius</code></li>
+          <li class="wb-site-chip"><code>data-density</code></li>
+          <li class="wb-site-chip"><code>data-shadow</code></li>
+          <li class="wb-site-chip"><code>data-font</code></li>
+          <li class="wb-site-chip"><code>data-border</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Rule</div>
+          <h2 class="wb-site-section-title">Foundation choices should travel through components unchanged.</h2>
+          <p>If a component needs a new hardcoded value, it usually means the token layer is missing a concept.</p>
+        </div>
+        <div class="wb-callout wb-callout-accent">
+          No hardcoded colors or sizes in component CSS. Add or reuse a token first, then consume it from the component.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Foundation defines the shared language of the interface.</div>
+      <div><a href="getting-started.html" class="wb-site-nav-link">Getting Started</a> <a href="components.html" class="wb-site-nav-link">Components</a></div>
+    </div>
+  </footer>
+</body>
+</html>

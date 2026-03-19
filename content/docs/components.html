@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components - WebBlocks UI</title>
+  <meta name="description" content="Component groups in WebBlocks UI: primitives, forms, navigation, feedback, overlays, and advanced interaction.">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Components</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link">Docs</a>
+        <a href="components.html" class="wb-site-nav-link is-active">Components</a>
+        <a href="layout.html" class="wb-site-nav-link">Layout</a>
+        <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Grouped by use, not by spectacle</div>
+          <h1 class="wb-page-title">Components that stay <em>legible in context</em>.</h1>
+          <p class="wb-page-lead">
+            WebBlocks is strongest when buttons, fields, overlays, and navigation patterns are treated as working parts of a page.
+            This index groups the library by job: data entry, feedback, movement, visibility, and interaction.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>Inventory</h2>
+          <ul class="wb-site-principles">
+            <li><span class="wb-site-key">Primitives</span><p>Buttons, badges, cards, tables, alerts, avatars, dividers, breadcrumbs.</p></li>
+            <li><span class="wb-site-key">Interactive pieces</span><p>Dropdowns, tabs, accordions, modals, drawers, popovers, tooltips, toasts.</p></li>
+            <li><span class="wb-site-key">Workflow pieces</span><p>Filter bars, action menus, nav groups, command palette, list patterns, radio cards, collapse.</p></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Primitives</div>
+          <h2 class="wb-site-section-title">Buttons, badges, cards, tables, and quiet defaults.</h2>
+          <p>
+            These are the pieces that appear almost everywhere. They should not need explanation once the naming is learned.
+          </p>
+        </div>
+
+        <article class="wb-site-sample">
+          <div class="wb-site-sample-head">
+            <h3>Common page furniture</h3>
+            <span>button, badge, alert, card, table</span>
+          </div>
+          <div class="wb-site-sample-body wb-stack-4">
+            <div class="wb-cluster wb-cluster-2">
+              <button class="wb-btn wb-btn-primary">Save</button>
+              <button class="wb-btn wb-btn-outline">Preview</button>
+              <span class="wb-badge wb-badge-success wb-badge-dot">Published</span>
+            </div>
+            <div class="wb-alert wb-alert-info">Status messaging stays direct and low-friction.</div>
+            <div class="wb-card">
+              <div class="wb-card-header wb-split">
+                <strong>Open invoices</strong>
+                <span class="wb-badge wb-badge-warning">3 pending</span>
+              </div>
+              <div class="wb-card-body wb-p-0">
+                <table class="wb-table wb-table-sm">
+                  <tbody>
+                    <tr><td>#1201</td><td>Agency retainer</td><td>$820</td></tr>
+                    <tr><td>#1202</td><td>Hosting</td><td>$40</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Forms and choice</div>
+          <h2 class="wb-site-section-title">Input patterns are treated as a family.</h2>
+          <p>
+            Form fields, selects, switches, grouped inputs, radio cards, and validation states share the same token logic.
+            The goal is steady rhythm, not flashy field chrome.
+          </p>
+        </div>
+
+        <article class="wb-site-sample">
+          <div class="wb-site-sample-head">
+            <h3>Form block</h3>
+            <span>form, input group, radio card</span>
+          </div>
+          <div class="wb-site-sample-body wb-stack-4">
+            <div class="wb-field">
+              <label class="wb-label">Project name</label>
+              <input class="wb-input" type="text" value="Content migration">
+            </div>
+            <div class="wb-input-group">
+              <span class="wb-input-group-text">https://</span>
+              <input class="wb-input" type="text" value="docs.example.com">
+            </div>
+            <div class="wb-grid-2">
+              <label class="wb-radio-card is-selected">
+                <input class="wb-sr-only" type="radio" checked>
+                <strong>Draft</strong>
+                <span>Safe while structure is still changing.</span>
+              </label>
+              <label class="wb-radio-card">
+                <input class="wb-sr-only" type="radio">
+                <strong>Live</strong>
+                <span>Public and visible to readers.</span>
+              </label>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Navigation and data movement</div>
+          <h2 class="wb-site-section-title">Movement through information uses small, repeatable patterns.</h2>
+          <p>
+            Breadcrumbs, pagination, nav groups, tabs, filter bars, list groups, and action menus exist to reduce friction between states.
+          </p>
+        </div>
+
+        <article class="wb-site-sample">
+          <div class="wb-site-sample-head">
+            <h3>Navigation strip</h3>
+            <span>tabs, breadcrumb, filter bar, action menu</span>
+          </div>
+          <div class="wb-site-sample-body wb-stack-4">
+            <nav class="wb-breadcrumb" aria-label="Breadcrumb">
+              <a href="#" class="wb-breadcrumb-item">Projects</a>
+              <a href="#" class="wb-breadcrumb-item">Atlas</a>
+              <span class="wb-breadcrumb-item is-current">Settings</span>
+            </nav>
+            <div class="wb-tabs">
+              <div class="wb-tabs-nav">
+                <button class="wb-tabs-btn is-active">Overview</button>
+                <button class="wb-tabs-btn">Members</button>
+                <button class="wb-tabs-btn">Billing</button>
+              </div>
+            </div>
+            <div class="wb-filter-bar">
+              <div class="wb-filter-bar-start">
+                <button class="wb-filter-chip is-active">All</button>
+                <button class="wb-filter-chip">Needs review</button>
+              </div>
+              <div class="wb-filter-bar-end">
+                <div class="wb-action-group">
+                  <button class="wb-action-btn wb-action-btn-edit"><i class="wb-icon wb-icon-pencil wb-icon-sm"></i></button>
+                  <button class="wb-action-btn wb-action-btn-delete"><i class="wb-icon wb-icon-trash wb-icon-sm"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Overlays and richer interaction</div>
+          <h2 class="wb-site-section-title">Behavior stays opt-in and named.</h2>
+          <p>
+            Modals, drawers, dropdowns, tooltips, popovers, command palettes, toast notifications, accordions, and collapse
+            patterns are wired through explicit attributes and small modules. The HTML still tells you what the page can do.
+          </p>
+        </div>
+
+        <div class="wb-site-column-list">
+          <article>
+            <h3>Overlays</h3>
+            <p>Modal, confirm, drawer, dropdown, popover, tooltip, and toast cover visibility changes and temporary surfaces.</p>
+          </article>
+          <article>
+            <h3>Disclosure</h3>
+            <p>Accordion, collapse, nav group, and dismiss manage sections that open, close, or leave the page.</p>
+          </article>
+          <article>
+            <h3>Workflow helpers</h3>
+            <p>Command palette, AJAX toggle, and action menus help pages feel interactive without becoming opaque.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Markup pattern</div>
+          <h2 class="wb-site-section-title">The classes are meant to be copied directly.</h2>
+          <p>
+            The naming system is intentionally plain. You should be able to copy a pattern, change the surrounding semantics,
+            and still understand what every line is doing six months later.
+          </p>
+        </div>
+
+        <pre class="wb-site-pre"><code>&lt;div class="wb-card"&gt;
+  &lt;div class="wb-card-header wb-split"&gt;
+    &lt;strong&gt;Invoice&lt;/strong&gt;
+    &lt;span class="wb-badge wb-badge-success wb-badge-dot"&gt;Paid&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body"&gt;
+    &lt;button class="wb-btn wb-btn-outline wb-btn-sm"&gt;View&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Components grouped by the work they do on a page.</div>
+      <div><a href="layout.html" class="wb-site-nav-link">Layout</a> <a href="../examples/index.html" class="wb-site-nav-link">Examples</a></div>
+    </div>
+  </footer>
+</body>
+</html>

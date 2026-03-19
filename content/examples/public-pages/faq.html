@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="ocean">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI — FAQ</title>
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../../../packages/webblocks/dist/webblocks-ui.js"></script>
+</head>
+<body>
+
+<!-- ── Navbar ──────────────────────────────────────────────── -->
+<nav class="wb-navbar wb-navbar-glass">
+  <div class="wb-container" style="display:flex;align-items:center;gap:var(--wb-s3);width:100%;padding:0">
+    <a href="home.html" class="wb-navbar-brand">WebBlocks UI</a>
+    <span class="wb-navbar-spacer"></span>
+    <div class="wb-navbar-links">
+      <a class="wb-navbar-link" href="home.html#features">Features</a>
+      <a class="wb-navbar-link" href="pricing.html">Pricing</a>
+      <a class="wb-navbar-link is-active" href="faq.html">FAQ</a>
+      <a class="wb-navbar-link" href="contact.html">Contact</a>
+    </div>
+    <div class="wb-navbar-end">
+      <a class="wb-btn wb-btn-outline wb-btn-sm" href="../auth/login.html">Sign in</a>
+      <a class="wb-btn wb-btn-primary wb-btn-sm" href="../auth/register.html">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────────────── -->
+<section class="wb-section" style="text-align:center;padding-top:var(--wb-s16);padding-bottom:var(--wb-s10)">
+  <div class="wb-container">
+    <h1 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.15;margin:0 0 var(--wb-s4)">
+      Frequently asked questions
+    </h1>
+    <p style="font-size:1.1rem;color:var(--wb-muted);max-width:520px;margin:0 auto var(--wb-s6)">
+      Everything you need to know about WebBlocks UI. Can't find an answer?
+      <a href="contact.html" style="color:var(--wb-accent-text)">Ask us directly.</a>
+    </p>
+
+    <!-- Search -->
+    <div class="wb-search-bar" style="max-width:420px;margin:0 auto">
+      <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-file-search wb-icon-sm"></i></span>
+      <input class="wb-search-bar-input wb-search-bar-lg" type="text" placeholder="Search questions…" id="faqSearch">
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ content ──────────────────────────────────────────── -->
+<section class="wb-section" style="padding-top:0">
+  <div class="wb-container" style="max-width:780px">
+
+    <!-- Category: General -->
+    <div class="wb-mb-8" id="cat-general">
+      <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:var(--wb-s4);padding-bottom:var(--wb-s2);border-bottom:2px solid var(--wb-accent-border)">
+        General
+      </h2>
+
+      <div class="wb-accordion" data-wb-accordion>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="true" aria-controls="faq1">
+            What is WebBlocks UI?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq1">
+            <div class="wb-accordion-body">
+              WebBlocks UI is a framework-agnostic UI kit built with plain HTML, CSS custom properties,
+              and vanilla JavaScript. It provides a complete set of components, layouts, and a multi-axis
+              theme engine — with no build step, no npm, and zero dependencies.
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq2">
+            Do I need Node.js or npm to use it?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq2" style="max-height:0">
+            <div class="wb-accordion-body">
+              No. WebBlocks UI has zero Node.js dependency. You just drop two files into your project —
+              <code>webblocks-ui.css</code> and <code>webblocks-ui.js</code> — and you're ready to go.
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq3">
+            What frameworks does it work with?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq3" style="max-height:0">
+            <div class="wb-accordion-body">
+              Any server-side or static framework. It's been tested with Laravel Blade, Craft CMS Twig,
+              plain HTML, and Django templates. Because it's pure CSS/JS with no build step, it fits
+              into any stack that can serve HTML files.
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq4">
+            Is it production-ready?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq4" style="max-height:0">
+            <div class="wb-accordion-body">
+              Yes. V2 is stable and suitable for production admin panels, SaaS dashboards,
+              and marketing pages. All V2 components have been tested across modern browsers.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Category: Theme -->
+    <div class="wb-mb-8" id="cat-theme">
+      <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:var(--wb-s4);padding-bottom:var(--wb-s2);border-bottom:2px solid var(--wb-accent-border)">
+        Theme &amp; Customization
+      </h2>
+
+      <div class="wb-accordion" data-wb-accordion>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq5">
+            How does dark mode work?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq5" style="max-height:0">
+            <div class="wb-accordion-body">
+              Set <code>data-mode="dark"</code> on the <code>&lt;html&gt;</code> element.
+              Using <code>data-mode="auto"</code> follows the OS preference via
+              <code>prefers-color-scheme</code>. The <code>WBTheme.setMode()</code> API
+              lets you switch modes programmatically and saves the preference to
+              <code>localStorage</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq6">
+            Can I add my own brand colors?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq6" style="max-height:0">
+            <div class="wb-accordion-body">
+              Yes. Override the <code>--wb-accent-*</code> tokens in your own CSS file.
+              Define all 12 accent tokens (e.g. <code>--wb-accent</code>, <code>--wb-accent-hover</code>,
+              <code>--wb-accent-soft</code>, etc.) and every component will automatically
+              pick up your brand color.
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq7">
+            What are theme presets?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq7" style="max-height:0">
+            <div class="wb-accordion-body">
+              Presets are named bundles that simultaneously set radius, shadow, and font tokens
+              to give a consistent visual character. Available presets: <code>modern</code>,
+              <code>minimal</code>, <code>rounded</code>, <code>bold</code>, <code>editorial</code>.
+              Apply with <code>data-preset="rounded"</code> on <code>&lt;html&gt;</code>.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Category: Components -->
+    <div class="wb-mb-8" id="cat-components">
+      <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:var(--wb-s4);padding-bottom:var(--wb-s2);border-bottom:2px solid var(--wb-accent-border)">
+        Components
+      </h2>
+
+      <div class="wb-accordion" data-wb-accordion>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq8">
+            How do I open a modal?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq8" style="max-height:0">
+            <div class="wb-accordion-body">
+              Add <code>data-wb-toggle="modal"</code> and <code>data-wb-target="#myModal"</code>
+              to any button. Alternatively, call <code>WBModal.open('#myModal')</code> from JavaScript.
+              The modal includes a built-in focus trap and closes on Escape or backdrop click.
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq9">
+            Are the components accessible?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq9" style="max-height:0">
+            <div class="wb-accordion-body">
+              Yes. Interactive components include appropriate ARIA attributes
+              (<code>aria-expanded</code>, <code>aria-controls</code>, <code>role="dialog"</code>, etc.),
+              focus management, and keyboard navigation. Modals and drawers implement full focus traps.
+              Tabs support arrow key navigation.
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq10">
+            Can I use just the CSS without the JavaScript?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq10" style="max-height:0">
+            <div class="wb-accordion-body">
+              Yes. The CSS-only components (buttons, cards, alerts, badges, forms, tables, tooltips,
+              skeleton, divider, list-group, and more) work without any JavaScript. The JS file is
+              only needed for interactive components: modals, dropdowns, tabs, accordion,
+              sidebar, drawer, nav group, and command palette.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Category: Licensing -->
+    <div class="wb-mb-8" id="cat-license">
+      <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:var(--wb-s4);padding-bottom:var(--wb-s2);border-bottom:2px solid var(--wb-accent-border)">
+        Licensing
+      </h2>
+
+      <div class="wb-accordion" data-wb-accordion>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq11">
+            Is WebBlocks UI free for commercial projects?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq11" style="max-height:0">
+            <div class="wb-accordion-body">
+              The Free tier is for personal and open-source projects. Commercial use requires
+              a Pro or Team license. See the <a href="pricing.html" style="color:var(--wb-accent-text)">pricing page</a>
+              for details.
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-accordion-item" data-faq>
+          <button class="wb-accordion-trigger" data-wb-accordion-trigger
+                  aria-expanded="false" aria-controls="faq12">
+            Can I redistribute WebBlocks UI inside a product?
+            <span class="wb-accordion-icon"></span>
+          </button>
+          <div class="wb-accordion-content" id="faq12" style="max-height:0">
+            <div class="wb-accordion-body">
+              With a Pro or Team license, yes. You may bundle and ship the dist files as part of
+              a product. You may not sell WebBlocks UI itself as a standalone product or resell
+              it under a different name.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Still have questions? -->
+    <div class="wb-card" style="text-align:center;padding:var(--wb-s8)">
+      <div style="margin-bottom:var(--wb-s3)"><i class="wb-icon wb-icon-message-circle wb-icon-2xl wb-icon-muted"></i></div>
+      <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 var(--wb-s2)">Still have questions?</h3>
+      <p class="wb-text-muted wb-text-sm wb-mb-5">
+        We're happy to help. Send us a message and we'll get back to you within 24 hours.
+      </p>
+      <a class="wb-btn wb-btn-primary" href="contact.html">Contact support</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Footer ──────────────────────────────────────────────── -->
+<footer style="background:var(--wb-surface);border-top:1px solid var(--wb-border);padding:var(--wb-s8) 0">
+  <div class="wb-container">
+    <div class="wb-split wb-mb-4">
+      <div class="wb-font-bold">WebBlocks UI</div>
+      <div class="wb-cluster">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-mode-set="light">Light</button>
+        <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-mode-set="dark">Dark</button>
+      </div>
+    </div>
+    <hr class="wb-divider">
+    <div class="wb-text-sm wb-text-muted wb-text-center wb-mt-4">
+      &copy; 2026 WebBlocks UI. Built with plain HTML, CSS &amp; JS.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // FAQ search filter
+  var searchInput = document.getElementById('faqSearch');
+  searchInput.addEventListener('input', function() {
+    var q = this.value.toLowerCase().trim();
+    document.querySelectorAll('[data-faq]').forEach(function(item) {
+      var text = item.textContent.toLowerCase();
+      item.style.display = (q === '' || text.includes(q)) ? '' : 'none';
+    });
+  });
+</script>
+
+</body>
+</html>

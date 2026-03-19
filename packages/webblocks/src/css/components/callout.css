@@ -1,0 +1,82 @@
+/* ============================================================
+   WebBlocks UI — Callout
+   ============================================================ */
+
+.wb-callout {
+  padding: var(--wb-s4) var(--wb-s5);
+  border: 1px solid var(--wb-border);
+  border-left: 3px solid var(--wb-border);
+  border-radius: var(--wb-r-md);
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  font-size: var(--wb-font-size-sm);
+  line-height: var(--wb-line-height-relaxed);
+}
+
+.wb-callout > :last-child {
+  margin-bottom: 0;
+}
+
+.wb-callout-title {
+  display: block;
+  margin: 0 0 var(--wb-s1);
+  font-size: var(--wb-font-size-sm);
+  font-weight: 600;
+  color: var(--wb-text);
+}
+
+.wb-callout-muted {
+  background: var(--wb-surface-2);
+  border-color: var(--wb-border);
+  border-left-color: var(--wb-border);
+}
+
+.wb-callout-accent {
+  background: var(--wb-accent-softer);
+  border-color: var(--wb-accent-border);
+  border-left-color: var(--wb-accent);
+}
+
+.wb-callout-accent .wb-callout-title {
+  color: var(--wb-accent-text);
+}
+
+.wb-callout-success {
+  background: var(--wb-success-soft);
+  border-color: var(--wb-success-light);
+  border-left-color: var(--wb-success);
+}
+
+.wb-callout-success .wb-callout-title {
+  color: var(--wb-success-dark);
+}
+
+.wb-callout-warning {
+  background: var(--wb-warning-soft);
+  border-color: var(--wb-warning-light);
+  border-left-color: var(--wb-warning);
+}
+
+.wb-callout-warning .wb-callout-title {
+  color: var(--wb-warning-dark);
+}
+
+.wb-callout-danger {
+  background: var(--wb-danger-soft);
+  border-color: var(--wb-danger-light);
+  border-left-color: var(--wb-danger);
+}
+
+.wb-callout-danger .wb-callout-title {
+  color: var(--wb-danger-dark);
+}
+
+.wb-callout-info {
+  background: var(--wb-info-soft);
+  border-color: var(--wb-info-light);
+  border-left-color: var(--wb-info);
+}
+
+.wb-callout-info .wb-callout-title {
+  color: var(--wb-info-dark);
+}

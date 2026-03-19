@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript API - WebBlocks UI</title>
+  <meta name="description" content="JavaScript modules in WebBlocks UI: theme, dropdown, modal, tabs, accordion, sidebar, drawer, command palette, toast, tooltip, and more.">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">JavaScript</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
+        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="layout.html" class="wb-site-nav-link">Layout</a>
+        <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Behavior layer</div>
+          <h1 class="wb-page-title">JavaScript remains <em>small and named</em>.</h1>
+          <p class="wb-page-lead">
+            WebBlocks behavior is split into individual modules and concatenated into one file. The modules expose explicit public APIs on <code>window</code>
+            and listen for explicit attributes in the DOM.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>Conventions</h2>
+          <ul class="wb-site-principles">
+            <li><span class="wb-site-key">IIFE modules</span><p>Each file wraps its own scope and exposes only what a page needs.</p></li>
+            <li><span class="wb-site-key">Named APIs</span><p><code>WBTheme</code>, <code>WBModal</code>, <code>WBDrawer</code>, <code>WBToast</code> and others are readable from the console.</p></li>
+            <li><span class="wb-site-key">Data hooks</span><p>Behavior is discoverable through <code>data-wb-*</code> attributes in the markup.</p></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Core modules</div>
+          <h2 class="wb-site-section-title">A page can learn what behavior exists just by reading the module names.</h2>
+          <p>The bundle is not a mystery box. These are the main modules currently shipped.</p>
+        </div>
+        <ul class="wb-site-chip-list">
+          <li class="wb-site-chip">WBTheme</li>
+          <li class="wb-site-chip">WBDropdown</li>
+          <li class="wb-site-chip">WBModal</li>
+          <li class="wb-site-chip">WBTabs</li>
+          <li class="wb-site-chip">WBAccordion</li>
+          <li class="wb-site-chip">WBSidebar</li>
+          <li class="wb-site-chip">WBNavGroup</li>
+          <li class="wb-site-chip">WBDrawer</li>
+          <li class="wb-site-chip">WBCommandPalette</li>
+          <li class="wb-site-chip">WBToast</li>
+          <li class="wb-site-chip">WBPopover</li>
+          <li class="wb-site-chip">WBTooltip</li>
+          <li class="wb-site-chip">WBDismiss</li>
+          <li class="wb-site-chip">WBAjaxToggle</li>
+          <li class="wb-site-chip">WBCollapse</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Trigger model</div>
+          <h2 class="wb-site-section-title">Markup and behavior stay close together.</h2>
+          <p>Most interaction starts from a small attribute contract. That keeps intent readable in the HTML and keeps the page easy to debug.</p>
+        </div>
+        <pre class="wb-site-pre"><code>&lt;button data-wb-toggle="modal" data-wb-target="#confirm"&gt;
+  Delete
+&lt;/button&gt;
+
+&lt;button data-wb-mode-set="dark"&gt;Dark&lt;/button&gt;
+&lt;button data-wb-dismiss="modal"&gt;Close&lt;/button&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Theme API</div>
+          <h2 class="wb-site-section-title">The clearest example is the theme engine.</h2>
+          <p>
+            Theme changes are simple enough to call directly when you need them, but still visible as DOM state once applied.
+          </p>
+        </div>
+        <pre class="wb-site-pre"><code>WBTheme.setMode('dark')
+WBTheme.setAccent('forest')
+WBTheme.setRadius('soft')
+WBTheme.setDensity('compact')</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Behavior stays explicit and inspectable.</div>
+      <div><a href="components.html" class="wb-site-nav-link">Components</a> <a href="icons.html" class="wb-site-nav-link">Icons</a></div>
+    </div>
+  </footer>
+</body>
+</html>

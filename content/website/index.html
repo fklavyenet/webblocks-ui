@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Source-Visible UI System</title>
+  <meta name="description" content="WebBlocks is a source-visible UI system for server-rendered products: plain HTML, token-based CSS, and small vanilla JS modules.">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Entry point</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="index.html" class="wb-site-nav-link is-active">Website</a>
+        <a href="../docs/index.html" class="wb-site-nav-link">Docs</a>
+        <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
+        <a href="https://github.com/fklavyenet/webblocks-ui" class="wb-site-nav-link">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">Source-visible by design</div>
+          <h1 class="wb-page-title">A UI system for server-rendered products that keeps the <em>source visible</em>.</h1>
+          <p class="wb-page-lead">
+            WebBlocks is a source-visible UI system for server-rendered products: plain HTML,
+            token-based CSS, and small vanilla JS modules for admin panels, internal tools,
+            and structured product interfaces.
+          </p>
+          <div class="wb-cluster wb-cluster-4 wb-site-actions">
+            <a href="../docs/index.html" class="wb-btn wb-btn-primary">Read the docs</a>
+            <a href="../examples/index.html" class="wb-btn wb-btn-outline">Open examples</a>
+          </div>
+        </div>
+
+        <aside class="wb-page-intro-aside">
+          <h2>Best fit</h2>
+          <p>
+            Use WebBlocks when you want stable, inspectable markup instead of another abstraction layer.
+          </p>
+          <ul class="wb-site-principles">
+            <li>
+              <span class="wb-site-key">For</span>
+              <p>Laravel Blade, Twig, Django templates, Rails ERB, and plain HTML teams building admin and product surfaces.</p>
+            </li>
+            <li>
+              <span class="wb-site-key">With</span>
+              <p>Named classes, token-based CSS, and small JS modules that remain readable in the browser.</p>
+            </li>
+            <li>
+              <span class="wb-site-key">Not</span>
+              <p>A utility-first framework, a React/Vue component library, or a marketing-page builder.</p>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">What it ships</div>
+          <h2 class="wb-site-section-title">Plain files, explicit structure, and a narrow toolset.</h2>
+          <p>
+            The project stays intentionally narrow: a token layer, a component layer, layout shells,
+            an icon system, and small behavioral modules. The goal is not to invent another syntax.
+          </p>
+        </div>
+
+        <div class="wb-link-list">
+          <a href="../docs/foundation.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Token-based CSS</span>
+              <span class="wb-link-list-meta">Foundation, theme axes, predictable styling</span>
+            </div>
+            <div class="wb-link-list-desc">Color, spacing, type, radius, shadow, border, and theme choices stay visible and reusable.</div>
+          </a>
+          <a href="../docs/components.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Named components and layouts</span>
+              <span class="wb-link-list-meta">Buttons, forms, tables, overlays, shells</span>
+            </div>
+            <div class="wb-link-list-desc">The page structure remains explicit because the classes describe what the interface is doing.</div>
+          </a>
+          <a href="../docs/javascript.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Small vanilla JS modules</span>
+              <span class="wb-link-list-meta">Theme, modal, drawer, dropdown, toast, collapse</span>
+            </div>
+            <div class="wb-link-list-desc">Behavior is opt-in, attribute-driven, and exposed through small public APIs.</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Next paths</div>
+          <h2 class="wb-site-section-title">Read the system or inspect working pages.</h2>
+          <p>
+            Keep this page short: docs are the source of truth, and examples are where the markup is tested in full pages.
+          </p>
+        </div>
+
+        <div class="wb-link-list">
+          <a href="../docs/getting-started.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Docs</span>
+              <span class="wb-link-list-meta">Canonical guide and reference</span>
+            </div>
+            <div class="wb-link-list-desc">Use this for the build model, foundations, layouts, components, icons, utilities, and JavaScript APIs.</div>
+          </a>
+          <a href="../examples/index.html" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Examples</span>
+              <span class="wb-link-list-meta">Practical demos and usage scenarios</span>
+            </div>
+            <div class="wb-link-list-desc">Use this to inspect full admin, auth, public-page, and reference examples in real HTML.</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>WebBlocks is for teams that want server-rendered UI without losing sight of the source.</div>
+      <div><a href="../docs/index.html" class="wb-site-nav-link">Docs</a> <a href="../examples/index.html" class="wb-site-nav-link">Examples</a></div>
+    </div>
+  </footer>
+</body>
+</html>

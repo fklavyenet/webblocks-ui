@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="forest" data-font="editorial" data-radius="sharp" data-shadow="flat" data-border="subtle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started - WebBlocks UI</title>
+  <meta name="description" content="How to start using WebBlocks UI with the built files, theme attributes, and plain HTML markup.">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">Getting started</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
+        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="layout.html" class="wb-site-nav-link">Layout</a>
+        <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wb-site-main">
+    <section class="wb-page-intro">
+      <div class="wb-container wb-page-intro-grid">
+        <div class="wb-page-intro-copy">
+          <div class="wb-page-eyebrow">First page</div>
+          <h1 class="wb-page-title">Start with the <em>built files</em> and ordinary markup.</h1>
+          <p class="wb-page-lead">
+            WebBlocks does not need a special runtime or a component compiler. Include the built CSS and JS,
+            write the HTML directly, and add behavior only where a page actually needs it.
+          </p>
+        </div>
+        <aside class="wb-page-intro-aside">
+          <h2>Minimum setup</h2>
+          <ul class="wb-site-principles">
+            <li><span class="wb-site-key">CSS</span><p>Include <code>webblocks-ui.css</code> and optionally <code>webblocks-icons.css</code>.</p></li>
+            <li><span class="wb-site-key">JS</span><p>Include <code>webblocks-ui.js</code> when you need dropdowns, modals, drawers, tabs, and other behavior.</p></li>
+            <li><span class="wb-site-key">HTML</span><p>Use semantic elements and apply the <code>wb-</code> classes directly.</p></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Include</div>
+          <h2 class="wb-site-section-title">The smallest useful install looks like this.</h2>
+          <p>Copy the built files into your project or point to the published build. Then begin with a simple component and a simple layout shell.</p>
+        </div>
+        <pre class="wb-site-pre"><code>&lt;link rel="stylesheet" href="dist/webblocks-ui.css"&gt;
+&lt;link rel="stylesheet" href="dist/webblocks-icons.css"&gt;
+&lt;script src="dist/webblocks-ui.js" defer&gt;&lt;/script&gt;</code></pre>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Theme root</div>
+          <h2 class="wb-site-section-title">Set page-wide choices on the root element.</h2>
+          <p>The theme engine reads attributes from <code>&lt;html&gt;</code>. Those choices remain visible in the DOM and can be updated later through buttons or the public API.</p>
+        </div>
+        <div class="wb-stack-4">
+          <pre class="wb-site-pre"><code>&lt;html
+  data-mode="dark"
+  data-accent="forest"
+  data-density="compact"
+  data-radius="soft"
+  data-shadow="flat"
+  data-font="editorial"&gt;</code></pre>
+          <div class="wb-callout wb-callout-accent">
+            Start with as few axes as possible. Add more only when the page needs a different tone.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">First composition</div>
+          <h2 class="wb-site-section-title">Build a page from layout, then components.</h2>
+          <p>
+            A useful first step is a container, a section, a heading, and one or two real components. This keeps the structure obvious.
+          </p>
+        </div>
+        <pre class="wb-site-pre"><code>&lt;section class="wb-section"&gt;
+  &lt;div class="wb-container wb-container-md wb-stack-4"&gt;
+    &lt;h1&gt;Project settings&lt;/h1&gt;
+    &lt;div class="wb-card"&gt;
+      &lt;div class="wb-card-body wb-stack-3"&gt;
+        &lt;input class="wb-input" type="text" placeholder="Project name"&gt;
+        &lt;button class="wb-btn wb-btn-primary"&gt;Save&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wb-site-footer">
+    <div class="wb-container wb-site-footer-copy">
+      <div>Start simple: built files, root attributes, direct markup.</div>
+      <div><a href="foundation.html" class="wb-site-nav-link">Foundation</a> <a href="layout.html" class="wb-site-nav-link">Layout</a></div>
+    </div>
+  </footer>
+</body>
+</html>
