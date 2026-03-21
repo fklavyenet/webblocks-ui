@@ -586,7 +586,7 @@ Modifier: `wb-toolbar-inset` adds horizontal padding for use inside a card.
 
 ## Icons
 
-WebBlocks ships a curated set of **133 Lucide icons** as both an SVG sprite and a CSS icon file.
+WebBlocks ships a curated set of **173 Lucide icons** as both an SVG sprite and a CSS icon file.
 
 **For users:** Use the pre-built icon files from `dist/`.
 
@@ -613,7 +613,7 @@ No extra CSS needed:
 
 ```html
 <svg class="wb-icon" aria-hidden="true">
-  <use href="/dist/webblocks-icons.svg#settings"></use>
+  <use href="/dist/webblocks-icons.svg#wb-icon-settings"></use>
 </svg>
 ```
 
@@ -663,22 +663,32 @@ Shape: `wb-icon-wrap-circle`
 </button>
 ```
 
-### Icon list (130 icons)
+### Icon system standard
 
-| Category | Icons |
-|----------|-------|
-| Navigation | `menu` `panel-left` `panel-right` `sidebar` `chevron-left` `chevron-right` `chevron-up` `chevron-down` `arrow-left` `arrow-right` `arrow-up-circle` `log-out` |
-| Actions | `plus` `minus` `x` `check` `pencil` `trash` `trash2` `copy` `save` `download` `upload` |
-| Content | `file-text` `files` `sticky-note` `heading` `type` `list` `list-ordered` `quote` `code` `pen-tool` |
-| Media | `image` `camera` `video` `play` `pause` `volume2` `mic` `music` `film` `clapperboard` |
-| Files | `folder` `folder-open` `folder-tree` `file` `file-plus` `file-code` `file-image` `file-archive` `file-search` `receipt` |
-| Commerce | `shopping-cart` `shopping-bag` `store` `package` `credit-card` `wallet` `badge-percent` `banknote` `hand-coins` `receipt-text` |
-| Communication | `mail` `send` `inbox` `message-square` `messages-square` `phone` `bell` `bell-ring` `at-sign` `globe` |
-| Users & Security | `user` `user-round` `users` `contact` `badge-check` `shield` `shield-check` `lock` `key-round` `fingerprint` |
-| Settings | `settings` `sliders-horizontal` `toggle-left` `toggle-right` `wrench` `hammer` `bug` `database` `server` `plug` |
-| Charts | `layout-dashboard` `bar-chart` `bar-chart2` `bar-chart3` `line-chart` `pie-chart` `area-chart` `activity` `gauge` `target` `trending-up` `calendar` |
-| Layout | `home` `layout` `layout-grid` `columns2` `rows2` `square` `rectangle-horizontal` `maximize2` `minimize2` `mouse-pointer2` `palette` `sparkles` |
-| Devices | `monitor` `laptop` `tablet-smartphone` `smartphone` `tablet` `watch` `printer` `router` `wifi` `cloud` |
+- Sprite symbol IDs use `wb-icon-*` names, for example `#wb-icon-settings`
+- CSS icon classes use the same `wb-icon-*` names, for example `wb-icon-settings`
+- SVG usage stays semantic:
+
+```html
+<svg class="wb-icon" aria-hidden="true">
+  <use href="/dist/webblocks-icons.svg#wb-icon-settings"></use>
+</svg>
+```
+
+- CSS icon usage stays compact:
+
+```html
+<i class="wb-icon wb-icon-settings" aria-hidden="true"></i>
+```
+
+- Brand icons follow Lucide kebab-case names as shipped, for example `wb-icon-github`, `wb-icon-linkedin`, `wb-icon-twitter`, `wb-icon-instagram`, `wb-icon-youtube`
+
+### Future icon workflow
+
+1. Add or remove icons in `packages/webblocks/scripts/update-icons.js`
+2. Run `node scripts/update-icons.js` to regenerate the source sprite
+3. Run `./build.sh` to regenerate `dist/` and CSS mappings
+4. Verify both patterns still work: `<svg><use>` and `<i class="wb-icon wb-icon-*"></i>`
 
 Live preview with search: `content/examples/v2/icons.html`
 
@@ -853,8 +863,8 @@ packages/webblocks/
 ├── dist/
 │   ├── webblocks-ui.css         ← main stylesheet (always include)
 │   ├── webblocks-ui.js          ← main JS (always include)
-│   ├── webblocks-icons.svg      ← SVG sprite (133 icons, Pattern 2)
-│   └── webblocks-icons.css      ← icon classes (157 icons, Pattern 1 — opt-in)
+│   ├── webblocks-icons.svg      ← SVG sprite (173 icons, Pattern 2)
+│   └── webblocks-icons.css      ← icon classes (173 icons, Pattern 1 — opt-in)
 ├── src/
 │   ├── css/
 │   │   ├── foundation/      tokens, dark, presets, accents, radius,

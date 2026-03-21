@@ -289,7 +289,7 @@
     <div class="docs-page-header">
       <h1>İkonlar</h1>
       <p>
-        SVG sprite olarak paketlenmiş 157 Lucide tabanlı ikon. Bunları
+        SVG sprite olarak paketlenmiş 173 Lucide tabanlı ikon. Bunları
         <code class="wb-code-inline">&lt;svg&gt;&lt;use&gt;</code> veya
         <code class="wb-code-inline">&lt;i&gt;</code> etiketi kısayoluyla kullanın.
         Kullanım snippet'ini kopyalamak için herhangi bir ikona tıklayın.
@@ -331,7 +331,7 @@
 &lt;svg class="wb-icon wb-icon-xl"&gt;&lt;use href="#wb-icon-settings"&gt;&lt;/use&gt;&lt;/svg&gt;  &lt;!-- 32px --&gt;
 
 &lt;!-- Renk yardımcılarıyla --&gt;
-&lt;svg class="wb-icon wb-icon-accent"&gt;&lt;use href="#wb-icon-star"&gt;&lt;/use&gt;&lt;/svg&gt;
+&lt;svg class="wb-icon wb-icon-accent"&gt;&lt;use href="#wb-icon-bookmark"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-muted"&gt;&lt;use href="#wb-icon-info"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-success"&gt;&lt;use href="#wb-icon-check"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;svg class="wb-icon wb-icon-danger"&gt;&lt;use href="#wb-icon-x"&gt;&lt;/use&gt;&lt;/svg&gt;
@@ -441,7 +441,7 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.
         </div>
       </div>
 
-      <p class="icons-count" id="iconsCount">157 ikon</p>
+      <p class="icons-count" id="iconsCount">173 ikon</p>
 
       <div class="icons-grid" id="iconGrid">
         <!-- JS tarafından doldurulur -->
@@ -465,38 +465,30 @@ https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-icons.
       buildGallery();
     });
 
-  /* ── Icon list (157 icons) ─────────────────────────────── */
+  /* ── Icon list (173 icons) ─────────────────────────────── */
   var ICONS = [
-    'activity','area-chart','arrow-left','arrow-right','arrow-up-circle',
-    'at-sign','badge-check','badge-percent','banknote','bar-chart',
-    'bar-chart2','bar-chart3','bell','bell-ring','bug',
-    'calendar','camera','check','chevron-down','chevron-left',
-    'chevron-right','chevron-up','circle-help','clapperboard','cloud',
-    'code','columns2','contact','copy','credit-card',
-    'database','download','file','file-archive','file-code',
-    'file-image','file-plus','file-search','file-text','files',
-    'film','fingerprint','folder','folder-open','folder-tree',
-    'gauge','globe','hammer','hand-coins','heading',
-    'help-circle','home','image','inbox','info',
-    'key-round','laptop','layout','layout-dashboard','layout-grid',
-    'line-chart','list','list-ordered','lock','log-out',
-    'mail','maximize2','menu','message-square','messages-square',
-    'mic','minimize2','minus','monitor','moon',
-    'mouse-pointer2','music','package','palette','panel-left',
-    'panel-right','pause','pen-tool','pencil','phone',
-    'pie-chart','play','plug','plus','printer',
-    'quote','receipt','receipt-text','rectangle-horizontal','router',
-    'rows2','save','send','server','settings',
-    'shield','shield-check','shopping-bag','shopping-cart','sidebar',
-    'sliders-horizontal','smartphone','sparkles','square','sticky-note',
-    'store','sun','sun-moon','tablet','tablet-smartphone',
-    'target','toggle-left','toggle-right','trash','trash2',
-    'trending-up','type','upload','user','user-round',
-    'users','video','volume2','wallet','watch',
-    'wifi','wrench','x',
-    'ban','calculator','circle','cpu','file-lock','file-x','folder-plus',
-    'history','languages','lock-open','memory-stick','octagon-alert','repeat',
-    'rocket','rotate-ccw','rotate-cw','terminal','triangle-alert','user-plus'
+    'menu', 'panel-left', 'panel-right', 'sidebar', 'chevron-left', 'chevron-right', 'chevron-up', 'chevron-down',
+    'arrow-left', 'arrow-right', 'arrow-up-circle', 'log-out', 'plus', 'minus', 'x', 'check',
+    'pencil', 'trash', 'trash2', 'copy', 'save', 'download', 'upload', 'rotate-cw',
+    'rotate-ccw', 'repeat', 'external-link', 'search', 'eye', 'eye-off', 'star', 'bookmark',
+    'heart', 'share2', 'book', 'book-open', 'file-text', 'files', 'sticky-note', 'heading',
+    'type', 'list', 'list-ordered', 'quote', 'code', 'pen-tool', 'newspaper', 'image',
+    'camera', 'video', 'play', 'pause', 'volume2', 'mic', 'music', 'film',
+    'clapperboard', 'folder', 'folder-open', 'folder-tree', 'file', 'file-plus', 'file-code', 'file-image',
+    'file-archive', 'file-search', 'receipt', 'folder-plus', 'file-x', 'file-lock', 'shopping-cart', 'shopping-bag',
+    'store', 'package', 'credit-card', 'wallet', 'badge-percent', 'banknote', 'hand-coins', 'receipt-text',
+    'calculator', 'mail', 'send', 'inbox', 'message-square', 'messages-square', 'phone', 'bell',
+    'bell-ring', 'at-sign', 'globe', 'map-pin', 'languages', 'briefcase', 'building2', 'github',
+    'linkedin', 'twitter', 'instagram', 'youtube', 'user', 'user-round', 'users', 'contact',
+    'badge-check', 'shield', 'shield-check', 'lock', 'key-round', 'fingerprint', 'user-plus', 'lock-open',
+    'ban', 'settings', 'sliders-horizontal', 'toggle-left', 'toggle-right', 'wrench', 'hammer', 'bug',
+    'database', 'server', 'plug', 'cpu', 'terminal', 'square-terminal', 'layers', 'memory-stick',
+    'layout-dashboard', 'bar-chart', 'bar-chart2', 'bar-chart3', 'line-chart', 'pie-chart', 'area-chart', 'activity',
+    'gauge', 'target', 'trending-up', 'calendar', 'history', 'home', 'layout', 'layout-grid',
+    'columns2', 'rows2', 'square', 'rectangle-horizontal', 'maximize2', 'minimize2', 'mouse-pointer2', 'palette',
+    'sparkles', 'sun', 'moon', 'sun-moon', 'monitor', 'laptop', 'tablet-smartphone', 'smartphone',
+    'tablet', 'watch', 'printer', 'router', 'wifi', 'cloud', 'info', 'help-circle',
+    'circle-help', 'octagon-alert', 'triangle-alert', 'circle', 'rocket'
   ];
 
   var copyMode = 'svg'; /* 'svg' | 'i' */

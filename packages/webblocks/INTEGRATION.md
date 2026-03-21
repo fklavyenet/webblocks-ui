@@ -468,7 +468,12 @@ Modifiers: `wb-navbar-glass`, `wb-navbar-filled`, `wb-navbar--static`, `wb-navba
 <i class="wb-icon wb-icon-settings wb-icon-lg" aria-hidden="true"></i>
 ```
 
-Current icon count: 157
+Standard:
+- Sprite symbols use `#wb-icon-*`
+- CSS classes use `wb-icon-*`
+- Add new icons by editing `packages/webblocks/scripts/update-icons.js`, then run `node scripts/update-icons.js` and `./build.sh`
+
+Current icon count: 173
 
 ---
 

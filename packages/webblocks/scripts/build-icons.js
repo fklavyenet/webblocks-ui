@@ -14,6 +14,7 @@ const path = require('path');
 
 const ROOT     = path.join(__dirname, '..');
 const SRC_SVG  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.svg');
+const SRC_CSS  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.css');
 const DIST_DIR = path.join(ROOT, 'dist');
 const DIST_SVG = path.join(DIST_DIR, 'webblocks-icons.svg');
 const DIST_CSS = path.join(DIST_DIR, 'webblocks-icons.css');
@@ -46,7 +47,7 @@ fs.mkdirSync(DIST_DIR, { recursive: true });
 fs.copyFileSync(SRC_SVG, DIST_SVG);
 console.log(`Generated dist/webblocks-icons.svg — ${icons.length} icons`);
 
-// ── Generate CSS mask-image file ─────────────────────────────
+// ── Generate CSS mask-image files ────────────────────────────
 // Allows Bootstrap-style usage: <i class="wb-icon wb-icon-settings"></i>
 
 function toDataUri(inner) {
@@ -82,6 +83,9 @@ for (const { id, inner } of icons) {
   const uri = toDataUri(inner);
   cssRules += `.${id} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
 }
+
+fs.writeFileSync(SRC_CSS, cssRules, 'utf8');
+console.log(`Generated src/css/icons/webblocks-icons.css — ${icons.length} icon classes`);
 
 fs.writeFileSync(DIST_CSS, cssRules, 'utf8');
 const cssCount = icons.length;

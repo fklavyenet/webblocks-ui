@@ -28,10 +28,15 @@ const ICONS = [
   // actions
   'Plus','Minus','X','Check',
   'Pencil','Trash','Trash2','Copy','Save','Download','Upload',
-  'RotateCw','RotateCcw','Repeat',
+  'RotateCw','RotateCcw','Repeat','ExternalLink',
+  // visibility_state
+  'Search','Eye','EyeOff',
+  // engagement_editorial
+  'Star','Bookmark','Heart','Share2','Book','BookOpen',
   // content_editor
   'FileText','Files','StickyNote','Heading',
   'Type','List','ListOrdered','Quote','Code','PenTool',
+  'Newspaper',
   // media
   'Image','Camera','Video','Play',
   'Pause','Volume2','Mic','Music','Film','Clapperboard',
@@ -45,8 +50,10 @@ const ICONS = [
   'Calculator',
   // communication
   'Mail','Send','Inbox','MessageSquare',
-  'MessagesSquare','Phone','Bell','BellRing','AtSign','Globe',
+  'MessagesSquare','Phone','Bell','BellRing','AtSign','Globe','MapPin',
   'Languages',
+  // business_brands
+  'Briefcase','Building2','Github','Linkedin','Twitter','Instagram','Youtube',
   // users_security
   'User','UserRound','Users','Contact',
   'BadgeCheck','Shield','ShieldCheck','Lock','KeyRound','Fingerprint',
@@ -54,7 +61,7 @@ const ICONS = [
   // settings_system
   'Settings','SlidersHorizontal','ToggleLeft','ToggleRight',
   'Wrench','Hammer','Bug','Database','Server','Plug',
-  'Cpu','Terminal','MemoryStick',
+  'Cpu','Terminal','SquareTerminal','Layers','MemoryStick',
   // charts_dashboard
   'LayoutDashboard','BarChart','BarChart2','BarChart3','LineChart','PieChart',
   'AreaChart','Activity','Gauge','Target','TrendingUp','Calendar',
@@ -185,7 +192,7 @@ function parseIconsFromBundle(bundleCode) {
     const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <!--
   WebBlocks Icon Sprite — Lucide 0.577.0
-  ${ICONS.length} icons in 14 categories.
+  ${ICONS.length} icons in a curated product set.
 
   Usage (SVG sprite):
     <svg class="wb-icon" aria-hidden="true">

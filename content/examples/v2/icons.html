@@ -55,16 +55,16 @@
 <!-- Inline SVG sprite (file:// and cross-origin safe) -->
 <!--
   WebBlocks Icon Sprite — Lucide 0.577.0
-  133 icons in 12 categories.
+  173 icons in a curated product set.
 
   Usage:
     <svg style="display:none" aria-hidden="true" focusable="false" class="wb-icon" aria-hidden="true">
-      <use href="/dist/webblocks-icons.svg#settings"></use>
+      <use href="/dist/webblocks-icons.svg#wb-icon-settings"></use>
     </svg>
 
   Or inline (for same-origin restriction workaround):
     Define a hidden <svg> with all <symbol> tags at top of <body>,
-    then reference with <use href="#icon-name">.
+    then reference with <use href="#wb-icon-name">.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="menu" viewBox="0 0 24 24" fill="none"
@@ -1018,7 +1018,7 @@
 
   <h1 style="font-size:1.75rem;font-weight:800;margin-bottom:var(--wb-s1)">Icon Reference</h1>
    <p style="color:var(--wb-muted);margin-bottom:var(--wb-s6)">
-     133 Lucide icons included as an SVG sprite in <code>dist/webblocks-icons.svg</code>.
+     173 curated Lucide icons included as an SVG sprite in <code>dist/webblocks-icons.svg</code>.
      Lucide <span id="lucide-version"></span>
    </p>
 
@@ -1026,12 +1026,12 @@
   <div class="wb-filter-bar" style="margin-bottom:var(--wb-s6)">
     <div class="wb-search-bar">
       <svg class="wb-icon wb-icon-sm wb-icon-muted" aria-hidden="true" style="position:absolute;left:var(--wb-s3);top:50%;transform:translateY(-50%)">
-        <use href="#search"></use>
+        <use href="#wb-icon-search"></use>
       </svg>
       <input class="wb-input" id="iconSearch" type="search" placeholder="Search icons…"
              style="padding-left:2.25rem" oninput="filterIcons(this.value)">
     </div>
-     <span id="iconCount" class="wb-badge" style="margin-left:auto">133 icons</span>
+     <span id="iconCount" class="wb-badge" style="margin-left:auto">173 icons</span>
   </div>
 
   <!-- ── Usage section ──────────────────────────────────── -->
@@ -1062,14 +1062,14 @@
       No extra CSS needed — uses <code>webblocks-icons.svg</code>.
     </p>
     <div class="demo-row">
-      <svg class="wb-icon" aria-hidden="true"><use href="#settings"></use></svg>
-      <svg class="wb-icon" aria-hidden="true"><use href="#bell"></use></svg>
-      <svg class="wb-icon" aria-hidden="true"><use href="#user"></use></svg>
-      <svg class="wb-icon" aria-hidden="true"><use href="#layout-dashboard"></use></svg>
-      <svg class="wb-icon" aria-hidden="true"><use href="#trending-up"></use></svg>
+      <svg class="wb-icon" aria-hidden="true"><use href="#wb-icon-settings"></use></svg>
+      <svg class="wb-icon" aria-hidden="true"><use href="#wb-icon-bell"></use></svg>
+      <svg class="wb-icon" aria-hidden="true"><use href="#wb-icon-user"></use></svg>
+      <svg class="wb-icon" aria-hidden="true"><use href="#wb-icon-layout-dashboard"></use></svg>
+      <svg class="wb-icon" aria-hidden="true"><use href="#wb-icon-trending-up"></use></svg>
     </div>
     <pre style="background:var(--wb-surface-2);border:1px solid var(--wb-border);border-radius:var(--wb-r-md);padding:var(--wb-s3) var(--wb-s4);font-size:0.8rem;margin-top:var(--wb-s3);overflow-x:auto"><code>&lt;svg class="wb-icon" aria-hidden="true"&gt;
-  &lt;use href="/dist/webblocks-icons.svg#settings"&gt;&lt;/use&gt;
+  &lt;use href="/dist/webblocks-icons.svg#wb-icon-settings"&gt;&lt;/use&gt;
 &lt;/svg&gt;</code></pre>
 
     <h3>Sizes</h3>
@@ -1147,7 +1147,7 @@
         Delete
       </button>
       <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-tooltip="Settings" data-wb-tooltip-placement="top">
-        <svg class="wb-icon" aria-hidden="true"><use href="#settings"></use></svg>
+        <svg class="wb-icon" aria-hidden="true"><use href="#wb-icon-settings"></use></svg>
       </button>
     </div>
 
@@ -1157,7 +1157,7 @@
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--wb-s2)">
           <div class="wb-stat-label">Total Users</div>
           <span class="wb-icon-wrap wb-icon-wrap-sm">
-            <svg class="wb-icon wb-icon-xs" aria-hidden="true"><use href="#users"></use></svg>
+            <svg class="wb-icon wb-icon-xs" aria-hidden="true"><use href="#wb-icon-users"></use></svg>
           </span>
         </div>
         <div class="wb-stat-value">1,284</div>
@@ -1167,7 +1167,7 @@
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--wb-s2)">
           <div class="wb-stat-label">Revenue</div>
           <span class="wb-icon-wrap wb-icon-wrap-sm wb-icon-wrap-success">
-            <svg class="wb-icon wb-icon-xs" aria-hidden="true"><use href="#trending-up"></use></svg>
+            <svg class="wb-icon wb-icon-xs" aria-hidden="true"><use href="#wb-icon-trending-up"></use></svg>
           </span>
         </div>
         <div class="wb-stat-value">$48,200</div>
@@ -1177,7 +1177,7 @@
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--wb-s2)">
           <div class="wb-stat-label">Open Tickets</div>
           <span class="wb-icon-wrap wb-icon-wrap-sm wb-icon-wrap-warning">
-            <svg class="wb-icon wb-icon-xs" aria-hidden="true"><use href="#bell-ring"></use></svg>
+            <svg class="wb-icon wb-icon-xs" aria-hidden="true"><use href="#wb-icon-bell-ring"></use></svg>
           </span>
         </div>
         <div class="wb-stat-value">27</div>
@@ -1188,19 +1188,19 @@
     <h3>In nav sidebar</h3>
     <div style="background:var(--wb-surface);border:1px solid var(--wb-border);border-radius:var(--wb-r-lg);padding:var(--wb-s3);max-width:240px;margin-top:var(--wb-s3)">
       <a href="#" class="wb-sidebar-link is-active wb-icon-btn" style="border-radius:var(--wb-r-md);padding:var(--wb-s2) var(--wb-s3);display:flex;text-decoration:none;font-size:0.875rem;font-weight:500;color:var(--wb-accent-text);background:var(--wb-accent-softer)">
-        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="#layout-dashboard"></use></svg>
+        <svg class="wb-icon wb-icon-sm" aria-hidden="true"><use href="#wb-icon-layout-dashboard"></use></svg>
         Dashboard
       </a>
       <a href="#" class="wb-sidebar-link wb-icon-btn" style="border-radius:var(--wb-r-md);padding:var(--wb-s2) var(--wb-s3);display:flex;text-decoration:none;font-size:0.875rem;color:var(--wb-muted)">
-        <svg class="wb-icon wb-icon-sm wb-icon-muted" aria-hidden="true"><use href="#users"></use></svg>
+        <svg class="wb-icon wb-icon-sm wb-icon-muted" aria-hidden="true"><use href="#wb-icon-users"></use></svg>
         Users
       </a>
       <a href="#" class="wb-sidebar-link wb-icon-btn" style="border-radius:var(--wb-r-md);padding:var(--wb-s2) var(--wb-s3);display:flex;text-decoration:none;font-size:0.875rem;color:var(--wb-muted)">
-        <svg class="wb-icon wb-icon-sm wb-icon-muted" aria-hidden="true"><use href="#bar-chart3"></use></svg>
+        <svg class="wb-icon wb-icon-sm wb-icon-muted" aria-hidden="true"><use href="#wb-icon-bar-chart3"></use></svg>
         Reports
       </a>
       <a href="#" class="wb-sidebar-link wb-icon-btn" style="border-radius:var(--wb-r-md);padding:var(--wb-s2) var(--wb-s3);display:flex;text-decoration:none;font-size:0.875rem;color:var(--wb-muted)">
-        <svg class="wb-icon wb-icon-sm wb-icon-muted" aria-hidden="true"><use href="#settings"></use></svg>
+        <svg class="wb-icon wb-icon-sm wb-icon-muted" aria-hidden="true"><use href="#wb-icon-settings"></use></svg>
         Settings
       </a>
     </div>
@@ -1219,21 +1219,25 @@
 </div><!-- /wb-container -->
 
 <script>
-// All 120 icon names
+// Curated icon categories
 var ICONS = {
-  'Navigation':    ['menu','panel-left','panel-right','sidebar','chevron-left','chevron-right','chevron-up','chevron-down','arrow-left','arrow-right','arrow-up-circle','log-out'],
-  'Actions':       ['plus','minus','x','check','pencil','trash','trash2','copy','save','download','upload'],
-  'Content':       ['file-text','files','sticky-note','heading','type','list','list-ordered','quote','code','pen-tool'],
-  'Media':         ['image','camera','video','play','pause','volume2','mic','music','film','clapperboard'],
-  'Files':         ['folder','folder-open','folder-tree','file','file-plus','file-code','file-image','file-archive','file-search','receipt'],
-  'Commerce':      ['shopping-cart','shopping-bag','store','package','credit-card','wallet','badge-percent','banknote','hand-coins','receipt-text'],
-  'Communication': ['mail','send','inbox','message-square','messages-square','phone','bell','bell-ring','at-sign','globe'],
-  'Users & Security': ['user','user-round','users','contact','badge-check','shield','shield-check','lock','key-round','fingerprint'],
-  'Settings':      ['settings','sliders-horizontal','toggle-left','toggle-right','wrench','hammer','bug','database','server','plug'],
-  'Charts':        ['layout-dashboard','bar-chart','bar-chart2','bar-chart3','line-chart','pie-chart','area-chart','activity','gauge','target','trending-up','calendar'],
-  'Layout':        ['home','layout','layout-grid','columns2','rows2','square','rectangle-horizontal','maximize2','minimize2','mouse-pointer2','palette','sparkles'],
-  'Info':          ['info','help-circle','circle-help'],
-  'Devices':       ['monitor','laptop','tablet-smartphone','smartphone','tablet','watch','printer','router','wifi','cloud']
+  'Navigation': ['menu', 'panel-left', 'panel-right', 'sidebar', 'chevron-left', 'chevron-right', 'chevron-up', 'chevron-down', 'arrow-left', 'arrow-right', 'arrow-up-circle', 'log-out', 'external-link'],
+  'Actions': ['plus', 'minus', 'x', 'check', 'pencil', 'trash', 'trash2', 'copy', 'save', 'download', 'upload', 'rotate-cw', 'rotate-ccw', 'repeat'],
+  'Discovery': ['search', 'eye', 'eye-off'],
+  'Engagement': ['star', 'bookmark', 'heart', 'share2'],
+  'Content & Editorial': ['book', 'book-open', 'newspaper', 'file-text', 'files', 'sticky-note', 'heading', 'type', 'list', 'list-ordered', 'quote', 'code', 'pen-tool'],
+  'Media': ['image', 'camera', 'video', 'play', 'pause', 'volume2', 'mic', 'music', 'film', 'clapperboard'],
+  'Files': ['folder', 'folder-open', 'folder-tree', 'file', 'file-plus', 'file-code', 'file-image', 'file-archive', 'file-search', 'receipt', 'folder-plus', 'file-x', 'file-lock'],
+  'Commerce': ['shopping-cart', 'shopping-bag', 'store', 'package', 'credit-card', 'wallet', 'badge-percent', 'banknote', 'hand-coins', 'receipt-text', 'calculator'],
+  'Communication': ['mail', 'send', 'inbox', 'message-square', 'messages-square', 'phone', 'bell', 'bell-ring', 'at-sign', 'globe', 'languages', 'map-pin'],
+  'Business & Brands': ['briefcase', 'building2', 'github', 'linkedin', 'twitter', 'instagram', 'youtube'],
+  'Users & Security': ['user', 'user-round', 'users', 'contact', 'badge-check', 'shield', 'shield-check', 'lock', 'key-round', 'fingerprint', 'user-plus', 'lock-open', 'ban'],
+  'Settings & Infra': ['settings', 'sliders-horizontal', 'toggle-left', 'toggle-right', 'wrench', 'hammer', 'bug', 'database', 'server', 'plug', 'cpu', 'terminal', 'square-terminal', 'layers', 'memory-stick'],
+  'Analytics': ['layout-dashboard', 'bar-chart', 'bar-chart2', 'bar-chart3', 'line-chart', 'pie-chart', 'area-chart', 'activity', 'gauge', 'target', 'trending-up', 'calendar', 'history'],
+  'Layout & Surfaces': ['home', 'layout', 'layout-grid', 'columns2', 'rows2', 'square', 'rectangle-horizontal', 'maximize2', 'minimize2', 'mouse-pointer2', 'palette', 'sparkles'],
+  'Theme': ['sun', 'moon', 'sun-moon'],
+  'Devices': ['monitor', 'laptop', 'tablet-smartphone', 'smartphone', 'tablet', 'watch', 'printer', 'router', 'wifi', 'cloud'],
+  'Feedback': ['info', 'help-circle', 'circle-help', 'octagon-alert', 'triangle-alert', 'circle', 'rocket']
 };
 
 var SPRITE = '';  // inline sprite — no path needed
@@ -1260,10 +1264,10 @@ function buildGrid(filter) {
       cell.className = 'icon-cell';
       cell.title = 'Click to copy';
       cell.innerHTML =
-        '<svg class="wb-icon wb-icon-lg" aria-hidden="true"><use href="#' + name + '"></use></svg>' +
+        '<svg class="wb-icon wb-icon-lg" aria-hidden="true"><use href="#wb-icon-' + name + '"></use></svg>' +
         '<span class="icon-name">' + name + '</span>';
       cell.addEventListener('click', function() {
-        var snippet = '<svg class="wb-icon" aria-hidden="true">\n  <use href="/dist/webblocks-icons.svg#' + name + '"></use>\n</svg>';
+        var snippet = '<svg class="wb-icon" aria-hidden="true">\n  <use href="/dist/webblocks-icons.svg#wb-icon-' + name + '"></use>\n</svg>';
         navigator.clipboard.writeText(snippet).then(function() {
           cell.style.borderColor = 'var(--wb-success)';
           cell.querySelector('.icon-name').textContent = 'Copied!';

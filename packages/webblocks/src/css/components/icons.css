@@ -6,7 +6,7 @@
 
    Usage (sprite):
      <svg class="wb-icon" aria-hidden="true">
-       <use href="/dist/webblocks-icons.svg#settings"></use>
+       <use href="/dist/webblocks-icons.svg#wb-icon-settings"></use>
      </svg>
 
    Usage (inline SVG — paste SVG markup directly):
@@ -44,7 +44,7 @@
 
   1. SVG sprite (semantic, accessible):
      <svg class="wb-icon" aria-hidden="true">
-       <use href="/dist/webblocks-icons.svg#settings"></use>
+       <use href="/dist/webblocks-icons.svg#wb-icon-settings"></use>
      </svg>
 
   2. Bootstrap-style <i> tag (requires webblocks-icons.css):
