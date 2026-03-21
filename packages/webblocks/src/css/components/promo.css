@@ -1,0 +1,62 @@
+/* ============================================================
+   WebBlocks UI — Promo Panel
+   ============================================================ */
+
+.wb-promo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto;
+  gap: var(--wb-s6);
+  align-items: end;
+  padding: var(--wb-s8);
+  border: 1px solid var(--wb-accent-border);
+  border-radius: var(--wb-r-xl);
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--wb-accent-softer) 88%, var(--wb-surface) 12%),
+      var(--wb-surface));
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-promo-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s3);
+}
+
+.wb-promo-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--wb-text);
+}
+
+.wb-promo-text {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--wb-muted);
+  line-height: var(--wb-line-height-relaxed);
+}
+
+.wb-promo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-s3);
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .wb-promo {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-promo-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .wb-promo {
+    padding: var(--wb-s6);
+  }
+}

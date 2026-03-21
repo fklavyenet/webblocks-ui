@@ -49,10 +49,19 @@
   box-shadow: none;
 }
 
+.wb-card-muted {
+  background: var(--wb-surface-2);
+}
+
 /* ── Highlighted card ─────────────────────────────────────── */
 .wb-card-highlight {
   border-color: var(--wb-primary);
   box-shadow: 0 0 0 1px var(--wb-primary), var(--wb-shadow-sm);
+}
+
+.wb-card-accent {
+  border-color: var(--wb-accent-border);
+  background: var(--wb-accent-softer);
 }
 
 /* ── Stat / KPI card ──────────────────────────────────────── */

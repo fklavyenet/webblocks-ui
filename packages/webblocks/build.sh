@@ -34,6 +34,7 @@ cat \
   "$ROOT/src/css/components/card.css" \
   "$ROOT/src/css/components/alert.css" \
   "$ROOT/src/css/components/callout.css" \
+  "$ROOT/src/css/components/section-heading.css" \
   "$ROOT/src/css/components/form.css" \
   "$ROOT/src/css/components/table.css" \
   "$ROOT/src/css/components/modal.css" \
@@ -56,6 +57,8 @@ cat \
   "$ROOT/src/css/components/divider.css" \
   "$ROOT/src/css/components/list-group.css" \
   "$ROOT/src/css/components/link-list.css" \
+  "$ROOT/src/css/components/inline-list.css" \
+  "$ROOT/src/css/components/promo.css" \
   "$ROOT/src/css/components/tooltip.css" \
   "$ROOT/src/css/components/toolbar.css" \
   "$ROOT/src/css/components/icons.css" \
@@ -69,6 +72,7 @@ cat \
   "$ROOT/src/css/layouts/settings-shell.css" \
   "$ROOT/src/css/layouts/content-shell.css" \
   "$ROOT/src/css/layouts/page-intro.css" \
+  "$ROOT/src/css/layouts/marketing.css" \
   "$ROOT/src/css/utilities/helpers.css" \
   "$ROOT/src/css/utilities/grid.css" \
   > "$CSS_OUT"

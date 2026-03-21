@@ -1,0 +1,148 @@
+/* ============================================================
+   WebBlocks UI — Marketing Layout Primitives
+   ============================================================ */
+
+.wb-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--wb-s8);
+  padding-block: var(--wb-s18) var(--wb-s12);
+}
+
+.wb-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s4);
+  max-width: 52rem;
+}
+
+.wb-hero-title {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 5.75rem);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  color: var(--wb-text);
+}
+
+.wb-hero-text {
+  margin: 0;
+  max-width: 44rem;
+  font-size: var(--wb-font-size-lg);
+  line-height: var(--wb-line-height-relaxed);
+  color: var(--wb-muted);
+}
+
+.wb-hero-note {
+  margin: 0;
+  color: var(--wb-accent-text);
+  font-size: var(--wb-font-size-sm);
+  font-weight: 600;
+}
+
+.wb-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-s3);
+  margin-top: var(--wb-s2);
+}
+
+.wb-content-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--wb-s8);
+}
+
+.wb-content-columns p,
+.wb-content-stack p {
+  margin: 0;
+  color: var(--wb-muted);
+  line-height: 1.75;
+}
+
+.wb-content-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s4);
+  max-width: 52rem;
+}
+
+.wb-footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  gap: var(--wb-s8);
+  align-items: start;
+}
+
+.wb-footer-brand,
+.wb-footer-nav,
+.wb-footer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+}
+
+.wb-footer-item {
+  margin: 0;
+}
+
+.wb-footer-logo {
+  margin: 0;
+  font-size: var(--wb-font-size-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--wb-text);
+}
+
+.wb-footer-text,
+.wb-footer-copy {
+  margin: 0;
+  color: var(--wb-muted);
+}
+
+.wb-footer-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--wb-s2) var(--wb-s5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wb-footer-link {
+  color: var(--wb-muted);
+  text-decoration: none;
+}
+
+.wb-footer-link:hover {
+  color: var(--wb-text);
+  text-decoration: none;
+}
+
+@media (max-width: 960px) {
+  .wb-content-columns,
+  .wb-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-footer-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .wb-hero {
+    padding-block: var(--wb-s14) var(--wb-s10);
+  }
+
+  .wb-hero-title {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+
+  .wb-hero-text {
+    font-size: var(--wb-font-size-md);
+  }
+
+  .wb-footer-list {
+    grid-template-columns: 1fr;
+  }
+}

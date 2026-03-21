@@ -1,0 +1,25 @@
+/* ============================================================
+   WebBlocks UI — Inline List
+   ============================================================ */
+
+.wb-inline-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-s2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wb-inline-list-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 var(--wb-s3);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-full);
+  background: var(--wb-surface-2);
+  color: var(--wb-muted);
+  font-size: var(--wb-font-size-sm);
+  line-height: 1.2;
+}
