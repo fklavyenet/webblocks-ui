@@ -18,6 +18,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Sprite and CSS icon mappings are now generated from the same source so `<i class="wb-icon wb-icon-*"></i>` stays in parity with the SVG sprite
+- Added backward-compatible CSS aliases for `wb-icon-refresh-cw`, `wb-icon-refresh`, and `wb-icon-rotate-cw` so downstream refresh buttons keep rendering via the existing rotate icon
 
 ---
 
@@ -141,7 +142,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - V2 layouts: Settings Shell, Content Shell
 - Multi-axis theme engine: `data-mode`, `data-accent`, `data-preset`, `data-radius`, `data-density`, `data-shadow`, `data-font`, `data-border`
 - 8 accent color themes: `ocean`, `forest`, `sunset`, `royal`, `mint`, `amber`, `rose`, `slate-fire`
-- 5 named presets: `modern`, `minimal`, `rounded`, `bold`, `editorial`
+- 5 named presets: `modern`, `minimal`, `editorial`, `playful`, `corporate`
 - Bootstrap-style `<i>` tag icon support via `dist/webblocks-icons.css` (120 Lucide icons, mask-image technique)
 - SVG sprite `dist/webblocks-icons.svg` with 120 Lucide icons
 - `WBDrawer` JS module — focus trap, keyboard (Escape), `is-leaving` animation pattern

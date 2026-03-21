@@ -49,7 +49,7 @@ Set axes on the `<html>` element:
 |----------------|-------------------------------------------------------------------------------------|
 | `data-mode`    | `light` \| `dark` \| `auto`                                                        |
 | `data-accent`  | `ocean` \| `forest` \| `sunset` \| `royal` \| `mint` \| `amber` \| `rose` \| `slate-fire` |
-| `data-preset`  | `modern` \| `minimal` \| `rounded` \| `bold` \| `editorial`                        |
+| `data-preset`  | `modern` \| `minimal` \| `editorial` \| `playful` \| `corporate`                  |
 | `data-radius`  | `sharp` \| `soft`                                                                   |
 | `data-density` | `compact` \| `comfortable`                                                          |
 | `data-shadow`  | `flat` \| `soft`                                                                    |
@@ -63,7 +63,7 @@ Set axes on the `<html>` element:
 <button data-wb-mode-set="dark">Dark</button>
 <button data-wb-mode-set="light">Light</button>
 <button data-wb-accent-set="forest">Forest</button>
-<button data-wb-preset-set="rounded">Rounded</button>
+<button data-wb-preset-set="playful">Playful</button>
 ```
 
 Preferences are saved to `localStorage` automatically.
@@ -757,7 +757,7 @@ Each module exposes a global object:
 // Theme
 WBTheme.setMode('dark')            // 'light' | 'dark' | 'auto'
 WBTheme.setAccent('forest')        // accent color key
-WBTheme.setPreset('rounded')       // preset key
+WBTheme.setPreset('corporate')     // preset key
 WBTheme.setRadius('soft')          // 'sharp' | 'soft'
 WBTheme.setDensity('compact')      // 'compact' | 'comfortable'
 

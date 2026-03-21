@@ -463,23 +463,23 @@
       <h2 class="docs-section-title">Önayarlar</h2>
       <p class="docs-section-lead">
         Önayarlar, birden fazla ekseni aynı anda ayarlayan adlandırılmış paketlerdir —
-        yarıçap, gölge, yoğunluk, yazı tipi ve kenarlık. Tutarlı bir görünüm için başlangıç
+        vurgu, yarıçap, gölge, yoğunluk ve yazı tipi. Tutarlı bir görünüm için başlangıç
         noktası olarak kullanın; bireysel eksenler herhangi bir önayar değerini hâlâ geçersiz kılabilir.
       </p>
 
       <table class="docs-table">
-        <thead><tr><th>Önayar</th><th>Yarıçap</th><th>Gölge</th><th>Yoğunluk</th><th>Yazı Tipi</th><th>Kenarlık</th></tr></thead>
+        <thead><tr><th>Önayar</th><th>Yarıçap</th><th>Gölge</th><th>Yoğunluk</th><th>Yazı Tipi</th><th>Vurgu</th></tr></thead>
         <tbody>
-          <tr><td>modern</td><td>varsayılan</td><td>varsayılan</td><td>varsayılan</td><td>modern</td><td>subtle</td></tr>
-          <tr><td>minimal</td><td>sharp</td><td>flat</td><td>compact</td><td>system</td><td>subtle</td></tr>
-          <tr><td>rounded</td><td>soft</td><td>soft</td><td>comfortable</td><td>modern</td><td>none</td></tr>
-          <tr><td>bold</td><td>sharp</td><td>varsayılan</td><td>varsayılan</td><td>modern</td><td>bold</td></tr>
-          <tr><td>editorial</td><td>sharp</td><td>flat</td><td>comfortable</td><td>editorial</td><td>medium</td></tr>
+          <tr><td>modern</td><td>varsayılan</td><td>varsayılan</td><td>varsayılan</td><td>modern</td><td>ocean</td></tr>
+          <tr><td>minimal</td><td>sharp</td><td>flat</td><td>compact</td><td>system</td><td>ocean</td></tr>
+          <tr><td>editorial</td><td>soft</td><td>soft</td><td>comfortable</td><td>editorial</td><td>sunset</td></tr>
+          <tr><td>playful</td><td>soft</td><td>soft</td><td>comfortable</td><td>modern</td><td>rose</td></tr>
+          <tr><td>corporate</td><td>sharp</td><td>flat</td><td>varsayılan</td><td>system</td><td>royal</td></tr>
         </tbody>
       </table>
 
-      <pre class="wb-code">&lt;!-- "rounded" önayarını uygula, yalnızca vurguyu geçersiz kıl --&gt;
-&lt;html data-preset="rounded" data-accent="rose"&gt;
+      <pre class="wb-code">&lt;!-- "corporate" önayarını uygula, yalnızca vurguyu geçersiz kıl --&gt;
+&lt;html data-preset="corporate" data-accent="rose"&gt;
 
 &lt;!-- "minimal" uygula, yarıçapı soft olarak geçersiz kıl --&gt;
 &lt;html data-preset="minimal" data-radius="soft"&gt;</pre>
@@ -550,8 +550,8 @@
       <pre class="wb-code">&lt;!-- Tek satır özel CSS yazmadan maksimum özelleştirme --&gt;
 &lt;html
   data-mode="dark"
-  data-accent="royal"
-  data-preset="rounded"
+  data-accent="forest"
+  data-preset="corporate"
   data-density="comfortable"
   data-font="modern"
 &gt;</pre>

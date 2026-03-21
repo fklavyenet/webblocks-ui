@@ -48,7 +48,7 @@ Theme axes are set on `<html>` via `data-*` attributes.
 |---|---|
 | `data-mode` | `light` \\| `dark` \\| `auto` |
 | `data-accent` | `ocean` \\| `forest` \\| `sunset` \\| `royal` \\| `mint` \\| `amber` \\| `rose` \\| `slate-fire` |
-| `data-preset` | `modern` \\| `minimal` \\| `rounded` \\| `bold` \\| `editorial` |
+| `data-preset` | `modern` \\| `minimal` \\| `editorial` \\| `playful` \\| `corporate` |
 | `data-radius` | `sharp` \\| `soft` |
 | `data-density` | `compact` \\| `comfortable` |
 | `data-shadow` | `flat` \\| `soft` |

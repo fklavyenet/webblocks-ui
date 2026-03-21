@@ -459,23 +459,23 @@
     <section class="docs-section" id="presets">
       <h2 class="docs-section-title">Presets</h2>
       <p class="docs-section-lead">
-        Los presets son paquetes con nombre que establecen múltiples ejes a la vez — radio, sombra, densidad, fuente y borde.
+        Los presets son paquetes con nombre que establecen múltiples ejes a la vez — acento, radio, sombra, densidad y fuente.
         Úsalos como punto de partida para un aspecto coherente; los ejes individuales aún pueden sobreescribir cualquier valor del preset.
       </p>
 
       <table class="docs-table">
-        <thead><tr><th>Preset</th><th>Radio</th><th>Sombra</th><th>Densidad</th><th>Fuente</th><th>Borde</th></tr></thead>
+        <thead><tr><th>Preset</th><th>Radio</th><th>Sombra</th><th>Densidad</th><th>Fuente</th><th>Acento</th></tr></thead>
         <tbody>
-          <tr><td>modern</td><td>default</td><td>default</td><td>default</td><td>modern</td><td>subtle</td></tr>
-          <tr><td>minimal</td><td>sharp</td><td>flat</td><td>compact</td><td>system</td><td>subtle</td></tr>
-          <tr><td>rounded</td><td>soft</td><td>soft</td><td>comfortable</td><td>modern</td><td>none</td></tr>
-          <tr><td>bold</td><td>sharp</td><td>default</td><td>default</td><td>modern</td><td>bold</td></tr>
-          <tr><td>editorial</td><td>sharp</td><td>flat</td><td>comfortable</td><td>editorial</td><td>medium</td></tr>
+          <tr><td>modern</td><td>default</td><td>default</td><td>default</td><td>modern</td><td>ocean</td></tr>
+          <tr><td>minimal</td><td>sharp</td><td>flat</td><td>compact</td><td>system</td><td>ocean</td></tr>
+          <tr><td>editorial</td><td>soft</td><td>soft</td><td>comfortable</td><td>editorial</td><td>sunset</td></tr>
+          <tr><td>playful</td><td>soft</td><td>soft</td><td>comfortable</td><td>modern</td><td>rose</td></tr>
+          <tr><td>corporate</td><td>sharp</td><td>flat</td><td>default</td><td>system</td><td>royal</td></tr>
         </tbody>
       </table>
 
-      <pre class="wb-code">&lt;!-- Aplicar preset "rounded", sobreescribir solo el acento --&gt;
-&lt;html data-preset="rounded" data-accent="rose"&gt;
+      <pre class="wb-code">&lt;!-- Aplicar preset "corporate", sobreescribir solo el acento --&gt;
+&lt;html data-preset="corporate" data-accent="rose"&gt;
 
 &lt;!-- Aplicar "minimal", sobreescribir radio a soft --&gt;
 &lt;html data-preset="minimal" data-radius="soft"&gt;</pre>
@@ -546,8 +546,8 @@
       <pre class="wb-code">&lt;!-- Máxima personalización sin una sola línea de CSS propio --&gt;
 &lt;html
   data-mode="dark"
-  data-accent="royal"
-  data-preset="rounded"
+  data-accent="forest"
+  data-preset="corporate"
   data-density="comfortable"
   data-font="modern"
 &gt;</pre>
