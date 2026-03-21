@@ -203,6 +203,87 @@
     <section class="wb-site-section">
       <div class="wb-container wb-site-section-grid">
         <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Public-site primitives</div>
+          <h2 class="wb-site-section-title">Marketing pages now have their own calm structure.</h2>
+          <p>
+            Use these primitives when the page is editorial, promotional, or content-led rather than application-heavy.
+            They keep hero sections, reading columns, footer navigation, and public-site nav markup explicit.
+          </p>
+        </div>
+
+        <div class="wb-site-samples">
+          <article class="wb-site-sample">
+            <div class="wb-site-sample-head">
+              <h3>Hero plus navigation</h3>
+              <span><code>wb-hero</code>, <code>wb-navbar-nav</code></span>
+            </div>
+            <div class="wb-site-sample-body wb-stack-4">
+              <header class="wb-navbar wb-navbar--static">
+                <a href="#" class="wb-navbar-brand">
+                  <span>Northstar</span>
+                  <span class="wb-navbar-brand-note">Editorial system</span>
+                </a>
+                <span class="wb-navbar-spacer"></span>
+                <ul class="wb-navbar-nav" aria-label="Sample navigation">
+                  <li class="wb-navbar-nav-item"><a href="#" class="wb-navbar-link is-active">Overview</a></li>
+                  <li class="wb-navbar-nav-item"><a href="#" class="wb-navbar-link">Stories</a></li>
+                  <li class="wb-navbar-nav-item"><a href="#" class="wb-navbar-link">Pricing</a></li>
+                </ul>
+              </header>
+              <section class="wb-hero" style="padding-block:var(--wb-s8) var(--wb-s4)">
+                <div class="wb-hero-content">
+                  <p class="wb-hero-note">Built for public-facing product pages</p>
+                  <h3 class="wb-hero-title">Give campaigns and docs a layout that reads like a page.</h3>
+                  <p class="wb-hero-text">`wb-hero` handles the opening rhythm, while the navbar helpers keep public-site links and brand notes legible.</p>
+                  <div class="wb-hero-actions">
+                    <a href="#" class="wb-btn wb-btn-primary">Start with the shell</a>
+                    <a href="#" class="wb-btn wb-btn-outline">Inspect example</a>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <article class="wb-site-sample">
+            <div class="wb-site-sample-head">
+              <h3>Reading and footer structure</h3>
+              <span><code>wb-content-columns</code>, <code>wb-content-stack</code>, <code>wb-footer-grid</code></span>
+            </div>
+            <div class="wb-site-sample-body wb-stack-5">
+              <div class="wb-content-columns">
+                <p>Use <code>wb-content-columns</code> for paired editorial blocks like positioning plus detail, summary plus proof, or introduction plus supporting copy.</p>
+                <p>Use <code>wb-content-stack</code> when the section should read in one measured column without becoming a narrow prose shell.</p>
+              </div>
+              <div class="wb-content-stack">
+                <p>These primitives are intentionally plain. They are there to replace throwaway page-specific layout CSS in website and content surfaces.</p>
+                <p>The goal is the same as the rest of WebBlocks: named structure, visible intent, and reusable page rhythm.</p>
+              </div>
+              <footer class="wb-footer-grid" style="padding-top:var(--wb-s4);border-top:1px solid var(--wb-border)">
+                <div class="wb-footer-brand">
+                  <p class="wb-footer-logo">Northstar</p>
+                  <p class="wb-footer-text">A compact footer grid for brand copy, link groups, and utility notes.</p>
+                </div>
+                <nav class="wb-footer-nav" aria-label="Footer links">
+                  <ul class="wb-footer-list">
+                    <li><a href="#" class="wb-footer-link">Docs</a></li>
+                    <li><a href="#" class="wb-footer-link">Examples</a></li>
+                    <li><a href="#" class="wb-footer-link">Pricing</a></li>
+                    <li><a href="#" class="wb-footer-link">Contact</a></li>
+                  </ul>
+                </nav>
+                <div class="wb-footer-meta">
+                  <p class="wb-footer-copy">Plain HTML, token-based CSS, no hidden layer.</p>
+                </div>
+              </footer>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
           <div class="wb-site-section-note">Skeleton</div>
           <h2 class="wb-site-section-title">A page shell can stay explicit in the markup.</h2>
           <p>
@@ -210,11 +291,24 @@
           </p>
         </div>
 
-        <pre class="wb-site-pre"><code>&lt;div class="wb-settings-shell"&gt;
-  &lt;aside class="wb-settings-nav"&gt;...&lt;/aside&gt;
-  &lt;div class="wb-settings-body"&gt;
-    &lt;div class="wb-settings-section"&gt;...&lt;/div&gt;
-  &lt;/div&gt;
+        <pre class="wb-site-pre"><code>&lt;header class="wb-navbar wb-navbar--static"&gt;
+  &lt;a href="#" class="wb-navbar-brand"&gt;
+    &lt;span&gt;Northstar&lt;/span&gt;
+    &lt;span class="wb-navbar-brand-note"&gt;Editorial system&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;span class="wb-navbar-spacer"&gt;&lt;/span&gt;
+  &lt;ul class="wb-navbar-nav"&gt;
+    &lt;li class="wb-navbar-nav-item"&gt;&lt;a href="#" class="wb-navbar-link is-active"&gt;Overview&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/header&gt;
+
+&lt;section class="wb-hero"&gt;
+  &lt;div class="wb-hero-content"&gt;...&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;div class="wb-content-columns"&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;p&gt;...&lt;/p&gt;
 &lt;/div&gt;</code></pre>
       </div>
     </section>
