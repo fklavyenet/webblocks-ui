@@ -18,7 +18,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Sprite and CSS icon mappings are now generated from the same source so `<i class="wb-icon wb-icon-*"></i>` stays in parity with the SVG sprite
-- Added backward-compatible CSS aliases for `wb-icon-refresh-cw`, `wb-icon-refresh`, and `wb-icon-rotate-cw` so downstream refresh buttons keep rendering via the existing rotate icon
+- Added refresh icon CSS aliases for `wb-icon-refresh-cw`, `wb-icon-refresh`, and `wb-icon-rotate-cw`, mapped to the existing `wb-icon-rotate-cw` glyph for downstream compatibility
 
 ---
 
