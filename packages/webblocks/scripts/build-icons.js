@@ -79,9 +79,19 @@ let cssRules = `/* ============================================================
 
 `;
 
+const aliases = {
+  'wb-icon-rotate-cw': [
+    'wb-icon-refresh-cw',
+    'wb-icon-refresh',
+    'wb-icon-rotate-cw'
+  ]
+};
+
 for (const { id, inner } of icons) {
   const uri = toDataUri(inner);
-  cssRules += `.${id} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
+  const names = aliases[id] || [id];
+  const selector = names.map((name) => `.${name}`).join(',\n');
+  cssRules += `${selector} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
 }
 
 fs.writeFileSync(SRC_CSS, cssRules, 'utf8');
