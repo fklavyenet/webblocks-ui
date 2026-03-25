@@ -111,6 +111,73 @@
     <section class="wb-site-section">
       <div class="wb-container wb-site-section-grid">
         <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Stacked navbar</div>
+          <h2 class="wb-site-section-title">Use a second navbar row when the page needs local navigation.</h2>
+          <p>
+            <code>wb-navbar-stacked</code> keeps top-level brand and actions in the first row, then adds a second row for section-level links.
+            Use <code>wb-navbar-row</code> for each band and <code>wb-navbar-sub</code> for the lower navigation strip.
+          </p>
+        </div>
+
+        <article class="wb-site-sample">
+          <div class="wb-site-sample-head">
+            <h3>Two-row navigation</h3>
+            <span><code>wb-navbar-stacked</code>, <code>wb-navbar-row</code>, <code>wb-navbar-sub</code></span>
+          </div>
+          <div class="wb-site-sample-body wb-stack-4">
+            <header class="wb-navbar wb-navbar-stacked wb-navbar--static">
+              <div class="wb-navbar-row">
+                <div class="wb-navbar-start">
+                  <a href="#" class="wb-navbar-brand">Atlas</a>
+                  <nav class="wb-navbar-links" aria-label="Primary sample navigation">
+                    <a href="#" class="wb-navbar-link is-active">Overview</a>
+                    <a href="#" class="wb-navbar-link">Docs</a>
+                    <a href="#" class="wb-navbar-link">Examples</a>
+                  </nav>
+                </div>
+                <div class="wb-navbar-end">
+                  <button class="wb-btn wb-btn-ghost wb-btn-sm" type="button">Light</button>
+                  <a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Publish</a>
+                </div>
+              </div>
+              <div class="wb-navbar-row wb-navbar-sub" aria-label="Secondary sample navigation">
+                <a href="#" class="wb-navbar-link is-active">Components</a>
+                <a href="#" class="wb-navbar-link">Icons</a>
+                <a href="#" class="wb-navbar-link">Layout</a>
+                <a href="#" class="wb-navbar-link">Changelog</a>
+              </div>
+            </header>
+            <pre class="wb-site-pre"><code>&lt;header class="wb-navbar wb-navbar-stacked"&gt;
+  &lt;div class="wb-navbar-row"&gt;
+    &lt;div class="wb-navbar-start"&gt;
+      &lt;a href="#" class="wb-navbar-brand"&gt;Atlas&lt;/a&gt;
+      &lt;nav class="wb-navbar-links"&gt;
+        &lt;a href="#" class="wb-navbar-link is-active"&gt;Overview&lt;/a&gt;
+        &lt;a href="#" class="wb-navbar-link"&gt;Docs&lt;/a&gt;
+        &lt;a href="#" class="wb-navbar-link"&gt;Examples&lt;/a&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-navbar-end"&gt;
+      &lt;button class="wb-btn wb-btn-ghost wb-btn-sm" type="button"&gt;Light&lt;/button&gt;
+      &lt;a href="#" class="wb-btn wb-btn-primary wb-btn-sm"&gt;Publish&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="wb-navbar-row wb-navbar-sub"&gt;
+    &lt;a href="#" class="wb-navbar-link is-active"&gt;Components&lt;/a&gt;
+    &lt;a href="#" class="wb-navbar-link"&gt;Icons&lt;/a&gt;
+    &lt;a href="#" class="wb-navbar-link"&gt;Layout&lt;/a&gt;
+    &lt;a href="#" class="wb-navbar-link"&gt;Changelog&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
           <div class="wb-site-section-note">Full-page shells</div>
           <h2 class="wb-site-section-title">Different shells for different page types.</h2>
           <p>
