@@ -6,6 +6,7 @@
   <title>WebBlocks UI — Admin Dashboard</title>
   <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
   <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../../site.css">
   <script src="../../../packages/webblocks/dist/webblocks-ui.js"></script>
 </head>
 <body style="background:var(--wb-bg)">
@@ -29,12 +30,12 @@
     <span></span><span></span><span></span>
   </button>
   <a href="../index.html" class="wb-navbar-brand">AdminPanel</a>
-  <a href="../index.html" class="wb-btn wb-btn-ghost wb-btn-sm"
-     style="margin-left:.5rem;color:var(--wb-muted);font-size:.8rem;display:flex;align-items:center;gap:.3rem">
-    <i class="wb-icon wb-icon-arrow-left wb-icon-sm"></i>
-    Components
-  </a>
   <span class="wb-navbar-spacer"></span>
+  <div class="wb-navbar-links">
+    <a class="wb-navbar-link" href="../../website/index.html">Overview</a>
+    <a class="wb-navbar-link" href="../../docs/index.html">Docs</a>
+    <a class="wb-navbar-link is-active" href="../index.html">Examples</a>
+  </div>
 
   <!-- Command palette trigger -->
   <button class="wb-btn wb-btn-ghost wb-btn-sm" data-wb-toggle="cmd" data-wb-target="#mainCmd"
@@ -162,13 +163,15 @@
     <div class="wb-container" style="padding:1.5rem">
 
       <!-- Breadcrumb -->
-      <nav class="wb-breadcrumb" style="margin-bottom:1.25rem">
-        <a class="wb-breadcrumb-item" href="../index.html">Components</a>
-        <span class="wb-breadcrumb-sep">/</span>
-        <a class="wb-breadcrumb-item" href="dashboard.html">Admin</a>
-        <span class="wb-breadcrumb-sep">/</span>
-        <span class="wb-breadcrumb-item wb-breadcrumb-current">Users</span>
-      </nav>
+      <div class="wb-site-breadcrumbs" aria-label="Breadcrumb" style="margin-bottom:1.25rem">
+        <a href="../../website/index.html">WebBlocks UI</a>
+        <span>/</span>
+        <a href="../index.html">Examples</a>
+        <span>/</span>
+        <a href="dashboard.html">Admin</a>
+        <span>/</span>
+        <span aria-current="page">Users</span>
+      </div>
 
       <!-- Page header -->
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem">

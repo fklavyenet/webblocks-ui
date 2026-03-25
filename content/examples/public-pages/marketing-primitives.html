@@ -7,6 +7,7 @@
   <meta name="description" content="Focused examples for WebBlocks marketing and editorial primitives: hero, section heading, promo, footer grid, inline list, card surfaces, and navbar helpers.">
   <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
   <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../../site.css">
 </head>
 <body>
   <header class="wb-navbar wb-navbar--static">
@@ -17,6 +18,9 @@
       </a>
       <span class="wb-navbar-spacer"></span>
       <ul class="wb-navbar-nav" aria-label="Example sections">
+        <li class="wb-navbar-nav-item"><a href="../../website/index.html" class="wb-navbar-link">Overview</a></li>
+        <li class="wb-navbar-nav-item"><a href="../../docs/index.html" class="wb-navbar-link">Docs</a></li>
+        <li class="wb-navbar-nav-item"><a href="../index.html" class="wb-navbar-link">Examples</a></li>
         <li class="wb-navbar-nav-item"><a href="#hero" class="wb-navbar-link is-active">Hero</a></li>
         <li class="wb-navbar-nav-item"><a href="#content" class="wb-navbar-link">Content</a></li>
         <li class="wb-navbar-nav-item"><a href="#promo" class="wb-navbar-link">Promo</a></li>
@@ -24,6 +28,16 @@
       </ul>
     </div>
   </header>
+
+  <div class="wb-container" style="padding-top:var(--wb-s4)">
+    <div class="wb-site-breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../website/index.html">WebBlocks UI</a>
+      <span>/</span>
+      <a href="../index.html">Examples</a>
+      <span>/</span>
+      <span aria-current="page">Marketing Primitives</span>
+    </div>
+  </div>
 
   <main>
     <section class="wb-section" id="hero">

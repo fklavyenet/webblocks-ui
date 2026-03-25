@@ -6,6 +6,7 @@
   <title>WebBlocks UI — Settings Page</title>
   <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
   <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../../site.css">
   <script src="../../../packages/webblocks/dist/webblocks-ui.js"></script>
 </head>
 <body style="background:var(--wb-bg)">
@@ -30,6 +31,11 @@
    </button>
    <a href="../index.html" class="wb-navbar-brand">AdminPanel</a>
    <span class="wb-navbar-spacer"></span>
+   <div class="wb-navbar-links">
+     <a class="wb-navbar-link" href="../../website/index.html">Overview</a>
+     <a class="wb-navbar-link" href="../../docs/index.html">Docs</a>
+     <a class="wb-navbar-link is-active" href="../index.html">Examples</a>
+   </div>
    <div class="wb-navbar-end">
      <!-- Theme cycle toggle -->
      <button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle
@@ -111,13 +117,15 @@
         <div class="wb-settings-body">
 
           <!-- Breadcrumb -->
-          <nav class="wb-breadcrumb" style="margin-bottom:var(--wb-s4)">
-            <a class="wb-breadcrumb-item" href="../index.html">Components</a>
-            <span class="wb-breadcrumb-sep">/</span>
-            <a class="wb-breadcrumb-item" href="dashboard.html">Admin</a>
-            <span class="wb-breadcrumb-sep">/</span>
-            <span class="wb-breadcrumb-item wb-breadcrumb-current">Settings</span>
-          </nav>
+          <div class="wb-site-breadcrumbs" aria-label="Breadcrumb" style="margin-bottom:var(--wb-s4)">
+            <a href="../../website/index.html">WebBlocks UI</a>
+            <span>/</span>
+            <a href="../index.html">Examples</a>
+            <span>/</span>
+            <a href="dashboard.html">Admin</a>
+            <span>/</span>
+            <span aria-current="page">Settings</span>
+          </div>
 
           <!-- Page header -->
           <div class="wb-settings-header">

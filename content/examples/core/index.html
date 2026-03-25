@@ -6,6 +6,7 @@
   <title>WebBlocks UI — Component Reference</title>
   <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
   <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../../site.css">
   <script src="../../../packages/webblocks/dist/webblocks-ui.js"></script>
 </head>
 <body>
@@ -16,14 +17,19 @@
           aria-expanded="false" aria-controls="coreSidebar" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
-  <a href="#" class="wb-navbar-brand">WebBlocks UI</a>
+  <a href="../index.html" class="wb-navbar-brand">WebBlocks UI</a>
   <span class="wb-navbar-spacer"></span>
+  <div class="wb-navbar-links">
+    <a class="wb-navbar-link" href="../../website/index.html">Overview</a>
+    <a class="wb-navbar-link" href="../../docs/index.html">Docs</a>
+    <a class="wb-navbar-link is-active" href="index.html">Examples</a>
+  </div>
   <div class="wb-navbar-end">
     <!-- Theme toggles -->
     <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="light" title="Light"><i class="wb-icon wb-icon-toggle-right wb-icon-sm"></i></button>
     <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="dark" title="Dark"><i class="wb-icon wb-icon-toggle-left wb-icon-sm"></i></button>
-    <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="auto" title="Auto"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></button>
-  </div>
+      <button class="wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm" data-wb-mode-set="auto" title="Auto"><i class="wb-icon wb-icon-settings wb-icon-sm"></i></button>
+    </div>
 </nav>
 
 <!-- ── Mobile drawer ──────────────────────────────────────── -->
@@ -71,6 +77,13 @@
   <!-- ── Main content ──────────────────────────────────────── -->
   <div class="wb-dashboard-body">
     <main class="wb-dashboard-main">
+      <div class="wb-site-breadcrumbs" aria-label="Breadcrumb" style="margin-bottom:var(--wb-s5)">
+        <a href="../../website/index.html">WebBlocks UI</a>
+        <span>/</span>
+        <a href="../index.html">Examples</a>
+        <span>/</span>
+        <span aria-current="page">Core Reference</span>
+      </div>
 
       <!-- BUTTONS -->
       <section id="buttons" class="wb-stack-8">
