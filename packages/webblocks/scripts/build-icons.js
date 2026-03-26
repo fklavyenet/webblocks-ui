@@ -42,10 +42,49 @@ if (icons.length === 0) {
   process.exit(1);
 }
 
+const aliases = {
+  'wb-icon-rotate-cw': [
+    'wb-icon-refresh-cw',
+    'wb-icon-refresh'
+  ],
+  'wb-icon-repeat': [
+    'wb-icon-sync'
+  ]
+};
+
+function buildAliasSymbols() {
+  const aliasSymbols = [];
+  for (const { id, inner } of icons) {
+    const names = aliases[id] || [];
+    for (const alias of names) {
+      if (alias === id) {
+        continue;
+      }
+      const normalizedInner = inner
+        .split('\n')
+        .map((line) => line.trim())
+        .join('\n    ');
+      aliasSymbols.push(
+        `  <symbol id="${alias}" viewBox="0 0 24 24" fill="none"\n` +
+        `    stroke="currentColor" stroke-width="2"\n` +
+        `    stroke-linecap="round" stroke-linejoin="round">\n` +
+        `    ${normalizedInner}\n` +
+        '  </symbol>'
+      );
+    }
+  }
+  return aliasSymbols;
+}
+
+const aliasSymbols = buildAliasSymbols();
+const distSvg = aliasSymbols.length
+  ? svg.replace(/<\/svg>\s*$/, `${aliasSymbols.join('\n')}\n</svg>\n`)
+  : svg;
+
 // ── Copy SVG to dist/ ────────────────────────────────────────
 fs.mkdirSync(DIST_DIR, { recursive: true });
-fs.copyFileSync(SRC_SVG, DIST_SVG);
-console.log(`Generated dist/webblocks-icons.svg — ${icons.length} icons`);
+fs.writeFileSync(DIST_SVG, distSvg, 'utf8');
+console.log(`Generated dist/webblocks-icons.svg — ${icons.length} glyphs, ${aliasSymbols.length} aliases`);
 
 // ── Generate CSS mask-image files ────────────────────────────
 // Allows Bootstrap-style usage: <i class="wb-icon wb-icon-settings"></i>
@@ -79,17 +118,9 @@ let cssRules = `/* ============================================================
 
 `;
 
-const aliases = {
-  'wb-icon-rotate-cw': [
-    'wb-icon-refresh-cw',
-    'wb-icon-refresh',
-    'wb-icon-rotate-cw'
-  ]
-};
-
 for (const { id, inner } of icons) {
   const uri = toDataUri(inner);
-  const names = aliases[id] || [id];
+  const names = [id].concat(aliases[id] || []);
   const selector = names.map((name) => `.${name}`).join(',\n');
   cssRules += `${selector} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
 }

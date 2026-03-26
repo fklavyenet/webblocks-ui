@@ -1033,9 +1033,9 @@
 
   <h1 style="font-size:1.75rem;font-weight:800;margin-bottom:var(--wb-s1)">Icon Reference</h1>
    <p style="color:var(--wb-muted);margin-bottom:var(--wb-s6)">
-     173 curated Lucide icons included as an SVG sprite in <code>dist/webblocks-icons.svg</code>.
-     Lucide <span id="lucide-version"></span>
-   </p>
+      173 curated Lucide glyphs plus semantic action aliases, delivered through <code>dist/webblocks-icons.svg</code>.
+      Lucide <span id="lucide-version"></span>
+    </p>
 
   <!-- ── Search ── -->
   <div class="wb-filter-bar" style="margin-bottom:var(--wb-s6)">
@@ -1055,6 +1055,58 @@
     <p style="color:var(--wb-muted);font-size:0.9rem;margin:var(--wb-s3) 0 var(--wb-s4)">
       Two patterns are supported. Use whichever fits your workflow.
     </p>
+
+    <h3>Action Icons</h3>
+    <p style="color:var(--wb-muted);font-size:0.875rem;margin-bottom:var(--wb-s3)">
+      Keep semantic names stable even when glyphs are visually related: <code>refresh</code> for reloading data,
+      <code>sync</code> for reconciliation with a remote system, and <code>rotate-cw</code> for cyclical or rotation-specific actions.
+    </p>
+    <div class="demo-row">
+      <button class="wb-btn wb-btn-secondary wb-icon-btn">
+        <i class="wb-icon wb-icon-refresh wb-icon-sm"></i>
+        Refresh data
+      </button>
+      <button class="wb-btn wb-btn-outline wb-icon-btn">
+        <i class="wb-icon wb-icon-sync wb-icon-sm"></i>
+        Sync remote
+      </button>
+      <button class="wb-btn wb-btn-ghost wb-icon-btn">
+        <i class="wb-icon wb-icon-refresh wb-icon-sm"></i>
+        Retry job
+      </button>
+      <button class="wb-btn wb-btn-ghost wb-icon-btn">
+        <i class="wb-icon wb-icon-rotate-cw wb-icon-sm"></i>
+        Rotate key
+      </button>
+      <span class="wb-inline-flex wb-align-center wb-gap-2" style="padding:0.55rem 0.8rem;border:1px solid var(--wb-border);border-radius:var(--wb-r-md);background:var(--wb-surface-2)">
+        <span class="wb-spinner wb-spinner-sm" aria-hidden="true"></span>
+        <span style="font-size:0.875rem;color:var(--wb-muted)">Syncing</span>
+      </span>
+    </div>
+    <pre style="background:var(--wb-surface-2);border:1px solid var(--wb-border);border-radius:var(--wb-r-md);padding:var(--wb-s3) var(--wb-s4);font-size:0.8rem;margin-top:var(--wb-s3);overflow-x:auto"><code>&lt;button class="wb-btn wb-btn-secondary wb-icon-btn"&gt;
+  &lt;i class="wb-icon wb-icon-refresh wb-icon-sm"&gt;&lt;/i&gt;
+  Refresh data
+&lt;/button&gt;
+
+&lt;button class="wb-btn wb-btn-outline wb-icon-btn"&gt;
+  &lt;i class="wb-icon wb-icon-sync wb-icon-sm"&gt;&lt;/i&gt;
+  Sync remote
+&lt;/button&gt;
+
+&lt;button class="wb-btn wb-btn-ghost wb-icon-btn"&gt;
+  &lt;i class="wb-icon wb-icon-refresh wb-icon-sm"&gt;&lt;/i&gt;
+  Retry job
+&lt;/button&gt;
+
+&lt;button class="wb-btn wb-btn-ghost wb-icon-btn"&gt;
+  &lt;i class="wb-icon wb-icon-rotate-cw wb-icon-sm"&gt;&lt;/i&gt;
+  Rotate key
+&lt;/button&gt;
+
+&lt;span class="wb-inline-flex wb-align-center wb-gap-2"&gt;
+  &lt;span class="wb-spinner wb-spinner-sm" aria-hidden="true"&gt;&lt;/span&gt;
+  &lt;span&gt;Syncing&lt;/span&gt;
+&lt;/span&gt;</code></pre>
 
     <h3>Pattern 1 — <code>&lt;i&gt;</code> tag</h3>
     <p style="color:var(--wb-muted);font-size:0.875rem;margin-bottom:var(--wb-s3)">
@@ -1237,7 +1289,7 @@
 // Curated icon categories
 var ICONS = {
   'Navigation': ['menu', 'panel-left', 'panel-right', 'sidebar', 'chevron-left', 'chevron-right', 'chevron-up', 'chevron-down', 'arrow-left', 'arrow-right', 'arrow-up-circle', 'log-out', 'external-link'],
-  'Actions': ['plus', 'minus', 'x', 'check', 'pencil', 'trash', 'trash2', 'copy', 'save', 'download', 'upload', 'rotate-cw', 'rotate-ccw', 'repeat'],
+  'Actions': ['plus', 'minus', 'x', 'check', 'pencil', 'trash', 'trash2', 'copy', 'save', 'download', 'upload', 'refresh', 'sync', 'rotate-cw', 'rotate-ccw', 'repeat'],
   'Discovery': ['search', 'eye', 'eye-off'],
   'Engagement': ['star', 'bookmark', 'heart', 'share2'],
   'Content & Editorial': ['book', 'book-open', 'newspaper', 'file-text', 'files', 'sticky-note', 'heading', 'type', 'list', 'list-ordered', 'quote', 'code', 'pen-tool'],
