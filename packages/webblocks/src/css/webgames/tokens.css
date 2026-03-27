@@ -1,0 +1,55 @@
+/* ============================================================
+   WebGames UI - Scoped Tokens
+   Applies only inside .wb-game-ui to avoid changing WebBlocks globally.
+   ============================================================ */
+
+.wb-game-ui {
+  --wb-game-surface: color-mix(in srgb, var(--wb-surface) 84%, var(--wb-accent-soft));
+  --wb-game-surface-strong: color-mix(in srgb, var(--wb-surface) 72%, var(--wb-accent-soft));
+  --wb-game-surface-muted: color-mix(in srgb, var(--wb-surface-2) 82%, var(--wb-accent-soft));
+  --wb-game-border: color-mix(in srgb, var(--wb-border) 76%, var(--wb-accent-border));
+  --wb-game-border-strong: color-mix(in srgb, var(--wb-border) 38%, var(--wb-accent));
+  --wb-game-text: var(--wb-text);
+  --wb-game-muted: color-mix(in srgb, var(--wb-muted) 92%, var(--wb-text));
+
+  --wb-game-accent: var(--wb-accent);
+  --wb-game-accent-strong: var(--wb-accent-hover);
+  --wb-game-accent-soft: color-mix(in srgb, var(--wb-accent-soft) 76%, var(--wb-surface));
+  --wb-game-accent-softer: color-mix(in srgb, var(--wb-accent-softer) 88%, var(--wb-surface));
+  --wb-game-on-accent: var(--wb-accent-on);
+
+  --wb-game-success: var(--wb-success);
+  --wb-game-success-soft: color-mix(in srgb, var(--wb-success-soft) 82%, var(--wb-surface));
+  --wb-game-warning: var(--wb-warning);
+  --wb-game-warning-soft: color-mix(in srgb, var(--wb-warning-soft) 82%, var(--wb-surface));
+  --wb-game-danger: var(--wb-danger);
+  --wb-game-danger-soft: color-mix(in srgb, var(--wb-danger-soft) 82%, var(--wb-surface));
+
+  --wb-game-radius: calc(var(--wb-r-xl) + 4px);
+  --wb-game-radius-sm: calc(var(--wb-r-md) + 2px);
+  --wb-game-shadow: var(--wb-shadow-lg);
+}
+
+html[data-mode="dark"] .wb-game-ui {
+  --wb-game-surface: color-mix(in srgb, var(--wb-surface) 90%, var(--wb-accent-soft));
+  --wb-game-surface-strong: color-mix(in srgb, var(--wb-surface-2) 88%, var(--wb-accent-soft));
+  --wb-game-surface-muted: color-mix(in srgb, var(--wb-surface-3) 86%, var(--wb-accent-soft));
+  --wb-game-border: color-mix(in srgb, var(--wb-border) 78%, var(--wb-accent-border));
+  --wb-game-border-strong: color-mix(in srgb, var(--wb-border) 38%, var(--wb-accent));
+  --wb-game-muted: color-mix(in srgb, var(--wb-muted) 88%, var(--wb-text));
+  --wb-game-accent-soft: color-mix(in srgb, var(--wb-accent-soft) 92%, var(--wb-surface));
+  --wb-game-accent-softer: color-mix(in srgb, var(--wb-accent-softer) 94%, var(--wb-surface));
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-mode="auto"] .wb-game-ui {
+    --wb-game-surface: color-mix(in srgb, var(--wb-surface) 90%, var(--wb-accent-soft));
+    --wb-game-surface-strong: color-mix(in srgb, var(--wb-surface-2) 88%, var(--wb-accent-soft));
+    --wb-game-surface-muted: color-mix(in srgb, var(--wb-surface-3) 86%, var(--wb-accent-soft));
+    --wb-game-border: color-mix(in srgb, var(--wb-border) 78%, var(--wb-accent-border));
+    --wb-game-border-strong: color-mix(in srgb, var(--wb-border) 38%, var(--wb-accent));
+    --wb-game-muted: color-mix(in srgb, var(--wb-muted) 88%, var(--wb-text));
+    --wb-game-accent-soft: color-mix(in srgb, var(--wb-accent-soft) 92%, var(--wb-surface));
+    --wb-game-accent-softer: color-mix(in srgb, var(--wb-accent-softer) 94%, var(--wb-surface));
+  }
+}

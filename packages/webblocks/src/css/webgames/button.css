@@ -1,0 +1,95 @@
+/* ============================================================
+   WebGames UI - Buttons
+   ============================================================ */
+
+.wb-game-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-s2);
+  min-height: 3rem;
+  padding: 0.8rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--wb-r-lg) + 6px);
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform var(--wb-t-f),
+    background var(--wb-t),
+    border-color var(--wb-t),
+    box-shadow var(--wb-t),
+    color var(--wb-t);
+  -webkit-appearance: none;
+}
+
+.wb-game-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.18);
+}
+
+.wb-game-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.wb-game-btn:disabled,
+.wb-game-btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.wb-game-btn-primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--wb-game-accent) 88%, var(--wb-white)) 0%, var(--wb-game-accent-strong) 100%);
+  color: var(--wb-game-on-accent);
+  border-color: color-mix(in srgb, var(--wb-game-accent-strong) 80%, var(--wb-game-accent));
+  box-shadow: 0 10px 24px rgb(var(--wb-accent-glow-rgb) / 0.22);
+}
+
+.wb-game-btn-primary:hover {
+  color: var(--wb-game-on-accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.wb-game-btn-secondary {
+  background: color-mix(in srgb, var(--wb-game-surface) 92%, var(--wb-surface));
+  color: var(--wb-game-text);
+  border-color: var(--wb-game-border);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-game-btn-secondary:hover {
+  color: var(--wb-game-text);
+  text-decoration: none;
+  border-color: var(--wb-game-border-strong);
+  background: var(--wb-game-surface-strong);
+}
+
+.wb-game-btn-ghost {
+  background: transparent;
+  color: var(--wb-game-accent-strong);
+  border-color: transparent;
+}
+
+.wb-game-btn-ghost:hover {
+  color: var(--wb-game-accent-strong);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--wb-game-accent-soft) 72%, transparent);
+}
+
+.wb-game-btn-lg {
+  min-height: 3.5rem;
+  padding: 0.95rem 1.35rem;
+  font-size: 1.05rem;
+}
+
+.wb-game-btn-block {
+  width: 100%;
+}

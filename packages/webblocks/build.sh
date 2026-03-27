@@ -73,6 +73,11 @@ cat \
   "$ROOT/src/css/layouts/content-shell.css" \
   "$ROOT/src/css/layouts/page-intro.css" \
   "$ROOT/src/css/layouts/marketing.css" \
+  "$ROOT/src/css/webgames/tokens.css" \
+  "$ROOT/src/css/webgames/screen.css" \
+  "$ROOT/src/css/webgames/panel.css" \
+  "$ROOT/src/css/webgames/button.css" \
+  "$ROOT/src/css/webgames/status.css" \
   "$ROOT/src/css/utilities/helpers.css" \
   "$ROOT/src/css/utilities/grid.css" \
   > "$CSS_OUT"

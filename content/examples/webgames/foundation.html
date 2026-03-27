@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-accent="sunset" data-radius="soft" data-shadow="soft">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebGames UI - Foundation</title>
+  <meta name="description" content="First WebGames UI foundation layer inside WebBlocks UI with scoped tokens and small reusable game primitives.">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../../packages/webblocks/dist/webblocks-icons.css">
+  <link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+  <header class="wb-site-header">
+    <div class="wb-container wb-site-header-bar">
+      <a href="../../website/index.html" class="wb-site-brand">
+        <span class="wb-site-brand-mark" aria-hidden="true"></span>
+        <span class="wb-site-brand-copy">
+          <span class="wb-site-brand-name">WebBlocks UI</span>
+          <span class="wb-site-brand-note">WebGames</span>
+        </span>
+      </a>
+      <nav class="wb-site-nav" aria-label="Primary">
+        <a href="../../website/index.html" class="wb-site-nav-link">Website</a>
+        <a href="../../docs/index.html" class="wb-site-nav-link">Docs</a>
+        <a href="../index.html" class="wb-site-nav-link is-active">Examples</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wb-site-subnav-shell">
+    <div class="wb-container wb-site-subnav-bar">
+      <div class="wb-site-breadcrumbs" aria-label="Breadcrumb">
+        <a href="../../website/index.html">WebBlocks UI</a>
+        <span>/</span>
+        <a href="../index.html">Examples</a>
+        <span>/</span>
+        <span aria-current="page">WebGames Foundation</span>
+      </div>
+      <nav class="wb-site-subnav" aria-label="Example sections">
+        <a href="#direction" class="wb-site-subnav-link">Direction</a>
+        <a href="#primitives" class="wb-site-subnav-link">Primitives</a>
+        <a href="#consume" class="wb-site-subnav-link">Consume</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wb-site-main">
+    <section class="wb-site-section" id="direction">
+      <div class="wb-container wb-stack-8">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Session 1 foundation</div>
+          <h1 class="wb-site-section-title">A playful product layer inside WebBlocks, not a copy of the admin UI.</h1>
+          <p>WebGames UI keeps WebBlocks spacing, token discipline, and structure, then adds brighter energy, softer surfaces, bigger touch targets, and stronger active states for lightweight browser games.</p>
+        </div>
+
+        <div class="wb-game-ui">
+          <section class="wb-game-screen">
+            <div class="wb-game-screen-head">
+              <div class="wb-game-screen-copy">
+                <div class="wb-game-screen-eyebrow">WebGames UI foundation</div>
+                <h2 class="wb-game-screen-title">Build game screens with shared DNA and a different mood.</h2>
+                <p class="wb-game-screen-lead">This layer is mobile-first, touch-friendly, colorful, and clean. It is meant to wrap future games without pulling them toward dashboard or baby-app styling.</p>
+                <div class="wb-game-screen-actions">
+                  <a href="#consume" class="wb-game-btn wb-game-btn-primary">Use the foundation</a>
+                  <a href="../index.html" class="wb-game-btn wb-game-btn-secondary">Back to examples</a>
+                </div>
+              </div>
+
+              <aside class="wb-game-screen-side">
+                <div class="wb-game-screen-meta">
+                  <span class="wb-game-status wb-game-status-dot wb-game-status-accent">Game-ready</span>
+                  <span class="wb-game-status wb-game-status-dot wb-game-status-success">Touch-first</span>
+                </div>
+                <div class="wb-game-screen-meta">
+                  <span class="wb-game-status wb-game-status-warning">Minimal scope</span>
+                  <span class="wb-game-status wb-game-status-accent">Reusable</span>
+                </div>
+              </aside>
+            </div>
+
+            <div class="wb-grid wb-grid-3" id="primitives">
+              <button class="wb-game-card is-selected" type="button">
+                <span class="wb-game-card-eyebrow">Game card</span>
+                <h3 class="wb-game-card-title">Selected stage</h3>
+                <div class="wb-game-card-value">03</div>
+                <p class="wb-game-card-meta">Strong selected treatment for boards, levels, turns, or option cards.</p>
+              </button>
+
+              <div class="wb-game-card">
+                <span class="wb-game-card-eyebrow">Status pill</span>
+                <h3 class="wb-game-card-title">Quick scanning</h3>
+                <p class="wb-game-card-meta">Useful for player turn, streak, difficulty, timer state, or ready/waiting indicators.</p>
+              </div>
+
+              <div class="wb-game-card">
+                <span class="wb-game-card-eyebrow">Action button</span>
+                <h3 class="wb-game-card-title">Large touch target</h3>
+                <p class="wb-game-card-meta">Larger radius, stronger hierarchy, and clearer press feedback than standard app controls.</p>
+              </div>
+            </div>
+
+            <div class="wb-grid wb-grid-2">
+              <section class="wb-game-panel wb-game-panel--accent wb-stack-4">
+                <div class="wb-game-panel-header">
+                  <div class="wb-stack-2">
+                    <h3 class="wb-game-panel-title">Starter primitives</h3>
+                    <p class="wb-game-panel-subtitle">Small on purpose, so future games share a foundation without inheriting a huge catalog.</p>
+                  </div>
+                </div>
+
+                <div class="wb-cluster wb-cluster-2">
+                  <span class="wb-game-status wb-game-status-accent">Screen</span>
+                  <span class="wb-game-status wb-game-status-accent">Panel</span>
+                  <span class="wb-game-status wb-game-status-accent">Card</span>
+                  <span class="wb-game-status wb-game-status-accent">Button</span>
+                  <span class="wb-game-status wb-game-status-accent">Status</span>
+                </div>
+
+                <div class="wb-cluster">
+                  <button class="wb-game-btn wb-game-btn-primary" type="button">Primary action</button>
+                  <button class="wb-game-btn wb-game-btn-secondary" type="button">Secondary action</button>
+                  <button class="wb-game-btn wb-game-btn-ghost" type="button">Subtle action</button>
+                </div>
+              </section>
+
+              <section class="wb-game-panel wb-game-panel--soft wb-stack-4" id="consume">
+                <div class="wb-stack-2">
+                  <h3 class="wb-game-panel-title">How future games consume it</h3>
+                  <p class="wb-game-panel-subtitle">Wrap the game root with a WebGames scope, then compose screens from the starter primitives.</p>
+                </div>
+
+                <pre class="wb-site-pre"><code>&lt;div class="wb-game-ui"&gt;
+  &lt;section class="wb-game-screen"&gt;
+    &lt;div class="wb-game-panel"&gt;...&lt;/div&gt;
+    &lt;button class="wb-game-btn wb-game-btn-primary"&gt;Play&lt;/button&gt;
+    &lt;span class="wb-game-status wb-game-status-accent"&gt;Player 1&lt;/span&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+
+                <div class="wb-stack-2">
+                  <div class="wb-site-key">Source paths</div>
+                  <code>packages/webblocks/src/css/webgames/</code>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

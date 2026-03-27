@@ -1,0 +1,117 @@
+/* ============================================================
+   WebGames UI - Panels and Cards
+   ============================================================ */
+
+.wb-game-panel,
+.wb-game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s4);
+  border: 1px solid var(--wb-game-border);
+  border-radius: var(--wb-game-radius);
+  background: color-mix(in srgb, var(--wb-game-surface) 94%, var(--wb-surface));
+  color: var(--wb-game-text);
+}
+
+.wb-game-panel {
+  padding: var(--wb-s5);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-game-panel--soft {
+  background: color-mix(in srgb, var(--wb-game-surface-muted) 92%, var(--wb-surface));
+}
+
+.wb-game-panel--accent {
+  border-color: var(--wb-game-border-strong);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--wb-game-accent-softer) 78%, var(--wb-surface)) 0%, color-mix(in srgb, var(--wb-game-surface) 92%, var(--wb-surface)) 100%);
+}
+
+.wb-game-panel-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+}
+
+.wb-game-panel-title,
+.wb-game-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.wb-game-panel-subtitle,
+.wb-game-card-meta {
+  margin: 0;
+  color: var(--wb-game-muted);
+  font-size: var(--wb-font-size-sm);
+  line-height: 1.6;
+}
+
+.wb-game-card {
+  padding: var(--wb-s4);
+  min-height: 100%;
+  box-shadow: var(--wb-shadow-sm);
+  transition:
+    transform var(--wb-t),
+    border-color var(--wb-t),
+    background var(--wb-t),
+    box-shadow var(--wb-t);
+}
+
+a.wb-game-card,
+button.wb-game-card {
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.wb-game-card {
+  appearance: none;
+}
+
+.wb-game-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--wb-game-border-strong);
+  box-shadow: var(--wb-shadow-md);
+}
+
+.wb-game-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.18), var(--wb-shadow-md);
+}
+
+.wb-game-card.is-selected {
+  border-color: var(--wb-game-accent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--wb-game-accent-soft) 74%, var(--wb-surface)) 0%, color-mix(in srgb, var(--wb-game-surface) 90%, var(--wb-surface)) 100%);
+  box-shadow: 0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.16), var(--wb-shadow-md);
+}
+
+.wb-game-card-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-game-accent-strong);
+}
+
+.wb-game-card-value {
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 599px) {
+  .wb-game-panel,
+  .wb-game-card {
+    padding: var(--wb-s4);
+  }
+}

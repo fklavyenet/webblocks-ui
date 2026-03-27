@@ -1,0 +1,114 @@
+/* ============================================================
+   WebGames UI - Screen Wrapper
+   ============================================================ */
+
+.wb-game-screen {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--wb-s8);
+  padding: clamp(var(--wb-s6), 4vw, var(--wb-s10));
+  border: 1px solid var(--wb-game-border);
+  border-radius: var(--wb-game-radius);
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--wb-game-accent-soft) 92%, transparent) 0%, transparent 46%),
+    linear-gradient(180deg, color-mix(in srgb, var(--wb-game-accent-softer) 66%, var(--wb-surface)) 0%, var(--wb-surface) 100%);
+  box-shadow: var(--wb-game-shadow);
+  overflow: hidden;
+}
+
+.wb-game-screen::before,
+.wb-game-screen::after {
+  content: "";
+  position: absolute;
+  border-radius: var(--wb-r-full);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.wb-game-screen::before {
+  width: 18rem;
+  height: 18rem;
+  top: -8rem;
+  right: -5rem;
+  background: color-mix(in srgb, var(--wb-game-accent) 14%, transparent);
+  filter: blur(12px);
+}
+
+.wb-game-screen::after {
+  width: 14rem;
+  height: 14rem;
+  left: -4rem;
+  bottom: -6rem;
+  background: color-mix(in srgb, var(--wb-game-accent) 10%, transparent);
+  filter: blur(8px);
+}
+
+.wb-game-screen-head {
+  display: grid;
+  gap: var(--wb-s5);
+  align-items: start;
+}
+
+.wb-game-screen-copy {
+  display: grid;
+  gap: var(--wb-s3);
+}
+
+.wb-game-screen-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-game-accent-strong);
+}
+
+.wb-game-screen-title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  max-width: 11ch;
+}
+
+.wb-game-screen-lead {
+  margin: 0;
+  max-width: 48ch;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--wb-game-muted);
+}
+
+.wb-game-screen-meta,
+.wb-game-screen-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-s3);
+}
+
+.wb-game-screen-side {
+  display: grid;
+  gap: var(--wb-s4);
+  justify-items: start;
+}
+
+@media (min-width: 760px) {
+  .wb-game-screen-head {
+    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.8fr);
+  }
+
+  .wb-game-screen-side {
+    justify-items: end;
+    align-content: start;
+  }
+}
+
+@media (max-width: 599px) {
+  .wb-game-screen {
+    gap: var(--wb-s6);
+    padding: var(--wb-s5);
+  }
+}

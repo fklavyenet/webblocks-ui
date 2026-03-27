@@ -1,0 +1,53 @@
+/* ============================================================
+   WebGames UI - Status Pills
+   ============================================================ */
+
+.wb-game-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  min-height: 2rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--wb-game-border);
+  border-radius: var(--wb-r-full);
+  background: color-mix(in srgb, var(--wb-game-surface) 90%, var(--wb-surface));
+  color: var(--wb-game-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.wb-game-status-dot::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: var(--wb-r-full);
+  background: currentColor;
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.wb-game-status-accent {
+  border-color: color-mix(in srgb, var(--wb-game-accent) 28%, var(--wb-game-border));
+  background: color-mix(in srgb, var(--wb-game-accent-soft) 84%, var(--wb-surface));
+  color: var(--wb-game-accent-strong);
+}
+
+.wb-game-status-success {
+  border-color: color-mix(in srgb, var(--wb-game-success) 26%, var(--wb-game-border));
+  background: var(--wb-game-success-soft);
+  color: var(--wb-game-success);
+}
+
+.wb-game-status-warning {
+  border-color: color-mix(in srgb, var(--wb-game-warning) 26%, var(--wb-game-border));
+  background: var(--wb-game-warning-soft);
+  color: var(--wb-game-warning);
+}
+
+.wb-game-status-danger {
+  border-color: color-mix(in srgb, var(--wb-game-danger) 24%, var(--wb-game-border));
+  background: var(--wb-game-danger-soft);
+  color: var(--wb-game-danger);
+}
