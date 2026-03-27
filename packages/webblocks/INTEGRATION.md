@@ -1,12 +1,14 @@
 # WebBlocks UI - Integration Reference
 
-Concise integration notes for developers and AI agents using WebBlocks UI in a project.
+Implementation-accurate integration guide for developers and AI agents using shipped WebBlocks UI assets.
+
+This document is sourced from `packages/webblocks/src/` and `packages/webblocks/build.sh`, not from docs pages.
 
 ---
 
 ## Installation
 
-### Local build files
+### Local dist files
 
 ```html
 <link rel="stylesheet" href="dist/webblocks-ui.css">
@@ -22,303 +24,550 @@ Concise integration notes for developers and AI agents using WebBlocks UI in a p
 <script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/dist/webblocks-ui.js" defer></script>
 ```
 
-Set theme state on the root element:
+Notes:
 
-```html
-<html data-mode="light" data-accent="forest">
-```
+- `webblocks-icons.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
+- `webblocks-ui.css` already includes tokens, components, layouts, utilities, and the scoped `webgames` extension classes
+- `webblocks-ui.js` exposes `window.*` APIs and data-attribute behavior for interactive components
 
 ---
 
 ## Core Rules
 
-- every class uses the `wb-` prefix
-- prefer semantic HTML plus explicit classes
-- use tokens, not hardcoded colors or sizes
-- JS behavior is opt-in through `data-wb-*` attributes or `window.*` APIs
-- build order matters: foundation -> base -> components -> layouts -> utilities
+- every public class uses the `wb-` prefix
+- use semantic HTML first, then apply WebBlocks classes
+- use design tokens and shipped utilities instead of hardcoded colors, radii, or spacing
+- interactive behavior is opt-in through `data-wb-*` attributes or `window.WB*` APIs
+- build order is strict: foundation -> base -> components -> layouts -> scoped extensions -> utilities
+- if you modify source CSS, JS, or icons in this package, rebuild `dist/` with `./build.sh`
 
 ---
 
 ## Theme System
 
-Theme axes are set on `<html>` via `data-*` attributes.
+Theme state lives on the root `<html>` element.
 
-| Attribute | Values |
-|---|---|
-| `data-mode` | `light` \\| `dark` \\| `auto` |
-| `data-accent` | `ocean` \\| `forest` \\| `sunset` \\| `royal` \\| `mint` \\| `amber` \\| `rose` \\| `slate-fire` |
-| `data-preset` | `modern` \\| `minimal` \\| `editorial` \\| `playful` \\| `corporate` |
-| `data-radius` | `sharp` \\| `soft` |
-| `data-density` | `compact` \\| `comfortable` |
-| `data-shadow` | `flat` \\| `soft` |
-| `data-font` | `system` \\| `modern` \\| `editorial` |
-| `data-border` | `none` \\| `subtle` \\| `medium` \\| `bold` \\| `dashed` |
+| Attribute | Values | Notes |
+|---|---|---|
+| `data-mode` | `light` \| `dark` \| `auto` | default is `auto` |
+| `data-accent` | `ocean` \| `forest` \| `sunset` \| `royal` \| `mint` \| `amber` \| `rose` \| `slate-fire` | default is `ocean` |
+| `data-preset` | `modern` \| `minimal` \| `editorial` \| `playful` \| `corporate` | optional bundle of axis values |
+| `data-radius` | `sharp` \| `soft` | omit attribute for default |
+| `data-density` | `compact` \| `comfortable` | omit attribute for default |
+| `data-shadow` | `flat` \| `soft` | omit attribute for default |
+| `data-font` | `system` \| `modern` \| `editorial` | default is `modern` |
+| `data-border` | `none` \| `subtle` \| `medium` \| `bold` \| `dashed` | default comes from tokens |
 
 Example:
 
 ```html
-<html
-  data-mode="dark"
-  data-accent="forest"
-  data-density="compact"
-  data-radius="soft">
+<html data-mode="dark" data-accent="forest" data-density="compact">
+```
+
+Important:
+
+- `data-mode` is correct; `data-theme` does nothing
+- JS setters also accept `default` for `radius`, `density`, and `shadow`; the theme engine removes the matching attribute to return to default
+- presets set multiple axes at once, then individual axis setters can override them
+
+Theme button hooks supported by `WBTheme`:
+
+```html
+<button data-wb-mode-set="dark">Dark</button>
+<button data-wb-mode-cycle>Cycle mode</button>
+<button data-wb-preset-set="editorial">Editorial</button>
+<button data-wb-accent-set="forest">Forest</button>
+<button data-wb-radius-set="soft">Soft</button>
+<button data-wb-radius-set="default">Default radius</button>
+<button data-wb-density-set="compact">Compact</button>
+<button data-wb-shadow-set="soft">Soft shadow</button>
+<button data-wb-font-set="editorial">Editorial font</button>
 ```
 
 ---
 
 ## Design Tokens
 
-Never hardcode colors or sizes in component CSS.
+Never hardcode colors or layout values inside WebBlocks component CSS.
 
-| Group | Examples |
+| Group | Common tokens |
 |---|---|
-| surfaces | `--wb-bg`, `--wb-surface`, `--wb-surface-2`, `--wb-surface-3` |
-| text | `--wb-text`, `--wb-muted` |
+| surfaces | `--wb-bg`, `--wb-surface`, `--wb-surface-2`, `--wb-surface-3`, `--wb-overlay` |
+| text | `--wb-text`, `--wb-muted`, `--wb-white`, `--wb-black` |
 | border | `--wb-border` |
-| accent | `--wb-accent`, `--wb-accent-hover`, `--wb-accent-soft`, `--wb-accent-softer`, `--wb-accent-border`, `--wb-accent-text`, `--wb-accent-on` |
-| semantic | `--wb-success`, `--wb-warning`, `--wb-danger`, `--wb-info` |
-| spacing | `--wb-s1` to `--wb-s20` |
+| accent | `--wb-accent`, `--wb-accent-hover`, `--wb-accent-active`, `--wb-accent-soft`, `--wb-accent-softer`, `--wb-accent-border`, `--wb-accent-text`, `--wb-accent-on`, `--wb-accent-ring`, `--wb-accent-ring-rgb`, `--wb-accent-selection`, `--wb-accent-glow-rgb` |
+| backward-compat aliases | `--wb-primary`, `--wb-primary-dark`, `--wb-primary-soft` |
+| semantic | `--wb-success`, `--wb-success-dark`, `--wb-success-soft`, and same pattern for `warning`, `danger`, `info` |
+| spacing | `--wb-s1` through `--wb-s20` |
 | radius | `--wb-r-sm`, `--wb-r-md`, `--wb-r-lg`, `--wb-r-xl`, `--wb-r-full` |
 | shadows | `--wb-shadow-sm`, `--wb-shadow-md`, `--wb-shadow-lg`, `--wb-shadow-xl` |
-| typography | `--wb-font`, `--wb-font-heading`, `--wb-font-mono`, `--wb-font-size-*` |
+| typography | `--wb-font`, `--wb-font-heading`, `--wb-font-mono`, `--wb-font-size-xs` through `--wb-font-size-xl` |
+| layout | `--wb-sidebar-w`, `--wb-content-w` |
+| z-index | `--wb-z-dropdown`, `--wb-z-modal`, `--wb-z-toast` |
+
+Use `--wb-accent*` in new code. `--wb-primary*` exists for backward compatibility.
 
 ---
 
-## Common Components
+## Canonical Component Patterns
 
-### Button
+### Buttons
 
 ```html
 <button class="wb-btn wb-btn-primary">Save</button>
-<button class="wb-btn wb-btn-outline">Cancel</button>
+<button class="wb-btn wb-btn-secondary">Cancel</button>
+<button class="wb-btn wb-btn-ghost">Ghost</button>
+<button class="wb-btn wb-btn-outline">Outline</button>
 <button class="wb-btn wb-btn-danger">Delete</button>
+<button class="wb-btn wb-btn-success">Publish</button>
 <button class="wb-btn wb-btn-primary wb-btn-sm">Small</button>
 <button class="wb-btn wb-btn-primary wb-btn-lg">Large</button>
+<button class="wb-btn wb-btn-secondary wb-btn-icon" aria-label="Edit">
+  <i class="wb-icon wb-icon-pencil" aria-hidden="true"></i>
+</button>
 ```
 
-### Badge
+Also shipped:
+
+- `wb-btn-group`
+- `wb-btn-group-join`
+
+### Badges
 
 ```html
-<span class="wb-badge">Default</span>
+<span class="wb-badge">Draft</span>
+<span class="wb-badge wb-badge-primary">New</span>
 <span class="wb-badge wb-badge-success wb-badge-dot">Active</span>
 <span class="wb-badge wb-badge-warning">Pending</span>
+<span class="wb-badge wb-badge-danger">Failed</span>
+<span class="wb-badge wb-badge-info wb-badge-lg">Info</span>
 ```
 
-### Card
+### Cards, Stats, Panels
 
 ```html
 <div class="wb-card">
-  <div class="wb-card-header">Title</div>
+  <div class="wb-card-header">
+    <h2 class="wb-card-title">Project</h2>
+  </div>
   <div class="wb-card-body">Content</div>
-  <div class="wb-card-footer">Footer</div>
+  <div class="wb-card-footer">Footer actions</div>
 </div>
+
+<div class="wb-stat">
+  <span class="wb-stat-label">Revenue</span>
+  <strong class="wb-stat-value">$24.8k</strong>
+  <span class="wb-stat-delta wb-stat-delta-up">+12%</span>
+</div>
+
+<section class="wb-panel">
+  <div class="wb-panel-header">
+    <h3 class="wb-panel-title">Recent Orders</h3>
+  </div>
+  <div class="wb-panel-body">...</div>
+</section>
 ```
 
-### Alert
+Useful modifiers:
+
+- `wb-card-flat`
+- `wb-card-muted`
+- `wb-card-highlight`
+- `wb-card-accent`
+
+### Alerts and Callouts
 
 ```html
 <div class="wb-alert wb-alert-info">Info message</div>
 <div class="wb-alert wb-alert-success">Success message</div>
 <div class="wb-alert wb-alert-warning">Warning message</div>
 <div class="wb-alert wb-alert-danger">Error message</div>
-```
 
-### Callout
-
-```html
 <div class="wb-callout wb-callout-accent">
   <strong class="wb-callout-title">Note</strong>
-  Use callouts for documentation notes and editorial guidance.
+  Keep integration rules close to real source behavior.
 </div>
 ```
 
-### Form
+For dismissible alerts, use `data-wb-dismiss="alert"` on the close button.
+
+### Forms
+
+Canonical field markup:
 
 ```html
 <div class="wb-field">
-  <label class="wb-label">Email</label>
-  <input class="wb-input" type="email" placeholder="you@example.com">
-  <span class="wb-field-error">Required</span>
+  <label class="wb-label" for="email">
+    Email
+    <span class="wb-label-hint">Used for notifications</span>
+  </label>
+  <input id="email" class="wb-input" type="email" placeholder="you@example.com">
+  <div class="wb-field-hint">We never share your email.</div>
+  <div class="wb-field-error">Required</div>
+</div>
+```
+
+Shipped form primitives:
+
+- `wb-field`, `wb-label`, `wb-label-hint`, `wb-field-hint`, `wb-field-error`
+- `wb-input`, `wb-select`, `wb-textarea`
+- `wb-input-sm`, `wb-input-lg`, `wb-select-sm`, `wb-select-lg`
+- `wb-input-error`, `wb-select-error`, `wb-textarea-error`
+- `wb-form-row`, `wb-form-group`
+- `wb-check`, `wb-radio`, `wb-switch`
+- `wb-input-wrap`, `wb-input-icon`, `wb-input-suffix`
+- `wb-input-group`, `wb-input-addon`, `wb-input-addon-btn`
+
+Examples:
+
+```html
+<div class="wb-form-row">
+  <div class="wb-field">
+    <label class="wb-label" for="first-name">First name</label>
+    <input id="first-name" class="wb-input" type="text">
+  </div>
+  <div class="wb-field">
+    <label class="wb-label" for="last-name">Last name</label>
+    <input id="last-name" class="wb-input" type="text">
+  </div>
 </div>
 
 <div class="wb-input-group">
   <span class="wb-input-addon">https://</span>
   <input class="wb-input" type="text" value="example.com">
 </div>
+
+<label class="wb-check">
+  <input type="checkbox">
+  <span>Send me updates</span>
+</label>
+
+<label class="wb-switch">
+  <input type="checkbox">
+  <span class="wb-switch-track"></span>
+  <span>Enable API access</span>
+</label>
+
+<div class="wb-input-wrap">
+  <span class="wb-input-icon"><i class="wb-icon wb-icon-search" aria-hidden="true"></i></span>
+  <input class="wb-input" type="search" placeholder="Search">
+</div>
 ```
 
-### Table
+### Tables, Filters, Toolbars, Actions
 
 ```html
-<table class="wb-table wb-table-hover wb-table-sm">
-  <thead><tr><th>Name</th><th>Status</th></tr></thead>
-  <tbody><tr><td>Atlas</td><td><span class="wb-badge wb-badge-success">Active</span></td></tr></tbody>
+<div class="wb-toolbar wb-toolbar-inset">
+  <div class="wb-toolbar-start">
+    <h2 class="wb-toolbar-title">Users</h2>
+    <p class="wb-toolbar-subtitle">24 active accounts</p>
+  </div>
+  <div class="wb-toolbar-end">
+    <button class="wb-btn wb-btn-primary wb-btn-sm">Add user</button>
+  </div>
+</div>
+
+<div class="wb-filter-bar wb-filter-bar-attached">
+  <div class="wb-filter-bar-start">
+    <div class="wb-search-bar wb-search-bar-full">
+      <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search" aria-hidden="true"></i></span>
+      <input class="wb-search-bar-input" type="search" placeholder="Search users">
+    </div>
+    <select class="wb-filter-select">
+      <option>All roles</option>
+    </select>
+    <button class="wb-filter-chip is-active">Active</button>
+  </div>
+  <div class="wb-filter-bar-end">
+    <span class="wb-filter-results">24 results</span>
+  </div>
+</div>
+
+<table class="wb-table wb-table-hover wb-table-striped">
+  <thead>
+    <tr><th>Name</th><th>Status</th><th></th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Atlas</td>
+      <td><span class="wb-status-pill wb-status-active">Active</span></td>
+      <td>
+        <div class="wb-action-group">
+          <a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Edit">
+            <i class="wb-icon wb-icon-pencil" aria-hidden="true"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
 </table>
 ```
 
-Modifiers: `wb-table-hover`, `wb-table-striped`, `wb-table-sm`
+Common related classes:
 
-### Modal
+- table: `wb-table-hover`, `wb-table-striped`, `wb-table-sm`
+- toolbar: `wb-toolbar-sm`, `wb-toolbar-bulk`, `wb-toolbar-bulk-count`, `wb-toolbar-bulk-clear`
+- filter bar: `wb-filter-count`, `wb-search-bar-sm`, `wb-search-bar-lg`
+- actions: `wb-action-link`, `wb-action-link-danger`, `wb-action-more`, `wb-action-more-btn`, `wb-table-check-cell`
+
+### Dropdowns
 
 ```html
-<button data-wb-toggle="modal" data-wb-target="#my-modal">Open</button>
-
-<div class="wb-modal" id="my-modal" role="dialog" aria-modal="true">
-  <div class="wb-modal-dialog">
-    <div class="wb-modal-header">
-      <h2 class="wb-modal-title">Title</h2>
-      <button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close">&times;</button>
-    </div>
-    <div class="wb-modal-body">Content</div>
-    <div class="wb-modal-footer">
-      <button class="wb-btn wb-btn-outline" data-wb-dismiss="modal">Cancel</button>
-      <button class="wb-btn wb-btn-primary">Confirm</button>
-    </div>
+<div class="wb-dropdown">
+  <button class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" aria-expanded="false">
+    Actions
+  </button>
+  <div class="wb-dropdown-menu">
+    <a href="#" class="wb-dropdown-item">Edit</a>
+    <a href="#" class="wb-dropdown-item is-active">Current view</a>
+    <hr class="wb-dropdown-divider">
+    <button class="wb-dropdown-item wb-dropdown-item-danger">Delete</button>
   </div>
 </div>
 ```
 
-Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`
-
-### Confirmation Dialog
+Optional explicit target:
 
 ```html
-<div class="wb-modal wb-confirm" id="confirm-delete" role="alertdialog" aria-modal="true">
-  <div class="wb-modal-dialog wb-modal-sm">
-    <div class="wb-modal-body">
-      <div class="wb-confirm-icon wb-confirm-icon-danger">!</div>
-      <div class="wb-confirm-title">Delete item?</div>
-      <p class="wb-confirm-message">This action cannot be undone.</p>
+<div class="wb-dropdown wb-dropdown-end">
+  <button data-wb-toggle="dropdown" data-wb-target="#account-menu" aria-expanded="false">Account</button>
+  <div class="wb-dropdown-menu" id="account-menu">...</div>
+</div>
+```
+
+Notes:
+
+- if `data-wb-target` is omitted, the JS looks for the first `.wb-dropdown-menu` in the same `.wb-dropdown`
+- right alignment can use `wb-dropdown-end` on the wrapper or `wb-dropdown-menu-end` on the menu
+
+### Modals and Confirmation Dialogs
+
+```html
+<button class="wb-btn wb-btn-primary" data-wb-toggle="modal" data-wb-target="#delete-modal">
+  Open modal
+</button>
+
+<div class="wb-modal wb-modal-sm" id="delete-modal" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-header">
+      <h2 class="wb-modal-title" id="delete-modal-title">Delete item</h2>
+      <button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close">&times;</button>
     </div>
+    <div class="wb-modal-body">This action cannot be undone.</div>
     <div class="wb-modal-footer">
-      <button class="wb-btn wb-btn-outline" data-wb-dismiss="modal">Cancel</button>
+      <button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button>
       <button class="wb-btn wb-btn-danger">Delete</button>
     </div>
   </div>
 </div>
 ```
 
-### Dropdown
+Sizes go on the `.wb-modal` wrapper:
+
+- `wb-modal-sm`
+- `wb-modal-lg`
+- `wb-modal-xl`
+
+Confirmation pattern:
 
 ```html
-<div class="wb-dropdown">
-  <button class="wb-btn wb-btn-outline" data-wb-toggle="dropdown">Actions</button>
-  <div class="wb-dropdown-menu">
-    <a href="#" class="wb-dropdown-item">Edit</a>
-    <a href="#" class="wb-dropdown-item wb-dropdown-item-danger">Delete</a>
+<div class="wb-modal wb-confirm" id="confirm-publish" role="alertdialog" aria-modal="true">
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-body">
+      <div class="wb-confirm-icon wb-confirm-icon-warning">!</div>
+      <div class="wb-confirm-title">Publish now?</div>
+      <p class="wb-confirm-message">This will make the content visible immediately.</p>
+    </div>
+    <div class="wb-modal-footer">
+      <button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button>
+      <button class="wb-btn wb-btn-primary">Publish</button>
+    </div>
   </div>
 </div>
 ```
 
-### Tabs
+### Drawers
 
 ```html
-<div class="wb-tabs">
+<button class="wb-btn wb-btn-secondary" data-wb-toggle="drawer" data-wb-target="#settings-drawer">
+  Open drawer
+</button>
+
+<div class="wb-drawer wb-drawer-right" id="settings-drawer" role="dialog" aria-modal="true" aria-labelledby="settings-drawer-title">
+  <div class="wb-drawer-header">
+    <h2 class="wb-drawer-title" id="settings-drawer-title">Settings</h2>
+    <button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">&times;</button>
+  </div>
+  <div class="wb-drawer-body">...</div>
+  <div class="wb-drawer-footer">
+    <button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Cancel</button>
+    <button class="wb-btn wb-btn-primary">Save</button>
+  </div>
+</div>
+
+<div class="wb-drawer-backdrop"></div>
+```
+
+### Tabs
+
+Preferred modern pattern:
+
+```html
+<div class="wb-tabs" data-wb-tabs>
   <div class="wb-tabs-nav" role="tablist">
-    <button class="wb-tabs-btn is-active" data-wb-tab="panel-overview">Overview</button>
-    <button class="wb-tabs-btn" data-wb-tab="panel-settings">Settings</button>
+    <button class="wb-tabs-btn is-active" data-wb-tab="panel-overview" aria-selected="true">Overview</button>
+    <button class="wb-tabs-btn" data-wb-tab="panel-settings" aria-selected="false" tabindex="-1">Settings</button>
   </div>
   <div class="wb-tabs-panel is-active" id="panel-overview">Overview content</div>
   <div class="wb-tabs-panel" id="panel-settings">Settings content</div>
 </div>
 ```
 
+Legacy-compatible alternate class names also work:
+
+- `wb-tab-list`
+- `wb-tab-item`
+- `wb-tab-panels`
+- `wb-tab-panel`
+
 ### Accordion
+
+Full attribute-based pattern:
+
+```html
+<div class="wb-accordion" data-wb-accordion data-wb-accordion-single="true">
+  <div class="wb-accordion-item">
+    <button class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="false" aria-controls="acc-api">
+      API Access
+    </button>
+    <div class="wb-accordion-content" id="acc-api">
+      <div class="wb-accordion-body">Details</div>
+    </div>
+  </div>
+</div>
+```
+
+Simpler class-only pattern also works:
 
 ```html
 <div class="wb-accordion">
   <div class="wb-accordion-item is-open">
-    <button class="wb-accordion-trigger">Question</button>
-    <div class="wb-accordion-body">Answer</div>
+    <button class="wb-accordion-trigger">Billing</button>
+    <div class="wb-accordion-body">Details</div>
   </div>
 </div>
 ```
 
 ### Collapse
 
+Standalone collapse uses `data-wb-collapse`, not `data-wb-toggle="collapse"`.
+
 ```html
-<button class="wb-collapse-trigger" data-wb-toggle="collapse" data-wb-target="#panel-a">Toggle</button>
-<div class="wb-collapse" id="panel-a">
-  <div class="wb-collapse-panel">Content</div>
+<button class="wb-btn wb-btn-secondary" data-wb-collapse="advanced-fields" aria-expanded="false">
+  Toggle advanced fields
+</button>
+
+<div class="wb-collapse" id="advanced-fields">
+  <div class="wb-collapse-body">Content here</div>
 </div>
 ```
 
-### Radio Card
+Bordered panel variant:
 
 ```html
-<div class="wb-radio-group">
-  <label class="wb-radio-card">
-    <input type="radio" name="plan" value="free">
-    <span class="wb-radio-card-body">Free</span>
-  </label>
-  <label class="wb-radio-card">
-    <input type="radio" name="plan" value="pro">
-    <span class="wb-radio-card-body">Pro</span>
-  </label>
+<div class="wb-collapse-panel">
+  <button class="wb-collapse-trigger" aria-expanded="false">
+    Advanced options
+    <span class="wb-collapse-icon">v</span>
+  </button>
+  <div class="wb-collapse">
+    <div class="wb-collapse-body">Panel content</div>
+  </div>
 </div>
 ```
 
-### List Group
+### Popovers and Tooltips
 
 ```html
-<ul class="wb-list">
-  <li class="wb-list-item">Item one</li>
-  <li class="wb-list-item is-active">Item two</li>
-</ul>
+<div class="wb-popover" data-wb-popover>
+  <button class="wb-btn wb-btn-secondary" data-wb-toggle="popover">Info</button>
+  <div class="wb-popover-panel">
+    <div class="wb-popover-body">Popover content</div>
+  </div>
+</div>
+
+<button data-wb-tooltip="Save changes">Save</button>
+<button data-wb-tooltip="Deletes permanently" data-wb-tooltip-placement="bottom">Delete</button>
+<span data-wb-tooltip="This can wrap" data-wb-tooltip-wrap>Help</span>
 ```
 
-### Link List
+Tooltip placement values:
+
+- `top` (default)
+- `bottom`
+- `left`
+- `right`
+
+Optional JS enhancement:
+
+- `data-wb-tooltip-delay="300"`
+
+### Toasts
+
+Programmatic usage is primary:
+
+```js
+WBToast.show('Saved successfully', { type: 'success', duration: 2500 })
+WBToast.show('Something went wrong', { type: 'danger', position: 'top-right' })
+```
+
+Static HTML also works:
 
 ```html
-<div class="wb-link-list">
-  <a href="#" class="wb-link-list-item">
-    <div class="wb-link-list-main">
-      <span class="wb-link-list-title">Components</span>
-      <span class="wb-link-list-meta">Buttons, forms, tables</span>
-    </div>
-    <div class="wb-link-list-desc">Use this pattern for docs indexes and example maps.</div>
+<div class="wb-toast wb-toast-success">
+  <div class="wb-toast-body">Saved successfully</div>
+  <button class="wb-toast-close" data-wb-dismiss="toast" aria-label="Close">&times;</button>
+</div>
+```
+
+Supported positions:
+
+- `bottom-right` (default)
+- `bottom-center`
+- `bottom-left`
+- `top-right`
+- `top-center`
+- `top-left`
+
+### Lists, Pagination, Breadcrumbs, Avatars, Empty States
+
+```html
+<div class="wb-list">
+  <a href="#" class="wb-list-item wb-list-item-action is-active">
+    <span class="wb-list-item-text">
+      <span class="wb-list-item-title">Profile</span>
+      <span class="wb-list-item-sub">Personal details</span>
+    </span>
   </a>
 </div>
-```
 
-### Pagination
-
-```html
-<nav class="wb-pagination">
+<nav class="wb-pagination" aria-label="Pagination">
   <a href="#" class="wb-page-item">&laquo;</a>
   <a href="#" class="wb-page-item is-active">1</a>
   <a href="#" class="wb-page-item">2</a>
   <a href="#" class="wb-page-item">&raquo;</a>
 </nav>
-```
 
-### Breadcrumb
-
-```html
-<nav class="wb-breadcrumb" aria-label="Breadcrumb">
-  <a href="#" class="wb-breadcrumb-item">Home</a>
-  <span class="wb-breadcrumb-item is-current">Current</span>
+<nav aria-label="Breadcrumb">
+  <ol class="wb-breadcrumb">
+    <li class="wb-breadcrumb-item"><a href="#">Home</a></li>
+    <li class="wb-breadcrumb-item"><a href="#">Docs</a></li>
+    <li class="wb-breadcrumb-item is-active" aria-current="page">Icons</li>
+  </ol>
 </nav>
-```
 
-### Avatar
-
-```html
 <div class="wb-avatar">AB</div>
-<img src="photo.jpg" class="wb-avatar" alt="Profile photo">
-```
 
-### Skeleton
-
-```html
-<div class="wb-skeleton" style="height:1rem;width:60%"></div>
-<div class="wb-skeleton wb-skeleton-circle" style="width:40px;height:40px"></div>
-```
-
-### Empty State
-
-```html
 <div class="wb-empty">
   <div class="wb-empty-icon"></div>
   <h3 class="wb-empty-title">No results</h3>
@@ -326,284 +575,648 @@ Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`
 </div>
 ```
 
-### Loading
+Important breadcrumb note: active state is `.wb-breadcrumb-item.is-active`, not `.is-current`.
+
+### Radio Cards and Button Checks
 
 ```html
-<div class="wb-progress-bar"><div style="width:60%"></div></div>
-<span class="wb-spinner"></span>
-<span class="wb-spinner wb-spinner-sm"></span>
+<div class="wb-radio-group">
+  <label class="wb-radio-card">
+    <input type="radio" name="plan" value="starter">
+    <span class="wb-radio-card-body">
+      <strong>Starter</strong>
+      <span>$9 / month</span>
+    </span>
+  </label>
+  <label class="wb-radio-card">
+    <input type="radio" name="plan" value="pro">
+    <span class="wb-radio-card-body">
+      <strong>Pro</strong>
+      <span>$29 / month</span>
+    </span>
+  </label>
+</div>
+
+<div class="wb-btn-check-group">
+  <label class="wb-btn-check">
+    <input type="radio" name="view" value="grid">
+    <span>Grid</span>
+  </label>
+  <label class="wb-btn-check">
+    <input type="radio" name="view" value="list">
+    <span>List</span>
+  </label>
+</div>
+```
+
+### Command Palette
+
+```html
+<button class="wb-btn wb-btn-secondary" data-wb-toggle="cmd" data-wb-target="#site-cmd">
+  Search
+</button>
+
+<div class="wb-cmd-backdrop" id="site-cmd" data-wb-cmd-default role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="wb-cmd-dialog">
+    <div class="wb-cmd-search">
+      <input class="wb-cmd-input" type="text" placeholder="Search commands...">
+    </div>
+    <div class="wb-cmd-results">
+      <div class="wb-cmd-group">
+        <a class="wb-cmd-item" href="/docs">Documentation</a>
+      </div>
+      <div class="wb-cmd-empty" style="display:none;">No results</div>
+    </div>
+  </div>
+</div>
+```
+
+The first palette marked with `data-wb-cmd-default` is used by `Cmd/Ctrl + K`.
+
+### Nav Groups and Menus
+
+```html
+<div class="wb-nav-group" data-wb-nav-group data-wb-nav-group-open>
+  <button class="wb-nav-group-toggle" aria-expanded="true">
+    <span class="wb-nav-group-label">Settings</span>
+    <span class="wb-nav-group-arrow"></span>
+  </button>
+  <div class="wb-nav-group-items">
+    <a class="wb-nav-group-item is-active" href="#">Profile</a>
+    <a class="wb-nav-group-item" href="#">Security</a>
+  </div>
+</div>
+
+<nav class="wb-menu">
+  <a class="wb-menu-item is-active" href="#">Overview</a>
+  <a class="wb-menu-item" href="#">API keys</a>
+  <hr class="wb-menu-divider">
+  <button class="wb-menu-item wb-menu-item-danger">Delete</button>
+</nav>
+```
+
+### Loading, Skeleton, Divider
+
+```html
+<span class="wb-spinner" aria-hidden="true"></span>
+<span class="wb-spinner wb-spinner-sm" aria-hidden="true"></span>
+<div class="wb-progress-bar"><div class="wb-progress-bar-fill" style="width:60%"></div></div>
+
+<div class="wb-skeleton" style="height:1rem;width:60%"></div>
+<div class="wb-skeleton wb-skeleton-circle" style="width:40px;height:40px"></div>
+
+<hr class="wb-divider">
+<div class="wb-divider-label">Or continue with</div>
+<span class="wb-divider-v" aria-hidden="true"></span>
 ```
 
 ---
 
-## Layouts
+## Layout Primitives
 
-### Container and Section
+### Containers, Sections, Flow Helpers
 
 ```html
 <section class="wb-section">
-  <div class="wb-container">...</div>
+  <div class="wb-container wb-container-lg">
+    <div class="wb-stack wb-stack-4">
+      <div class="wb-split">
+        <div>Left</div>
+        <div>Right</div>
+      </div>
+      <div class="wb-cluster wb-cluster-between">
+        <span>Item A</span>
+        <span>Item B</span>
+      </div>
+    </div>
+  </div>
 </section>
 ```
+
+Shipped primitives:
+
+- containers: `wb-container`, `wb-container-sm`, `wb-container-md`, `wb-container-lg`, `wb-container-xl`, `wb-container-full`
+- sections: `wb-section`, `wb-section-sm`, `wb-section-lg`
+- stack: `wb-stack`, `wb-stack-1`, `wb-stack-2`, `wb-stack-3`, `wb-stack-4`, `wb-stack-6`, `wb-stack-8`
+- cluster: `wb-cluster`, `wb-cluster-2`, `wb-cluster-4`, `wb-cluster-6`, `wb-cluster-end`, `wb-cluster-center`, `wb-cluster-between`
+- split: `wb-split`
+- grid primitives: `wb-grid`, `wb-grid-2`, `wb-grid-3`, `wb-grid-4`, `wb-grid-auto`, `wb-grid-auto-sm`, `wb-grid-auto-lg`
 
 ### Navbar
 
 ```html
 <header class="wb-navbar">
-  <a href="#" class="wb-navbar-brand">Logo</a>
+  <a href="#" class="wb-navbar-brand">WebBlocks</a>
   <div class="wb-navbar-spacer"></div>
-  <div class="wb-navbar-end">
+  <nav class="wb-navbar-links">
     <a href="#" class="wb-navbar-link is-active">Dashboard</a>
     <a href="#" class="wb-navbar-link">Settings</a>
+  </nav>
+  <div class="wb-navbar-end">
+    <button class="wb-navbar-toggle" data-wb-toggle="sidebar" data-wb-target="#app-sidebar" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 ```
 
-Modifiers: `wb-navbar-glass`, `wb-navbar-filled`, `wb-navbar--static`, `wb-navbar-stacked`
+Variants and helpers:
 
-### Sidebar
+- `wb-navbar--static`
+- `wb-navbar-glass`
+- `wb-navbar-filled`
+- `wb-navbar-links`, `wb-navbar-nav`, `wb-navbar-nav-item`, `wb-navbar-end`
+- `wb-topbar-actions`, `wb-topbar-action`, `wb-topbar-user`
+
+Stacked navbar:
 
 ```html
-<aside class="wb-sidebar">
-  <div class="wb-sidebar-header">
-    <a href="#" class="wb-navbar-brand">Logo</a>
+<header class="wb-navbar wb-navbar-stacked">
+  <div class="wb-navbar-row">
+    <div class="wb-navbar-start">
+      <a href="#" class="wb-navbar-brand">WebBlocks</a>
+    </div>
+    <div class="wb-navbar-end">
+      <a href="#" class="wb-navbar-link">Account</a>
+    </div>
   </div>
-  <nav class="wb-sidebar-nav">
-    <a href="#" class="wb-sidebar-link is-active">Dashboard</a>
-    <a href="#" class="wb-sidebar-link">Settings</a>
-  </nav>
-</aside>
+  <div class="wb-navbar-row wb-navbar-sub">
+    <a href="#" class="wb-navbar-link is-active">Overview</a>
+    <a href="#" class="wb-navbar-link">API</a>
+  </div>
+</header>
 ```
 
-### Dashboard Shell
+### Sidebar and Dashboard Shell
 
 ```html
+<div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
 <div class="wb-dashboard-shell">
-  <aside class="wb-sidebar">...</aside>
+  <aside class="wb-sidebar" id="app-sidebar">
+    <a href="#" class="wb-sidebar-brand">WebBlocks</a>
+    <nav class="wb-sidebar-nav">
+      <a href="#" class="wb-sidebar-link is-active">Dashboard</a>
+      <a href="#" class="wb-sidebar-link">Billing</a>
+    </nav>
+  </aside>
+
   <div class="wb-dashboard-body">
     <header class="wb-navbar">...</header>
     <main class="wb-dashboard-main">
-      <div class="wb-container">...</div>
+      <div class="wb-page-header">
+        <div>
+          <h1 class="wb-page-title">Overview</h1>
+          <p class="wb-page-subtitle">Current account health</p>
+        </div>
+        <div class="wb-page-actions">
+          <button class="wb-btn wb-btn-primary">Create</button>
+        </div>
+      </div>
+      <div class="wb-stat-row">...</div>
     </main>
   </div>
 </div>
 ```
 
+Important:
+
+- V2 shell is `wb-dashboard-shell`, `wb-dashboard-body`, `wb-dashboard-main`
+- V1 aliases still ship: `wb-shell`, `wb-shell-main`, `wb-shell-body`
+- do not mix V1 and V2 shell structures in the same layout
+
 ### Auth Shell
 
 ```html
-<div class="wb-auth">
+<div class="wb-auth-shell">
   <div class="wb-auth-card">
-    <h1>Sign in</h1>
+    <div class="wb-auth-logo">
+      <h1 class="wb-auth-logo-title">Sign in</h1>
+      <p class="wb-auth-logo-subtitle">Welcome back</p>
+    </div>
+    <div class="wb-auth-body">...</div>
+    <div class="wb-auth-footer">Need an account?</div>
   </div>
 </div>
 ```
+
+Split variant:
+
+- `wb-auth-shell wb-auth-split`
+- `wb-auth-panel`
+- `wb-auth-form-area`
 
 ### Settings Shell
 
 ```html
 <div class="wb-settings-shell">
-  <aside class="wb-settings-nav">...</aside>
+  <aside class="wb-settings-nav">
+    <div class="wb-settings-nav-header">Account</div>
+    <a class="wb-settings-nav-link is-active" href="#">Profile</a>
+  </aside>
   <div class="wb-settings-body">
-    <div class="wb-settings-section">...</div>
+    <div class="wb-settings-header">
+      <h1 class="wb-settings-title">Profile</h1>
+      <p class="wb-settings-desc">Manage your personal information.</p>
+    </div>
+    <section class="wb-settings-section">
+      <div class="wb-settings-section-body">...</div>
+    </section>
   </div>
 </div>
 ```
 
-### Content Shell
+### Content Shell and Editorial Surfaces
 
 ```html
-<div class="wb-content-shell wb-content-shell-narrow">
+<article class="wb-content-shell wb-content-shell-narrow">
   <header class="wb-content-header">
-    <h1 class="wb-content-title">Title</h1>
+    <nav class="wb-content-breadcrumb">...</nav>
+    <h1 class="wb-content-title">Integration Guide</h1>
+    <p class="wb-content-subtitle">Implementation-accurate patterns.</p>
   </header>
   <div class="wb-content-body">...</div>
-</div>
-```
+</article>
 
-### Page Intro
-
-```html
 <section class="wb-page-intro">
   <div class="wb-container wb-page-intro-grid">
     <div class="wb-page-intro-copy">
       <div class="wb-page-eyebrow">Overview</div>
       <h1 class="wb-page-title">Visible structure, quiet defaults.</h1>
-      <p class="wb-page-lead">Use this for docs, product pages, changelog intros, and editorial surfaces.</p>
+      <p class="wb-page-lead">Use for docs and marketing intros.</p>
     </div>
     <aside class="wb-page-intro-aside">...</aside>
   </div>
 </section>
 ```
 
+Also shipped for editorial/marketing surfaces:
+
+- `wb-section-heading`
+- `wb-link-list`
+- `wb-inline-list`
+- `wb-promo`
+- `wb-hero`, `wb-hero-content`, `wb-hero-title`, `wb-hero-text`, `wb-hero-actions`
+- `wb-content-columns`, `wb-content-stack`, `wb-footer-grid`, `wb-footer-list`, `wb-footer-link`
+
 ---
 
-## Grid
+## Grid and Utility System
+
+### 12-column grid
 
 ```html
-<div class="wb-row">
-  <div class="wb-col-md-6">Half</div>
-  <div class="wb-col-md-6">Half</div>
-</div>
-
-<div class="wb-grid-3">
-  <div>One</div>
-  <div>Two</div>
-  <div>Three</div>
+<div class="wb-row wb-row-gap-6 wb-row-middle">
+  <div class="wb-col-12 wb-col-md-8">Main</div>
+  <div class="wb-col-12 wb-col-md-4">Sidebar</div>
 </div>
 ```
+
+Supported grid column classes:
+
+- base: `wb-col-1` through `wb-col-12`, `wb-col`
+- breakpoints: `wb-col-sm-*`, `wb-col-md-*`, `wb-col-lg-*`, `wb-col-xl-*`
+- offsets: `wb-col-offset-1`, `wb-col-offset-2`, `wb-col-offset-3`, `wb-col-offset-4`, `wb-col-offset-6`
+- row helpers: `wb-row-center`, `wb-row-end`, `wb-row-stretch`, `wb-row-top`, `wb-row-middle`, `wb-row-bottom`
+
+### Utility classes
+
+Display:
+
+- `wb-hidden`, `wb-block`, `wb-inline`, `wb-inline-block`, `wb-flex`, `wb-inline-flex`, `wb-grid-display`
+
+Flex and gap:
+
+- `wb-flex-col`, `wb-flex-row`, `wb-flex-wrap`, `wb-flex-nowrap`, `wb-flex-1`, `wb-flex-shrink-0`
+- `wb-items-start`, `wb-items-center`, `wb-items-end`
+- `wb-justify-start`, `wb-justify-center`, `wb-justify-end`, `wb-justify-between`
+- `wb-gap-1`, `wb-gap-2`, `wb-gap-3`, `wb-gap-4`, `wb-gap-6`, `wb-gap-8`
+
+Spacing:
+
+- margin: `wb-m-0`, `wb-mt-*`, `wb-mb-*`, `wb-ms-auto`, `wb-me-auto`, `wb-mx-auto`
+- padding: `wb-p-0`, `wb-p-2`, `wb-p-3`, `wb-p-4`, `wb-p-6`, `wb-px-4`, `wb-px-6`, `wb-py-2`, `wb-py-4`, `wb-py-6`
+
+Typography:
+
+- sizes: `wb-text-xs`, `wb-text-sm`, `wb-text-base`, `wb-text-lg`, `wb-text-xl`, `wb-text-2xl`, `wb-text-3xl`, `wb-text-4xl`
+- weight: `wb-font-normal`, `wb-font-medium`, `wb-font-semibold`, `wb-font-bold`, `wb-mono`
+- align: `wb-text-left`, `wb-text-center`, `wb-text-right`
+- line-height: `wb-leading-tight`, `wb-leading-normal`, `wb-leading-loose`
+- transform and spacing: `wb-uppercase`, `wb-lowercase`, `wb-capitalize`, `wb-tracking-tight`, `wb-tracking-normal`, `wb-tracking-wide`, `wb-tracking-wider`, `wb-tracking-widest`
+- text flow: `wb-nowrap`, `wb-truncate`, `wb-no-decoration`
+
+Color and surfaces:
+
+- text: `wb-text-primary`, `wb-text-success`, `wb-text-warning`, `wb-text-danger`, `wb-text-muted`, `wb-text-default`
+- background: `wb-bg-surface`, `wb-bg-surface-2`, `wb-bg-primary`, `wb-bg-success`, `wb-bg-danger`, `wb-bg-warning`
+
+Borders, radius, shadow:
+
+- `wb-border`, `wb-border-top`, `wb-border-bottom`, `wb-border-0`
+- `wb-rounded`, `wb-rounded-sm`, `wb-rounded-lg`, `wb-rounded-xl`, `wb-rounded-full`
+- `wb-shadow-sm`, `wb-shadow`, `wb-shadow-lg`, `wb-shadow-0`
+
+Position, size, overflow:
+
+- `wb-relative`, `wb-absolute`, `wb-fixed`, `wb-sticky`, `wb-inset-0`
+- `wb-w-full`, `wb-w-auto`, `wb-h-full`, `wb-min-w-0`
+- `wb-overflow-hidden`, `wb-overflow-auto`, `wb-overflow-scroll`, `wb-overflow-x-auto`, `wb-overflow-y-auto`
+
+Other:
+
+- `wb-cursor-pointer`, `wb-cursor-default`, `wb-cursor-not-allowed`
+- `wb-opacity-50`, `wb-opacity-75`, `wb-opacity-100`
+- `wb-sr-only`
+- responsive visibility: `wb-hidden-sm`, `wb-hidden-md`, `wb-hidden-lg`, `wb-visible-mobile`, `wb-visible-desktop`
 
 ---
 
 ## Icons
 
+Two icon patterns are supported.
+
+### SVG sprite pattern
+
 ```html
-<!-- SVG sprite -->
 <svg class="wb-icon" aria-hidden="true">
   <use href="dist/webblocks-icons.svg#wb-icon-home"></use>
 </svg>
-
-<!-- <i> tag classes -->
-<i class="wb-icon wb-icon-home" aria-hidden="true"></i>
-<i class="wb-icon wb-icon-settings wb-icon-lg" aria-hidden="true"></i>
 ```
 
-Standard:
-- Sprite symbols use `#wb-icon-*`
-- CSS classes use `wb-icon-*`
-- Add new icons by editing `packages/webblocks/scripts/update-icons.js`, then run `node scripts/update-icons.js` and `./build.sh`
-
-Current icon count: 173
-
----
-
-## Utility Classes
-
-### Typography
-
-`wb-text-xs`, `wb-text-sm`, `wb-text-base`, `wb-text-lg`, `wb-text-xl`, `wb-text-2xl`, `wb-text-3xl`, `wb-text-4xl`
-
-`wb-font-normal`, `wb-font-medium`, `wb-font-semibold`, `wb-font-bold`, `wb-mono`
-
-`wb-text-left`, `wb-text-center`, `wb-text-right`, `wb-uppercase`, `wb-lowercase`, `wb-capitalize`, `wb-nowrap`, `wb-truncate`
-
-### Color
-
-`wb-text-primary`, `wb-text-success`, `wb-text-warning`, `wb-text-danger`, `wb-text-muted`, `wb-text-default`
-
-`wb-bg-surface`, `wb-bg-surface-2`, `wb-bg-primary`, `wb-bg-success`, `wb-bg-danger`, `wb-bg-warning`
-
-### Spacing
-
-Margin: `wb-m-0`, `wb-mt-{0,1,2,3,4,5,6,8}`, `wb-mb-{0,1,2,3,4,5,6,8}`, `wb-mx-auto`, `wb-ms-auto`, `wb-me-auto`
-
-Padding: `wb-p-{0,2,3,4,6}`, `wb-px-{4,6}`, `wb-py-{2,4,6}`
-
-### Flex and Display
-
-`wb-flex`, `wb-inline-flex`, `wb-flex-col`, `wb-flex-row`, `wb-flex-wrap`, `wb-flex-nowrap`, `wb-flex-1`, `wb-flex-shrink-0`
-
-`wb-items-start`, `wb-items-center`, `wb-items-end`, `wb-justify-start`, `wb-justify-center`, `wb-justify-end`, `wb-justify-between`
-
-`wb-gap-{1,2,3,4,6,8}`
-
-`wb-hidden`, `wb-block`, `wb-inline`, `wb-inline-block`
-
-### Border and Radius
-
-`wb-border`, `wb-border-top`, `wb-border-bottom`, `wb-border-0`
-
-`wb-rounded`, `wb-rounded-sm`, `wb-rounded-lg`, `wb-rounded-xl`, `wb-rounded-full`
-
-### Shadow and Position
-
-`wb-shadow-sm`, `wb-shadow`, `wb-shadow-lg`, `wb-shadow-0`
-
-`wb-relative`, `wb-absolute`, `wb-fixed`, `wb-sticky`, `wb-inset-0`
-
-### Other
-
-`wb-w-full`, `wb-w-auto`, `wb-h-full`, `wb-min-w-0`
-
-`wb-overflow-hidden`, `wb-overflow-auto`, `wb-overflow-scroll`, `wb-overflow-x-auto`, `wb-overflow-y-auto`
-
-`wb-opacity-50`, `wb-opacity-75`, `wb-opacity-100`, `wb-cursor-pointer`, `wb-sr-only`
-
----
-
-## JS API
-
-All modules are available on `window.*` after the script loads.
-
-```js
-WBModal.open('my-modal')
-WBModal.close('my-modal')
-
-WBDrawer.open('my-drawer')
-WBDrawer.close('my-drawer')
-
-WBToast.show('Saved', { type: 'success', duration: 3000 })
-WBDropdown.open(buttonEl)
-WBDropdown.close(buttonEl)
-
-WBTabs.activate(tabButtonEl)
-WBAccordion.open(itemEl)
-WBAccordion.close(itemEl)
-
-WBSidebar.open()
-WBSidebar.close()
-
-WBCollapse.open('panel-id')
-WBCollapse.close('panel-id')
-WBCollapse.toggle('panel-id')
-
-WBPopover.open(wrapperEl)
-WBPopover.close(wrapperEl)
-WBPopover.closeAll()
-
-WBTooltip.show(el)
-WBTooltip.hide(el)
-
-WBTheme.setMode('dark')
-WBTheme.setAccent('ocean')
-WBTheme.setPreset('modern')
-WBTheme.setDensity('compact')
-WBTheme.setRadius('soft')
-
-WBCommandPalette.open('cmd-id')
-WBCommandPalette.close('cmd-id')
-
-WBDismiss.dismiss(el)
-WBNavGroup.open(groupEl)
-WBNavGroup.close(groupEl)
-```
-
-### Data Attribute Triggers
+### CSS mask `<i>` pattern
 
 ```html
+<i class="wb-icon wb-icon-home" aria-hidden="true"></i>
+<i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent" aria-hidden="true"></i>
+```
+
+Icon helpers:
+
+- size: `wb-icon-xs`, `wb-icon-sm`, `wb-icon-lg`, `wb-icon-xl`, `wb-icon-2xl`
+- stroke: `wb-icon-thin`, `wb-icon-medium`, `wb-icon-bold`
+- color: `wb-icon-muted`, `wb-icon-accent`, `wb-icon-success`, `wb-icon-warning`, `wb-icon-danger`, `wb-icon-info`, `wb-icon-on`
+- layout: `wb-icon-btn`, `wb-icon-card`, `wb-icon-solo`
+- wrappers: `wb-icon-wrap`, `wb-icon-wrap-sm`, `wb-icon-wrap-lg`, `wb-icon-wrap-circle`, `wb-icon-wrap-success`, `wb-icon-wrap-warning`, `wb-icon-wrap-danger`, `wb-icon-wrap-info`, `wb-icon-wrap-muted`
+
+Canonical action icon naming:
+
+- `wb-icon-refresh` -> alias of `wb-icon-rotate-cw`
+- `wb-icon-refresh-cw` -> alias of `wb-icon-rotate-cw`
+- `wb-icon-rotate-cw` -> canonical refresh/rotate clockwise glyph
+- `wb-icon-sync` -> alias of `wb-icon-repeat`
+- `wb-icon-repeat` -> canonical sync/repeat glyph
+- `wb-icon-rotate-ccw` -> separate real glyph
+
+Semantic guidance:
+
+- use `refresh` for reloading current data
+- use `sync` for reconciling with a remote source
+- use `rotate-cw` or `rotate-ccw` for literal rotation/cycle actions
+- use `wb-spinner` for loading state instead of inventing a loader icon class
+
+Important icon behavior:
+
+- sprite symbol ids are `#wb-icon-*`
+- CSS mask classes are `wb-icon-*`
+- if an `<i class="wb-icon wb-icon-missing">` class does not resolve to a generated rule, the fallback glyph is `help-circle`, not a blank box
+- current shipped icon source of truth is `src/css/icons/webblocks-icons.svg`, built by `scripts/build-icons.js`
+
+---
+
+## JS APIs
+
+All modules are available on `window.*` after `webblocks-ui.js` loads.
+
+```js
+WBTheme.setMode('dark')
+WBTheme.setPreset('modern')
+WBTheme.setAccent('forest')
+WBTheme.setRadius('soft')
+WBTheme.setDensity('compact')
+WBTheme.setShadow('soft')
+WBTheme.setFont('editorial')
+WBTheme.getAll()
+
+WBModal.open(document.getElementById('my-modal'))
+WBModal.close()
+
+WBDrawer.open(document.getElementById('my-drawer'))
+WBDrawer.close()
+
+WBDropdown.open(document.getElementById('account-menu'))
+WBDropdown.close(document.getElementById('account-menu'))
+WBDropdown.closeAll()
+
+WBTabs.activate(document.querySelector('.wb-tabs'), 'panel-settings')
+WBTabs.activateById('panel-settings')
+
+WBAccordion.open(document.querySelector('.wb-accordion-trigger'))
+WBAccordion.close(document.querySelector('.wb-accordion-trigger'))
+WBAccordion.toggle(document.querySelector('.wb-accordion-trigger'))
+
+WBSidebar.open(document.getElementById('app-sidebar'))
+WBSidebar.close(document.getElementById('app-sidebar'))
+WBSidebar.toggle(document.getElementById('app-sidebar'))
+
+WBNavGroup.open(document.querySelector('[data-wb-nav-group]'))
+WBNavGroup.close(document.querySelector('[data-wb-nav-group]'))
+WBNavGroup.toggle(document.querySelector('[data-wb-nav-group]'))
+
+WBCommandPalette.open(document.getElementById('site-cmd'))
+WBCommandPalette.close()
+WBCommandPalette.onSearch(function (query, callback) {
+  callback('<a class="wb-cmd-item" href="/docs">Docs</a>')
+})
+
+WBToast.show('Saved', { type: 'success', duration: 3000 })
+WBToast.dismiss(document.querySelector('.wb-toast'))
+
+WBPopover.open(document.querySelector('.wb-popover'))
+WBPopover.close(document.querySelector('.wb-popover'))
+WBPopover.closeAll()
+
+WBTooltip.show(document.querySelector('[data-wb-tooltip]'))
+WBTooltip.hide(document.querySelector('[data-wb-tooltip]'))
+WBTooltip.hideAll()
+
+WBDismiss.dismiss(document.querySelector('.wb-alert'))
+
+WBAjaxToggle.handle(document.querySelector('[data-wb-ajax-toggle]'))
+
+WBCollapse.open('advanced-fields')
+WBCollapse.close('advanced-fields')
+WBCollapse.toggle('advanced-fields')
+```
+
+Notes:
+
+- `WBModal.open` and `WBDrawer.open` take element references, not id strings
+- `WBDropdown.open` takes the menu element, not the trigger button
+- `WBTabs.activate` takes `(containerEl, tabId)`
+- `WBCollapse.open/close/toggle` take an element id string
+
+---
+
+## Data Attribute Behavior
+
+Supported shipped behavior:
+
+```html
+<!-- theme -->
+<button data-wb-mode-set="dark">Dark</button>
+<button data-wb-mode-cycle>Cycle</button>
+<button data-wb-preset-set="corporate">Corporate</button>
+<button data-wb-accent-set="royal">Royal</button>
+<button data-wb-radius-set="default">Default radius</button>
+<button data-wb-density-set="comfortable">Comfortable</button>
+<button data-wb-shadow-set="flat">Flat</button>
+<button data-wb-font-set="system">System font</button>
+
+<!-- modal / drawer / dropdown / command palette -->
 <button data-wb-toggle="modal" data-wb-target="#my-modal">Open modal</button>
 <button data-wb-dismiss="modal">Close modal</button>
 
 <button data-wb-toggle="drawer" data-wb-target="#my-drawer">Open drawer</button>
-<button data-wb-toggle="dropdown">Menu</button>
+<button data-wb-dismiss="drawer">Close drawer</button>
 
-<button data-wb-toggle="collapse" data-wb-target="#panel">Toggle collapse</button>
+<button data-wb-toggle="dropdown">Open dropdown</button>
+<button data-wb-dismiss="dropdown">Close dropdown item</button>
 
-<button data-wb-mode-set="dark">Dark</button>
-<button data-wb-accent-set="forest">Forest</button>
+<button data-wb-toggle="cmd" data-wb-target="#site-cmd">Open command palette</button>
 
-<input type="checkbox" data-wb-ajax-toggle data-url="/api/toggle" data-csrf="token">
+<!-- sidebar -->
+<button data-wb-toggle="sidebar" data-wb-target="#app-sidebar" aria-expanded="false">Menu</button>
+<div data-wb-sidebar-backdrop></div>
+
+<!-- tabs / accordion / collapse -->
+<button data-wb-tab="panel-billing">Billing</button>
+
+<div data-wb-accordion data-wb-accordion-single="true">...</div>
+<button data-wb-accordion-trigger aria-controls="acc-one">Toggle</button>
+
+<button data-wb-collapse="advanced-fields" aria-expanded="false">Toggle collapse</button>
+
+<!-- nav groups -->
+<div data-wb-nav-group data-wb-nav-group-open>...</div>
+<div data-wb-nav-group data-wb-nav-group-accordion>...</div>
+
+<!-- tooltip -->
+<button data-wb-tooltip="Save" data-wb-tooltip-placement="bottom" data-wb-tooltip-delay="250">Save</button>
+
+<!-- ajax toggle -->
+<input
+  type="checkbox"
+  data-wb-ajax-toggle
+  data-wb-url="/admin/posts/toggle"
+  data-wb-field="publish"
+  data-wb-id="42"
+  data-wb-feedback="toast"
+  data-wb-success-msg="Published"
+  data-wb-error-msg="Could not update"
+>
 ```
+
+Important:
+
+- `ajax-toggle` uses `data-wb-url`, `data-wb-field`, `data-wb-id`
+- it does not use `data-url` or `data-csrf`
+- CSRF is read automatically from `<meta name="csrf-token">`
+
+---
+
+## Events and Integration Hooks
+
+Useful emitted events:
+
+- modal: `wb:modal:open`, `wb:modal:close`
+- drawer: `wb:drawer:open`, `wb:drawer:close`
+- tabs: `wb:tabs:change`
+- accordion: `wb:accordion:toggle`
+- nav group: `wb:navgroup:open`, `wb:navgroup:close`
+- toast: `wb:toast:open`, `wb:toast:close`
+- popover: `wb:popover:open`, `wb:popover:close`
+- tooltip: `wb:tooltip:show`, `wb:tooltip:hide`
+- dismiss: `wb:dismiss`, `wb:dismissed`
+- ajax toggle: `wb:ajax-toggle:success`, `wb:ajax-toggle:error`
+- command palette: `wb:cmd:open`, `wb:cmd:close`, `wb:cmd:search`
+
+---
+
+## Scoped WebGames Extension
+
+`build.sh` currently ships a scoped game-oriented extension under `.wb-game-ui`. These classes do not alter the base library outside that scope.
+
+Available classes include:
+
+- tokens scope: `.wb-game-ui`
+- screens: `wb-game-screen`, `wb-game-screen-head`, `wb-game-screen-copy`, `wb-game-screen-eyebrow`, `wb-game-screen-title`, `wb-game-screen-lead`, `wb-game-screen-meta`, `wb-game-screen-actions`, `wb-game-screen-side`
+- panels/cards: `wb-game-panel`, `wb-game-panel--soft`, `wb-game-panel--accent`, `wb-game-card`, `wb-game-card.is-selected`
+- buttons: `wb-game-btn`, `wb-game-btn-primary`, `wb-game-btn-secondary`, `wb-game-btn-ghost`, `wb-game-btn-lg`, `wb-game-btn-block`
+- statuses: `wb-game-status`, `wb-game-status-dot`, `wb-game-status-accent`, `wb-game-status-success`, `wb-game-status-warning`, `wb-game-status-danger`
+
+Use this extension only inside a deliberately scoped game-like surface.
+
+---
+
+## DO / DO NOT
+
+DO:
+
+- compose screens from shipped primitives before inventing new wrappers
+- use `wb-dashboard-shell` for dashboard layouts, `wb-settings-shell` for settings pages, and `wb-content-shell` for editorial/document pages
+- use `wb-field`, `wb-label`, `wb-input`, `wb-field-hint`, and `wb-field-error` for canonical forms
+- use `wb-icon` helpers for icon sizing/color rather than custom inline styles when possible
+- use `WBTheme` or root `data-*` attributes to manage theme state
+- use shipped `wb-stack`, `wb-cluster`, `wb-split`, and `wb-grid-auto` helpers for layout rhythm
+
+DO NOT:
+
+- do not use `data-theme`; use `data-mode`
+- do not document or implement collapse with `data-wb-toggle="collapse"`; shipped API is `data-wb-collapse="id"`
+- do not use `.is-current` for breadcrumbs; shipped active class is `.wb-breadcrumb-item.is-active`
+- do not use `.wb-auth`; shipped auth shell class is `.wb-auth-shell`
+- do not assume `WBModal.open('id')` or `WBDrawer.open('id')`; pass elements
+- do not assume `WBDropdown.open(triggerEl)`; pass the menu element
+- do not hardcode accent colors in new CSS; use `--wb-accent*` tokens
+- do not mix `wb-shell` and `wb-dashboard-shell` in the same layout tree
+- do not invent a separate loader icon class when `wb-spinner` already exists
 
 ---
 
 ## Common Gotchas
 
-1. Use `data-mode`, not `data-theme`
-2. `wb-navbar` is sticky by default; add `wb-navbar--static` to disable
-3. `wb-confirm` is a modal variant on the `.wb-modal` wrapper
-4. `wb-stat` lives inside `card.css`, not a separate `stat.css`
-5. `wb-field-error` lives inside `form.css`
-6. `webblocks-icons.css` is optional, but required for `<i class="wb-icon wb-icon-..."></i>` usage
-7. default toast position is top-right; optional modifiers include `wb-toast-top-center`, `wb-toast-top-left`, `wb-toast-bottom-center`, `wb-toast-bottom-left`
-8. `--wb-primary*` tokens are backward-compat aliases; prefer `--wb-accent*` in new code
+1. `webblocks-icons.css` is optional, but required for `<i class="wb-icon wb-icon-..."></i>` usage.
+2. Missing `<i>` icon classes render the fallback `help-circle` mask, not an empty placeholder.
+3. `wb-confirm` is a modal variant on the `.wb-modal` wrapper.
+4. `wb-stat` lives in `card.css`; there is no separate stat stylesheet.
+5. `wb-panel`, `wb-page-header`, `wb-page-actions`, and `wb-stat-row` live in `dashboard-shell.css`.
+6. `wb-divider` exists in both layout and component sources, but the richer component API is the canonical one to document.
+7. `wb-grid-2`, `wb-grid-3`, and `wb-grid-4` exist in both layout and utility sources; both ship compatible behavior, but `container.css` is the broader layout primitive source.
+8. `WBTheme` stores values in localStorage under `wb-*` keys and re-syncs control buttons automatically.
+9. `data-wb-mode-cycle` updates the icon inside the button if it contains either `<use>` or `<i class="wb-icon">`.
+10. `WBAjaxToggle` disables the checkbox during the request and reverts its state on failure.
+11. `WBCommandPalette` uses `Cmd/Ctrl + K`; `data-wb-cmd-shortcut` is mentioned in comments but is not actually wired in the shipped JS, so do not rely on custom shortcut attributes.
+12. `wb-navbar` is sticky by default; add `wb-navbar--static` to opt out.
+13. `wb-sidebar` is always visible on desktop by CSS; JS open/close matters mainly for mobile.
+14. `sitemap` is not a shipped Lucide icon in this set; use `wb-icon-folder-tree` when you need that concept.
+
+---
+
+## Build and Source of Truth
+
+Package build command:
+
+```bash
+./build.sh
+```
+
+Implementation source of truth:
+
+- CSS: `packages/webblocks/src/css/`
+- JS: `packages/webblocks/src/js/`
+- icon sprite source: `packages/webblocks/src/css/icons/webblocks-icons.svg`
+- icon CSS source: `packages/webblocks/src/css/icons/webblocks-icons.css`
+- build manifest/order: `packages/webblocks/build.sh`
+
+If this guide conflicts with the source files, trust the source files and update this guide.
