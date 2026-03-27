@@ -830,23 +830,23 @@ WBToast.show('¡Centro abajo!', { position: 'bottom-center' });</pre>
 
     <section class="docs-section" id="breadcrumb">
       <h2 class="docs-section-title">Breadcrumb</h2>
-      <p class="docs-section-lead">Ruta de navegación jerárquica.</p>
+      <p class="docs-section-lead">Ruta de navegación jerárquica. Usa <code class="wb-code-inline">minimal</code> como valor seguro y <code class="wb-code-inline">context</code> solo para una etiqueta de ubicación de un solo nivel.</p>
 
       <div class="docs-preview">
-        <nav class="wb-breadcrumb">
-          <a href="#" class="wb-crumb">Inicio</a>
-          <span class="wb-crumb-sep">/</span>
-          <a href="#" class="wb-crumb">Usuarios</a>
-          <span class="wb-crumb-sep">/</span>
-          <span class="wb-crumb is-active">Alice Chen</span>
+        <nav aria-label="Breadcrumb">
+          <ol class="wb-breadcrumb wb-breadcrumb-minimal">
+            <li class="wb-breadcrumb-item"><a href="#">Inicio</a></li>
+            <li class="wb-breadcrumb-item"><a href="#">Usuarios</a></li>
+            <li class="wb-breadcrumb-item is-active"><span aria-current="page">Alice Chen</span></li>
+          </ol>
         </nav>
       </div>
-      <pre class="wb-code">&lt;nav class="wb-breadcrumb"&gt;
-  &lt;a href="#" class="wb-crumb"&gt;Inicio&lt;/a&gt;
-  &lt;span class="wb-crumb-sep"&gt;/&lt;/span&gt;
-  &lt;a href="#" class="wb-crumb"&gt;Usuarios&lt;/a&gt;
-  &lt;span class="wb-crumb-sep"&gt;/&lt;/span&gt;
-  &lt;span class="wb-crumb is-active"&gt;Alice Chen&lt;/span&gt;
+      <pre class="wb-code">&lt;nav aria-label="Breadcrumb"&gt;
+  &lt;ol class="wb-breadcrumb wb-breadcrumb-minimal"&gt;
+    &lt;li class="wb-breadcrumb-item"&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="wb-breadcrumb-item"&gt;&lt;a href="#"&gt;Usuarios&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="wb-breadcrumb-item is-active"&gt;&lt;span aria-current="page"&gt;Alice Chen&lt;/span&gt;&lt;/li&gt;
+  &lt;/ol&gt;
 &lt;/nav&gt;</pre>
     </section>
 

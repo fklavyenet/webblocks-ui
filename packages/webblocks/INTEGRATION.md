@@ -36,6 +36,8 @@ Notes:
 
 - every public class uses the `wb-` prefix
 - use semantic HTML first, then apply WebBlocks classes
+- compose layouts with shipped primitives first: `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`
+- introduce custom wrapper classes only as a last resort after primitive composition is exhausted
 - use design tokens and shipped utilities instead of hardcoded colors, radii, or spacing
 - interactive behavior is opt-in through `data-wb-*` attributes or `window.WB*` APIs
 - build order is strict: foundation -> base -> components -> layouts -> scoped extensions -> utilities
@@ -218,6 +220,11 @@ Shipped form primitives:
 - `wb-input-wrap`, `wb-input-icon`, `wb-input-suffix`
 - `wb-input-group`, `wb-input-addon`, `wb-input-addon-btn`
 
+Auth rule:
+
+- auth forms MUST use the canonical `wb-field` / `wb-label` / `wb-input` / `wb-field-error` system
+- DO NOT create auth-only field systems such as `guest-auth-*`, `qz-auth-*`, or other parallel naming schemes
+
 Examples:
 
 ```html
@@ -337,6 +344,8 @@ Optional explicit target:
 
 Notes:
 
+- canonical wrapper helper is `wb-dropdown-end`
+- `wb-dropdown-menu-end` is the older alternative alias on the menu itself
 - if `data-wb-target` is omitted, the JS looks for the first `.wb-dropdown-menu` in the same `.wb-dropdown`
 - right alignment can use `wb-dropdown-end` on the wrapper or `wb-dropdown-menu-end` on the menu
 
@@ -425,10 +434,8 @@ Preferred modern pattern:
 
 Legacy-compatible alternate class names also work:
 
-- `wb-tab-list`
-- `wb-tab-item`
-- `wb-tab-panels`
-- `wb-tab-panel`
+- canonical names: `wb-tabs-nav`, `wb-tabs-btn`, `wb-tabs-panel`
+- legacy/alternate names: `wb-tab-list`, `wb-tab-item`, `wb-tab-panels`, `wb-tab-panel`
 
 ### Accordion
 
@@ -559,10 +566,16 @@ Supported positions:
 </nav>
 
 <nav aria-label="Breadcrumb">
-  <ol class="wb-breadcrumb">
+  <ol class="wb-breadcrumb wb-breadcrumb-minimal wb-breadcrumb-truncate">
     <li class="wb-breadcrumb-item"><a href="#">Home</a></li>
     <li class="wb-breadcrumb-item"><a href="#">Docs</a></li>
-    <li class="wb-breadcrumb-item is-active" aria-current="page">Icons</li>
+    <li class="wb-breadcrumb-item is-active"><span aria-current="page">Icons</span></li>
+  </ol>
+</nav>
+
+<nav aria-label="Current section">
+  <ol class="wb-breadcrumb wb-breadcrumb-context wb-breadcrumb-sep-none">
+    <li class="wb-breadcrumb-item is-active"><span aria-current="page">Workspace Settings</span></li>
   </ol>
 </nav>
 
@@ -575,7 +588,28 @@ Supported positions:
 </div>
 ```
 
-Important breadcrumb note: active state is `.wb-breadcrumb-item.is-active`, not `.is-current`.
+Breadcrumb preset system:
+
+- `wb-breadcrumb-minimal` -> safe default for admin/dashboard headers; subdued and title-safe
+- `wb-breadcrumb-surface` -> soft surface-backed variant for pages that need gentle separation from the header background
+- `wb-breadcrumb-bordered` -> more structured enterprise/data-heavy variant with visible containment
+- `wb-breadcrumb-inline` -> compact developer-tool style variant; tighter and slash-first by default
+- `wb-breadcrumb-context` -> single-item-friendly location/context label; use when a full navigation trail is unnecessary
+
+Separator controls:
+
+- `wb-breadcrumb-sep-chevron` -> `>` separator
+- `wb-breadcrumb-sep-slash` -> `/` separator
+- `wb-breadcrumb-sep-none` -> no separator; primarily for `wb-breadcrumb-context`
+
+Canonical rules:
+
+- breadcrumb is secondary; it must not compete with the page title
+- page title is the primary screen heading inside a page header
+- single-item breadcrumb use is not the default navigation pattern; reserve it for `wb-breadcrumb-context`
+- active state is `.wb-breadcrumb-item.is-active`; older `.is-current` usage is not canonical
+- links should remain clickable, keyboard-focusable, and semantically inside `nav[aria-label]`
+- use `wb-breadcrumb-truncate` when long labels must be safely ellipsized
 
 ### Radio Cards and Button Checks
 
@@ -726,7 +760,15 @@ Variants and helpers:
 - `wb-navbar-glass`
 - `wb-navbar-filled`
 - `wb-navbar-links`, `wb-navbar-nav`, `wb-navbar-nav-item`, `wb-navbar-end`
-- `wb-topbar-actions`, `wb-topbar-action`, `wb-topbar-user`
+- `wb-navbar-identity`, `wb-navbar-context`, `wb-navbar-brand-note`
+- `wb-topbar-identity`, `wb-topbar-product`, `wb-topbar-context`, `wb-topbar-actions`, `wb-topbar-action`, `wb-topbar-user`
+
+Topbar identity hierarchy:
+
+- product name is always primary
+- context, role, admin, teacher, workspace, or environment labels are secondary
+- use product-first order, then context second; avoid ambiguous patterns like `Teacher / QuizTem`
+- preferred pattern is `QuizTem` as product, with `Teacher Workspace` or `Admin Panel` as the secondary label
 
 Stacked navbar:
 
@@ -765,9 +807,17 @@ Stacked navbar:
     <header class="wb-navbar">...</header>
     <main class="wb-dashboard-main">
       <div class="wb-page-header">
-        <div>
-          <h1 class="wb-page-title">Overview</h1>
-          <p class="wb-page-subtitle">Current account health</p>
+        <div class="wb-page-header-main">
+          <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
+            <ol class="wb-breadcrumb wb-breadcrumb-minimal">
+              <li class="wb-breadcrumb-item"><a href="#">Dashboard</a></li>
+              <li class="wb-breadcrumb-item is-active"><span aria-current="page">Overview</span></li>
+            </ol>
+          </nav>
+          <div>
+            <h1 class="wb-page-title">Overview</h1>
+            <p class="wb-page-subtitle">Current account health</p>
+          </div>
         </div>
         <div class="wb-page-actions">
           <button class="wb-btn wb-btn-primary">Create</button>
@@ -781,9 +831,12 @@ Stacked navbar:
 
 Important:
 
-- V2 shell is `wb-dashboard-shell`, `wb-dashboard-body`, `wb-dashboard-main`
-- V1 aliases still ship: `wb-shell`, `wb-shell-main`, `wb-shell-body`
+- canonical shell is `wb-dashboard-shell`, `wb-dashboard-body`, `wb-dashboard-main`
+- legacy aliases still ship: `wb-shell`, `wb-shell-main`, `wb-shell-body`
 - do not mix V1 and V2 shell structures in the same layout
+- `wb-sidebar-brand` is the clearer canonical name; `wb-sidebar-header` is the older alias
+- canonical page-header stack is: breadcrumb optional, title required, subtitle optional, actions optional
+- breadcrumb belongs above the title inside `wb-page-header-main`, not as a competing heading
 
 ### Auth Shell
 
@@ -799,6 +852,12 @@ Important:
   </div>
 </div>
 ```
+
+Canonical auth shell:
+
+- use `wb-auth-shell` and `wb-auth-card`
+- build all auth form controls with the standard field system, not auth-specific field wrappers
+- there is no alternate legacy shell class to prefer over `wb-auth-shell`
 
 Split variant:
 
@@ -825,6 +884,11 @@ Split variant:
   </div>
 </div>
 ```
+
+Canonical settings shell:
+
+- use `wb-settings-shell`, `wb-settings-nav`, `wb-settings-body`, `wb-settings-section`
+- keep settings content inside `wb-settings-section` blocks instead of inventing page-specific card wrappers
 
 ### Content Shell and Editorial Surfaces
 
@@ -858,6 +922,120 @@ Also shipped for editorial/marketing surfaces:
 - `wb-promo`
 - `wb-hero`, `wb-hero-content`, `wb-hero-title`, `wb-hero-text`, `wb-hero-actions`
 - `wb-content-columns`, `wb-content-stack`, `wb-footer-grid`, `wb-footer-list`, `wb-footer-link`
+
+---
+
+## Screen Composition Examples
+
+These are canonical starting structures. Extend them with shipped primitives and components before adding custom wrappers.
+
+### Auth Screen
+
+```html
+<div class="wb-auth-shell">
+  <div class="wb-auth-card">
+    <div class="wb-auth-logo">
+      <h1 class="wb-auth-logo-title">Sign in</h1>
+      <p class="wb-auth-logo-subtitle">Access your dashboard</p>
+    </div>
+    <div class="wb-auth-body">
+      <div class="wb-stack wb-stack-4">
+        <div class="wb-field">
+          <label class="wb-label" for="login-email">Email</label>
+          <input class="wb-input" id="login-email" type="email" placeholder="you@example.com">
+        </div>
+        <div class="wb-field">
+          <label class="wb-label" for="login-password">Password</label>
+          <input class="wb-input" id="login-password" type="password">
+          <div class="wb-field-error">Required</div>
+        </div>
+        <button class="wb-btn wb-btn-primary">Sign in</button>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+### Dashboard Page
+
+```html
+<div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
+<div class="wb-dashboard-shell">
+  <aside class="wb-sidebar" id="app-sidebar">
+    <a href="#" class="wb-sidebar-brand">WebBlocks</a>
+    <nav class="wb-sidebar-nav">
+      <a class="wb-sidebar-link is-active" href="#">Overview</a>
+      <a class="wb-sidebar-link" href="#">Billing</a>
+    </nav>
+  </aside>
+
+  <div class="wb-dashboard-body">
+    <header class="wb-navbar">
+      <div class="wb-navbar-identity">
+        <a href="#" class="wb-navbar-brand">QuizTem</a>
+        <span class="wb-navbar-context">Admin Panel</span>
+      </div>
+    </header>
+    <main class="wb-dashboard-main">
+      <div class="wb-page-header">
+        <div class="wb-page-header-main">
+          <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
+            <ol class="wb-breadcrumb wb-breadcrumb-minimal">
+              <li class="wb-breadcrumb-item"><a href="#">Workspace</a></li>
+              <li class="wb-breadcrumb-item is-active"><span aria-current="page">Overview</span></li>
+            </ol>
+          </nav>
+          <div>
+            <h1 class="wb-page-title">Overview</h1>
+            <p class="wb-page-subtitle">Current account status</p>
+          </div>
+        </div>
+      </div>
+      <section class="wb-panel">
+        <div class="wb-panel-header">
+          <h2 class="wb-panel-title">Recent activity</h2>
+        </div>
+        <div class="wb-panel-body">...</div>
+      </section>
+    </main>
+  </div>
+</div>
+```
+
+### Settings Page
+
+```html
+<div class="wb-settings-shell">
+  <aside class="wb-settings-nav">
+    <div class="wb-settings-nav-header">Account</div>
+    <a class="wb-settings-nav-link is-active" href="#">Profile</a>
+    <a class="wb-settings-nav-link" href="#">Security</a>
+  </aside>
+
+  <div class="wb-settings-body">
+    <div class="wb-settings-header">
+      <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
+        <ol class="wb-breadcrumb wb-breadcrumb-surface">
+          <li class="wb-breadcrumb-item"><a href="#">Account</a></li>
+          <li class="wb-breadcrumb-item is-active"><span aria-current="page">Profile</span></li>
+        </ol>
+      </nav>
+      <h1 class="wb-settings-title">Profile</h1>
+      <p class="wb-settings-desc">Manage your public details.</p>
+    </div>
+
+    <section class="wb-settings-section">
+      <div class="wb-settings-section-header">
+        <div>
+          <h2 class="wb-settings-section-title">Public profile</h2>
+        </div>
+      </div>
+      <div class="wb-settings-section-body">...</div>
+    </section>
+  </div>
+</div>
+```
 
 ---
 
@@ -967,6 +1145,11 @@ Canonical action icon naming:
 - `wb-icon-sync` -> alias of `wb-icon-repeat`
 - `wb-icon-repeat` -> canonical sync/repeat glyph
 - `wb-icon-rotate-ccw` -> separate real glyph
+
+Canonical vs alias rule:
+
+- prefer `wb-icon-rotate-cw` and `wb-icon-repeat` when documenting the base glyphs
+- use `wb-icon-refresh`, `wb-icon-refresh-cw`, and `wb-icon-sync` only when semantic readability is more helpful than the canonical glyph name
 
 Semantic guidance:
 
@@ -1159,13 +1342,31 @@ Use this extension only inside a deliberately scoped game-like surface.
 
 ---
 
+## AI Usage Contract
+
+- choose the shell first: `wb-auth-shell` for login/register, `wb-dashboard-shell` for app dashboards, `wb-settings-shell` for account/settings flows, `wb-content-shell` for editorial/docs content
+- when building auth, dashboard, or settings screens, start from the canonical examples in `Screen Composition Examples` and expand them without changing the shell contract
+- build each screen from shipped primitives first: `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, then add components inside those structures
+- build forms only with `wb-field`, `wb-label`, `wb-input` / `wb-select` / `wb-textarea`, `wb-field-hint`, and `wb-field-error`
+- choose breadcrumb presets by job: `minimal` for standard admin headers, `surface` for soft separated headers, `bordered` for enterprise/data-heavy panels, `inline` for dense tool-like context, `context` for single-item location labels
+- keep header hierarchy strict: breadcrumb optional, title required, subtitle optional, actions optional
+- keep topbar identity strict: product first, context second
+- use canonical shell/component names when both canonical and legacy aliases exist
+- NEVER invent a parallel class system for auth, settings, dashboard, icons, or field controls when shipped classes already exist
+- NEVER create project-specific wrappers before checking whether the same structure can be expressed with shipped primitives and shells
+
+---
+
 ## DO / DO NOT
 
 DO:
 
 - compose screens from shipped primitives before inventing new wrappers
+- ALWAYS compose layouts using `wb-stack`, `wb-cluster`, `wb-grid`, and related primitives before introducing new wrapper classes
 - use `wb-dashboard-shell` for dashboard layouts, `wb-settings-shell` for settings pages, and `wb-content-shell` for editorial/document pages
 - use `wb-field`, `wb-label`, `wb-input`, `wb-field-hint`, and `wb-field-error` for canonical forms
+- use `wb-auth-shell` + `wb-auth-card` for auth screens and keep auth fields on the canonical field system
+- choose a breadcrumb preset instead of writing per-project breadcrumb CSS
 - use `wb-icon` helpers for icon sizing/color rather than custom inline styles when possible
 - use `WBTheme` or root `data-*` attributes to manage theme state
 - use shipped `wb-stack`, `wb-cluster`, `wb-split`, and `wb-grid-auto` helpers for layout rhythm
@@ -1176,6 +1377,10 @@ DO NOT:
 - do not document or implement collapse with `data-wb-toggle="collapse"`; shipped API is `data-wb-collapse="id"`
 - do not use `.is-current` for breadcrumbs; shipped active class is `.wb-breadcrumb-item.is-active`
 - do not use `.wb-auth`; shipped auth shell class is `.wb-auth-shell`
+- do not create auth-specific field namespaces such as `guest-auth-*` or `qz-auth-*`
+- do not style breadcrumbs as page titles or make them compete visually with headings
+- do not repeat the same noun in breadcrumb and title without a hierarchy reason
+- do not make topbar context more visually dominant than the product name
 - do not assume `WBModal.open('id')` or `WBDrawer.open('id')`; pass elements
 - do not assume `WBDropdown.open(triggerEl)`; pass the menu element
 - do not hardcode accent colors in new CSS; use `--wb-accent*` tokens

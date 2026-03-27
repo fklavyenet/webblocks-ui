@@ -341,7 +341,7 @@ WBSidebar.close();</pre>
       <div class="layout-diagram">
         <div class="layout-diagram-row" style="min-height:120px">
           <div class="layout-diagram-cell" style="flex:1;background:var(--wb-bg)">
-            wb-auth (Vollbild)
+            wb-auth-shell (Vollbild)
             <br>
             <span style="font-size:0.7rem">↓ zentriert</span>
           </div>
@@ -351,17 +351,17 @@ WBSidebar.close();</pre>
         </div>
       </div>
 
-      <pre class="wb-code">&lt;div class="wb-auth"&gt;
+      <pre class="wb-code">&lt;div class="wb-auth-shell"&gt;
   &lt;div class="wb-auth-card"&gt;
 
     &lt;div class="wb-auth-logo"&gt;
       &lt;!-- Logo hier --&gt;
+      &lt;h1 class="wb-auth-logo-title"&gt;Bei deinem Konto anmelden&lt;/h1&gt;
+      &lt;p class="wb-auth-logo-subtitle"&gt;Willkommen zurück. Gib deine Anmeldedaten ein.&lt;/p&gt;
     &lt;/div&gt;
 
-    &lt;h1 class="wb-auth-title"&gt;Bei deinem Konto anmelden&lt;/h1&gt;
-    &lt;p class="wb-auth-subtitle"&gt;Willkommen zurück. Gib deine Anmeldedaten ein.&lt;/p&gt;
-
-    &lt;form class="wb-auth-form"&gt;
+    &lt;div class="wb-auth-body"&gt;
+      &lt;form class="wb-stack wb-stack-4"&gt;
       &lt;div class="wb-field"&gt;
         &lt;label class="wb-label"&gt;E-Mail&lt;/label&gt;
         &lt;input type="email" class="wb-input" autocomplete="email"&gt;
@@ -373,7 +373,8 @@ WBSidebar.close();</pre>
       &lt;button type="submit" class="wb-btn wb-btn-primary" style="width:100%"&gt;
         Anmelden
       &lt;/button&gt;
-    &lt;/form&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
 
     &lt;p class="wb-auth-footer"&gt;
       Noch kein Konto? &lt;a href="/register"&gt;Registrieren&lt;/a&gt;

@@ -29,7 +29,10 @@
           aria-expanded="false" aria-controls="mainSidebar" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
-  <a href="../index.html" class="wb-navbar-brand">AdminPanel</a>
+  <div class="wb-navbar-identity">
+    <a href="../index.html" class="wb-navbar-brand">QuizTem</a>
+    <span class="wb-navbar-context">Admin panel</span>
+  </div>
   <span class="wb-navbar-spacer"></span>
   <div class="wb-navbar-links">
     <a class="wb-navbar-link" href="../../website/index.html">Overview</a>
@@ -94,7 +97,7 @@
 </nav>
 
 <!-- ── Shell ──────────────────────────────────────────────── -->
-<div class="wb-shell">
+<div class="wb-dashboard-shell">
 
   <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
 
@@ -159,57 +162,58 @@
   </aside>
 
   <!-- ── Main ──────────────────────────────────────────────── -->
-  <div class="wb-shell-main">
-    <div class="wb-container" style="padding:1.5rem">
+  <div class="wb-dashboard-body">
+    <main class="wb-dashboard-main">
+      <div class="wb-container wb-stack wb-stack-6" style="padding:0">
 
-      <!-- Breadcrumb -->
-      <div class="wb-site-breadcrumbs" aria-label="Breadcrumb" style="margin-bottom:1.25rem">
-        <a href="../../website/index.html">WebBlocks UI</a>
-        <span>/</span>
-        <a href="../index.html">Examples</a>
-        <span>/</span>
-        <a href="dashboard.html">Admin</a>
-        <span>/</span>
-        <span aria-current="page">Users</span>
-      </div>
-
-      <!-- Page header -->
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem">
-        <div>
-          <h1 style="font-size:1.4rem;font-weight:800;margin:0 0 .15rem">Users</h1>
-          <p style="margin:0;color:var(--wb-muted);font-size:.875rem">Manage team members and their access.</p>
-        </div>
-        <div style="display:flex;gap:.5rem">
-          <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-toggle="drawer" data-wb-target="#filterDrawer">Filters</button>
-          <button class="wb-btn wb-btn-primary wb-btn-sm" data-wb-toggle="modal" data-wb-target="#addUserModal">+ Add User</button>
-        </div>
-      </div>
-
-      <!-- Stat cards -->
-      <div class="wb-grid-4" style="margin-bottom:1.5rem">
-        <div class="wb-stat">
-          <div class="wb-stat-label">Total Users</div>
-          <div class="wb-stat-value">1,284</div>
-          <div class="wb-stat-meta wb-stat-up">↑ 12% this month</div>
-          <div class="wb-stat-bar" style="margin-top:.75rem">
-            <div class="wb-progress-bar wb-progress-bar-thin"><div class="wb-progress-bar-fill" style="width:72%"></div></div>
+        <!-- Page header -->
+        <div class="wb-page-header">
+          <div class="wb-page-header-main">
+            <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
+              <ol class="wb-breadcrumb wb-breadcrumb-minimal wb-breadcrumb-truncate">
+                <li class="wb-breadcrumb-item"><a href="../../website/index.html">WebBlocks UI</a></li>
+                <li class="wb-breadcrumb-item"><a href="../index.html">Examples</a></li>
+                <li class="wb-breadcrumb-item"><a href="dashboard.html">Admin</a></li>
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Users</span></li>
+              </ol>
+            </nav>
+            <div>
+              <h1 class="wb-page-title">Users</h1>
+              <p class="wb-page-subtitle">Manage team members and their access.</p>
+            </div>
+          </div>
+          <div class="wb-page-actions">
+            <button class="wb-btn wb-btn-outline wb-btn-sm" data-wb-toggle="drawer" data-wb-target="#filterDrawer">Filters</button>
+            <button class="wb-btn wb-btn-primary wb-btn-sm" data-wb-toggle="modal" data-wb-target="#addUserModal">+ Add User</button>
           </div>
         </div>
-        <div class="wb-stat">
-          <div class="wb-stat-label">Active Now</div>
-          <div class="wb-stat-value">48</div>
-          <div class="wb-stat-meta" style="color:var(--wb-muted)">Online sessions</div>
-        </div>
-        <div class="wb-stat">
-          <div class="wb-stat-label">Pending Approval</div>
-          <div class="wb-stat-value">7</div>
-          <div class="wb-stat-meta wb-stat-down">↓ 3 from yesterday</div>
-        </div>
-        <div class="wb-stat">
-          <div class="wb-stat-label">Storage Used</div>
-          <div class="wb-stat-value">64%</div>
-          <div class="wb-stat-bar" style="margin-top:.75rem">
-            <div class="wb-progress-bar wb-progress-bar-warning"><div class="wb-progress-bar-fill" style="width:64%"></div></div>
+
+        <!-- Stat cards -->
+        <div class="wb-grid-4" style="margin-bottom:1.5rem">
+          <div class="wb-stat">
+            <div class="wb-stat-label">Total Users</div>
+            <div class="wb-stat-value">1,284</div>
+            <div class="wb-stat-meta wb-stat-up">↑ 12% this month</div>
+            <div class="wb-stat-bar" style="margin-top:.75rem">
+              <div class="wb-progress-bar wb-progress-bar-thin"><div class="wb-progress-bar-fill" style="width:72%"></div></div>
+            </div>
+          </div>
+          <div class="wb-stat">
+            <div class="wb-stat-label">Active Now</div>
+            <div class="wb-stat-value">48</div>
+            <div class="wb-stat-meta" style="color:var(--wb-muted)">Online sessions</div>
+          </div>
+          <div class="wb-stat">
+            <div class="wb-stat-label">Pending Approval</div>
+            <div class="wb-stat-value">7</div>
+            <div class="wb-stat-meta wb-stat-down">↓ 3 from yesterday</div>
+          </div>
+          <div class="wb-stat">
+            <div class="wb-stat-label">Storage Used</div>
+            <div class="wb-stat-value">64%</div>
+            <div class="wb-stat-bar" style="margin-top:.75rem">
+              <div class="wb-progress-bar wb-progress-bar-warning"><div class="wb-progress-bar-fill" style="width:64%"></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -396,9 +400,10 @@
         </div>
       </div>
 
-    </div><!-- /container -->
-  </div><!-- /shell-main -->
-</div><!-- /shell -->
+      </div><!-- /container -->
+    </main>
+  </div><!-- /dashboard-body -->
+</div><!-- /dashboard-shell -->
 
 <!-- ── Edit User Drawer ──────────────────────────────────── -->
 <div class="wb-drawer" id="editDrawer" role="dialog" aria-modal="true" aria-labelledby="editDrawerTitle">

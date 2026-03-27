@@ -29,7 +29,10 @@
            aria-expanded="false" aria-label="Toggle menu">
      <span></span><span></span><span></span>
    </button>
-   <a href="../index.html" class="wb-navbar-brand">AdminPanel</a>
+   <div class="wb-navbar-identity">
+     <a href="../index.html" class="wb-navbar-brand">QuizTem</a>
+     <span class="wb-navbar-context">Admin panel</span>
+   </div>
    <span class="wb-navbar-spacer"></span>
    <div class="wb-navbar-links">
      <a class="wb-navbar-link" href="../../website/index.html">Overview</a>
@@ -57,13 +60,13 @@
 </nav>
 
 <!-- ── Shell ──────────────────────────────────────────────── -->
-<div class="wb-shell">
+<div class="wb-dashboard-shell">
 
   <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
 
   <!-- ── Sidebar ───────────────────────────────────────────── -->
   <aside class="wb-sidebar" id="settingsSidebar">
-    <div class="wb-sidebar-header">AdminPanel</div>
+    <a href="../index.html" class="wb-sidebar-brand">QuizTem</a>
     <nav class="wb-sidebar-nav">
       <a class="wb-sidebar-link" href="dashboard.html">
         <span class="wb-sidebar-icon"><i class="wb-icon wb-icon-layout-dashboard wb-icon-sm"></i></span> Dashboard
@@ -78,8 +81,8 @@
   </aside>
 
   <!-- ── Main ──────────────────────────────────────────────── -->
-  <div class="wb-shell-main">
-    <div class="wb-shell-body">
+  <div class="wb-dashboard-body">
+    <main class="wb-dashboard-main">
 
       <!-- ── Settings Shell ──────────────────────────────────── -->
       <div class="wb-settings-shell">
@@ -116,19 +119,16 @@
         <!-- ── Settings Body ─────────────────────────────────── -->
         <div class="wb-settings-body">
 
-          <!-- Breadcrumb -->
-          <div class="wb-site-breadcrumbs" aria-label="Breadcrumb" style="margin-bottom:var(--wb-s4)">
-            <a href="../../website/index.html">WebBlocks UI</a>
-            <span>/</span>
-            <a href="../index.html">Examples</a>
-            <span>/</span>
-            <a href="dashboard.html">Admin</a>
-            <span>/</span>
-            <span aria-current="page">Settings</span>
-          </div>
-
           <!-- Page header -->
           <div class="wb-settings-header">
+            <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
+              <ol class="wb-breadcrumb wb-breadcrumb-surface wb-breadcrumb-truncate">
+                <li class="wb-breadcrumb-item"><a href="../../website/index.html">WebBlocks UI</a></li>
+                <li class="wb-breadcrumb-item"><a href="../index.html">Examples</a></li>
+                <li class="wb-breadcrumb-item"><a href="dashboard.html">Admin</a></li>
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Settings</span></li>
+              </ol>
+            </nav>
             <h1 class="wb-settings-title">Profile Settings</h1>
             <p class="wb-settings-desc">Manage your personal information and preferences.</p>
           </div>
@@ -362,9 +362,9 @@
         </div><!-- /settings-body -->
       </div><!-- /settings-shell -->
 
-    </div><!-- /shell-body -->
-  </div><!-- /shell-main -->
-</div><!-- /shell -->
+    </main>
+  </div><!-- /dashboard-body -->
+</div><!-- /dashboard-shell -->
 
 <!-- ── Delete confirm modal ─────────────────────────────────── -->
 <div class="wb-modal" id="deleteModal" role="dialog" aria-modal="true">

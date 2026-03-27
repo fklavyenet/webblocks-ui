@@ -52,6 +52,18 @@
   flex-wrap: wrap;
 }
 
+.wb-page-header-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+  min-width: 0;
+  flex: 1;
+}
+
+.wb-page-breadcrumb {
+  margin: 0;
+}
+
 .wb-page-title {
   font-size: 1.4rem;
   font-weight: 700;
@@ -63,7 +75,7 @@
 .wb-page-subtitle {
   font-size: 0.9rem;
   color: var(--wb-muted);
-  margin-top: var(--wb-s1);
+  margin: 0;
 }
 
 .wb-page-actions {

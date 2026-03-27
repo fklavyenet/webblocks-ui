@@ -61,6 +61,16 @@
 
 /* ── Brand / logo ─────────────────────────────────────────── */
 
+.wb-navbar-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
 .wb-navbar-brand {
   display: flex;
   align-items: center;
@@ -78,9 +88,23 @@
 }
 
 .wb-navbar-brand-note {
+  display: block;
   font-size: 0.72rem;
   font-weight: 500;
   color: var(--wb-muted);
+}
+
+.wb-navbar-context {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  line-height: 1.25;
+}
+
+.wb-navbar-identity .wb-navbar-brand {
+  font-size: 1rem;
+  line-height: 1.1;
 }
 
 .wb-navbar-brand img,

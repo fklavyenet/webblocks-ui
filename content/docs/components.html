@@ -146,14 +146,42 @@
 
         <article class="wb-site-sample">
           <div class="wb-site-sample-head">
-            <h3>Navigation strip</h3>
-            <span>tabs, breadcrumb, filter bar, action menu</span>
+            <h3>Breadcrumb presets</h3>
+            <span>minimal, surface, bordered, inline, context</span>
           </div>
           <div class="wb-site-sample-body wb-stack-4">
-            <nav class="wb-breadcrumb" aria-label="Breadcrumb">
-              <a href="#" class="wb-breadcrumb-item">Projects</a>
-              <a href="#" class="wb-breadcrumb-item">Atlas</a>
-              <span class="wb-breadcrumb-item is-current">Settings</span>
+            <nav aria-label="Breadcrumb presets">
+              <ol class="wb-breadcrumb wb-breadcrumb-minimal wb-breadcrumb-truncate">
+                <li class="wb-breadcrumb-item"><a href="#">Projects</a></li>
+                <li class="wb-breadcrumb-item"><a href="#">Atlas</a></li>
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Settings</span></li>
+              </ol>
+            </nav>
+            <nav aria-label="Breadcrumb surface example">
+              <ol class="wb-breadcrumb wb-breadcrumb-surface">
+                <li class="wb-breadcrumb-item"><a href="#">Workspace</a></li>
+                <li class="wb-breadcrumb-item"><a href="#">Members</a></li>
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Alice Johnson</span></li>
+              </ol>
+            </nav>
+            <nav aria-label="Breadcrumb bordered example">
+              <ol class="wb-breadcrumb wb-breadcrumb-bordered">
+                <li class="wb-breadcrumb-item"><a href="#">Reports</a></li>
+                <li class="wb-breadcrumb-item"><a href="#">Quarterly</a></li>
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Revenue</span></li>
+              </ol>
+            </nav>
+            <nav aria-label="Breadcrumb inline example">
+              <ol class="wb-breadcrumb wb-breadcrumb-inline">
+                <li class="wb-breadcrumb-item"><a href="#">repo</a></li>
+                <li class="wb-breadcrumb-item"><a href="#">settings</a></li>
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">access</span></li>
+              </ol>
+            </nav>
+            <nav aria-label="Current context">
+              <ol class="wb-breadcrumb wb-breadcrumb-context wb-breadcrumb-sep-none">
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Teacher workspace</span></li>
+              </ol>
             </nav>
             <div class="wb-tabs">
               <div class="wb-tabs-nav">
@@ -173,6 +201,10 @@
                   <button class="wb-action-btn wb-action-btn-delete"><i class="wb-icon wb-icon-trash wb-icon-sm"></i></button>
                 </div>
               </div>
+            </div>
+            <div class="wb-callout wb-callout-accent">
+              <strong class="wb-callout-title">Selection guide</strong>
+              Use <code>minimal</code> as the safe default, <code>surface</code> for soft separation, <code>bordered</code> for structured enterprise panels, <code>inline</code> for dense tool-like UIs, and <code>context</code> for a single location label. Keep breadcrumb secondary to the page title.
             </div>
           </div>
         </article>

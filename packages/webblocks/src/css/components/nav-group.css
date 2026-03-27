@@ -227,6 +227,34 @@
   gap: var(--wb-s2);
 }
 
+.wb-topbar-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  min-width: 0;
+}
+
+.wb-topbar-identity-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+}
+
+.wb-topbar-product {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  line-height: 1.2;
+}
+
+.wb-topbar-context {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  line-height: 1.2;
+}
+
 .wb-topbar-action {
   position: relative;
   display: flex;

@@ -12,11 +12,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Icon System v1: curated expansion for editorial, marketing, business, and social brand usage
 - New high-value icons: `external-link`, `eye`, `eye-off`, `star`, `bookmark`, `heart`, `share2`, `book-open`, `newspaper`, `map-pin`, `briefcase`, `building2`, `linkedin`, `twitter`, `instagram`, `youtube`
 - Action icon aliases for panel workflows: `refresh` and `sync`, mapped to the existing `rotate-cw` and `repeat` glyphs with stable public names
+- Breadcrumb preset system: `minimal`, `surface`, `bordered`, `inline`, and `context`, with controlled separator modifiers and single-item context support
 
 ### Changed
 - Icon set refreshed to 173 curated Lucide icons across sprite and CSS delivery modes
 - Icon reference docs updated to use the `wb-icon-*` symbol/class convention consistently
 - Icon reference docs now explain the semantic split between refresh, sync, retry, and rotate actions
+- Page/header guidance now treats breadcrumb as secondary context, keeps page title primary, and formalizes product-first topbar identity hierarchy
 
 ### Fixed
 - Sprite and CSS icon mappings are now generated from the same source so `<i class="wb-icon wb-icon-*"></i>` stays in parity with the SVG sprite

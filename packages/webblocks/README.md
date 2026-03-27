@@ -264,12 +264,38 @@ Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`, `wb-modal-full`
 ### Breadcrumb
 
 ```html
-<nav class="wb-breadcrumb">
-  <a class="wb-breadcrumb-item" href="#">Home</a>
-  <a class="wb-breadcrumb-item" href="#">Settings</a>
-  <span class="wb-breadcrumb-item is-active">Profile</span>
+<nav aria-label="Breadcrumb">
+  <ol class="wb-breadcrumb wb-breadcrumb-minimal">
+    <li class="wb-breadcrumb-item"><a href="#">Home</a></li>
+    <li class="wb-breadcrumb-item"><a href="#">Settings</a></li>
+    <li class="wb-breadcrumb-item is-active"><span aria-current="page">Profile</span></li>
+  </ol>
 </nav>
 ```
+
+Presets:
+
+- `wb-breadcrumb-minimal` - safe default for admin/dashboard headers
+- `wb-breadcrumb-surface` - soft surfaced variant for gentle separation
+- `wb-breadcrumb-bordered` - structured variant for data-heavy panels
+- `wb-breadcrumb-inline` - compact slash-first variant for tool-like UIs
+- `wb-breadcrumb-context` - single-item context label variant
+
+Separators:
+
+- `wb-breadcrumb-sep-chevron`
+- `wb-breadcrumb-sep-slash`
+- `wb-breadcrumb-sep-none`
+
+Use breadcrumb as secondary context, not as the page heading. Prefer product-first, context-second hierarchy in topbars.
+
+Quick guidance:
+
+- `minimal` - default admin/dashboard breadcrumb
+- `surface` - soft separation inside calmer headers
+- `bordered` - enterprise/data-heavy structured headers
+- `inline` - tool-like, dense horizontal context
+- `context` - single-item location label when a full trail is unnecessary
 
 ### Avatar
 

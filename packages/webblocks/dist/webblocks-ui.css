@@ -2713,45 +2713,242 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 }
 /* ============================================================
    WebBlocks UI — Breadcrumb (wb-breadcrumb)
+   Preset-first breadcrumb system for page context and hierarchy.
    ============================================================ */
 
 .wb-breadcrumb {
-  display: flex;
+  --wb-breadcrumb-padding-y: 0;
+  --wb-breadcrumb-padding-x: 0;
+  --wb-breadcrumb-radius: 0;
+  --wb-breadcrumb-bg: transparent;
+  --wb-breadcrumb-border: transparent;
+  --wb-breadcrumb-separator: ">";
+  --wb-breadcrumb-separator-gap: var(--wb-s2);
+  --wb-breadcrumb-separator-color: var(--wb-border);
+  --wb-breadcrumb-link-color: var(--wb-muted);
+  --wb-breadcrumb-link-hover: var(--wb-text);
+  --wb-breadcrumb-current: var(--wb-text);
+  --wb-breadcrumb-hover-bg: transparent;
+  --wb-breadcrumb-link-padding-y: 0;
+  --wb-breadcrumb-link-padding-x: 0;
+  --wb-breadcrumb-link-radius: var(--wb-r-sm);
+  display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0;
-  font-size: 0.875rem;
-  color: var(--wb-muted);
-  list-style: none;
-  padding: 0;
+  gap: var(--wb-s1) 0;
+  max-width: 100%;
   margin: 0;
+  padding: var(--wb-breadcrumb-padding-y) var(--wb-breadcrumb-padding-x);
+  list-style: none;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--wb-breadcrumb-link-color);
+  background: var(--wb-breadcrumb-bg);
+  border-radius: var(--wb-breadcrumb-radius);
+  box-shadow: inset 0 0 0 1px var(--wb-breadcrumb-border);
 }
 
 .wb-breadcrumb-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .wb-breadcrumb-item + .wb-breadcrumb-item::before {
-  content: "/";
-  margin: 0 var(--wb-s2);
-  color: var(--wb-border);
-  font-weight: 400;
-}
-
-.wb-breadcrumb-item a {
-  color: var(--wb-muted);
-  text-decoration: none;
-  transition: color var(--wb-t);
-}
-.wb-breadcrumb-item a:hover {
-  color: var(--wb-text);
-  text-decoration: underline;
-}
-
-.wb-breadcrumb-item.is-active {
-  color: var(--wb-text);
+  content: var(--wb-breadcrumb-separator);
+  margin: 0 var(--wb-breadcrumb-separator-gap);
+  color: var(--wb-breadcrumb-separator-color);
   font-weight: 500;
+  flex-shrink: 0;
+}
+
+.wb-breadcrumb-link,
+.wb-breadcrumb-item > a,
+.wb-breadcrumb-item > button,
+.wb-breadcrumb-item > span,
+.wb-breadcrumb > a.wb-breadcrumb-item,
+.wb-breadcrumb > button.wb-breadcrumb-item,
+.wb-breadcrumb > span.wb-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--wb-breadcrumb-link-padding-y) var(--wb-breadcrumb-link-padding-x);
+  border-radius: var(--wb-breadcrumb-link-radius);
+  color: inherit;
+  text-decoration: none;
+  line-height: inherit;
+}
+
+.wb-breadcrumb-link,
+.wb-breadcrumb-item > a,
+.wb-breadcrumb-item > button,
+.wb-breadcrumb > a.wb-breadcrumb-item,
+.wb-breadcrumb > button.wb-breadcrumb-item {
+  transition: color var(--wb-t), background var(--wb-t), box-shadow var(--wb-t);
+}
+
+.wb-breadcrumb-item > button,
+.wb-breadcrumb > button.wb-breadcrumb-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.wb-breadcrumb-link:hover,
+.wb-breadcrumb-item > a:hover,
+.wb-breadcrumb-item > button:hover,
+.wb-breadcrumb > a.wb-breadcrumb-item:hover,
+.wb-breadcrumb > button.wb-breadcrumb-item:hover {
+  color: var(--wb-breadcrumb-link-hover);
+  background: var(--wb-breadcrumb-hover-bg);
+  text-decoration: none;
+}
+
+.wb-breadcrumb-link:focus-visible,
+.wb-breadcrumb-item > a:focus-visible,
+.wb-breadcrumb-item > button:focus-visible,
+.wb-breadcrumb > a.wb-breadcrumb-item:focus-visible,
+.wb-breadcrumb > button.wb-breadcrumb-item:focus-visible {
+  outline: none;
+  color: var(--wb-breadcrumb-link-hover);
+  background: var(--wb-breadcrumb-hover-bg);
+  box-shadow:
+    0 0 0 2px var(--wb-surface),
+    0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.34);
+}
+
+.wb-breadcrumb-item.is-active,
+.wb-breadcrumb-item.is-active > a,
+.wb-breadcrumb-item.is-active > button,
+.wb-breadcrumb-item.is-active > span,
+.wb-breadcrumb-item > [aria-current="page"],
+.wb-breadcrumb-link[aria-current="page"],
+.wb-breadcrumb > .wb-breadcrumb-item[aria-current="page"] {
+  color: var(--wb-breadcrumb-current);
+  font-weight: 600;
+}
+
+.wb-breadcrumb-item > [aria-current="page"],
+.wb-breadcrumb-link[aria-current="page"] {
+  text-decoration: none;
+}
+
+.wb-breadcrumb-truncate .wb-breadcrumb-link,
+.wb-breadcrumb-truncate .wb-breadcrumb-item > a,
+.wb-breadcrumb-truncate .wb-breadcrumb-item > button,
+.wb-breadcrumb-truncate .wb-breadcrumb-item > span,
+.wb-breadcrumb-truncate > a.wb-breadcrumb-item,
+.wb-breadcrumb-truncate > button.wb-breadcrumb-item,
+.wb-breadcrumb-truncate > span.wb-breadcrumb-item {
+  max-inline-size: 18ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Presets ──────────────────────────────────────────────── */
+
+.wb-breadcrumb-minimal {
+  --wb-breadcrumb-separator: ">";
+}
+
+.wb-breadcrumb-surface {
+  --wb-breadcrumb-padding-y: var(--wb-s1);
+  --wb-breadcrumb-padding-x: var(--wb-s3);
+  --wb-breadcrumb-radius: var(--wb-r-full);
+  --wb-breadcrumb-bg: color-mix(in srgb, var(--wb-surface-2) 78%, var(--wb-surface) 22%);
+  --wb-breadcrumb-link-padding-y: var(--wb-s1);
+  --wb-breadcrumb-link-padding-x: var(--wb-s2);
+  --wb-breadcrumb-hover-bg: color-mix(in srgb, var(--wb-surface-3) 72%, transparent);
+}
+
+.wb-breadcrumb-bordered {
+  --wb-breadcrumb-padding-y: var(--wb-s2);
+  --wb-breadcrumb-padding-x: var(--wb-s3);
+  --wb-breadcrumb-radius: var(--wb-r-lg);
+  --wb-breadcrumb-bg: var(--wb-surface);
+  --wb-breadcrumb-border: color-mix(in srgb, var(--wb-border) 92%, transparent);
+  --wb-breadcrumb-link-padding-y: var(--wb-s1);
+  --wb-breadcrumb-link-padding-x: var(--wb-s2);
+  --wb-breadcrumb-hover-bg: color-mix(in srgb, var(--wb-surface-2) 88%, transparent);
+}
+
+.wb-breadcrumb-inline {
+  --wb-breadcrumb-separator: "/";
+  --wb-breadcrumb-separator-gap: var(--wb-s1);
+  font-size: 0.78rem;
+}
+
+.wb-breadcrumb-inline .wb-breadcrumb-link,
+.wb-breadcrumb-inline .wb-breadcrumb-item > a,
+.wb-breadcrumb-inline .wb-breadcrumb-item > button,
+.wb-breadcrumb-inline > a.wb-breadcrumb-item,
+.wb-breadcrumb-inline > button.wb-breadcrumb-item {
+  padding: 0;
+}
+
+.wb-breadcrumb-inline .wb-breadcrumb-link:hover,
+.wb-breadcrumb-inline .wb-breadcrumb-item > a:hover,
+.wb-breadcrumb-inline .wb-breadcrumb-item > button:hover,
+.wb-breadcrumb-inline > a.wb-breadcrumb-item:hover,
+.wb-breadcrumb-inline > button.wb-breadcrumb-item:hover {
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.wb-breadcrumb-context {
+  --wb-breadcrumb-padding-y: var(--wb-s1);
+  --wb-breadcrumb-padding-x: var(--wb-s2);
+  --wb-breadcrumb-radius: var(--wb-r-full);
+  --wb-breadcrumb-bg: color-mix(in srgb, var(--wb-surface-2) 80%, var(--wb-surface) 20%);
+  --wb-breadcrumb-border: color-mix(in srgb, var(--wb-border) 84%, transparent);
+  --wb-breadcrumb-link-padding-y: var(--wb-s1);
+  --wb-breadcrumb-link-padding-x: var(--wb-s2);
+  --wb-breadcrumb-hover-bg: color-mix(in srgb, var(--wb-surface-3) 78%, transparent);
+  font-size: var(--wb-font-size-xs);
+}
+
+.wb-breadcrumb-context .wb-breadcrumb-item + .wb-breadcrumb-item::before {
+  content: none;
+  margin: 0;
+}
+
+/* ── Separator controls ───────────────────────────────────── */
+
+.wb-breadcrumb-sep-chevron {
+  --wb-breadcrumb-separator: ">";
+}
+
+.wb-breadcrumb-sep-slash {
+  --wb-breadcrumb-separator: "/";
+}
+
+.wb-breadcrumb-sep-none .wb-breadcrumb-item + .wb-breadcrumb-item::before {
+  content: none;
+  margin: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .wb-breadcrumb-surface,
+  .wb-breadcrumb-bordered {
+    --wb-breadcrumb-padding-x: var(--wb-s2);
+  }
+
+  .wb-breadcrumb-truncate .wb-breadcrumb-link,
+  .wb-breadcrumb-truncate .wb-breadcrumb-item > a,
+  .wb-breadcrumb-truncate .wb-breadcrumb-item > button,
+  .wb-breadcrumb-truncate .wb-breadcrumb-item > span,
+  .wb-breadcrumb-truncate > a.wb-breadcrumb-item,
+  .wb-breadcrumb-truncate > button.wb-breadcrumb-item,
+  .wb-breadcrumb-truncate > span.wb-breadcrumb-item {
+    max-inline-size: 12ch;
+  }
 }
 /* ============================================================
    WebBlocks UI — Avatar (wb-avatar)
@@ -3267,6 +3464,34 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: flex;
   align-items: center;
   gap: var(--wb-s2);
+}
+
+.wb-topbar-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s3);
+  min-width: 0;
+}
+
+.wb-topbar-identity-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+}
+
+.wb-topbar-product {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--wb-text);
+  line-height: 1.2;
+}
+
+.wb-topbar-context {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  line-height: 1.2;
 }
 
 .wb-topbar-action {
@@ -5931,6 +6156,16 @@ i.wb-icon {
 
 /* ── Brand / logo ─────────────────────────────────────────── */
 
+.wb-navbar-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
 .wb-navbar-brand {
   display: flex;
   align-items: center;
@@ -5948,9 +6183,23 @@ i.wb-icon {
 }
 
 .wb-navbar-brand-note {
+  display: block;
   font-size: 0.72rem;
   font-weight: 500;
   color: var(--wb-muted);
+}
+
+.wb-navbar-context {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--wb-muted);
+  line-height: 1.25;
+}
+
+.wb-navbar-identity .wb-navbar-brand {
+  font-size: 1rem;
+  line-height: 1.1;
 }
 
 .wb-navbar-brand img,
@@ -6412,6 +6661,18 @@ i.wb-icon {
   flex-wrap: wrap;
 }
 
+.wb-page-header-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+  min-width: 0;
+  flex: 1;
+}
+
+.wb-page-breadcrumb {
+  margin: 0;
+}
+
 .wb-page-title {
   font-size: 1.4rem;
   font-weight: 700;
@@ -6423,7 +6684,7 @@ i.wb-icon {
 .wb-page-subtitle {
   font-size: 0.9rem;
   color: var(--wb-muted);
-  margin-top: var(--wb-s1);
+  margin: 0;
 }
 
 .wb-page-actions {
@@ -7425,6 +7686,440 @@ i.wb-icon {
   .wb-footer-list {
     grid-template-columns: 1fr;
   }
+}
+/* ============================================================
+   WebGames UI - Scoped Tokens
+   Applies only inside .wb-game-ui to avoid changing WebBlocks globally.
+   ============================================================ */
+
+.wb-game-ui {
+  --wb-game-surface: color-mix(in srgb, var(--wb-surface) 84%, var(--wb-accent-soft));
+  --wb-game-surface-strong: color-mix(in srgb, var(--wb-surface) 72%, var(--wb-accent-soft));
+  --wb-game-surface-muted: color-mix(in srgb, var(--wb-surface-2) 82%, var(--wb-accent-soft));
+  --wb-game-border: color-mix(in srgb, var(--wb-border) 76%, var(--wb-accent-border));
+  --wb-game-border-strong: color-mix(in srgb, var(--wb-border) 38%, var(--wb-accent));
+  --wb-game-text: var(--wb-text);
+  --wb-game-muted: color-mix(in srgb, var(--wb-muted) 92%, var(--wb-text));
+
+  --wb-game-accent: var(--wb-accent);
+  --wb-game-accent-strong: var(--wb-accent-hover);
+  --wb-game-accent-soft: color-mix(in srgb, var(--wb-accent-soft) 76%, var(--wb-surface));
+  --wb-game-accent-softer: color-mix(in srgb, var(--wb-accent-softer) 88%, var(--wb-surface));
+  --wb-game-on-accent: var(--wb-accent-on);
+
+  --wb-game-success: var(--wb-success);
+  --wb-game-success-soft: color-mix(in srgb, var(--wb-success-soft) 82%, var(--wb-surface));
+  --wb-game-warning: var(--wb-warning);
+  --wb-game-warning-soft: color-mix(in srgb, var(--wb-warning-soft) 82%, var(--wb-surface));
+  --wb-game-danger: var(--wb-danger);
+  --wb-game-danger-soft: color-mix(in srgb, var(--wb-danger-soft) 82%, var(--wb-surface));
+
+  --wb-game-radius: calc(var(--wb-r-xl) + 4px);
+  --wb-game-radius-sm: calc(var(--wb-r-md) + 2px);
+  --wb-game-shadow: var(--wb-shadow-lg);
+}
+
+html[data-mode="dark"] .wb-game-ui {
+  --wb-game-surface: color-mix(in srgb, var(--wb-surface) 90%, var(--wb-accent-soft));
+  --wb-game-surface-strong: color-mix(in srgb, var(--wb-surface-2) 88%, var(--wb-accent-soft));
+  --wb-game-surface-muted: color-mix(in srgb, var(--wb-surface-3) 86%, var(--wb-accent-soft));
+  --wb-game-border: color-mix(in srgb, var(--wb-border) 78%, var(--wb-accent-border));
+  --wb-game-border-strong: color-mix(in srgb, var(--wb-border) 38%, var(--wb-accent));
+  --wb-game-muted: color-mix(in srgb, var(--wb-muted) 88%, var(--wb-text));
+  --wb-game-accent-soft: color-mix(in srgb, var(--wb-accent-soft) 92%, var(--wb-surface));
+  --wb-game-accent-softer: color-mix(in srgb, var(--wb-accent-softer) 94%, var(--wb-surface));
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-mode="auto"] .wb-game-ui {
+    --wb-game-surface: color-mix(in srgb, var(--wb-surface) 90%, var(--wb-accent-soft));
+    --wb-game-surface-strong: color-mix(in srgb, var(--wb-surface-2) 88%, var(--wb-accent-soft));
+    --wb-game-surface-muted: color-mix(in srgb, var(--wb-surface-3) 86%, var(--wb-accent-soft));
+    --wb-game-border: color-mix(in srgb, var(--wb-border) 78%, var(--wb-accent-border));
+    --wb-game-border-strong: color-mix(in srgb, var(--wb-border) 38%, var(--wb-accent));
+    --wb-game-muted: color-mix(in srgb, var(--wb-muted) 88%, var(--wb-text));
+    --wb-game-accent-soft: color-mix(in srgb, var(--wb-accent-soft) 92%, var(--wb-surface));
+    --wb-game-accent-softer: color-mix(in srgb, var(--wb-accent-softer) 94%, var(--wb-surface));
+  }
+}
+/* ============================================================
+   WebGames UI - Screen Wrapper
+   ============================================================ */
+
+.wb-game-screen {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--wb-s8);
+  padding: clamp(var(--wb-s6), 4vw, var(--wb-s10));
+  border: 1px solid var(--wb-game-border);
+  border-radius: var(--wb-game-radius);
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--wb-game-accent-soft) 92%, transparent) 0%, transparent 46%),
+    linear-gradient(180deg, color-mix(in srgb, var(--wb-game-accent-softer) 66%, var(--wb-surface)) 0%, var(--wb-surface) 100%);
+  box-shadow: var(--wb-game-shadow);
+  overflow: hidden;
+}
+
+.wb-game-screen::before,
+.wb-game-screen::after {
+  content: "";
+  position: absolute;
+  border-radius: var(--wb-r-full);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.wb-game-screen::before {
+  width: 18rem;
+  height: 18rem;
+  top: -8rem;
+  right: -5rem;
+  background: color-mix(in srgb, var(--wb-game-accent) 14%, transparent);
+  filter: blur(12px);
+}
+
+.wb-game-screen::after {
+  width: 14rem;
+  height: 14rem;
+  left: -4rem;
+  bottom: -6rem;
+  background: color-mix(in srgb, var(--wb-game-accent) 10%, transparent);
+  filter: blur(8px);
+}
+
+.wb-game-screen-head {
+  display: grid;
+  gap: var(--wb-s5);
+  align-items: start;
+}
+
+.wb-game-screen-copy {
+  display: grid;
+  gap: var(--wb-s3);
+}
+
+.wb-game-screen-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-game-accent-strong);
+}
+
+.wb-game-screen-title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  max-width: 11ch;
+}
+
+.wb-game-screen-lead {
+  margin: 0;
+  max-width: 48ch;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--wb-game-muted);
+}
+
+.wb-game-screen-meta,
+.wb-game-screen-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wb-s3);
+}
+
+.wb-game-screen-side {
+  display: grid;
+  gap: var(--wb-s4);
+  justify-items: start;
+}
+
+@media (min-width: 760px) {
+  .wb-game-screen-head {
+    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.8fr);
+  }
+
+  .wb-game-screen-side {
+    justify-items: end;
+    align-content: start;
+  }
+}
+
+@media (max-width: 599px) {
+  .wb-game-screen {
+    gap: var(--wb-s6);
+    padding: var(--wb-s5);
+  }
+}
+/* ============================================================
+   WebGames UI - Panels and Cards
+   ============================================================ */
+
+.wb-game-panel,
+.wb-game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s4);
+  border: 1px solid var(--wb-game-border);
+  border-radius: var(--wb-game-radius);
+  background: color-mix(in srgb, var(--wb-game-surface) 94%, var(--wb-surface));
+  color: var(--wb-game-text);
+}
+
+.wb-game-panel {
+  padding: var(--wb-s5);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-game-panel--soft {
+  background: color-mix(in srgb, var(--wb-game-surface-muted) 92%, var(--wb-surface));
+}
+
+.wb-game-panel--accent {
+  border-color: var(--wb-game-border-strong);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--wb-game-accent-softer) 78%, var(--wb-surface)) 0%, color-mix(in srgb, var(--wb-game-surface) 92%, var(--wb-surface)) 100%);
+}
+
+.wb-game-panel-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+}
+
+.wb-game-panel-title,
+.wb-game-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.wb-game-panel-subtitle,
+.wb-game-card-meta {
+  margin: 0;
+  color: var(--wb-game-muted);
+  font-size: var(--wb-font-size-sm);
+  line-height: 1.6;
+}
+
+.wb-game-card {
+  padding: var(--wb-s4);
+  min-height: 100%;
+  box-shadow: var(--wb-shadow-sm);
+  transition:
+    transform var(--wb-t),
+    border-color var(--wb-t),
+    background var(--wb-t),
+    box-shadow var(--wb-t);
+}
+
+a.wb-game-card,
+button.wb-game-card {
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.wb-game-card {
+  appearance: none;
+}
+
+.wb-game-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--wb-game-border-strong);
+  box-shadow: var(--wb-shadow-md);
+}
+
+.wb-game-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.18), var(--wb-shadow-md);
+}
+
+.wb-game-card.is-selected {
+  border-color: var(--wb-game-accent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--wb-game-accent-soft) 74%, var(--wb-surface)) 0%, color-mix(in srgb, var(--wb-game-surface) 90%, var(--wb-surface)) 100%);
+  box-shadow: 0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.16), var(--wb-shadow-md);
+}
+
+.wb-game-card-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wb-game-accent-strong);
+}
+
+.wb-game-card-value {
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 599px) {
+  .wb-game-panel,
+  .wb-game-card {
+    padding: var(--wb-s4);
+  }
+}
+/* ============================================================
+   WebGames UI - Buttons
+   ============================================================ */
+
+.wb-game-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-s2);
+  min-height: 3rem;
+  padding: 0.8rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--wb-r-lg) + 6px);
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform var(--wb-t-f),
+    background var(--wb-t),
+    border-color var(--wb-t),
+    box-shadow var(--wb-t),
+    color var(--wb-t);
+  -webkit-appearance: none;
+}
+
+.wb-game-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.18);
+}
+
+.wb-game-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.wb-game-btn:disabled,
+.wb-game-btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.wb-game-btn-primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--wb-game-accent) 88%, var(--wb-white)) 0%, var(--wb-game-accent-strong) 100%);
+  color: var(--wb-game-on-accent);
+  border-color: color-mix(in srgb, var(--wb-game-accent-strong) 80%, var(--wb-game-accent));
+  box-shadow: 0 10px 24px rgb(var(--wb-accent-glow-rgb) / 0.22);
+}
+
+.wb-game-btn-primary:hover {
+  color: var(--wb-game-on-accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.wb-game-btn-secondary {
+  background: color-mix(in srgb, var(--wb-game-surface) 92%, var(--wb-surface));
+  color: var(--wb-game-text);
+  border-color: var(--wb-game-border);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-game-btn-secondary:hover {
+  color: var(--wb-game-text);
+  text-decoration: none;
+  border-color: var(--wb-game-border-strong);
+  background: var(--wb-game-surface-strong);
+}
+
+.wb-game-btn-ghost {
+  background: transparent;
+  color: var(--wb-game-accent-strong);
+  border-color: transparent;
+}
+
+.wb-game-btn-ghost:hover {
+  color: var(--wb-game-accent-strong);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--wb-game-accent-soft) 72%, transparent);
+}
+
+.wb-game-btn-lg {
+  min-height: 3.5rem;
+  padding: 0.95rem 1.35rem;
+  font-size: 1.05rem;
+}
+
+.wb-game-btn-block {
+  width: 100%;
+}
+/* ============================================================
+   WebGames UI - Status Pills
+   ============================================================ */
+
+.wb-game-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  min-height: 2rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--wb-game-border);
+  border-radius: var(--wb-r-full);
+  background: color-mix(in srgb, var(--wb-game-surface) 90%, var(--wb-surface));
+  color: var(--wb-game-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.wb-game-status-dot::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: var(--wb-r-full);
+  background: currentColor;
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.wb-game-status-accent {
+  border-color: color-mix(in srgb, var(--wb-game-accent) 28%, var(--wb-game-border));
+  background: color-mix(in srgb, var(--wb-game-accent-soft) 84%, var(--wb-surface));
+  color: var(--wb-game-accent-strong);
+}
+
+.wb-game-status-success {
+  border-color: color-mix(in srgb, var(--wb-game-success) 26%, var(--wb-game-border));
+  background: var(--wb-game-success-soft);
+  color: var(--wb-game-success);
+}
+
+.wb-game-status-warning {
+  border-color: color-mix(in srgb, var(--wb-game-warning) 26%, var(--wb-game-border));
+  background: var(--wb-game-warning-soft);
+  color: var(--wb-game-warning);
+}
+
+.wb-game-status-danger {
+  border-color: color-mix(in srgb, var(--wb-game-danger) 24%, var(--wb-game-border));
+  background: var(--wb-game-danger-soft);
+  color: var(--wb-game-danger);
 }
 /* ============================================================
    WebBlocks UI — Utility Helpers

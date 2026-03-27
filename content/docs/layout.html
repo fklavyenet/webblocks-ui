@@ -194,7 +194,7 @@
           </div>
           <div class="wb-site-table-row">
             <div class="wb-site-table-label">Auth</div>
-            <div><code>wb-auth</code></div>
+            <div><code>wb-auth-shell</code></div>
             <div>For login, register, and narrow entry flows that need visual quiet.</div>
           </div>
           <div class="wb-site-table-row">
@@ -259,6 +259,72 @@
                 </header>
                 <div class="wb-content-body">
                   <p>Content shells keep long text comfortable while preserving the same token system and class vocabulary.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-site-section">
+      <div class="wb-container wb-site-section-grid">
+        <div class="wb-site-section-copy">
+          <div class="wb-site-section-note">Hierarchy guidance</div>
+          <h2 class="wb-site-section-title">Topbar identity and page header layers should stay ordered.</h2>
+          <p>
+            Product identity belongs first in the topbar. Context comes second. Inside the page header, breadcrumb is optional,
+            title is primary, subtitle is supportive, and actions stay separate.
+          </p>
+        </div>
+
+        <div class="wb-site-samples">
+          <article class="wb-site-sample">
+            <div class="wb-site-sample-head">
+              <h3>Topbar identity stack</h3>
+              <span>product first, context second</span>
+            </div>
+            <div class="wb-site-sample-body wb-stack-4">
+              <header class="wb-navbar wb-navbar--static">
+                <div class="wb-navbar-identity">
+                  <a href="#" class="wb-navbar-brand">QuizTem</a>
+                  <span class="wb-navbar-context">Teacher workspace</span>
+                </div>
+                <span class="wb-navbar-spacer"></span>
+                <div class="wb-topbar-actions">
+                  <button class="wb-topbar-action" type="button" aria-label="Notifications">
+                    <i class="wb-icon wb-icon-bell wb-icon-sm"></i>
+                  </button>
+                </div>
+              </header>
+              <div class="wb-callout wb-callout-accent">
+                <strong class="wb-callout-title">Hierarchy rule</strong>
+                Avoid ambiguous patterns like <code>Teacher / QuizTem</code>. Prefer <code>QuizTem</code> as product, then <code>Teacher workspace</code> as secondary context.
+              </div>
+            </div>
+          </article>
+
+          <article class="wb-site-sample">
+            <div class="wb-site-sample-head">
+              <h3>Page header stack</h3>
+              <span>breadcrumb optional, title primary</span>
+            </div>
+            <div class="wb-site-sample-body">
+              <div class="wb-page-header">
+                <div class="wb-page-header-main">
+                  <nav class="wb-page-breadcrumb" aria-label="Breadcrumb example">
+                    <ol class="wb-breadcrumb wb-breadcrumb-minimal">
+                      <li class="wb-breadcrumb-item"><a href="#">Workspace</a></li>
+                      <li class="wb-breadcrumb-item is-active"><span aria-current="page">Members</span></li>
+                    </ol>
+                  </nav>
+                  <div>
+                    <h2 class="wb-page-title">Members</h2>
+                    <p class="wb-page-subtitle">Manage people, roles, and invitations.</p>
+                  </div>
+                </div>
+                <div class="wb-page-actions">
+                  <button class="wb-btn wb-btn-primary wb-btn-sm" type="button">Invite</button>
                 </div>
               </div>
             </div>
