@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Docs - WebBlocks UI</title>
-  <meta name="description" content="Documentation for WebBlocks UI: foundations, layouts, components, utilities, icons, and JavaScript modules.">
+  <meta name="description" content="Documentation for WebBlocks UI: foundations, layout primitives, UI primitives, patterns, utilities, icons, and JavaScript modules.">
   <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
   <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
   <link rel="stylesheet" href="../site.css">
@@ -22,7 +22,7 @@
       <nav class="wb-site-nav" aria-label="Primary">
         <a href="../website/index.html" class="wb-site-nav-link">Website</a>
         <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
-        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="components.html" class="wb-site-nav-link">UI Primitives</a>
         <a href="layout.html" class="wb-site-nav-link">Layout</a>
         <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
       </nav>
@@ -53,9 +53,9 @@
           <div class="wb-page-eyebrow">Read from the inside out</div>
           <h1 class="wb-page-title">The docs begin with <em>structure</em>, not promotion.</h1>
           <p class="wb-page-lead">
-            Start with foundations, because every other file depends on them. Then move into layouts,
-            then components, then utilities and JavaScript. The system is intentionally ordered so you can
-            understand how a page comes together without guessing where a behavior or token originated.
+            Start with foundations, then layout primitives, then UI primitives, then utilities and JavaScript.
+            Pair that reading order with pattern-first composition so you can see where structure,
+            visible building blocks, and behavior each actually come from.
           </p>
         </div>
         <aside class="wb-page-intro-aside">
@@ -70,8 +70,8 @@
               <p>Containers and shells determine how the interface breathes before individual widgets do.</p>
             </li>
             <li>
-              <span class="wb-site-key">Components by job</span>
-              <p>Inputs, navigation, feedback, overlays, and data display are easier to learn in groups.</p>
+              <span class="wb-site-key">Patterns first</span>
+              <p>Start from auth, dashboard, form, and marketing patterns before drilling into individual primitives.</p>
             </li>
           </ul>
         </aside>
@@ -84,7 +84,7 @@
           <div class="wb-site-section-note">Reading order</div>
           <h2 class="wb-site-section-title">A practical path through the system.</h2>
           <p>
-            If you are new to the library, follow this order. It mirrors the order of the build and the way a real page is assembled.
+            If you are new to the system, follow this order. It mirrors the build and the way a real page is assembled.
           </p>
         </div>
 
@@ -95,12 +95,16 @@
               <p>Read the token system, theme axes, and the rules around accent, radius, border, density, and font.</p>
             </li>
             <li>
-              <strong>Layouts</strong>
-              <p>Choose the shell first: container, dashboard, auth, settings, or content.</p>
+              <strong>Patterns</strong>
+              <p>Pick a real page job first: auth, dashboard, form, or marketing.</p>
             </li>
             <li>
-              <strong>Components</strong>
-              <p>Add the pieces the page needs: forms, tables, alerts, overlays, lists, filters, navigation.</p>
+              <strong>Layout primitives</strong>
+              <p>Choose the shell and flow tools: page, section, container, stack, row, grid, or shell layout.</p>
+            </li>
+            <li>
+              <strong>UI primitives</strong>
+              <p>Add the building blocks the page needs: forms, tables, alerts, overlays, lists, filters, navigation.</p>
             </li>
             <li>
               <strong>Utilities and JS</strong>
@@ -122,6 +126,20 @@
         </div>
 
         <div class="wb-link-list">
+          <a href="../../PATTERNS.md" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Pattern Catalog</span>
+              <span class="wb-link-list-meta">Canonical starting points</span>
+            </div>
+            <div class="wb-link-list-desc">Start here for auth, dashboard, form, and marketing structures before customizing anything.</div>
+          </a>
+          <a href="../../PRIMITIVES.md" class="wb-link-list-item">
+            <div class="wb-link-list-main">
+              <span class="wb-link-list-title">Primitives Definition</span>
+              <span class="wb-link-list-meta">Terminology and architecture</span>
+            </div>
+            <div class="wb-link-list-desc">Use this to distinguish layout primitives, UI primitives, utilities, and patterns correctly.</div>
+          </a>
           <a href="getting-started.html" class="wb-link-list-item">
             <div class="wb-link-list-main">
               <span class="wb-link-list-title">Getting Started</span>
@@ -145,8 +163,8 @@
           </a>
           <a href="components.html" class="wb-link-list-item">
             <div class="wb-link-list-main">
-              <span class="wb-link-list-title">Components</span>
-              <span class="wb-link-list-meta">Primitives grouped by function</span>
+              <span class="wb-link-list-title">UI Primitives</span>
+              <span class="wb-link-list-meta">Building blocks grouped by function</span>
             </div>
             <div class="wb-link-list-desc">Buttons, form controls, tables, overlays, list patterns, feedback, and richer interaction pieces.</div>
           </a>
@@ -188,7 +206,7 @@
 
         <pre class="wb-site-pre"><code>foundation/
 base/
-components/
+UI primitive sources/
 layouts/
 utilities/
 
@@ -209,10 +227,10 @@ utilities/
         <div class="wb-link-list">
           <a href="components.html" class="wb-link-list-item">
             <div class="wb-link-list-main">
-              <span class="wb-link-list-title">Go to Components</span>
+              <span class="wb-link-list-title">Go to UI Primitives</span>
               <span class="wb-link-list-meta">Inputs, tables, overlays, feedback</span>
             </div>
-            <div class="wb-link-list-desc">Use this when the structure is already clear and you need the actual interface pieces.</div>
+            <div class="wb-link-list-desc">Use this when the pattern and structure are already clear and you need the actual building blocks.</div>
           </a>
           <a href="layout.html" class="wb-link-list-item">
             <div class="wb-link-list-main">

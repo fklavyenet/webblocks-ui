@@ -22,7 +22,7 @@
       <nav class="wb-site-nav" aria-label="Primary">
         <a href="../../website/index.html" class="wb-site-nav-link">Website</a>
         <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
-        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="components.html" class="wb-site-nav-link">UI Primitives</a>
         <a href="layout.html" class="wb-site-nav-link">Layout</a>
         <a href="../../examples/index.html" class="wb-site-nav-link">Examples</a>
       </nav>
@@ -37,13 +37,13 @@
           <h1 class="wb-page-title">Hilfsklassen sind für <em>kleine Korrekturen</em> da, nicht für ein zweites Designsystem.</h1>
           <p class="wb-page-lead">
             WebBlocks enthält Helfer für Display, Flex, Spacing, Typografie, Farbe, Border, Shadow, Position und Visibility.
-            Sie sollen eine Komposition abschließen, nicht die Komponenten- und Layout-Ebene ersetzen.
+            Sie sollen eine Komposition abschließen, nicht die Primitive- und Layout-Ebene ersetzen.
           </p>
         </div>
         <aside class="wb-page-intro-aside">
           <h2>Gute Nutzung</h2>
           <ul class="wb-site-principles">
-            <li><span class="wb-site-key">Struktur zuerst</span><p>Nutze zuerst Layout-Primitives und Komponenten-Defaults, dann erst Utilities.</p></li>
+            <li><span class="wb-site-key">Struktur zuerst</span><p>Nutze zuerst Layout-Primitives und Primitive-Defaults, dann erst Utilities.</p></li>
             <li><span class="wb-site-key">Lokal halten</span><p>Eine Utility ist sinnvoll, wenn ein oder zwei Anpassungen das Problem lösen.</p></li>
             <li><span class="wb-site-key">Nicht blind stapeln</span><p>Wenn viele Utilities zusammen auftauchen, liegt die Entscheidung vermutlich in der falschen Schicht.</p></li>
           </ul>
@@ -83,7 +83,7 @@
         <div class="wb-site-section-copy">
           <div class="wb-site-section-note">Beispiel</div>
           <h2 class="wb-site-section-title">Ein paar Utilities koennen ein Layout abschliessen, ohne es zu verstecken.</h2>
-          <p>Gesunde Nutzung bedeutet: Die Komponente erledigt die Hauptarbeit, Utilities justieren nur Spacing und Alignment.</p>
+          <p>Gesunde Nutzung bedeutet: Ein Primitive oder Pattern erledigt die Hauptarbeit, Utilities justieren nur Spacing und Alignment.</p>
         </div>
         <pre class="wb-site-pre"><code>&lt;div class="wb-card wb-mt-4"&gt;
   &lt;div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3"&gt;
@@ -101,12 +101,12 @@
           <div class="wb-site-section-note">Grenze</div>
           <h2 class="wb-site-section-title">Wenn die ganze Seite wie Utilities aussieht, anhalten.</h2>
           <p>
-            Wenn das Markup zu einer Wand aus Helfern wird, sollte die Entscheidung wieder in die Komponenten- oder Layout-Ebene zurueck.
+            Wenn das Markup zu einer Wand aus Helfern wird, sollte die Entscheidung wieder in die Primitive-, Pattern- oder Layout-Ebene zurueck.
             Das System bleibt lesbarer, wenn Utilities bescheiden eingesetzt werden.
           </p>
         </div>
         <div class="wb-callout wb-callout-accent">
-          Mit Utilities justieren. Mit Komponenten und Layouts definieren.
+          Mit Utilities justieren. Mit Primitiven, Patterns und Layouts definieren.
         </div>
       </div>
     </section>

@@ -79,8 +79,8 @@
           </button>
           <div class="wb-accordion-content" id="faq1">
             <div class="wb-accordion-body">
-              WebBlocks UI is a framework-agnostic UI kit built with plain HTML, CSS custom properties,
-              and vanilla JavaScript. It provides a complete set of components, layouts, and a multi-axis
+              WebBlocks UI is a framework-agnostic UI system built with plain HTML, CSS custom properties,
+              and vanilla JavaScript. It provides a complete set of primitives, layouts, and a multi-axis
               theme engine — with no build step, no npm, and zero dependencies.
             </div>
           </div>
@@ -124,7 +124,7 @@
           <div class="wb-accordion-content" id="faq4" style="max-height:0">
             <div class="wb-accordion-body">
               Yes. V2 is stable and suitable for production admin panels, SaaS dashboards,
-              and marketing pages. All V2 components have been tested across modern browsers.
+              and marketing pages. All V2 interactive patterns have been tested across modern browsers.
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@
             <div class="wb-accordion-body">
               Yes. Override the <code>--wb-accent-*</code> tokens in your own CSS file.
               Define all 12 accent tokens (e.g. <code>--wb-accent</code>, <code>--wb-accent-hover</code>,
-              <code>--wb-accent-soft</code>, etc.) and every component will automatically
+              <code>--wb-accent-soft</code>, etc.) and every primitive will automatically
               pick up your brand color.
             </div>
           </div>
@@ -192,10 +192,10 @@
       </div>
     </div>
 
-    <!-- Category: Components -->
+    <!-- Category: Primitives and patterns -->
     <div class="wb-mb-8" id="cat-components">
       <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:var(--wb-s4);padding-bottom:var(--wb-s2);border-bottom:2px solid var(--wb-accent-border)">
-        Components
+        Primitives and patterns
       </h2>
 
       <div class="wb-accordion" data-wb-accordion>
@@ -209,7 +209,7 @@
           <div class="wb-accordion-content" id="faq8" style="max-height:0">
             <div class="wb-accordion-body">
               Add <code>data-wb-toggle="modal"</code> and <code>data-wb-target="#myModal"</code>
-              to any button. Alternatively, call <code>WBModal.open('#myModal')</code> from JavaScript.
+              to any button. Alternatively, call <code>WBModal.open(document.getElementById('myModal'))</code> from JavaScript.
               The modal includes a built-in focus trap and closes on Escape or backdrop click.
             </div>
           </div>
@@ -218,12 +218,12 @@
         <div class="wb-accordion-item" data-faq>
           <button class="wb-accordion-trigger" data-wb-accordion-trigger
                   aria-expanded="false" aria-controls="faq9">
-            Are the components accessible?
+            Are the primitives and interaction patterns accessible?
             <span class="wb-accordion-icon"></span>
           </button>
           <div class="wb-accordion-content" id="faq9" style="max-height:0">
             <div class="wb-accordion-body">
-              Yes. Interactive components include appropriate ARIA attributes
+              Yes. Interactive patterns include appropriate ARIA attributes
               (<code>aria-expanded</code>, <code>aria-controls</code>, <code>role="dialog"</code>, etc.),
               focus management, and keyboard navigation. Modals and drawers implement full focus traps.
               Tabs support arrow key navigation.
@@ -239,9 +239,9 @@
           </button>
           <div class="wb-accordion-content" id="faq10" style="max-height:0">
             <div class="wb-accordion-body">
-              Yes. The CSS-only components (buttons, cards, alerts, badges, forms, tables, tooltips,
+              Yes. The CSS-only primitives (buttons, cards, alerts, badges, forms, tables, tooltips,
               skeleton, divider, list-group, and more) work without any JavaScript. The JS file is
-              only needed for interactive components: modals, dropdowns, tabs, accordion,
+              only needed for interactive patterns: modals, dropdowns, tabs, accordion,
               sidebar, drawer, nav group, and command palette.
             </div>
           </div>

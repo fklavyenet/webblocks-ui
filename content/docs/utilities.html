@@ -22,7 +22,7 @@
       <nav class="wb-site-nav" aria-label="Primary">
         <a href="../website/index.html" class="wb-site-nav-link">Website</a>
         <a href="index.html" class="wb-site-nav-link is-active">Docs</a>
-        <a href="components.html" class="wb-site-nav-link">Components</a>
+        <a href="components.html" class="wb-site-nav-link">UI Primitives</a>
         <a href="layout.html" class="wb-site-nav-link">Layout</a>
         <a href="../examples/index.html" class="wb-site-nav-link">Examples</a>
       </nav>
@@ -37,15 +37,15 @@
           <h1 class="wb-page-title">Utilities are for <em>small corrections</em>, not a second design system.</h1>
           <p class="wb-page-lead">
             WebBlocks includes display, flex, spacing, typography, color, border, shadow, positioning, and visibility helpers.
-            They are there to finish a composition, not replace the component and layout layers.
+            They are there to finish a composition, not replace the primitive and layout layers.
           </p>
         </div>
         <aside class="wb-page-intro-aside">
           <h2>Use them well</h2>
           <ul class="wb-site-principles">
-            <li><span class="wb-site-key">Prefer structure first</span><p>Use layout primitives and component defaults before reaching for utilities.</p></li>
+            <li><span class="wb-site-key">Prefer structure first</span><p>Use layout primitives and primitive defaults before reaching for utilities.</p></li>
             <li><span class="wb-site-key">Keep them local</span><p>Use a utility when one or two adjustments solve the page.</p></li>
-            <li><span class="wb-site-key">Do not stack blindly</span><p>If many utilities appear together, the underlying component probably needs attention.</p></li>
+            <li><span class="wb-site-key">Do not stack blindly</span><p>If many utilities appear together, the underlying primitive or pattern probably needs attention.</p></li>
           </ul>
         </aside>
       </div>
@@ -83,7 +83,7 @@
         <div class="wb-site-section-copy">
           <div class="wb-site-section-note">Example</div>
           <h2 class="wb-site-section-title">A few utilities can finish a layout without obscuring it.</h2>
-          <p>This kind of usage is healthy: a component is doing most of the work, and utilities only refine spacing and alignment.</p>
+          <p>This kind of usage is healthy: a primitive or pattern is doing most of the work, and utilities only refine spacing and alignment.</p>
         </div>
         <pre class="wb-site-pre"><code>&lt;div class="wb-card wb-mt-4"&gt;
   &lt;div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3"&gt;
@@ -101,12 +101,12 @@
           <div class="wb-site-section-note">Boundary</div>
           <h2 class="wb-site-section-title">When utilities start to look like the whole page, stop.</h2>
           <p>
-            If the markup becomes a wall of helpers, move the decision back into the component or layout layer.
+            If the markup becomes a wall of helpers, move the decision back into the primitive, pattern, or layout layer.
             The library is easier to read when utilities stay modest.
           </p>
         </div>
         <div class="wb-callout wb-callout-accent">
-          Use utilities to adjust. Use components and layouts to define.
+          Use utilities to adjust. Use patterns, primitives, and layouts to define.
         </div>
       </div>
     </section>

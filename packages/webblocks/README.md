@@ -1,10 +1,30 @@
 # WebBlocks UI
 
-A framework-agnostic UI kit built with plain HTML, CSS custom properties, and vanilla JavaScript.
+A primitive-driven, pattern-oriented UI system built with plain HTML, CSS custom properties, and vanilla JavaScript.
 
 **No build step. No npm. No dependencies.**
 
 Works with Laravel Blade, Craft Twig, Django templates, or plain HTML files.
+
+---
+
+## Identity
+
+- foundation for tokens and theme axes
+- layout primitives for structure
+- UI primitives for visible building blocks
+- patterns for real screens
+
+WebBlocks stays HTML-first. You use standard markup, shipped classes, and opt-in JavaScript behavior.
+
+## Start The Right Way
+
+Start from patterns, not primitives.
+
+- [`../../PATTERNS.md`](../../PATTERNS.md) - canonical auth, dashboard, form, and marketing starting points
+- [`../../PRIMITIVES.md`](../../PRIMITIVES.md) - definitions for layout primitives, UI primitives, and utilities
+- [`../../INTEGRATION.md`](../../INTEGRATION.md) - pattern-first architecture rules
+- [`INTEGRATION.md`](INTEGRATION.md) - shipped package reference sourced from `src/` and `build.sh`
 
 ---
 
@@ -15,7 +35,7 @@ Works with Laravel Blade, Craft Twig, Django templates, or plain HTML files.
 <script src="dist/webblocks-ui.js"></script>
 ```
 
-Add the dist files to your project and start using components.
+Add the dist files to your project, choose a pattern, and adapt the primitives it uses.
 
 ---
 
@@ -70,7 +90,9 @@ Preferences are saved to `localStorage` automatically.
 
 ---
 
-## Components
+## Shipped Building Blocks
+
+Use this section after you choose a pattern. It inventories the shipped UI primitives, shells, helpers, and interaction patterns.
 
 ### Button
 
@@ -738,7 +760,7 @@ WebBlocks UI is plain HTML and CSS — it works in any Laravel Blade template wi
 <div class="wb-alert wb-alert-success">{{ session('status') }}</div>
 ```
 
-No Blade components, no wrappers — HTML stays HTML.
+No Blade wrappers or hidden markup APIs — HTML stays HTML.
 
 ### AJAX Toggle
 
@@ -777,81 +799,25 @@ POST body:
 
 ## JavaScript API
 
-Each module exposes a global object:
+Interactive modules expose `window.*` objects for opt-in behavior:
 
-```js
-// Theme
-WBTheme.setMode('dark')            // 'light' | 'dark' | 'auto'
-WBTheme.setAccent('forest')        // accent color key
-WBTheme.setPreset('corporate')     // preset key
-WBTheme.setRadius('soft')          // 'sharp' | 'soft'
-WBTheme.setDensity('compact')      // 'compact' | 'comfortable'
+- `WBTheme`
+- `WBModal`
+- `WBDropdown`
+- `WBTabs`
+- `WBAccordion`
+- `WBSidebar`
+- `WBNavGroup`
+- `WBDrawer`
+- `WBCommandPalette`
+- `WBToast`
+- `WBPopover`
+- `WBTooltip`
+- `WBDismiss`
+- `WBAjaxToggle`
+- `WBCollapse`
 
-// Modal
-WBModal.open('#myModal')
-WBModal.close('#myModal')
-
-// Dropdown
-WBDropdown.open(triggerEl)
-WBDropdown.close(triggerEl)
-
-// Tabs
-WBTabs.activate(tabButtonEl)
-
-// Accordion
-WBAccordion.open(itemEl)
-WBAccordion.close(itemEl)
-
-// Sidebar
-WBSidebar.open()
-WBSidebar.close()
-
-// Nav Group
-WBNavGroup.open(groupEl)
-WBNavGroup.close(groupEl)
-WBNavGroup.init()
-
-// Drawer
-WBDrawer.open('#myDrawer')
-WBDrawer.close('#myDrawer')
-
-// Command Palette
-WBCommandPalette.open('#myCmdPalette')
-WBCommandPalette.close('#myCmdPalette')
-WBCommandPalette.register('#myCmdPalette', {
-  onSearch: function(query, results) {
-    // called on every keystroke; results = matching wb-cmd-result NodeList
-  }
-})
-
-// Toast
-WBToast.show('Message')
-WBToast.show('Saved', { type: 'success', position: 'top-right', duration: 4000 })
-WBToast.dismiss(toastEl)
-
-// Popover
-WBPopover.open(wrapperEl)
-WBPopover.close(wrapperEl)
-WBPopover.closeAll()
-
-// Tooltip
-WBTooltip.show(el)
-WBTooltip.hide(el)
-WBTooltip.hideAll()
-
-// Dismiss (alert / banner)
-WBDismiss.dismiss(el)
-
-// AJAX Toggle
-// Fired automatically on checkbox change — no manual call needed.
-// Listen to events:
-document.addEventListener('wb:ajax-toggle:success', function (e) {
-  console.log(e.detail) // { id, field, checked, response }
-})
-document.addEventListener('wb:ajax-toggle:error', function (e) {
-  console.log(e.detail) // { id, field, checked, status, error }
-})
-```
+Use [`INTEGRATION.md`](INTEGRATION.md) for canonical method signatures, data attributes, and emitted events.
 
 ---
 
@@ -940,7 +906,7 @@ Each accent exposes 12 CSS custom properties usable anywhere in your UI:
 | `--wb-accent-text`      | Text color on light surfaces          |
 | `--wb-accent-on`        | Text/icon on filled accent background |
 | `--wb-accent-ring`      | Focus ring (`rgb(...)` value)         |
-| `--wb-accent-ring-rgb`  | Focus ring components (`r g b`)       |
+| `--wb-accent-ring-rgb`  | Focus ring channels (`r g b`)         |
 | `--wb-accent-selection` | `::selection` background              |
 | `--wb-accent-glow-rgb`  | Glow / shadow tint (`r g b`)          |
 

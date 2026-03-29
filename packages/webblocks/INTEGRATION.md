@@ -27,8 +27,16 @@ This document is sourced from `packages/webblocks/src/` and `packages/webblocks/
 Notes:
 
 - `webblocks-icons.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
-- `webblocks-ui.css` already includes tokens, components, layouts, utilities, and the scoped `webgames` extension classes
-- `webblocks-ui.js` exposes `window.*` APIs and data-attribute behavior for interactive components
+- `webblocks-ui.css` already includes tokens, UI primitive source output, layouts, utilities, and the scoped `webgames` extension classes
+- `webblocks-ui.js` exposes `window.*` APIs and data-attribute behavior for interactive patterns
+
+---
+
+## Starting Point
+
+Start from patterns, not primitives.
+
+Use [`../../PATTERNS.md`](../../PATTERNS.md) to choose a canonical auth, dashboard, form, or marketing starting point first. Use this file after that to confirm the shipped primitive, shell, utility, and API names.
 
 ---
 
@@ -40,7 +48,7 @@ Notes:
 - introduce custom wrapper classes only as a last resort after primitive composition is exhausted
 - use design tokens and shipped utilities instead of hardcoded colors, radii, or spacing
 - interactive behavior is opt-in through `data-wb-*` attributes or `window.WB*` APIs
-- build order is strict: foundation -> base -> components -> layouts -> scoped extensions -> utilities
+- build order is strict: foundation -> base -> UI primitive source files -> layouts -> scoped extensions -> utilities
 - if you modify source CSS, JS, or icons in this package, rebuild `dist/` with `./build.sh`
 
 ---
@@ -90,7 +98,7 @@ Theme button hooks supported by `WBTheme`:
 
 ## Design Tokens
 
-Never hardcode colors or layout values inside WebBlocks component CSS.
+Never hardcode colors or layout values inside WebBlocks source CSS.
 
 | Group | Common tokens |
 |---|---|
@@ -111,7 +119,7 @@ Use `--wb-accent*` in new code. `--wb-primary*` exists for backward compatibilit
 
 ---
 
-## Canonical Component Patterns
+## Canonical UI Primitives And Patterns
 
 ### Buttons
 
@@ -927,7 +935,7 @@ Also shipped for editorial/marketing surfaces:
 
 ## Screen Composition Examples
 
-These are canonical starting structures. Extend them with shipped primitives and components before adding custom wrappers.
+These are canonical starting structures. Extend them with shipped primitives and shells before adding custom wrappers.
 
 ### Auth Screen
 
@@ -1346,12 +1354,12 @@ Use this extension only inside a deliberately scoped game-like surface.
 
 - choose the shell first: `wb-auth-shell` for login/register, `wb-dashboard-shell` for app dashboards, `wb-settings-shell` for account/settings flows, `wb-content-shell` for editorial/docs content
 - when building auth, dashboard, or settings screens, start from the canonical examples in `Screen Composition Examples` and expand them without changing the shell contract
-- build each screen from shipped primitives first: `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, then add components inside those structures
+- build each screen from shipped primitives first: `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, then add UI primitives inside those structures
 - build forms only with `wb-field`, `wb-label`, `wb-input` / `wb-select` / `wb-textarea`, `wb-field-hint`, and `wb-field-error`
 - choose breadcrumb presets by job: `minimal` for standard admin headers, `surface` for soft separated headers, `bordered` for enterprise/data-heavy panels, `inline` for dense tool-like context, `context` for single-item location labels
 - keep header hierarchy strict: breadcrumb optional, title required, subtitle optional, actions optional
 - keep topbar identity strict: product first, context second
-- use canonical shell/component names when both canonical and legacy aliases exist
+- use canonical shell and primitive names when both canonical and legacy aliases exist
 - NEVER invent a parallel class system for auth, settings, dashboard, icons, or field controls when shipped classes already exist
 - NEVER create project-specific wrappers before checking whether the same structure can be expressed with shipped primitives and shells
 
@@ -1396,7 +1404,7 @@ DO NOT:
 3. `wb-confirm` is a modal variant on the `.wb-modal` wrapper.
 4. `wb-stat` lives in `card.css`; there is no separate stat stylesheet.
 5. `wb-panel`, `wb-page-header`, `wb-page-actions`, and `wb-stat-row` live in `dashboard-shell.css`.
-6. `wb-divider` exists in both layout and component sources, but the richer component API is the canonical one to document.
+6. `wb-divider` exists in both layout and primitive sources, but the richer primitive API is the canonical one to document.
 7. `wb-grid-2`, `wb-grid-3`, and `wb-grid-4` exist in both layout and utility sources; both ship compatible behavior, but `container.css` is the broader layout primitive source.
 8. `WBTheme` stores values in localStorage under `wb-*` keys and re-syncs control buttons automatically.
 9. `data-wb-mode-cycle` updates the icon inside the button if it contains either `<use>` or `<i class="wb-icon">`.

@@ -202,7 +202,7 @@
     <a href="layout.html" class="docs-nav-link">Layouts</a>
 
     <div class="docs-nav-section">Referenz</div>
-    <a href="components.html" class="docs-nav-link">Komponenten</a>
+    <a href="components.html" class="docs-nav-link">Primitive</a>
     <a href="javascript.html" class="docs-nav-link">JavaScript API</a>
     <a href="icons.html" class="docs-nav-link">Icons</a>
     <a href="utilities.html" class="docs-nav-link">Dienstprogramme</a>
@@ -246,12 +246,12 @@
       <h2 class="docs-section-title">Design-Tokens</h2>
       <p class="docs-section-lead">
         Alle Werte (Farben, Größen, Radien, Schatten, Abstände) sind CSS-Custom-Properties, die in
-        <code class="wb-code-inline">tokens.css</code> definiert sind. Komponenten verwenden niemals hartcodierte Werte —
+        <code class="wb-code-inline">tokens.css</code> definiert sind. Primitive verwenden niemals hartcodierte Werte —
         sie referenzieren immer einen Token. Überschreibe einen beliebigen Token, um WebBlocks UI an deine Marke anzupassen.
       </p>
 
       <div class="docs-callout">
-        <strong>Regel:</strong> Verwende Tokens auch in deinen eigenen Komponenten.
+        <strong>Regel:</strong> Verwende Tokens auch in deinen eigenen Primitiven.
         Codiere niemals eine Farbe, Größe oder einen Radius hart, die sich bei einem Theme-Wechsel ändern könnte.
       </div>
 
@@ -449,7 +449,7 @@
       <p style="font-size:0.875rem;color:var(--wb-muted);margin-bottom:var(--wb-s3)">
         Der Dunkelmodus überschreibt Oberflächen-, Text- und Rahmen-Tokens über einen
         <code class="wb-code-inline">[data-mode="dark"]</code>-Selektor in <code class="wb-code-inline">dark.css</code>.
-        Alle Komponentenstile erben die neuen Werte automatisch — separate Dunkelmodus-Klassen-Varianten werden nicht benötigt.
+        Alle Primitivstile erben die neuen Werte automatisch — separate Dunkelmodus-Klassen-Varianten werden nicht benötigt.
       </p>
       <pre class="wb-code">&lt;!-- Statisch --&gt;
 &lt;html data-mode="dark"&gt;
