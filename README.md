@@ -36,16 +36,14 @@ Start from patterns, not primitives.
 ## Repository Structure
 
 - `packages/webblocks/` - shipped CSS, JS, icons, build script, and package docs
-- `content/` - website, docs, and example surfaces built around the package
+- `docs/` - documentation and integrated pattern examples built around the package
 
 ## Entry Points
 
 - repository entry: `index.html`
-- website: `content/website/index.html`
-- docs: `content/docs/index.html`
-- examples: `content/examples/index.html`
+- docs: `docs/index.html`
+- pattern examples: `docs/patterns.html`
 
 ## Notes
 
-- `content/examples/public-pages/` contains public-facing page demos
-- content pages consume built assets from `packages/webblocks/dist/`
+- docs pages consume built assets from `packages/webblocks/dist/`

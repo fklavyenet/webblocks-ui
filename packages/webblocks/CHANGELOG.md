@@ -15,13 +15,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Breadcrumb preset system: `minimal`, `surface`, `bordered`, `inline`, and `context`, with controlled separator modifiers and single-item context support
 
 ### Changed
-- Icon set refreshed to 173 curated Lucide icons across sprite and CSS delivery modes
+- Icon set refreshed to 173 curated Lucide icons for CSS mask-image delivery
 - Icon reference docs updated to use the `wb-icon-*` symbol/class convention consistently
 - Icon reference docs now explain the semantic split between refresh, sync, retry, and rotate actions
 - Page/header guidance now treats breadcrumb as secondary context, keeps page title primary, and formalizes product-first topbar identity hierarchy
 
 ### Fixed
-- Sprite and CSS icon mappings are now generated from the same source so `<i class="wb-icon wb-icon-*"></i>` stays in parity with the SVG sprite
+- CSS icon mappings are now generated from the source icon set so `<i class="wb-icon wb-icon-*"></i>` stays stable across rebuilds
 - Added refresh icon CSS aliases for `wb-icon-refresh-cw`, `wb-icon-refresh`, and `wb-icon-rotate-cw`, mapped to the existing `wb-icon-rotate-cw` glyph for downstream compatibility
 - Added a default `help-circle` mask fallback for `<i class="wb-icon ..."></i>` so unknown or missing `wb-icon-*` classes do not render as empty squares
 
@@ -143,7 +143,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [2.0.0] — 2026-03-15
 
 ### Added
-- Full V2 component set: Drawer, Command Palette, Popover, Tooltip, Divider, List Group, Nav Group, Filter Bar, Action Menu, Loading/Spinner, Confirmation Dialog
+- Full V2 primitive set: Drawer, Command Palette, Popover, Tooltip, Divider, List Group, Nav Group, Filter Bar, Action Menu, Loading/Spinner, Confirmation Dialog
 - V2 layouts: Settings Shell, Content Shell
 - Multi-axis theme engine: `data-mode`, `data-accent`, `data-preset`, `data-radius`, `data-density`, `data-shadow`, `data-font`, `data-border`
 - 8 accent color themes: `ocean`, `forest`, `sunset`, `royal`, `mint`, `amber`, `rose`, `slate-fire`
@@ -156,7 +156,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - `WBTheme` JS module — `setMode()`, `setAccent()`, `setPreset()`, `setRadius()`, `setDensity()`
 - Toast position modifier classes: `wb-toast-top-right`, `wb-toast-top-center`, `wb-toast-top-left`, `wb-toast-bottom-center`, `wb-toast-bottom-left`
 - `wb-confirm` confirmation dialog variant (inside `modal.css`)
-- `wb-stat` stats card component (inside `card.css`)
+- `wb-stat` stats card primitive (inside `card.css`)
 - Proprietary LICENSE — Copyright (c) 2026 fklavye.net
 
 ### Changed
@@ -172,8 +172,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [0.1.0] — 2026-01-01
 
 ### Added
-- Initial release — V1 core component set
-- Components: Button, Badge, Card, Alert, Form, Table, Modal, Dropdown, Tabs, Accordion, Pagination, Breadcrumb, Avatar, Toast, Skeleton, Empty State
+- Initial release — V1 core primitive set
+- Primitives: Button, Badge, Card, Alert, Form, Table, Modal, Dropdown, Tabs, Accordion, Pagination, Breadcrumb, Avatar, Toast, Skeleton, Empty State
 - Layouts: Dashboard Shell, Auth Shell, Navbar, Sidebar, Container
 - JS modules: WBModal, WBDropdown, WBTabs, WBAccordion, WBSidebar
 - Design token system (`tokens.css`) — surfaces, text, accent, semantic, spacing, radius, shadow, typography, z-index

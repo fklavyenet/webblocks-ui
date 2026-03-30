@@ -1120,17 +1120,7 @@ Other:
 
 ## Icons
 
-Two icon patterns are supported.
-
-### SVG sprite pattern
-
-```html
-<svg class="wb-icon" aria-hidden="true">
-  <use href="dist/webblocks-icons.svg#wb-icon-home"></use>
-</svg>
-```
-
-### CSS mask `<i>` pattern
+Canonical icon pattern:
 
 ```html
 <i class="wb-icon wb-icon-home" aria-hidden="true"></i>
@@ -1168,10 +1158,9 @@ Semantic guidance:
 
 Important icon behavior:
 
-- sprite symbol ids are `#wb-icon-*`
 - CSS mask classes are `wb-icon-*`
 - if an `<i class="wb-icon wb-icon-missing">` class does not resolve to a generated rule, the fallback glyph is `help-circle`, not a blank box
-- current shipped icon source of truth is `src/css/icons/webblocks-icons.svg`, built by `scripts/build-icons.js`
+- current icon source of truth is `src/css/icons/webblocks-icons.svg`, built into `webblocks-icons.css` by `scripts/build-icons.js`
 
 ---
 
@@ -1428,7 +1417,7 @@ Implementation source of truth:
 
 - CSS: `packages/webblocks/src/css/`
 - JS: `packages/webblocks/src/js/`
-- icon sprite source: `packages/webblocks/src/css/icons/webblocks-icons.svg`
+- icon source: `packages/webblocks/src/css/icons/webblocks-icons.svg`
 - icon CSS source: `packages/webblocks/src/css/icons/webblocks-icons.css`
 - build manifest/order: `packages/webblocks/build.sh`
 

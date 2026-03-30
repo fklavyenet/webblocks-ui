@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Dashboard Shell</title>
+  <meta name="description" content="Integrated dashboard shell pattern example inside the main docs surface.">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><i class="wb-icon wb-icon-layout-grid"></i><span>WebBlocks UI</span></a>
+      <nav class="wb-sidebar-nav" aria-label="Documentation navigation">
+        <div class="wb-sidebar-section">
+          <span class="wb-sidebar-label">Guide</span>
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Home</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Getting Started</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architecture</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-package wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item">Overview</a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item is-active">Dashboard Shell</a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
+        <div class="wb-topbar-identity wb-min-w-0"><div class="wb-topbar-identity-copy"><span class="wb-topbar-product">WebBlocks UI</span><span class="wb-topbar-context">Pattern example: dashboard shell</span></div></div>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-topbar-actions"><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-stack-6">
+          <div class="wb-page-header">
+            <div class="wb-page-header-main">
+              <nav class="wb-page-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-minimal"><li class="wb-breadcrumb-item"><a href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Dashboard shell</span></li></ol></nav>
+              <div>
+                <h1 class="wb-page-title">Operations overview</h1>
+                <p class="wb-page-subtitle">Monitor workspaces, members, billing, and queue health from one application frame.</p>
+              </div>
+            </div>
+            <div class="wb-page-actions"><a href="pattern-settings-shell.html" class="wb-btn wb-btn-outline wb-btn-sm">Open settings shell</a><button class="wb-btn wb-btn-primary wb-btn-sm">Create workspace</button></div>
+          </div>
+
+          <div class="wb-stat-row">
+            <div class="wb-stat"><span class="wb-stat-label">Active workspaces</span><strong class="wb-stat-value">124</strong><span class="wb-stat-delta wb-stat-delta-up">+8 this week</span></div>
+            <div class="wb-stat"><span class="wb-stat-label">Pending invites</span><strong class="wb-stat-value">19</strong><span class="wb-stat-delta wb-stat-delta-down">3 need approval</span></div>
+            <div class="wb-stat"><span class="wb-stat-label">MRR</span><strong class="wb-stat-value">$48.2k</strong><span class="wb-stat-delta wb-stat-delta-up">+6.4%</span></div>
+            <div class="wb-stat"><span class="wb-stat-label">Incident queue</span><strong class="wb-stat-value">4</strong><span class="wb-stat-delta wb-stat-delta-down">2 urgent</span></div>
+          </div>
+
+          <section class="wb-panel">
+            <div class="wb-panel-header"><h2 class="wb-panel-title">Workspace activity</h2><a href="pattern-content-shell.html" class="wb-action-link">Open content shell</a></div>
+            <div class="wb-filter-bar wb-filter-bar-attached">
+              <div class="wb-filter-bar-start"><div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Search workspaces"></div><select class="wb-filter-select"><option>All plans</option><option>Starter</option><option>Growth</option><option>Enterprise</option></select><button class="wb-filter-chip is-active">Live</button><button class="wb-filter-chip">Needs review</button></div>
+              <div class="wb-filter-bar-end"><span class="wb-filter-results">12 workspaces</span></div>
+            </div>
+            <div class="wb-table-wrap">
+              <table class="wb-table wb-table-hover">
+                <thead><tr><th>Workspace</th><th>Owner</th><th>Status</th><th>Plan</th><th>Actions</th></tr></thead>
+                <tbody>
+                  <tr><td>Atlas EU</td><td>Mina Ray</td><td><span class="wb-status-pill wb-status-active">Active</span></td><td>Enterprise</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                  <tr><td>Studio North</td><td>Emre Aksoy</td><td><span class="wb-status-pill wb-status-pending">Pending</span></td><td>Growth</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                  <tr><td>Docs Lab</td><td>Alice Brown</td><td><span class="wb-status-pill wb-status-info">Queued</span></td><td>Starter</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-delete" aria-label="Archive workspace"><i class="wb-icon wb-icon-x"></i></a></div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

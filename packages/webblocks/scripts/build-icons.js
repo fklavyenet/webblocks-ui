@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // WebBlocks UI — Icon Build Script
 //
-// Reads src/css/icons/webblocks-icons.svg (source of truth),
-// copies it to dist/, and generates dist/webblocks-icons.css.
+// Reads src/css/icons/webblocks-icons.svg (source icon source),
+// and generates src/dist webblocks-icons.css.
 //
 // Run via:  node scripts/build-icons.js  (or ./build.sh)
 //
@@ -16,7 +16,6 @@ const ROOT     = path.join(__dirname, '..');
 const SRC_SVG  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.svg');
 const SRC_CSS  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.css');
 const DIST_DIR = path.join(ROOT, 'dist');
-const DIST_SVG = path.join(DIST_DIR, 'webblocks-icons.svg');
 const DIST_CSS = path.join(DIST_DIR, 'webblocks-icons.css');
 
 // ── Read source SVG ──────────────────────────────────────────
@@ -77,14 +76,9 @@ function buildAliasSymbols() {
 }
 
 const aliasSymbols = buildAliasSymbols();
-const distSvg = aliasSymbols.length
-  ? svg.replace(/<\/svg>\s*$/, `${aliasSymbols.join('\n')}\n</svg>\n`)
-  : svg;
 
-// ── Copy SVG to dist/ ────────────────────────────────────────
+// ── Prepare icon data for CSS generation ─────────────────────
 fs.mkdirSync(DIST_DIR, { recursive: true });
-fs.writeFileSync(DIST_SVG, distSvg, 'utf8');
-console.log(`Generated dist/webblocks-icons.svg — ${icons.length} glyphs, ${aliasSymbols.length} aliases`);
 
 // ── Generate CSS mask-image files ────────────────────────────
 // Allows Bootstrap-style usage: <i class="wb-icon wb-icon-settings"></i>
@@ -105,7 +99,7 @@ let cssRules = `/* ============================================================
    WebBlocks UI — Icon Font-Style CSS
    Auto-generated from src/css/icons/webblocks-icons.svg
 
-   Bootstrap-style usage:
+   Canonical usage:
      <i class="wb-icon wb-icon-settings"></i>
      <i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent"></i>
 
@@ -125,9 +119,15 @@ for (const { id, inner } of icons) {
   cssRules += `${selector} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
 }
 
+for (const symbol of aliasSymbols) {
+  const match = symbol.match(/<symbol id="(wb-icon-[^"]+)"[\s\S]*?>([\s\S]*?)<\/symbol>/);
+  if (!match) continue;
+  const uri = toDataUri(match[2].trim());
+  cssRules += `.${match[1]} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
+}
+
 fs.writeFileSync(SRC_CSS, cssRules, 'utf8');
-console.log(`Generated src/css/icons/webblocks-icons.css — ${icons.length} icon classes`);
+console.log(`Generated src/css/icons/webblocks-icons.css — ${icons.length} glyphs, ${aliasSymbols.length} aliases`);
 
 fs.writeFileSync(DIST_CSS, cssRules, 'utf8');
-const cssCount = icons.length;
-console.log(`Generated dist/webblocks-icons.css — ${cssCount} icon classes`);
+console.log(`Generated dist/webblocks-icons.css — ${icons.length} glyphs, ${aliasSymbols.length} aliases`);

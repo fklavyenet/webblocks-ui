@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Icons</title>
+  <meta name="description" content="Complete class-based icon reference for the shipped WebBlocks UI icon set.">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand">
+        <i class="wb-icon wb-icon-layout-grid"></i>
+        <span>WebBlocks UI</span>
+      </a>
+      <nav class="wb-sidebar-nav" aria-label="Documentation navigation">
+        <div class="wb-sidebar-section">
+          <span class="wb-sidebar-label">Guide</span>
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Home</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Getting Started</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architecture</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-package wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item">Overview</a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item">Dashboard Shell</a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
+        <div class="wb-topbar-identity wb-min-w-0"><div class="wb-topbar-identity-copy"><span class="wb-topbar-product">WebBlocks UI</span><span class="wb-topbar-context">Complete class-based icon reference</span></div></div>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-topbar-actions"><button class="wb-topbar-action" data-wb-toggle="cmd" data-wb-target="#siteCmd" aria-label="Search the guide"><i class="wb-icon wb-icon-search"></i></button><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <nav class="wb-content-breadcrumb" aria-label="Breadcrumb">
+              <ol class="wb-breadcrumb wb-breadcrumb-inline">
+                <li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li>
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Icons</span></li>
+              </ol>
+            </nav>
+            <h1 class="wb-content-title">Icons</h1>
+            <p class="wb-content-subtitle">This page documents the shipped mask-image path only: <code>webblocks-icons.css</code> plus <code>&lt;i class="wb-icon wb-icon-..."&gt;</code>. The grid below reflects the current shipped icon class surface.</p>
+            <div class="wb-content-meta">
+              <span>176 valid icon classes</span>
+              <span class="wb-content-meta-divider"></span>
+              <span>173 base glyphs plus aliases</span>
+              <span class="wb-content-meta-divider"></span>
+              <span>Mask-image path</span>
+            </div>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <div class="wb-alert wb-alert-info">
+                  <div>
+                    <strong class="wb-alert-title">Mask-image reference</strong>
+                    This guide intentionally keeps the shipped <code>&lt;i class="wb-icon wb-icon-..."&gt;</code> usage that the package already supports. No older alternate icon docs are used here.
+                  </div>
+                </div>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h2 class="wb-card-title">Basic usage</h2></div>
+                    <div class="wb-card-body wb-stack-3">
+                      <pre><code>&lt;link rel="stylesheet" href="dist/webblocks-icons.css"&gt;
+
+&lt;i class="wb-icon wb-icon-home" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;i class="wb-icon wb-icon-settings wb-icon-lg" aria-hidden="true"&gt;&lt;/i&gt;</code></pre>
+                      <div class="wb-cluster">
+                        <i class="wb-icon wb-icon-home" aria-hidden="true"></i>
+                        <i class="wb-icon wb-icon-settings wb-icon-lg" aria-hidden="true"></i>
+                        <i class="wb-icon wb-icon-search wb-icon-xl" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h2 class="wb-card-title">Important notes</h2></div>
+                    <div class="wb-card-body wb-stack-3">
+                      <div class="wb-list wb-list-sm">
+                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Aliases ship as real classes</span><span class="wb-list-item-sub"><code>wb-icon-refresh</code> and <code>wb-icon-refresh-cw</code> map to the canonical <code>wb-icon-rotate-cw</code> glyph. <code>wb-icon-sync</code> maps to <code>wb-icon-repeat</code>.</span></div></div>
+                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Missing classes stay visible</span><span class="wb-list-item-sub">Unknown <code>wb-icon-*</code> classes fall back to <code>help-circle</code> instead of rendering a blank square.</span></div></div>
+                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Use browser find for speed</span><span class="wb-list-item-sub">Because this page is intentionally static and source-accurate, <code>Cmd/Ctrl + F</code> is the fastest way to jump to a name.</span></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>All shipped icon classes</h2>
+                <p>The list is alphabetized and shows every current shipped icon class, including semantic alias classes.</p>
+                <div class="wb-grid-auto wb-grid-auto-sm">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-activity wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>activity</strong><code>wb-icon-activity</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-area-chart wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>area-chart</strong><code>wb-icon-area-chart</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-arrow-left wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>arrow-left</strong><code>wb-icon-arrow-left</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-arrow-right wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>arrow-right</strong><code>wb-icon-arrow-right</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-arrow-up-circle wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>arrow-up-circle</strong><code>wb-icon-arrow-up-circle</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-at-sign wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>at-sign</strong><code>wb-icon-at-sign</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-badge-check wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>badge-check</strong><code>wb-icon-badge-check</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-badge-percent wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>badge-percent</strong><code>wb-icon-badge-percent</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-ban wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>ban</strong><code>wb-icon-ban</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-banknote wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>banknote</strong><code>wb-icon-banknote</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-bar-chart wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>bar-chart</strong><code>wb-icon-bar-chart</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-bar-chart2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>bar-chart2</strong><code>wb-icon-bar-chart2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-bar-chart3 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>bar-chart3</strong><code>wb-icon-bar-chart3</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-bell wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>bell</strong><code>wb-icon-bell</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-bell-ring wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>bell-ring</strong><code>wb-icon-bell-ring</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-book wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>book</strong><code>wb-icon-book</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-book-open wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>book-open</strong><code>wb-icon-book-open</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-bookmark wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>bookmark</strong><code>wb-icon-bookmark</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-briefcase wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>briefcase</strong><code>wb-icon-briefcase</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-bug wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>bug</strong><code>wb-icon-bug</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-building2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>building2</strong><code>wb-icon-building2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-calculator wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>calculator</strong><code>wb-icon-calculator</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-calendar wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>calendar</strong><code>wb-icon-calendar</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-camera wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>camera</strong><code>wb-icon-camera</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-check wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>check</strong><code>wb-icon-check</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-chevron-down wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>chevron-down</strong><code>wb-icon-chevron-down</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-chevron-left wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>chevron-left</strong><code>wb-icon-chevron-left</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-chevron-right wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>chevron-right</strong><code>wb-icon-chevron-right</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-chevron-up wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>chevron-up</strong><code>wb-icon-chevron-up</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-circle wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>circle</strong><code>wb-icon-circle</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-circle-help wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>circle-help</strong><code>wb-icon-circle-help</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-clapperboard wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>clapperboard</strong><code>wb-icon-clapperboard</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-cloud wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>cloud</strong><code>wb-icon-cloud</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-code wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>code</strong><code>wb-icon-code</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-columns2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>columns2</strong><code>wb-icon-columns2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-contact wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>contact</strong><code>wb-icon-contact</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-copy wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>copy</strong><code>wb-icon-copy</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-cpu wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>cpu</strong><code>wb-icon-cpu</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-credit-card wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>credit-card</strong><code>wb-icon-credit-card</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-database wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>database</strong><code>wb-icon-database</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-download wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>download</strong><code>wb-icon-download</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-external-link wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>external-link</strong><code>wb-icon-external-link</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-eye wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>eye</strong><code>wb-icon-eye</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-eye-off wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>eye-off</strong><code>wb-icon-eye-off</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file</strong><code>wb-icon-file</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file-archive wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file-archive</strong><code>wb-icon-file-archive</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file-code wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file-code</strong><code>wb-icon-file-code</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file-image wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file-image</strong><code>wb-icon-file-image</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file-lock wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file-lock</strong><code>wb-icon-file-lock</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file-plus wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file-plus</strong><code>wb-icon-file-plus</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file-search wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file-search</strong><code>wb-icon-file-search</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file-text wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file-text</strong><code>wb-icon-file-text</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-file-x wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>file-x</strong><code>wb-icon-file-x</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-files wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>files</strong><code>wb-icon-files</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-film wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>film</strong><code>wb-icon-film</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-fingerprint wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>fingerprint</strong><code>wb-icon-fingerprint</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-folder wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>folder</strong><code>wb-icon-folder</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-folder-open wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>folder-open</strong><code>wb-icon-folder-open</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-folder-plus wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>folder-plus</strong><code>wb-icon-folder-plus</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-folder-tree wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>folder-tree</strong><code>wb-icon-folder-tree</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-gauge wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>gauge</strong><code>wb-icon-gauge</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-github wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>github</strong><code>wb-icon-github</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-globe wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>globe</strong><code>wb-icon-globe</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-hammer wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>hammer</strong><code>wb-icon-hammer</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-hand-coins wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>hand-coins</strong><code>wb-icon-hand-coins</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-heading wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>heading</strong><code>wb-icon-heading</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-heart wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>heart</strong><code>wb-icon-heart</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-help-circle wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>help-circle</strong><code>wb-icon-help-circle</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-history wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>history</strong><code>wb-icon-history</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-home wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>home</strong><code>wb-icon-home</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-image wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>image</strong><code>wb-icon-image</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-inbox wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>inbox</strong><code>wb-icon-inbox</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-info wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>info</strong><code>wb-icon-info</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-instagram wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>instagram</strong><code>wb-icon-instagram</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-key-round wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>key-round</strong><code>wb-icon-key-round</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-languages wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>languages</strong><code>wb-icon-languages</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-laptop wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>laptop</strong><code>wb-icon-laptop</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-layers wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>layers</strong><code>wb-icon-layers</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-layout wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>layout</strong><code>wb-icon-layout</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-layout-dashboard wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>layout-dashboard</strong><code>wb-icon-layout-dashboard</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-layout-grid wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>layout-grid</strong><code>wb-icon-layout-grid</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-line-chart wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>line-chart</strong><code>wb-icon-line-chart</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-linkedin wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>linkedin</strong><code>wb-icon-linkedin</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-list wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>list</strong><code>wb-icon-list</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-list-ordered wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>list-ordered</strong><code>wb-icon-list-ordered</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-lock wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>lock</strong><code>wb-icon-lock</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-lock-open wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>lock-open</strong><code>wb-icon-lock-open</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-log-out wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>log-out</strong><code>wb-icon-log-out</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-mail wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>mail</strong><code>wb-icon-mail</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-map-pin wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>map-pin</strong><code>wb-icon-map-pin</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-maximize2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>maximize2</strong><code>wb-icon-maximize2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-memory-stick wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>memory-stick</strong><code>wb-icon-memory-stick</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-menu wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>menu</strong><code>wb-icon-menu</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-message-square wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>message-square</strong><code>wb-icon-message-square</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-messages-square wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>messages-square</strong><code>wb-icon-messages-square</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-mic wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>mic</strong><code>wb-icon-mic</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-minimize2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>minimize2</strong><code>wb-icon-minimize2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-minus wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>minus</strong><code>wb-icon-minus</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-monitor wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>monitor</strong><code>wb-icon-monitor</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-moon wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>moon</strong><code>wb-icon-moon</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-mouse-pointer2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>mouse-pointer2</strong><code>wb-icon-mouse-pointer2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-music wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>music</strong><code>wb-icon-music</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-newspaper wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>newspaper</strong><code>wb-icon-newspaper</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-octagon-alert wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>octagon-alert</strong><code>wb-icon-octagon-alert</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-package wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>package</strong><code>wb-icon-package</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-palette wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>palette</strong><code>wb-icon-palette</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-panel-left wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>panel-left</strong><code>wb-icon-panel-left</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-panel-right wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>panel-right</strong><code>wb-icon-panel-right</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-pause wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>pause</strong><code>wb-icon-pause</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-pen-tool wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>pen-tool</strong><code>wb-icon-pen-tool</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-pencil wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>pencil</strong><code>wb-icon-pencil</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-phone wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>phone</strong><code>wb-icon-phone</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-pie-chart wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>pie-chart</strong><code>wb-icon-pie-chart</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-play wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>play</strong><code>wb-icon-play</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-plug wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>plug</strong><code>wb-icon-plug</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-plus wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>plus</strong><code>wb-icon-plus</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-printer wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>printer</strong><code>wb-icon-printer</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-quote wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>quote</strong><code>wb-icon-quote</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-receipt wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>receipt</strong><code>wb-icon-receipt</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-receipt-text wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>receipt-text</strong><code>wb-icon-receipt-text</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-rectangle-horizontal wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>rectangle-horizontal</strong><code>wb-icon-rectangle-horizontal</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-refresh wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>refresh</strong><code>wb-icon-refresh</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-refresh-cw wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>refresh-cw</strong><code>wb-icon-refresh-cw</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-repeat wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>repeat</strong><code>wb-icon-repeat</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-rocket wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>rocket</strong><code>wb-icon-rocket</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-rotate-ccw wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>rotate-ccw</strong><code>wb-icon-rotate-ccw</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-rotate-cw wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>rotate-cw</strong><code>wb-icon-rotate-cw</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-router wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>router</strong><code>wb-icon-router</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-rows2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>rows2</strong><code>wb-icon-rows2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-save wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>save</strong><code>wb-icon-save</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-search wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>search</strong><code>wb-icon-search</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-send wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>send</strong><code>wb-icon-send</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-server wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>server</strong><code>wb-icon-server</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-settings wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>settings</strong><code>wb-icon-settings</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-share2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>share2</strong><code>wb-icon-share2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-shield wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>shield</strong><code>wb-icon-shield</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-shield-check wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>shield-check</strong><code>wb-icon-shield-check</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-shopping-bag wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>shopping-bag</strong><code>wb-icon-shopping-bag</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-shopping-cart wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>shopping-cart</strong><code>wb-icon-shopping-cart</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-sidebar wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>sidebar</strong><code>wb-icon-sidebar</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-sliders-horizontal wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>sliders-horizontal</strong><code>wb-icon-sliders-horizontal</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-smartphone wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>smartphone</strong><code>wb-icon-smartphone</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-sparkles wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>sparkles</strong><code>wb-icon-sparkles</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-square wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>square</strong><code>wb-icon-square</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-square-terminal wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>square-terminal</strong><code>wb-icon-square-terminal</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-star wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>star</strong><code>wb-icon-star</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-sticky-note wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>sticky-note</strong><code>wb-icon-sticky-note</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-store wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>store</strong><code>wb-icon-store</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-sun wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>sun</strong><code>wb-icon-sun</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-sun-moon wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>sun-moon</strong><code>wb-icon-sun-moon</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-sync wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>sync</strong><code>wb-icon-sync</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-tablet wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>tablet</strong><code>wb-icon-tablet</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-tablet-smartphone wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>tablet-smartphone</strong><code>wb-icon-tablet-smartphone</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-target wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>target</strong><code>wb-icon-target</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-terminal wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>terminal</strong><code>wb-icon-terminal</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-toggle-left wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>toggle-left</strong><code>wb-icon-toggle-left</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-toggle-right wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>toggle-right</strong><code>wb-icon-toggle-right</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-trash wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>trash</strong><code>wb-icon-trash</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-trash2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>trash2</strong><code>wb-icon-trash2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-trending-up wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>trending-up</strong><code>wb-icon-trending-up</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-triangle-alert wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>triangle-alert</strong><code>wb-icon-triangle-alert</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-twitter wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>twitter</strong><code>wb-icon-twitter</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-type wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>type</strong><code>wb-icon-type</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-upload wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>upload</strong><code>wb-icon-upload</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-user wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>user</strong><code>wb-icon-user</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-user-plus wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>user-plus</strong><code>wb-icon-user-plus</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-user-round wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>user-round</strong><code>wb-icon-user-round</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-users wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>users</strong><code>wb-icon-users</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-video wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>video</strong><code>wb-icon-video</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-volume2 wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>volume2</strong><code>wb-icon-volume2</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-wallet wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>wallet</strong><code>wb-icon-wallet</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-watch wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>watch</strong><code>wb-icon-watch</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-wifi wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>wifi</strong><code>wb-icon-wifi</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-wrench wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>wrench</strong><code>wb-icon-wrench</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-x wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>x</strong><code>wb-icon-x</code></div></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-youtube wb-icon-sm" aria-hidden="true"></i></span><div class="wb-stack-1"><strong>youtube</strong><code>wb-icon-youtube</code></div></div></div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <a href="primitives.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Primitives</span></a>
+            <a href="patterns.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Patterns</span></a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="wb-cmd-backdrop" id="siteCmd" data-wb-cmd-default role="dialog" aria-modal="true" aria-label="Search this WebBlocks guide">
+    <div class="wb-cmd-dialog">
+      <div class="wb-cmd-search"><span class="wb-cmd-search-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-cmd-input" type="text" placeholder="Search pages and docs..." autocomplete="off"><span class="wb-cmd-shortcut-hint">Cmd/Ctrl + K</span></div>
+      <div class="wb-cmd-results">
+        <div class="wb-cmd-group"><div class="wb-cmd-group-label">Pages</div>
+          <a class="wb-cmd-item" href="index.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-home"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Home</span><span class="wb-cmd-item-sub">Project overview</span></span></a>
+          <a class="wb-cmd-item" href="getting-started.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-rocket"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Getting Started</span><span class="wb-cmd-item-sub">Setup and first workflow</span></span></a>
+          <a class="wb-cmd-item" href="architecture.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layers"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Architecture</span><span class="wb-cmd-item-sub">Layer model</span></span></a>
+          <a class="wb-cmd-item" href="foundation.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-palette"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Foundation</span><span class="wb-cmd-item-sub">Tokens and base elements</span></span></a>
+          <a class="wb-cmd-item" href="layout.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-columns2"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Layout</span><span class="wb-cmd-item-sub">Containers, grids, and shells</span></span></a>
+          <a class="wb-cmd-item" href="primitives.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-package"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Primitives</span><span class="wb-cmd-item-sub">Shipped building blocks</span></span></a>
+          <a class="wb-cmd-item" href="icons.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-star"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Icons</span><span class="wb-cmd-item-sub">Class-based icon reference</span></span></a>
+          <a class="wb-cmd-item" href="patterns.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Patterns</span><span class="wb-cmd-item-sub">Screen compositions</span></span></a>
+          <a class="wb-cmd-item" href="utilities.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-wrench"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Utilities</span><span class="wb-cmd-item-sub">Spacing, text, and helper classes</span></span></a>
+          <a class="wb-cmd-item" href="javascript.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-code"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">JavaScript</span><span class="wb-cmd-item-sub">Hooks and APIs</span></span></a>
+        </div>
+        <div class="wb-cmd-empty">No matching results.</div>
+      </div>
+      <div class="wb-cmd-footer"><span class="wb-cmd-footer-hint">Arrow keys navigate</span><span class="wb-cmd-footer-hint">Enter opens</span><span class="wb-cmd-footer-hint">Esc closes</span></div>
+    </div>
+  </div>
+</body>
+</html>

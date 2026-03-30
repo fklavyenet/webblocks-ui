@@ -1,0 +1,131 @@
+/* ============================================================
+   WebBlocks UI — Grid System
+   Bootstrap-compatible 12-column grid via CSS Grid.
+   Usage:
+     <div class="wb-row">
+       <div class="wb-col-md-8">main</div>
+       <div class="wb-col-md-4">sidebar</div>
+     </div>
+   ============================================================ */
+
+/* ── Row ──────────────────────────────────────────────────── */
+
+.wb-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--wb-s4);
+}
+
+.wb-row-gap-2 { gap: var(--wb-s2); }
+.wb-row-gap-4 { gap: var(--wb-s4); }
+.wb-row-gap-6 { gap: var(--wb-s6); }
+.wb-row-gap-8 { gap: var(--wb-s8); }
+
+/* ── Columns — default (mobile-first, all breakpoints) ───── */
+
+.wb-col-1  { grid-column: span 1; }
+.wb-col-2  { grid-column: span 2; }
+.wb-col-3  { grid-column: span 3; }
+.wb-col-4  { grid-column: span 4; }
+.wb-col-5  { grid-column: span 5; }
+.wb-col-6  { grid-column: span 6; }
+.wb-col-7  { grid-column: span 7; }
+.wb-col-8  { grid-column: span 8; }
+.wb-col-9  { grid-column: span 9; }
+.wb-col-10 { grid-column: span 10; }
+.wb-col-11 { grid-column: span 11; }
+.wb-col-12 { grid-column: span 12; }
+.wb-col    { grid-column: span 1; flex: 1; } /* auto */
+
+/* ── Columns — sm (≥576px) ────────────────────────────────── */
+
+@media (min-width: 576px) {
+  .wb-col-sm-1  { grid-column: span 1; }
+  .wb-col-sm-2  { grid-column: span 2; }
+  .wb-col-sm-3  { grid-column: span 3; }
+  .wb-col-sm-4  { grid-column: span 4; }
+  .wb-col-sm-5  { grid-column: span 5; }
+  .wb-col-sm-6  { grid-column: span 6; }
+  .wb-col-sm-7  { grid-column: span 7; }
+  .wb-col-sm-8  { grid-column: span 8; }
+  .wb-col-sm-9  { grid-column: span 9; }
+  .wb-col-sm-10 { grid-column: span 10; }
+  .wb-col-sm-11 { grid-column: span 11; }
+  .wb-col-sm-12 { grid-column: span 12; }
+}
+
+/* ── Columns — md (≥768px) ────────────────────────────────── */
+
+@media (min-width: 768px) {
+  .wb-col-md-1  { grid-column: span 1; }
+  .wb-col-md-2  { grid-column: span 2; }
+  .wb-col-md-3  { grid-column: span 3; }
+  .wb-col-md-4  { grid-column: span 4; }
+  .wb-col-md-5  { grid-column: span 5; }
+  .wb-col-md-6  { grid-column: span 6; }
+  .wb-col-md-7  { grid-column: span 7; }
+  .wb-col-md-8  { grid-column: span 8; }
+  .wb-col-md-9  { grid-column: span 9; }
+  .wb-col-md-10 { grid-column: span 10; }
+  .wb-col-md-11 { grid-column: span 11; }
+  .wb-col-md-12 { grid-column: span 12; }
+}
+
+/* ── Columns — lg (≥992px) ────────────────────────────────── */
+
+@media (min-width: 992px) {
+  .wb-col-lg-1  { grid-column: span 1; }
+  .wb-col-lg-2  { grid-column: span 2; }
+  .wb-col-lg-3  { grid-column: span 3; }
+  .wb-col-lg-4  { grid-column: span 4; }
+  .wb-col-lg-5  { grid-column: span 5; }
+  .wb-col-lg-6  { grid-column: span 6; }
+  .wb-col-lg-7  { grid-column: span 7; }
+  .wb-col-lg-8  { grid-column: span 8; }
+  .wb-col-lg-9  { grid-column: span 9; }
+  .wb-col-lg-10 { grid-column: span 10; }
+  .wb-col-lg-11 { grid-column: span 11; }
+  .wb-col-lg-12 { grid-column: span 12; }
+}
+
+/* ── Columns — xl (≥1200px) ───────────────────────────────── */
+
+@media (min-width: 1200px) {
+  .wb-col-xl-1  { grid-column: span 1; }
+  .wb-col-xl-2  { grid-column: span 2; }
+  .wb-col-xl-3  { grid-column: span 3; }
+  .wb-col-xl-4  { grid-column: span 4; }
+  .wb-col-xl-5  { grid-column: span 5; }
+  .wb-col-xl-6  { grid-column: span 6; }
+  .wb-col-xl-7  { grid-column: span 7; }
+  .wb-col-xl-8  { grid-column: span 8; }
+  .wb-col-xl-9  { grid-column: span 9; }
+  .wb-col-xl-10 { grid-column: span 10; }
+  .wb-col-xl-11 { grid-column: span 11; }
+  .wb-col-xl-12 { grid-column: span 12; }
+}
+
+/* ── Mobile fallback: all cols stack full-width below sm ──── */
+
+@media (max-width: 575px) {
+  .wb-row > [class*="wb-col-"] {
+    grid-column: span 12;
+  }
+}
+
+/* ── Column offset ────────────────────────────────────────── */
+
+.wb-col-offset-1  { grid-column-start: 2; }
+.wb-col-offset-2  { grid-column-start: 3; }
+.wb-col-offset-3  { grid-column-start: 4; }
+.wb-col-offset-4  { grid-column-start: 5; }
+.wb-col-offset-6  { grid-column-start: 7; }
+
+/* ── Alignment helpers on row ─────────────────────────────── */
+
+.wb-row-center  { justify-items: center; }
+.wb-row-end     { justify-items: end; }
+.wb-row-stretch { align-items: stretch; }
+.wb-row-top     { align-items: start; }
+.wb-row-middle  { align-items: center; }
+.wb-row-bottom  { align-items: end; }

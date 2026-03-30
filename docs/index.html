@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Home</title>
+  <meta name="description" content="A pure WebBlocks UI multi-page site that explains the WebBlocks UI project, its architecture, primitives, patterns, JavaScript modules, and usage workflow.">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand">
+        <i class="wb-icon wb-icon-layout-grid"></i>
+        <span>WebBlocks UI</span>
+      </a>
+
+      <nav class="wb-sidebar-nav" aria-label="Documentation navigation">
+        <div class="wb-sidebar-section">
+          <span class="wb-sidebar-label">Guide</span>
+          <a href="index.html" class="wb-sidebar-link is-active">
+            <i class="wb-icon wb-icon-home wb-sidebar-icon"></i>
+            <span>Home</span>
+          </a>
+          <a href="getting-started.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i>
+            <span>Getting Started</span>
+          </a>
+          <a href="architecture.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-layers wb-sidebar-icon"></i>
+            <span>Architecture</span>
+          </a>
+          <a href="foundation.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-palette wb-sidebar-icon"></i>
+            <span>Foundation</span>
+          </a>
+          <a href="layout.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i>
+            <span>Layout</span>
+          </a>
+          <a href="primitives.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-package wb-sidebar-icon"></i>
+            <span>Primitives</span>
+          </a>
+          <a href="icons.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-star wb-sidebar-icon"></i>
+            <span>Icons</span>
+          </a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false">
+              <span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span>
+              <span class="wb-nav-group-label">Patterns</span>
+              <span class="wb-nav-group-arrow"></span>
+            </button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item">Overview</a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item">Dashboard Shell</a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i>
+            <span>Utilities</span>
+          </a>
+          <a href="javascript.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-code wb-sidebar-icon"></i>
+            <span>JavaScript</span>
+          </a>
+        </div>
+
+      </nav>
+
+      <div class="wb-sidebar-footer">
+        <div class="wb-callout wb-callout-info">
+          <strong class="wb-callout-title">Pure WebBlocks rule</strong>
+          This site uses only shipped WebBlocks UI classes, patterns, and built-in JavaScript hooks.
+        </div>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar">
+          <i class="wb-icon wb-icon-menu"></i>
+          Menu
+        </button>
+
+        <div class="wb-topbar-identity wb-min-w-0">
+          <div class="wb-topbar-identity-copy">
+            <span class="wb-topbar-product">WebBlocks UI</span>
+            <span class="wb-topbar-context">English, package-only, multi-page demo</span>
+          </div>
+        </div>
+
+        <div class="wb-navbar-spacer"></div>
+
+        <div class="wb-topbar-actions">
+          <button class="wb-topbar-action" data-wb-toggle="cmd" data-wb-target="#siteCmd" aria-label="Search the guide">
+            <i class="wb-icon wb-icon-search"></i>
+          </button>
+
+          <button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode">
+            <i class="wb-icon wb-icon-sun-moon"></i>
+          </button>
+
+          <div class="wb-dropdown wb-dropdown-end">
+            <button class="wb-topbar-action" data-wb-toggle="dropdown" aria-expanded="false" aria-label="Theme controls">
+              <i class="wb-icon wb-icon-palette"></i>
+            </button>
+            <div class="wb-dropdown-menu">
+              <div class="wb-dropdown-label">Mode</div>
+              <button class="wb-dropdown-item" data-wb-mode-set="light">Light</button>
+              <button class="wb-dropdown-item" data-wb-mode-set="dark">Dark</button>
+              <button class="wb-dropdown-item" data-wb-mode-set="auto">Auto</button>
+              <hr class="wb-dropdown-divider">
+              <div class="wb-dropdown-label">Accent</div>
+              <button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button>
+              <button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button>
+              <button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button>
+              <button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button>
+              <hr class="wb-dropdown-divider">
+              <div class="wb-dropdown-label">Preset</div>
+              <button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button>
+              <button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button>
+              <button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <nav class="wb-content-breadcrumb" aria-label="Breadcrumb">
+              <ol class="wb-breadcrumb wb-breadcrumb-inline">
+                <li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li>
+                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Home</span></li>
+              </ol>
+            </nav>
+            <h1 class="wb-content-title">A pure WebBlocks UI site about WebBlocks UI</h1>
+            <p class="wb-content-subtitle">This demo explains the project, the layer model, shipped primitives, patterns, and JavaScript behavior using only package assets and shipped <code>wb-*</code> classes.</p>
+            <div class="wb-content-meta">
+              <span>Package-only</span>
+              <span class="wb-content-meta-divider"></span>
+              <span>No custom CSS</span>
+              <span class="wb-content-meta-divider"></span>
+              <span>No custom JS</span>
+            </div>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <div class="wb-promo">
+                  <div class="wb-promo-copy">
+                    <p class="wb-eyebrow">Source-visible UI system</p>
+                    <h2 class="wb-promo-title">Build dashboards, docs, and product screens with plain HTML, plain CSS, and vanilla JS.</h2>
+                    <p class="wb-promo-text">WebBlocks UI is a primitive-driven, pattern-oriented UI library for admin panels, SaaS screens, CMS surfaces, and documentation pages. The current architecture is explicit: foundation, utilities, layout, primitives, patterns, and icons.</p>
+                  </div>
+                  <div class="wb-promo-actions">
+                    <a href="getting-started.html" class="wb-btn wb-btn-primary">Start here</a>
+                    <a href="primitives.html" class="wb-btn wb-btn-outline">See primitives</a>
+                  </div>
+                </div>
+
+                <div class="wb-alert wb-alert-info">
+                  <div>
+                    <strong class="wb-alert-title">What this page is proving</strong>
+                    WebBlocks UI is capable of documenting itself without a separate presentation layer. This guide does not add helper CSS, utility scripts, or invented classes.
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>What ships with the package</h2>
+                <div class="wb-grid-4">
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Architecture layers</div>
+                    <div class="wb-stat-value">6</div>
+                    <div class="wb-stat-delta">Foundation, utilities, layout, primitives, patterns, icons</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Dependencies</div>
+                    <div class="wb-stat-value">0</div>
+                    <div class="wb-stat-delta">No framework requirement for the package itself</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">JavaScript</div>
+                    <div class="wb-stat-value">14+</div>
+                    <div class="wb-stat-delta">Theme, overlays, navigation, feedback, and disclosure modules</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Icons</div>
+                    <div class="wb-stat-value">173</div>
+                    <div class="wb-stat-delta">Class-based mask-image icon usage</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Read the system in the right order</h2>
+                <div class="wb-link-list">
+                  <a href="getting-started.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Getting Started</span>
+                      <span class="wb-link-list-meta">Includes, root attributes, first workflow</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page first if you need the shortest correct setup path for a real project.</div>
+                  </a>
+                  <a href="architecture.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Architecture</span>
+                      <span class="wb-link-list-meta">The six-layer model</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page when you need to understand where tokens, layout, primitives, patterns, and icons belong.</div>
+                  </a>
+                  <a href="foundation.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Foundation</span>
+                      <span class="wb-link-list-meta">Tokens, headings, theme axes</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page for root theme attributes, dark mode, presets, typography defaults, spacing tokens, and raw element styling.</div>
+                  </a>
+                  <a href="layout.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Layout</span>
+                      <span class="wb-link-list-meta">Containers, grids, shells</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page for <code>wb-container</code>, <code>wb-grid</code>, <code>wb-row</code>, navbar, sidebar, and page-shell structure.</div>
+                  </a>
+                  <a href="primitives.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Primitives</span>
+                      <span class="wb-link-list-meta">Shipped building blocks</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page to inspect the actual shipped controls, surfaces, forms, and interaction shells.</div>
+                  </a>
+                  <a href="icons.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Icons</span>
+                      <span class="wb-link-list-meta">Mask-image class reference</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page when you need the shipped icon class names, alias behavior, and the class-based <code>&lt;i&gt;</code> icon path.</div>
+                  </a>
+                  <a href="patterns.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Patterns</span>
+                      <span class="wb-link-list-meta">Screen-level compositions</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page when the question is about page type, hierarchy, or composition rather than a single primitive.</div>
+                  </a>
+                  <a href="utilities.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Utilities</span>
+                      <span class="wb-link-list-meta">Spacing, text, alignment helpers</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page for spacing helpers, text sizing, color utilities, visibility helpers, and final composition adjustments.</div>
+                  </a>
+                  <a href="javascript.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">JavaScript</span>
+                      <span class="wb-link-list-meta">Data hooks and public APIs</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this page when the interaction model matters and you need the correct trigger pattern or public module name.</div>
+                  </a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Start from a real shipped example</h2>
+                <p>When the page job is already clear, copying the nearest pattern example from this guide is safer than rebuilding the screen from memory. Start with the whole structure, replace the content, then trim aggressively.</p>
+                <div class="wb-link-list">
+                  <a href="pattern-dashboard-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin dashboard</span>
+                      <span class="wb-link-list-meta">Sidebar, topbar, stats, tables</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this when the page is application-heavy and needs navigation, metrics, row actions, and scan-friendly data.</div>
+                  </a>
+                  <a href="pattern-settings-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin settings</span>
+                      <span class="wb-link-list-meta">Longer forms and sectioned actions</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this when the page is driven by grouped settings, destructive actions, and slower form workflows.</div>
+                  </a>
+                  <a href="pattern-auth-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Auth login</span>
+                      <span class="wb-link-list-meta">Focused entry flow</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this when the screen should stay narrow, quiet, and centered around a single form task.</div>
+                  </a>
+                  <a href="pattern-marketing.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Public home</span>
+                      <span class="wb-link-list-meta">Hero rhythm and promotional surfaces</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this when the page is marketing-led and needs calmer content flow instead of admin density.</div>
+                  </a>
+                  <a href="pattern-content-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Content shell</span>
+                      <span class="wb-link-list-meta">Docs, onboarding, and text-first flows</span>
+                    </div>
+                    <div class="wb-link-list-desc">Use this when the page needs structure, references, and readable progression rather than product chrome.</div>
+                  </a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Core principles</h2>
+                <div class="wb-grid-3">
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>HTML stays HTML</strong>
+                      <p class="wb-m-0">WebBlocks does not require framework wrappers to be useful. You write explicit markup and attach shipped classes.</p>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>Pattern-first workflow</strong>
+                      <p class="wb-m-0">Start from the page job, then inspect the primitives used by that pattern, then refine with utilities.</p>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>Small correct layers</strong>
+                      <p class="wb-m-0">Tokens stay in foundation, structure stays in layout, visible building blocks stay in primitives, and full screens stay in patterns.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <span></span>
+            <a href="getting-started.html" class="wb-content-next">
+              <span class="wb-content-next-label">Next</span>
+              <span class="wb-content-next-title">Getting Started</span>
+            </a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="wb-cmd-backdrop" id="siteCmd" data-wb-cmd-default role="dialog" aria-modal="true" aria-label="Search this WebBlocks guide">
+    <div class="wb-cmd-dialog">
+      <div class="wb-cmd-search">
+        <span class="wb-cmd-search-icon"><i class="wb-icon wb-icon-search"></i></span>
+        <input class="wb-cmd-input" type="text" placeholder="Search pages and docs..." autocomplete="off">
+        <span class="wb-cmd-shortcut-hint">Cmd/Ctrl + K</span>
+      </div>
+      <div class="wb-cmd-results">
+        <div class="wb-cmd-group">
+          <div class="wb-cmd-group-label">Pages</div>
+          <a class="wb-cmd-item" href="index.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-home"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Home</span><span class="wb-cmd-item-sub">Project overview</span></span></a>
+          <a class="wb-cmd-item" href="getting-started.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-rocket"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Getting Started</span><span class="wb-cmd-item-sub">Setup and first workflow</span></span></a>
+          <a class="wb-cmd-item" href="architecture.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layers"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Architecture</span><span class="wb-cmd-item-sub">Layer model and build order</span></span></a>
+          <a class="wb-cmd-item" href="foundation.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-palette"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Foundation</span><span class="wb-cmd-item-sub">Tokens, headings, and theme axes</span></span></a>
+          <a class="wb-cmd-item" href="layout.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-columns2"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Layout</span><span class="wb-cmd-item-sub">Containers, grids, and shells</span></span></a>
+          <a class="wb-cmd-item" href="primitives.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-package"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Primitives</span><span class="wb-cmd-item-sub">Shipped building blocks</span></span></a>
+          <a class="wb-cmd-item" href="icons.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-star"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Icons</span><span class="wb-cmd-item-sub">Class-based icon reference</span></span></a>
+          <a class="wb-cmd-item" href="patterns.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Patterns</span><span class="wb-cmd-item-sub">Screen compositions</span></span></a>
+          <a class="wb-cmd-item" href="utilities.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-wrench"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Utilities</span><span class="wb-cmd-item-sub">Spacing, text, and helper classes</span></span></a>
+          <a class="wb-cmd-item" href="javascript.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-code"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">JavaScript</span><span class="wb-cmd-item-sub">Data hooks and APIs</span></span></a>
+        </div>
+        <div class="wb-cmd-empty">No matching results.</div>
+      </div>
+      <div class="wb-cmd-footer">
+        <span class="wb-cmd-footer-hint">Arrow keys navigate</span>
+        <span class="wb-cmd-footer-hint">Enter opens</span>
+        <span class="wb-cmd-footer-hint">Esc closes</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

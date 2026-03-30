@@ -1,0 +1,116 @@
+/* ============================================================
+   WebBlocks UI — Table (wb-table)
+   ============================================================ */
+
+/* ── Wrapper (for scrolling on small screens) ─────────────── */
+.wb-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  background: var(--wb-surface);
+}
+
+.wb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.wb-table th,
+.wb-table td {
+  padding: var(--wb-s3) var(--wb-s4);
+  text-align: left;
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-table th {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.wb-table td {
+  vertical-align: top;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.wb-table tbody th {
+  vertical-align: top;
+  white-space: normal;
+}
+
+.wb-table thead th {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wb-muted);
+  background: var(--wb-surface-2);
+  white-space: nowrap;
+}
+
+.wb-table thead th:first-child { border-radius: var(--wb-r-lg) 0 0 0; }
+.wb-table thead th:last-child  { border-radius: 0 var(--wb-r-lg) 0 0; }
+
+.wb-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Hover rows ───────────────────────────────────────────── */
+.wb-table-hover tbody tr:hover td {
+  background: var(--wb-surface-2);
+}
+
+/* ── Striped rows ─────────────────────────────────────────── */
+.wb-table-striped tbody tr:nth-child(even) td {
+  background: var(--wb-surface-2);
+}
+
+/* ── Condensed ────────────────────────────────────────────── */
+.wb-table-sm th,
+.wb-table-sm td {
+  padding: var(--wb-s2) var(--wb-s3);
+}
+
+/* ── Sortable header ──────────────────────────────────────── */
+.wb-table th[data-wb-sort] {
+  cursor: pointer;
+  user-select: none;
+}
+.wb-table th[data-wb-sort]:hover {
+  color: var(--wb-text);
+}
+
+/* ── Toolbar above table ──────────────────────────────────── */
+.wb-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-wrap: wrap;
+  padding: var(--wb-s3) var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  background: var(--wb-surface);
+}
+
+.wb-toolbar-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-right: auto;
+}
+
+/* ── Filter row ───────────────────────────────────────────── */
+.wb-filter-row {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-wrap: wrap;
+  padding: var(--wb-s3) var(--wb-s4);
+  border-bottom: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+}
+
+.wb-filter-row .wb-input,
+.wb-filter-row .wb-select {
+  max-width: 220px;
+}

@@ -191,15 +191,10 @@ function parseIconsFromBundle(bundleCode) {
 
     const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <!--
-  WebBlocks Icon Sprite — Lucide 0.577.0
+  WebBlocks Icon Source — Lucide 0.577.0
   ${ICONS.length} icons in a curated product set.
 
-  Usage (SVG sprite):
-    <svg class="wb-icon" aria-hidden="true">
-      <use href="/dist/webblocks-icons.svg#wb-icon-settings"></use>
-    </svg>
-
-  Usage (inline <i> tag — requires dist/webblocks-icons.css):
+  Canonical usage (requires dist/webblocks-icons.css):
     <i class="wb-icon wb-icon-settings"></i>
 -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">

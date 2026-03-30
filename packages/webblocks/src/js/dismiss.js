@@ -1,7 +1,7 @@
 /* ============================================================
    WebBlocks UI — Dismiss (dismiss.js)
 
-   Centralised handler for dismissible components that use
+   Centralised handler for dismissible primitives that use
    data-wb-dismiss. Currently handles:
 
      alert     — removes .wb-alert from DOM (with animation)

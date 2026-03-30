@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Auth Shell</title>
+  <meta name="description" content="Integrated auth shell pattern example inside the main docs surface.">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><i class="wb-icon wb-icon-layout-grid"></i><span>WebBlocks UI</span></a>
+      <nav class="wb-sidebar-nav" aria-label="Documentation navigation">
+        <div class="wb-sidebar-section">
+          <span class="wb-sidebar-label">Guide</span>
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Home</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Getting Started</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architecture</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-package wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item">Overview</a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item">Dashboard Shell</a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item is-active">Auth Shell</a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
+        <div class="wb-topbar-identity wb-min-w-0"><div class="wb-topbar-identity-copy"><span class="wb-topbar-product">WebBlocks UI</span><span class="wb-topbar-context">Pattern example: auth shell</span></div></div>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-topbar-actions"><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-auth-shell wb-auth-split">
+          <div class="wb-auth-panel"><h1 class="wb-auth-panel-title">Sign in without inventing a separate auth UI layer.</h1><p class="wb-auth-panel-text">The auth shell keeps the page quiet, centers the form work, and gives onboarding or login screens a clear job immediately.</p></div>
+          <div class="wb-auth-form-area"><div class="wb-auth-card"><div class="wb-auth-logo"><div class="wb-icon-wrap wb-icon-wrap-circle"><i class="wb-icon wb-icon-lock"></i></div><h1 class="wb-auth-logo-title">Welcome back</h1><p class="wb-auth-logo-subtitle">Use the auth shell for focused entry flows and minimal surrounding chrome.</p></div><div class="wb-auth-body wb-stack-4"><form class="wb-stack-4"><div class="wb-field"><label class="wb-label" for="emailField">Email address</label><input class="wb-input" id="emailField" type="email" placeholder="you@example.com"></div><div class="wb-field"><label class="wb-label" for="passwordField">Password</label><input class="wb-input" id="passwordField" type="password" placeholder="Enter your password"></div><div class="wb-split"><label class="wb-check"><input type="checkbox" checked><span>Remember this device</span></label><a href="#" class="wb-action-link">Forgot password</a></div><button class="wb-btn wb-btn-primary wb-w-full" type="submit">Continue</button></form><div class="wb-auth-divider">or continue with</div><div class="wb-grid-2"><button class="wb-btn wb-btn-outline wb-w-full" type="button"><i class="wb-icon wb-icon-github"></i><span>GitHub</span></button><button class="wb-btn wb-btn-outline wb-w-full" type="button"><i class="wb-icon wb-icon-mail"></i><span>Email link</span></button></div></div><div class="wb-auth-footer"><p class="wb-m-0">Need a different frame? Move to the dashboard, settings, content, or marketing pattern depending on the page job.</p></div></div></div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

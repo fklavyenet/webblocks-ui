@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Settings Shell</title>
+  <meta name="description" content="Integrated settings shell pattern example inside the main docs surface.">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><i class="wb-icon wb-icon-layout-grid"></i><span>WebBlocks UI</span></a>
+      <nav class="wb-sidebar-nav" aria-label="Documentation navigation">
+        <div class="wb-sidebar-section">
+          <span class="wb-sidebar-label">Guide</span>
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Home</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Getting Started</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architecture</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-package wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item">Overview</a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item">Dashboard Shell</a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item is-active">Settings Shell</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
+        <div class="wb-topbar-identity wb-min-w-0"><div class="wb-topbar-identity-copy"><span class="wb-topbar-product">WebBlocks UI</span><span class="wb-topbar-context">Pattern example: settings shell</span></div></div>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-topbar-actions"><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell">
+          <aside class="wb-settings-nav" aria-label="Settings navigation">
+            <div class="wb-settings-nav-header">Workspace</div>
+            <a href="#" class="wb-settings-nav-link is-active"><i class="wb-icon wb-icon-contact wb-settings-nav-icon"></i><span>Profile</span></a>
+            <a href="#" class="wb-settings-nav-link"><i class="wb-icon wb-icon-shield wb-settings-nav-icon"></i><span>Security</span></a>
+            <a href="#" class="wb-settings-nav-link"><i class="wb-icon wb-icon-bell wb-settings-nav-icon"></i><span>Notifications</span></a>
+            <a href="#" class="wb-settings-nav-link"><i class="wb-icon wb-icon-credit-card wb-settings-nav-icon"></i><span>Billing</span></a>
+          </aside>
+
+          <div class="wb-settings-body">
+            <div class="wb-settings-header"><h1 class="wb-settings-title">Account settings</h1><p class="wb-settings-desc">Use the settings shell for slower form work, grouped decisions, and local navigation that stays close to the content.</p></div>
+            <section class="wb-settings-section">
+              <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Public profile</h2><p class="wb-settings-section-desc">Manage how teammates see your workspace identity.</p></div></div>
+              <div class="wb-settings-section-body wb-stack-4"><div class="wb-form-row"><div class="wb-field"><label class="wb-label" for="workspaceName">Workspace name</label><input class="wb-input" id="workspaceName" type="text" value="Atlas Cloud"></div><div class="wb-field"><label class="wb-label" for="workspaceSlug">Slug</label><input class="wb-input" id="workspaceSlug" type="text" value="atlas-cloud"></div></div><div class="wb-field"><label class="wb-label" for="workspaceDesc">Description</label><textarea class="wb-textarea" id="workspaceDesc">Pattern-first admin tools for internal teams.</textarea></div></div>
+              <div class="wb-settings-section-footer"><button class="wb-btn wb-btn-secondary wb-btn-sm">Cancel</button><button class="wb-btn wb-btn-primary wb-btn-sm">Save changes</button></div>
+            </section>
+            <section class="wb-settings-section">
+              <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Preferences</h2><p class="wb-settings-section-desc">Row-based settings work well when each preference needs a short explanation and one clear control.</p></div></div>
+              <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Default density</strong><span>Choose the baseline spacing scale for the workspace interface.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Comfortable</option><option>Compact</option></select></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Security alerts</strong><span>Notify owners when a new device signs in or a role changes.</span></div><div class="wb-settings-row-control"><label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span><span>Enabled</span></label></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Default landing page</strong><span>Choose where members land after they sign in.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Dashboard</option><option>Projects</option><option>Members</option></select></div></div></div>
+            </section>
+            <section class="wb-settings-section wb-settings-danger">
+              <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Danger zone</h2><p class="wb-settings-section-desc">Reserve the final section for destructive actions that should stay separate from everyday settings.</p></div></div>
+              <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Delete workspace</strong><span>Permanently remove all members, projects, and billing history from this workspace.</span></div><div class="wb-settings-row-control"><button class="wb-btn wb-btn-danger wb-btn-sm" data-wb-toggle="modal" data-wb-target="#deleteWorkspace">Delete workspace</button></div></div></div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-confirm" id="deleteWorkspace" role="dialog" aria-modal="true" aria-labelledby="deleteWorkspaceTitle">
+    <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
+    <div class="wb-modal-dialog"><div class="wb-modal-body"><div class="wb-confirm-icon wb-confirm-icon-danger"><i class="wb-icon wb-icon-octagon-alert"></i></div><h2 class="wb-confirm-title" id="deleteWorkspaceTitle">Delete this workspace?</h2><p class="wb-confirm-message">This action permanently removes members, projects, and settings. Keep destructive confirmation inside a shipped modal surface instead of inventing a custom alert layer.</p></div><div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary wb-btn-sm" data-wb-dismiss="modal">Cancel</button><button class="wb-btn wb-btn-danger wb-btn-sm">Delete workspace</button></div></div>
+  </div>
+</body>
+</html>

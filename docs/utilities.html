@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Utilities</title>
+  <meta name="description" content="Spacing, typography, color, display, alignment, and visibility helper classes in WebBlocks UI.">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><i class="wb-icon wb-icon-layout-grid"></i><span>WebBlocks UI</span></a>
+      <nav class="wb-sidebar-nav" aria-label="Documentation navigation">
+        <div class="wb-sidebar-section">
+          <span class="wb-sidebar-label">Guide</span>
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Home</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Getting Started</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architecture</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-package wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item">Overview</a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item">Dashboard Shell</a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
+        <div class="wb-topbar-identity wb-min-w-0"><div class="wb-topbar-identity-copy"><span class="wb-topbar-product">WebBlocks UI</span><span class="wb-topbar-context">Helper classes for finishing a composition</span></div></div>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-topbar-actions"><button class="wb-topbar-action" data-wb-toggle="cmd" data-wb-target="#siteCmd" aria-label="Search the guide"><i class="wb-icon wb-icon-search"></i></button><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <nav class="wb-content-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Utilities</span></li></ol></nav>
+            <h1 class="wb-content-title">Utilities</h1>
+            <p class="wb-content-subtitle">Utilities are the final adjustment layer. If you need spacing nudges, text sizing, alignment, color helpers, borders, shadows, or responsive visibility helpers, they live here. If the page becomes a wall of utilities, move the decision back into layout, primitives, or patterns.</p>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <h2>Utility families</h2>
+                <div class="wb-cluster">
+                  <span class="wb-badge">display</span>
+                  <span class="wb-badge">flex</span>
+                  <span class="wb-badge">gap</span>
+                  <span class="wb-badge">margin</span>
+                  <span class="wb-badge">padding</span>
+                  <span class="wb-badge">text</span>
+                  <span class="wb-badge">font</span>
+                  <span class="wb-badge">color</span>
+                  <span class="wb-badge">border</span>
+                  <span class="wb-badge">shadow</span>
+                  <span class="wb-badge">position</span>
+                  <span class="wb-badge">visibility</span>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Common finishing helpers</h2>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-sm">
+                    <thead><tr><th>Family</th><th>Examples</th><th>Use them for</th></tr></thead>
+                    <tbody>
+                      <tr><td>Spacing</td><td><code>wb-mt-4</code>, <code>wb-mb-2</code>, <code>wb-p-4</code>, <code>wb-px-6</code>, <code>wb-py-4</code></td><td>Small local spacing corrections.</td></tr>
+                      <tr><td>Typography</td><td><code>wb-text-sm</code>, <code>wb-text-xl</code>, <code>wb-font-semibold</code>, <code>wb-mono</code></td><td>Text size and weight adjustments.</td></tr>
+                      <tr><td>Flex and gap</td><td><code>wb-flex</code>, <code>wb-items-center</code>, <code>wb-justify-between</code>, <code>wb-gap-3</code></td><td>Refine alignment inside an existing primitive.</td></tr>
+                      <tr><td>Color</td><td><code>wb-text-muted</code>, <code>wb-text-danger</code>, <code>wb-bg-surface-2</code></td><td>Small visual emphasis changes without custom CSS.</td></tr>
+                      <tr><td>Visibility</td><td><code>wb-hidden</code>, <code>wb-visible-mobile</code>, <code>wb-visible-desktop</code>, <code>wb-sr-only</code></td><td>Hide, reveal, or improve accessibility.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Healthy utility usage</h2>
+                <pre><code>&lt;div class="wb-card wb-mt-4"&gt;
+  &lt;div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3"&gt;
+    &lt;strong class="wb-text-lg"&gt;Activity&lt;/strong&gt;
+    &lt;span class="wb-badge wb-badge-success wb-badge-dot"&gt;Live&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body wb-p-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <div class="wb-card wb-mt-4">
+                  <div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3">
+                    <strong class="wb-text-lg">Activity</strong>
+                    <span class="wb-badge wb-badge-success wb-badge-dot">Live</span>
+                  </div>
+                  <div class="wb-card-body wb-p-4">The card and badge are still doing the real work. The utilities only refine spacing and alignment.</div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Typography and spacing helpers</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Text scale</h3></div><div class="wb-card-body wb-stack-2"><div class="wb-text-xs">wb-text-xs</div><div class="wb-text-sm">wb-text-sm</div><div class="wb-text-base">wb-text-base</div><div class="wb-text-lg">wb-text-lg</div><div class="wb-text-xl">wb-text-xl</div><div class="wb-text-2xl">wb-text-2xl</div></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Weight, color, and truncation</h3></div><div class="wb-card-body wb-stack-3"><div class="wb-font-semibold">wb-font-semibold</div><div class="wb-font-bold wb-text-danger">wb-font-bold + wb-text-danger</div><div class="wb-mono">wb-mono</div><div class="wb-truncate" style="max-width: 220px;">wb-truncate keeps a long line from breaking a compact layout surface.</div></div></div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Display, position, and visibility</h2>
+                <div class="wb-grid-3">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Display</strong><p class="wb-m-0"><code>wb-hidden</code>, <code>wb-block</code>, <code>wb-inline-flex</code>, <code>wb-grid-display</code></p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Position</strong><p class="wb-m-0"><code>wb-relative</code>, <code>wb-absolute</code>, <code>wb-fixed</code>, <code>wb-sticky</code>, <code>wb-inset-0</code></p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Responsive visibility</strong><p class="wb-m-0"><code>wb-visible-mobile</code>, <code>wb-visible-desktop</code>, <code>wb-hidden-sm</code>, <code>wb-hidden-md</code>, <code>wb-hidden-lg</code></p></div></div>
+                </div>
+                <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Utility boundary</strong> If you need many utility classes to make a primitive look correct, the underlying primitive, shell, or pattern choice is probably wrong.</div>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <a href="patterns.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Patterns</span></a>
+            <a href="javascript.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">JavaScript</span></a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="wb-cmd-backdrop" id="siteCmd" data-wb-cmd-default role="dialog" aria-modal="true" aria-label="Search this WebBlocks guide">
+    <div class="wb-cmd-dialog">
+      <div class="wb-cmd-search"><span class="wb-cmd-search-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-cmd-input" type="text" placeholder="Search pages and docs..." autocomplete="off"><span class="wb-cmd-shortcut-hint">Cmd/Ctrl + K</span></div>
+      <div class="wb-cmd-results">
+        <div class="wb-cmd-group"><div class="wb-cmd-group-label">Pages</div>
+          <a class="wb-cmd-item" href="index.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-home"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Home</span><span class="wb-cmd-item-sub">Project overview</span></span></a>
+          <a class="wb-cmd-item" href="getting-started.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-rocket"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Getting Started</span><span class="wb-cmd-item-sub">Setup and first workflow</span></span></a>
+          <a class="wb-cmd-item" href="architecture.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layers"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Architecture</span><span class="wb-cmd-item-sub">Layer model</span></span></a>
+          <a class="wb-cmd-item" href="foundation.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-palette"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Foundation</span><span class="wb-cmd-item-sub">Tokens and base elements</span></span></a>
+          <a class="wb-cmd-item" href="layout.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-columns2"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Layout</span><span class="wb-cmd-item-sub">Containers, grids, and shells</span></span></a>
+          <a class="wb-cmd-item" href="primitives.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-package"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Primitives</span><span class="wb-cmd-item-sub">Shipped building blocks</span></span></a>
+          <a class="wb-cmd-item" href="icons.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-star"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Icons</span><span class="wb-cmd-item-sub">Class-based icon reference</span></span></a>
+          <a class="wb-cmd-item" href="patterns.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Patterns</span><span class="wb-cmd-item-sub">Screen compositions</span></span></a>
+          <a class="wb-cmd-item" href="utilities.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-wrench"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">Utilities</span><span class="wb-cmd-item-sub">Spacing, text, and helper classes</span></span></a>
+          <a class="wb-cmd-item" href="javascript.html"><span class="wb-cmd-item-icon"><i class="wb-icon wb-icon-code"></i></span><span class="wb-cmd-item-text"><span class="wb-cmd-item-title">JavaScript</span><span class="wb-cmd-item-sub">Hooks and APIs</span></span></a>
+        </div>
+        <div class="wb-cmd-empty">No matching results.</div>
+      </div>
+      <div class="wb-cmd-footer"><span class="wb-cmd-footer-hint">Arrow keys navigate</span><span class="wb-cmd-footer-hint">Enter opens</span><span class="wb-cmd-footer-hint">Esc closes</span></div>
+    </div>
+  </div>
+</body>
+</html>

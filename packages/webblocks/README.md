@@ -43,11 +43,7 @@ Add the dist files to your project, choose a pattern, and adapt the primitives i
 
 In this repository, the package itself lives in `packages/webblocks/`.
 
-Related content surfaces live separately under:
-
-- `content/website/`
-- `content/docs/`
-- `content/examples/`
+Reference docs and integrated pattern examples live under `docs/`.
 
 ---
 
@@ -634,15 +630,13 @@ Modifier: `wb-toolbar-inset` adds horizontal padding for use inside a card.
 
 ## Icons
 
-WebBlocks ships a curated set of **173 Lucide icons** as both an SVG sprite and a CSS icon file.
+WebBlocks ships a curated set of **173 Lucide icons** as a CSS icon file for mask-image based usage.
 
 **For users:** Use the pre-built icon files from `dist/`.
 
-**For developers:** Icon files are regenerated from the Lucide CDN (see **Development** section below).
+**For developers:** The shipped CSS mappings are built from the internal source icon set in `src/css/icons/webblocks-icons.svg`.
 
-Two usage patterns are supported:
-
-### Pattern 1 — Bootstrap style `<i>` tag
+### Canonical usage — Bootstrap style `<i>` tag
 
 Requires `webblocks-icons.css` in addition to `webblocks-ui.css`:
 
@@ -653,16 +647,6 @@ Requires `webblocks-icons.css` in addition to `webblocks-ui.css`:
 <i class="wb-icon wb-icon-settings"></i>
 <i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent"></i>
 <i class="wb-icon wb-icon-trash wb-icon-sm wb-icon-danger"></i>
-```
-
-### Pattern 2 — SVG sprite
-
-No extra CSS needed:
-
-```html
-<svg class="wb-icon" aria-hidden="true">
-  <use href="/dist/webblocks-icons.svg#wb-icon-settings"></use>
-</svg>
 ```
 
 ### Sizes
@@ -713,16 +697,7 @@ Shape: `wb-icon-wrap-circle`
 
 ### Icon system standard
 
-- Sprite symbol IDs use `wb-icon-*` names, for example `#wb-icon-settings`
-- CSS icon classes use the same `wb-icon-*` names, for example `wb-icon-settings`
-- SVG usage stays semantic:
-
-```html
-<svg class="wb-icon" aria-hidden="true">
-  <use href="/dist/webblocks-icons.svg#wb-icon-settings"></use>
-</svg>
-```
-
+- CSS icon classes use `wb-icon-*` names, for example `wb-icon-settings`
 - CSS icon usage stays compact:
 
 ```html
@@ -734,11 +709,11 @@ Shape: `wb-icon-wrap-circle`
 ### Future icon workflow
 
 1. Add or remove icons in `packages/webblocks/scripts/update-icons.js`
-2. Run `node scripts/update-icons.js` to regenerate the source sprite
+2. Run `node scripts/update-icons.js` to regenerate the source icon set
 3. Run `./build.sh` to regenerate `dist/` and CSS mappings
-4. Verify both patterns still work: `<svg><use>` and `<i class="wb-icon wb-icon-*"></i>`
+4. Verify `<i class="wb-icon wb-icon-*"></i>` mappings still work
 
-Live preview with search: `content/examples/v2/icons.html`
+Live preview with search: `docs/icons.html`
 
 ---
 
@@ -764,7 +739,7 @@ No Blade wrappers or hidden markup APIs — HTML stays HTML.
 
 ### AJAX Toggle
 
-Checkbox değiştiğinde otomatik olarak JSON POST atar. Laravel admin panelleri için tasarlandı.
+Sends a JSON POST automatically when the checkbox changes. Designed for Laravel admin panels.
 
 ```html
 <input type="checkbox"
@@ -781,18 +756,18 @@ POST body:
 { "id": "42", "name": "publish", "checked": "true" }
 ```
 
-| Attribute | Açıklama |
+| Attribute | Description |
 |---|---|
-| `data-wb-ajax-toggle` | Marker — gerekli |
-| `data-wb-url` | POST endpoint — gerekli |
-| `data-wb-field` | Alan adı (`name` olarak gönderilir) — gerekli |
-| `data-wb-id` | Kayıt ID'si — gerekli |
+| `data-wb-ajax-toggle` | Marker — required |
+| `data-wb-url` | POST endpoint — required |
+| `data-wb-field` | Field name (sent as `name`) — required |
+| `data-wb-id` | Record ID — required |
 | `data-wb-feedback` | `toast` (default) \| `none` |
 | `data-wb-success-msg` | Özel başarı toast metni |
 | `data-wb-error-msg` | Özel hata toast metni |
 
-- `X-CSRF-TOKEN` header `<meta name="csrf-token">` den otomatik okunur
-- Hata durumunda checkbox önceki değerine döner
+- `X-CSRF-TOKEN` header is read automatically from `<meta name="csrf-token">`
+- On error, the checkbox reverts to its previous value
 - HTTP 200–299 ve/veya `{ "success": true }` JSON yanıtı başarı olarak kabul edilir
 
 ---
@@ -832,19 +807,28 @@ chmod +x build.sh
 ./build.sh
 ```
 
-This concatenates source files into `dist/webblocks-ui.css` and `dist/webblocks-ui.js`, and regenerates the icon sprite from the Lucide CDN.
+This concatenates source files into `dist/webblocks-ui.css` and `dist/webblocks-ui.js`, and regenerates the icon CSS mappings from the internal source icon set.
 
 No npm. No node_modules. Pure shell script.
 
 ### Icon regeneration (development only)
 
-To update the icon sprite after changing the icon list in `scripts/build-icons.js`:
+To regenerate the shipped icon CSS after changing the source icon set:
 
 ```bash
 node scripts/build-icons.js
 ```
 
-⚠️ **Development tool only** — This script requires internet access to fetch icons from the Lucide CDN. Users should never run this; it's only for maintainers updating the icon set.
+This reads `src/css/icons/webblocks-icons.svg` and writes `src/css/icons/webblocks-icons.css` plus `dist/webblocks-icons.css`.
+
+To refresh the source icon set itself from Lucide:
+
+```bash
+node scripts/update-icons.js
+./build.sh
+```
+
+`update-icons.js` requires internet access and is only for maintainers changing the curated icon list.
 
 ---
 
@@ -855,23 +839,28 @@ packages/webblocks/
 ├── dist/
 │   ├── webblocks-ui.css         ← main stylesheet (always include)
 │   ├── webblocks-ui.js          ← main JS (always include)
-│   ├── webblocks-icons.svg      ← SVG sprite (173 icons, Pattern 2)
-│   └── webblocks-icons.css      ← icon classes (173 icons, Pattern 1 — opt-in)
+│   └── webblocks-icons.css      ← icon classes (173 icons, opt-in)
 ├── src/
 │   ├── css/
 │   │   ├── foundation/      tokens, dark, presets, accents, radius,
 │   │   │                    density, shadow, font, border
 │   │   ├── base/            reset, elements
-│   │   ├── components/      button, badge, card, alert, form, table,
+│   │   ├── foundation/      tokens, dark, presets, accents, radius,
+│   │   │                    density, shadow, font, border, reset, elements
+│   │   ├── layout/          container, grid, navbar, sidebar
+│   │   ├── primitives/      button, badge, card, alert, form, table,
 │   │   │                    modal, dropdown, tabs, accordion, pagination,
 │   │   │                    breadcrumb, avatar, toast, skeleton, empty,
 │   │   │                    nav-group, filter-bar, action-menu, loading,
 │   │   │                    popover, drawer, command-palette, divider,
-│   │   │                    list-group, tooltip, toolbar
-│   │   ├── layouts/         container, navbar, sidebar,
-│   │   │                    dashboard-shell, auth-shell,
-│   │   │                    settings-shell, content-shell
-│   │   └── utilities/       helpers
+│   │   │                    list-group, tooltip, toolbar, callout,
+│   │   │                    section-heading, link-list, inline-list, promo,
+│   │   │                    radio-card, collapse, scoped webgames primitives
+│   │   ├── patterns/        page-intro, auth-shell, dashboard-shell,
+│   │   │                    settings-shell, content-shell, marketing,
+│   │   │                    webgames-screen
+│   │   ├── utilities/       helpers
+│   │   └── icons/           icons.css, webblocks-icons.svg, webblocks-icons.css (internal source + generated CSS)
 │   └── js/
 │       ├── theme.js         theme engine
 │       ├── dropdown.js      dropdown toggle

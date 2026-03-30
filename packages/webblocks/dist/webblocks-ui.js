@@ -315,16 +315,7 @@
     var mode = ls(MODE_KEY) || DEFAULT_MODE;
     var iconMap = { light: 'sun', dark: 'moon', auto: 'sun-moon' };
     var icon = iconMap[mode] || 'sun-moon';
-    var xlinkNS = 'http://www.w3.org/1999/xlink';
     document.querySelectorAll('[data-wb-mode-cycle]').forEach(function (btn) {
-      // Update SVG <use> href if present
-      // Use both href and xlink:href for maximum browser compatibility
-      var use = btn.querySelector('use');
-      if (use) {
-        var href = '#wb-icon-' + icon;
-        use.setAttribute('href', href);
-        use.setAttributeNS(xlinkNS, 'xlink:href', href);
-      }
       // Update <i> class if present
       var i = btn.querySelector('i.wb-icon');
       if (i) {
@@ -511,7 +502,7 @@
     // Expose preset definitions for tooling / UI builders
     presets: PRESETS,
 
-    // Re-sync cycle button icons — call after injecting SVG sprite into DOM
+    // Re-sync cycle button icons after UI updates
     sync: syncCycleButtons,
   };
 
@@ -2012,7 +2003,7 @@
 /* ============================================================
    WebBlocks UI — Dismiss (dismiss.js)
 
-   Centralised handler for dismissible components that use
+   Centralised handler for dismissible primitives that use
    data-wb-dismiss. Currently handles:
 
      alert     — removes .wb-alert from DOM (with animation)

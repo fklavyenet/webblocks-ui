@@ -21,7 +21,7 @@
 
   /* ── Accent (rich token set — driven by data-accent) ─────
      Default = blue; overridden per-accent in accents.css.
-     Components that still read --wb-primary* are covered by
+     Primitives that still read --wb-primary* are covered by
      the backward-compat aliases at the bottom of this block. */
   --wb-accent:           #2563eb;
   --wb-accent-hover:     #1d4ed8;
@@ -36,7 +36,7 @@
   --wb-accent-selection: #dbeafe;
   --wb-accent-glow-rgb:  37 99 235;
 
-  /* Backward-compat: existing components read --wb-primary* */
+  /* Backward-compat: existing primitives read --wb-primary* */
   --wb-primary:      var(--wb-accent);
   --wb-primary-dark: var(--wb-accent-hover);
   --wb-primary-soft: var(--wb-accent-soft);

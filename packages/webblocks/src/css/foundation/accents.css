@@ -12,9 +12,9 @@
      --wb-accent-text       Text color on light surface
      --wb-accent-on         Text/icon on accent background
      --wb-accent-ring       Focus ring (full rgb(...) value)
-     --wb-accent-ring-rgb   Focus ring components (r g b)
+     --wb-accent-ring-rgb   Focus ring channels (r g b)
      --wb-accent-selection  ::selection background
-     --wb-accent-glow-rgb   Glow / shadow tint components
+     --wb-accent-glow-rgb   Glow / shadow tint channels
 
    Dark mode: html[data-mode="dark"] or html[data-mode="auto"]
    Accents:   ocean | forest | sunset | royal | mint | amber | rose | slate-fire
