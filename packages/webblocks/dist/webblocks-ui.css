@@ -2144,6 +2144,10 @@ html[data-mode="dark"] .wb-game-ui {
   flex-shrink: 0;
 }
 
+.wb-sidebar-footer > p {
+  text-align: center;
+}
+
 /* ── Backdrop (mobile overlay) ────────────────────────────── */
 
 .wb-sidebar-backdrop {
