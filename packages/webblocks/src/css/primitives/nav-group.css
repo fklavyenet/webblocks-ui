@@ -249,9 +249,9 @@
 }
 
 .wb-topbar-context {
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--wb-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--wb-text);
   line-height: 1.2;
 }
 

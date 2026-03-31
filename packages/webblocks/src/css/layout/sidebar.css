@@ -38,6 +38,21 @@
   text-decoration: none;
 }
 
+.wb-sidebar-brand-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 1px;
+}
+
+.wb-sidebar-brand-note {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--wb-muted);
+}
+
 .wb-sidebar-header:hover,
 .wb-sidebar-brand:hover {
   text-decoration: none;

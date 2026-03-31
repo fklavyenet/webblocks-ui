@@ -1,6 +1,6 @@
 # WebBlocks UI
 
-A primitive-driven, pattern-oriented UI system built with plain HTML, CSS custom properties, and vanilla JavaScript.
+WebBlocks UI - UI building blocks for humans and AI.
 
 **No build step. No npm. No dependencies.**
 
