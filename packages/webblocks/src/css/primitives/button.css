@@ -47,14 +47,14 @@
 
 .wb-btn-primary {
   background: var(--wb-primary);
-  color: var(--wb-accent-on);
+  color: var(--wb-primary-on);
   border-color: var(--wb-primary);
 }
 .wb-btn-primary:hover {
   background: var(--wb-primary-dark);
   border-color: var(--wb-primary-dark);
   text-decoration: none;
-  color: var(--wb-accent-on);
+  color: var(--wb-primary-on);
 }
 
 .wb-btn-secondary {

@@ -33,15 +33,15 @@
 .wb-navbar-filled {
   background: var(--wb-primary);
   border-bottom-color: transparent;
-  color: #fff;
+  color: var(--wb-primary-on);
 }
 .wb-navbar-filled .wb-navbar-link {
-  color: rgba(255, 255, 255, 0.85);
+  color: color-mix(in srgb, var(--wb-primary-on) 78%, transparent);
 }
 .wb-navbar-filled .wb-navbar-link:hover,
 .wb-navbar-filled .wb-navbar-link.is-active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
+  color: var(--wb-primary-on);
+  background: color-mix(in srgb, var(--wb-primary-on) 12%, transparent);
 }
 
 /* ── Container wrapper support ───────────────────────────── */

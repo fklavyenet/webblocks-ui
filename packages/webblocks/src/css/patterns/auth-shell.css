@@ -120,7 +120,7 @@
   justify-content: center;
   padding: var(--wb-s12);
   background: var(--wb-primary);
-  color: #fff;
+  color: var(--wb-primary-on);
   text-align: center;
 }
 

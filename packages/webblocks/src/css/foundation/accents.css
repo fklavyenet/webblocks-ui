@@ -34,7 +34,7 @@ html[data-accent="ocean"] {
   --wb-accent-softer:    #EEF9FC;
   --wb-accent-border:    #9FD4E5;
   --wb-accent-text:      #0A4D63;
-  --wb-accent-on:        #FFFFFF;
+  --wb-accent-on:        #06202A;
   --wb-accent-ring:      rgb(17 138 178);
   --wb-accent-ring-rgb:  17 138 178;
   --wb-accent-selection: #CBEAF4;
@@ -80,7 +80,7 @@ html[data-accent="forest"] {
   --wb-accent-softer:    #F1F8F4;
   --wb-accent-border:    #A9D3B9;
   --wb-accent-text:      #1F5A39;
-  --wb-accent-on:        #FFFFFF;
+  --wb-accent-on:        #0A1812;
   --wb-accent-ring:      rgb(46 139 87);
   --wb-accent-ring-rgb:  46 139 87;
   --wb-accent-selection: #CFE6D8;
@@ -126,7 +126,7 @@ html[data-accent="sunset"] {
   --wb-accent-softer:    #FFF3EB;
   --wb-accent-border:    #F7BE97;
   --wb-accent-text:      #9A4410;
-  --wb-accent-on:        #FFFFFF;
+  --wb-accent-on:        #2A1407;
   --wb-accent-ring:      rgb(249 115 22);
   --wb-accent-ring-rgb:  249 115 22;
   --wb-accent-selection: #FAD9C3;
@@ -218,7 +218,7 @@ html[data-accent="mint"] {
   --wb-accent-softer:    #ECFBF8;
   --wb-accent-border:    #98DED6;
   --wb-accent-text:      #0D6158;
-  --wb-accent-on:        #FFFFFF;
+  --wb-accent-on:        #071513;
   --wb-accent-ring:      rgb(20 184 166);
   --wb-accent-ring-rgb:  20 184 166;
   --wb-accent-selection: #C8EEE8;
@@ -264,7 +264,7 @@ html[data-accent="amber"] {
   --wb-accent-softer:    #FFF7E6;
   --wb-accent-border:    #F4CD82;
   --wb-accent-text:      #8A5A03;
-  --wb-accent-on:        #FFFFFF;
+  --wb-accent-on:        #221705;
   --wb-accent-ring:      rgb(245 158 11);
   --wb-accent-ring-rgb:  245 158 11;
   --wb-accent-selection: #F8E1B6;
