@@ -125,13 +125,13 @@
   margin-bottom: var(--wb-s1);
 }
 
-.wb-content-body a {
+.wb-content-body a:not([class*="wb-"]) {
   color: var(--wb-accent-text);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.wb-content-body a:hover {
+.wb-content-body a:not([class*="wb-"]):hover {
   color: var(--wb-accent-hover);
 }
 

@@ -40,7 +40,6 @@
   --wb-primary:      var(--wb-accent);
   --wb-primary-dark: var(--wb-accent-hover);
   --wb-primary-soft: var(--wb-accent-soft);
-  --wb-primary-on:   var(--wb-accent-on);
 
   /* ── Semantic ─────────────────────────────────────────── */
   --wb-success:       #15803d;
@@ -215,7 +214,6 @@ html[data-preset="modern"] {
   --wb-primary:      #0d9488;
   --wb-primary-dark: #0f766e;
   --wb-primary-soft: #ccfbf1;
-  --wb-primary-on:   #06202A;
   --wb-font:         Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --wb-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   /* Radius, density, shadow: tokens.css defaults apply */
@@ -237,7 +235,6 @@ html[data-preset="minimal"] {
   --wb-primary:      #475569;
   --wb-primary-dark: #334155;
   --wb-primary-soft: #e2e8f0;
-  --wb-primary-on:   #FFFFFF;
 
   /* Radius: sharp */
   --wb-r-sm: 2px;
@@ -285,7 +282,6 @@ html[data-preset="editorial"] {
   --wb-primary:      #ea580c;
   --wb-primary-dark: #c2410c;
   --wb-primary-soft: #ffedd5;
-  --wb-primary-on:   #2A1407;
 
   /* Radius: soft */
   --wb-r-sm: 8px;
@@ -341,7 +337,6 @@ html[data-preset="playful"] {
   --wb-primary:      #e11d48;
   --wb-primary-dark: #be123c;
   --wb-primary-soft: #ffe4e6;
-  --wb-primary-on:   #FFFFFF;
 
   /* Radius: soft */
   --wb-r-sm: 8px;
@@ -397,7 +392,6 @@ html[data-preset="corporate"] {
   --wb-primary:      #4f46e5;
   --wb-primary-dark: #4338ca;
   --wb-primary-soft: #e0e7ff;
-  --wb-primary-on:   #FFFFFF;
 
   /* Radius: sharp */
   --wb-r-sm: 2px;
@@ -461,7 +455,7 @@ html[data-accent="ocean"] {
   --wb-accent-softer:    #EEF9FC;
   --wb-accent-border:    #9FD4E5;
   --wb-accent-text:      #0A4D63;
-  --wb-accent-on:        #06202A;
+  --wb-accent-on:        #FFFFFF;
   --wb-accent-ring:      rgb(17 138 178);
   --wb-accent-ring-rgb:  17 138 178;
   --wb-accent-selection: #CBEAF4;
@@ -507,7 +501,7 @@ html[data-accent="forest"] {
   --wb-accent-softer:    #F1F8F4;
   --wb-accent-border:    #A9D3B9;
   --wb-accent-text:      #1F5A39;
-  --wb-accent-on:        #0A1812;
+  --wb-accent-on:        #FFFFFF;
   --wb-accent-ring:      rgb(46 139 87);
   --wb-accent-ring-rgb:  46 139 87;
   --wb-accent-selection: #CFE6D8;
@@ -553,7 +547,7 @@ html[data-accent="sunset"] {
   --wb-accent-softer:    #FFF3EB;
   --wb-accent-border:    #F7BE97;
   --wb-accent-text:      #9A4410;
-  --wb-accent-on:        #2A1407;
+  --wb-accent-on:        #FFFFFF;
   --wb-accent-ring:      rgb(249 115 22);
   --wb-accent-ring-rgb:  249 115 22;
   --wb-accent-selection: #FAD9C3;
@@ -645,7 +639,7 @@ html[data-accent="mint"] {
   --wb-accent-softer:    #ECFBF8;
   --wb-accent-border:    #98DED6;
   --wb-accent-text:      #0D6158;
-  --wb-accent-on:        #071513;
+  --wb-accent-on:        #FFFFFF;
   --wb-accent-ring:      rgb(20 184 166);
   --wb-accent-ring-rgb:  20 184 166;
   --wb-accent-selection: #C8EEE8;
@@ -691,7 +685,7 @@ html[data-accent="amber"] {
   --wb-accent-softer:    #FFF7E6;
   --wb-accent-border:    #F4CD82;
   --wb-accent-text:      #8A5A03;
-  --wb-accent-on:        #221705;
+  --wb-accent-on:        #FFFFFF;
   --wb-accent-ring:      rgb(245 158 11);
   --wb-accent-ring-rgb:  245 158 11;
   --wb-accent-selection: #F8E1B6;
@@ -1388,7 +1382,7 @@ html[data-mode="dark"] .wb-game-ui {
 
 .wb-bg-surface    { background: var(--wb-surface) !important; }
 .wb-bg-surface-2  { background: var(--wb-surface-2) !important; }
-.wb-bg-primary    { background: var(--wb-primary) !important; color: var(--wb-primary-on) !important; }
+.wb-bg-primary    { background: var(--wb-primary) !important; color: #fff !important; }
 .wb-bg-success    { background: var(--wb-success) !important; color: #fff !important; }
 .wb-bg-danger     { background: var(--wb-danger) !important; color: #fff !important; }
 .wb-bg-warning    { background: var(--wb-warning) !important; }
@@ -1751,15 +1745,15 @@ html[data-mode="dark"] .wb-game-ui {
 .wb-navbar-filled {
   background: var(--wb-primary);
   border-bottom-color: transparent;
-  color: var(--wb-primary-on);
+  color: #fff;
 }
 .wb-navbar-filled .wb-navbar-link {
-  color: color-mix(in srgb, var(--wb-primary-on) 78%, transparent);
+  color: rgba(255, 255, 255, 0.85);
 }
 .wb-navbar-filled .wb-navbar-link:hover,
 .wb-navbar-filled .wb-navbar-link.is-active {
-  color: var(--wb-primary-on);
-  background: color-mix(in srgb, var(--wb-primary-on) 12%, transparent);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* ── Container wrapper support ───────────────────────────── */
@@ -2279,14 +2273,14 @@ html[data-mode="dark"] .wb-game-ui {
 
 .wb-btn-primary {
   background: var(--wb-primary);
-  color: var(--wb-primary-on);
+  color: var(--wb-accent-on);
   border-color: var(--wb-primary);
 }
 .wb-btn-primary:hover {
   background: var(--wb-primary-dark);
   border-color: var(--wb-primary-dark);
   text-decoration: none;
-  color: var(--wb-primary-on);
+  color: var(--wb-accent-on);
 }
 
 .wb-btn-secondary {
@@ -3747,7 +3741,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-page-item.is-active {
   background: var(--wb-primary);
   border-color: var(--wb-primary);
-  color: var(--wb-primary-on);
+  color: var(--wb-accent-on);
   cursor: default;
 }
 
@@ -4838,7 +4832,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   padding: 0 0.3em;
   border-radius: var(--wb-r-full);
   background: var(--wb-primary);
-  color: var(--wb-primary-on);
+  color: var(--wb-accent-on);
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1;
@@ -7324,7 +7318,7 @@ button.wb-game-card {
   justify-content: center;
   padding: var(--wb-s12);
   background: var(--wb-primary);
-  color: var(--wb-primary-on);
+  color: #fff;
   text-align: center;
 }
 
@@ -7920,13 +7914,13 @@ button.wb-game-card {
   margin-bottom: var(--wb-s1);
 }
 
-.wb-content-body a {
+.wb-content-body a:not([class*="wb-"]) {
   color: var(--wb-accent-text);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.wb-content-body a:hover {
+.wb-content-body a:not([class*="wb-"]):hover {
   color: var(--wb-accent-hover);
 }
 

@@ -36,7 +36,7 @@
 .wb-page-item.is-active {
   background: var(--wb-primary);
   border-color: var(--wb-primary);
-  color: var(--wb-primary-on);
+  color: var(--wb-accent-on);
   cursor: default;
 }
 

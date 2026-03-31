@@ -22,7 +22,6 @@ html[data-preset="modern"] {
   --wb-primary:      #0d9488;
   --wb-primary-dark: #0f766e;
   --wb-primary-soft: #ccfbf1;
-  --wb-primary-on:   #06202A;
   --wb-font:         Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --wb-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   /* Radius, density, shadow: tokens.css defaults apply */
@@ -44,7 +43,6 @@ html[data-preset="minimal"] {
   --wb-primary:      #475569;
   --wb-primary-dark: #334155;
   --wb-primary-soft: #e2e8f0;
-  --wb-primary-on:   #FFFFFF;
 
   /* Radius: sharp */
   --wb-r-sm: 2px;
@@ -92,7 +90,6 @@ html[data-preset="editorial"] {
   --wb-primary:      #ea580c;
   --wb-primary-dark: #c2410c;
   --wb-primary-soft: #ffedd5;
-  --wb-primary-on:   #2A1407;
 
   /* Radius: soft */
   --wb-r-sm: 8px;
@@ -148,7 +145,6 @@ html[data-preset="playful"] {
   --wb-primary:      #e11d48;
   --wb-primary-dark: #be123c;
   --wb-primary-soft: #ffe4e6;
-  --wb-primary-on:   #FFFFFF;
 
   /* Radius: soft */
   --wb-r-sm: 8px;
@@ -204,7 +200,6 @@ html[data-preset="corporate"] {
   --wb-primary:      #4f46e5;
   --wb-primary-dark: #4338ca;
   --wb-primary-soft: #e0e7ff;
-  --wb-primary-on:   #FFFFFF;
 
   /* Radius: sharp */
   --wb-r-sm: 2px;

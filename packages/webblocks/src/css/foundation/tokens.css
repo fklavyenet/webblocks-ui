@@ -40,7 +40,6 @@
   --wb-primary:      var(--wb-accent);
   --wb-primary-dark: var(--wb-accent-hover);
   --wb-primary-soft: var(--wb-accent-soft);
-  --wb-primary-on:   var(--wb-accent-on);
 
   /* ── Semantic ─────────────────────────────────────────── */
   --wb-success:       #15803d;
