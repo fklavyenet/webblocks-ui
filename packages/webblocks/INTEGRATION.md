@@ -853,9 +853,9 @@ Important:
 ```html
 <div class="wb-auth-shell">
   <div class="wb-auth-card">
-    <div class="wb-auth-logo">
-      <h1 class="wb-auth-logo-title">Sign in</h1>
-      <p class="wb-auth-logo-subtitle">Welcome back</p>
+    <div class="wb-auth-header">
+      <h1 class="wb-auth-header-title">Sign in</h1>
+      <p class="wb-auth-header-subtitle">Welcome back</p>
     </div>
     <div class="wb-auth-body">...</div>
     <div class="wb-auth-footer">Need an account?</div>
@@ -944,9 +944,9 @@ These are canonical starting structures. Extend them with shipped primitives and
 ```html
 <div class="wb-auth-shell">
   <div class="wb-auth-card">
-    <div class="wb-auth-logo">
-      <h1 class="wb-auth-logo-title">Sign in</h1>
-      <p class="wb-auth-logo-subtitle">Access your dashboard</p>
+    <div class="wb-auth-header">
+      <h1 class="wb-auth-header-title">Sign in</h1>
+      <p class="wb-auth-header-subtitle">Access your dashboard</p>
     </div>
     <div class="wb-auth-body">
       <div class="wb-stack wb-stack-4">

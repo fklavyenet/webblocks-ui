@@ -6,7 +6,7 @@
   Structure (centered card):
   <div class="wb-auth-shell">
     <div class="wb-auth-card">
-      <div class="wb-auth-logo"> ... </div>
+      <div class="wb-auth-header"> ... </div>
       <div class="wb-auth-body"> ... </div>
       <div class="wb-auth-footer"> ... </div>
     </div>
@@ -44,7 +44,7 @@
   overflow: hidden;
 }
 
-.wb-auth-logo {
+.wb-auth-header {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,20 +53,20 @@
   text-align: center;
 }
 
-.wb-auth-logo img,
-.wb-auth-logo svg {
+.wb-auth-header img,
+.wb-auth-header svg {
   height: 40px;
   width: auto;
 }
 
-.wb-auth-logo-title {
+.wb-auth-header-title {
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--wb-text);
   margin: 0;
 }
 
-.wb-auth-logo-subtitle {
+.wb-auth-header-subtitle {
   font-size: 0.875rem;
   color: var(--wb-muted);
   margin: 0;
