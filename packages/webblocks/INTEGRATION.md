@@ -282,7 +282,7 @@ Examples:
   </div>
 </div>
 
-<div class="wb-filter-bar wb-filter-bar-attached">
+<div class="wb-filter-bar">
   <div class="wb-filter-bar-start">
     <div class="wb-search-bar wb-search-bar-full">
       <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search" aria-hidden="true"></i></span>
