@@ -150,7 +150,7 @@ Use this section after you choose a pattern. It inventories the shipped UI primi
 
 ### Form
 
-Assistive field content must be wrapped in `wb-field-meta`. Do not place `wb-field-hint` or `wb-field-error` directly under `wb-field`.
+Assistive field content must be wrapped in `wb-field-meta`. Do not place `wb-field-hint` or `wb-field-error` directly under `wb-field`. In stacked forms, omit an empty `wb-field-meta` when no assistive content is present.
 
 ```html
 <div class="wb-field">

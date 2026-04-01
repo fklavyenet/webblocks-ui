@@ -108,7 +108,7 @@
 
               <section class="wb-stack-4">
                 <h2>Forms</h2>
-                <p>Fields use a three-slot contract: label, control, and <code>wb-field-meta</code>. Keep hints and errors inside the shared meta area so multi-column <code>wb-form-row</code> layouts stay aligned even when sibling fields carry different assistive content. Do not place <code>wb-field-hint</code> or <code>wb-field-error</code> directly under <code>wb-field</code>.</p>
+                <p>Fields use a three-slot contract: label, control, and <code>wb-field-meta</code>. Keep hints and errors inside the shared meta area so multi-column <code>wb-form-row</code> layouts stay aligned even when sibling fields carry different assistive content. Do not place <code>wb-field-hint</code> or <code>wb-field-error</code> directly under <code>wb-field</code>. In stacked forms, empty meta rows are usually unnecessary.</p>
                 <div class="wb-card">
                   <div class="wb-card-body wb-stack-4">
                     <div class="wb-form-row">
@@ -145,7 +145,6 @@
                     <div class="wb-field">
                       <label class="wb-label" for="descField">Description</label>
                       <textarea class="wb-textarea" id="descField" placeholder="Short summary"></textarea>
-                      <div class="wb-field-meta"></div>
                     </div>
                     <div class="wb-input-group">
                       <span class="wb-input-addon">https://</span>

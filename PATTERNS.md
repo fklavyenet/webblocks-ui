@@ -42,12 +42,10 @@ Canonical structure:
         <div class="wb-field">
           <label class="wb-label" for="login-email">Email</label>
           <input class="wb-input" id="login-email" type="email">
-          <div class="wb-field-meta"></div>
         </div>
         <div class="wb-field">
           <label class="wb-label" for="login-password">Password</label>
           <input class="wb-input" id="login-password" type="password">
-          <div class="wb-field-meta"></div>
         </div>
         <button class="wb-btn wb-btn-primary wb-w-full" type="submit">Continue</button>
       </form>
@@ -212,6 +210,7 @@ Inside patterns:
 - use layout helpers first
 - use shipped primitives second
 - use utilities only for small adjustments
+- keep `wb-field-meta` inside fields that carry assistive content; reserve empty meta rows only when aligned multi-column forms need them
 
 Do not create custom pattern wrappers before checking whether the shipped shell already fits the page.
 

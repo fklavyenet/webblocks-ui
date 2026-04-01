@@ -303,6 +303,7 @@ Canonical field markup:
 Use `wb-field-meta` as the only assistive-content area under the control.
 This keeps sibling fields in the same `wb-form-row` visually aligned even when one field has a hint, an error, both, or neither.
 Do not place `wb-field-hint` or `wb-field-error` directly under `wb-field`.
+In stacked single-column forms, an empty `wb-field-meta` is usually unnecessary.
 
 Shipped form primitives:
 
@@ -320,6 +321,7 @@ Meta-area rule:
 - place `wb-field-hint` and `wb-field-error` inside `wb-field-meta`
 - use hint first, then error when both are present
 - include an empty `wb-field-meta` in aligned multi-column rows when a sibling field uses assistive text
+- omit empty `wb-field-meta` in stacked forms when no assistive content is present
 - direct `wb-field-hint` or `wb-field-error` children under `wb-field` are not valid canonical markup
 
 Auth rule:
@@ -1052,7 +1054,6 @@ These are canonical starting structures. Extend them with shipped primitives and
         <div class="wb-field">
           <label class="wb-label" for="login-email">Email</label>
           <input class="wb-input" id="login-email" type="email" placeholder="you@example.com">
-          <div class="wb-field-meta"></div>
         </div>
         <div class="wb-field">
           <label class="wb-label" for="login-password">Password</label>

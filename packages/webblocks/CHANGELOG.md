@@ -21,6 +21,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Page/header guidance now treats breadcrumb as secondary context, keeps page title primary, and formalizes product-first topbar identity hierarchy
 - Page title naming is now context-specific: use `wb-page-header-title` for dashboard page headers and `wb-page-intro-title` for intro/masthead headings
 - `wb-card` is now the single canonical framed surface noun across the system, including dashboard work areas
+- `wb-field-meta` is now the only valid assistive-content path for field hints and errors; docs/examples were normalized and row-aligned forms keep reserved meta space only where alignment is needed
 
 ### Removed
 - Breaking simplification: removed the old dashboard-only framed-surface family and converged all framed dashboard surfaces on `wb-card`, `wb-card-header`, `wb-card-title`, `wb-card-body`, and `wb-card-footer`

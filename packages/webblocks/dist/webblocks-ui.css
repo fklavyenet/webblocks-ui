@@ -2822,7 +2822,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   align-content: start;
 }
 
-/* Keep the field contract singular: assistive content belongs only in wb-field-meta. */
+/* Keep the field contract singular: assistive content belongs only in wb-field-meta.
+   Reserve empty meta height only in aligned wb-form-row layouts, not in dense stacked forms. */
 .wb-field > :not(.wb-field-meta) {
   min-width: 0;
 }
@@ -2831,6 +2832,9 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: grid;
   gap: var(--wb-s1);
   align-content: start;
+}
+
+.wb-form-row .wb-field-meta {
   min-height: calc(var(--wb-font-size-xs) * var(--wb-line-height-base));
 }
 
