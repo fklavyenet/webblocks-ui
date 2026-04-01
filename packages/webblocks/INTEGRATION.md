@@ -73,12 +73,14 @@ Do not introduce or teach these as current canonical classes:
 - `wb-stack-md`
 - `wb-align-center`
 - `wb-checkbox`
+- a generic page-title class shared across page-header and page-intro contexts
 
 ### Boundary Rules
 
 - `wb-card` is the canonical global container surface
 - `wb-panel` is dashboard-shell-local; do not present it as a second global card primitive
 - `wb-page-header` is a page-context surface, not a generic layout wrapper
+- `wb-page-header-title` belongs only to `wb-page-header`; `wb-page-intro-title` belongs only to `wb-page-intro`
 - `wb-settings-section` belongs to the settings-shell vocabulary
 - `data-wb-*` attributes are behavior hooks, not primitive class families
 - aliases may still ship, but they are not equal canonical vocabulary in primary examples
@@ -867,7 +869,7 @@ Stacked navbar:
             </ol>
           </nav>
           <div>
-            <h1 class="wb-page-title">Overview</h1>
+            <h1 class="wb-page-header-title">Overview</h1>
             <p class="wb-page-subtitle">Current account health</p>
           </div>
         </div>
@@ -887,7 +889,7 @@ Important:
 - legacy aliases still ship: `wb-shell`, `wb-shell-main`, `wb-shell-body`
 - do not mix V1 and V2 shell structures in the same layout
 - `wb-sidebar-brand` is the clearer canonical name; `wb-sidebar-header` is the older alias
-- canonical page-header stack is: breadcrumb optional, title required, subtitle optional, actions optional
+- canonical page-header stack is: breadcrumb optional, `wb-page-header-title` required, `wb-page-subtitle` optional, actions optional
 - breadcrumb belongs above the title inside `wb-page-header-main`, not as a competing heading
 
 ### Auth Shell
@@ -958,7 +960,7 @@ Canonical settings shell:
   <div class="wb-container wb-page-intro-grid">
     <div class="wb-page-intro-copy">
       <div class="wb-page-eyebrow">Overview</div>
-      <h1 class="wb-page-title">Visible structure, quiet defaults.</h1>
+      <h1 class="wb-page-intro-title">Visible structure, quiet defaults.</h1>
       <p class="wb-page-lead">Use for docs and marketing intros.</p>
     </div>
     <aside class="wb-page-intro-aside">...</aside>
@@ -974,6 +976,7 @@ Also shipped for editorial/marketing surfaces:
 - `wb-promo`
 - `wb-hero`, `wb-hero-content`, `wb-hero-title`, `wb-hero-text`, `wb-hero-actions`
 - `wb-content-columns`, `wb-content-stack`, `wb-footer-grid`, `wb-footer-list`, `wb-footer-link`
+- `wb-page-intro-title` for intro/masthead headings; do not reuse page-header title markup here
 
 ---
 
@@ -1039,7 +1042,7 @@ These are canonical starting structures. Extend them with shipped primitives and
             </ol>
           </nav>
           <div>
-            <h1 class="wb-page-title">Overview</h1>
+            <h1 class="wb-page-header-title">Overview</h1>
             <p class="wb-page-subtitle">Current account status</p>
           </div>
         </div>
@@ -1438,7 +1441,7 @@ Use this checklist before shipping docs, examples, or new UI slices:
 2. Is the page starting from the correct shell for its job?
 3. Are layout helpers solving layout before new wrappers or utilities do?
 4. Are forms using the canonical `wb-field` / `wb-label` / `wb-input` system?
-5. Is a shell-local surface being documented as shell-local, not global?
+5. Are `wb-page-header-title` and `wb-page-intro-title` used only in their own families?
 6. Are aliases avoided unless compatibility is the explicit topic?
 7. Are JS hooks and APIs source-accurate?
 8. If a new class is proposed, did primitive composition fail first?
@@ -1450,6 +1453,7 @@ Use this checklist before shipping docs, examples, or new UI slices:
 - a docs example uses a class that does not exist in shipped source
 - two different nouns appear to solve the same framing job without a boundary reason
 - a pattern-local class is presented as a global primitive
+- a generic title class is used where the source contract is actually family-specific
 - a compatibility alias appears as the first or only documented path
 - behavior is described from memory instead of current `src/js/` behavior
 - HTML hierarchy is replaced by a new class name instead of semantic structure

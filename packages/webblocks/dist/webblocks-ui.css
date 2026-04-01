@@ -7111,7 +7111,7 @@ button.wb-game-card {
   background: var(--wb-accent-border);
 }
 
-.wb-page-title {
+.wb-page-intro-title {
   margin: 0;
   max-width: 12ch;
   font-size: clamp(2.75rem, 6vw, 5rem);
@@ -7120,7 +7120,7 @@ button.wb-game-card {
   color: var(--wb-text);
 }
 
-.wb-page-title em {
+.wb-page-intro-title em {
   font-style: normal;
   color: var(--wb-accent-text);
 }
@@ -7162,7 +7162,7 @@ button.wb-game-card {
     padding-block: var(--wb-s16) var(--wb-s12);
   }
 
-  .wb-page-title {
+  .wb-page-intro-title {
     max-width: none;
     font-size: clamp(2.3rem, 12vw, 3.6rem);
   }
@@ -7409,7 +7409,7 @@ button.wb-game-card {
   margin: 0;
 }
 
-.wb-page-header .wb-page-title {
+.wb-page-header .wb-page-header-title {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--wb-text);

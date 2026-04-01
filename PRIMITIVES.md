@@ -114,6 +114,7 @@ Boundary rules:
 - `wb-panel` is dashboard-shell-local
 - `wb-page-header` is a page-context surface, not a generic layout helper
 - `wb-settings-section` belongs to settings-shell vocabulary
+- page-header titles and page-intro titles are family-specific contracts, not one shared generic title primitive
 
 ## Patterns
 
@@ -158,6 +159,7 @@ Do not treat these as current canonical primitive contracts:
 - `wb-stack-md`
 - `wb-align-center`
 - `wb-checkbox`
+- a generic page-title class shared across page-header and page-intro contexts
 
 ## Alias Rules
 

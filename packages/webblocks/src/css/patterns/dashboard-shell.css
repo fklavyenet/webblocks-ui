@@ -64,7 +64,7 @@
   margin: 0;
 }
 
-.wb-page-header .wb-page-title {
+.wb-page-header .wb-page-header-title {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--wb-text);

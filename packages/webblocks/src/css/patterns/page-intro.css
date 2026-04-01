@@ -38,7 +38,7 @@
   background: var(--wb-accent-border);
 }
 
-.wb-page-title {
+.wb-page-intro-title {
   margin: 0;
   max-width: 12ch;
   font-size: clamp(2.75rem, 6vw, 5rem);
@@ -47,7 +47,7 @@
   color: var(--wb-text);
 }
 
-.wb-page-title em {
+.wb-page-intro-title em {
   font-style: normal;
   color: var(--wb-accent-text);
 }
@@ -89,7 +89,7 @@
     padding-block: var(--wb-s16) var(--wb-s12);
   }
 
-  .wb-page-title {
+  .wb-page-intro-title {
     max-width: none;
     font-size: clamp(2.3rem, 12vw, 3.6rem);
   }

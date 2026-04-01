@@ -66,6 +66,7 @@ Do not present these as canonical:
 - `wb-stack-md`
 - `wb-align-center`
 - `wb-checkbox`
+- a generic page-title class shared across page-header and page-intro contexts
 - `data-theme`
 - `.is-current` for breadcrumbs
 - `data-wb-toggle="collapse"`
@@ -196,9 +197,17 @@ Do not use `data-theme`.
 Canonical page-header stack:
 
 - breadcrumb optional
-- title required
+- `wb-page-header-title` required
 - subtitle optional
 - actions optional
+
+`wb-page-intro` uses its own display-heading contract:
+
+- `wb-page-intro-title`
+- `wb-page-eyebrow`
+- `wb-page-lead`
+
+Do not collapse those two title families into a single generic title class.
 
 Keep breadcrumb secondary to the page title.
 
@@ -231,7 +240,7 @@ Bad reasons:
 3. Is the page starting from the correct shell?
 4. Are layout helpers solving layout before utilities do?
 5. Are forms using the canonical field system?
-6. Are breadcrumb and page title kept separate?
+6. Are breadcrumb and page-header/page-intro title families kept separate?
 7. Is product identity stronger than context in the topbar?
 8. Are JS hooks source-accurate?
 9. Does the example avoid non-shipped classes?

@@ -87,7 +87,7 @@ Canonical structure:
             </ol>
           </nav>
           <div>
-            <h1 class="wb-page-title">Members</h1>
+            <h1 class="wb-page-header-title">Members</h1>
             <p class="wb-page-subtitle">Manage people, roles, and invitations.</p>
           </div>
         </div>
@@ -207,9 +207,15 @@ Do not create custom pattern wrappers before checking whether the shipped shell 
 Canonical page-header stack:
 
 - breadcrumb optional
-- title required
+- `wb-page-header-title` required
 - subtitle optional
 - actions optional
+
+`wb-page-intro` owns a separate display-heading contract:
+
+- `wb-page-eyebrow`
+- `wb-page-intro-title`
+- `wb-page-lead`
 
 Topbar identity rule:
 
