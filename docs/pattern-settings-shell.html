@@ -24,8 +24,8 @@
           <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i><span>Layout</span></a>
           <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-package wb-sidebar-icon"></i><span>Primitives</span></a>
           <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
-          <div class="wb-nav-group" data-wb-nav-group>
-            <button class="wb-nav-group-toggle is-active" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
             <div class="wb-nav-group-items">
               <a href="patterns.html" class="wb-nav-group-item">Overview</a>
               <a href="pattern-dashboard-shell.html" class="wb-nav-group-item">Dashboard Shell</a>
@@ -83,7 +83,7 @@
     </div>
   </div>
 
-  <div class="wb-modal wb-confirm" id="deleteWorkspace" role="dialog" aria-modal="true" aria-labelledby="deleteWorkspaceTitle">
+  <div class="wb-modal wb-confirm" id="deleteWorkspace" role="alertdialog" aria-modal="true" aria-labelledby="deleteWorkspaceTitle">
     <div class="wb-modal-backdrop" data-wb-dismiss="modal"></div>
     <div class="wb-modal-dialog"><div class="wb-modal-body"><div class="wb-confirm-icon wb-confirm-icon-danger"><i class="wb-icon wb-icon-octagon-alert"></i></div><h2 class="wb-confirm-title" id="deleteWorkspaceTitle">Delete this workspace?</h2><p class="wb-confirm-message">This action permanently removes members, projects, and settings. Keep destructive confirmation inside a shipped modal surface instead of inventing a custom alert layer.</p></div><div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary wb-btn-sm" data-wb-dismiss="modal">Cancel</button><button class="wb-btn wb-btn-danger wb-btn-sm">Delete workspace</button></div></div>
   </div>

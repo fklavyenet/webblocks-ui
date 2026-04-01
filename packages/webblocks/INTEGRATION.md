@@ -51,6 +51,48 @@ Use [`../../PATTERNS.md`](../../PATTERNS.md) to choose a canonical auth, dashboa
 - build order is strict: foundation -> base -> UI primitive source files -> layouts -> scoped extensions -> utilities
 - if you modify source CSS, JS, or icons in this package, rebuild `dist/` with `./build.sh`
 
+### Canonical Vocabulary
+
+Use these nouns first in examples, reviews, and generated markup:
+
+- shells: `wb-auth-shell`, `wb-dashboard-shell`, `wb-settings-shell`, `wb-content-shell`
+- layout helpers: `wb-container`, `wb-section`, `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, `wb-row`, `wb-col-*`
+- global surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-callout`, `wb-empty`, `wb-list`
+- shell-local surfaces: `wb-panel`, `wb-page-header`, `wb-settings-section`
+- controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
+- navigation: `wb-navbar`, `wb-sidebar`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
+
+### Forbidden Vocabulary In New Docs
+
+Do not introduce or teach these as current canonical classes:
+
+- `wb-page`
+- `wb-page-center`
+- `wb-btn-block`
+- `wb-stack-sm`
+- `wb-stack-md`
+- `wb-align-center`
+- `wb-checkbox`
+
+### Boundary Rules
+
+- `wb-card` is the canonical global container surface
+- `wb-panel` is dashboard-shell-local; do not present it as a second global card primitive
+- `wb-page-header` is a page-context surface, not a generic layout wrapper
+- `wb-settings-section` belongs to the settings-shell vocabulary
+- `data-wb-*` attributes are behavior hooks, not primitive class families
+- aliases may still ship, but they are not equal canonical vocabulary in primary examples
+
+### New Class Threshold
+
+Add a new class only when all are true:
+
+1. shipped composition cannot solve the problem cleanly
+2. the need repeats across more than one screen or component
+3. the new class has one clear contract
+4. the name does not duplicate an existing noun or alias
+5. the job belongs clearly to one layer
+
 ---
 
 ## Theme System
@@ -1385,6 +1427,32 @@ DO NOT:
 - do not hardcode accent colors in new CSS; use `--wb-accent*` tokens
 - do not mix `wb-shell` and `wb-dashboard-shell` in the same layout tree
 - do not invent a separate loader icon class when `wb-spinner` already exists
+
+---
+
+## Review Checklist
+
+Use this checklist before shipping docs, examples, or new UI slices:
+
+1. Does the example use shipped classes only?
+2. Is the page starting from the correct shell for its job?
+3. Are layout helpers solving layout before new wrappers or utilities do?
+4. Are forms using the canonical `wb-field` / `wb-label` / `wb-input` system?
+5. Is a shell-local surface being documented as shell-local, not global?
+6. Are aliases avoided unless compatibility is the explicit topic?
+7. Are JS hooks and APIs source-accurate?
+8. If a new class is proposed, did primitive composition fail first?
+
+---
+
+## Drift Warning Signs
+
+- a docs example uses a class that does not exist in shipped source
+- two different nouns appear to solve the same framing job without a boundary reason
+- a pattern-local class is presented as a global primitive
+- a compatibility alias appears as the first or only documented path
+- behavior is described from memory instead of current `src/js/` behavior
+- HTML hierarchy is replaced by a new class name instead of semantic structure
 
 ---
 
