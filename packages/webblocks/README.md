@@ -171,13 +171,15 @@ Use this section after you choose a pattern. It inventories the shipped UI primi
 ### Table
 
 ```html
-<table class="wb-table wb-table-hover">
-  <thead><tr><th>Name</th><th>Status</th></tr></thead>
-  <tbody><tr><td>Alice</td><td>Active</td></tr></tbody>
-</table>
+<div class="wb-table-wrap">
+  <table class="wb-table wb-table-hover">
+    <thead><tr><th>Name</th><th>Status</th></tr></thead>
+    <tbody><tr><td>Alice</td><td>Active</td></tr></tbody>
+  </table>
+</div>
 ```
 
-Modifiers: `wb-table-striped`, `wb-table-hover`, `wb-table-sm`, `wb-table-bordered`
+Modifiers: `wb-table-hover`, `wb-table-striped`, `wb-table-sm`
 
 ### Modal
 
@@ -508,17 +510,17 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 
 ```html
 <div class="wb-filter-bar">
-  <div class="wb-search-bar">
-    <input class="wb-input" type="text" placeholder="Search...">
+  <div class="wb-filter-bar-start">
+    <div class="wb-search-bar">
+      <input class="wb-search-bar-input" type="search" placeholder="Search...">
+    </div>
+    <select class="wb-filter-select">
+      <option>All statuses</option>
+    </select>
+    <button class="wb-filter-chip is-active">Active</button>
   </div>
-  <select class="wb-filter-select wb-select">
-    <option>All statuses</option>
-  </select>
-  <div class="wb-filter-chips">
-    <span class="wb-filter-chip">
-      Active
-      <button class="wb-filter-chip-remove">&times;</button>
-    </span>
+  <div class="wb-filter-bar-end">
+    <span class="wb-filter-results">12 results</span>
   </div>
 </div>
 ```
@@ -624,7 +626,7 @@ Action bar for tables and list views. Supports bulk-select mode.
 </div>
 ```
 
-Modifier: `wb-toolbar-inset` adds horizontal padding for use inside a card.
+Modifier: `wb-toolbar-inset` is the bordered variant for use inside a card or table wrapper.
 
 ---
 

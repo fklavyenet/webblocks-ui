@@ -272,16 +272,6 @@ Examples:
 ### Tables, Filters, Toolbars, Actions
 
 ```html
-<div class="wb-toolbar wb-toolbar-inset">
-  <div class="wb-toolbar-start">
-    <h2 class="wb-toolbar-title">Users</h2>
-    <p class="wb-toolbar-subtitle">24 active accounts</p>
-  </div>
-  <div class="wb-toolbar-end">
-    <button class="wb-btn wb-btn-primary wb-btn-sm">Add user</button>
-  </div>
-</div>
-
 <div class="wb-filter-bar">
   <div class="wb-filter-bar-start">
     <div class="wb-search-bar wb-search-bar-full">
@@ -298,24 +288,36 @@ Examples:
   </div>
 </div>
 
-<table class="wb-table wb-table-hover wb-table-striped">
-  <thead>
-    <tr><th>Name</th><th>Status</th><th></th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Atlas</td>
-      <td><span class="wb-status-pill wb-status-active">Active</span></td>
-      <td>
-        <div class="wb-action-group">
-          <a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Edit">
-            <i class="wb-icon wb-icon-pencil" aria-hidden="true"></i>
-          </a>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="wb-table-wrap">
+  <div class="wb-toolbar wb-toolbar-inset">
+    <div class="wb-toolbar-start">
+      <h2 class="wb-toolbar-title">Users</h2>
+      <p class="wb-toolbar-subtitle">24 active accounts</p>
+    </div>
+    <div class="wb-toolbar-end">
+      <button class="wb-btn wb-btn-primary wb-btn-sm">Add user</button>
+    </div>
+  </div>
+
+  <table class="wb-table wb-table-hover wb-table-striped">
+    <thead>
+      <tr><th>Name</th><th>Status</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Atlas</td>
+        <td><span class="wb-status-pill wb-status-active">Active</span></td>
+        <td>
+          <div class="wb-action-group">
+            <a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Edit">
+              <i class="wb-icon wb-icon-pencil" aria-hidden="true"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 ```
 
 Common related classes:
