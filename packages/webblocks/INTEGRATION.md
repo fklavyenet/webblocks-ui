@@ -62,6 +62,16 @@ Use these nouns first in examples, reviews, and generated markup:
 - controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
 - navigation: `wb-navbar`, `wb-sidebar`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
 
+### Classification Rule
+
+Public classification follows UI job:
+
+- primitives = atomic controls and local UI contracts
+- surfaces = framed content regions
+- patterns = page-level compositions
+
+File structure does not define public classification.
+
 ### Forbidden Vocabulary In New Docs
 
 Do not introduce or teach these as current canonical classes:
@@ -85,6 +95,33 @@ Do not introduce or teach these as current canonical classes:
 - `wb-settings-section` belongs to the settings-shell vocabulary
 - `data-wb-*` attributes are behavior hooks, not primitive class families
 - aliases may still ship, but they are not equal canonical vocabulary in primary examples
+
+### Surface Layer
+
+Surfaces are framed content regions.
+
+They are reusable, but they are not primitives.
+
+Global surfaces:
+
+- `wb-card`
+- `wb-callout`
+- `wb-stat`
+- `wb-toolbar`
+- `wb-filter-bar`
+- `wb-empty`
+- `wb-list`
+- `wb-link-list`
+
+Pattern-local surfaces:
+
+- `wb-page-header`
+- `wb-settings-section`
+
+Strict rules:
+
+- surfaces must not be treated as primitives, even if they live in `src/css/primitives/`
+- classify by UI role, not by file path
 
 ### New Class Threshold
 
@@ -1448,6 +1485,7 @@ Use this checklist before shipping docs, examples, or new UI slices:
 
 ## Drift Warning Signs
 
+- surfaces are described as primitives because of their file location
 - a docs example uses a class that does not exist in shipped source
 - a second framed-surface noun appears beside `wb-card` for the same job
 - a pattern-local class is presented as a global primitive
@@ -1455,6 +1493,11 @@ Use this checklist before shipping docs, examples, or new UI slices:
 - a compatibility alias appears as the first or only documented path
 - behavior is described from memory instead of current `src/js/` behavior
 - HTML hierarchy is replaced by a new class name instead of semantic structure
+
+Drift warning:
+
+Misclassifying surfaces as primitives leads to vocabulary drift and parallel naming.
+Always classify by UI role, not by file location.
 
 ---
 

@@ -5,7 +5,7 @@ WebBlocks UI - UI building blocks for humans and AI.
 ## Identity
 
 - vanilla UI system
-- foundation + layout primitives + UI primitives + patterns
+- foundation + layout primitives + surfaces + UI primitives + patterns
 - HTML-first and source-visible
 - no npm, no framework runtime, no hidden wrappers
 
@@ -13,7 +13,8 @@ WebBlocks UI - UI building blocks for humans and AI.
 
 - a foundation layer for tokens and theme axes
 - layout primitives for structure and flow
-- UI primitives for visible building blocks
+- primitives for controls and local UI contracts
+- surfaces for framed content regions
 - patterns for real screens such as auth, dashboards, forms, and marketing pages
 
 ## What It Is Not
@@ -29,7 +30,7 @@ Start from patterns, not primitives.
 
 1. Open [`PATTERNS.md`](PATTERNS.md) and choose a canonical starting point: auth, dashboard, form, or marketing hero.
 2. Copy the pattern structure and replace the content.
-3. Use [`PRIMITIVES.md`](PRIMITIVES.md) to understand which parts are layout primitives, UI primitives, and utilities.
+3. Use [`PRIMITIVES.md`](PRIMITIVES.md) to understand which parts are layout primitives, surfaces, UI primitives, and utilities.
 4. Use [`INTEGRATION.md`](INTEGRATION.md) to keep HTML explicit and composition rules consistent.
 5. Use [`packages/webblocks/README.md`](packages/webblocks/README.md) for shipped asset details inside the package.
 

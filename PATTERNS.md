@@ -191,6 +191,17 @@ These are also shipped pattern families, but not primary app shells:
 3. Pattern-local surfaces are not automatically global primitives.
 4. Do not flatten a shell into a generic wrapper abstraction.
 5. Do not treat dashboard header classes as universal layout helpers.
+6. `wb-page-header` and `wb-settings-section` are pattern-local surfaces, not global layout building blocks.
+
+Do:
+
+- use `wb-page-header` inside dashboard/app page-header context
+- use `wb-settings-section` inside settings flows and settings-shell structures
+
+Do not:
+
+- do not use `wb-page-header` as a general-purpose page wrapper
+- do not use `wb-settings-section` as a generic replacement for `wb-card`
 
 ## Composition Rules
 

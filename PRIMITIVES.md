@@ -83,11 +83,14 @@ Examples:
 
 - `wb-btn`
 - `wb-input`
-- `wb-card`
 - `wb-table`
 - `wb-modal`
 - `wb-dropdown`
 - `wb-tabs`
+
+Primitives are controls and local UI contracts.
+
+They are not framed content regions.
 
 ## Surfaces
 
@@ -109,11 +112,27 @@ Canonical surfaces include:
 
 Boundary rules:
 
+- `wb-card` is a surface, not a primitive
 - `wb-card` is the canonical global container surface and the only generic framed surface noun
 - dashboard work areas still use `wb-card`
 - `wb-page-header` is a page-context surface, not a generic layout helper
 - `wb-settings-section` belongs to settings-shell vocabulary
 - page-header titles and page-intro titles are family-specific contracts, not one shared generic title primitive
+
+## What Is Not A Primitive
+
+These are not primitives even if they are reusable:
+
+- `wb-card`
+- `wb-callout`
+- `wb-stat`
+- `wb-toolbar`
+- `wb-filter-bar`
+- `wb-empty`
+- `wb-list`
+- `wb-link-list`
+
+They are surfaces because they group content as visible framed regions.
 
 ## Patterns
 

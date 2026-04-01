@@ -65,14 +65,14 @@
               <section class="wb-stack-4">
                 <div class="wb-callout wb-callout-accent">
                   <strong class="wb-callout-title">Icon boundary</strong>
-                  Icons support these primitives, but they are still an asset layer. This guide intentionally uses the shipped mask-image path with <code>&lt;i class="wb-icon wb-icon-..."&gt;</code> and keeps <code>webblocks-icons.css</code> included.
+                  Icons support these controls and surfaces, but they are still an asset layer. This guide intentionally uses the shipped mask-image path with <code>&lt;i class="wb-icon wb-icon-..."&gt;</code> and keeps <code>webblocks-icons.css</code> included.
                 </div>
                 <div class="wb-table-wrap">
                   <table class="wb-table wb-table-sm">
                     <thead><tr><th>Need</th><th>Reach for</th><th>Why</th></tr></thead>
                     <tbody>
                       <tr><td>Primary actions and status</td><td><code>wb-btn</code>, <code>wb-badge</code>, <code>wb-status-pill</code>, <code>wb-action-group</code></td><td>Use these when the page needs clear actions, compact signals, and row-level controls.</td></tr>
-                      <tr><td>Grouped information and data display</td><td><code>wb-card</code>, <code>wb-stat</code>, <code>wb-table</code>, <code>wb-list</code>, <code>wb-alert</code></td><td>Use these before inventing page-specific panels, record rows, or status surfaces.</td></tr>
+                      <tr><td>Grouped information and data display</td><td><code>wb-card</code>, <code>wb-stat</code>, <code>wb-list</code>, <code>wb-callout</code>, <code>wb-table</code></td><td>Cards, stats, lists, and callouts are surfaces. Tables remain primitives. Choose by UI role, not by folder location.</td></tr>
                       <tr><td>Orientation and section switching</td><td><code>wb-breadcrumb</code>, <code>wb-tabs</code>, <code>wb-pagination</code></td><td>Use these when the page needs context or section changes, but keep them secondary to the page title.</td></tr>
                       <tr><td>Temporary or layered interaction</td><td><code>wb-dropdown</code>, <code>wb-modal</code>, <code>wb-drawer</code>, <code>wb-accordion</code>, <code>wb-toast</code></td><td>Use these when the page needs temporary surfaces and explicit behavior hooks instead of hidden helper logic.</td></tr>
                     </tbody>
@@ -140,7 +140,7 @@
               </section>
 
               <section class="wb-stack-4">
-                <h2>Surface and display primitives</h2>
+                <h2>Surfaces and display contracts</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card">
                     <div class="wb-card-header"><h3 class="wb-card-title">Stats</h3></div>
@@ -221,7 +221,7 @@
                       <div class="wb-accordion">
                         <div class="wb-accordion-item is-open">
                           <button class="wb-accordion-trigger"><span>What counts as a primitive?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
-                          <div class="wb-accordion-body">A primitive is a reusable visible building block such as a button, card, input, alert, table, modal, or list.</div>
+                          <div class="wb-accordion-body">A primitive is an atomic control or local UI contract such as a button, input, table, modal, dropdown, or tabs. Cards, stats, callouts, lists, toolbars, filter bars, and empty states are surfaces.</div>
                         </div>
                         <div class="wb-accordion-item">
                           <button class="wb-accordion-trigger"><span>What does not count?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
