@@ -58,7 +58,7 @@ Use these nouns first in examples, reviews, and generated markup:
 - shells: `wb-auth-shell`, `wb-dashboard-shell`, `wb-settings-shell`, `wb-content-shell`
 - layout helpers: `wb-container`, `wb-section`, `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, `wb-row`, `wb-col-*`
 - global surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-callout`, `wb-empty`, `wb-list`
-- shell-local surfaces: `wb-panel`, `wb-page-header`, `wb-settings-section`
+- shell-local surfaces: `wb-page-header`, `wb-settings-section`
 - controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
 - navigation: `wb-navbar`, `wb-sidebar`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
 
@@ -73,12 +73,13 @@ Do not introduce or teach these as current canonical classes:
 - `wb-stack-md`
 - `wb-align-center`
 - `wb-checkbox`
+- a second framed-surface noun beside `wb-card`
 - a generic page-title class shared across page-header and page-intro contexts
 
 ### Boundary Rules
 
-- `wb-card` is the canonical global container surface
-- `wb-panel` is dashboard-shell-local; do not present it as a second global card primitive
+- `wb-card` is the canonical global container surface and the only generic framed surface noun
+- dashboard work areas also use `wb-card`; do not introduce a second dashboard-only framed surface family
 - `wb-page-header` is a page-context surface, not a generic layout wrapper
 - `wb-page-header-title` belongs only to `wb-page-header`; `wb-page-intro-title` belongs only to `wb-page-intro`
 - `wb-settings-section` belongs to the settings-shell vocabulary
@@ -197,7 +198,7 @@ Also shipped:
 <span class="wb-badge wb-badge-info wb-badge-lg">Info</span>
 ```
 
-### Cards, Stats, Panels
+### Cards and Stats
 
 ```html
 <div class="wb-card">
@@ -213,13 +214,6 @@ Also shipped:
   <strong class="wb-stat-value">$24.8k</strong>
   <span class="wb-stat-delta wb-stat-delta-up">+12%</span>
 </div>
-
-<section class="wb-panel">
-  <div class="wb-panel-header">
-    <h3 class="wb-panel-title">Recent Orders</h3>
-  </div>
-  <div class="wb-panel-body">...</div>
-</section>
 ```
 
 Useful modifiers:
@@ -1047,11 +1041,11 @@ These are canonical starting structures. Extend them with shipped primitives and
           </div>
         </div>
       </div>
-      <section class="wb-panel">
-        <div class="wb-panel-header">
-          <h2 class="wb-panel-title">Recent activity</h2>
+      <section class="wb-card wb-card-flat">
+        <div class="wb-card-header">
+          <h2 class="wb-card-title">Recent activity</h2>
         </div>
-        <div class="wb-panel-body">...</div>
+        <div class="wb-card-body">...</div>
       </section>
     </main>
   </div>
@@ -1392,9 +1386,10 @@ Use this extension only inside a deliberately scoped game-like surface.
 - when building auth, dashboard, or settings screens, start from the canonical examples in `Screen Composition Examples` and expand them without changing the shell contract
 - build each screen from shipped primitives first: `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, then add UI primitives inside those structures
 - build forms only with `wb-field`, `wb-label`, `wb-input` / `wb-select` / `wb-textarea`, `wb-field-hint`, and `wb-field-error`
-- choose breadcrumb presets by job: `minimal` for standard admin headers, `surface` for soft separated headers, `bordered` for enterprise/data-heavy panels, `inline` for dense tool-like context, `context` for single-item location labels
+- choose breadcrumb presets by job: `minimal` for standard admin headers, `surface` for soft separated headers, `bordered` for enterprise/data-heavy screens, `inline` for dense tool-like context, `context` for single-item location labels
 - keep header hierarchy strict: breadcrumb optional, title required, subtitle optional, actions optional
 - keep topbar identity strict: product first, context second
+- use `wb-card` for framed content regions across all shells, including dashboard work areas
 - use canonical shell and primitive names when both canonical and legacy aliases exist
 - NEVER invent a parallel class system for auth, settings, dashboard, icons, or field controls when shipped classes already exist
 - NEVER create project-specific wrappers before checking whether the same structure can be expressed with shipped primitives and shells
@@ -1410,6 +1405,7 @@ DO:
 - use `wb-dashboard-shell` for dashboard layouts, `wb-settings-shell` for settings pages, and `wb-content-shell` for editorial/document pages
 - use `wb-field`, `wb-label`, `wb-input`, `wb-field-hint`, and `wb-field-error` for canonical forms
 - use `wb-auth-shell` + `wb-auth-card` for auth screens and keep auth fields on the canonical field system
+- use `wb-card` for framed content regions, including dashboard work areas
 - choose a breadcrumb preset instead of writing per-project breadcrumb CSS
 - use `wb-icon` helpers for icon sizing/color rather than custom inline styles when possible
 - use `WBTheme` or root `data-*` attributes to manage theme state
@@ -1430,6 +1426,7 @@ DO NOT:
 - do not hardcode accent colors in new CSS; use `--wb-accent*` tokens
 - do not mix `wb-shell` and `wb-dashboard-shell` in the same layout tree
 - do not invent a separate loader icon class when `wb-spinner` already exists
+- do not introduce or reintroduce a second generic framed surface noun beside `wb-card`
 
 ---
 
@@ -1442,16 +1439,17 @@ Use this checklist before shipping docs, examples, or new UI slices:
 3. Are layout helpers solving layout before new wrappers or utilities do?
 4. Are forms using the canonical `wb-field` / `wb-label` / `wb-input` system?
 5. Are `wb-page-header-title` and `wb-page-intro-title` used only in their own families?
-6. Are aliases avoided unless compatibility is the explicit topic?
-7. Are JS hooks and APIs source-accurate?
-8. If a new class is proposed, did primitive composition fail first?
+6. Are framed content regions using `wb-card` instead of a second generic surface noun?
+7. Are aliases avoided unless compatibility is the explicit topic?
+8. Are JS hooks and APIs source-accurate?
+9. If a new class is proposed, did primitive composition fail first?
 
 ---
 
 ## Drift Warning Signs
 
 - a docs example uses a class that does not exist in shipped source
-- two different nouns appear to solve the same framing job without a boundary reason
+- a second framed-surface noun appears beside `wb-card` for the same job
 - a pattern-local class is presented as a global primitive
 - a generic title class is used where the source contract is actually family-specific
 - a compatibility alias appears as the first or only documented path
@@ -1466,7 +1464,7 @@ Use this checklist before shipping docs, examples, or new UI slices:
 2. Missing `<i>` icon classes render the fallback `help-circle` mask, not an empty placeholder.
 3. `wb-confirm` is a modal variant on the `.wb-modal` wrapper.
 4. `wb-stat` lives in `card.css`; there is no separate stat stylesheet.
-5. `wb-panel`, `wb-page-header`, `wb-page-actions`, and `wb-stat-row` live in `dashboard-shell.css`.
+5. `wb-page-header`, `wb-page-actions`, and `wb-stat-row` live in `dashboard-shell.css`; framed dashboard regions still use the card family from `card.css`.
 6. `wb-divider` exists in both layout and primitive sources, but the richer primitive API is the canonical one to document.
 7. `wb-grid-2`, `wb-grid-3`, and `wb-grid-4` exist in both layout and utility sources; both ship compatible behavior, but `container.css` is the broader layout primitive source.
 8. `WBTheme` stores values in localStorage under `wb-*` keys and re-syncs control buttons automatically.

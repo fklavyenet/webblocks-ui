@@ -96,11 +96,11 @@ Canonical structure:
         </div>
       </div>
 
-      <section class="wb-panel">
-        <div class="wb-panel-header">
-          <h2 class="wb-panel-title">Recent activity</h2>
+      <section class="wb-card wb-card-flat">
+        <div class="wb-card-header">
+          <h2 class="wb-card-title">Recent activity</h2>
         </div>
-        <div class="wb-panel-body">...</div>
+        <div class="wb-card-body">...</div>
       </section>
     </main>
   </div>
@@ -187,7 +187,7 @@ These are also shipped pattern families, but not primary app shells:
 ## Boundary Rules
 
 1. Patterns define page jobs, not just boxes.
-2. Patterns may own local surfaces such as `wb-panel` or `wb-settings-section`.
+2. Patterns may own local surfaces such as `wb-settings-section`, but framed dashboard work areas still use `wb-card`.
 3. Pattern-local surfaces are not automatically global primitives.
 4. Do not flatten a shell into a generic wrapper abstraction.
 5. Do not treat dashboard header classes as universal layout helpers.

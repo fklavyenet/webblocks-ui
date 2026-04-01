@@ -7439,43 +7439,6 @@ button.wb-game-card {
   margin-bottom: var(--wb-s6);
 }
 
-/* ── Dashboard panel (card variant) ──────────────────────── */
-
-.wb-panel {
-  background: var(--wb-surface);
-  border: 1px solid var(--wb-border);
-  border-radius: var(--wb-r-lg);
-  overflow: hidden;
-}
-
-.wb-panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--wb-s3);
-  padding: var(--wb-s4) var(--wb-s5);
-  border-bottom: 1px solid var(--wb-border);
-}
-
-.wb-panel-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--wb-text);
-  margin: 0;
-}
-
-.wb-panel-body {
-  padding: var(--wb-s5);
-}
-
-.wb-panel-footer {
-  padding: var(--wb-s3) var(--wb-s5);
-  border-top: 1px solid var(--wb-border);
-  background: var(--wb-surface-2);
-  font-size: 0.85rem;
-  color: var(--wb-muted);
-}
-
 /* ── Mobile: sidebar collapses, main takes full width ─────── */
 
 @media (max-width: 768px) {

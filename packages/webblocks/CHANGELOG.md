@@ -20,6 +20,10 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Icon reference docs now explain the semantic split between refresh, sync, retry, and rotate actions
 - Page/header guidance now treats breadcrumb as secondary context, keeps page title primary, and formalizes product-first topbar identity hierarchy
 - Page title naming is now context-specific: use `wb-page-header-title` for dashboard page headers and `wb-page-intro-title` for intro/masthead headings
+- `wb-card` is now the single canonical framed surface noun across the system, including dashboard work areas
+
+### Removed
+- Breaking simplification: removed the old dashboard-only framed-surface family and converged all framed dashboard surfaces on `wb-card`, `wb-card-header`, `wb-card-title`, `wb-card-body`, and `wb-card-footer`
 
 ### Fixed
 - CSS icon mappings are now generated from the source icon set so `<i class="wb-icon wb-icon-*"></i>` stays stable across rebuilds

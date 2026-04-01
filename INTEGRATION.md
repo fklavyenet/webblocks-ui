@@ -50,7 +50,7 @@ Use these names as the default public language:
 
 - layout: `wb-container`, `wb-section`, `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, `wb-row`, `wb-col-*`
 - surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-list`, `wb-callout`, `wb-empty`
-- screen-local surfaces: `wb-panel`, `wb-page-header`, `wb-settings-section`
+- screen-local surfaces: `wb-page-header`, `wb-settings-section`
 - controls: `wb-btn`, `wb-badge`, `wb-input`, `wb-select`, `wb-textarea`, `wb-check`, `wb-radio`, `wb-switch`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-accordion`, `wb-collapse`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-spinner`, `wb-progress-bar`
 - navigation: `wb-navbar`, `wb-sidebar`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
 - icons: `wb-icon`, `wb-icon-*`, `wb-icon-wrap*`
@@ -66,6 +66,7 @@ Do not present these as canonical:
 - `wb-stack-md`
 - `wb-align-center`
 - `wb-checkbox`
+- a second framed-surface noun beside `wb-card`
 - a generic page-title class shared across page-header and page-intro contexts
 - `data-theme`
 - `.is-current` for breadcrumbs
@@ -121,14 +122,13 @@ Examples:
 - `wb-filter-bar`
 - `wb-callout`
 - `wb-empty`
-- `wb-panel`
 - `wb-page-header`
 - `wb-settings-section`
 
 Boundary rule:
 
-- `wb-card` is the canonical global container surface
-- `wb-panel` is dashboard-shell-local, not a second global card primitive
+- `wb-card` is the canonical global container surface and the only generic framed surface noun
+- dashboard work areas still use `wb-card`
 - `wb-page-header` is a dashboard/header surface, not a generic page wrapper primitive
 
 ### Patterns

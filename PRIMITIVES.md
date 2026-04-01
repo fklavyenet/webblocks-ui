@@ -104,14 +104,13 @@ Canonical surfaces include:
 - `wb-list`
 - `wb-link-list`
 - `wb-promo`
-- `wb-panel`
 - `wb-page-header`
 - `wb-settings-section`
 
 Boundary rules:
 
-- `wb-card` is the canonical global container surface
-- `wb-panel` is dashboard-shell-local
+- `wb-card` is the canonical global container surface and the only generic framed surface noun
+- dashboard work areas still use `wb-card`
 - `wb-page-header` is a page-context surface, not a generic layout helper
 - `wb-settings-section` belongs to settings-shell vocabulary
 - page-header titles and page-intro titles are family-specific contracts, not one shared generic title primitive
@@ -159,6 +158,7 @@ Do not treat these as current canonical primitive contracts:
 - `wb-stack-md`
 - `wb-align-center`
 - `wb-checkbox`
+- a second framed-surface noun beside `wb-card`
 - a generic page-title class shared across page-header and page-intro contexts
 
 ## Alias Rules
@@ -176,7 +176,7 @@ Examples:
 When choosing between two valid nouns:
 
 - prefer the more global, clearer, more reusable canonical family
-- prefer `wb-card` over inventing another generic container noun
+- prefer `wb-card` over any second framed-surface synonym
 - prefer shell vocabulary only inside its shell boundary
 
 ## Final Model
