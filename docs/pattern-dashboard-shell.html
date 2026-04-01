@@ -74,20 +74,22 @@
 
           <section class="wb-panel">
             <div class="wb-panel-header"><h2 class="wb-panel-title">Workspace activity</h2><a href="pattern-content-shell.html" class="wb-action-link">Open content shell</a></div>
-            <div class="wb-filter-bar wb-filter-bar-attached">
-              <div class="wb-filter-bar-start"><div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Search workspaces"></div><select class="wb-filter-select"><option>All plans</option><option>Starter</option><option>Growth</option><option>Enterprise</option></select><button class="wb-filter-chip is-active">Live</button><button class="wb-filter-chip">Needs review</button></div>
-              <div class="wb-filter-bar-end"><span class="wb-filter-results">12 workspaces</span></div>
+            <div class="wb-panel-body wb-stack-4">
+              <div class="wb-filter-bar wb-filter-bar-attached">
+                <div class="wb-filter-bar-start"><div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Search workspaces"></div><select class="wb-filter-select"><option>All plans</option><option>Starter</option><option>Growth</option><option>Enterprise</option></select><button class="wb-filter-chip is-active">Live</button><button class="wb-filter-chip">Needs review</button></div>
+              </div>
+              <div class="wb-table-wrap">
+                <table class="wb-table wb-table-hover">
+                  <thead><tr><th>Workspace</th><th>Owner</th><th>Status</th><th>Plan</th><th>Actions</th></tr></thead>
+                  <tbody>
+                    <tr><td>Atlas EU</td><td>Mina Ray</td><td><span class="wb-status-pill wb-status-active">Active</span></td><td>Enterprise</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                    <tr><td>Studio North</td><td>Emre Aksoy</td><td><span class="wb-status-pill wb-status-pending">Pending</span></td><td>Growth</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                    <tr><td>Docs Lab</td><td>Alice Brown</td><td><span class="wb-status-pill wb-status-info">Queued</span></td><td>Starter</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-delete" aria-label="Archive workspace"><i class="wb-icon wb-icon-x"></i></a></div></td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="wb-table-wrap">
-              <table class="wb-table wb-table-hover">
-                <thead><tr><th>Workspace</th><th>Owner</th><th>Status</th><th>Plan</th><th>Actions</th></tr></thead>
-                <tbody>
-                  <tr><td>Atlas EU</td><td>Mina Ray</td><td><span class="wb-status-pill wb-status-active">Active</span></td><td>Enterprise</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
-                  <tr><td>Studio North</td><td>Emre Aksoy</td><td><span class="wb-status-pill wb-status-pending">Pending</span></td><td>Growth</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
-                  <tr><td>Docs Lab</td><td>Alice Brown</td><td><span class="wb-status-pill wb-status-info">Queued</span></td><td>Starter</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-delete" aria-label="Archive workspace"><i class="wb-icon wb-icon-x"></i></a></div></td></tr>
-                </tbody>
-              </table>
-            </div>
+            <div class="wb-panel-footer"><span class="wb-filter-results">12 workspaces</span></div>
           </section>
         </div>
       </main>
