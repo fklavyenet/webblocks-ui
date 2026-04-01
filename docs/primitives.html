@@ -108,22 +108,44 @@
 
               <section class="wb-stack-4">
                 <h2>Forms</h2>
+                <p>Fields use a three-slot contract: label, control, and <code>wb-field-meta</code>. Keep hints and errors inside the shared meta area so multi-column <code>wb-form-row</code> layouts stay aligned even when sibling fields carry different assistive content.</p>
                 <div class="wb-card">
                   <div class="wb-card-body wb-stack-4">
                     <div class="wb-form-row">
                       <div class="wb-field">
                         <label class="wb-label" for="nameField">Project name</label>
                         <input class="wb-input" id="nameField" type="text" placeholder="Atlas Admin">
-                        <span class="wb-field-hint">Use a short internal name.</span>
+                        <div class="wb-field-meta">
+                          <div class="wb-field-hint">Use a short internal name.</div>
+                        </div>
                       </div>
                       <div class="wb-field">
                         <label class="wb-label" for="envField">Environment</label>
                         <select class="wb-select" id="envField"><option>Production</option><option>Staging</option><option>Local</option></select>
+                        <div class="wb-field-meta"></div>
+                      </div>
+                    </div>
+                    <div class="wb-form-row">
+                      <div class="wb-field">
+                        <label class="wb-label" for="ownerEmail">Owner email</label>
+                        <input class="wb-input wb-input-error" id="ownerEmail" type="email" placeholder="owner@example.com" value="atlas-admin">
+                        <div class="wb-field-meta">
+                          <div class="wb-field-error">Enter a valid email address.</div>
+                        </div>
+                      </div>
+                      <div class="wb-field">
+                        <label class="wb-label" for="regionField">Region</label>
+                        <select class="wb-select" id="regionField"><option>Frankfurt</option><option>London</option><option>Virginia</option></select>
+                        <div class="wb-field-meta">
+                          <div class="wb-field-hint">Used for billing and data residency.</div>
+                          <div class="wb-field-error">This region is not available on the current plan.</div>
+                        </div>
                       </div>
                     </div>
                     <div class="wb-field">
                       <label class="wb-label" for="descField">Description</label>
                       <textarea class="wb-textarea" id="descField" placeholder="Short summary"></textarea>
+                      <div class="wb-field-meta"></div>
                     </div>
                     <div class="wb-input-group">
                       <span class="wb-input-addon">https://</span>

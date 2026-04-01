@@ -287,14 +287,25 @@ Canonical field markup:
     <span class="wb-label-hint">Used for notifications</span>
   </label>
   <input id="email" class="wb-input" type="email" placeholder="you@example.com">
-  <div class="wb-field-hint">We never share your email.</div>
-  <div class="wb-field-error">Required</div>
+  <div class="wb-field-meta">
+    <div class="wb-field-hint">We never share your email.</div>
+    <div class="wb-field-error">Required</div>
+  </div>
 </div>
 ```
 
+`wb-field` is a three-slot contract:
+
+- label row
+- control row
+- `wb-field-meta` row
+
+Use `wb-field-meta` as the only assistive-content area under the control.
+This keeps sibling fields in the same `wb-form-row` visually aligned even when one field has a hint, an error, both, or neither.
+
 Shipped form primitives:
 
-- `wb-field`, `wb-label`, `wb-label-hint`, `wb-field-hint`, `wb-field-error`
+- `wb-field`, `wb-label`, `wb-label-hint`, `wb-field-meta`, `wb-field-hint`, `wb-field-error`
 - `wb-input`, `wb-select`, `wb-textarea`
 - `wb-input-sm`, `wb-input-lg`, `wb-select-sm`, `wb-select-lg`
 - `wb-input-error`, `wb-select-error`, `wb-textarea-error`
@@ -303,9 +314,15 @@ Shipped form primitives:
 - `wb-input-wrap`, `wb-input-icon`, `wb-input-suffix`
 - `wb-input-group`, `wb-input-addon`, `wb-input-addon-btn`
 
+Meta-area rule:
+
+- place `wb-field-hint` and `wb-field-error` inside `wb-field-meta`
+- use hint first, then error when both are present
+- include an empty `wb-field-meta` in aligned multi-column rows when a sibling field uses assistive text
+
 Auth rule:
 
-- auth forms MUST use the canonical `wb-field` / `wb-label` / `wb-input` / `wb-field-error` system
+- auth forms MUST use the canonical `wb-field` / `wb-label` / `wb-input` / `wb-field-meta` / `wb-field-error` system
 - DO NOT create auth-only field systems such as `guest-auth-*`, `qz-auth-*`, or other parallel naming schemes
 
 Examples:
@@ -315,10 +332,14 @@ Examples:
   <div class="wb-field">
     <label class="wb-label" for="first-name">First name</label>
     <input id="first-name" class="wb-input" type="text">
+    <div class="wb-field-meta">
+      <div class="wb-field-hint">Shown in member lists and activity logs.</div>
+    </div>
   </div>
   <div class="wb-field">
     <label class="wb-label" for="last-name">Last name</label>
     <input id="last-name" class="wb-input" type="text">
+    <div class="wb-field-meta"></div>
   </div>
 </div>
 
@@ -1029,11 +1050,14 @@ These are canonical starting structures. Extend them with shipped primitives and
         <div class="wb-field">
           <label class="wb-label" for="login-email">Email</label>
           <input class="wb-input" id="login-email" type="email" placeholder="you@example.com">
+          <div class="wb-field-meta"></div>
         </div>
         <div class="wb-field">
           <label class="wb-label" for="login-password">Password</label>
-          <input class="wb-input" id="login-password" type="password">
-          <div class="wb-field-error">Required</div>
+          <input class="wb-input wb-input-error" id="login-password" type="password">
+          <div class="wb-field-meta">
+            <div class="wb-field-error">Required</div>
+          </div>
         </div>
         <button class="wb-btn wb-btn-primary">Sign in</button>
       </div>
@@ -1422,7 +1446,7 @@ Use this extension only inside a deliberately scoped game-like surface.
 - choose the shell first: `wb-auth-shell` for login/register, `wb-dashboard-shell` for app dashboards, `wb-settings-shell` for account/settings flows, `wb-content-shell` for editorial/docs content
 - when building auth, dashboard, or settings screens, start from the canonical examples in `Screen Composition Examples` and expand them without changing the shell contract
 - build each screen from shipped primitives first: `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, then add UI primitives inside those structures
-- build forms only with `wb-field`, `wb-label`, `wb-input` / `wb-select` / `wb-textarea`, `wb-field-hint`, and `wb-field-error`
+- build forms only with `wb-field`, `wb-label`, `wb-input` / `wb-select` / `wb-textarea`, `wb-field-meta`, `wb-field-hint`, and `wb-field-error`
 - choose breadcrumb presets by job: `minimal` for standard admin headers, `surface` for soft separated headers, `bordered` for enterprise/data-heavy screens, `inline` for dense tool-like context, `context` for single-item location labels
 - keep header hierarchy strict: breadcrumb optional, title required, subtitle optional, actions optional
 - keep topbar identity strict: product first, context second
@@ -1440,7 +1464,7 @@ DO:
 - compose screens from shipped primitives before inventing new wrappers
 - ALWAYS compose layouts using `wb-stack`, `wb-cluster`, `wb-grid`, and related primitives before introducing new wrapper classes
 - use `wb-dashboard-shell` for dashboard layouts, `wb-settings-shell` for settings pages, and `wb-content-shell` for editorial/document pages
-- use `wb-field`, `wb-label`, `wb-input`, `wb-field-hint`, and `wb-field-error` for canonical forms
+- use `wb-field`, `wb-label`, `wb-input`, `wb-field-meta`, `wb-field-hint`, and `wb-field-error` for canonical forms
 - use `wb-auth-shell` + `wb-auth-card` for auth screens and keep auth fields on the canonical field system
 - use `wb-card` for framed content regions, including dashboard work areas
 - choose a breadcrumb preset instead of writing per-project breadcrumb CSS

@@ -2815,19 +2815,33 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   color: var(--wb-muted);
 }
 
-/* ── Field (label + input + hint) ────────────────────────── */
+/* ── Field (label + control + meta) ─────────────────────── */
 .wb-field {
   display: grid;
   gap: var(--wb-s2);
+  align-content: start;
+}
+
+.wb-field > :not(.wb-field-meta) {
+  min-width: 0;
+}
+
+.wb-field-meta {
+  display: grid;
+  gap: var(--wb-s1);
+  align-content: start;
+  min-height: calc(var(--wb-font-size-xs) * var(--wb-line-height-base));
 }
 
 .wb-field-hint {
-  font-size: 0.8rem;
+  font-size: var(--wb-font-size-xs);
+  line-height: var(--wb-line-height-base);
   color: var(--wb-muted);
 }
 
 .wb-field-error {
-  font-size: 0.8rem;
+  font-size: var(--wb-font-size-xs);
+  line-height: var(--wb-line-height-base);
   color: var(--wb-danger);
   font-weight: 500;
 }

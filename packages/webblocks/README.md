@@ -154,7 +154,9 @@ Use this section after you choose a pattern. It inventories the shipped UI primi
 <div class="wb-field">
   <label class="wb-label">Email</label>
   <input class="wb-input" type="email" placeholder="you@example.com">
-  <span class="wb-field-error">This field is required.</span>
+  <div class="wb-field-meta">
+    <span class="wb-field-error">This field is required.</span>
+  </div>
 </div>
 
 <select class="wb-select"> ... </select>
@@ -732,9 +734,11 @@ WebBlocks UI is plain HTML and CSS — it works in any Laravel Blade template wi
 <div class="wb-field">
     <label class="wb-label" for="email">Email</label>
     <input class="wb-input" type="email" name="email" id="email">
+    <div class="wb-field-meta">
     @error('email')
         <span class="wb-field-error">{{ $message }}</span>
     @enderror
+    </div>
 </div>
 
 <div class="wb-alert wb-alert-success">{{ session('status') }}</div>
