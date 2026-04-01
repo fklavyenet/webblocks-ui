@@ -12,7 +12,8 @@ Works with Laravel Blade, Craft Twig, Django templates, or plain HTML files.
 
 - foundation for tokens and theme axes
 - layout primitives for structure
-- UI primitives for visible building blocks
+- primitives for controls and local UI contracts
+- surfaces for framed content regions
 - patterns for real screens
 
 WebBlocks stays HTML-first. You use standard markup, shipped classes, and opt-in JavaScript behavior.
@@ -35,7 +36,7 @@ Start from patterns, not primitives.
 <script src="dist/webblocks-ui.js"></script>
 ```
 
-Add the dist files to your project, choose a pattern, and adapt the primitives it uses.
+Add the dist files to your project, choose a pattern, and adapt the surfaces and primitives it uses.
 
 ---
 
@@ -713,11 +714,11 @@ Shape: `wb-icon-wrap-circle`
 ### Future icon workflow
 
 1. Add or remove icons in `packages/webblocks/scripts/update-icons.js`
-2. Run `node scripts/update-icons.js` to regenerate the source icon set
-3. Run `./build.sh` to regenerate `dist/` and CSS mappings
+2. Run `node packages/webblocks/scripts/update-icons.js` from the repo root, or `node scripts/update-icons.js` from inside `packages/webblocks/`
+3. Run `./packages/webblocks/build.sh` from the repo root, or `./build.sh` from inside `packages/webblocks/`, to regenerate `dist/` and CSS mappings
 4. Verify `<i class="wb-icon wb-icon-*"></i>` mappings still work
 
-Live preview with search: `docs/icons.html`
+Live preview with search: `../../docs/icons.html`
 
 ---
 
@@ -807,8 +808,8 @@ Use [`INTEGRATION.md`](INTEGRATION.md) for canonical method signatures, data att
 **For developers:** Regenerate dist files from source:
 
 ```bash
-chmod +x build.sh
-./build.sh
+chmod +x ./packages/webblocks/build.sh
+./packages/webblocks/build.sh
 ```
 
 This concatenates source files into `dist/webblocks-ui.css` and `dist/webblocks-ui.js`, and regenerates the icon CSS mappings from the internal source icon set.
@@ -820,7 +821,7 @@ No npm. No node_modules. Pure shell script.
 To regenerate the shipped icon CSS after changing the source icon set:
 
 ```bash
-node scripts/build-icons.js
+node packages/webblocks/scripts/build-icons.js
 ```
 
 This reads `src/css/icons/webblocks-icons.svg` and writes `src/css/icons/webblocks-icons.css` plus `dist/webblocks-icons.css`.
@@ -828,8 +829,8 @@ This reads `src/css/icons/webblocks-icons.svg` and writes `src/css/icons/webbloc
 To refresh the source icon set itself from Lucide:
 
 ```bash
-node scripts/update-icons.js
-./build.sh
+node packages/webblocks/scripts/update-icons.js
+./packages/webblocks/build.sh
 ```
 
 `update-icons.js` requires internet access and is only for maintainers changing the curated icon list.
@@ -922,4 +923,4 @@ Each accent exposes 12 CSS custom properties usable anywhere in your UI:
 
 Copyright (c) 2026 fklavye.net. All rights reserved.
 
-See [LICENSE](LICENSE) for full terms.
+See [LICENSE](../../LICENSE) for full terms.
