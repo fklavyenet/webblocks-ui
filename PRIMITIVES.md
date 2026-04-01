@@ -1,315 +1,189 @@
-# Webblocks UI — Primitives Definition
+# WebBlocks UI — Primitive Boundary Map
 
 ## Purpose
 
-This document defines the **primitive layer** of Webblocks UI.
+This file defines what counts as a primitive, what does not, and where the current shipped families belong.
 
-It answers:
+Source of truth:
 
-* What is a primitive?
-* What is NOT a primitive?
-* How Webblocks is structured internally
-* How to correctly reason about UI building in Webblocks
+- `packages/webblocks/src/css/`
+- `packages/webblocks/src/js/`
+- `packages/webblocks/build.sh`
 
----
+## Classification Model
 
-## Core Principle
+WebBlocks uses these buckets:
 
-Webblocks is **not a primitive abstraction library**.
+1. Foundation
+2. Layout helpers
+3. UI primitives
+4. Surfaces
+5. Patterns
+6. Interactive hooks
 
-Webblocks is:
+## Foundation
 
-> A **vanilla UI system** built on
-> **foundation + primitives + patterns**
+Foundation is not a primitive layer.
 
----
+Foundation includes:
 
-## Terminology
+- tokens
+- dark mode overrides
+- accent, preset, radius, density, shadow, font, border axes
+- reset
+- global element styling
 
-### Primitive
+Foundation sets system rules. It does not provide page building blocks by itself.
 
-A primitive is a **low-level, reusable UI building block**.
+## Layout Helpers
 
-* It does **one job**
-* It is **composable**
-* It is **not a full UI screen**
-* It does **not imply structure beyond itself**
+Layout helpers are not UI primitives.
 
-Examples:
+They solve structure and flow only.
 
-* `wb-btn`
-* `wb-input`
-* `wb-card`
+Canonical layout helpers:
 
----
+- `wb-container*`
+- `wb-section*`
+- `wb-stack*`
+- `wb-cluster*`
+- `wb-split`
+- `wb-grid*`
+- `wb-grid-auto*`
+- `wb-row`
+- `wb-col-*`
 
-### Layout Primitive
+## UI Primitives
 
-A layout primitive controls **structure and flow**, not visual identity.
+A primitive is a reusable UI building block with a clear local contract.
 
-Examples:
+Canonical primitive families include:
 
-* `wb-container`
-* `wb-grid`
-* `wb-stack`
-* `wb-row`
-* `wb-page`
-* `wb-section`
-
-These are **not UI primitives**.
-
-They are **layout tools**.
-
----
-
-### UI Primitive
-
-A UI primitive is a **visual building block**.
-
-Examples:
-
-* buttons
-* inputs
-* cards
-* labels
-* badges
-* alerts
-
-They are:
-
-* reusable
-* style-defined
-* behavior-agnostic (or lightly enhanced with JS)
-
----
-
-### Utility
-
-A utility is a **single-purpose helper class**.
-
-* alignment
-* text tone
-* visibility
-* small state hints
-
-Utilities are:
-
-* optional
-* non-structural
-* never a UI by themselves
-
----
-
-### Pattern
-
-A pattern is a **real UI composition**.
+- button
+- badge
+- form controls and field system
+- table
+- modal
+- dropdown
+- tabs
+- accordion
+- collapse
+- breadcrumb
+- pagination
+- avatar
+- toast
+- divider
+- popover
+- drawer
+- radio-card
+- action controls
+- icons
 
 Examples:
 
-* login page
-* dashboard
-* settings page
-* pricing section
-* CRUD form
+- `wb-btn`
+- `wb-input`
+- `wb-card`
+- `wb-table`
+- `wb-modal`
+- `wb-dropdown`
+- `wb-tabs`
 
-A pattern is:
+## Surfaces
 
-> A composition of primitives using plain HTML.
+Surfaces are visible structured regions that are larger than a single primitive but smaller than a full page pattern.
 
----
+Canonical surfaces include:
 
-## What Webblocks Is NOT
+- `wb-card`
+- `wb-stat`
+- `wb-toolbar`
+- `wb-filter-bar`
+- `wb-callout`
+- `wb-empty`
+- `wb-list`
+- `wb-link-list`
+- `wb-promo`
+- `wb-panel`
+- `wb-page-header`
+- `wb-settings-section`
 
-Webblocks is NOT:
+Boundary rules:
 
-* a framework
-* a primitive abstraction system
-* a custom HTML language
-* a utility-first CSS system
-* a JS-driven UI engine
+- `wb-card` is the canonical global container surface
+- `wb-panel` is dashboard-shell-local
+- `wb-page-header` is a page-context surface, not a generic layout helper
+- `wb-settings-section` belongs to settings-shell vocabulary
 
----
+## Patterns
 
-## Architectural Layers
+Patterns are screen-level or page-level compositions.
 
-### 1. Foundation
+Canonical pattern families:
 
-Design tokens and global rules.
+- `wb-auth-shell`
+- `wb-dashboard-shell`
+- `wb-settings-shell`
+- `wb-content-shell`
+- `wb-page-intro`
+- marketing families such as `wb-hero` and footer structures
 
-Includes:
+Patterns are what users should usually start from for real pages.
 
-* colors
-* spacing
-* typography
-* radius
-* shadows
-* theme variables
+## Interactive Hooks
 
-This layer **does not produce UI directly**.
-
----
-
-### 2. Layout Primitives
-
-Responsible for:
-
-* page structure
-* spacing flow
-* alignment
-
-Examples:
-
-* container
-* grid
-* stack
-* row
-* section
-* page wrappers
-
----
-
-### 3. UI Primitives
-
-Reusable UI pieces.
+Some shipped behavior contracts are not class-first.
 
 Examples:
 
-* button
-* input
-* textarea
-* select
-* card
-* modal shell
-* table shell
+- `data-wb-toggle`
+- `data-wb-target`
+- `data-wb-dismiss`
+- `data-wb-tooltip`
+- `data-wb-collapse`
+- `data-wb-nav-group`
+- `data-wb-ajax-toggle`
 
-These are:
+These are not UI primitives.
+They are interaction hooks owned by shipped JS and attribute-driven CSS behavior.
 
-* simple
-* composable
-* not opinionated about full layouts
+## What Is Not Canonical Primitive Vocabulary
 
----
+Do not treat these as current canonical primitive contracts:
 
-### 4. Utilities
+- `wb-page`
+- `wb-page-center`
+- `wb-btn-block`
+- `wb-stack-sm`
+- `wb-stack-md`
+- `wb-align-center`
+- `wb-checkbox`
 
-Small helpers.
+## Alias Rules
 
-Examples:
-
-* text-muted
-* align-center
-* justify-between
-* hidden/visible states
-
-Utilities **support primitives**, but do not replace them.
-
----
-
-### 5. Patterns
-
-Real UI implementations.
+Aliases may ship, but they are not equal canonical vocabulary.
 
 Examples:
 
-* auth screens
-* dashboards
-* forms
-* marketing sections
+- `wb-shell*` is legacy compatibility for dashboard shell
+- `wb-sidebar-header` is an older alias beside `wb-sidebar-brand`
+- old tab names remain compatible but should not be the first documented path
 
-Patterns are:
+## Practical Rule
 
-* **the public face of Webblocks**
-* **what users actually copy and use**
+When choosing between two valid nouns:
 
----
+- prefer the more global, clearer, more reusable canonical family
+- prefer `wb-card` over inventing another generic container noun
+- prefer shell vocabulary only inside its shell boundary
 
-## Critical Rules
+## Final Model
 
-### 1. No Custom HTML Elements
+WebBlocks is not primitive-first in usage.
 
-HTML must remain standard.
+It is:
 
-❌ `<wb-card>`
-✅ `<div class="wb-card">`
-
----
-
-### 2. No Abstraction Layer
-
-No:
-
-* config-driven UI
-* schema-based rendering
-* virtual primitive systems
-
----
-
-### 3. No CSS Overreach
-
-CSS must not:
-
-* simulate behavior
-* replace JS logic
-* create hidden state machines
-
----
-
-### 4. No JS Structure Pollution
-
-JavaScript must not:
-
-* inject structural HTML
-* redefine layout
-* act as a rendering engine
-
----
-
-### 5. Primitives Are Not Products
-
-A button is not a product.
-
-A dashboard is.
-
----
-
-## Mental Model
-
-> Foundation provides rules
-> Layout primitives provide structure
-> UI primitives provide building blocks
-> Patterns provide real UI
-
----
-
-## Naming Philosophy
-
-Webblocks uses a consistent prefix:
-
-* `wb-*`
-
-This ensures:
-
-* isolation
-* predictability
-* no collision with native HTML or third-party CSS
-
----
-
-## Final Definition
-
-Webblocks is:
-
-> A **primitive-driven, pattern-oriented UI system**
-> built with **pure HTML, CSS, and JavaScript**
-
----
-
-## Status
-
-This file is the **source of truth** for:
-
-* primitive classification
-* system architecture
-* terminology
-
-All other documentation must align with this model.
+- pattern-first for real pages
+- primitive-based for composition
+- utility-supported for small adjustments
+- enforced by shipped source, not by invented examples

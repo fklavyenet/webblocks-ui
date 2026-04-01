@@ -1,455 +1,232 @@
-# Webblocks UI — Pattern Catalog
+# WebBlocks UI — Pattern Catalog
 
 ## Purpose
 
-This document defines the **pattern layer** of Webblocks UI.
+Patterns are the primary public entry point for real WebBlocks pages.
 
-Patterns show how to build **real screens** using:
+This file defines the canonical page-level shells and the rules for using them.
 
-* standard HTML
-* `wb-*` classes
-* zero abstraction
+Source of truth:
 
----
+- shipped pattern CSS under `packages/webblocks/src/css/patterns/`
+- supporting primitives and layout helpers under `packages/webblocks/src/css/`
 
-## Core Principle
+## Pattern Rule
 
-> Patterns are the **public API** of Webblocks.
+When the page has a page-level job, start from a shipped shell or pattern.
 
-Users should NOT start from primitives.
+Do not start from an invented wrapper.
 
-Users should start from patterns.
+## Canonical Shells
 
----
+### Auth
 
-## What Is a Pattern?
+Use `wb-auth-shell` for:
 
-A pattern is:
+- sign in
+- register
+- password reset
+- lightweight onboarding entry flows
 
-* a **real UI scenario**
-* built using **primitives only**
-* written in **plain HTML**
-* **copy-paste usable**
-
-Examples:
-
-* login page
-* dashboard
-* settings form
-* pricing section
-
----
-
-## What Patterns Are NOT
-
-Patterns are NOT:
-
-* primitives
-* templates with hidden logic
-* framework constructs
-* config-driven systems
-
----
-
-## Rules
-
-### 1. No Custom Elements
-
-❌ `<wb-card>`
-✅ `<div class="wb-card">`
-
----
-
-### 2. No Abstraction
-
-* no Blade wrappers required
-* no JS rendering layer
-* no config-based UI
-
----
-
-### 3. HTML First
-
-* semantic HTML preferred
-* structure must be explicit
-
----
-
-### 4. Primitives Only
-
-Patterns must use:
-
-* layout primitives
-* UI primitives
-* utilities (when necessary)
-
----
-
-### 5. Icons Are Functional Assets
-
-Icons are optional inside patterns.
-
-Use them only when they clarify:
-
-* actions such as add, edit, delete, refresh
-* state such as success, warning, or error
-* navigation or context such as search, settings, or support
-
-Do NOT add icons to:
-
-* login and registration forms
-* simple hero sections
-* headings that are already clear without them
-
-Pattern HTML must still read correctly if the icons are removed.
-
-Examples may carry a denser icon layer than this catalog, but icons must still stay functional rather than decorative.
-
----
-
-## Pattern Categories
-
-* Auth
-* Dashboard
-* Forms
-* Marketing
-* Data Display
-* Empty States
-
----
-
-# Auth Patterns
-
-## Login (Canonical)
+Canonical structure:
 
 ```html
-<main class="wb-page wb-page-center">
-  <div class="wb-container wb-container-sm">
-
-    <header class="wb-stack wb-stack-sm wb-align-center">
-      <h1 class="wb-text-xl">Sign in</h1>
-      <p class="wb-text-muted">Access your account</p>
-    </header>
-
-    <form class="wb-card wb-stack wb-stack-md">
-
-      <div class="wb-field">
-        <label class="wb-label">Email</label>
-        <input type="email" class="wb-input" />
-      </div>
-
-      <div class="wb-field">
-        <label class="wb-label">Password</label>
-        <input type="password" class="wb-input" />
-      </div>
-
-      <button class="wb-btn wb-btn-primary wb-btn-block">
-        Sign in
-      </button>
-
-    </form>
-
-  </div>
-</main>
-```
-
----
-
-## Register
-
-```html
-<main class="wb-page wb-page-center">
-  <div class="wb-container wb-container-sm">
-
-    <header class="wb-stack wb-stack-sm wb-align-center">
-      <h1 class="wb-text-xl">Create account</h1>
-      <p class="wb-text-muted">Start using the system</p>
-    </header>
-
-    <form class="wb-card wb-stack wb-stack-md">
-
-      <div class="wb-field">
-        <label class="wb-label">Name</label>
-        <input type="text" class="wb-input" />
-      </div>
-
-      <div class="wb-field">
-        <label class="wb-label">Email</label>
-        <input type="email" class="wb-input" />
-      </div>
-
-      <div class="wb-field">
-        <label class="wb-label">Password</label>
-        <input type="password" class="wb-input" />
-      </div>
-
-      <button class="wb-btn wb-btn-primary wb-btn-block">
-        Register
-      </button>
-
-    </form>
-
-  </div>
-</main>
-```
-
----
-
-# Dashboard Patterns
-
-## Basic Dashboard
-
-```html
-<main class="wb-page">
-  <div class="wb-container">
-
-    <header class="wb-page-header">
-      <h1>Dashboard</h1>
-    </header>
-
-    <section class="wb-grid wb-grid-3">
-
-      <div class="wb-card">
-        <h3>Total Users</h3>
-        <p class="wb-text-xl">1,240</p>
-      </div>
-
-      <div class="wb-card">
-        <h3>Revenue</h3>
-        <p class="wb-text-xl">$8,320</p>
-      </div>
-
-      <div class="wb-card">
-        <h3>Active Sessions</h3>
-        <p class="wb-text-xl">312</p>
-      </div>
-
-    </section>
-
-  </div>
-</main>
-```
-
----
-
-## Dashboard with Table
-
-```html
-<section class="wb-section">
-  <div class="wb-container">
-
-    <header class="wb-page-header wb-split">
-      <h2>Recent Activity</h2>
-      <button class="wb-btn wb-btn-primary wb-icon-btn">
-        <i class="wb-icon wb-icon-plus wb-icon-sm" aria-hidden="true"></i>
-        Add user
-      </button>
-    </header>
-
-    <div class="wb-card">
-
-      <table class="wb-table">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>John Doe</td>
-            <td>Active</td>
-            <td>Today</td>
-            <td>
-              <div class="wb-action-group">
-                <a class="wb-action-link" href="#">
-                  <i class="wb-icon wb-icon-eye wb-icon-sm" aria-hidden="true"></i>
-                  View
-                </a>
-                <a class="wb-action-link" href="#">
-                  <i class="wb-icon wb-icon-pencil wb-icon-sm" aria-hidden="true"></i>
-                  Edit
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Jane Smith</td>
-            <td>Pending</td>
-            <td>Yesterday</td>
-            <td>
-              <div class="wb-action-group">
-                <a class="wb-action-link" href="#">
-                  <i class="wb-icon wb-icon-eye wb-icon-sm" aria-hidden="true"></i>
-                  View
-                </a>
-                <a class="wb-action-link" href="#">
-                  <i class="wb-icon wb-icon-pencil wb-icon-sm" aria-hidden="true"></i>
-                  Edit
-                </a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
+<div class="wb-auth-shell">
+  <div class="wb-auth-card">
+    <div class="wb-auth-header">
+      <h1 class="wb-auth-header-title">Sign in</h1>
+      <p class="wb-auth-header-subtitle">Access your workspace</p>
     </div>
-
-  </div>
-</section>
-```
-
----
-
-# Form Patterns
-
-## Create / Edit Form
-
-```html
-<main class="wb-page">
-  <div class="wb-container wb-container-sm">
-
-    <header class="wb-page-header">
-      <h1>Create Item</h1>
-    </header>
-
-    <form class="wb-stack wb-stack-md">
-
-      <div class="wb-field">
-        <label class="wb-label">Title</label>
-        <input type="text" class="wb-input" />
-      </div>
-
-      <div class="wb-field">
-        <label class="wb-label">Description</label>
-        <textarea class="wb-textarea"></textarea>
-      </div>
-
-      <div class="wb-row wb-justify-end">
-        <button class="wb-btn">Cancel</button>
-        <button class="wb-btn wb-btn-primary">Save</button>
-      </div>
-
-    </form>
-
-  </div>
-</main>
-```
-
----
-
-# Marketing Patterns
-
-## Hero Section
-
-```html
-<section class="wb-section wb-section-lg">
-  <div class="wb-container wb-container-lg wb-align-center">
-
-    <h1 class="wb-text-2xl">
-      Build faster with Webblocks
-    </h1>
-
-    <p class="wb-text-muted">
-      A clean, framework-free UI system
-    </p>
-
-    <div class="wb-row wb-justify-center">
-      <a class="wb-btn wb-btn-primary">Get Started</a>
-      <a class="wb-btn">Documentation</a>
+    <div class="wb-auth-body">
+      <form class="wb-stack-4">
+        <div class="wb-field">
+          <label class="wb-label" for="login-email">Email</label>
+          <input class="wb-input" id="login-email" type="email">
+        </div>
+        <div class="wb-field">
+          <label class="wb-label" for="login-password">Password</label>
+          <input class="wb-input" id="login-password" type="password">
+        </div>
+        <button class="wb-btn wb-btn-primary wb-w-full" type="submit">Continue</button>
+      </form>
     </div>
-
+    <div class="wb-auth-footer">Need an account?</div>
   </div>
-</section>
-```
-
----
-
-## Pricing Section
-
-```html
-<section class="wb-section">
-  <div class="wb-container wb-container-lg">
-
-    <header class="wb-align-center wb-stack wb-stack-sm">
-      <h2 class="wb-text-xl">Pricing</h2>
-      <p class="wb-text-muted">Simple and transparent</p>
-    </header>
-
-    <div class="wb-grid wb-grid-3">
-
-      <div class="wb-card">
-        <h3>Free</h3>
-        <p>$0</p>
-        <button class="wb-btn wb-btn-block">Start</button>
-      </div>
-
-      <div class="wb-card">
-        <h3>Pro</h3>
-        <p>$12</p>
-        <button class="wb-btn wb-btn-primary wb-btn-block">Upgrade</button>
-      </div>
-
-      <div class="wb-card">
-        <h3>Enterprise</h3>
-        <p>Custom</p>
-        <button class="wb-btn wb-btn-block">Contact</button>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-```
-
----
-
-# Empty State Patterns
-
-## Empty List
-
-```html
-<div class="wb-card wb-align-center wb-stack wb-stack-sm">
-
-  <i class="wb-icon wb-icon-inbox wb-icon-xl wb-icon-muted" aria-hidden="true"></i>
-
-  <h3>No items found</h3>
-  <p class="wb-text-muted">
-    Start by creating your first item.
-  </p>
-
-  <button class="wb-btn wb-btn-primary wb-icon-btn">
-    <i class="wb-icon wb-icon-plus wb-icon-sm" aria-hidden="true"></i>
-    Create Item
-  </button>
-
 </div>
 ```
 
----
+### Dashboard
 
-# Final Notes
+Use `wb-dashboard-shell` for:
 
-Patterns are:
+- admin products
+- SaaS dashboards
+- control panels
+- data-dense operational UIs
 
-* stable
-* minimal
-* framework-free
-* copy-paste friendly
+Canonical structure:
 
----
+```html
+<div class="wb-dashboard-shell">
+  <aside class="wb-sidebar" id="appSidebar">...</aside>
 
-## Relationship to PRIMITIVES.md
+  <div class="wb-dashboard-body">
+    <header class="wb-navbar">
+      <a href="#" class="wb-navbar-brand">Atlas</a>
+      <span class="wb-navbar-spacer"></span>
+      <div class="wb-navbar-end">...</div>
+    </header>
 
-* PRIMITIVES.md defines **what exists**
-* PATTERNS.md shows **how to use it**
+    <main class="wb-dashboard-main">
+      <div class="wb-page-header">
+        <div class="wb-page-header-main">
+          <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
+            <ol class="wb-breadcrumb wb-breadcrumb-minimal">
+              <li class="wb-breadcrumb-item"><a href="#">Workspace</a></li>
+              <li class="wb-breadcrumb-item is-active"><span aria-current="page">Members</span></li>
+            </ol>
+          </nav>
+          <div>
+            <h1 class="wb-page-title">Members</h1>
+            <p class="wb-page-subtitle">Manage people, roles, and invitations.</p>
+          </div>
+        </div>
+        <div class="wb-page-actions">
+          <button class="wb-btn wb-btn-primary wb-btn-sm">Invite</button>
+        </div>
+      </div>
 
----
+      <section class="wb-panel">
+        <div class="wb-panel-header">
+          <h2 class="wb-panel-title">Recent activity</h2>
+        </div>
+        <div class="wb-panel-body">...</div>
+      </section>
+    </main>
+  </div>
+</div>
+```
 
-## Status
+### Settings
 
-This file represents the **first stable Pattern Catalog**.
+Use `wb-settings-shell` for:
 
-It will expand over time, but its principles must remain unchanged.
+- account settings
+- organization settings
+- grouped control pages with local navigation
+
+Canonical structure:
+
+```html
+<div class="wb-settings-shell">
+  <aside class="wb-settings-nav">
+    <div class="wb-settings-nav-header">Account</div>
+    <a href="#" class="wb-settings-nav-link is-active">Profile</a>
+    <a href="#" class="wb-settings-nav-link">Security</a>
+  </aside>
+
+  <div class="wb-settings-body">
+    <header class="wb-settings-header">
+      <h1 class="wb-settings-title">Profile</h1>
+      <p class="wb-settings-desc">Manage personal account details.</p>
+    </header>
+
+    <section class="wb-settings-section">
+      <div class="wb-settings-section-header">
+        <h2 class="wb-settings-section-title">Public profile</h2>
+        <p class="wb-settings-section-desc">Shown to collaborators.</p>
+      </div>
+      <div class="wb-settings-section-body">...</div>
+      <div class="wb-settings-section-footer">...</div>
+    </section>
+  </div>
+</div>
+```
+
+### Content
+
+Use `wb-content-shell` for:
+
+- docs
+- onboarding guides
+- editorial pages
+- changelogs
+- policies
+
+Canonical structure:
+
+```html
+<article class="wb-content-shell wb-content-shell-narrow">
+  <header class="wb-content-header">
+    <nav class="wb-content-breadcrumb" aria-label="Breadcrumb">
+      <ol class="wb-breadcrumb wb-breadcrumb-inline">
+        <li class="wb-breadcrumb-item"><a href="#">Docs</a></li>
+        <li class="wb-breadcrumb-item is-active"><span aria-current="page">Getting started</span></li>
+      </ol>
+    </nav>
+    <h1 class="wb-content-title">Getting started</h1>
+    <p class="wb-content-subtitle">Use the content shell when reading hierarchy matters more than app chrome.</p>
+  </header>
+
+  <div class="wb-content-body">...</div>
+
+  <footer class="wb-content-footer">...</footer>
+</article>
+```
+
+## Supporting Patterns
+
+These are also shipped pattern families, but not primary app shells:
+
+- `wb-page-intro`
+- `wb-hero`
+- `wb-content-columns`
+- `wb-footer-grid`
+- scoped `wb-game-screen*`
+
+## Boundary Rules
+
+1. Patterns define page jobs, not just boxes.
+2. Patterns may own local surfaces such as `wb-panel` or `wb-settings-section`.
+3. Pattern-local surfaces are not automatically global primitives.
+4. Do not flatten a shell into a generic wrapper abstraction.
+5. Do not treat dashboard header classes as universal layout helpers.
+
+## Composition Rules
+
+Inside patterns:
+
+- use layout helpers first
+- use shipped primitives second
+- use utilities only for small adjustments
+
+Do not create custom pattern wrappers before checking whether the shipped shell already fits the page.
+
+## Header Rules
+
+Canonical page-header stack:
+
+- breadcrumb optional
+- title required
+- subtitle optional
+- actions optional
+
+Topbar identity rule:
+
+- product first
+- context second
+
+## Alias Rules
+
+Compatibility aliases may still ship, but they are not the default teaching path.
+
+Examples:
+
+- prefer `wb-dashboard-shell` over `wb-shell`
+- prefer `wb-sidebar-brand` over `wb-sidebar-header`
+
+## Final Rule
+
+Patterns are the copy-paste-safe public face of WebBlocks.
+
+If a page type matches a shipped shell, use that shell instead of composing a new page architecture from scratch.

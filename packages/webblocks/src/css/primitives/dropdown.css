@@ -1,6 +1,6 @@
 /* ============================================================
    WebBlocks UI — Dropdown (wb-dropdown)
-   JS: data-wb-dropdown on container; auto-closes on outside click / Escape
+   JS: data-wb-toggle="dropdown" with optional data-wb-target; auto-closes on outside click / Escape
    ============================================================ */
 
 .wb-dropdown {

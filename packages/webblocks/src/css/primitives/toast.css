@@ -1,6 +1,6 @@
 /* ============================================================
    WebBlocks UI — Toast / Notification (wb-toast)
-   JS: WB.toast(message, type) or manual .is-visible toggle
+   JS: `WBToast.show(message, opts)` or static `.wb-toast` markup with dismiss controls
    ============================================================ */
 
 .wb-toast-container {

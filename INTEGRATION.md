@@ -1,391 +1,244 @@
-# Webblocks UI — Integration Guide
+# WebBlocks UI — Canonical Integration Rules
 
 ## Purpose
 
-This document defines **how to use Webblocks UI correctly**.
+This file defines the top-level integration rules for WebBlocks UI.
 
-It is the **canonical implementation reference** for:
+Source of truth:
 
-* developers
-* AI systems
-* external integrations
+- shipped CSS: `packages/webblocks/src/css/`
+- shipped JS: `packages/webblocks/src/js/`
+- build manifest: `packages/webblocks/build.sh`
 
----
+If this file conflicts with shipped source, shipped source wins.
 
-## Core Identity
+## Core Model
 
-Webblocks is:
+WebBlocks is a controlled HTML/CSS/JS language with these layers:
 
-> A **vanilla UI system** based on
-> **foundation + primitives + patterns**
+1. Foundation
+2. Layout helpers
+3. UI primitives
+4. Surfaces
+5. Patterns
+6. Interactive hooks
 
-Webblocks is NOT:
+WebBlocks is not:
 
-* a framework
-* a primitive abstraction system
-* a utility-first CSS system
-* a JS-driven rendering engine
+- a framework
+- a custom element system
+- a utility-first architecture
+- a generated markup system
+- a config-driven renderer
 
----
+## Start Here
 
-## How To Start
+Start from a pattern when the page has a page-level job.
 
-### ❌ Wrong Approach
+Canonical shells:
 
-Do NOT start from primitives:
+- `wb-auth-shell`
+- `wb-dashboard-shell`
+- `wb-settings-shell`
+- `wb-content-shell`
 
-* button
-* input
-* card
+Then compose inside those shells using shipped layout helpers and primitives.
 
-This leads to:
+## Canonical Vocabulary
 
-* inconsistent UI
-* missing structure
-* ad-hoc layouts
+Use these names as the default public language:
 
----
+- layout: `wb-container`, `wb-section`, `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, `wb-row`, `wb-col-*`
+- surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-list`, `wb-callout`, `wb-empty`
+- screen-local surfaces: `wb-panel`, `wb-page-header`, `wb-settings-section`
+- controls: `wb-btn`, `wb-badge`, `wb-input`, `wb-select`, `wb-textarea`, `wb-check`, `wb-radio`, `wb-switch`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-accordion`, `wb-collapse`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-spinner`, `wb-progress-bar`
+- navigation: `wb-navbar`, `wb-sidebar`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
+- icons: `wb-icon`, `wb-icon-*`, `wb-icon-wrap*`
 
-### ✅ Correct Approach
+## Forbidden Vocabulary
 
-Start from **patterns**.
+Do not present these as canonical:
 
-1. Pick a pattern (from `PATTERNS.md`)
-2. Copy the structure
-3. Replace content
-4. Adjust only where necessary
+- `wb-page`
+- `wb-page-center`
+- `wb-btn-block`
+- `wb-stack-sm`
+- `wb-stack-md`
+- `wb-align-center`
+- `wb-checkbox`
+- `data-theme`
+- `.is-current` for breadcrumbs
+- `data-wb-toggle="collapse"`
 
----
+## Boundary Rules
 
-## System Layers
+### Foundation
 
-### 1. Foundation
+Foundation owns tokens, theme axes, resets, and global element styling.
 
-Global design rules:
+It does not define page architecture.
 
-* colors
-* spacing
-* typography
-* radius
-* shadows
+### Layout Helpers
 
-Defined via CSS variables and tokens.
+Layout helpers solve structure and flow only.
 
----
+Use:
 
-### 2. Layout Primitives
+- `wb-container*`
+- `wb-section*`
+- `wb-stack*`
+- `wb-cluster*`
+- `wb-split`
+- `wb-grid*`
+- `wb-row` and `wb-col-*`
 
-Structure and flow:
+Do not invent new layout wrappers before trying these.
 
-* `wb-page`
-* `wb-section`
-* `wb-container`
-* `wb-grid`
-* `wb-stack`
-* `wb-row`
+### UI Primitives
 
-Used to:
+Primitives are reusable controls or local UI building blocks.
 
-* define spacing
-* control layout
-* align content
+Examples:
 
----
+- `wb-btn`
+- `wb-input`
+- `wb-card`
+- `wb-table`
+- `wb-dropdown`
+- `wb-tabs`
+- `wb-modal`
 
-### 3. UI Primitives
+### Surfaces
 
-Reusable UI elements:
+Surfaces are larger framed regions that still are not full page patterns.
 
-* `wb-btn`
-* `wb-input`
-* `wb-textarea`
-* `wb-select`
-* `wb-card`
-* `wb-label`
-* `wb-table`
-* `wb-modal` (shell)
-* `wb-tabs` (shell)
+Examples:
 
-These are:
+- `wb-card`
+- `wb-stat`
+- `wb-toolbar`
+- `wb-filter-bar`
+- `wb-callout`
+- `wb-empty`
+- `wb-panel`
+- `wb-page-header`
+- `wb-settings-section`
 
-* minimal
-* composable
-* not full UI solutions
+Boundary rule:
 
----
+- `wb-card` is the canonical global container surface
+- `wb-panel` is dashboard-shell-local, not a second global card primitive
+- `wb-page-header` is a dashboard/header surface, not a generic page wrapper primitive
 
-### 4. Utilities
+### Patterns
 
-Helper classes:
+Patterns define real page jobs and expected regions.
 
-* alignment
-* text tone
-* minor state helpers
+Examples:
 
-Utilities must be used **sparingly**.
+- auth shell
+- dashboard shell
+- settings shell
+- content shell
+- marketing/page-intro structures
 
----
+Patterns are the primary integration surface for real screens.
 
-### 5. Patterns
+## HTML / CSS / JS Separation
 
-Real UI screens:
+- HTML owns document structure and semantics
+- CSS owns presentation and visible states
+- JS owns interaction, visibility toggles, focus handling, keyboard control, and async behavior
 
-* auth
-* dashboard
-* forms
-* marketing sections
-* tables
-* empty states
+Use HTML structure instead of a new class when the problem is only hierarchy, reading order, grouping, or heading semantics.
 
-👉 Patterns are the **primary integration surface**.
+Use JS instead of CSS-only tricks when the problem is:
 
----
+- open / close behavior
+- focus trap
+- keyboard navigation
+- Escape handling
+- outside click dismissal
+- async state changes
 
-## Composition Rules
+## Aliases And Compatibility
 
-### Rule 1 — Pattern First
+Some compatibility names still ship.
 
-Always begin with a pattern.
+Do not prefer them in primary examples.
 
----
+Examples:
 
-### Rule 2 — Use Primitives Only
+- prefer `wb-dashboard-shell` over `wb-shell`
+- prefer `wb-sidebar-brand` over `wb-sidebar-header`
+- prefer `wb-dropdown-end` over `wb-dropdown-menu-end`
+- prefer modern tabs names over legacy tab aliases
 
-Do not invent:
+## Theme Rules
 
-* new UI abstractions
-* custom primitive layers
-* parallel CSS systems
+Theme state lives on `<html>`.
 
----
+Use:
 
-### Rule 3 — Keep HTML Explicit
+- `data-mode`
+- `data-accent`
+- `data-preset`
+- `data-radius`
+- `data-density`
+- `data-shadow`
+- `data-font`
+- `data-border`
 
-Do not hide structure.
+Do not use `data-theme`.
 
-❌ Hidden templates
-❌ Generated markup
-✅ Direct HTML
+## Breadcrumb And Header Rules
 
----
+Canonical page-header stack:
 
-### Rule 4 — No Custom Elements
+- breadcrumb optional
+- title required
+- subtitle optional
+- actions optional
 
-❌ `<wb-card>`
-✅ `<div class="wb-card">`
+Keep breadcrumb secondary to the page title.
 
----
+Topbar hierarchy rule:
 
-### Rule 5 — Respect Separation
+- product first
+- context second
 
-* HTML → structure
-* CSS → styling
-* JS → behavior
+## New Class Threshold
 
----
+Only add a new class if all are true:
 
-## Layout Guidelines
+1. shipped composition cannot solve the problem cleanly
+2. the need repeats across more than one screen or component
+3. the new class has one clear contract
+4. it does not duplicate an existing noun or alias
+5. its job belongs clearly to one layer
 
-### Page Structure
+Bad reasons:
 
-```html
-<main class="wb-page">
-  <div class="wb-container">
-    ...
-  </div>
-</main>
-```
+- one-off spacing
+- naming a region that HTML already describes
+- slight visual variation on an existing primitive
+- avoiding semantic HTML
 
----
+## Review Checklist
 
-### Centered Layout
+1. Does the example use shipped classes only?
+2. Is the vocabulary canonical instead of legacy?
+3. Is the page starting from the correct shell?
+4. Are layout helpers solving layout before utilities do?
+5. Are forms using the canonical field system?
+6. Are breadcrumb and page title kept separate?
+7. Is product identity stronger than context in the topbar?
+8. Are JS hooks source-accurate?
+9. Does the example avoid non-shipped classes?
+10. If a new class is proposed, did composition fail first?
 
-```html
-<main class="wb-page wb-page-center">
-  <div class="wb-container wb-container-sm">
-    ...
-  </div>
-</main>
-```
+## Related Docs
 
----
-
-### Section Layout
-
-```html
-<section class="wb-section">
-  <div class="wb-container">
-    ...
-  </div>
-</section>
-```
-
----
-
-### Grid Layout
-
-```html
-<div class="wb-grid wb-grid-3">
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-</div>
-```
-
----
-
-### Vertical Flow
-
-```html
-<div class="wb-stack wb-stack-md">
-  <div>...</div>
-  <div>...</div>
-</div>
-```
-
----
-
-## Forms
-
-### Field Structure
-
-```html
-<div class="wb-field">
-  <label class="wb-label">Label</label>
-  <input class="wb-input" />
-</div>
-```
-
----
-
-### Actions
-
-```html
-<div class="wb-row wb-justify-end">
-  <button class="wb-btn">Cancel</button>
-  <button class="wb-btn wb-btn-primary">Save</button>
-</div>
-```
-
----
-
-## Buttons
-
-### Primary
-
-```html
-<button class="wb-btn wb-btn-primary">Action</button>
-```
-
-### Block
-
-```html
-<button class="wb-btn wb-btn-primary wb-btn-block">
-  Action
-</button>
-```
-
----
-
-## Tables
-
-```html
-<table class="wb-table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Item</td>
-      <td>Active</td>
-    </tr>
-  </tbody>
-</table>
-```
-
----
-
-## JavaScript Layer
-
-JavaScript is:
-
-* optional
-* progressive
-* behavior-only
-
-It may:
-
-* enhance interactions
-* toggle visibility
-* handle events
-
-It must NOT:
-
-* generate layout
-* inject structure
-* replace HTML
-
----
-
-## Do / Do Not
-
-### Do
-
-* start from patterns
-* keep HTML readable
-* use primitives consistently
-* maintain spacing rhythm via layout primitives
-
----
-
-### Do Not
-
-* create new UI systems on top of Webblocks
-* mix utility-heavy styling approaches
-* simulate behavior using CSS hacks
-* introduce framework dependencies
-
----
-
-## Integration Strategy
-
-### For Developers
-
-* copy patterns
-* adapt content
-* extend carefully
-
----
-
-### For AI Systems
-
-* always use patterns as base
-* do not invent structures
-* do not create abstractions
-* keep output HTML clean
-
----
-
-## Relationship to Other Docs
-
-* `PRIMITIVES.md` → defines system structure
-* `PATTERNS.md` → shows real usage
-* `INTEGRATION.md` → defines how to build correctly
-
----
-
-## Final Statement
-
-Webblocks is:
-
-> A **pattern-oriented UI system**
-> powered by **primitives and clean HTML**
-
-If used correctly:
-
-* UI stays consistent
-* code stays simple
-* system stays scalable
+- `PRIMITIVES.md` explains the current classification model
+- `PATTERNS.md` explains the current pattern and shell model
+- `packages/webblocks/INTEGRATION.md` is the detailed package implementation reference

@@ -131,7 +131,7 @@ Use this section after you choose a pattern. It inventories the shipped UI primi
 <div class="wb-stat">
   <div class="wb-stat-label">Total Users</div>
   <div class="wb-stat-value">1,284</div>
-  <div class="wb-stat-change wb-stat-up">+12%</div>
+  <div class="wb-stat-delta wb-stat-delta-up">+12%</div>
 </div>
 ```
 
@@ -141,9 +141,9 @@ Use this section after you choose a pattern. It inventories the shipped UI primi
 <div class="wb-alert wb-alert-info">Informational message.</div>
 <div class="wb-alert wb-alert-success">Success!</div>
 <div class="wb-alert wb-alert-warning">Warning message.</div>
-<div class="wb-alert wb-alert-danger wb-alert-dismissible">
+<div class="wb-alert wb-alert-danger wb-alert-dismiss">
   Error message.
-  <button class="wb-alert-close">&times;</button>
+  <button class="wb-alert-close" data-wb-dismiss="alert">&times;</button>
 </div>
 ```
 
@@ -159,7 +159,7 @@ Use this section after you choose a pattern. It inventories the shipped UI primi
 <select class="wb-select"> ... </select>
 <textarea class="wb-textarea"></textarea>
 
-<label class="wb-checkbox"><input type="checkbox"> Remember me</label>
+<label class="wb-check"><input type="checkbox"> Remember me</label>
 <label class="wb-radio"><input type="radio"> Option</label>
 <label class="wb-switch">
   <input type="checkbox">
@@ -203,17 +203,19 @@ Modifiers: `wb-table-hover`, `wb-table-striped`, `wb-table-sm`
 </div>
 ```
 
-Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`, `wb-modal-full`
+Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`
 
 ### Confirmation dialog
 
 ```html
 <div class="wb-modal wb-confirm" id="myConfirm" role="alertdialog" aria-modal="true">
-  <div class="wb-modal-dialog wb-modal-sm">
-    <div class="wb-confirm-icon wb-confirm-icon-danger">!</div>
-    <div class="wb-confirm-title">Delete item?</div>
-    <div class="wb-confirm-message">This action cannot be undone.</div>
-    <div class="wb-confirm-actions">
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-body">
+      <div class="wb-confirm-icon wb-confirm-icon-danger">!</div>
+      <div class="wb-confirm-title">Delete item?</div>
+      <div class="wb-confirm-message">This action cannot be undone.</div>
+    </div>
+    <div class="wb-modal-footer">
       <button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button>
       <button class="wb-btn wb-btn-danger">Delete</button>
     </div>
@@ -246,7 +248,7 @@ Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`, `wb-modal-full`
     <button class="wb-tabs-btn" data-wb-tab="tab2" role="tab"
             aria-selected="false" aria-controls="tab2" tabindex="-1">Tab 2</button>
   </div>
-  <div class="wb-tabs-panels">
+  <div>
     <div class="wb-tabs-panel is-active" id="tab1" role="tabpanel">Content 1</div>
     <div class="wb-tabs-panel" id="tab2" role="tabpanel">Content 2</div>
   </div>
@@ -321,18 +323,18 @@ Quick guidance:
 
 ```html
 <div class="wb-avatar">JD</div>
-<div class="wb-avatar wb-avatar-lg wb-avatar-green">AB</div>
+<div class="wb-avatar wb-avatar-lg wb-avatar-success">AB</div>
 
 <!-- Group -->
 <div class="wb-avatar-group">
   <div class="wb-avatar wb-avatar-sm">A1</div>
   <div class="wb-avatar wb-avatar-sm">A2</div>
-  <div class="wb-avatar wb-avatar-sm wb-avatar-count">+3</div>
+  <div class="wb-avatar wb-avatar-sm wb-avatar-muted">+3</div>
 </div>
 ```
 
-Sizes: `wb-avatar-xs`, `wb-avatar-sm`, _(default)_, `wb-avatar-lg`, `wb-avatar-xl`
-Colors: `wb-avatar-green`, `wb-avatar-red`, `wb-avatar-orange`, `wb-avatar-violet`, `wb-avatar-cyan`
+Sizes: `wb-avatar-sm`, _(default)_, `wb-avatar-lg`, `wb-avatar-xl`
+Colors: `wb-avatar-success`, `wb-avatar-warning`, `wb-avatar-danger`, `wb-avatar-info`, `wb-avatar-muted`
 
 ### Toast
 
@@ -355,7 +357,7 @@ WBToast.show('Upload complete', {
 
 ```html
 <!-- Manual HTML toast -->
-<div class="wb-toast-container wb-toast-top-right" id="toastArea"></div>
+<div class="wb-toast-container wb-toast-container-top-right" id="toastArea"></div>
 
 <div class="wb-toast wb-toast-success">
   <div class="wb-toast-body">Saved successfully.</div>
@@ -379,8 +381,8 @@ Variants: `wb-toast-success`, `wb-toast-warning`, `wb-toast-danger`, `wb-toast-i
 <div class="wb-empty">
   <div class="wb-empty-icon">📭</div>
   <div class="wb-empty-title">No results</div>
-  <div class="wb-empty-desc">Try adjusting your filters.</div>
-  <button class="wb-btn wb-btn-primary">Add item</button>
+  <div class="wb-empty-text">Try adjusting your filters.</div>
+  <div class="wb-empty-action"><button class="wb-btn wb-btn-primary">Add item</button></div>
 </div>
 ```
 
@@ -444,17 +446,17 @@ Placements (add to wrapper): `wb-popover-top`, `wb-popover-right`, `wb-popover-l
 
 <!-- Drawer -->
 <div class="wb-drawer wb-drawer-right" id="myDrawer">
-  <div class="wb-drawer-dialog">
-    <div class="wb-drawer-header">
-      <h5 class="wb-drawer-title">Title</h5>
-      <button class="wb-drawer-close" data-wb-dismiss="drawer">&times;</button>
-    </div>
-    <div class="wb-drawer-body">Content</div>
-    <div class="wb-drawer-footer">
-      <button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Close</button>
-    </div>
+  <div class="wb-drawer-header">
+    <h5 class="wb-drawer-title">Title</h5>
+    <button class="wb-drawer-close" data-wb-dismiss="drawer">&times;</button>
+  </div>
+  <div class="wb-drawer-body">Content</div>
+  <div class="wb-drawer-footer">
+    <button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Close</button>
   </div>
 </div>
+
+<div class="wb-drawer-backdrop"></div>
 ```
 
 Sides: `wb-drawer-right` (default), `wb-drawer-left`, `wb-drawer-top`, `wb-drawer-bottom`
@@ -475,8 +477,8 @@ Full focus trap — Tab cycles within the drawer; Escape closes.
       <input class="wb-cmd-input" type="text" placeholder="Search...">
     </div>
     <div class="wb-cmd-results">
-      <a class="wb-cmd-result" href="#">Dashboard</a>
-      <a class="wb-cmd-result" href="#">Settings</a>
+      <a class="wb-cmd-item" href="#">Dashboard</a>
+      <a class="wb-cmd-item" href="#">Settings</a>
     </div>
   </div>
 </div>
@@ -490,14 +492,14 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 <!-- Sidebar navigation with collapsible groups -->
 <nav data-wb-nav-group-accordion>
   <div class="wb-nav-group">
-    <button class="wb-nav-group-trigger" data-wb-nav-group-trigger>
+    <button class="wb-nav-group-toggle">
       Settings
       <span class="wb-nav-group-arrow"></span>
     </button>
-    <ul class="wb-submenu">
-      <li><a class="wb-menu-item" href="#">Profile</a></li>
-      <li><a class="wb-menu-item" href="#">Security</a></li>
-    </ul>
+    <div class="wb-nav-group-items">
+      <a class="wb-nav-group-item" href="#">Profile</a>
+      <a class="wb-nav-group-item" href="#">Security</a>
+    </div>
   </div>
 
   <a class="wb-menu-item is-active" href="#">Dashboard</a>
@@ -531,7 +533,7 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 <div class="wb-action-group">
   <button class="wb-action-btn wb-btn wb-btn-ghost wb-btn-icon"
           data-wb-tooltip="Edit" data-wb-tooltip-placement="top">✎</button>
-  <button class="wb-action-btn wb-btn wb-btn-ghost wb-btn-icon wb-action-danger"
+  <button class="wb-action-btn wb-action-btn-delete"
           data-wb-tooltip="Delete">✕</button>
 </div>
 
@@ -564,7 +566,7 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 
 <!-- Progress bar (determinate) -->
 <div class="wb-progress-bar">
-  <div class="wb-progress-fill" style="width: 65%"></div>
+  <div class="wb-progress-bar-fill" style="width: 65%"></div>
 </div>
 ```
 
@@ -575,14 +577,14 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 <hr class="wb-divider">
 
 <!-- Labeled -->
-<div class="wb-divider wb-divider-labeled"><span>OR</span></div>
+<div class="wb-divider-label"><span>OR</span></div>
 
 <!-- Dashed / dotted -->
 <hr class="wb-divider wb-divider-dashed">
 <hr class="wb-divider wb-divider-dotted">
 
 <!-- Vertical (in a flex row) -->
-<span class="wb-divider-vertical"></span>
+<span class="wb-divider-v"></span>
 ```
 
 ### List group
@@ -598,7 +600,7 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 <ul class="wb-list wb-list-flush"> ... </ul>
 
 <!-- Compact -->
-<ul class="wb-list wb-list-compact"> ... </ul>
+<ul class="wb-list wb-list-sm"> ... </ul>
 
 <!-- Numbered -->
 <ol class="wb-list wb-list-numbered"> ... </ol>
@@ -745,7 +747,7 @@ Sends a JSON POST automatically when the checkbox changes. Designed for Laravel 
 
 ```html
 <input type="checkbox"
-       class="wb-switch-input"
+       class="wb-switch"
        data-wb-ajax-toggle
        data-wb-url="/admin/posts/toggle"
        data-wb-field="publish"

@@ -1,7 +1,7 @@
 /* ============================================================
    WebBlocks UI — Action Menu (wb-action-menu)
    Inline row-level action menus for data tables and list views.
-   JS: uses wb-dropdown.js behavior (data-wb-dropdown)
+   JS: uses wb-dropdown.js behavior (`data-wb-toggle="dropdown"`)
    ============================================================ */
 
 /* ── Inline action group (row actions) ────────────────────── */

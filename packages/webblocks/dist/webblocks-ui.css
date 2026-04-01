@@ -3381,7 +3381,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 }
 /* ============================================================
    WebBlocks UI — Dropdown (wb-dropdown)
-   JS: data-wb-dropdown on container; auto-closes on outside click / Escape
+   JS: data-wb-toggle="dropdown" with optional data-wb-target; auto-closes on outside click / Escape
    ============================================================ */
 
 .wb-dropdown {
@@ -4027,7 +4027,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 }
 /* ============================================================
    WebBlocks UI — Toast / Notification (wb-toast)
-   JS: WB.toast(message, type) or manual .is-visible toggle
+   JS: `WBToast.show(message, opts)` or static `.wb-toast` markup with dismiss controls
    ============================================================ */
 
 .wb-toast-container {
@@ -4837,7 +4837,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 /* ============================================================
    WebBlocks UI — Action Menu (wb-action-menu)
    Inline row-level action menus for data tables and list views.
-   JS: uses wb-dropdown.js behavior (data-wb-dropdown)
+   JS: uses wb-dropdown.js behavior (`data-wb-toggle="dropdown"`)
    ============================================================ */
 
 /* ── Inline action group (row actions) ────────────────────── */

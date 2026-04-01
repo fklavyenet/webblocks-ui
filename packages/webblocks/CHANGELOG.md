@@ -154,7 +154,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - `WBCommandPalette` JS module — Cmd/Ctrl+K, arrow navigation, search callback API
 - `WBNavGroup` JS module — accordion-aware collapsible sidebar groups
 - `WBTheme` JS module — `setMode()`, `setAccent()`, `setPreset()`, `setRadius()`, `setDensity()`
-- Toast position modifier classes: `wb-toast-top-right`, `wb-toast-top-center`, `wb-toast-top-left`, `wb-toast-bottom-center`, `wb-toast-bottom-left`
+- Toast container position modifier classes: `wb-toast-container-top-right`, `wb-toast-container-top-center`, `wb-toast-container-top-left`, `wb-toast-container-bottom-center`, `wb-toast-container-bottom-left`
 - `wb-confirm` confirmation dialog variant (inside `modal.css`)
 - `wb-stat` stats card primitive (inside `card.css`)
 - Proprietary LICENSE — Copyright (c) 2026 fklavye.net

@@ -34,7 +34,7 @@
      </div>
 
    Default keyboard shortcut: Cmd/Ctrl + K
-   Override: add data-wb-cmd-shortcut="k" (letter only) to the backdrop element.
+   Note: custom shortcut override is not wired in the shipped implementation.
 
    Items can be static HTML .wb-cmd-item elements, or provided via a
    custom search function assigned to WBCommandPalette.onSearch(query, callback).
