@@ -302,6 +302,7 @@ Canonical field markup:
 
 Use `wb-field-meta` as the only assistive-content area under the control.
 This keeps sibling fields in the same `wb-form-row` visually aligned even when one field has a hint, an error, both, or neither.
+Do not place `wb-field-hint` or `wb-field-error` directly under `wb-field`.
 
 Shipped form primitives:
 
@@ -319,6 +320,7 @@ Meta-area rule:
 - place `wb-field-hint` and `wb-field-error` inside `wb-field-meta`
 - use hint first, then error when both are present
 - include an empty `wb-field-meta` in aligned multi-column rows when a sibling field uses assistive text
+- direct `wb-field-hint` or `wb-field-error` children under `wb-field` are not valid canonical markup
 
 Auth rule:
 
@@ -1447,6 +1449,7 @@ Use this extension only inside a deliberately scoped game-like surface.
 - when building auth, dashboard, or settings screens, start from the canonical examples in `Screen Composition Examples` and expand them without changing the shell contract
 - build each screen from shipped primitives first: `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, then add UI primitives inside those structures
 - build forms only with `wb-field`, `wb-label`, `wb-input` / `wb-select` / `wb-textarea`, `wb-field-meta`, `wb-field-hint`, and `wb-field-error`
+- wrap all assistive field content in `wb-field-meta`; never place `wb-field-hint` or `wb-field-error` directly under `wb-field`
 - choose breadcrumb presets by job: `minimal` for standard admin headers, `surface` for soft separated headers, `bordered` for enterprise/data-heavy screens, `inline` for dense tool-like context, `context` for single-item location labels
 - keep header hierarchy strict: breadcrumb optional, title required, subtitle optional, actions optional
 - keep topbar identity strict: product first, context second
@@ -1479,6 +1482,7 @@ DO NOT:
 - do not use `.is-current` for breadcrumbs; shipped active class is `.wb-breadcrumb-item.is-active`
 - do not use `.wb-auth`; shipped auth shell class is `.wb-auth-shell`
 - do not create auth-specific field namespaces such as `guest-auth-*` or `qz-auth-*`
+- do not place `wb-field-hint` or `wb-field-error` directly under `wb-field`; use `wb-field-meta`
 - do not style breadcrumbs as page titles or make them compete visually with headings
 - do not repeat the same noun in breadcrumb and title without a hierarchy reason
 - do not make topbar context more visually dominant than the product name
@@ -1498,7 +1502,7 @@ Use this checklist before shipping docs, examples, or new UI slices:
 1. Does the example use shipped classes only?
 2. Is the page starting from the correct shell for its job?
 3. Are layout helpers solving layout before new wrappers or utilities do?
-4. Are forms using the canonical `wb-field` / `wb-label` / `wb-input` system?
+4. Are forms using the canonical `wb-field` / `wb-label` / `wb-input` / `wb-field-meta` system?
 5. Are `wb-page-header-title` and `wb-page-intro-title` used only in their own families?
 6. Are framed content regions using `wb-card` instead of a second generic surface noun?
 7. Are aliases avoided unless compatibility is the explicit topic?

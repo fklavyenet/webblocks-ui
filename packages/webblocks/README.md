@@ -150,12 +150,14 @@ Use this section after you choose a pattern. It inventories the shipped UI primi
 
 ### Form
 
+Assistive field content must be wrapped in `wb-field-meta`. Do not place `wb-field-hint` or `wb-field-error` directly under `wb-field`.
+
 ```html
 <div class="wb-field">
   <label class="wb-label">Email</label>
   <input class="wb-input" type="email" placeholder="you@example.com">
   <div class="wb-field-meta">
-    <span class="wb-field-error">This field is required.</span>
+    <div class="wb-field-error">This field is required.</div>
   </div>
 </div>
 
@@ -736,7 +738,7 @@ WebBlocks UI is plain HTML and CSS — it works in any Laravel Blade template wi
     <input class="wb-input" type="email" name="email" id="email">
     <div class="wb-field-meta">
     @error('email')
-        <span class="wb-field-error">{{ $message }}</span>
+        <div class="wb-field-error">{{ $message }}</div>
     @enderror
     </div>
 </div>

@@ -2822,6 +2822,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   align-content: start;
 }
 
+/* Keep the field contract singular: assistive content belongs only in wb-field-meta. */
 .wb-field > :not(.wb-field-meta) {
   min-width: 0;
 }
