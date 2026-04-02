@@ -55,6 +55,8 @@ Canonical structure:
 </div>
 ```
 
+Keep the explicit header/body/footer anatomy intact: header and footer should both read as card sections, while the body remains the primary work zone.
+
 ### Dashboard
 
 Use `wb-dashboard-shell` for:
