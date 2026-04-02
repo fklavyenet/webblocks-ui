@@ -986,7 +986,7 @@ Canonical auth shell:
 
 - use `wb-auth-shell` and `wb-auth-card`
 - keep the explicit `wb-auth-header`, `wb-auth-body`, and `wb-auth-footer` anatomy so auth cards read as real three-region cards
-- header and footer should share section language while the body remains the primary work zone
+- header and footer should integrate into one calm card shell while the body remains the primary work zone
 - build all auth form controls with the standard field system, not auth-specific field wrappers
 - there is no alternate legacy shell class to prefer over `wb-auth-shell`
 

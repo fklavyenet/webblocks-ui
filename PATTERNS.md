@@ -55,7 +55,7 @@ Canonical structure:
 </div>
 ```
 
-Keep the explicit header/body/footer anatomy intact: header and footer should both read as card sections, while the body remains the primary work zone.
+Keep the explicit header/body/footer anatomy intact: all three regions should read as one auth card, with the body as the center of gravity rather than a form stranded between two mini-panels.
 
 ### Dashboard
 

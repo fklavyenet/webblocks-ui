@@ -40,7 +40,7 @@
   background: var(--wb-surface);
   border: 1px solid var(--wb-border);
   border-radius: var(--wb-r-xl);
-  box-shadow: var(--wb-shadow-md);
+  box-shadow: var(--wb-shadow-sm);
   overflow: hidden;
 }
 
@@ -48,12 +48,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--wb-s3);
-  padding: var(--wb-s7) var(--wb-s6) var(--wb-s5);
-  border-bottom: 1px solid var(--wb-border);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--wb-surface-2) 78%, transparent), color-mix(in srgb, var(--wb-surface) 92%, transparent)),
-    var(--wb-surface-2);
+  gap: var(--wb-s2);
+  padding: var(--wb-s7) var(--wb-s6) var(--wb-s4);
   text-align: center;
 }
 
@@ -68,12 +64,12 @@
 }
 
 .wb-auth-header .wb-icon-wrap {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3.25rem;
+  height: 3.25rem;
   margin-bottom: var(--wb-s1);
-  background: color-mix(in srgb, var(--wb-accent-soft) 60%, var(--wb-surface));
+  background: color-mix(in srgb, var(--wb-accent-soft) 42%, var(--wb-surface));
   color: var(--wb-accent-text);
-  box-shadow: inset 0 0 0 1px var(--wb-accent-border);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wb-accent-border) 72%, transparent);
 }
 
 .wb-auth-header-title {
@@ -87,23 +83,22 @@
   font-size: 0.875rem;
   color: var(--wb-muted);
   margin: 0;
-  max-width: 30ch;
-  line-height: 1.6;
+  max-width: 32ch;
+  line-height: 1.55;
 }
 
 .wb-auth-body {
-  padding: var(--wb-s6);
+  padding: var(--wb-s2) var(--wb-s6) var(--wb-s6);
 }
 
 .wb-auth-footer {
-  padding: var(--wb-s5) var(--wb-s6);
+  padding: var(--wb-s4) var(--wb-s6) var(--wb-s5);
   border-top: 1px solid var(--wb-border);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--wb-surface) 96%, transparent), color-mix(in srgb, var(--wb-surface-2) 82%, transparent)),
-    var(--wb-surface-2);
+  background: color-mix(in srgb, var(--wb-surface-2) 42%, var(--wb-surface));
   text-align: center;
   font-size: 0.875rem;
   color: var(--wb-muted);
+  line-height: 1.55;
 }
 
 .wb-auth-footer > * {
@@ -172,9 +167,7 @@
 }
 
 .wb-auth-form-area .wb-auth-card {
-  border: none;
-  box-shadow: none;
-  background: transparent;
+  max-width: 440px;
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
