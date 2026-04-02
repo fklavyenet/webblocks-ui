@@ -115,11 +115,21 @@ th, td {
 th {
   font-weight: 600;
   font-size: 0.8rem;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--wb-muted);
-  background: var(--wb-surface-2);
 }
+
+/*
+  Text casing policy
+
+  Do not use text-transform for automatic casing.
+
+  Reason:
+  - not locale-safe (e.g. Turkish casing issues)
+  - UI must not rewrite content
+
+  Use typography (weight, size, spacing, color) for emphasis instead.
+*/
 
 /* ── Images ───────────────────────────────────────────────── */
 img {

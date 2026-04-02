@@ -211,6 +211,8 @@ Inside patterns:
 - use shipped primitives second
 - use utilities only for small adjustments
 - keep `wb-field-meta` inside fields that carry assistive content; reserve empty meta rows only when aligned multi-column forms need them
+- keep table wrappers singular: `wb-table-wrap` owns radius/border, inner toolbars stay control rows, and table headers stay header bands
+- keep text casing content-defined; use typography for emphasis instead of automatic uppercase or capitalize transforms
 
 Do not create custom pattern wrappers before checking whether the shipped shell already fits the page.
 

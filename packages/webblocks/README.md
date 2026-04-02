@@ -175,6 +175,8 @@ Assistive field content must be wrapped in `wb-field-meta`. Do not place `wb-fie
 
 ### Table
 
+`wb-table-wrap` is the single table surface. Keep border, radius, and clipping on the wrapper; treat any toolbar inside it as a control row, not a second card. Table header cells should not introduce their own corner radius. Header emphasis should come from typography, not automatic uppercase transforms.
+
 ```html
 <div class="wb-table-wrap">
   <table class="wb-table wb-table-hover">
@@ -615,6 +617,8 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 
 Action bar for tables and list views. Supports bulk-select mode.
 
+Text casing is content-defined across the system. Use weight, size, spacing, and color for hierarchy instead of automatic uppercase transforms.
+
 ```html
 <div class="wb-toolbar">
   <div class="wb-toolbar-start">
@@ -633,7 +637,7 @@ Action bar for tables and list views. Supports bulk-select mode.
 </div>
 ```
 
-Modifier: `wb-toolbar-inset` is the bordered variant for use inside a card or table wrapper.
+Modifier: `wb-toolbar-inset` is the bordered variant for use inside a card or table wrapper. Inside `wb-table-wrap`, it stays a control row rather than a nested surface.
 
 ---
 

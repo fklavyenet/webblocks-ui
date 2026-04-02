@@ -1111,11 +1111,21 @@ th, td {
 th {
   font-weight: 600;
   font-size: 0.8rem;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--wb-muted);
-  background: var(--wb-surface-2);
 }
+
+/*
+  Text casing policy
+
+  Do not use text-transform for automatic casing.
+
+  Reason:
+  - not locale-safe (e.g. Turkish casing issues)
+  - UI must not rewrite content
+
+  Use typography (weight, size, spacing, color) for emphasis instead.
+*/
 
 /* ── Images ───────────────────────────────────────────────── */
 img {
@@ -1312,9 +1322,7 @@ html[data-mode="dark"] .wb-game-ui {
 .wb-leading-loose  { line-height: 2; }
 
 .wb-no-decoration  { text-decoration: none !important; }
-.wb-uppercase      { text-transform: uppercase; }
 .wb-lowercase      { text-transform: lowercase; }
-.wb-capitalize     { text-transform: capitalize; }
 .wb-nowrap         { white-space: nowrap; }
 
 .wb-tracking-tight  { letter-spacing: -0.025em; }
@@ -2081,7 +2089,6 @@ html[data-mode="dark"] .wb-game-ui {
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--wb-muted);
   user-select: none;
 }
@@ -2504,7 +2511,6 @@ html[data-mode="dark"] .wb-game-ui {
 .wb-stat-label {
   font-size: 0.8rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--wb-muted);
 }
@@ -2746,7 +2752,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   font-size: var(--wb-font-size-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--wb-muted);
 }
 
@@ -2822,19 +2827,45 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   align-content: start;
 }
 
-/* Keep the field contract singular: assistive content belongs only in wb-field-meta.
-   Reserve empty meta height only in aligned wb-form-row layouts, not in dense stacked forms. */
 .wb-field > :not(.wb-field-meta) {
   min-width: 0;
 }
 
+/* 
+  wb-field-meta — assistive-content slot (hint, error, help)
+
+  Contract:
+  - wb-field is a three-slot structure: label / control / meta
+  - wb-field-meta is the ONLY valid container for assistive content
+
+  Spacing model:
+  - No reserved height globally
+  - Stacked forms should not carry empty meta space
+
+  Important:
+  - Do NOT add global min-height or spacing here
+  - Empty meta space is handled at the row level (see wb-form-row)
+*/
 .wb-field-meta {
   display: grid;
   gap: var(--wb-s1);
   align-content: start;
 }
 
+/*
+  Row-aligned field behavior
+
+  In multi-column rows (wb-form-row):
+  - Fields must align even when assistive content differs
+  - Empty wb-field-meta reserves space to keep rows visually stable
+
+  This is intentionally scoped to row context only.
+
+  Do NOT move this behavior to the global wb-field-meta rule,
+  otherwise stacked forms will become visually bloated.
+*/
 .wb-form-row .wb-field-meta {
+  /* reserved space for alignment across sibling fields */
   min-height: calc(var(--wb-font-size-xs) * var(--wb-line-height-base));
 }
 
@@ -3133,6 +3164,16 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   background: var(--wb-surface);
 }
 
+/*
+  Table surface model
+
+  wb-table-wrap is the single surface (border, radius, clipping).
+  Toolbar inside it is a control row, not a nested surface.
+  Thead is a header band, not a separate card.
+
+  Do not add radius or competing surface backgrounds to inner elements.
+*/
+
 .wb-table {
   width: 100%;
   border-collapse: collapse;
@@ -3165,15 +3206,25 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-table thead th {
   font-size: 0.78rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--wb-muted);
   background: var(--wb-surface-2);
   white-space: nowrap;
 }
 
-.wb-table thead th:first-child { border-radius: var(--wb-r-lg) 0 0 0; }
-.wb-table thead th:last-child  { border-radius: 0 var(--wb-r-lg) 0 0; }
+.wb-table-wrap .wb-table thead th:first-child { border-top-left-radius: 0; }
+.wb-table-wrap .wb-table thead th:last-child  { border-top-right-radius: 0; }
+
+.wb-table-wrap > .wb-toolbar {
+  background: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid var(--wb-border);
+  margin-bottom: 0;
+}
+
+.wb-table-wrap > .wb-toolbar + .wb-table thead th {
+  background: var(--wb-surface);
+}
 
 .wb-table tbody tr:last-child td {
   border-bottom: none;
@@ -3202,23 +3253,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 }
 .wb-table th[data-wb-sort]:hover {
   color: var(--wb-text);
-}
-
-/* ── Toolbar above table ──────────────────────────────────── */
-.wb-toolbar {
-  display: flex;
-  align-items: center;
-  gap: var(--wb-s2);
-  flex-wrap: wrap;
-  padding: var(--wb-s3) var(--wb-s4);
-  border-bottom: 1px solid var(--wb-border);
-  background: var(--wb-surface);
-}
-
-.wb-toolbar-title {
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-right: auto;
 }
 
 /* ── Filter row ───────────────────────────────────────────── */
@@ -3482,7 +3516,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   padding: var(--wb-s1) var(--wb-s4);
   font-size: 0.8rem;
   font-weight: 800;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--wb-muted);
 }
@@ -4476,7 +4509,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--wb-muted);
   user-select: none;
 }
@@ -5708,7 +5740,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.07em;
-  text-transform: uppercase;
   color: var(--wb-muted);
   user-select: none;
 }
@@ -5873,7 +5904,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   color: var(--wb-muted);
   font-size: 0.78rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
@@ -6048,7 +6078,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   padding: var(--wb-s2) var(--wb-s4);
   font-size: 0.72rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--wb-muted);
   background: var(--wb-surface-2);
@@ -7020,7 +7049,6 @@ button.wb-game-card {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--wb-game-accent-strong);
 }
 
@@ -7055,7 +7083,6 @@ button.wb-game-card {
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .wb-game-status-dot::before {
@@ -7119,7 +7146,6 @@ button.wb-game-card {
   font-size: var(--wb-font-size-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--wb-muted);
 }
 
@@ -7527,7 +7553,6 @@ button.wb-game-card {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--wb-muted);
   padding: 0 var(--wb-s3) var(--wb-s2);
   margin-bottom: var(--wb-s1);
@@ -7952,7 +7977,6 @@ button.wb-game-card {
 .wb-content-next-label {
   font-size: 0.7rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--wb-muted);
 }
@@ -8197,7 +8221,6 @@ button.wb-game-card {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--wb-game-accent-strong);
 }
 

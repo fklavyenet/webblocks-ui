@@ -22,9 +22,12 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Page title naming is now context-specific: use `wb-page-header-title` for dashboard page headers and `wb-page-intro-title` for intro/masthead headings
 - `wb-card` is now the single canonical framed surface noun across the system, including dashboard work areas
 - `wb-field-meta` is now the only valid assistive-content path for field hints and errors; docs/examples were normalized and row-aligned forms keep reserved meta space only where alignment is needed
+- tables now follow a single-surface model: `wb-table-wrap` owns radius/border/clipping, inner toolbars stay control rows, and header cells no longer create competing surface corners or bands
+- automatic uppercase casing was removed from shipped UI primitives and patterns so emphasis stays locale-safe and content-defined
 
 ### Removed
 - Breaking simplification: removed the old dashboard-only framed-surface family and converged all framed dashboard surfaces on `wb-card`, `wb-card-header`, `wb-card-title`, `wb-card-body`, and `wb-card-footer`
+- removed the `wb-uppercase` and `wb-capitalize` text-transform utilities from shipped CSS
 
 ### Fixed
 - CSS icon mappings are now generated from the source icon set so `<i class="wb-icon wb-icon-*"></i>` stays stable across rebuilds

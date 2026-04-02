@@ -420,6 +420,17 @@ Examples:
 </div>
 ```
 
+Table surface rule:
+
+- `wb-table-wrap` owns border, radius, background, and clipping
+- a toolbar inside `wb-table-wrap` is a control row, not a second surface
+- table header cells are a header band only; they must not add their own corner radius
+
+Text casing rule:
+
+- casing is content-defined; UI primitives and patterns must not force uppercase or capitalize transforms
+- use weight, size, spacing, and color for emphasis instead of rewriting content
+
 Common related classes:
 
 - table: `wb-table-hover`, `wb-table-striped`, `wb-table-sm`
@@ -1194,7 +1205,7 @@ Typography:
 - weight: `wb-font-normal`, `wb-font-medium`, `wb-font-semibold`, `wb-font-bold`, `wb-mono`
 - align: `wb-text-left`, `wb-text-center`, `wb-text-right`
 - line-height: `wb-leading-tight`, `wb-leading-normal`, `wb-leading-loose`
-- transform and spacing: `wb-uppercase`, `wb-lowercase`, `wb-capitalize`, `wb-tracking-tight`, `wb-tracking-normal`, `wb-tracking-wide`, `wb-tracking-wider`, `wb-tracking-widest`
+- case-safe emphasis and spacing: `wb-lowercase`, `wb-tracking-tight`, `wb-tracking-normal`, `wb-tracking-wide`, `wb-tracking-wider`, `wb-tracking-widest`
 - text flow: `wb-nowrap`, `wb-truncate`, `wb-no-decoration`
 
 Color and surfaces:
@@ -1451,6 +1462,8 @@ Use this extension only inside a deliberately scoped game-like surface.
 - build each screen from shipped primitives first: `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, then add UI primitives inside those structures
 - build forms only with `wb-field`, `wb-label`, `wb-input` / `wb-select` / `wb-textarea`, `wb-field-meta`, `wb-field-hint`, and `wb-field-error`
 - wrap all assistive field content in `wb-field-meta`; never place `wb-field-hint` or `wb-field-error` directly under `wb-field`
+- keep table surfaces singular: `wb-table-wrap` owns the surface, `wb-toolbar` inside it stays a control row, and `thead` stays a header band
+- keep text casing content-defined; do not rely on automatic uppercase or capitalize transforms for UI emphasis
 - choose breadcrumb presets by job: `minimal` for standard admin headers, `surface` for soft separated headers, `bordered` for enterprise/data-heavy screens, `inline` for dense tool-like context, `context` for single-item location labels
 - keep header hierarchy strict: breadcrumb optional, title required, subtitle optional, actions optional
 - keep topbar identity strict: product first, context second
@@ -1484,6 +1497,8 @@ DO NOT:
 - do not use `.wb-auth`; shipped auth shell class is `.wb-auth-shell`
 - do not create auth-specific field namespaces such as `guest-auth-*` or `qz-auth-*`
 - do not place `wb-field-hint` or `wb-field-error` directly under `wb-field`; use `wb-field-meta`
+- do not add competing radius or card-like backgrounds inside `wb-table-wrap`
+- do not use automatic uppercase or capitalize transforms for UI labels, headers, or metadata
 - do not style breadcrumbs as page titles or make them compete visually with headings
 - do not repeat the same noun in breadcrumb and title without a hierarchy reason
 - do not make topbar context more visually dominant than the product name

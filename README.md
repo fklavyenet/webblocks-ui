@@ -48,3 +48,5 @@ Start from patterns, not primitives.
 ## Notes
 
 - docs pages consume built assets from `packages/webblocks/dist/`
+- `wb-table-wrap` is the single table surface; toolbars inside it stay control rows and table headers stay header bands
+- text casing is content-defined; shipped UI should not automatically uppercase or capitalize content

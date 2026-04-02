@@ -78,6 +78,8 @@ Do not present these as canonical:
 
 Foundation owns tokens, theme axes, resets, and global element styling.
 
+It also owns the locale-safe default casing rule: content casing is not rewritten by UI styling.
+
 It does not define page architecture.
 
 ### Layout Helpers
@@ -130,6 +132,7 @@ Boundary rule:
 - `wb-card` is the canonical global container surface and the only generic framed surface noun
 - dashboard work areas still use `wb-card`
 - `wb-page-header` is a dashboard/header surface, not a generic page wrapper primitive
+- `wb-table-wrap` is the single table surface; inner toolbars stay control rows and `thead` stays a header band
 
 ### Patterns
 
@@ -150,6 +153,11 @@ Patterns are the primary integration surface for real screens.
 - HTML owns document structure and semantics
 - CSS owns presentation and visible states
 - JS owns interaction, visibility toggles, focus handling, keyboard control, and async behavior
+
+Content rule:
+
+- text casing is content-defined, not UI-forced
+- use typography for emphasis instead of automatic uppercase or capitalize transforms
 
 Use HTML structure instead of a new class when the problem is only hierarchy, reading order, grouping, or heading semantics.
 

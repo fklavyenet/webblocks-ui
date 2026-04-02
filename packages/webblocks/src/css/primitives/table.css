@@ -11,6 +11,16 @@
   background: var(--wb-surface);
 }
 
+/*
+  Table surface model
+
+  wb-table-wrap is the single surface (border, radius, clipping).
+  Toolbar inside it is a control row, not a nested surface.
+  Thead is a header band, not a separate card.
+
+  Do not add radius or competing surface backgrounds to inner elements.
+*/
+
 .wb-table {
   width: 100%;
   border-collapse: collapse;
@@ -43,15 +53,25 @@
 .wb-table thead th {
   font-size: 0.78rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--wb-muted);
   background: var(--wb-surface-2);
   white-space: nowrap;
 }
 
-.wb-table thead th:first-child { border-radius: var(--wb-r-lg) 0 0 0; }
-.wb-table thead th:last-child  { border-radius: 0 var(--wb-r-lg) 0 0; }
+.wb-table-wrap .wb-table thead th:first-child { border-top-left-radius: 0; }
+.wb-table-wrap .wb-table thead th:last-child  { border-top-right-radius: 0; }
+
+.wb-table-wrap > .wb-toolbar {
+  background: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid var(--wb-border);
+  margin-bottom: 0;
+}
+
+.wb-table-wrap > .wb-toolbar + .wb-table thead th {
+  background: var(--wb-surface);
+}
 
 .wb-table tbody tr:last-child td {
   border-bottom: none;
@@ -80,23 +100,6 @@
 }
 .wb-table th[data-wb-sort]:hover {
   color: var(--wb-text);
-}
-
-/* ── Toolbar above table ──────────────────────────────────── */
-.wb-toolbar {
-  display: flex;
-  align-items: center;
-  gap: var(--wb-s2);
-  flex-wrap: wrap;
-  padding: var(--wb-s3) var(--wb-s4);
-  border-bottom: 1px solid var(--wb-border);
-  background: var(--wb-surface);
-}
-
-.wb-toolbar-title {
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-right: auto;
 }
 
 /* ── Filter row ───────────────────────────────────────────── */

@@ -133,7 +133,6 @@
   padding: var(--wb-s2) var(--wb-s4);
   font-size: 0.72rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--wb-muted);
   background: var(--wb-surface-2);

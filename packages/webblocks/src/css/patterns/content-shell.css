@@ -210,7 +210,6 @@
 .wb-content-next-label {
   font-size: 0.7rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--wb-muted);
 }
