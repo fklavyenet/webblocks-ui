@@ -430,6 +430,7 @@ Text casing rule:
 
 - casing is content-defined; UI primitives and patterns must not force uppercase or capitalize transforms
 - use weight, size, spacing, and color for emphasis instead of rewriting content
+- metadata labels and eyebrows should read as quiet hierarchy markers, not body text or mini-headings
 
 Common related classes:
 

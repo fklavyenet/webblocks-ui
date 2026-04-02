@@ -617,7 +617,7 @@ Keyboard: `↑` `↓` navigate, `↵` activate, `Esc` close.
 
 Action bar for tables and list views. Supports bulk-select mode.
 
-Text casing is content-defined across the system. Use weight, size, spacing, and color for hierarchy instead of automatic uppercase transforms.
+Text casing is content-defined across the system. Use weight, size, spacing, and color for hierarchy instead of automatic uppercase transforms so labels stay quiet but clear.
 
 ```html
 <div class="wb-toolbar">

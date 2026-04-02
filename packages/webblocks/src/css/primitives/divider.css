@@ -19,8 +19,9 @@
   gap: var(--wb-s3);
   margin: var(--wb-s4) 0;
   color: var(--wb-muted);
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.35;
   letter-spacing: 0.06em;
 }
 

@@ -45,10 +45,11 @@
 .wb-settings-nav-header {
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
   color: var(--wb-muted);
   padding: 0 var(--wb-s3) var(--wb-s2);
-  margin-bottom: var(--wb-s1);
+  margin-bottom: var(--wb-s2);
 }
 
 .wb-settings-nav-link {

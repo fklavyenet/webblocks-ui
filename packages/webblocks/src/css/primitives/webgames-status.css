@@ -12,10 +12,10 @@
   border-radius: var(--wb-r-full);
   background: color-mix(in srgb, var(--wb-game-surface) 90%, var(--wb-surface));
   color: var(--wb-game-muted);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.04em;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
 }
 
 .wb-game-status-dot::before {

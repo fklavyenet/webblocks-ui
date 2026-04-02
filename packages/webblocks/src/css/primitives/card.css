@@ -77,9 +77,10 @@
 }
 
 .wb-stat-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
   color: var(--wb-muted);
 }
 

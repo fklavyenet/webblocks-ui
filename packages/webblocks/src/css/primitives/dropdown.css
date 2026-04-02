@@ -80,9 +80,10 @@
 
 .wb-dropdown-label {
   padding: var(--wb-s1) var(--wb-s4);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
   color: var(--wb-muted);
 }
 

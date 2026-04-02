@@ -208,9 +208,10 @@
 
 .wb-content-prev-label,
 .wb-content-next-label {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.07em;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
   color: var(--wb-muted);
 }
 
