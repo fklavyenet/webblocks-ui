@@ -21,51 +21,107 @@
 (function () {
   'use strict';
 
-  var openDropdown = null; // currently open menu element
+  var instances = new WeakMap();
 
   function getMenu(trigger) {
-    var targetId = trigger.getAttribute('data-wb-target');
-    if (targetId) return document.querySelector(targetId);
-    // Fallback: first .wb-dropdown-menu in the same .wb-dropdown parent
-    var parent = trigger.closest('.wb-dropdown');
-    return parent ? parent.querySelector('.wb-dropdown-menu') : null;
+    var targetId = trigger.getAttribute('data-wb-target') || trigger.getAttribute('aria-controls');
+    var menu = targetId ? document.querySelector(targetId.charAt(0) === '#' ? targetId : ('#' + targetId)) : null;
+
+    if (!menu) {
+      // Fallback: first .wb-dropdown-menu in the same .wb-dropdown parent
+      var parent = trigger.closest('.wb-dropdown');
+      menu = parent ? parent.querySelector('.wb-dropdown-menu') : null;
+    }
+
+    if (!menu) return null;
+
+    WBDom.overlay.ensureId(menu, 'dropdown-menu');
+    trigger.setAttribute('aria-controls', menu.id);
+    if (!trigger.getAttribute('data-wb-target')) {
+      trigger.setAttribute('data-wb-target', '#' + menu.id);
+    }
+
+    return menu;
+  }
+
+  function getTrigger(menu) {
+    var id = WBDom.overlay.ensureId(menu, 'dropdown-menu');
+    return document.querySelector('[data-wb-toggle="dropdown"][data-wb-target="#' + id + '"]') ||
+      document.querySelector('[data-wb-toggle="dropdown"][aria-controls="' + id + '"]') ||
+      (menu.closest('.wb-dropdown') && menu.closest('.wb-dropdown').querySelector('[data-wb-toggle="dropdown"]'));
+  }
+
+  function getPlacement(trigger, menu) {
+    var parent = trigger ? trigger.closest('.wb-dropdown') : menu.closest('.wb-dropdown');
+    if (menu.hasAttribute('data-wb-placement')) return menu.getAttribute('data-wb-placement');
+    if (trigger && trigger.hasAttribute('data-wb-placement')) return trigger.getAttribute('data-wb-placement');
+    if (parent && parent.hasAttribute('data-wb-placement')) return parent.getAttribute('data-wb-placement');
+    return (parent && parent.classList.contains('wb-dropdown-end')) || menu.classList.contains('wb-dropdown-menu-end')
+      ? 'bottom-end'
+      : 'bottom-start';
+  }
+
+  function ensureInstance(menu, trigger) {
+    var instance = instances.get(menu);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      instance.placement = getPlacement(instance.trigger, menu);
+      WBDom.overlay.mount(instance);
+      return instance;
+    }
+
+    instance = WBDom.overlay.create({
+      kind: 'dropdown',
+      group: 'anchored-toggle',
+      layer: 'anchored',
+      element: menu,
+      panel: menu,
+      trigger: trigger,
+      position: 'anchored',
+      placement: getPlacement(trigger, menu),
+      offset: 4,
+      viewportPadding: 8,
+      autoFocus: false,
+      returnFocus: true,
+      restoreOnClose: false,
+      matchWidth: menu.hasAttribute('data-wb-match-width'),
+      onAfterClose: function () {
+        menu.classList.remove('is-leaving');
+      }
+    });
+
+    instances.set(menu, instance);
+    WBDom.overlay.mount(instance);
+    return instance;
+  }
+
+  function init() {
+    document.querySelectorAll('[data-wb-toggle="dropdown"]').forEach(function (trigger) {
+      var menu = getMenu(trigger);
+      if (!menu) return;
+      ensureInstance(menu, trigger);
+    });
   }
 
   function open(trigger, menu) {
-    // Close any currently open dropdown first
-    if (openDropdown && openDropdown !== menu) close(openDropdown);
-
-    menu.classList.add('is-open');
-    trigger.setAttribute('aria-expanded', 'true');
-    openDropdown = menu;
-
-    // Position: flip upward if overflows viewport bottom
-    requestAnimationFrame(function () {
-      var rect = menu.getBoundingClientRect();
-      if (rect.bottom > window.innerHeight && rect.top > rect.height) {
-        menu.classList.add('wb-dropdown-menu--up');
-      } else {
-        menu.classList.remove('wb-dropdown-menu--up');
-      }
-    });
+    if (!menu || !trigger) return;
+    var instance = ensureInstance(menu, trigger);
+    instance.trigger = trigger;
+    instance.placement = getPlacement(trigger, menu);
+    WBDom.overlay.open(instance);
   }
 
   function close(menu) {
     if (!menu) return;
-    menu.classList.remove('is-open');
-    // Reset aria-expanded on the associated trigger
-    var parent = menu.closest('.wb-dropdown');
-    if (parent) {
-      var trigger = parent.querySelector('[data-wb-toggle="dropdown"]');
-      if (trigger) trigger.setAttribute('aria-expanded', 'false');
-    }
-    if (openDropdown === menu) openDropdown = null;
+    var instance = ensureInstance(menu, getTrigger(menu));
+    WBDom.overlay.close(instance, 'api');
   }
 
   function toggle(trigger) {
     var menu = getMenu(trigger);
     if (!menu) return;
-    if (menu.classList.contains('is-open')) {
+    var instance = ensureInstance(menu, trigger);
+    if (instance.active) {
       close(menu);
     } else {
       open(trigger, menu);
@@ -77,7 +133,6 @@
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest('[data-wb-toggle="dropdown"]');
     if (trigger) {
-      e.stopPropagation();
       toggle(trigger);
       return;
     }
@@ -92,28 +147,17 @@
 
     // Close dropdown when a menu item is clicked (but allow other handlers to run first)
     var menuItem = e.target.closest('.wb-dropdown-item');
-    if (menuItem && openDropdown) {
+    if (menuItem) {
       var menu = menuItem.closest('.wb-dropdown-menu');
-      if (menu && menu === openDropdown) {
+      var instance = menu && instances.get(menu);
+      if (instance && instance.active) {
         // Delay close slightly to allow other click handlers (like theme toggle) to run
-        setTimeout(function () { if (openDropdown === menu) close(menu); }, 10);
+        setTimeout(function () {
+          var active = instances.get(menu);
+          if (active && active.active) close(menu);
+        }, 10);
         return;
       }
-    }
-
-    // Close on outside click
-    if (openDropdown && !openDropdown.contains(e.target)) {
-      close(openDropdown);
-    }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && openDropdown) {
-      // Return focus to trigger
-      var parent = openDropdown.closest('.wb-dropdown');
-      var trigger = parent && parent.querySelector('[data-wb-toggle="dropdown"]');
-      close(openDropdown);
-      if (trigger) trigger.focus();
     }
   });
 
@@ -121,12 +165,17 @@
 
   window.WBDropdown = {
     open: function (menuEl) {
-      var parent = menuEl.closest('.wb-dropdown');
-      var trigger = parent && parent.querySelector('[data-wb-toggle="dropdown"]');
+      var trigger = getTrigger(menuEl);
       open(trigger, menuEl);
     },
     close: close,
-    closeAll: function () { if (openDropdown) close(openDropdown); }
+    closeAll: function () {
+      WBDom.overlay.closeAll(function (instance) {
+        return instance.kind === 'dropdown';
+      });
+    }
   };
+
+  init();
 
 })();

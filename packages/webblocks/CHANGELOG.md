@@ -64,7 +64,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ### Added
 - `src/js/toast.js` — `WBToast` module: programmatic `WBToast.show(msg, opts)` with type, title, position, duration, and optional close button
 - `src/js/popover.js` — `WBPopover` module: `data-wb-toggle="popover"` toggle, Escape key and outside-click to close, `WBPopover.open/close/closeAll()` API
-- `src/js/tooltip.js` — `WBTooltip` module: programmatic `show/hide/hideAll()` + `data-wb-tooltip-delay` support (CSS still handles hover/focus automatically)
+- `src/js/tooltip.js` — `WBTooltip` module: programmatic `show/hide/hideAll()` + `data-wb-tooltip-delay` support for shipped tooltip behavior
 - `src/js/dismiss.js` — `WBDismiss` module: centralised `data-wb-dismiss="alert|banner"` handler with `is-leaving` animation
 - `alert.css` — `is-leaving` fade + slide-up transition for dismissed alerts
 

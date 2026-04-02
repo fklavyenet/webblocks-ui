@@ -24,23 +24,49 @@
 (function () {
   'use strict';
 
-  var activeModal       = null;
-  var previouslyFocused = null;
+  var instances = new WeakMap();
+  var activeModal = null;
+
+  function ensureInstance(modal, trigger) {
+    var instance = instances.get(modal);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      return instance;
+    }
+
+    instance = WBDom.overlay.create({
+      kind: 'modal',
+      group: 'dialog',
+      layer: 'dialog',
+      element: modal,
+      panel: modal.querySelector('.wb-modal-dialog') || modal,
+      trigger: trigger,
+      backdrop: true,
+      lockScroll: true,
+      trapFocus: true,
+      autoFocus: true,
+      returnFocus: true,
+      onAfterOpen: function () {
+        activeModal = modal;
+        WBDom.emit(modal, 'wb:modal:open');
+      },
+      onAfterClose: function () {
+        if (activeModal === modal) activeModal = null;
+        WBDom.emit(modal, 'wb:modal:close');
+      }
+    });
+
+    instances.set(modal, instance);
+    return instance;
+  }
 
   // ── Open ──────────────────────────────────────────────────
 
-  function open(modal) {
+  function open(modal, trigger) {
     if (!modal) return;
-    if (activeModal) close(activeModal);
-
-    previouslyFocused = document.activeElement;
-    activeModal = modal;
-
-    modal.classList.add('is-open');
-    document.body.classList.add('wb-modal-open');
-
-    WBDom.focusFirst(modal);
-    WBDom.emit(modal, 'wb:modal:open');
+    var instance = ensureInstance(modal, trigger);
+    instance.trigger = trigger || instance.trigger;
+    WBDom.overlay.open(instance);
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -48,18 +74,7 @@
   function close(modal) {
     if (!modal) modal = activeModal;
     if (!modal) return;
-
-    modal.classList.remove('is-open');
-    document.body.classList.remove('wb-modal-open');
-
-    if (activeModal === modal) activeModal = null;
-
-    if (previouslyFocused && previouslyFocused.focus) {
-      previouslyFocused.focus();
-      previouslyFocused = null;
-    }
-
-    WBDom.emit(modal, 'wb:modal:close');
+    WBDom.overlay.close(ensureInstance(modal), 'api');
   }
 
   // ── Event delegation ──────────────────────────────────────
@@ -71,7 +86,7 @@
       e.preventDefault();
       var target = trigger.getAttribute('data-wb-target');
       var modal  = target ? document.querySelector(target) : null;
-      if (modal) open(modal);
+      if (modal) open(modal, trigger);
       return;
     }
 
@@ -86,11 +101,6 @@
     if (activeModal && e.target === activeModal) {
       close(activeModal);
     }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && activeModal) close(activeModal);
-    if (activeModal) WBDom.trapFocus(e, activeModal);
   });
 
   // ── Public API ─────────────────────────────────────────────

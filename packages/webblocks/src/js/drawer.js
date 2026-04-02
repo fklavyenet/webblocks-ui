@@ -18,41 +18,56 @@
        </div>
      </div>
 
-     <!-- Backdrop (optional, add before </body>) -->
-     <div class="wb-drawer-backdrop"></div>
-
-     Clicking outside the drawer panel (on the backdrop) closes it automatically.
+     Shared overlay backdrop is managed by the runtime.
+     Clicking outside the drawer panel closes it automatically.
    ============================================================ */
 
 (function () {
   'use strict';
 
-  var activeDrawer      = null;
-  var previouslyFocused = null;
+  var instances = new WeakMap();
+  var activeDrawer = null;
 
-  // ── Backdrop helper ───────────────────────────────────────
+  function ensureInstance(drawer, trigger) {
+    var instance = instances.get(drawer);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      return instance;
+    }
 
-  function getBackdrop() {
-    return document.querySelector('.wb-drawer-backdrop');
+    instance = WBDom.overlay.create({
+      kind: 'drawer',
+      group: 'dialog',
+      layer: 'dialog',
+      element: drawer,
+      panel: drawer,
+      trigger: trigger,
+      backdrop: true,
+      lockScroll: true,
+      trapFocus: true,
+      autoFocus: true,
+      returnFocus: true,
+      onAfterOpen: function () {
+        activeDrawer = drawer;
+        WBDom.emit(drawer, 'wb:drawer:open');
+      },
+      onAfterClose: function () {
+        if (activeDrawer === drawer) activeDrawer = null;
+        WBDom.emit(drawer, 'wb:drawer:close');
+      }
+    });
+
+    instances.set(drawer, instance);
+    return instance;
   }
 
   // ── Open ──────────────────────────────────────────────────
 
-  function open(drawer) {
+  function open(drawer, trigger) {
     if (!drawer) return;
-    if (activeDrawer) close(activeDrawer);
-
-    previouslyFocused = document.activeElement;
-    activeDrawer = drawer;
-
-    drawer.classList.add('is-open');
-    document.body.classList.add('wb-drawer-open');
-
-    var backdrop = getBackdrop();
-    if (backdrop) backdrop.classList.add('is-open');
-
-    WBDom.focusFirst(drawer);
-    WBDom.emit(drawer, 'wb:drawer:open');
+    var instance = ensureInstance(drawer, trigger);
+    instance.trigger = trigger || instance.trigger;
+    WBDom.overlay.open(instance);
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -60,21 +75,7 @@
   function close(drawer) {
     if (!drawer) drawer = activeDrawer;
     if (!drawer) return;
-
-    drawer.classList.remove('is-open');
-    document.body.classList.remove('wb-drawer-open');
-
-    var backdrop = getBackdrop();
-    if (backdrop) backdrop.classList.remove('is-open');
-
-    if (activeDrawer === drawer) activeDrawer = null;
-
-    if (previouslyFocused && previouslyFocused.focus) {
-      previouslyFocused.focus();
-      previouslyFocused = null;
-    }
-
-    WBDom.emit(drawer, 'wb:drawer:close');
+    WBDom.overlay.close(ensureInstance(drawer), 'api');
   }
 
   // ── Event delegation ──────────────────────────────────────
@@ -86,7 +87,7 @@
       e.preventDefault();
       var target = trigger.getAttribute('data-wb-target');
       var drawer = target ? document.querySelector(target) : null;
-      if (drawer) open(drawer);
+      if (drawer) open(drawer, trigger);
       return;
     }
 
@@ -96,19 +97,6 @@
       close(activeDrawer);
       return;
     }
-
-    // Backdrop click — close if click is outside the active drawer panel
-    if (activeDrawer && !activeDrawer.contains(e.target)) {
-      var backdrop = getBackdrop();
-      if (backdrop && backdrop.classList.contains('is-open')) {
-        close(activeDrawer);
-      }
-    }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && activeDrawer) close(activeDrawer);
-    if (activeDrawer) WBDom.trapFocus(e, activeDrawer);
   });
 
   // ── Public API ─────────────────────────────────────────────

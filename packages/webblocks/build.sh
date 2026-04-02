@@ -43,6 +43,7 @@ cat \
   "$ROOT/src/css/primitives/section-heading.css" \
   "$ROOT/src/css/primitives/form.css" \
   "$ROOT/src/css/primitives/table.css" \
+  "$ROOT/src/css/primitives/overlay.css" \
   "$ROOT/src/css/primitives/modal.css" \
   "$ROOT/src/css/primitives/dropdown.css" \
   "$ROOT/src/css/primitives/tabs.css" \
@@ -90,6 +91,7 @@ echo "Building JS..."
 cat \
   "$ROOT/src/js/utils/storage.js" \
   "$ROOT/src/js/utils/dom.js" \
+  "$ROOT/src/js/utils/overlay.js" \
   "$ROOT/src/js/theme.js" \
   "$ROOT/src/js/dropdown.js" \
   "$ROOT/src/js/modal.js" \

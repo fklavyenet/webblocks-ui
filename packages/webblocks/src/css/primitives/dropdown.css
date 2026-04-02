@@ -10,10 +10,6 @@
 
 .wb-dropdown-menu {
   display: none;
-  position: absolute;
-  top: calc(100% + var(--wb-s1));
-  left: 0;
-  z-index: var(--wb-z-dropdown);
   min-width: 200px;
   background: var(--wb-surface);
   border: 1px solid var(--wb-border);
@@ -23,7 +19,17 @@
   animation: wb-dropdown-in 0.12s ease;
 }
 
-.wb-dropdown.is-open .wb-dropdown-menu,
+html:not(.wb-js) .wb-dropdown-menu {
+  position: absolute;
+}
+
+html.wb-js .wb-dropdown-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
 .wb-dropdown-menu.is-open {
   display: block;
 }
@@ -87,14 +93,6 @@
   color: var(--wb-muted);
 }
 
-/* ── Right-align ──────────────────────────────────────────── */
-.wb-dropdown-end .wb-dropdown-menu {
-  left: auto;
-  right: 0;
-}
-
-/* ── Backward-compat alias ────────────────────────────────── */
-.wb-dropdown-menu-end {
-  left: auto;
-  right: 0;
+.wb-dropdown-menu[data-wb-overlay-side="top"] {
+  transform-origin: bottom left;
 }

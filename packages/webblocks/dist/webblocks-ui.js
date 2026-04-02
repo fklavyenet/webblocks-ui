@@ -134,6 +134,467 @@
 
 })();
 /* ============================================================
+   WebBlocks UI — Overlay Utilities (utils/overlay.js)
+
+   Internal shared overlay runtime used by anchored overlays,
+   viewport overlays, and root-managed programmatic layers.
+   Exposed on window.WBDom.overlay for WB modules only.
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var html = document.documentElement;
+  var ROOT_ID = 'wb-overlay-root';
+  var activeStack = [];
+  var uid = 0;
+  var root = null;
+  var layers = {};
+  var backdrop = null;
+
+  if (html) html.classList.add('wb-js');
+
+  function nextId(prefix) {
+    uid += 1;
+    return 'wb-' + prefix + '-' + uid;
+  }
+
+  function ensureId(el, prefix) {
+    if (!el.id) el.id = nextId(prefix || 'overlay');
+    return el.id;
+  }
+
+  function ensureRoot() {
+    if (root && document.body && document.body.contains(root)) return root;
+    root = document.getElementById(ROOT_ID);
+    if (!root) {
+      root = document.createElement('div');
+      root.id = ROOT_ID;
+      root.className = 'wb-overlay-root';
+      document.body.appendChild(root);
+    }
+    return root;
+  }
+
+  function ensureLayer(name) {
+    if (layers[name] && ensureRoot().contains(layers[name])) return layers[name];
+
+    var layer = ensureRoot().querySelector('.wb-overlay-layer--' + name);
+    if (!layer) {
+      layer = document.createElement('div');
+      layer.className = 'wb-overlay-layer wb-overlay-layer--' + name;
+      ensureRoot().appendChild(layer);
+    }
+
+    layers[name] = layer;
+    return layer;
+  }
+
+  function getBackdrop() {
+    if (backdrop && ensureLayer('dialog').contains(backdrop)) return backdrop;
+
+    backdrop = ensureLayer('dialog').querySelector('.wb-overlay-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'wb-overlay-backdrop';
+      backdrop.hidden = true;
+      ensureLayer('dialog').appendChild(backdrop);
+    }
+
+    return backdrop;
+  }
+
+  function getPlacement(value) {
+    return typeof value === 'function' ? value() : (value || 'bottom-start');
+  }
+
+  function getSide(placement) {
+    return String(placement || 'bottom-start').split('-')[0] || 'bottom';
+  }
+
+  function getAlign(placement) {
+    return String(placement || 'bottom-start').split('-')[1] || 'start';
+  }
+
+  function computeCoords(rect, width, height, placement, offset) {
+    var side = getSide(placement);
+    var align = getAlign(placement);
+    var top = rect.bottom + offset;
+    var left = rect.left;
+
+    if (side === 'top') top = rect.top - height - offset;
+    if (side === 'right') left = rect.right + offset;
+    if (side === 'left') left = rect.left - width - offset;
+
+    if (side === 'bottom' || side === 'top') {
+      if (align === 'end') left = rect.right - width;
+      if (align === 'center') left = rect.left + ((rect.width - width) / 2);
+    }
+
+    if (side === 'right' || side === 'left') {
+      top = rect.top;
+      if (align === 'end') top = rect.bottom - height;
+      if (align === 'center') top = rect.top + ((rect.height - height) / 2);
+    }
+
+    return { top: top, left: left };
+  }
+
+  function fitsWithinViewport(coords, width, height, padding) {
+    return coords.top >= padding &&
+      coords.left >= padding &&
+      coords.top + height <= window.innerHeight - padding &&
+      coords.left + width <= window.innerWidth - padding;
+  }
+
+  function pickPlacement(rect, width, height, preferred, offset, padding) {
+    var side = getSide(preferred);
+    var align = getAlign(preferred);
+    var opposite = {
+      bottom: 'top',
+      top: 'bottom',
+      left: 'right',
+      right: 'left'
+    }[side] || 'top';
+    var placements = [preferred, opposite + '-' + align];
+
+    for (var i = 0; i < placements.length; i += 1) {
+      var coords = computeCoords(rect, width, height, placements[i], offset);
+      if (fitsWithinViewport(coords, width, height, padding)) {
+        return { placement: placements[i], coords: coords };
+      }
+    }
+
+    return {
+      placement: placements[0],
+      coords: computeCoords(rect, width, height, placements[0], offset)
+    };
+  }
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function syncBodyLock() {
+    var lock = activeStack.some(function (instance) {
+      return instance.active && instance.lockScroll;
+    });
+
+    document.body.classList.toggle('wb-overlay-lock', lock);
+  }
+
+  function syncBackdrop() {
+    var topmost = null;
+    var i;
+
+    for (i = activeStack.length - 1; i >= 0; i -= 1) {
+      if (activeStack[i].active && activeStack[i].backdrop) {
+        topmost = activeStack[i];
+        break;
+      }
+    }
+
+    var el = getBackdrop();
+    if (!topmost) {
+      el.hidden = true;
+      el.className = 'wb-overlay-backdrop';
+      delete el.dataset.wbOverlayOwner;
+      return;
+    }
+
+    el.className = 'wb-overlay-backdrop' + (topmost.backdropClass ? ' ' + topmost.backdropClass : '');
+    el.hidden = false;
+    el.dataset.wbOverlayOwner = topmost.id;
+    ensureLayer('dialog').insertBefore(el, ensureLayer('dialog').firstChild);
+  }
+
+  function registerActive(instance) {
+    unregisterActive(instance);
+    activeStack.push(instance);
+  }
+
+  function unregisterActive(instance) {
+    activeStack = activeStack.filter(function (item) { return item !== instance; });
+  }
+
+  function portalToLayer(instance) {
+    if (!instance.portal || !instance.element) return;
+
+    if (!instance.placeholder && instance.element.parentNode) {
+      instance.originalParent = instance.element.parentNode;
+      instance.originalNextSibling = instance.element.nextSibling;
+      instance.placeholder = document.createComment('wb-overlay:' + instance.id);
+      instance.originalParent.insertBefore(instance.placeholder, instance.element);
+    }
+
+    ensureLayer(instance.layer).appendChild(instance.element);
+    instance.element.setAttribute('data-wb-overlay-portaled', 'true');
+    instance.element.setAttribute('data-wb-overlay-runtime', 'true');
+    instance.element.setAttribute('data-wb-overlay-kind', instance.kind || 'overlay');
+  }
+
+  function mount(instance) {
+    if (!instance || !instance.element) return;
+    portalToLayer(instance);
+  }
+
+  function restoreFromLayer(instance) {
+    if (!instance.portal || !instance.element || !instance.placeholder || !instance.originalParent) return;
+
+    instance.originalParent.insertBefore(instance.element, instance.placeholder);
+    instance.originalParent.removeChild(instance.placeholder);
+    instance.placeholder = null;
+    instance.originalParent = null;
+    instance.originalNextSibling = null;
+    instance.element.removeAttribute('data-wb-overlay-portaled');
+    instance.element.removeAttribute('data-wb-overlay-runtime');
+    instance.element.removeAttribute('data-wb-overlay-kind');
+  }
+
+  function syncTriggerAria(instance, expanded) {
+    if (!instance.trigger) return;
+
+    if (instance.manageExpanded !== false) {
+      instance.trigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+
+    if (instance.panel && instance.manageControls !== false && instance.kind !== 'tooltip') {
+      instance.trigger.setAttribute('aria-controls', ensureId(instance.panel, instance.kind + '-panel'));
+    }
+  }
+
+  function restoreFocus(instance) {
+    if (!instance.returnFocus || !instance.previouslyFocused || typeof instance.previouslyFocused.focus !== 'function') return;
+    instance.previouslyFocused.focus();
+    instance.previouslyFocused = null;
+  }
+
+  function measureAnchored(instance) {
+    var panel = instance.panel || instance.element;
+    if (!panel || !instance.trigger) return;
+
+    panel.style.visibility = 'hidden';
+    panel.style.pointerEvents = 'none';
+    panel.style.top = '0px';
+    panel.style.left = '0px';
+
+    var panelRect = panel.getBoundingClientRect();
+    var triggerRect = instance.trigger.getBoundingClientRect();
+    var preferred = getPlacement(instance.placement);
+    var offset = instance.offset == null ? 8 : instance.offset;
+    var padding = instance.viewportPadding == null ? 8 : instance.viewportPadding;
+    var picked = pickPlacement(triggerRect, panelRect.width, panelRect.height, preferred, offset, padding);
+    var coords = picked.coords;
+
+    coords.left = clamp(coords.left, padding, Math.max(padding, window.innerWidth - panelRect.width - padding));
+    coords.top = clamp(coords.top, padding, Math.max(padding, window.innerHeight - panelRect.height - padding));
+
+    panel.style.top = Math.round(coords.top) + 'px';
+    panel.style.left = Math.round(coords.left) + 'px';
+    panel.style.visibility = '';
+    panel.style.pointerEvents = '';
+    panel.dataset.wbOverlayPlacement = picked.placement;
+    panel.dataset.wbOverlaySide = getSide(picked.placement);
+
+    if (instance.matchWidth) {
+      panel.style.minWidth = Math.round(triggerRect.width) + 'px';
+    }
+  }
+
+  function update(instance) {
+    if (!instance || !instance.active) return;
+    if (instance.position === 'anchored') measureAnchored(instance);
+    if (typeof instance.onUpdate === 'function') instance.onUpdate(instance);
+  }
+
+  function updateAnchored() {
+    activeStack.forEach(function (instance) {
+      if (instance.active && instance.position === 'anchored') update(instance);
+    });
+  }
+
+  function closeByGroup(group, except) {
+    activeStack.slice().forEach(function (instance) {
+      if (!instance.active || instance === except) return;
+      if (instance.group === group) requestClose(instance, 'group-switch');
+    });
+  }
+
+  function requestClose(instance, reason) {
+    if (!instance || !instance.active) return;
+
+    if (typeof instance.onRequestClose === 'function') {
+      instance.onRequestClose(reason, instance);
+      return;
+    }
+
+    close(instance, reason);
+  }
+
+  function open(instance) {
+    if (!instance || !instance.element) return;
+
+    if (instance.group && instance.exclusive !== false) {
+      closeByGroup(instance.group, instance);
+    }
+
+    instance.previouslyFocused = document.activeElement;
+    instance.active = true;
+
+    portalToLayer(instance);
+
+    instance.element.classList.add('is-open');
+    if (typeof instance.onToggle === 'function') instance.onToggle(true, instance);
+    syncTriggerAria(instance, true);
+    registerActive(instance);
+    syncBodyLock();
+    syncBackdrop();
+    update(instance);
+
+    if (instance.autoFocus === true) {
+      WBDom.focusFirst(instance.panel || instance.element);
+    }
+
+    if (typeof instance.onAfterOpen === 'function') instance.onAfterOpen(instance);
+  }
+
+  function close(instance, reason) {
+    if (!instance || !instance.element || !instance.active) return;
+
+    instance.active = false;
+    instance.element.classList.remove('is-open');
+    if (typeof instance.onToggle === 'function') instance.onToggle(false, instance);
+    syncTriggerAria(instance, false);
+    if (instance.restoreOnClose !== false) {
+      restoreFromLayer(instance);
+    }
+    unregisterActive(instance);
+    syncBodyLock();
+    syncBackdrop();
+
+    if (typeof instance.onAfterClose === 'function') instance.onAfterClose(instance, reason);
+    restoreFocus(instance);
+  }
+
+  function closeAll(filter) {
+    activeStack.slice().forEach(function (instance) {
+      if (!instance.active) return;
+      if (typeof filter === 'function' && !filter(instance)) return;
+      requestClose(instance, 'close-all');
+    });
+  }
+
+  function getTopmost(predicate) {
+    for (var i = activeStack.length - 1; i >= 0; i -= 1) {
+      var instance = activeStack[i];
+      if (!instance.active) continue;
+      if (!predicate || predicate(instance)) return instance;
+    }
+    return null;
+  }
+
+  function create(options) {
+    options = options || {};
+
+    return {
+      id: options.id || nextId(options.kind || 'overlay'),
+      kind: options.kind || 'overlay',
+      group: options.group || null,
+      layer: options.layer || 'anchored',
+      element: options.element || null,
+      panel: options.panel || options.element || null,
+      trigger: options.trigger || null,
+      portal: options.portal !== false,
+      exclusive: options.exclusive !== false,
+      position: options.position || null,
+      placement: options.placement || 'bottom-start',
+      offset: options.offset,
+      viewportPadding: options.viewportPadding,
+      matchWidth: !!options.matchWidth,
+      backdrop: !!options.backdrop,
+      backdropClass: options.backdropClass || '',
+      lockScroll: !!options.lockScroll,
+      trapFocus: !!options.trapFocus,
+      autoFocus: options.autoFocus !== false,
+      returnFocus: options.returnFocus !== false,
+      restoreOnClose: options.restoreOnClose !== false,
+      manageExpanded: options.manageExpanded !== false,
+      manageControls: options.manageControls !== false,
+      outsideClose: options.outsideClose !== false,
+      escapeClose: options.escapeClose !== false,
+      onToggle: options.onToggle,
+      onUpdate: options.onUpdate,
+      onRequestClose: options.onRequestClose,
+      onAfterOpen: options.onAfterOpen,
+      onAfterClose: options.onAfterClose,
+      placeholder: null,
+      originalParent: null,
+      originalNextSibling: null,
+      previouslyFocused: null,
+      active: false
+    };
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains('wb-overlay-backdrop')) {
+      var ownerId = e.target.dataset.wbOverlayOwner;
+      var owner = getTopmost(function (instance) {
+        return instance.active && instance.backdrop && (!ownerId || instance.id === ownerId);
+      });
+      if (owner) requestClose(owner, 'backdrop-click');
+      return;
+    }
+
+    var top = getTopmost(function (instance) {
+      return instance.active && instance.outsideClose !== false;
+    });
+
+    if (!top) return;
+    if (top.element && top.element.contains(e.target)) return;
+    if (top.trigger && top.trigger.contains(e.target)) return;
+    requestClose(top, 'outside-click');
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      var esc = getTopmost(function (instance) {
+        return instance.active && instance.escapeClose !== false;
+      });
+      if (esc) {
+        e.preventDefault();
+        requestClose(esc, 'escape');
+        return;
+      }
+    }
+
+    if (e.key === 'Tab') {
+      var trap = getTopmost(function (instance) {
+        return instance.active && instance.trapFocus;
+      });
+      if (trap) WBDom.trapFocus(e, trap.panel || trap.element);
+    }
+  });
+
+  window.addEventListener('resize', updateAnchored);
+  window.addEventListener('scroll', updateAnchored, true);
+
+  WBDom.overlay = {
+    ensureRoot: ensureRoot,
+    ensureLayer: ensureLayer,
+    ensureId: ensureId,
+    create: create,
+    mount: mount,
+    open: open,
+    close: close,
+    requestClose: requestClose,
+    closeAll: closeAll,
+    update: update,
+    updateAnchored: updateAnchored,
+    getTopmost: getTopmost
+  };
+
+})();
+/* ============================================================
    WebBlocks UI — Theme Engine (theme.js)
 
    Axes:
@@ -579,51 +1040,107 @@
 (function () {
   'use strict';
 
-  var openDropdown = null; // currently open menu element
+  var instances = new WeakMap();
 
   function getMenu(trigger) {
-    var targetId = trigger.getAttribute('data-wb-target');
-    if (targetId) return document.querySelector(targetId);
-    // Fallback: first .wb-dropdown-menu in the same .wb-dropdown parent
-    var parent = trigger.closest('.wb-dropdown');
-    return parent ? parent.querySelector('.wb-dropdown-menu') : null;
+    var targetId = trigger.getAttribute('data-wb-target') || trigger.getAttribute('aria-controls');
+    var menu = targetId ? document.querySelector(targetId.charAt(0) === '#' ? targetId : ('#' + targetId)) : null;
+
+    if (!menu) {
+      // Fallback: first .wb-dropdown-menu in the same .wb-dropdown parent
+      var parent = trigger.closest('.wb-dropdown');
+      menu = parent ? parent.querySelector('.wb-dropdown-menu') : null;
+    }
+
+    if (!menu) return null;
+
+    WBDom.overlay.ensureId(menu, 'dropdown-menu');
+    trigger.setAttribute('aria-controls', menu.id);
+    if (!trigger.getAttribute('data-wb-target')) {
+      trigger.setAttribute('data-wb-target', '#' + menu.id);
+    }
+
+    return menu;
+  }
+
+  function getTrigger(menu) {
+    var id = WBDom.overlay.ensureId(menu, 'dropdown-menu');
+    return document.querySelector('[data-wb-toggle="dropdown"][data-wb-target="#' + id + '"]') ||
+      document.querySelector('[data-wb-toggle="dropdown"][aria-controls="' + id + '"]') ||
+      (menu.closest('.wb-dropdown') && menu.closest('.wb-dropdown').querySelector('[data-wb-toggle="dropdown"]'));
+  }
+
+  function getPlacement(trigger, menu) {
+    var parent = trigger ? trigger.closest('.wb-dropdown') : menu.closest('.wb-dropdown');
+    if (menu.hasAttribute('data-wb-placement')) return menu.getAttribute('data-wb-placement');
+    if (trigger && trigger.hasAttribute('data-wb-placement')) return trigger.getAttribute('data-wb-placement');
+    if (parent && parent.hasAttribute('data-wb-placement')) return parent.getAttribute('data-wb-placement');
+    return (parent && parent.classList.contains('wb-dropdown-end')) || menu.classList.contains('wb-dropdown-menu-end')
+      ? 'bottom-end'
+      : 'bottom-start';
+  }
+
+  function ensureInstance(menu, trigger) {
+    var instance = instances.get(menu);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      instance.placement = getPlacement(instance.trigger, menu);
+      WBDom.overlay.mount(instance);
+      return instance;
+    }
+
+    instance = WBDom.overlay.create({
+      kind: 'dropdown',
+      group: 'anchored-toggle',
+      layer: 'anchored',
+      element: menu,
+      panel: menu,
+      trigger: trigger,
+      position: 'anchored',
+      placement: getPlacement(trigger, menu),
+      offset: 4,
+      viewportPadding: 8,
+      autoFocus: false,
+      returnFocus: true,
+      restoreOnClose: false,
+      matchWidth: menu.hasAttribute('data-wb-match-width'),
+      onAfterClose: function () {
+        menu.classList.remove('is-leaving');
+      }
+    });
+
+    instances.set(menu, instance);
+    WBDom.overlay.mount(instance);
+    return instance;
+  }
+
+  function init() {
+    document.querySelectorAll('[data-wb-toggle="dropdown"]').forEach(function (trigger) {
+      var menu = getMenu(trigger);
+      if (!menu) return;
+      ensureInstance(menu, trigger);
+    });
   }
 
   function open(trigger, menu) {
-    // Close any currently open dropdown first
-    if (openDropdown && openDropdown !== menu) close(openDropdown);
-
-    menu.classList.add('is-open');
-    trigger.setAttribute('aria-expanded', 'true');
-    openDropdown = menu;
-
-    // Position: flip upward if overflows viewport bottom
-    requestAnimationFrame(function () {
-      var rect = menu.getBoundingClientRect();
-      if (rect.bottom > window.innerHeight && rect.top > rect.height) {
-        menu.classList.add('wb-dropdown-menu--up');
-      } else {
-        menu.classList.remove('wb-dropdown-menu--up');
-      }
-    });
+    if (!menu || !trigger) return;
+    var instance = ensureInstance(menu, trigger);
+    instance.trigger = trigger;
+    instance.placement = getPlacement(trigger, menu);
+    WBDom.overlay.open(instance);
   }
 
   function close(menu) {
     if (!menu) return;
-    menu.classList.remove('is-open');
-    // Reset aria-expanded on the associated trigger
-    var parent = menu.closest('.wb-dropdown');
-    if (parent) {
-      var trigger = parent.querySelector('[data-wb-toggle="dropdown"]');
-      if (trigger) trigger.setAttribute('aria-expanded', 'false');
-    }
-    if (openDropdown === menu) openDropdown = null;
+    var instance = ensureInstance(menu, getTrigger(menu));
+    WBDom.overlay.close(instance, 'api');
   }
 
   function toggle(trigger) {
     var menu = getMenu(trigger);
     if (!menu) return;
-    if (menu.classList.contains('is-open')) {
+    var instance = ensureInstance(menu, trigger);
+    if (instance.active) {
       close(menu);
     } else {
       open(trigger, menu);
@@ -635,7 +1152,6 @@
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest('[data-wb-toggle="dropdown"]');
     if (trigger) {
-      e.stopPropagation();
       toggle(trigger);
       return;
     }
@@ -650,28 +1166,17 @@
 
     // Close dropdown when a menu item is clicked (but allow other handlers to run first)
     var menuItem = e.target.closest('.wb-dropdown-item');
-    if (menuItem && openDropdown) {
+    if (menuItem) {
       var menu = menuItem.closest('.wb-dropdown-menu');
-      if (menu && menu === openDropdown) {
+      var instance = menu && instances.get(menu);
+      if (instance && instance.active) {
         // Delay close slightly to allow other click handlers (like theme toggle) to run
-        setTimeout(function () { if (openDropdown === menu) close(menu); }, 10);
+        setTimeout(function () {
+          var active = instances.get(menu);
+          if (active && active.active) close(menu);
+        }, 10);
         return;
       }
-    }
-
-    // Close on outside click
-    if (openDropdown && !openDropdown.contains(e.target)) {
-      close(openDropdown);
-    }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && openDropdown) {
-      // Return focus to trigger
-      var parent = openDropdown.closest('.wb-dropdown');
-      var trigger = parent && parent.querySelector('[data-wb-toggle="dropdown"]');
-      close(openDropdown);
-      if (trigger) trigger.focus();
     }
   });
 
@@ -679,13 +1184,18 @@
 
   window.WBDropdown = {
     open: function (menuEl) {
-      var parent = menuEl.closest('.wb-dropdown');
-      var trigger = parent && parent.querySelector('[data-wb-toggle="dropdown"]');
+      var trigger = getTrigger(menuEl);
       open(trigger, menuEl);
     },
     close: close,
-    closeAll: function () { if (openDropdown) close(openDropdown); }
+    closeAll: function () {
+      WBDom.overlay.closeAll(function (instance) {
+        return instance.kind === 'dropdown';
+      });
+    }
   };
+
+  init();
 
 })();
 /* ============================================================
@@ -714,23 +1224,49 @@
 (function () {
   'use strict';
 
-  var activeModal       = null;
-  var previouslyFocused = null;
+  var instances = new WeakMap();
+  var activeModal = null;
+
+  function ensureInstance(modal, trigger) {
+    var instance = instances.get(modal);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      return instance;
+    }
+
+    instance = WBDom.overlay.create({
+      kind: 'modal',
+      group: 'dialog',
+      layer: 'dialog',
+      element: modal,
+      panel: modal.querySelector('.wb-modal-dialog') || modal,
+      trigger: trigger,
+      backdrop: true,
+      lockScroll: true,
+      trapFocus: true,
+      autoFocus: true,
+      returnFocus: true,
+      onAfterOpen: function () {
+        activeModal = modal;
+        WBDom.emit(modal, 'wb:modal:open');
+      },
+      onAfterClose: function () {
+        if (activeModal === modal) activeModal = null;
+        WBDom.emit(modal, 'wb:modal:close');
+      }
+    });
+
+    instances.set(modal, instance);
+    return instance;
+  }
 
   // ── Open ──────────────────────────────────────────────────
 
-  function open(modal) {
+  function open(modal, trigger) {
     if (!modal) return;
-    if (activeModal) close(activeModal);
-
-    previouslyFocused = document.activeElement;
-    activeModal = modal;
-
-    modal.classList.add('is-open');
-    document.body.classList.add('wb-modal-open');
-
-    WBDom.focusFirst(modal);
-    WBDom.emit(modal, 'wb:modal:open');
+    var instance = ensureInstance(modal, trigger);
+    instance.trigger = trigger || instance.trigger;
+    WBDom.overlay.open(instance);
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -738,18 +1274,7 @@
   function close(modal) {
     if (!modal) modal = activeModal;
     if (!modal) return;
-
-    modal.classList.remove('is-open');
-    document.body.classList.remove('wb-modal-open');
-
-    if (activeModal === modal) activeModal = null;
-
-    if (previouslyFocused && previouslyFocused.focus) {
-      previouslyFocused.focus();
-      previouslyFocused = null;
-    }
-
-    WBDom.emit(modal, 'wb:modal:close');
+    WBDom.overlay.close(ensureInstance(modal), 'api');
   }
 
   // ── Event delegation ──────────────────────────────────────
@@ -761,7 +1286,7 @@
       e.preventDefault();
       var target = trigger.getAttribute('data-wb-target');
       var modal  = target ? document.querySelector(target) : null;
-      if (modal) open(modal);
+      if (modal) open(modal, trigger);
       return;
     }
 
@@ -776,11 +1301,6 @@
     if (activeModal && e.target === activeModal) {
       close(activeModal);
     }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && activeModal) close(activeModal);
-    if (activeModal) WBDom.trapFocus(e, activeModal);
   });
 
   // ── Public API ─────────────────────────────────────────────
@@ -1326,41 +1846,56 @@
        </div>
      </div>
 
-     <!-- Backdrop (optional, add before </body>) -->
-     <div class="wb-drawer-backdrop"></div>
-
-     Clicking outside the drawer panel (on the backdrop) closes it automatically.
+     Shared overlay backdrop is managed by the runtime.
+     Clicking outside the drawer panel closes it automatically.
    ============================================================ */
 
 (function () {
   'use strict';
 
-  var activeDrawer      = null;
-  var previouslyFocused = null;
+  var instances = new WeakMap();
+  var activeDrawer = null;
 
-  // ── Backdrop helper ───────────────────────────────────────
+  function ensureInstance(drawer, trigger) {
+    var instance = instances.get(drawer);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      return instance;
+    }
 
-  function getBackdrop() {
-    return document.querySelector('.wb-drawer-backdrop');
+    instance = WBDom.overlay.create({
+      kind: 'drawer',
+      group: 'dialog',
+      layer: 'dialog',
+      element: drawer,
+      panel: drawer,
+      trigger: trigger,
+      backdrop: true,
+      lockScroll: true,
+      trapFocus: true,
+      autoFocus: true,
+      returnFocus: true,
+      onAfterOpen: function () {
+        activeDrawer = drawer;
+        WBDom.emit(drawer, 'wb:drawer:open');
+      },
+      onAfterClose: function () {
+        if (activeDrawer === drawer) activeDrawer = null;
+        WBDom.emit(drawer, 'wb:drawer:close');
+      }
+    });
+
+    instances.set(drawer, instance);
+    return instance;
   }
 
   // ── Open ──────────────────────────────────────────────────
 
-  function open(drawer) {
+  function open(drawer, trigger) {
     if (!drawer) return;
-    if (activeDrawer) close(activeDrawer);
-
-    previouslyFocused = document.activeElement;
-    activeDrawer = drawer;
-
-    drawer.classList.add('is-open');
-    document.body.classList.add('wb-drawer-open');
-
-    var backdrop = getBackdrop();
-    if (backdrop) backdrop.classList.add('is-open');
-
-    WBDom.focusFirst(drawer);
-    WBDom.emit(drawer, 'wb:drawer:open');
+    var instance = ensureInstance(drawer, trigger);
+    instance.trigger = trigger || instance.trigger;
+    WBDom.overlay.open(instance);
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -1368,21 +1903,7 @@
   function close(drawer) {
     if (!drawer) drawer = activeDrawer;
     if (!drawer) return;
-
-    drawer.classList.remove('is-open');
-    document.body.classList.remove('wb-drawer-open');
-
-    var backdrop = getBackdrop();
-    if (backdrop) backdrop.classList.remove('is-open');
-
-    if (activeDrawer === drawer) activeDrawer = null;
-
-    if (previouslyFocused && previouslyFocused.focus) {
-      previouslyFocused.focus();
-      previouslyFocused = null;
-    }
-
-    WBDom.emit(drawer, 'wb:drawer:close');
+    WBDom.overlay.close(ensureInstance(drawer), 'api');
   }
 
   // ── Event delegation ──────────────────────────────────────
@@ -1394,7 +1915,7 @@
       e.preventDefault();
       var target = trigger.getAttribute('data-wb-target');
       var drawer = target ? document.querySelector(target) : null;
-      if (drawer) open(drawer);
+      if (drawer) open(drawer, trigger);
       return;
     }
 
@@ -1404,19 +1925,6 @@
       close(activeDrawer);
       return;
     }
-
-    // Backdrop click — close if click is outside the active drawer panel
-    if (activeDrawer && !activeDrawer.contains(e.target)) {
-      var backdrop = getBackdrop();
-      if (backdrop && backdrop.classList.contains('is-open')) {
-        close(activeDrawer);
-      }
-    }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && activeDrawer) close(activeDrawer);
-    if (activeDrawer) WBDom.trapFocus(e, activeDrawer);
   });
 
   // ── Public API ─────────────────────────────────────────────
@@ -1473,10 +1981,10 @@
 (function () {
   'use strict';
 
-  var activePalette     = null;
-  var previouslyFocused = null;
-  var selectedIndex     = -1;
-  var items             = [];
+  var instances = new WeakMap();
+  var activePalette = null;
+  var selectedIndex = -1;
+  var items = [];
 
   // ── External search handler ────────────────────────────── 
   // Assign: WBCommandPalette.onSearch = function(query, callback) { ... }
@@ -1509,17 +2017,47 @@
     items[selectedIndex].click();
   }
 
+  function ensureInstance(palette, trigger) {
+    var instance = instances.get(palette);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      return instance;
+    }
+
+    instance = WBDom.overlay.create({
+      kind: 'command-palette',
+      group: 'dialog',
+      layer: 'dialog',
+      element: palette,
+      panel: palette.querySelector('.wb-cmd-dialog') || palette,
+      trigger: trigger,
+      backdrop: true,
+      backdropClass: 'wb-overlay-backdrop-dark',
+      lockScroll: true,
+      trapFocus: true,
+      autoFocus: false,
+      returnFocus: true,
+      onAfterOpen: function () {
+        activePalette = palette;
+        palette.dispatchEvent(new CustomEvent('wb:cmd:open', { bubbles: true }));
+      },
+      onAfterClose: function () {
+        if (activePalette === palette) activePalette = null;
+        palette.dispatchEvent(new CustomEvent('wb:cmd:close', { bubbles: true }));
+      }
+    });
+
+    instances.set(palette, instance);
+    return instance;
+  }
+
   // ── Open ──────────────────────────────────────────────────
 
-  function open(palette) {
+  function open(palette, trigger) {
     if (!palette) return;
-    if (activePalette) close(activePalette);
-
-    previouslyFocused = document.activeElement;
-    activePalette = palette;
-
-    palette.classList.add('is-open');
-    document.body.classList.add('wb-cmd-open');
+    var instance = ensureInstance(palette, trigger);
+    instance.trigger = trigger || instance.trigger;
+    WBDom.overlay.open(instance);
 
     // Focus the input
     requestAnimationFrame(function () {
@@ -1532,8 +2070,6 @@
       items = getItems(palette);
       selectedIndex = -1;
     });
-
-    palette.dispatchEvent(new CustomEvent('wb:cmd:open', { bubbles: true }));
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -1541,18 +2077,7 @@
   function close(palette) {
     if (!palette) palette = activePalette;
     if (!palette) return;
-
-    palette.classList.remove('is-open');
-    document.body.classList.remove('wb-cmd-open');
-
-    if (activePalette === palette) activePalette = null;
-
-    if (previouslyFocused && previouslyFocused.focus) {
-      previouslyFocused.focus();
-      previouslyFocused = null;
-    }
-
-    palette.dispatchEvent(new CustomEvent('wb:cmd:close', { bubbles: true }));
+    WBDom.overlay.close(ensureInstance(palette), 'api');
   }
 
   // ── Input / search ─────────────────────────────────────── 
@@ -1618,7 +2143,7 @@
       e.preventDefault();
       var target = trigger.getAttribute('data-wb-target');
       var palette = target ? document.querySelector(target) : null;
-      if (palette) open(palette);
+      if (palette) open(palette, trigger);
       return;
     }
 
@@ -1739,7 +2264,7 @@
     if (position !== 'bottom-right') {
       el.classList.add('wb-toast-container-' + position);
     }
-    document.body.appendChild(el);
+    WBDom.overlay.ensureLayer('toast').appendChild(el);
     containers[position] = el;
     return el;
   }
@@ -1875,35 +2400,150 @@
 (function () {
   'use strict';
 
-  var active = null;
+  var instances = new WeakMap();
+  var wrapperPanels = new WeakMap();
+
+  function getWrapperFromTrigger(trigger) {
+    return trigger.closest('[data-wb-popover]') || trigger.closest('.wb-popover');
+  }
+
+  function getPanel(wrapper, trigger) {
+    if (!wrapper) return null;
+
+    var targetId = trigger && (trigger.getAttribute('data-wb-target') || trigger.getAttribute('aria-controls'));
+    var panel = targetId ? document.querySelector(targetId.charAt(0) === '#' ? targetId : ('#' + targetId)) : null;
+    if (!panel) panel = wrapperPanels.get(wrapper) || null;
+    if (!panel) panel = wrapper.querySelector('.wb-popover-panel');
+    if (!panel) return null;
+
+    WBDom.overlay.ensureId(panel, 'popover-panel');
+    if (trigger) {
+      trigger.setAttribute('aria-controls', panel.id);
+      if (!trigger.getAttribute('data-wb-target')) trigger.setAttribute('data-wb-target', '#' + panel.id);
+    }
+    wrapperPanels.set(wrapper, panel);
+    return panel;
+  }
+
+  function getWrapper(target) {
+    if (!target) return null;
+    if (target.classList && target.classList.contains('wb-popover')) return target;
+    if (target.classList && target.classList.contains('wb-popover-panel')) {
+      var instance = instances.get(target);
+      return instance ? instance.wrapper : null;
+    }
+    return target.closest('[data-wb-popover]') || target.closest('.wb-popover');
+  }
+
+  function getTrigger(panel) {
+    var id = WBDom.overlay.ensureId(panel, 'popover-panel');
+    return document.querySelector('[data-wb-toggle="popover"][data-wb-target="#' + id + '"]') ||
+      document.querySelector('[data-wb-toggle="popover"][aria-controls="' + id + '"]');
+  }
+
+  function getPlacement(wrapper, trigger, panel) {
+    if (panel.hasAttribute('data-wb-placement')) return panel.getAttribute('data-wb-placement');
+    if (trigger && trigger.hasAttribute('data-wb-placement')) return trigger.getAttribute('data-wb-placement');
+    if (wrapper && wrapper.hasAttribute('data-wb-placement')) return wrapper.getAttribute('data-wb-placement');
+
+    var align = wrapper && wrapper.classList.contains('wb-popover-end') ? 'end' : 'start';
+    if (wrapper && wrapper.classList.contains('wb-popover-top')) return 'top-' + align;
+    if (wrapper && wrapper.classList.contains('wb-popover-right')) return 'right-start';
+    if (wrapper && wrapper.classList.contains('wb-popover-left')) return 'left-start';
+    return 'bottom-' + align;
+  }
+
+  function syncWrapperState(wrapper, panel, isOpen) {
+    if (wrapper) wrapper.classList.toggle('is-open', isOpen);
+    panel.classList.toggle('wb-popover-panel-end', !!(wrapper && wrapper.classList.contains('wb-popover-end')));
+  }
+
+  function ensureInstance(wrapper, trigger, panel) {
+    var instance = instances.get(panel);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      instance.placement = getPlacement(wrapper, instance.trigger, panel);
+      syncWrapperState(wrapper, panel, instance.active);
+      WBDom.overlay.mount(instance);
+      return instance;
+    }
+
+    instance = WBDom.overlay.create({
+      kind: 'popover',
+      group: 'anchored-toggle',
+      layer: 'anchored',
+      element: panel,
+      panel: panel,
+      trigger: trigger,
+      position: 'anchored',
+      placement: getPlacement(wrapper, trigger, panel),
+      offset: 8,
+      viewportPadding: 8,
+      autoFocus: false,
+      returnFocus: true,
+      restoreOnClose: false,
+      onToggle: function (isOpen) {
+        syncWrapperState(wrapper, panel, isOpen);
+      },
+      onAfterOpen: function () {
+        if (wrapper) WBDom.emit(wrapper, 'wb:popover:open');
+      },
+      onAfterClose: function () {
+        if (wrapper) WBDom.emit(wrapper, 'wb:popover:close');
+      }
+    });
+
+    instance.wrapper = wrapper;
+    wrapperPanels.set(wrapper, panel);
+    instances.set(panel, instance);
+    WBDom.overlay.mount(instance);
+    return instance;
+  }
+
+  function init() {
+    document.querySelectorAll('[data-wb-popover], .wb-popover').forEach(function (wrapper) {
+      var trigger = wrapper.querySelector('[data-wb-toggle="popover"]');
+      if (!trigger) return;
+      var panel = getPanel(wrapper, trigger);
+      if (!panel) return;
+      ensureInstance(wrapper, trigger, panel);
+    });
+  }
 
   // ── Open ──────────────────────────────────────────────────
 
   function open(wrapper) {
     if (!wrapper) return;
-    if (active && active !== wrapper) close(active);
+    var trigger = wrapper.querySelector('[data-wb-toggle="popover"]');
+    var panel = getPanel(wrapper, trigger);
+    if (!panel || !trigger) return;
 
-    wrapper.classList.add('is-open');
-    active = wrapper;
-    WBDom.emit(wrapper, 'wb:popover:open');
+    var instance = ensureInstance(wrapper, trigger, panel);
+    instance.wrapper = wrapper;
+    instance.trigger = trigger;
+    instance.placement = getPlacement(wrapper, trigger, panel);
+    WBDom.overlay.open(instance);
   }
 
   // ── Close ─────────────────────────────────────────────────
 
   function close(wrapper) {
-    if (!wrapper) wrapper = active;
+    wrapper = getWrapper(wrapper);
     if (!wrapper) return;
 
-    wrapper.classList.remove('is-open');
-    if (active === wrapper) active = null;
-    WBDom.emit(wrapper, 'wb:popover:close');
+    var panel = getPanel(wrapper);
+    var trigger = wrapper.querySelector('[data-wb-toggle="popover"]') || (panel ? getTrigger(panel) : null);
+    panel = getPanel(wrapper, trigger);
+    if (!panel) return;
+
+    var instance = ensureInstance(wrapper, trigger, panel);
+    WBDom.overlay.close(instance, 'api');
   }
 
   function closeAll() {
-    document.querySelectorAll('.wb-popover.is-open').forEach(function (el) {
-      close(el);
+    WBDom.overlay.closeAll(function (instance) {
+      return instance.kind === 'popover';
     });
-    active = null;
   }
 
   // ── Event delegation ──────────────────────────────────────
@@ -1912,10 +2552,11 @@
     // Toggle trigger
     var trigger = e.target.closest('[data-wb-toggle="popover"]');
     if (trigger) {
-      e.stopPropagation();
-      var wrapper = trigger.closest('[data-wb-popover]') || trigger.closest('.wb-popover');
+      var wrapper = getWrapperFromTrigger(trigger);
       if (!wrapper) return;
-      if (wrapper.classList.contains('is-open')) {
+      var panel = getPanel(wrapper, trigger);
+      var instance = panel && ensureInstance(wrapper, trigger, panel);
+      if (instance && instance.active) {
         close(wrapper);
       } else {
         open(wrapper);
@@ -1926,19 +2567,10 @@
     // Dismiss button inside popover
     var dismiss = e.target.closest('[data-wb-dismiss="popover"]');
     if (dismiss) {
-      var wrapper = dismiss.closest('.wb-popover');
+      var wrapper = getWrapper(dismiss.closest('.wb-popover-panel') || dismiss);
       if (wrapper) close(wrapper);
       return;
     }
-
-    // Click outside — close active popover
-    if (active && !active.contains(e.target)) {
-      close(active);
-    }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && active) close(active);
   });
 
   // ── Public API ────────────────────────────────────────────
@@ -1949,12 +2581,14 @@
     closeAll: closeAll
   };
 
+  init();
+
 })();
 /* ============================================================
    WebBlocks UI — Tooltip (tooltip.js)
 
-   The tooltip appearance is handled entirely by CSS via the
-   [data-wb-tooltip] attribute. This JS module adds:
+   Tooltips are anchored and positioned by the shared overlay
+   runtime using the [data-wb-tooltip] attribute. This module adds:
 
    1. Programmatic show/hide API.
    2. Support for tooltips on disabled elements (which don't
@@ -1962,7 +2596,7 @@
       <span data-wb-tooltip="..."> to work around this.
    3. data-wb-tooltip-delay — show delay in ms (default: 0).
 
-   Usage (HTML — pure CSS, no JS needed):
+   Usage (HTML):
      <button data-wb-tooltip="Save changes">Save</button>
 
    Usage (programmatic):
@@ -1970,74 +2604,146 @@
      WBTooltip.hide(el);     // force hide
      WBTooltip.hideAll();    // hide all forced tooltips
 
-   Forced show/hide works by toggling .wb-tooltip-force-show
-   and .wb-tooltip-force-hide classes. Pair these with CSS
-   rules if custom programmatic behavior is needed.
+   Hover, focus, and programmatic calls all feed the same
+   runtime-managed tooltip layer.
    ============================================================ */
 
 (function () {
   'use strict';
 
-  // ── Delay support ─────────────────────────────────────────
-  // Reads data-wb-tooltip-delay from element.
-  // Default: 0ms. Hover intent: add a small delay like 300.
-
   var timers = new WeakMap ? new WeakMap() : null;
+  var activeTarget = null;
+  var tooltip = document.createElement('div');
+  var tooltipBody = document.createElement('div');
+  var tooltipArrow = document.createElement('div');
+  var instance;
+
+  tooltip.className = 'wb-tooltip';
+  tooltip.setAttribute('role', 'tooltip');
+  tooltip.hidden = true;
+
+  tooltipBody.className = 'wb-tooltip-body';
+  tooltipArrow.className = 'wb-tooltip-arrow';
+
+  tooltip.appendChild(tooltipBody);
+  tooltip.appendChild(tooltipArrow);
+
+  instance = WBDom.overlay.create({
+    kind: 'tooltip',
+    group: 'tooltip',
+    layer: 'anchored',
+    element: tooltip,
+    panel: tooltip,
+    portal: false,
+    position: 'anchored',
+    placement: 'top-center',
+    offset: 8,
+    viewportPadding: 8,
+    autoFocus: false,
+    returnFocus: false,
+    manageExpanded: false,
+    manageControls: false,
+    outsideClose: false,
+    escapeClose: false,
+    onToggle: function (isOpen) {
+      tooltip.hidden = !isOpen;
+    }
+  });
+
+  WBDom.overlay.ensureLayer('anchored').appendChild(tooltip);
 
   function getDelay(el) {
     var d = parseInt(el.getAttribute('data-wb-tooltip-delay'), 10);
     return isNaN(d) ? 0 : d;
   }
 
+  function getPlacement(el) {
+    var placement = el.getAttribute('data-wb-tooltip-placement') || 'top';
+    if (placement === 'top' || placement === 'bottom') return placement + '-center';
+    if (placement === 'left' || placement === 'right') return placement + '-center';
+    return placement;
+  }
+
+  function clearTimer(el) {
+    if (!el || !timers) return;
+    clearTimeout(timers.get(el));
+    timers.delete(el);
+  }
+
+  function updateTooltipContent(el) {
+    tooltipBody.textContent = el.getAttribute('data-wb-tooltip') || '';
+    tooltip.classList.toggle('wb-tooltip-wrap', el.hasAttribute('data-wb-tooltip-wrap'));
+  }
+
   // ── Programmatic show/hide ────────────────────────────────
 
   function show(el) {
     if (!el) return;
-    el.classList.remove('wb-tooltip-force-hide');
-    el.classList.add('wb-tooltip-force-show');
+    clearTimer(el);
+    activeTarget = el;
+    updateTooltipContent(el);
+    instance.trigger = el;
+    instance.placement = getPlacement(el);
+    WBDom.overlay.open(instance);
     WBDom.emit(el, 'wb:tooltip:show');
   }
 
   function hide(el) {
-    if (!el) return;
-    el.classList.remove('wb-tooltip-force-show');
-    el.classList.add('wb-tooltip-force-hide');
-    WBDom.emit(el, 'wb:tooltip:hide');
+    if (el) clearTimer(el);
+    if (el && activeTarget && el !== activeTarget) return;
+    if (!activeTarget) return;
+    var target = activeTarget;
+    activeTarget = null;
+    WBDom.overlay.close(instance, 'tooltip-hide');
+    WBDom.emit(target, 'wb:tooltip:hide');
   }
 
   function hideAll() {
-    document.querySelectorAll('.wb-tooltip-force-show').forEach(function (el) {
-      hide(el);
-    });
+    hide(activeTarget);
+  }
+
+  function scheduleShow(el) {
+    if (!el) return;
+
+    var delay = getDelay(el);
+    clearTimer(el);
+
+    if (delay <= 0) {
+      show(el);
+      return;
+    }
+
+    if (!timers) return;
+    timers.set(el, setTimeout(function () {
+      show(el);
+    }, delay));
   }
 
   // ── Delayed hover (optional enhancement) ─────────────────
   // Only activates on elements with data-wb-tooltip-delay set.
 
   document.addEventListener('mouseover', function (e) {
-    var el = e.target.closest('[data-wb-tooltip][data-wb-tooltip-delay]');
-    if (!el || !timers) return;
-
-    var delay = getDelay(el);
-    if (delay <= 0) return;
-
-    // Clear any pending hide timer
-    clearTimeout(timers.get(el));
-
-    // Schedule show
-    timers.set(el, setTimeout(function () {
-      show(el);
-    }, delay));
+    var el = e.target.closest('[data-wb-tooltip]');
+    if (!el || (e.relatedTarget && el.contains(e.relatedTarget))) return;
+    scheduleShow(el);
   });
 
   document.addEventListener('mouseout', function (e) {
-    var el = e.target.closest('[data-wb-tooltip][data-wb-tooltip-delay]');
-    if (!el || !timers) return;
+    var el = e.target.closest('[data-wb-tooltip]');
+    if (!el || (e.relatedTarget && el.contains(e.relatedTarget))) return;
+    hide(el);
+  });
 
-    clearTimeout(timers.get(el));
+  document.addEventListener('focusin', function (e) {
+    var el = e.target.closest('[data-wb-tooltip]');
+    if (!el) return;
+    scheduleShow(el);
+  });
 
-    // Reset forced state when mouse leaves — let CSS take over
-    el.classList.remove('wb-tooltip-force-show', 'wb-tooltip-force-hide');
+  document.addEventListener('focusout', function (e) {
+    var el = e.target.closest('[data-wb-tooltip]');
+    if (!el || (e.relatedTarget && el.contains(e.relatedTarget))) return;
+    hide(el);
   });
 
   // ── Public API ────────────────────────────────────────────

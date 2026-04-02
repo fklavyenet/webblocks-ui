@@ -234,16 +234,18 @@ Sizes: `wb-modal-sm`, `wb-modal-lg`, `wb-modal-xl`
 
 ```html
 <div class="wb-dropdown">
-  <button class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" aria-expanded="false">
+  <button class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" data-wb-target="#actions-menu" aria-expanded="false">
     Actions ▾
   </button>
-  <ul class="wb-dropdown-menu">
+  <ul class="wb-dropdown-menu" id="actions-menu">
     <li><a class="wb-dropdown-item" href="#">Edit</a></li>
     <li class="wb-dropdown-divider"></li>
     <li><a class="wb-dropdown-item" href="#">Delete</a></li>
   </ul>
 </div>
 ```
+
+In enhanced mode the active visible menu node is rendered under the shared `#wb-overlay-root` anchored layer, so it can escape card and shell clipping.
 
 ### Tabs
 
@@ -395,7 +397,7 @@ Variants: `wb-toast-success`, `wb-toast-warning`, `wb-toast-danger`, `wb-toast-i
 
 ### Tooltip
 
-Pure CSS — no JavaScript required for hover/focus.
+Tooltips are shipped through the shared overlay runtime.
 
 ```html
 <!-- Default (top) -->
@@ -414,14 +416,14 @@ Pure CSS — no JavaScript required for hover/focus.
 <button data-wb-tooltip="Delayed" data-wb-tooltip-delay="400">Hover me</button>
 ```
 
-Triggers on `hover` and `focus-visible` (keyboard accessible).
+Triggers on `hover` and `focus` (keyboard accessible).
 
 ### Popover
 
 ```html
 <div class="wb-popover" data-wb-popover>
-  <button class="wb-btn wb-btn-secondary" data-wb-toggle="popover">Info</button>
-  <div class="wb-popover-panel">
+  <button class="wb-btn wb-btn-secondary" data-wb-toggle="popover" data-wb-target="#popover-info">Info</button>
+  <div class="wb-popover-panel" id="popover-info">
     <div class="wb-popover-header">
       <span class="wb-popover-title">Title</span>
       <button class="wb-popover-close" data-wb-dismiss="popover">&times;</button>
@@ -432,6 +434,8 @@ Triggers on `hover` and `focus-visible` (keyboard accessible).
 ```
 
 Placements (add to wrapper): `wb-popover-top`, `wb-popover-right`, `wb-popover-left`, `wb-popover-end`
+
+In enhanced mode the active visible panel node is rendered under the shared `#wb-overlay-root` anchored layer instead of functioning as a wrapper-local floating box.
 
 ### Alert (dismissible)
 
@@ -463,7 +467,6 @@ Placements (add to wrapper): `wb-popover-top`, `wb-popover-right`, `wb-popover-l
   </div>
 </div>
 
-<div class="wb-drawer-backdrop"></div>
 ```
 
 Sides: `wb-drawer-right` (default), `wb-drawer-left`, `wb-drawer-top`, `wb-drawer-bottom`

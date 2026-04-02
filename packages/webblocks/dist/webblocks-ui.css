@@ -115,9 +115,11 @@
   --wb-white:         #ffffff;               /* always-white (switch knob, etc.) */
 
   /* ── Z-index ──────────────────────────────────────────── */
-  --wb-z-dropdown: 100;
-  --wb-z-modal:    200;
-  --wb-z-toast:    300;
+  --wb-z-overlay:  400;
+  --wb-z-dropdown: 410;
+  --wb-z-modal:    420;
+  --wb-z-toast:    430;
+  --wb-z-loading:  440;
 
   /* ── Layout ───────────────────────────────────────────── */
   --wb-sidebar-w:  260px;
@@ -3248,6 +3250,68 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   max-width: 220px;
 }
 /* ============================================================
+   WebBlocks UI — Overlay Foundation (internal system layer)
+   ============================================================ */
+
+body.wb-overlay-lock {
+  overflow: hidden;
+}
+
+.wb-overlay-root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--wb-z-overlay);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.wb-overlay-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.wb-overlay-layer--anchored {
+  z-index: var(--wb-z-dropdown);
+}
+
+.wb-overlay-layer--dialog {
+  z-index: var(--wb-z-modal);
+}
+
+.wb-overlay-layer--toast {
+  z-index: var(--wb-z-toast);
+}
+
+.wb-overlay-layer--loading {
+  z-index: var(--wb-z-loading);
+}
+
+.wb-overlay-layer > * {
+  pointer-events: auto;
+}
+
+.wb-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--wb-overlay);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: wb-overlay-backdrop-in 0.18s ease;
+}
+
+.wb-overlay-backdrop-dark {
+  background: var(--wb-overlay-dark);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+@keyframes wb-overlay-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* ============================================================
    WebBlocks UI — Modal (wb-modal)
    JS: data-wb-toggle="modal" data-wb-target="#id"
        data-wb-dismiss="modal"  (close trigger)
@@ -3257,7 +3321,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: var(--wb-z-modal);
   align-items: center;
   justify-content: center;
   padding: var(--wb-s4);
@@ -3265,13 +3328,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 .wb-modal.is-open {
   display: flex;
-}
-
-.wb-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: var(--wb-overlay);
-  backdrop-filter: blur(2px);
 }
 
 .wb-modal-dialog {
@@ -3421,10 +3477,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 .wb-dropdown-menu {
   display: none;
-  position: absolute;
-  top: calc(100% + var(--wb-s1));
-  left: 0;
-  z-index: var(--wb-z-dropdown);
   min-width: 200px;
   background: var(--wb-surface);
   border: 1px solid var(--wb-border);
@@ -3434,7 +3486,17 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   animation: wb-dropdown-in 0.12s ease;
 }
 
-.wb-dropdown.is-open .wb-dropdown-menu,
+html:not(.wb-js) .wb-dropdown-menu {
+  position: absolute;
+}
+
+html.wb-js .wb-dropdown-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
 .wb-dropdown-menu.is-open {
   display: block;
 }
@@ -3498,16 +3560,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   color: var(--wb-muted);
 }
 
-/* ── Right-align ──────────────────────────────────────────── */
-.wb-dropdown-end .wb-dropdown-menu {
-  left: auto;
-  right: 0;
-}
-
-/* ── Backward-compat alias ────────────────────────────────── */
-.wb-dropdown-menu-end {
-  left: auto;
-  right: 0;
+.wb-dropdown-menu[data-wb-overlay-side="top"] {
+  transform-origin: bottom left;
 }
 /* ============================================================
    WebBlocks UI — Tabs (wb-tabs)
@@ -4064,7 +4118,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   position: fixed;
   bottom: var(--wb-s6);
   right: var(--wb-s6);
-  z-index: var(--wb-z-toast);
   display: flex;
   flex-direction: column;
   gap: var(--wb-s2);
@@ -5137,7 +5190,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   inset: 0;
   background: color-mix(in srgb, var(--wb-surface) 75%, transparent);
   border-radius: inherit;
-  z-index: 10;
+  z-index: 1;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
@@ -5148,7 +5201,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 11;
+  z-index: 2;
 }
 
 /* ── Full-screen loading overlay ──────────────────────────── */
@@ -5156,7 +5209,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-loading-screen {
   position: fixed;
   inset: 0;
-  z-index: calc(var(--wb-z-modal) + 100);
+  z-index: var(--wb-z-loading);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -5225,7 +5278,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   right: 0;
   height: 3px;
   background: var(--wb-primary);
-  z-index: calc(var(--wb-z-toast) + 100);
+  z-index: var(--wb-z-loading);
   animation: wb-loading-bar-in 0.2s ease;
   transform-origin: left center;
 }
@@ -5258,10 +5311,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 .wb-popover-panel {
   display: none;
-  position: absolute;
-  top: calc(100% + var(--wb-s2));
-  left: 0;
-  z-index: var(--wb-z-dropdown);
   min-width: 240px;
   max-width: 320px;
   background: var(--wb-surface);
@@ -5272,7 +5321,18 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   animation: wb-popover-in 0.14s ease;
 }
 
-.wb-popover.is-open .wb-popover-panel {
+html:not(.wb-js) .wb-popover-panel {
+  position: absolute;
+}
+
+html.wb-js .wb-popover-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+.wb-popover-panel.is-open {
   display: block;
 }
 
@@ -5281,18 +5341,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   to   { opacity: 1; transform: translateY(0);    }
 }
 
-/* ── Placement variants ───────────────────────────────────── */
-
-/* Right-aligned */
-.wb-popover-end .wb-popover-panel {
-  left: auto;
-  right: 0;
-}
-
-/* Above trigger */
-.wb-popover-top .wb-popover-panel {
-  top: auto;
-  bottom: calc(100% + var(--wb-s2));
+.wb-popover-panel[data-wb-overlay-side="top"] {
   animation-name: wb-popover-in-top;
 }
 @keyframes wb-popover-in-top {
@@ -5300,10 +5349,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   to   { opacity: 1; transform: translateY(0);   }
 }
 
-/* Right of trigger */
-.wb-popover-right .wb-popover-panel {
-  top: 0;
-  left: calc(100% + var(--wb-s2));
+.wb-popover-panel[data-wb-overlay-side="right"] {
   animation-name: wb-popover-in-right;
 }
 @keyframes wb-popover-in-right {
@@ -5311,11 +5357,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   to   { opacity: 1; transform: translateX(0);    }
 }
 
-/* Left of trigger */
-.wb-popover-left .wb-popover-panel {
-  top: 0;
-  right: calc(100% + var(--wb-s2));
-  left: auto;
+.wb-popover-panel[data-wb-overlay-side="left"] {
   animation-name: wb-popover-in-left;
 }
 @keyframes wb-popover-in-left {
@@ -5401,9 +5443,51 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   border-bottom-right-radius: 2px;
 }
 
-.wb-popover-end .wb-popover-arrow {
+.wb-popover-panel-end .wb-popover-arrow {
   left: auto;
   right: 1.25rem;
+}
+
+.wb-popover-panel[data-wb-overlay-side="top"] .wb-popover-arrow {
+  top: auto;
+  bottom: -6px;
+}
+
+.wb-popover-panel[data-wb-overlay-side="top"] .wb-popover-arrow::before {
+  transform: rotate(45deg) translate(-2px, -2px);
+}
+
+.wb-popover-panel[data-wb-overlay-side="right"] .wb-popover-arrow,
+.wb-popover-panel[data-wb-overlay-side="left"] .wb-popover-arrow {
+  top: 1rem;
+  left: auto;
+  right: auto;
+  width: 6px;
+  height: 12px;
+}
+
+.wb-popover-panel[data-wb-overlay-side="right"] .wb-popover-arrow {
+  left: -6px;
+}
+
+.wb-popover-panel[data-wb-overlay-side="left"] .wb-popover-arrow {
+  right: -6px;
+}
+
+.wb-popover-panel[data-wb-overlay-side="right"] .wb-popover-arrow::before,
+.wb-popover-panel[data-wb-overlay-side="left"] .wb-popover-arrow::before {
+  width: 12px;
+  height: 12px;
+  top: 0;
+  left: 0;
+}
+
+.wb-popover-panel[data-wb-overlay-side="right"] .wb-popover-arrow::before {
+  transform: rotate(45deg) translate(2px, 2px);
+}
+
+.wb-popover-panel[data-wb-overlay-side="left"] .wb-popover-arrow::before {
+  transform: rotate(45deg) translate(-6px, 2px);
 }
 /* ============================================================
    WebBlocks UI — Drawer / Offcanvas (wb-drawer)
@@ -5412,33 +5496,10 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
        data-wb-dismiss="drawer" (close trigger)
    ============================================================ */
 
-/* ── Backdrop ─────────────────────────────────────────────── */
-
-.wb-drawer-backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: var(--wb-overlay);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  z-index: calc(var(--wb-z-modal) - 10);
-}
-
-.wb-drawer-backdrop.is-open {
-  display: block;
-  animation: wb-fade-in 0.2s ease;
-}
-
-@keyframes wb-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
 /* ── Drawer panel ─────────────────────────────────────────── */
 
 .wb-drawer {
   position: fixed;
-  z-index: var(--wb-z-modal);
   background: var(--wb-surface);
   display: flex;
   flex-direction: column;
@@ -5610,10 +5671,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: none;
   position: fixed;
   inset: 0;
-  background: var(--wb-overlay-dark);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: calc(var(--wb-z-modal) + 50);
   align-items: flex-start;
   justify-content: center;
   padding-top: clamp(3rem, 12vh, 8rem);
@@ -5622,12 +5679,6 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 .wb-cmd-backdrop.is-open {
   display: flex;
-  animation: wb-cmd-backdrop-in 0.15s ease;
-}
-
-@keyframes wb-cmd-backdrop-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
 }
 
 /* ── Dialog ───────────────────────────────────────────────── */
@@ -6246,7 +6297,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 }
 /* ============================================================
    WebBlocks UI — Tooltip (wb-tooltip)
-   Pure CSS tooltips — no JavaScript required.
+   Shared overlay tooltip layer.
 
    Usage:
      <button data-wb-tooltip="Save changes">Save</button>
@@ -6259,73 +6310,59 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
      right
 
    Works on any element. The tooltip text is read from the
-   data-wb-tooltip attribute via CSS attr().
+   data-wb-tooltip attribute by the tooltip runtime.
    ============================================================ */
 
-/* ── Base ─────────────────────────────────────────────────── */
+/* ── Trigger ──────────────────────────────────────────────── */
 
 [data-wb-tooltip] {
-  position: relative;
+  cursor: help;
 }
 
-/* Tooltip bubble */
-[data-wb-tooltip]::before {
-  content: attr(data-wb-tooltip);
-  position: absolute;
-  z-index: calc(var(--wb-z-toast) + 50);
-  padding: 0.35em 0.65em;
+/* ── Tooltip layer panel ──────────────────────────────────── */
+
+.wb-tooltip {
+  display: none;
+  position: fixed;
   background: var(--wb-text);
   color: var(--wb-surface);
   font-size: var(--wb-font-size-xs);
   font-weight: 500;
   line-height: 1.4;
-  white-space: nowrap;
   border-radius: var(--wb-r-md);
   box-shadow: var(--wb-shadow-md);
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.12s ease, transform 0.12s ease;
+  animation: wb-tooltip-in 0.12s ease;
 }
 
-/* Arrow */
-[data-wb-tooltip]::after {
-  content: "";
+.wb-tooltip.is-open {
+  display: block;
+}
+
+.wb-tooltip-body {
+  padding: 0.35em 0.65em;
+  white-space: nowrap;
+}
+
+.wb-tooltip-wrap .wb-tooltip-body {
+  white-space: normal;
+  max-width: 220px;
+  text-align: center;
+}
+
+.wb-tooltip-arrow {
   position: absolute;
-  z-index: calc(var(--wb-z-toast) + 49);
   width: 0;
   height: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.12s ease;
 }
 
-/* Show on hover / focus-visible */
-[data-wb-tooltip]:hover::before,
-[data-wb-tooltip]:hover::after,
-[data-wb-tooltip]:focus-visible::before,
-[data-wb-tooltip]:focus-visible::after {
-  opacity: 1;
+@keyframes wb-tooltip-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Placement: top (default) ─────────────────────────────── */
-
-[data-wb-tooltip]:not([data-wb-tooltip-placement])::before,
-[data-wb-tooltip][data-wb-tooltip-placement="top"]::before {
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(4px);
-}
-
-[data-wb-tooltip]:not([data-wb-tooltip-placement]):hover::before,
-[data-wb-tooltip][data-wb-tooltip-placement="top"]:hover::before,
-[data-wb-tooltip]:not([data-wb-tooltip-placement]):focus-visible::before,
-[data-wb-tooltip][data-wb-tooltip-placement="top"]:focus-visible::before {
-  transform: translateX(-50%) translateY(0);
-}
-
-[data-wb-tooltip]:not([data-wb-tooltip-placement])::after,
-[data-wb-tooltip][data-wb-tooltip-placement="top"]::after {
-  bottom: calc(100% + 4px);
+.wb-tooltip[data-wb-overlay-side="top"] .wb-tooltip-arrow {
+  bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
   border-left: 5px solid transparent;
@@ -6333,21 +6370,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   border-top: 5px solid var(--wb-text);
 }
 
-/* ── Placement: bottom ────────────────────────────────────── */
-
-[data-wb-tooltip][data-wb-tooltip-placement="bottom"]::before {
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-4px);
-}
-
-[data-wb-tooltip][data-wb-tooltip-placement="bottom"]:hover::before,
-[data-wb-tooltip][data-wb-tooltip-placement="bottom"]:focus-visible::before {
-  transform: translateX(-50%) translateY(0);
-}
-
-[data-wb-tooltip][data-wb-tooltip-placement="bottom"]::after {
-  top: calc(100% + 4px);
+.wb-tooltip[data-wb-overlay-side="bottom"] .wb-tooltip-arrow {
+  top: -5px;
   left: 50%;
   transform: translateX(-50%);
   border-left: 5px solid transparent;
@@ -6355,58 +6379,22 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   border-bottom: 5px solid var(--wb-text);
 }
 
-/* ── Placement: left ──────────────────────────────────────── */
-
-[data-wb-tooltip][data-wb-tooltip-placement="left"]::before {
+.wb-tooltip[data-wb-overlay-side="left"] .wb-tooltip-arrow {
   top: 50%;
-  right: calc(100% + 8px);
-  left: auto;
-  transform: translateY(-50%) translateX(4px);
-}
-
-[data-wb-tooltip][data-wb-tooltip-placement="left"]:hover::before,
-[data-wb-tooltip][data-wb-tooltip-placement="left"]:focus-visible::before {
-  transform: translateY(-50%) translateX(0);
-}
-
-[data-wb-tooltip][data-wb-tooltip-placement="left"]::after {
-  top: 50%;
-  right: calc(100% + 4px);
-  left: auto;
+  right: -5px;
   transform: translateY(-50%);
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-left: 5px solid var(--wb-text);
 }
 
-/* ── Placement: right ─────────────────────────────────────── */
-
-[data-wb-tooltip][data-wb-tooltip-placement="right"]::before {
+.wb-tooltip[data-wb-overlay-side="right"] .wb-tooltip-arrow {
   top: 50%;
-  left: calc(100% + 8px);
-  transform: translateY(-50%) translateX(-4px);
-}
-
-[data-wb-tooltip][data-wb-tooltip-placement="right"]:hover::before,
-[data-wb-tooltip][data-wb-tooltip-placement="right"]:focus-visible::before {
-  transform: translateY(-50%) translateX(0);
-}
-
-[data-wb-tooltip][data-wb-tooltip-placement="right"]::after {
-  top: 50%;
-  left: calc(100% + 4px);
+  left: -5px;
   transform: translateY(-50%);
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-right: 5px solid var(--wb-text);
-}
-
-/* ── Multiline tooltip ────────────────────────────────────── */
-
-[data-wb-tooltip-wrap]::before {
-  white-space: normal;
-  max-width: 220px;
-  text-align: center;
 }
 /* ============================================================
    WebBlocks UI — Toolbar Component

@@ -43,10 +43,10 @@
 (function () {
   'use strict';
 
-  var activePalette     = null;
-  var previouslyFocused = null;
-  var selectedIndex     = -1;
-  var items             = [];
+  var instances = new WeakMap();
+  var activePalette = null;
+  var selectedIndex = -1;
+  var items = [];
 
   // ── External search handler ────────────────────────────── 
   // Assign: WBCommandPalette.onSearch = function(query, callback) { ... }
@@ -79,17 +79,47 @@
     items[selectedIndex].click();
   }
 
+  function ensureInstance(palette, trigger) {
+    var instance = instances.get(palette);
+    if (instance) {
+      instance.trigger = trigger || instance.trigger;
+      return instance;
+    }
+
+    instance = WBDom.overlay.create({
+      kind: 'command-palette',
+      group: 'dialog',
+      layer: 'dialog',
+      element: palette,
+      panel: palette.querySelector('.wb-cmd-dialog') || palette,
+      trigger: trigger,
+      backdrop: true,
+      backdropClass: 'wb-overlay-backdrop-dark',
+      lockScroll: true,
+      trapFocus: true,
+      autoFocus: false,
+      returnFocus: true,
+      onAfterOpen: function () {
+        activePalette = palette;
+        palette.dispatchEvent(new CustomEvent('wb:cmd:open', { bubbles: true }));
+      },
+      onAfterClose: function () {
+        if (activePalette === palette) activePalette = null;
+        palette.dispatchEvent(new CustomEvent('wb:cmd:close', { bubbles: true }));
+      }
+    });
+
+    instances.set(palette, instance);
+    return instance;
+  }
+
   // ── Open ──────────────────────────────────────────────────
 
-  function open(palette) {
+  function open(palette, trigger) {
     if (!palette) return;
-    if (activePalette) close(activePalette);
-
-    previouslyFocused = document.activeElement;
-    activePalette = palette;
-
-    palette.classList.add('is-open');
-    document.body.classList.add('wb-cmd-open');
+    var instance = ensureInstance(palette, trigger);
+    instance.trigger = trigger || instance.trigger;
+    WBDom.overlay.open(instance);
 
     // Focus the input
     requestAnimationFrame(function () {
@@ -102,8 +132,6 @@
       items = getItems(palette);
       selectedIndex = -1;
     });
-
-    palette.dispatchEvent(new CustomEvent('wb:cmd:open', { bubbles: true }));
   }
 
   // ── Close ─────────────────────────────────────────────────
@@ -111,18 +139,7 @@
   function close(palette) {
     if (!palette) palette = activePalette;
     if (!palette) return;
-
-    palette.classList.remove('is-open');
-    document.body.classList.remove('wb-cmd-open');
-
-    if (activePalette === palette) activePalette = null;
-
-    if (previouslyFocused && previouslyFocused.focus) {
-      previouslyFocused.focus();
-      previouslyFocused = null;
-    }
-
-    palette.dispatchEvent(new CustomEvent('wb:cmd:close', { bubbles: true }));
+    WBDom.overlay.close(ensureInstance(palette), 'api');
   }
 
   // ── Input / search ─────────────────────────────────────── 
@@ -188,7 +205,7 @@
       e.preventDefault();
       var target = trigger.getAttribute('data-wb-target');
       var palette = target ? document.querySelector(target) : null;
-      if (palette) open(palette);
+      if (palette) open(palette, trigger);
       return;
     }
 

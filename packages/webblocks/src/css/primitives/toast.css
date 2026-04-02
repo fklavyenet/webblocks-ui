@@ -7,7 +7,6 @@
   position: fixed;
   bottom: var(--wb-s6);
   right: var(--wb-s6);
-  z-index: var(--wb-z-toast);
   display: flex;
   flex-direction: column;
   gap: var(--wb-s2);

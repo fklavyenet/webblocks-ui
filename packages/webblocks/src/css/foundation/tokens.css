@@ -115,9 +115,11 @@
   --wb-white:         #ffffff;               /* always-white (switch knob, etc.) */
 
   /* ── Z-index ──────────────────────────────────────────── */
-  --wb-z-dropdown: 100;
-  --wb-z-modal:    200;
-  --wb-z-toast:    300;
+  --wb-z-overlay:  400;
+  --wb-z-dropdown: 410;
+  --wb-z-modal:    420;
+  --wb-z-toast:    430;
+  --wb-z-loading:  440;
 
   /* ── Layout ───────────────────────────────────────────── */
   --wb-sidebar-w:  260px;

@@ -48,7 +48,7 @@
     if (position !== 'bottom-right') {
       el.classList.add('wb-toast-container-' + position);
     }
-    document.body.appendChild(el);
+    WBDom.overlay.ensureLayer('toast').appendChild(el);
     containers[position] = el;
     return el;
   }

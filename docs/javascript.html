@@ -65,7 +65,7 @@
               <section class="wb-stack-4">
                 <div class="wb-callout wb-callout-warning">
                   <strong class="wb-callout-title">Correct responsibility split</strong>
-                  Tooltips are CSS-driven through <code>data-wb-tooltip</code>. Layout is CSS-driven through layout and pattern classes. Overlays, tabs, drawers, theme controls, command palette, and dismiss flows are JavaScript-driven through shipped hooks and public APIs.
+                  Layout is CSS-driven through layout and pattern classes. Overlays, tooltips, tabs, drawers, theme controls, command palette, and dismiss flows are JavaScript-driven through shipped hooks and public APIs.
                 </div>
               </section>
 
@@ -114,8 +114,8 @@
                     <div class="wb-card-header"><h3 class="wb-card-title">Theme and dropdown</h3></div>
                     <div class="wb-card-body wb-stack-4">
                       <div class="wb-dropdown">
-                        <button class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" aria-expanded="false">Theme options</button>
-                        <div class="wb-dropdown-menu">
+                        <button class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" data-wb-target="#jsThemeMenu" aria-expanded="false">Theme options</button>
+                        <div class="wb-dropdown-menu" id="jsThemeMenu">
                           <button class="wb-dropdown-item" data-wb-mode-set="light">Light</button>
                           <button class="wb-dropdown-item" data-wb-mode-set="dark">Dark</button>
                           <button class="wb-dropdown-item" data-wb-mode-set="auto">Auto</button>
@@ -125,6 +125,7 @@
                         </div>
                       </div>
                       <button class="wb-btn wb-btn-outline" data-wb-mode-cycle>Cycle mode</button>
+                      <p class="wb-text-sm wb-text-muted wb-m-0">Anchored overlays stay authored inline, but in JS mode the active visible node is rendered under the shared <code>#wb-overlay-root</code> anchored layer rather than inside the local wrapper.</p>
                     </div>
                   </div>
 

@@ -10,10 +10,6 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: var(--wb-overlay-dark);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: calc(var(--wb-z-modal) + 50);
   align-items: flex-start;
   justify-content: center;
   padding-top: clamp(3rem, 12vh, 8rem);
@@ -22,12 +18,6 @@
 
 .wb-cmd-backdrop.is-open {
   display: flex;
-  animation: wb-cmd-backdrop-in 0.15s ease;
-}
-
-@keyframes wb-cmd-backdrop-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
 }
 
 /* ── Dialog ───────────────────────────────────────────────── */

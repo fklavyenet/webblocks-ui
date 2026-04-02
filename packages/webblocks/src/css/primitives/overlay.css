@@ -1,0 +1,62 @@
+/* ============================================================
+   WebBlocks UI — Overlay Foundation (internal system layer)
+   ============================================================ */
+
+body.wb-overlay-lock {
+  overflow: hidden;
+}
+
+.wb-overlay-root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--wb-z-overlay);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.wb-overlay-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.wb-overlay-layer--anchored {
+  z-index: var(--wb-z-dropdown);
+}
+
+.wb-overlay-layer--dialog {
+  z-index: var(--wb-z-modal);
+}
+
+.wb-overlay-layer--toast {
+  z-index: var(--wb-z-toast);
+}
+
+.wb-overlay-layer--loading {
+  z-index: var(--wb-z-loading);
+}
+
+.wb-overlay-layer > * {
+  pointer-events: auto;
+}
+
+.wb-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--wb-overlay);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: wb-overlay-backdrop-in 0.18s ease;
+}
+
+.wb-overlay-backdrop-dark {
+  background: var(--wb-overlay-dark);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+@keyframes wb-overlay-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
