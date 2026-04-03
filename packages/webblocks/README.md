@@ -301,13 +301,36 @@ In enhanced mode the active visible menu node is rendered under the shared `#wb-
 ### Pagination
 
 ```html
-<nav class="wb-pagination">
-  <a class="wb-page-item" href="#">&laquo;</a>
-  <a class="wb-page-item is-active" href="#">1</a>
-  <a class="wb-page-item" href="#">2</a>
-  <a class="wb-page-item" href="#">&raquo;</a>
+<nav class="wb-pagination" aria-label="Results pages">
+  <ol class="wb-pagination-list">
+    <li class="wb-pagination-item is-disabled">
+      <span class="wb-pagination-link" aria-disabled="true">Previous</span>
+    </li>
+    <li class="wb-pagination-item is-active">
+      <span class="wb-pagination-link" aria-current="page">1</span>
+    </li>
+    <li class="wb-pagination-item"><a class="wb-pagination-link" href="#">2</a></li>
+    <li class="wb-pagination-item"><a class="wb-pagination-link" href="#">3</a></li>
+    <li class="wb-pagination-item"><span class="wb-pagination-ellipsis" aria-hidden="true">...</span></li>
+    <li class="wb-pagination-item"><a class="wb-pagination-link" href="#">8</a></li>
+    <li class="wb-pagination-item"><a class="wb-pagination-link" href="#" rel="next">Next</a></li>
+  </ol>
+  <div class="wb-pagination-info">Page 1 of 8</div>
+</nav>
+
+<!-- Optional dense variant -->
+<nav class="wb-pagination wb-pagination-compact" aria-label="Compact results pages">
+  <ol class="wb-pagination-list">
+    <li class="wb-pagination-item"><a class="wb-pagination-link" href="#" rel="prev">Previous</a></li>
+    <li class="wb-pagination-item"><a class="wb-pagination-link" href="#">9</a></li>
+    <li class="wb-pagination-item is-active"><span class="wb-pagination-link" aria-current="page">10</span></li>
+    <li class="wb-pagination-item"><a class="wb-pagination-link" href="#">11</a></li>
+    <li class="wb-pagination-item"><a class="wb-pagination-link" href="#" rel="next">Next</a></li>
+  </ol>
 </nav>
 ```
+
+Use pagination for page-based result sets, admin lists, and archive indexes. Do not use it as a breadcrumb replacement or for article/docs previous-next footers.
 
 ### Breadcrumb
 

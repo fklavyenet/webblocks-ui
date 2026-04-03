@@ -24,6 +24,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - `wb-card` is now the single canonical framed surface noun across the system, including dashboard work areas
 - `wb-field-meta` is now the only valid assistive-content path for field hints and errors; docs/examples were normalized and row-aligned forms keep reserved meta space only where alignment is needed
 - auth and form examples now use the shipped password toggle contract instead of implying app-level show/hide behavior
+- pagination now uses a semantic `nav` plus ordered-list contract with explicit current, disabled, ellipsis, and compact states while preserving the older `wb-page-item` styling as a compatibility alias
 - tables now follow a single-surface model: `wb-table-wrap` owns radius/border/clipping, inner toolbars stay control rows, and header cells no longer create competing surface corners or bands
 - automatic uppercase casing was removed from shipped UI primitives and patterns so emphasis stays locale-safe and content-defined
 

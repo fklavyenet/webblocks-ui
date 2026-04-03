@@ -714,11 +714,29 @@ Supported positions:
   </a>
 </div>
 
-<nav class="wb-pagination" aria-label="Pagination">
-  <a href="#" class="wb-page-item">&laquo;</a>
-  <a href="#" class="wb-page-item is-active">1</a>
-  <a href="#" class="wb-page-item">2</a>
-  <a href="#" class="wb-page-item">&raquo;</a>
+<nav class="wb-pagination" aria-label="Results pages">
+  <ol class="wb-pagination-list">
+    <li class="wb-pagination-item is-disabled">
+      <span class="wb-pagination-link" aria-disabled="true">
+        <i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i>
+        <span>Previous</span>
+      </span>
+    </li>
+    <li class="wb-pagination-item is-active">
+      <span class="wb-pagination-link" aria-current="page">1</span>
+    </li>
+    <li class="wb-pagination-item"><a href="#" class="wb-pagination-link">2</a></li>
+    <li class="wb-pagination-item"><a href="#" class="wb-pagination-link">3</a></li>
+    <li class="wb-pagination-item"><span class="wb-pagination-ellipsis" aria-hidden="true">...</span></li>
+    <li class="wb-pagination-item"><a href="#" class="wb-pagination-link">8</a></li>
+    <li class="wb-pagination-item">
+      <a href="#" class="wb-pagination-link" rel="next">
+        <span>Next</span>
+        <i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ol>
+  <div class="wb-pagination-info">Page 1 of 8</div>
 </nav>
 
 <nav aria-label="Breadcrumb">
@@ -743,6 +761,19 @@ Supported positions:
   <p class="wb-empty-text">Try adjusting your search.</p>
 </div>
 ```
+
+Pagination rules:
+
+- use `nav.wb-pagination` as the landmark and provide a meaningful `aria-label`
+- use `ol.wb-pagination-list` with `li.wb-pagination-item` for the page sequence
+- use `a.wb-pagination-link` for navigable pages and previous/next controls
+- use a non-interactive `span.wb-pagination-link` for disabled and current states
+- current page MUST use `aria-current="page"`; the matching item uses `.is-active`
+- disabled previous/next MUST use `.is-disabled` plus a passive `span` with `aria-disabled="true"`
+- optional ellipsis uses `span.wb-pagination-ellipsis` inside a normal pagination item
+- use `wb-pagination-compact` only when the standard rhythm is too large for dense tables or narrow control rows
+- older flat `wb-page-item` markup still styles correctly as a compatibility path, but it is no longer the canonical example contract
+- do not use pagination for content/article previous-next footers or breadcrumb-style hierarchy; those are different navigation jobs
 
 Breadcrumb preset system:
 

@@ -87,6 +87,7 @@ Examples:
 - `wb-modal`
 - `wb-dropdown`
 - `wb-tabs`
+- `wb-pagination`
 
 Primitives are controls and local UI contracts.
 
