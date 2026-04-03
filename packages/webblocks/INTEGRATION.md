@@ -772,7 +772,6 @@ Pagination rules:
 - disabled previous/next MUST use `.is-disabled` plus a passive `span` with `aria-disabled="true"`
 - optional ellipsis uses `span.wb-pagination-ellipsis` inside a normal pagination item
 - use `wb-pagination-compact` only when the standard rhythm is too large for dense tables or narrow control rows
-- older flat `wb-page-item` markup still styles correctly as a compatibility path, but it is no longer the canonical example contract
 - do not use pagination for content/article previous-next footers or breadcrumb-style hierarchy; those are different navigation jobs
 
 Breadcrumb preset system:

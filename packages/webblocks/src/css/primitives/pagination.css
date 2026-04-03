@@ -26,8 +26,7 @@
   align-items: center;
 }
 
-.wb-pagination-link,
-.wb-page-item {
+.wb-pagination-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -54,8 +53,7 @@
 }
 
 a.wb-pagination-link,
-button.wb-pagination-link,
-.wb-page-item {
+button.wb-pagination-link {
   transition: background var(--wb-t), border-color var(--wb-t), color var(--wb-t), box-shadow var(--wb-t);
 }
 
@@ -63,8 +61,7 @@ button.wb-pagination-link {
   cursor: pointer;
 }
 
-.wb-pagination-link .wb-icon,
-.wb-page-item .wb-icon {
+.wb-pagination-link .wb-icon {
   width: 1rem;
   height: 1rem;
 }
@@ -84,14 +81,12 @@ button.wb-pagination-link {
   justify-content: center;
 }
 
-.wb-pagination-link:hover,
-.wb-page-item:hover {
+.wb-pagination-link:hover {
   background: var(--wb-surface-2);
   text-decoration: none;
 }
 
-.wb-pagination-link:focus-visible,
-.wb-page-item:focus-visible {
+.wb-pagination-link:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 2px var(--wb-surface),
@@ -99,8 +94,7 @@ button.wb-pagination-link {
 }
 
 .wb-pagination-item.is-active > .wb-pagination-link,
-.wb-pagination-link[aria-current="page"],
-.wb-page-item.is-active {
+.wb-pagination-link[aria-current="page"] {
   background: var(--wb-accent-soft);
   border-color: var(--wb-accent-border);
   color: var(--wb-accent-text);
@@ -109,8 +103,7 @@ button.wb-pagination-link {
 }
 
 .wb-pagination-item.is-disabled > .wb-pagination-link,
-.wb-pagination-link[aria-disabled="true"],
-.wb-page-item.is-disabled {
+.wb-pagination-link[aria-disabled="true"] {
   background: var(--wb-surface-2);
   border-color: var(--wb-border);
   color: var(--wb-muted);
@@ -132,7 +125,6 @@ button.wb-pagination-link {
 }
 
 .wb-pagination-compact .wb-pagination-link,
-.wb-pagination-compact .wb-page-item,
 .wb-pagination-compact .wb-pagination-ellipsis {
   min-width: 2rem;
   min-height: 2rem;
@@ -152,7 +144,6 @@ button.wb-pagination-link {
   }
 
   .wb-pagination-link,
-  .wb-page-item,
   .wb-pagination-ellipsis {
     min-width: 2rem;
     min-height: 2rem;
