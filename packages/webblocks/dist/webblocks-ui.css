@@ -3763,18 +3763,34 @@ html.wb-js .wb-dropdown-menu {
    ============================================================ */
 
 .wb-pagination {
+  --wb-pagination-gap: var(--wb-s1);
+  --wb-pagination-padding: var(--wb-s1);
+  --wb-pagination-radius: var(--wb-r-lg);
+  --wb-pagination-border: color-mix(in srgb, var(--wb-border) 82%, transparent);
+  --wb-pagination-bg: color-mix(in srgb, var(--wb-surface-2) 58%, transparent);
+  --wb-pagination-link-bg: var(--wb-surface);
+  --wb-pagination-link-hover-bg: color-mix(in srgb, var(--wb-surface-2) 88%, var(--wb-surface) 12%);
+  --wb-pagination-link-hover-border: color-mix(in srgb, var(--wb-border) 72%, var(--wb-accent-border) 28%);
+  --wb-pagination-current-bg: color-mix(in srgb, var(--wb-accent-soft) 76%, var(--wb-surface) 24%);
+  --wb-pagination-current-border: color-mix(in srgb, var(--wb-accent-border) 82%, var(--wb-border) 18%);
+  --wb-pagination-current-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wb-accent-border) 28%, transparent);
+  --wb-pagination-disabled-bg: color-mix(in srgb, var(--wb-surface-2) 94%, transparent);
   display: flex;
   align-items: center;
   gap: var(--wb-s3);
   flex-wrap: wrap;
   max-width: 100%;
+  padding: var(--wb-pagination-padding);
+  border: 1px solid var(--wb-pagination-border);
+  border-radius: var(--wb-pagination-radius);
+  background: var(--wb-pagination-bg);
 }
 
 .wb-pagination-list {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--wb-s1);
+  gap: var(--wb-pagination-gap);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -3791,9 +3807,9 @@ html.wb-js .wb-dropdown-menu {
   align-items: center;
   justify-content: center;
   gap: var(--wb-s2);
-  min-width: 2.25rem;
-  min-height: 2.25rem;
-  padding: 0 var(--wb-s3);
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0 var(--wb-s4);
   border: 1px solid var(--wb-border);
   border-radius: var(--wb-r-md);
   font-size: 0.875rem;
@@ -3801,10 +3817,11 @@ html.wb-js .wb-dropdown-menu {
   line-height: 1;
   color: var(--wb-text);
   text-decoration: none;
-  background: var(--wb-surface);
+  background: var(--wb-pagination-link-bg);
   cursor: pointer;
   white-space: nowrap;
-  transition: background var(--wb-t), border-color var(--wb-t), color var(--wb-t), box-shadow var(--wb-t);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.04);
+  transition: background var(--wb-t), border-color var(--wb-t), color var(--wb-t), box-shadow var(--wb-t), transform var(--wb-t-f);
   user-select: none;
 }
 
@@ -3842,32 +3859,40 @@ button.wb-pagination-link {
 }
 
 .wb-pagination-link:hover {
-  background: var(--wb-surface-2);
+  background: var(--wb-pagination-link-hover-bg);
+  border-color: var(--wb-pagination-link-hover-border);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.06),
+    0 0 0 1px color-mix(in srgb, var(--wb-border) 38%, transparent);
   text-decoration: none;
 }
 
 .wb-pagination-link:focus-visible {
   outline: none;
+  border-color: var(--wb-pagination-link-hover-border);
   box-shadow:
     0 0 0 2px var(--wb-surface),
-    0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.34);
+    0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.34),
+    0 1px 0 rgb(255 255 255 / 0.06);
 }
 
 .wb-pagination-item.is-active > .wb-pagination-link,
 .wb-pagination-link[aria-current="page"] {
-  background: var(--wb-accent-soft);
-  border-color: var(--wb-accent-border);
+  background: var(--wb-pagination-current-bg);
+  border-color: var(--wb-pagination-current-border);
   color: var(--wb-accent-text);
-  font-weight: 600;
+  box-shadow: var(--wb-pagination-current-shadow);
+  font-weight: 650;
   cursor: default;
 }
 
 .wb-pagination-item.is-disabled > .wb-pagination-link,
 .wb-pagination-link[aria-disabled="true"] {
-  background: var(--wb-surface-2);
+  background: var(--wb-pagination-disabled-bg);
   border-color: var(--wb-border);
   color: var(--wb-muted);
-  opacity: 0.72;
+  box-shadow: none;
+  opacity: 0.58;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -3876,12 +3901,17 @@ button.wb-pagination-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.25rem;
-  min-height: 2.25rem;
-  padding: 0 var(--wb-s2);
+  min-width: 2rem;
+  min-height: 2.5rem;
+  padding: 0 var(--wb-s1);
   color: var(--wb-muted);
   font-size: 0.875rem;
+  letter-spacing: 0.04em;
   line-height: 1;
+}
+
+.wb-pagination-item:has(.wb-pagination-ellipsis) {
+  margin-inline: calc(var(--wb-s1) * -0.25);
 }
 
 .wb-pagination-compact .wb-pagination-link,
@@ -3892,15 +3922,29 @@ button.wb-pagination-link {
   font-size: 0.8125rem;
 }
 
+.wb-pagination-compact {
+  --wb-pagination-gap: calc(var(--wb-s1) * 0.75);
+  --wb-pagination-padding: calc(var(--wb-s1) * 0.75);
+}
+
+.wb-pagination-compact .wb-pagination-ellipsis {
+  min-width: 1.75rem;
+  min-height: 2rem;
+  padding: 0;
+}
+
 .wb-pagination-info {
   font-size: 0.875rem;
   color: var(--wb-muted);
   margin-left: auto;
+  padding-inline: var(--wb-s1);
+  white-space: nowrap;
 }
 
 @media (max-width: 560px) {
   .wb-pagination {
     gap: var(--wb-s2);
+    align-items: flex-start;
   }
 
   .wb-pagination-link,
@@ -3911,9 +3955,20 @@ button.wb-pagination-link {
     font-size: 0.8125rem;
   }
 
+  .wb-pagination-list {
+    gap: calc(var(--wb-pagination-gap) * 0.9);
+  }
+
+  .wb-pagination-ellipsis {
+    min-width: 1.6rem;
+    padding: 0;
+  }
+
   .wb-pagination-info {
     width: 100%;
     margin-left: 0;
+    padding-inline: 0;
+    white-space: normal;
   }
 }
 /* ============================================================
