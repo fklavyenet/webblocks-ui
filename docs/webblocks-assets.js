@@ -1,12 +1,8 @@
 (function () {
   'use strict';
 
-  var search = new URLSearchParams(window.location.search);
-  var useLocalAssets = search.get('assets') === 'local';
-  var assetMode = useLocalAssets ? 'local' : 'cdn';
-  var base = useLocalAssets
-    ? '../packages/webblocks/dist/'
-    : 'https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/packages/webblocks/dist/';
+  var assetMode = 'cdn';
+  var base = 'https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.8/packages/webblocks/dist/';
 
   var head = document.head;
   var assets = [
