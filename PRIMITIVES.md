@@ -162,6 +162,7 @@ Examples:
 - `data-wb-collapse`
 - `data-wb-nav-group`
 - `data-wb-ajax-toggle`
+- `data-wb-password-toggle`
 
 These are not UI primitives.
 They are interaction hooks owned by shipped JS and attribute-driven CSS behavior.

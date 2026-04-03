@@ -45,7 +45,17 @@ Canonical structure:
         </div>
         <div class="wb-field">
           <label class="wb-label" for="login-password">Password</label>
-          <input class="wb-input" id="login-password" type="password">
+          <div class="wb-input-group">
+            <input class="wb-input" id="login-password" type="password" autocomplete="current-password">
+            <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon"
+                    type="button"
+                    data-wb-password-toggle
+                    data-wb-target="#login-password"
+                    aria-label="Show password"
+                    aria-pressed="false">
+              <i class="wb-icon wb-icon-eye" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
         <button class="wb-btn wb-btn-primary wb-w-full" type="submit">Continue</button>
       </form>
@@ -56,6 +66,8 @@ Canonical structure:
 ```
 
 Keep the explicit header/body/footer anatomy intact: all three regions should read as one auth card, with the body as the center of gravity rather than a form stranded between two mini-panels.
+
+Password visibility is a field-level enhancement, not an auth-only abstraction: keep the toggle inside the standard `wb-input-group` trailing button slot.
 
 ### Dashboard
 

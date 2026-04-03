@@ -65,7 +65,7 @@
               <section class="wb-stack-4">
                 <div class="wb-callout wb-callout-warning">
                   <strong class="wb-callout-title">Correct responsibility split</strong>
-                  Layout is CSS-driven through layout and pattern classes. Overlays, tooltips, tabs, drawers, theme controls, command palette, and dismiss flows are JavaScript-driven through shipped hooks and public APIs.
+                  Layout is CSS-driven through layout and pattern classes. Overlays, tooltips, tabs, drawers, theme controls, password visibility, command palette, and dismiss flows are JavaScript-driven through shipped hooks and public APIs.
                 </div>
               </section>
 
@@ -90,6 +90,7 @@
                       <tr><td><code>WBDropdown</code></td><td><code>data-wb-toggle="dropdown"</code></td><td>Dropdown menus</td></tr>
                       <tr><td><code>WBCommandPalette</code></td><td><code>data-wb-toggle="cmd"</code> or <code>Cmd/Ctrl + K</code></td><td>Search and command surface</td></tr>
                       <tr><td><code>WBTabs</code></td><td><code>data-wb-tab</code></td><td>Panel switching</td></tr>
+                      <tr><td><code>WBPasswordToggle</code></td><td><code>data-wb-password-toggle</code></td><td>Password visibility toggle for input groups</td></tr>
                       <tr><td><code>WBAccordion</code></td><td><code>.wb-accordion-trigger</code></td><td>Disclosure blocks</td></tr>
                     </tbody>
                   </table>
@@ -162,6 +163,7 @@ WBTheme.setRadius('soft')
 WBTheme.setDensity('compact')
 WBModal.open(document.getElementById('my-modal'))
 WBDrawer.open(document.getElementById('my-drawer'))
+WBPasswordToggle.toggle(document.querySelector('[data-wb-password-toggle]'))
 WBToast.show('Saved', { type: 'success' })</code></pre>
                 <p>Use the public API when you really need imperative control. If a declarative <code>data-wb-*</code> trigger already exists, prefer that markup path first.</p>
               </section>

@@ -152,6 +152,8 @@ Use this section after you choose a pattern. It inventories the shipped UI primi
 
 Assistive field content must be wrapped in `wb-field-meta`. Do not place `wb-field-hint` or `wb-field-error` directly under `wb-field`. In stacked forms, omit an empty `wb-field-meta` when no assistive content is present.
 
+Canonical password visibility uses the standard field and input-group contract: a trailing `wb-input-addon-btn` marked with `data-wb-password-toggle`, targeting the password input by `data-wb-target="#field-id"`. Hidden state uses `wb-icon-eye`; visible state uses `wb-icon-eye-off`.
+
 ```html
 <div class="wb-field">
   <label class="wb-label">Email</label>
@@ -163,6 +165,21 @@ Assistive field content must be wrapped in `wb-field-meta`. Do not place `wb-fie
 
 <select class="wb-select"> ... </select>
 <textarea class="wb-textarea"></textarea>
+
+<div class="wb-field">
+  <label class="wb-label" for="login-password">Password</label>
+  <div class="wb-input-group">
+    <input class="wb-input" id="login-password" type="password" autocomplete="current-password">
+    <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon"
+            type="button"
+            data-wb-password-toggle
+            data-wb-target="#login-password"
+            aria-label="Show password"
+            aria-pressed="false">
+      <i class="wb-icon wb-icon-eye" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
 
 <label class="wb-check"><input type="checkbox"> Remember me</label>
 <label class="wb-radio"><input type="radio"> Option</label>

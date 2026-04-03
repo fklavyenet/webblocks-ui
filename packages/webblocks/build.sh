@@ -106,6 +106,7 @@ cat \
   "$ROOT/src/js/tooltip.js" \
   "$ROOT/src/js/dismiss.js" \
   "$ROOT/src/js/ajax-toggle.js" \
+  "$ROOT/src/js/password-toggle.js" \
   "$ROOT/src/js/collapse.js" \
   > "$JS_OUT"
 

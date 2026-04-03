@@ -13,6 +13,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - New high-value icons: `external-link`, `eye`, `eye-off`, `star`, `bookmark`, `heart`, `share2`, `book-open`, `newspaper`, `map-pin`, `briefcase`, `building2`, `linkedin`, `twitter`, `instagram`, `youtube`
 - Action icon aliases for panel workflows: `refresh` and `sync`, mapped to the existing `rotate-cw` and `repeat` glyphs with stable public names
 - Breadcrumb preset system: `minimal`, `surface`, `bordered`, `inline`, and `context`, with controlled separator modifiers and single-item context support
+- `WBPasswordToggle` and `data-wb-password-toggle` for canonical password visibility behavior inside the standard field/input-group contract
 
 ### Changed
 - Icon set refreshed to 173 curated Lucide icons for CSS mask-image delivery
@@ -22,6 +23,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Page title naming is now context-specific: use `wb-page-header-title` for dashboard page headers and `wb-page-intro-title` for intro/masthead headings
 - `wb-card` is now the single canonical framed surface noun across the system, including dashboard work areas
 - `wb-field-meta` is now the only valid assistive-content path for field hints and errors; docs/examples were normalized and row-aligned forms keep reserved meta space only where alignment is needed
+- auth and form examples now use the shipped password toggle contract instead of implying app-level show/hide behavior
 - tables now follow a single-surface model: `wb-table-wrap` owns radius/border/clipping, inner toolbars stay control rows, and header cells no longer create competing surface corners or bands
 - automatic uppercase casing was removed from shipped UI primitives and patterns so emphasis stays locale-safe and content-defined
 

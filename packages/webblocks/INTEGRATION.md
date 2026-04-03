@@ -329,6 +329,15 @@ Auth rule:
 - auth forms MUST use the canonical `wb-field` / `wb-label` / `wb-input` / `wb-field-meta` / `wb-field-error` system
 - DO NOT create auth-only field systems such as `guest-auth-*`, `qz-auth-*`, or other parallel naming schemes
 
+Password visibility rule:
+
+- password visibility belongs to the standard field and input-group contract, not an auth-only helper layer
+- use a trailing `wb-input-addon-btn` button with `data-wb-password-toggle`
+- point the button at the input with `data-wb-target="#field-id"`
+- start hidden with `type="password"`, `aria-pressed="false"`, and `wb-icon-eye`
+- visible state becomes `type="text"`, `aria-pressed="true"`, and `wb-icon-eye-off`
+- canonical show/hide icon names are `wb-icon-eye` and `wb-icon-eye-off`
+
 Examples:
 
 ```html
@@ -350,6 +359,24 @@ Examples:
 <div class="wb-input-group">
   <span class="wb-input-addon">https://</span>
   <input class="wb-input" type="text" value="example.com">
+</div>
+
+<div class="wb-field">
+  <label class="wb-label" for="account-password">Password</label>
+  <div class="wb-input-group">
+    <input class="wb-input" id="account-password" type="password" autocomplete="current-password">
+    <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon"
+            type="button"
+            data-wb-password-toggle
+            data-wb-target="#account-password"
+            aria-label="Show password"
+            aria-pressed="false">
+      <i class="wb-icon wb-icon-eye" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="wb-field-meta">
+    <div class="wb-field-hint">Use the shipped input-group toggle instead of page-local show/hide scripts.</div>
+  </div>
 </div>
 
 <label class="wb-check">
@@ -1391,7 +1418,17 @@ These are canonical starting structures. Extend them with shipped primitives and
         </div>
         <div class="wb-field">
           <label class="wb-label" for="login-password">Password</label>
-          <input class="wb-input wb-input-error" id="login-password" type="password">
+          <div class="wb-input-group">
+            <input class="wb-input wb-input-error" id="login-password" type="password" autocomplete="current-password">
+            <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon"
+                    type="button"
+                    data-wb-password-toggle
+                    data-wb-target="#login-password"
+                    aria-label="Show password"
+                    aria-pressed="false">
+              <i class="wb-icon wb-icon-eye" aria-hidden="true"></i>
+            </button>
+          </div>
           <div class="wb-field-meta">
             <div class="wb-field-error">Required</div>
           </div>
@@ -1583,6 +1620,8 @@ Canonical action icon naming:
 - `wb-icon-sync` -> alias of `wb-icon-repeat`
 - `wb-icon-repeat` -> canonical sync/repeat glyph
 - `wb-icon-rotate-ccw` -> separate real glyph
+- `wb-icon-eye` -> canonical hidden-password toggle glyph
+- `wb-icon-eye-off` -> canonical visible-password toggle glyph
 
 Canonical vs alias rule:
 
@@ -1664,6 +1703,9 @@ WBDismiss.dismiss(document.querySelector('.wb-alert'))
 
 WBAjaxToggle.handle(document.querySelector('[data-wb-ajax-toggle]'))
 
+WBPasswordToggle.toggle(document.querySelector('[data-wb-password-toggle]'))
+WBPasswordToggle.sync(document)
+
 WBCollapse.open('advanced-fields')
 WBCollapse.close('advanced-fields')
 WBCollapse.toggle('advanced-fields')
@@ -1716,6 +1758,19 @@ Supported shipped behavior:
 <button data-wb-accordion-trigger aria-controls="acc-one">Toggle</button>
 
 <button data-wb-collapse="advanced-fields" aria-expanded="false">Toggle collapse</button>
+
+<!-- password visibility -->
+<div class="wb-input-group">
+  <input class="wb-input" id="account-password-field" type="password">
+  <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon"
+          type="button"
+          data-wb-password-toggle
+          data-wb-target="#account-password-field"
+          aria-label="Show password"
+          aria-pressed="false">
+    <i class="wb-icon wb-icon-eye" aria-hidden="true"></i>
+  </button>
+</div>
 
 <!-- nav groups -->
 <div data-wb-nav-group data-wb-nav-group-open>...</div>

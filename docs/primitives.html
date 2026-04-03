@@ -151,6 +151,16 @@
                       <span class="wb-input-addon">https://</span>
                       <input class="wb-input" type="text" placeholder="project.example.com">
                     </div>
+                    <div class="wb-field">
+                      <label class="wb-label" for="projectPassword">Admin password</label>
+                      <div class="wb-input-group">
+                        <input class="wb-input" id="projectPassword" type="password" placeholder="Enter a password" autocomplete="current-password">
+                        <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-toggle data-wb-target="#projectPassword" aria-label="Show password" aria-pressed="false"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button>
+                      </div>
+                      <div class="wb-field-meta">
+                        <div class="wb-field-hint">Use the shipped input-group toggle instead of adding page-local password JS.</div>
+                      </div>
+                    </div>
                     <div class="wb-cluster">
                       <label class="wb-check"><input type="checkbox" checked> Enable analytics</label>
                       <label class="wb-radio"><input type="radio" name="visibility" checked> Private</label>
