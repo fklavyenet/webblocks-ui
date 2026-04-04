@@ -753,19 +753,22 @@
 
     links.forEach(function (link) {
       var anchor = document.createElement('a');
+      var main = document.createElement('div');
       var title = document.createElement('span');
       var desc = document.createElement('span');
 
-      anchor.className = 'wb-sandbox-doc-item';
+      anchor.className = 'wb-link-list-item';
       anchor.href = link.href;
 
-      title.className = 'wb-sandbox-doc-link-title';
-      desc.className = 'wb-sandbox-doc-link-desc';
+      main.className = 'wb-link-list-main';
+      title.className = 'wb-link-list-title';
+      desc.className = 'wb-link-list-desc';
 
       title.textContent = link.label;
       desc.textContent = link.meta;
 
-      anchor.appendChild(title);
+      main.appendChild(title);
+      anchor.appendChild(main);
       anchor.appendChild(desc);
       elements.relatedDocs.appendChild(anchor);
     });
