@@ -565,19 +565,19 @@
 
     if (didSanitize) {
       status = {
-        label: 'Changed',
+        label: 'Preview changed',
         tone: 'warning'
       };
       feedback.unshift({ title: 'Preview changed', message: 'Unsafe or blocked markup was removed before rendering in the iframe preview.' });
     } else if (feedback.length) {
       status = {
-        label: 'Review',
+        label: 'Check classes',
         tone: 'info'
       };
       feedback.unshift({ title: 'Preview rendered', message: 'No blocking markup was removed, but the playground found a few best-effort issues worth checking.' });
     } else {
       status = {
-        label: 'OK',
+        label: 'Preview unchanged',
         tone: 'success'
       };
       feedback.push({ title: 'Preview unchanged', message: 'No blocking issues were found. The preview rendered your current HTML as-is.' });
