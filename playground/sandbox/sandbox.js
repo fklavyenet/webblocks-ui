@@ -7,12 +7,6 @@
     width: 'wbSandboxWidth'
   };
 
-  var WIDTH_LABELS = {
-    desktop: 'Desktop preview',
-    tablet: 'Tablet preview',
-    mobile: 'Mobile preview'
-  };
-
   var ROOT_ATTRIBUTE_NAMES = [
     'data-mode',
     'data-accent',
@@ -389,7 +383,6 @@
     exampleHint: document.querySelector('[data-sandbox-example-hint]'),
     relatedDocs: document.querySelector('[data-sandbox-related-docs]'),
     status: document.querySelector('[data-sandbox-status]'),
-    widthLabel: document.querySelector('[data-sandbox-width-label]'),
     widthButtons: Array.prototype.slice.call(document.querySelectorAll('[data-sandbox-width]')),
     reset: document.querySelector('[data-sandbox-reset]'),
     copy: document.querySelector('[data-sandbox-copy]')
@@ -790,8 +783,6 @@
   function applyWidth(width) {
     elements.stage.classList.remove('is-preview-desktop', 'is-preview-tablet', 'is-preview-mobile');
     elements.stage.classList.add('is-preview-' + width);
-    elements.widthLabel.textContent = WIDTH_LABELS[width] || WIDTH_LABELS.desktop;
-
     elements.widthButtons.forEach(function (button) {
       var buttonWidth = button.getAttribute('data-sandbox-width');
       var isActive = buttonWidth === width;

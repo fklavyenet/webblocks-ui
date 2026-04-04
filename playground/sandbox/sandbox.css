@@ -89,6 +89,7 @@ body {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  overflow-x: auto;
 }
 
 .wb-sandbox-preview-stage {
@@ -105,11 +106,13 @@ body {
 }
 
 .wb-sandbox-preview-stage.is-preview-tablet {
-  max-width: 52rem;
+  width: 52rem;
+  max-width: none;
 }
 
 .wb-sandbox-preview-stage.is-preview-mobile {
-  max-width: 25rem;
+  width: 25rem;
+  max-width: none;
 }
 
 .wb-sandbox-frame {
