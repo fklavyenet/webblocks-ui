@@ -747,26 +747,23 @@
 
     links.forEach(function (link) {
       var anchor = document.createElement('a');
-      var main = document.createElement('div');
+      var label = document.createElement('span');
       var title = document.createElement('span');
-      var meta = document.createElement('span');
       var desc = document.createElement('div');
 
-      anchor.className = 'wb-link-list-item';
+      anchor.className = 'wb-link-list-item wb-sandbox-doc-link';
       anchor.href = link.href;
 
-      main.className = 'wb-link-list-main';
-      title.className = 'wb-link-list-title';
-      meta.className = 'wb-link-list-meta';
-      desc.className = 'wb-link-list-desc';
+      label.className = 'wb-sandbox-doc-link-label';
+      title.className = 'wb-sandbox-doc-link-title';
+      desc.className = 'wb-sandbox-doc-link-desc';
 
+      label.textContent = 'Related docs';
       title.textContent = link.label;
-      meta.textContent = 'Related docs';
       desc.textContent = link.meta;
 
-      main.appendChild(title);
-      main.appendChild(meta);
-      anchor.appendChild(main);
+      anchor.appendChild(label);
+      anchor.appendChild(title);
       anchor.appendChild(desc);
       elements.relatedDocs.appendChild(anchor);
     });
