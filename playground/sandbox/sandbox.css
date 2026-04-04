@@ -21,29 +21,65 @@ body {
 }
 
 .wb-sandbox-topbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--wb-s4);
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 0;
   min-width: 0;
+  padding: 0;
 }
 
 .wb-sandbox-topbar-inner > * {
   min-width: 0;
 }
 
-.wb-sandbox-header-main {
-  flex: 1 1 32rem;
+.wb-sandbox-brand {
+  display: flex;
+  align-items: center;
   min-width: 0;
+  padding: var(--wb-s4) var(--wb-s5);
+  border-right: 1px solid var(--wb-border);
+  color: inherit;
+  text-decoration: none;
+}
+
+.wb-sandbox-brand:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wb-sandbox-brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.wb-sandbox-brand-copy > span:first-child {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.wb-sandbox-brand-note {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--wb-muted);
+}
+
+.wb-sandbox-header-main {
+  display: flex;
+  align-items: center;
+  padding: var(--wb-s4) var(--wb-s5);
+  border-right: 1px solid var(--wb-border);
 }
 
 .wb-sandbox-header-meta {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--wb-s2);
-  flex: 0 1 auto;
+  padding: var(--wb-s4) var(--wb-s5);
   min-width: 0;
 }
 
@@ -52,25 +88,12 @@ body {
 }
 
 .wb-topbar-actions {
-  flex: 0 1 auto;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .wb-sandbox-title {
-  margin: 0;
-  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
-
-.wb-sandbox-subtitle {
-  margin: var(--wb-s1) 0 0;
-  max-width: 44rem;
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: var(--wb-muted);
-  overflow-wrap: anywhere;
+  display: none;
 }
 
 .wb-sandbox-workspace-shell {
@@ -90,10 +113,10 @@ body {
 .wb-sandbox-rail {
   display: flex;
   flex-direction: column;
-}
-
-.wb-sandbox-rail .wb-card-header {
-  padding-bottom: var(--wb-s4);
+  border-right: 1px solid var(--wb-border);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--wb-surface);
 }
 
 .wb-sandbox-rail-body {
@@ -102,13 +125,7 @@ body {
 }
 
 .wb-sandbox-rail-section {
-  padding-top: var(--wb-s3);
-  border-top: 1px solid color-mix(in srgb, var(--wb-border) 80%, transparent);
-}
-
-.wb-sandbox-rail-section:first-child {
-  padding-top: 0;
-  border-top: 0;
+  padding: 0 0 var(--wb-s4);
 }
 
 .wb-sandbox-rail-label {
@@ -123,6 +140,22 @@ body {
 .wb-sandbox-rail-title {
   font-size: 1rem;
   line-height: 1.25;
+}
+
+.wb-sandbox-rail .wb-sidebar-brand {
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-sandbox-rail .wb-sidebar-nav {
+  padding: var(--wb-s5) var(--wb-s4) var(--wb-s4);
+}
+
+.wb-sandbox-rail .wb-sidebar-section {
+  margin: 0;
+}
+
+.wb-sandbox-rail .wb-sidebar-footer {
+  border-top: 1px solid var(--wb-border);
 }
 
 .wb-sandbox-panel {
@@ -308,9 +341,22 @@ body {
   .wb-sandbox-workspace-shell {
     grid-template-columns: minmax(17rem, 19rem) minmax(0, 1fr) minmax(0, 1fr);
   }
+
+  .wb-sandbox-topbar-inner {
+    grid-template-columns: minmax(14rem, 16rem) minmax(0, 1fr) auto;
+  }
 }
 
 @media (max-width: 1040px) {
+  .wb-sandbox-topbar-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-sandbox-brand,
+  .wb-sandbox-header-main {
+    border-right: 0;
+  }
+
   .wb-sandbox-workspace-shell {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -337,15 +383,16 @@ body {
 }
 
 @media (max-width: 900px) {
-  .wb-sandbox-topbar-inner,
-  .wb-sandbox-header-meta,
   .wb-sandbox-toolbar-controls {
     justify-content: flex-start;
   }
 
-  .wb-sandbox-topbar-inner,
   .wb-sandbox-header-meta {
     align-items: flex-start;
+  }
+
+  .wb-sandbox-header-meta {
+    flex-wrap: wrap;
   }
 
   .wb-sandbox-control-group,
@@ -378,13 +425,11 @@ body {
     padding: var(--wb-s3);
   }
 
-  .wb-sandbox-title {
-    font-size: 1.15rem;
-  }
-
-  .wb-sandbox-subtitle {
-    margin-top: 0.2rem;
-    font-size: 0.9rem;
+  .wb-sandbox-brand,
+  .wb-sandbox-header-main,
+  .wb-sandbox-header-meta {
+    padding-top: var(--wb-s3);
+    padding-bottom: var(--wb-s3);
   }
 
   .wb-sandbox-rail-body > .wb-stack-4,
