@@ -7,19 +7,10 @@ body {
   margin: 0;
 }
 
-.wb-sandbox-app {
-  min-height: 100vh;
-}
-
 .wb-sandbox-topbar {
   position: sticky;
   top: 0;
   z-index: 20;
-}
-
-.wb-sandbox-main {
-  min-width: 0;
-  min-height: 0;
 }
 
 .wb-sandbox-workspace-shell {
