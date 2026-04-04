@@ -1,10 +1,13 @@
 (function () {
   'use strict';
 
+  var isSandboxPath = window.location.pathname.indexOf('/playground/sandbox/') !== -1;
+  var base = isSandboxPath ? '../../packages/webblocks/dist/' : '../packages/webblocks/dist/';
+
   var assets = {
-    css: '../packages/webblocks/dist/webblocks-ui.css',
-    icons: '../packages/webblocks/dist/webblocks-icons.css',
-    js: '../packages/webblocks/dist/webblocks-ui.js'
+    css: base + 'webblocks-ui.css',
+    icons: base + 'webblocks-icons.css',
+    js: base + 'webblocks-ui.js'
   };
 
   var head = document.head;
