@@ -125,11 +125,34 @@
     return active;
   }
 
+  function isHashMatchCurrent(instance, match) {
+    if (!match) return false;
+
+    var readingLine = getReadingLine(instance.scrollContainer);
+    var currentByScroll = findByScroll(instance);
+    var matchTop = getTargetTop(match.target, instance.scrollContainer);
+    var nextItem = null;
+    var i;
+
+    for (i = 0; i < instance.items.length; i += 1) {
+      if (instance.items[i].id === match.id) {
+        nextItem = instance.items[i + 1] || null;
+        break;
+      }
+    }
+
+    if (currentByScroll && currentByScroll.id === match.id) return true;
+    if (readingLine < matchTop) return false;
+    if (!nextItem) return true;
+
+    return readingLine < getTargetTop(nextItem.target, instance.scrollContainer);
+  }
+
   function syncInstance(instance) {
     if (!instance.items.length) return;
 
     var hashMatch = findByHash(instance, normalizeHash(window.location.hash));
-    if (hashMatch) {
+    if (isHashMatchCurrent(instance, hashMatch)) {
       setActive(instance, hashMatch.id);
       return;
     }
