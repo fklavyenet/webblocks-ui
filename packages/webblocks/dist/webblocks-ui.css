@@ -7656,11 +7656,13 @@ button.wb-game-card {
 /*
   Structure (sidebar nav + content):
   <div class="wb-settings-shell">
-    <aside class="wb-settings-nav">
-      <div class="wb-settings-nav-header">Account</div>
-      <a class="wb-settings-nav-link is-active" href="#">Profile</a>
-      <a class="wb-settings-nav-link" href="#">Security</a>
-    </aside>
+    <nav class="wb-section-nav wb-settings-nav" aria-label="Settings sections">
+      <div class="wb-section-nav-title">Account</div>
+      <ul class="wb-section-nav-list">
+        <li class="wb-section-nav-item"><a class="wb-section-nav-link is-active" href="#" aria-current="page">Profile</a></li>
+        <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#">Security</a></li>
+      </ul>
+    </nav>
     <div class="wb-settings-body">
       <div class="wb-settings-header">
         <h1 class="wb-settings-title">Profile</h1>
@@ -7691,58 +7693,6 @@ button.wb-game-card {
   flex: 0 0 220px;
   position: sticky;
   top: var(--wb-s6);
-}
-
-.wb-settings-nav-header {
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: 0.06em;
-  color: var(--wb-muted);
-  padding: 0 var(--wb-s3) var(--wb-s2);
-  margin-bottom: var(--wb-s2);
-}
-
-.wb-settings-nav-link {
-  display: flex;
-  align-items: center;
-  gap: var(--wb-s2);
-  padding: var(--wb-s2) var(--wb-s3);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--wb-muted);
-  border-radius: var(--wb-r-md);
-  text-decoration: none;
-  transition: background var(--wb-t), color var(--wb-t);
-  line-height: 1.4;
-  margin-bottom: 2px;
-}
-
-.wb-settings-nav-link:hover {
-  background: var(--wb-surface-2);
-  color: var(--wb-text);
-}
-
-.wb-settings-nav-link.is-active {
-  background: var(--wb-accent-softer);
-  color: var(--wb-accent-text);
-  font-weight: 600;
-}
-
-.wb-settings-nav-icon {
-  font-size: 1rem;
-  flex-shrink: 0;
-  opacity: 0.7;
-}
-
-.wb-settings-nav-section {
-  margin-top: var(--wb-s4);
-}
-
-.wb-settings-nav-divider {
-  margin: var(--wb-s3) 0;
-  border: none;
-  border-top: 1px solid var(--wb-border);
 }
 
 /* ── Body area ────────────────────────────────────────────── */
@@ -7886,19 +7836,6 @@ button.wb-game-card {
     flex: none;
     width: 100%;
     position: static;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--wb-s1);
-  }
-
-  .wb-settings-nav-header {
-    width: 100%;
-    padding-bottom: var(--wb-s1);
-  }
-
-  .wb-settings-nav-link {
-    padding: var(--wb-s1) var(--wb-s3);
-    font-size: 0.8rem;
   }
 
   .wb-settings-row {
@@ -7917,20 +7854,34 @@ button.wb-game-card {
 .wb-section-nav {
   display: flex;
   flex-direction: column;
-  gap: var(--wb-s1);
+  gap: var(--wb-s3);
   padding: var(--wb-s3);
   border: 1px solid var(--wb-border);
   border-radius: var(--wb-r-lg);
   background: var(--wb-surface);
 }
 
-.wb-section-nav-header {
+.wb-section-nav-title {
   font-size: 0.7rem;
   font-weight: 700;
   line-height: 1.35;
   letter-spacing: 0.06em;
   color: var(--wb-muted);
-  padding: 0 var(--wb-s2) var(--wb-s1);
+  padding: 0 var(--wb-s2);
+}
+
+.wb-section-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wb-section-nav-item {
+  margin: 0;
+  padding: 0;
 }
 
 .wb-section-nav-link {
@@ -7945,6 +7896,7 @@ button.wb-game-card {
   text-decoration: none;
   border-radius: var(--wb-r-md);
   transition: background var(--wb-t), color var(--wb-t);
+  outline: none;
 }
 
 .wb-section-nav-link:hover {
@@ -7952,33 +7904,57 @@ button.wb-game-card {
   color: var(--wb-text);
 }
 
-.wb-section-nav-link.is-active {
+.wb-section-nav-link:focus-visible {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  box-shadow: 0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.18);
+}
+
+.wb-section-nav-link.is-active,
+.wb-section-nav-link[aria-current="page"] {
   background: var(--wb-accent-softer);
   color: var(--wb-accent-text);
   font-weight: 600;
 }
 
-.wb-section-nav-layout {
-  gap: var(--wb-s6);
-  max-width: none;
-  padding: 0;
-  min-height: 0;
+.wb-section-nav-link > .wb-icon {
+  flex-shrink: 0;
+  opacity: 0.72;
 }
 
-.wb-section-nav-layout .wb-section-nav {
+.wb-section-nav-link.is-active > .wb-icon,
+.wb-section-nav-link[aria-current="page"] > .wb-icon {
+  opacity: 1;
+}
+
+.wb-section-nav-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wb-s6);
+}
+
+.wb-section-nav-layout > .wb-section-nav {
   flex: 0 0 240px;
   position: sticky;
   top: var(--wb-s6);
+  align-self: flex-start;
 }
 
-@media (max-width: 640px) {
+.wb-section-nav-layout-main {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
   .wb-section-nav-layout {
+    flex-direction: column;
     gap: var(--wb-s4);
   }
 
-  .wb-section-nav-layout .wb-section-nav {
+  .wb-section-nav-layout > .wb-section-nav {
     position: static;
     flex-basis: auto;
+    width: 100%;
   }
 
   .wb-section-nav {

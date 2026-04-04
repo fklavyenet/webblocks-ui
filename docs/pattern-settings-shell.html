@@ -52,16 +52,18 @@
 
       <main class="wb-dashboard-main">
         <div class="wb-settings-shell">
-          <aside class="wb-settings-nav" aria-label="Settings navigation">
-            <div class="wb-settings-nav-header">Workspace</div>
-            <a href="#" class="wb-settings-nav-link is-active"><i class="wb-icon wb-icon-contact wb-settings-nav-icon"></i><span>Profile</span></a>
-            <a href="#" class="wb-settings-nav-link"><i class="wb-icon wb-icon-shield wb-settings-nav-icon"></i><span>Security</span></a>
-            <a href="#" class="wb-settings-nav-link"><i class="wb-icon wb-icon-bell wb-settings-nav-icon"></i><span>Notifications</span></a>
-            <a href="#" class="wb-settings-nav-link"><i class="wb-icon wb-icon-credit-card wb-settings-nav-icon"></i><span>Billing</span></a>
-          </aside>
+          <nav class="wb-section-nav wb-settings-nav" aria-label="Settings sections">
+            <div class="wb-section-nav-title">Workspace</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link is-active" aria-current="page"><i class="wb-icon wb-icon-contact"></i><span>Profile</span></a></li>
+              <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-shield"></i><span>Security</span></a></li>
+              <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-bell"></i><span>Notifications</span></a></li>
+              <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-credit-card"></i><span>Billing</span></a></li>
+            </ul>
+          </nav>
 
           <div class="wb-settings-body">
-            <div class="wb-settings-header"><h1 class="wb-settings-title">Account settings</h1><p class="wb-settings-desc">Use the settings shell for slower form work, grouped decisions, and local navigation that stays close to the content.</p></div>
+            <div class="wb-settings-header"><h1 class="wb-settings-title">Account settings</h1><p class="wb-settings-desc">Use the settings shell for slower form work, grouped decisions, and a local `wb-section-nav` rail that stays close to the content.</p></div>
             <section class="wb-settings-section">
               <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Public profile</h2><p class="wb-settings-section-desc">Manage how teammates see your workspace identity.</p></div></div>
               <div class="wb-settings-section-body wb-stack-4"><div class="wb-form-row"><div class="wb-field"><label class="wb-label" for="workspaceName">Workspace name</label><input class="wb-input" id="workspaceName" type="text" value="Atlas Cloud"><div class="wb-field-meta"><div class="wb-field-hint">Used in navigation, invites, and workspace switchers.</div></div></div><div class="wb-field"><label class="wb-label" for="workspaceSlug">Slug</label><input class="wb-input" id="workspaceSlug" type="text" value="atlas-cloud"><div class="wb-field-meta"></div></div></div><div class="wb-field"><label class="wb-label" for="workspaceDesc">Description</label><textarea class="wb-textarea" id="workspaceDesc">Pattern-first admin tools for internal teams.</textarea><div class="wb-field-meta"><div class="wb-field-hint">Optional context shown on the public workspace profile.</div></div></div></div>

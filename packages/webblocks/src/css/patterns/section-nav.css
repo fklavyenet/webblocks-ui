@@ -5,20 +5,34 @@
 .wb-section-nav {
   display: flex;
   flex-direction: column;
-  gap: var(--wb-s1);
+  gap: var(--wb-s3);
   padding: var(--wb-s3);
   border: 1px solid var(--wb-border);
   border-radius: var(--wb-r-lg);
   background: var(--wb-surface);
 }
 
-.wb-section-nav-header {
+.wb-section-nav-title {
   font-size: 0.7rem;
   font-weight: 700;
   line-height: 1.35;
   letter-spacing: 0.06em;
   color: var(--wb-muted);
-  padding: 0 var(--wb-s2) var(--wb-s1);
+  padding: 0 var(--wb-s2);
+}
+
+.wb-section-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wb-section-nav-item {
+  margin: 0;
+  padding: 0;
 }
 
 .wb-section-nav-link {
@@ -33,6 +47,7 @@
   text-decoration: none;
   border-radius: var(--wb-r-md);
   transition: background var(--wb-t), color var(--wb-t);
+  outline: none;
 }
 
 .wb-section-nav-link:hover {
@@ -40,33 +55,57 @@
   color: var(--wb-text);
 }
 
-.wb-section-nav-link.is-active {
+.wb-section-nav-link:focus-visible {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+  box-shadow: 0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.18);
+}
+
+.wb-section-nav-link.is-active,
+.wb-section-nav-link[aria-current="page"] {
   background: var(--wb-accent-softer);
   color: var(--wb-accent-text);
   font-weight: 600;
 }
 
-.wb-section-nav-layout {
-  gap: var(--wb-s6);
-  max-width: none;
-  padding: 0;
-  min-height: 0;
+.wb-section-nav-link > .wb-icon {
+  flex-shrink: 0;
+  opacity: 0.72;
 }
 
-.wb-section-nav-layout .wb-section-nav {
+.wb-section-nav-link.is-active > .wb-icon,
+.wb-section-nav-link[aria-current="page"] > .wb-icon {
+  opacity: 1;
+}
+
+.wb-section-nav-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wb-s6);
+}
+
+.wb-section-nav-layout > .wb-section-nav {
   flex: 0 0 240px;
   position: sticky;
   top: var(--wb-s6);
+  align-self: flex-start;
 }
 
-@media (max-width: 640px) {
+.wb-section-nav-layout-main {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
   .wb-section-nav-layout {
+    flex-direction: column;
     gap: var(--wb-s4);
   }
 
-  .wb-section-nav-layout .wb-section-nav {
+  .wb-section-nav-layout > .wb-section-nav {
     position: static;
     flex-basis: auto;
+    width: 100%;
   }
 
   .wb-section-nav {

@@ -129,15 +129,23 @@ Use `wb-settings-shell` for:
 - organization settings
 - grouped control pages with local navigation
 
+Use `wb-section-nav` inside it for the local section-switching rail.
+
 Canonical structure:
 
 ```html
 <div class="wb-settings-shell">
-  <aside class="wb-settings-nav">
-    <div class="wb-settings-nav-header">Account</div>
-    <a href="#" class="wb-settings-nav-link is-active">Profile</a>
-    <a href="#" class="wb-settings-nav-link">Security</a>
-  </aside>
+  <nav class="wb-section-nav wb-settings-nav" aria-label="Settings sections">
+    <div class="wb-section-nav-title">Account</div>
+    <ul class="wb-section-nav-list">
+      <li class="wb-section-nav-item">
+        <a href="#profile" class="wb-section-nav-link is-active" aria-current="page">Profile</a>
+      </li>
+      <li class="wb-section-nav-item">
+        <a href="#security" class="wb-section-nav-link">Security</a>
+      </li>
+    </ul>
+  </nav>
 
   <div class="wb-settings-body">
     <header class="wb-settings-header">
@@ -156,6 +164,77 @@ Canonical structure:
   </div>
 </div>
 ```
+
+### Section Nav
+
+Use `wb-section-nav` for:
+
+- section-level navigation inside a page or shell
+- settings side navigation
+- docs subsection navigation
+- getting started step / section navigation
+
+Do not use it for:
+
+- global site navigation
+- primary app sidebar replacement
+- breadcrumbs
+- top-level tabs unless the page intentionally uses the same section-switching contract
+
+Canonical structure:
+
+```html
+<nav class="wb-section-nav" aria-label="Settings sections">
+  <div class="wb-section-nav-title">Settings</div>
+  <ul class="wb-section-nav-list">
+    <li class="wb-section-nav-item">
+      <a class="wb-section-nav-link is-active" href="#profile" aria-current="page">Profile</a>
+    </li>
+    <li class="wb-section-nav-item">
+      <a class="wb-section-nav-link" href="#security">Security</a>
+    </li>
+    <li class="wb-section-nav-item">
+      <a class="wb-section-nav-link" href="#billing">Billing</a>
+    </li>
+  </ul>
+</nav>
+```
+
+Subparts:
+
+- `wb-section-nav` = the pattern wrapper
+- `wb-section-nav-title` = quiet internal nav label
+- `wb-section-nav-list` = vertical list container
+- `wb-section-nav-item` = stable item hook and semantic list item
+- `wb-section-nav-link` = row-level interactive target
+
+Active state:
+
+- use `is-active` on the current link
+- also include `aria-current="page"` when the link points to the current section/page state
+
+Semantic guidance:
+
+- wrap the pattern in `nav`
+- provide an appropriate `aria-label`
+- prefer `ul` and `li` when the content is a list of links
+
+Contract rule:
+
+- `wb-section-nav` uses explicit subpart classes so its spacing, layout, and interaction do not depend on a specific heading level or list tag shape
+- do not treat descendant element selectors as the public API for this pattern
+
+Do:
+
+- reuse `wb-section-nav` across settings rails, docs side navigation, and in-page section menus
+- keep the pattern compact and calm
+- place it in an `aside`, shell rail, card body, or adjacent nav area when that matches the page job
+
+Do not:
+
+- create a second settings-only inner nav pattern for the same job
+- rely on `.wb-section-nav h2`, `.wb-section-nav ul`, or `.wb-section-nav a` as the primary contract
+- stretch it into a global sidebar or primary application nav
 
 ### Content
 

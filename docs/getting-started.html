@@ -57,31 +57,33 @@
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-content-shell wb-content-shell-wide">
-          <header class="wb-content-header">
-            <h1 class="wb-content-title">Getting Started</h1>
-            <p class="wb-content-subtitle">Include the built assets, set root theme attributes, and begin from patterns instead of guessing from isolated primitives.</p>
-          </header>
+        <div class="wb-section-nav-layout wb-settings-shell">
+          <nav class="wb-section-nav wb-settings-nav" aria-label="Getting started sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#include-package-files" class="wb-section-nav-link is-active" aria-current="page"><i class="wb-icon wb-icon-package"></i><span>Include the package files</span></a></li>
+              <li class="wb-section-nav-item"><a href="#set-root-theme-attributes" class="wb-section-nav-link"><i class="wb-icon wb-icon-palette"></i><span>Set root theme attributes</span></a></li>
+              <li class="wb-section-nav-item"><a href="#start-from-a-pattern" class="wb-section-nav-link"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Start from a pattern</span></a></li>
+              <li class="wb-section-nav-item"><a href="#copy-the-nearest-example" class="wb-section-nav-link"><i class="wb-icon wb-icon-copy"></i><span>Copy the nearest example</span></a></li>
+              <li class="wb-section-nav-item"><a href="#keep-responsibilities-clear" class="wb-section-nav-link"><i class="wb-icon wb-icon-scale"></i><span>Keep responsibilities clear</span></a></li>
+            </ul>
+          </nav>
 
-          <div class="wb-content-body">
-            <div class="wb-settings-shell wb-section-nav-layout">
-              <nav class="wb-section-nav" aria-label="Section navigation">
-                <div class="wb-section-nav-header">On this page</div>
-                <a href="#include-package-files" class="wb-section-nav-link">Include the package files</a>
-                <a href="#set-root-theme-attributes" class="wb-section-nav-link">Set root theme attributes</a>
-                <a href="#start-from-a-pattern" class="wb-section-nav-link">Start from a pattern</a>
-                <a href="#copy-the-nearest-example" class="wb-section-nav-link">Copy the nearest example</a>
-                <a href="#keep-responsibilities-clear" class="wb-section-nav-link">Keep responsibilities clear</a>
-              </nav>
+          <div class="wb-section-nav-layout-main">
+            <div class="wb-content-shell wb-content-shell-wide">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Getting Started</h1>
+                <p class="wb-content-subtitle">Include the built assets, set root theme attributes, and begin from patterns instead of guessing from isolated primitives.</p>
+              </header>
 
-              <div class="wb-settings-body">
-              <div class="wb-stack-8">
+              <div class="wb-content-body">
+                <div class="wb-stack-8">
               <section class="wb-stack-4" id="include-package-files">
                 <h2>1. Include the package files</h2>
-                <p>The smallest correct setup includes the main CSS and JS bundles. Add the icon CSS only if you want class-based icon usage with <code>&lt;i class="wb-icon wb-icon-*"&gt;</code>. The docs site itself now loads these same assets from the versioned jsDelivr tag so it reflects the current published release instead of the moving branch head.</p>
-                <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-ui.css"&gt;
-&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-icons.css"&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-ui.js" defer&gt;&lt;/script&gt;</code></pre>
+                <p>The smallest correct setup includes the main CSS and JS bundles. Add the icon CSS only if you want class-based icon usage with <code>&lt;i class="wb-icon wb-icon-*"&gt;</code>. The docs and playground in this repo load the same built files from the local published dist path so the examples stay aligned with the shipped package output.</p>
+                <pre><code>&lt;link rel="stylesheet" href="/packages/webblocks/dist/webblocks-ui.css"&gt;
+&lt;link rel="stylesheet" href="/packages/webblocks/dist/webblocks-icons.css"&gt;
+&lt;script src="/packages/webblocks/dist/webblocks-ui.js" defer&gt;&lt;/script&gt;</code></pre>
                 <div class="wb-alert wb-alert-info">
                   <div>
                     <strong class="wb-alert-title">No extra layer required</strong>
@@ -213,14 +215,15 @@
                 </div>
               </section>
               </div>
+                </div>
               </div>
+
+              <footer class="wb-content-footer">
+                <a href="index.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Home</span></a>
+                <a href="architecture.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Architecture</span></a>
+              </footer>
             </div>
           </div>
-
-          <footer class="wb-content-footer">
-            <a href="index.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Home</span></a>
-            <a href="architecture.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Architecture</span></a>
-          </footer>
         </div>
       </main>
     </div>

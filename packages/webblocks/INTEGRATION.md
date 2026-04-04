@@ -1057,10 +1057,14 @@ Split variant:
 
 ```html
 <div class="wb-settings-shell">
-  <aside class="wb-settings-nav">
-    <div class="wb-settings-nav-header">Account</div>
-    <a class="wb-settings-nav-link is-active" href="#">Profile</a>
-  </aside>
+  <nav class="wb-section-nav wb-settings-nav" aria-label="Settings sections">
+    <div class="wb-section-nav-title">Account</div>
+    <ul class="wb-section-nav-list">
+      <li class="wb-section-nav-item">
+        <a class="wb-section-nav-link is-active" href="#profile" aria-current="page">Profile</a>
+      </li>
+    </ul>
+  </nav>
   <div class="wb-settings-body">
     <div class="wb-settings-header">
       <h1 class="wb-settings-title">Profile</h1>
@@ -1076,7 +1080,67 @@ Split variant:
 Canonical settings shell:
 
 - use `wb-settings-shell`, `wb-settings-nav`, `wb-settings-body`, `wb-settings-section`
+- use `wb-section-nav` inside the settings rail instead of a separate settings-only inner-nav contract
 - keep settings content inside `wb-settings-section` blocks instead of inventing page-specific card wrappers
+
+### Section Nav
+
+`wb-section-nav` is the canonical reusable pattern for section-level navigation inside a page or shell.
+
+Use it for:
+
+- settings side navigation
+- docs subsection navigation
+- getting started step/section navigation
+- similar in-page section switching contexts
+
+Do not use it for:
+
+- global site nav
+- primary app sidebar replacement
+- breadcrumbs
+- unrelated top-level tab systems
+
+Canonical markup:
+
+```html
+<nav class="wb-section-nav" aria-label="Settings sections">
+  <div class="wb-section-nav-title">Settings</div>
+  <ul class="wb-section-nav-list">
+    <li class="wb-section-nav-item">
+      <a class="wb-section-nav-link is-active" href="#profile" aria-current="page">Profile</a>
+    </li>
+    <li class="wb-section-nav-item">
+      <a class="wb-section-nav-link" href="#security">Security</a>
+    </li>
+    <li class="wb-section-nav-item">
+      <a class="wb-section-nav-link" href="#billing">Billing</a>
+    </li>
+  </ul>
+</nav>
+```
+
+Subparts:
+
+- `wb-section-nav` = wrapper
+- `wb-section-nav-title` = quiet label for the local nav group
+- `wb-section-nav-list` = vertical list container
+- `wb-section-nav-item` = semantic list item / stable hook
+- `wb-section-nav-link` = row-level interactive target
+
+Active state:
+
+- use `is-active` on the current link
+- pair it with `aria-current="page"` when the current route/section is represented in the markup
+
+Semantic rule:
+
+- use `nav` with a real `aria-label`
+- use `ul/li` when the content is a link list
+
+Contract rule:
+
+- the pattern is class-driven by design so layout, spacing, and interaction do not depend on descendant element selectors or a specific heading/list shape
 
 ### Content Shell and Editorial Surfaces
 
@@ -1522,11 +1586,17 @@ These are canonical starting structures. Extend them with shipped primitives and
 
 ```html
 <div class="wb-settings-shell">
-  <aside class="wb-settings-nav">
-    <div class="wb-settings-nav-header">Account</div>
-    <a class="wb-settings-nav-link is-active" href="#">Profile</a>
-    <a class="wb-settings-nav-link" href="#">Security</a>
-  </aside>
+  <nav class="wb-section-nav wb-settings-nav" aria-label="Account sections">
+    <div class="wb-section-nav-title">Account</div>
+    <ul class="wb-section-nav-list">
+      <li class="wb-section-nav-item">
+        <a class="wb-section-nav-link is-active" href="#profile" aria-current="page">Profile</a>
+      </li>
+      <li class="wb-section-nav-item">
+        <a class="wb-section-nav-link" href="#security">Security</a>
+      </li>
+    </ul>
+  </nav>
 
   <div class="wb-settings-body">
     <div class="wb-settings-header">

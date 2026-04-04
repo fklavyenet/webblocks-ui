@@ -5,11 +5,13 @@
 /*
   Structure (sidebar nav + content):
   <div class="wb-settings-shell">
-    <aside class="wb-settings-nav">
-      <div class="wb-settings-nav-header">Account</div>
-      <a class="wb-settings-nav-link is-active" href="#">Profile</a>
-      <a class="wb-settings-nav-link" href="#">Security</a>
-    </aside>
+    <nav class="wb-section-nav wb-settings-nav" aria-label="Settings sections">
+      <div class="wb-section-nav-title">Account</div>
+      <ul class="wb-section-nav-list">
+        <li class="wb-section-nav-item"><a class="wb-section-nav-link is-active" href="#" aria-current="page">Profile</a></li>
+        <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#">Security</a></li>
+      </ul>
+    </nav>
     <div class="wb-settings-body">
       <div class="wb-settings-header">
         <h1 class="wb-settings-title">Profile</h1>
@@ -40,58 +42,6 @@
   flex: 0 0 220px;
   position: sticky;
   top: var(--wb-s6);
-}
-
-.wb-settings-nav-header {
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: 0.06em;
-  color: var(--wb-muted);
-  padding: 0 var(--wb-s3) var(--wb-s2);
-  margin-bottom: var(--wb-s2);
-}
-
-.wb-settings-nav-link {
-  display: flex;
-  align-items: center;
-  gap: var(--wb-s2);
-  padding: var(--wb-s2) var(--wb-s3);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--wb-muted);
-  border-radius: var(--wb-r-md);
-  text-decoration: none;
-  transition: background var(--wb-t), color var(--wb-t);
-  line-height: 1.4;
-  margin-bottom: 2px;
-}
-
-.wb-settings-nav-link:hover {
-  background: var(--wb-surface-2);
-  color: var(--wb-text);
-}
-
-.wb-settings-nav-link.is-active {
-  background: var(--wb-accent-softer);
-  color: var(--wb-accent-text);
-  font-weight: 600;
-}
-
-.wb-settings-nav-icon {
-  font-size: 1rem;
-  flex-shrink: 0;
-  opacity: 0.7;
-}
-
-.wb-settings-nav-section {
-  margin-top: var(--wb-s4);
-}
-
-.wb-settings-nav-divider {
-  margin: var(--wb-s3) 0;
-  border: none;
-  border-top: 1px solid var(--wb-border);
 }
 
 /* ── Body area ────────────────────────────────────────────── */
@@ -235,19 +185,6 @@
     flex: none;
     width: 100%;
     position: static;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--wb-s1);
-  }
-
-  .wb-settings-nav-header {
-    width: 100%;
-    padding-bottom: var(--wb-s1);
-  }
-
-  .wb-settings-nav-link {
-    padding: var(--wb-s1) var(--wb-s3);
-    font-size: 0.8rem;
   }
 
   .wb-settings-row {

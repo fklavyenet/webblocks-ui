@@ -25,5 +25,5 @@
   head.appendChild(script);
 
   window.WebBlocksAssets = assets;
-  document.documentElement.setAttribute('data-wb-assets', 'cdn-master');
+  document.documentElement.setAttribute('data-wb-assets', 'local');
 })();
