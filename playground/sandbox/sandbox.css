@@ -44,6 +44,7 @@ body {
   min-height: 0;
   display: grid;
   grid-template-columns: minmax(18rem, 21rem) minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: stretch;
   gap: var(--wb-s4);
   padding: var(--wb-s4);
 }
@@ -145,13 +146,14 @@ body {
 .wb-sandbox-preview-body {
   padding: 0;
   min-width: 0;
+  min-height: 0;
 }
 
 .wb-sandbox-preview-shell {
   padding: var(--wb-s4);
   background: var(--wb-surface-2);
   min-height: 0;
-  height: 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
 }
@@ -159,8 +161,8 @@ body {
 .wb-sandbox-preview-stage {
   width: 100%;
   min-width: 0;
-  min-height: 100%;
-  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
   margin: 0;
   transition: max-width var(--wb-t), box-shadow var(--wb-t);
 }

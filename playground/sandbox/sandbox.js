@@ -27,7 +27,6 @@
   var ALLOWED_LINK_PATTERN = /^(https?:|mailto:|tel:|#|\/|\.\/|\.\.\/|\?)/i;
   var UNKNOWN_CLASS_LIMIT = 10;
   var PREVIEW_DEBOUNCE_MS = 220;
-  var HEIGHT_MESSAGE_DEBOUNCE_MS = 80;
 
   var EXAMPLES = [
     {
@@ -374,14 +373,10 @@
   var state = {
     currentExample: EXAMPLES[0].id,
     width: 'desktop',
-    knownClasses: null,
-    previewHeight: 640,
-    previewMessageToken: createPreviewMessageToken()
+    knownClasses: null
   };
 
   var previewTimer = null;
-  var heightUpdateTimer = null;
-  var pendingPreviewHeight = null;
 
   var elements = {
     example: document.querySelector('[data-sandbox-example]'),
@@ -396,7 +391,6 @@
     status: document.querySelector('[data-sandbox-status]'),
     widthLabel: document.querySelector('[data-sandbox-width-label]'),
     widthButtons: Array.prototype.slice.call(document.querySelectorAll('[data-sandbox-width]')),
-    previewPanel: document.querySelector('.wb-sandbox-preview-panel'),
     reset: document.querySelector('[data-sandbox-reset]'),
     copy: document.querySelector('[data-sandbox-copy]')
   };
@@ -411,7 +405,6 @@
   applyWidth(state.width);
   renderPreview();
   loadKnownClasses();
-  updatePreviewMinHeight();
 
   function populateExampleSelect() {
     EXAMPLES.forEach(function (example) {
@@ -477,19 +470,6 @@
       });
     });
 
-    window.addEventListener('message', function (event) {
-      if (!isTrustedPreviewMessage(event)) {
-        return;
-      }
-
-      if (typeof event.data.height === 'number' && event.data.height > 0) {
-        scheduleHeightUpdate(event.data.height);
-      }
-    });
-
-    window.addEventListener('resize', function () {
-      updatePreviewMinHeight();
-    });
   }
 
   function schedulePreview() {
@@ -504,12 +484,10 @@
     var sanitized = sanitizeHtml(sourceHtml);
     var currentExample = getExampleById(state.currentExample) || EXAMPLES[0];
 
-    state.previewMessageToken = createPreviewMessageToken();
-    elements.preview.srcdoc = buildPreviewDocument(sanitized.html, sanitized.rootAttributes, state.previewMessageToken);
+    elements.preview.srcdoc = buildPreviewDocument(sanitized.html, sanitized.rootAttributes);
     renderExampleMeta(currentExample);
     renderWarnings(sanitized.feedback);
     setStatus(sanitized.status.label, sanitized.status.tone);
-    elements.preview.style.height = Math.max(getPreviewBaseHeight(), state.previewHeight) + 'px';
     persistState();
   }
 
@@ -673,7 +651,7 @@
     return attributes;
   }
 
-  function buildPreviewDocument(html, rootAttributes, previewMessageToken) {
+  function buildPreviewDocument(html, rootAttributes) {
     var assets = window.WebBlocksAssets || {};
     var htmlAttributes = buildHtmlAttributes(rootAttributes);
     var safeHtml = html || '<div class="wb-card"><div class="wb-card-body"><p class="wb-m-0 wb-text-muted">The preview is empty. Add some HTML to render WebBlocks UI components here.</p></div></div>';
@@ -688,7 +666,7 @@
       '  <link rel="stylesheet" href="' + assets.icons + '">',
       '  <style>',
       '    html { color-scheme: light dark; }',
-      '    body { margin: 0; min-height: 100vh; padding: 24px; background: var(--wb-bg, #f4f6fb); color: var(--wb-text, #101828); }',
+      '    body { margin: 0; padding: 24px; background: var(--wb-bg, #f4f6fb); color: var(--wb-text, #101828); }',
       '    body > * { box-sizing: border-box; }',
       '    img { max-width: 100%; height: auto; }',
       '  </style>',
@@ -697,30 +675,9 @@
       safeHtml,
       '  <script src="' + assets.js + '" defer></script>',
       '  <script>',
-      '    (function () {',
-      '      var previewMessageToken = ' + JSON.stringify(previewMessageToken) + ';',
-      '      var postHeightTimer = null;',
-      '      function postHeight() {',
-      '        var height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);',
-      '        parent.postMessage({ type: "wb-sandbox-height", height: height, token: previewMessageToken }, "*");',
-      '      }',
-      '      function schedulePostHeight() {',
-      '        window.clearTimeout(postHeightTimer);',
-      '        postHeightTimer = window.setTimeout(postHeight, 60);',
-      '      }',
-      '      window.addEventListener("load", function () {',
-      '        postHeight();',
-      '        window.setTimeout(postHeight, 120);',
-      '      });',
-      '      window.addEventListener("resize", schedulePostHeight);',
-      '      document.addEventListener("submit", function (event) {',
-      '        event.preventDefault();',
-      '      });',
-      '      var observer = new MutationObserver(function () {',
-      '        schedulePostHeight();',
-      '      });',
-      '      observer.observe(document.body, { childList: true, subtree: true, attributes: true, characterData: true });',
-      '    })();',
+      '    document.addEventListener("submit", function (event) {',
+      '      event.preventDefault();',
+      '    });',
       '  </script>',
       '</body>',
       '</html>'
@@ -934,58 +891,6 @@
     var exampleId = params.get('example');
 
     return getExampleById(exampleId) ? exampleId : null;
-  }
-
-  function isTrustedPreviewMessage(event) {
-    if (!event.data || event.data.type !== 'wb-sandbox-height') {
-      return false;
-    }
-
-    if (!elements.preview.contentWindow || event.source !== elements.preview.contentWindow) {
-      return false;
-    }
-
-    if (event.origin !== 'null') {
-      return false;
-    }
-
-    return event.data.token === state.previewMessageToken;
-  }
-
-  function scheduleHeightUpdate(height) {
-    pendingPreviewHeight = Math.max(420, Math.min(2200, height));
-
-    window.clearTimeout(heightUpdateTimer);
-    heightUpdateTimer = window.setTimeout(function () {
-      if (pendingPreviewHeight === null) {
-        return;
-      }
-
-      state.previewHeight = pendingPreviewHeight;
-      elements.preview.style.height = Math.max(getPreviewBaseHeight(), state.previewHeight) + 'px';
-      pendingPreviewHeight = null;
-    }, HEIGHT_MESSAGE_DEBOUNCE_MS);
-  }
-
-  function updatePreviewMinHeight() {
-    if (!elements.preview) {
-      return;
-    }
-
-    elements.preview.style.height = Math.max(getPreviewBaseHeight(), state.previewHeight) + 'px';
-  }
-
-  function getPreviewBaseHeight() {
-    if (!elements.previewPanel) {
-      return 420;
-    }
-
-    var panelRect = elements.previewPanel.getBoundingClientRect();
-    return Math.max(420, Math.round(panelRect.height - 170));
-  }
-
-  function createPreviewMessageToken() {
-    return 'wb-sandbox-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
   }
 
   function isBlockedUrlValue(value) {
