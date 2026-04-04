@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  var assetMode = 'cdn';
-  var base = 'https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/';
+  var assetMode = 'local';
+  var base = '../packages/webblocks/dist/';
 
   var head = document.head;
   var assets = [

@@ -2,9 +2,9 @@
   'use strict';
 
   var assets = {
-    css: 'https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-ui.css',
-    icons: 'https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-icons.css',
-    js: 'https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-ui.js'
+    css: '../packages/webblocks/dist/webblocks-ui.css',
+    icons: '../packages/webblocks/dist/webblocks-icons.css',
+    js: '../packages/webblocks/dist/webblocks-ui.js'
   };
 
   var head = document.head;
