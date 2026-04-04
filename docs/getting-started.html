@@ -44,7 +44,7 @@
         </div>
       </nav>
       <div class="wb-sidebar-footer">
-        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v2.3.10</p>
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v2.3.11</p>
       </div>
     </aside>
 
@@ -64,7 +64,7 @@
           </header>
 
           <div class="wb-content-body">
-            <div class="wb-stack-8">
+            <div class="wb-settings-shell wb-section-nav-layout">
               <nav class="wb-section-nav" aria-label="Section navigation">
                 <div class="wb-section-nav-header">On this page</div>
                 <a href="#include-package-files" class="wb-section-nav-link">Include the package files</a>
@@ -74,12 +74,14 @@
                 <a href="#keep-responsibilities-clear" class="wb-section-nav-link">Keep responsibilities clear</a>
               </nav>
 
+              <div class="wb-settings-body">
+              <div class="wb-stack-8">
               <section class="wb-stack-4" id="include-package-files">
                 <h2>1. Include the package files</h2>
                 <p>The smallest correct setup includes the main CSS and JS bundles. Add the icon CSS only if you want class-based icon usage with <code>&lt;i class="wb-icon wb-icon-*"&gt;</code>. The docs site itself now loads these same assets from the versioned jsDelivr tag so it reflects the current published release instead of the moving branch head.</p>
-                <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.10/packages/webblocks/dist/webblocks-ui.css"&gt;
-&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.10/packages/webblocks/dist/webblocks-icons.css"&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.10/packages/webblocks/dist/webblocks-ui.js" defer&gt;&lt;/script&gt;</code></pre>
+                <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-ui.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-icons.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/packages/webblocks/dist/webblocks-ui.js" defer&gt;&lt;/script&gt;</code></pre>
                 <div class="wb-alert wb-alert-info">
                   <div>
                     <strong class="wb-alert-title">No extra layer required</strong>
@@ -210,6 +212,8 @@
                   </div>
                 </div>
               </section>
+              </div>
+              </div>
             </div>
           </div>
 

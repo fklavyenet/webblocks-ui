@@ -46,7 +46,29 @@
   font-weight: 600;
 }
 
+.wb-section-nav-layout {
+  gap: var(--wb-s6);
+  max-width: none;
+  padding: 0;
+  min-height: 0;
+}
+
+.wb-section-nav-layout .wb-section-nav {
+  flex: 0 0 240px;
+  position: sticky;
+  top: var(--wb-s6);
+}
+
 @media (max-width: 640px) {
+  .wb-section-nav-layout {
+    gap: var(--wb-s4);
+  }
+
+  .wb-section-nav-layout .wb-section-nav {
+    position: static;
+    flex-basis: auto;
+  }
+
   .wb-section-nav {
     padding: var(--wb-s2);
   }
