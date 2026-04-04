@@ -50,3 +50,23 @@ Start from patterns, not primitives.
 - docs pages consume built assets from `packages/webblocks/dist/`
 - `wb-table-wrap` is the single table surface; toolbars inside it stay control rows and table headers stay header bands
 - text casing is content-defined; shipped UI should not automatically uppercase or capitalize content
+
+## Framed Surface Naming Rule
+
+- `wb-card` is the ONLY generic framed surface.
+- `wb-panel` is forbidden as a generic class.
+- `wb-box` is forbidden as a generic class.
+- `*-panel` naming is allowed ONLY for component-internal parts such as `wb-popover-panel`, `wb-collapse-panel`, `wb-auth-panel`, or other scoped pattern/component structures.
+
+DO:
+
+```html
+<div class="wb-card">...</div>
+```
+
+DO NOT:
+
+```html
+<div class="wb-panel">...</div>
+<div class="wb-box">...</div>
+```

@@ -134,6 +134,26 @@ Boundary rule:
 - `wb-page-header` is a dashboard/header surface, not a generic page wrapper primitive
 - `wb-table-wrap` is the single table surface; inner toolbars stay control rows and `thead` stays a header band
 
+### Framed Surface Naming Rule
+
+- `wb-card` is the ONLY generic framed surface.
+- `wb-panel` is forbidden as a generic class.
+- `wb-box` is forbidden as a generic class.
+- `*-panel` naming is allowed ONLY for component-internal parts such as `wb-popover-panel`, `wb-collapse-panel`, `wb-auth-panel`, or other scoped pattern/component structures.
+
+DO:
+
+```html
+<div class="wb-card">...</div>
+```
+
+DO NOT:
+
+```html
+<div class="wb-panel">...</div>
+<div class="wb-box">...</div>
+```
+
 ### Patterns
 
 Patterns define real page jobs and expected regions.

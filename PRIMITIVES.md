@@ -120,6 +120,26 @@ Boundary rules:
 - `wb-settings-section` belongs to settings-shell vocabulary
 - page-header titles and page-intro titles are family-specific contracts, not one shared generic title primitive
 
+## Framed Surface Naming Rule
+
+- `wb-card` is the ONLY generic framed surface.
+- `wb-panel` is forbidden as a generic class.
+- `wb-box` is forbidden as a generic class.
+- `*-panel` naming is allowed ONLY for component-internal parts such as `wb-popover-panel`, `wb-collapse-panel`, `wb-auth-panel`, or other scoped pattern/component structures.
+
+DO:
+
+```html
+<div class="wb-card">...</div>
+```
+
+DO NOT:
+
+```html
+<div class="wb-panel">...</div>
+<div class="wb-box">...</div>
+```
+
 ## What Is Not A Primitive
 
 These are not primitives even if they are reusable:
