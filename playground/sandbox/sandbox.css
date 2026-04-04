@@ -58,26 +58,11 @@ body {
   overflow: auto;
 }
 
-.wb-sandbox-rail-section {
-  padding: 0 0 var(--wb-s4);
-}
-
 .wb-sandbox-starter-panel {
   padding: var(--wb-s4);
   border: 1px solid var(--wb-border);
   border-radius: var(--wb-r-lg);
   background: var(--wb-surface-2);
-}
-
-.wb-sandbox-rail-title {
-  font-size: 1rem;
-  line-height: 1.25;
-}
-
-.wb-sandbox-example-hint {
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
 }
 
 .wb-sandbox-rail .wb-sidebar-nav {
@@ -104,10 +89,6 @@ body {
 
 .wb-sandbox-preview-panel {
   border-left: 1px solid var(--wb-border);
-}
-
-.wb-sandbox-control-group .wb-select {
-  width: 100%;
 }
 
 .wb-sandbox-panel-header {
@@ -228,12 +209,6 @@ body {
   .wb-sandbox-header-meta {
     align-items: flex-start;
     flex-wrap: wrap;
-  }
-
-  .wb-sandbox-control-group,
-  .wb-sandbox-control-group .wb-select {
-    min-width: 0;
-    width: 100%;
   }
 
   .wb-sandbox-editor,
