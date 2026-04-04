@@ -61,6 +61,13 @@ body {
   padding: 0 0 var(--wb-s4);
 }
 
+.wb-sandbox-starter-panel {
+  padding: var(--wb-s4);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  background: var(--wb-surface-2);
+}
+
 .wb-sandbox-rail-title {
   font-size: 1rem;
   line-height: 1.25;
