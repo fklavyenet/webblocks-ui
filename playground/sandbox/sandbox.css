@@ -32,13 +32,6 @@ body {
   overflow: auto;
 }
 
-.wb-sandbox-starter-panel {
-  padding: var(--wb-s4);
-  border: 1px solid var(--wb-border);
-  border-radius: var(--wb-r-lg);
-  background: var(--wb-surface-2);
-}
-
 .wb-sandbox-rail .wb-sidebar-nav {
   padding: var(--wb-s5) var(--wb-s4) var(--wb-s4);
 }
