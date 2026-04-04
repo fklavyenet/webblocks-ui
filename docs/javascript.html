@@ -51,22 +51,36 @@
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-content-shell wb-content-shell-wide">
-          <header class="wb-content-header">
-            <h1 class="wb-content-title">JavaScript</h1>
-            <p class="wb-content-subtitle">Use package JavaScript for interaction. Use CSS for layout and passive presentation. This boundary matters.</p>
-          </header>
+        <div class="wb-settings-shell">
+          <nav class="wb-section-nav wb-settings-nav" aria-label="JavaScript sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#responsibility-split">Responsibility split</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#behavior-conventions">Behavior conventions</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#common-modules">Common modules</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#trigger-model">Trigger model</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#live-demos">Live demos</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#api-shape">API shape</a></li>
+            </ul>
+          </nav>
 
-          <div class="wb-content-body">
-            <div class="wb-stack-8">
-              <section class="wb-stack-4">
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-content-shell-wide">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">JavaScript</h1>
+                <p class="wb-content-subtitle">Use package JavaScript for interaction. Use CSS for layout and passive presentation. This boundary matters.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-stack-8">
+              <section class="wb-stack-4" id="responsibility-split">
                 <div class="wb-callout wb-callout-warning">
                   <strong class="wb-callout-title">Correct responsibility split</strong>
                   Layout is CSS-driven through layout and pattern classes. Overlays, tooltips, tabs, drawers, theme controls, password visibility, command palette, and dismiss flows are JavaScript-driven through shipped hooks and public APIs.
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="behavior-conventions">
                 <h2>Behavior conventions</h2>
                 <div class="wb-grid-3">
                   <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Small modules</strong><p class="wb-m-0">The bundle stays readable because behavior is split into named modules instead of one large anonymous runtime.</p></div></div>
@@ -75,7 +89,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="common-modules">
                 <h2>Common modules</h2>
                 <div class="wb-table-wrap">
                   <table class="wb-table wb-table-hover wb-table-sm">
@@ -94,7 +108,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="trigger-model">
                 <h2>Trigger model</h2>
                 <pre><code>&lt;button data-wb-toggle="modal" data-wb-target="#confirm"&gt;
   Delete
@@ -105,7 +119,7 @@
                 <p>Most behavior starts from a small attribute contract. That keeps intent readable in the HTML and easy to debug later.</p>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="live-demos">
                 <h2>Live package-only demos</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card">
@@ -152,7 +166,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="api-shape">
                 <h2>API shape</h2>
                 <pre><code>WBTheme.setMode('dark')
 WBTheme.setAccent('forest')
@@ -164,13 +178,15 @@ WBPasswordToggle.toggle(document.querySelector('[data-wb-password-toggle]'))
 WBToast.show('Saved', { type: 'success' })</code></pre>
                 <p>Use the public API when you really need imperative control. If a declarative <code>data-wb-*</code> trigger already exists, prefer that markup path first.</p>
               </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="utilities.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Utilities</span></a>
+                <span></span>
+              </footer>
             </div>
           </div>
-
-          <footer class="wb-content-footer">
-            <a href="utilities.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Utilities</span></a>
-            <span></span>
-          </footer>
         </div>
       </main>
     </div>

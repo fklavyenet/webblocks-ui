@@ -51,15 +51,29 @@
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-content-shell wb-content-shell-wide">
-          <header class="wb-content-header">
-            <h1 class="wb-content-title">Patterns</h1>
-            <p class="wb-content-subtitle">Patterns describe real screen jobs. They are the fastest entry point when you know the type of page you need to build.</p>
-          </header>
+        <div class="wb-settings-shell">
+          <nav class="wb-section-nav wb-settings-nav" aria-label="Pattern guide sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#shipped-pattern-families">Shipped pattern families</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-first">Pattern-first</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-flow">Pattern flow</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#reusable-section-nav">Reusable section nav</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#page-header-stack">Page header stack</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-boundaries">Pattern boundaries</a></li>
+            </ul>
+          </nav>
 
-          <div class="wb-content-body">
-            <div class="wb-stack-8">
-              <section class="wb-stack-4">
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-content-shell-wide">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Patterns</h1>
+                <p class="wb-content-subtitle">Patterns describe real screen jobs. They are the fastest entry point when you know the type of page you need to build.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-stack-8">
+              <section class="wb-stack-4" id="shipped-pattern-families">
                 <h2>Shipped pattern families</h2>
                 <div class="wb-grid-2">
                   <a href="pattern-dashboard-shell.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Dashboard shell</strong><p class="wb-m-0">Sidebar, topbar, and a clear application work area for admin products.</p></div></a>
@@ -74,7 +88,7 @@
                 <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Try markup before you integrate</strong> Use the <a href="../playground/sandbox/">Playground</a> when you want to test HTML-only pattern fragments with the real WebBlocks CSS, icons, and JavaScript before moving them into a real project.</div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="pattern-first">
                 <h2>Pattern-first means starting from page purpose</h2>
                 <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Start from the page job</strong> If the question is "I need an admin dashboard" or "I need a docs surface," the answer should begin with a pattern. Primitive choice comes after that.</div>
                 <div class="wb-link-list">
@@ -83,7 +97,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="pattern-flow">
                 <h2>The pattern flow stays short</h2>
                 <div class="wb-list wb-list-sm">
                   <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Pick a pattern family</span><span class="wb-list-item-sub">Choose the closest real page job before thinking about individual controls.</span></div></div>
@@ -93,7 +107,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="reusable-section-nav">
                 <h2>Reusable section nav</h2>
                 <p>`wb-section-nav` is the canonical local navigation pattern for settings rails, docs side navigation, and section-level page indexes.</p>
                 <div class="wb-grid-2">
@@ -113,7 +127,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="page-header-stack">
                 <h2>Example: page header stack</h2>
                 <div class="wb-card">
                   <div class="wb-card-body">
@@ -139,7 +153,7 @@
                 <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Hierarchy rule</strong> Product identity belongs first in the topbar. Context comes second. Inside the page header, breadcrumb is optional, title is primary, subtitle is supportive, and actions stay separate.</div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="pattern-boundaries">
                 <h2>Pattern boundaries</h2>
                 <div class="wb-grid-3">
                   <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Patterns are not utilities</strong><p class="wb-m-0">A pattern is not a spacing trick or a one-off helper class.</p></div></div>
@@ -147,13 +161,15 @@
                   <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Patterns stay readable</strong><p class="wb-m-0">The goal is to make page type and hierarchy obvious before small refinements begin.</p></div></div>
                 </div>
               </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="icons.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Icons</span></a>
+                <a href="utilities.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Utilities</span></a>
+              </footer>
             </div>
           </div>
-
-          <footer class="wb-content-footer">
-            <a href="icons.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Icons</span></a>
-            <a href="utilities.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Utilities</span></a>
-          </footer>
         </div>
       </main>
     </div>

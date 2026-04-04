@@ -51,15 +51,29 @@
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-content-shell wb-content-shell-wide">
-          <header class="wb-content-header">
-            <h1 class="wb-content-title">Primitives</h1>
-            <p class="wb-content-subtitle">These examples stay inside shipped package classes. No demo helper layer is added on top.</p>
-          </header>
+        <div class="wb-settings-shell">
+          <nav class="wb-section-nav wb-settings-nav" aria-label="Primitives sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#primitive-boundaries">Primitive boundaries</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#actions-and-signals">Actions and signals</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#forms">Forms</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#surfaces-and-display">Surfaces and display</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pagination-and-context">Pagination and context</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#interaction-shells">Interaction shells</a></li>
+            </ul>
+          </nav>
 
-          <div class="wb-content-body">
-            <div class="wb-stack-8">
-              <section class="wb-stack-4">
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-content-shell-wide">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Primitives</h1>
+                <p class="wb-content-subtitle">These examples stay inside shipped package classes. No demo helper layer is added on top.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-stack-8">
+              <section class="wb-stack-4" id="primitive-boundaries">
                 <div class="wb-callout wb-callout-accent">
                   <strong class="wb-callout-title">Icon boundary</strong>
                   Icons support these controls and surfaces, but they are still an asset layer. This guide intentionally uses the shipped mask-image path with <code>&lt;i class="wb-icon wb-icon-..."&gt;</code> and keeps <code>webblocks-icons.css</code> included.
@@ -82,7 +96,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="actions-and-signals">
                 <h2>Actions and signals</h2>
                 <div class="wb-card">
                   <div class="wb-card-body wb-stack-4">
@@ -108,7 +122,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="forms">
                 <h2>Forms</h2>
                 <p>Fields use a three-slot contract: label, control, and <code>wb-field-meta</code>. Keep hints and errors inside the shared meta area so multi-column <code>wb-form-row</code> layouts stay aligned even when sibling fields carry different assistive content. Do not place <code>wb-field-hint</code> or <code>wb-field-error</code> directly under <code>wb-field</code>. In stacked forms, empty meta rows are usually unnecessary.</p>
                 <div class="wb-card">
@@ -172,7 +186,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="surfaces-and-display">
                 <h2>Surfaces and display contracts</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card">
@@ -210,7 +224,7 @@
                 <p class="wb-text-sm wb-text-muted wb-m-0"><a href="../playground/sandbox/">Open in Playground</a> when you want to combine these primitives into a real snippet before wiring them into a full page.</p>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="pagination-and-context">
                 <h2>Pagination and context navigation</h2>
                 <p>Use <code>wb-pagination</code> for page-based result sets. Keep it semantic: a <code>nav</code> landmark, an ordered list, a passive current-page marker with <code>aria-current="page"</code>, and a passive disabled previous/next state when navigation is unavailable. Do not reuse it for breadcrumb hierarchy or content footer previous-next links.</p>
                 <div class="wb-grid-2">
@@ -250,7 +264,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="interaction-shells">
                 <h2>Interaction shells</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card">
@@ -311,13 +325,15 @@
                   </div>
                 </div>
               </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="layout.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Layout</span></a>
+                <a href="icons.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Icons</span></a>
+              </footer>
             </div>
           </div>
-
-          <footer class="wb-content-footer">
-            <a href="layout.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Layout</span></a>
-            <a href="icons.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Icons</span></a>
-          </footer>
         </div>
       </main>
     </div>

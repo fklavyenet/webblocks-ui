@@ -51,15 +51,28 @@
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-content-shell wb-content-shell-wide">
-          <header class="wb-content-header">
-            <h1 class="wb-content-title">Foundation</h1>
-            <p class="wb-content-subtitle">Foundation is where tokens, dark mode, presets, theme axes, reset rules, and raw element styling live. If you are asking about <code>h1-h6</code>, code blocks, root theme attributes, or the spacing scale, start here.</p>
-          </header>
+        <div class="wb-settings-shell">
+          <nav class="wb-section-nav wb-settings-nav" aria-label="Foundation sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#theme-axes">Theme axes</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#token-groups">Token groups</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#spacing-scale">Spacing scale</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#base-element-styling">Base element styling</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#theme-controls">Theme controls</a></li>
+            </ul>
+          </nav>
 
-          <div class="wb-content-body">
-            <div class="wb-stack-8">
-              <section class="wb-stack-4">
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-content-shell-wide">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Foundation</h1>
+                <p class="wb-content-subtitle">Foundation is where tokens, dark mode, presets, theme axes, reset rules, and raw element styling live. If you are asking about <code>h1-h6</code>, code blocks, root theme attributes, or the spacing scale, start here.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-stack-8">
+              <section class="wb-stack-4" id="theme-axes">
                 <h2>Theme axes on <code>&lt;html&gt;</code></h2>
                 <p>The shipped theme system stores state on the root element. `WBTheme` supports mode, preset, accent, radius, density, shadow, and font. Border is a real CSS axis, but it is not part of the shipped `WBTheme` JS API.</p>
                 <pre><code>&lt;html
@@ -88,7 +101,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="token-groups">
                 <h2>Token groups</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Surface and text</strong><p class="wb-m-0"><code>--wb-bg</code>, <code>--wb-surface</code>, <code>--wb-surface-2</code>, <code>--wb-text</code>, <code>--wb-muted</code>, <code>--wb-border</code></p></div></div>
@@ -99,7 +112,7 @@
                 <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Token rule</strong> New package code should use tokens, not hardcoded colors, radii, or spacing values.</div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="spacing-scale">
                 <h2>Spacing scale</h2>
                 <p>The base token scale starts in <code>tokens.css</code> and can be tightened or expanded by the density axis.</p>
                 <div class="wb-grid-4">
@@ -114,7 +127,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="base-element-styling">
                 <h2>Base element styling</h2>
                 <p>Raw HTML already has package styling before you add any primitives. This is where <code>h1-h6</code>, paragraphs, links, code, blockquotes, tables, and focus rings are defined.</p>
                 <div class="wb-card">
@@ -130,7 +143,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="theme-controls">
                 <h2>Theme controls the package already ships</h2>
                 <pre><code>&lt;button data-wb-mode-set="dark"&gt;Dark&lt;/button&gt;
 &lt;button data-wb-preset-set="minimal"&gt;Minimal&lt;/button&gt;
@@ -140,13 +153,15 @@
 &lt;button data-wb-shadow-set="soft"&gt;Soft shadow&lt;/button&gt;
 &lt;button data-wb-font-set="editorial"&gt;Editorial font&lt;/button&gt;</code></pre>
               </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="architecture.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Architecture</span></a>
+                <a href="layout.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Layout</span></a>
+              </footer>
             </div>
           </div>
-
-          <footer class="wb-content-footer">
-            <a href="architecture.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Architecture</span></a>
-            <a href="layout.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Layout</span></a>
-          </footer>
         </div>
       </main>
     </div>

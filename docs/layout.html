@@ -51,15 +51,29 @@
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-content-shell wb-content-shell-wide">
-          <header class="wb-content-header">
-            <h1 class="wb-content-title">Layout</h1>
-            <p class="wb-content-subtitle">Layout is where page width, structural flow, navigation frame, and shell choice live. If you are asking about <code>wb-container</code>, <code>wb-grid-*</code>, <code>wb-row</code>, navbar, sidebar, or dashboard/content/auth shells, start here.</p>
-          </header>
+        <div class="wb-settings-shell">
+          <nav class="wb-section-nav wb-settings-nav" aria-label="Layout sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#base-composition-primitives">Base composition primitives</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#simple-grid-and-flow">Simple grid and flow</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#row-system">12-column row system</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#navigation-structure">Navigation structure</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#shell-selection">Shell selection</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#header-hierarchy">Header hierarchy</a></li>
+            </ul>
+          </nav>
 
-          <div class="wb-content-body">
-            <div class="wb-stack-8">
-              <section class="wb-stack-4">
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-content-shell-wide">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Layout</h1>
+                <p class="wb-content-subtitle">Layout is where page width, structural flow, navigation frame, and shell choice live. If you are asking about <code>wb-container</code>, <code>wb-grid-*</code>, <code>wb-row</code>, navbar, sidebar, or dashboard/content/auth shells, start here.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-stack-8">
+              <section class="wb-stack-4" id="base-composition-primitives">
                 <h2>Base composition primitives</h2>
                 <div class="wb-table-wrap">
                   <table class="wb-table wb-table-sm">
@@ -76,7 +90,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="simple-grid-and-flow">
                 <h2>Simple grid and flow examples</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Stack + cluster + split</h3></div><div class="wb-card-body wb-stack-4"><div class="wb-stack-2"><strong>Stack</strong><p class="wb-m-0">Three blocks with vertical rhythm.</p><p class="wb-m-0">Use it for prose and form sections.</p></div><div class="wb-cluster"><span class="wb-badge">Cluster</span><span class="wb-badge wb-badge-success">Wraps</span><span class="wb-badge wb-badge-warning">Inline items</span></div><div class="wb-split"><strong>Split grows left</strong><button class="wb-btn wb-btn-sm wb-btn-primary">Action</button></div></div></div>
@@ -90,7 +104,7 @@
 &lt;/div&gt;</code></pre>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="row-system">
                 <h2>12-column row system</h2>
                 <p>WebBlocks also ships a Bootstrap-like row/column grid in <code>layout/grid.css</code>.</p>
                 <pre><code>&lt;div class="wb-row"&gt;
@@ -103,7 +117,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="navigation-structure">
                 <h2>Navigation structure</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Navbar</h3></div><div class="wb-card-body wb-stack-3"><header class="wb-navbar wb-navbar--static"><a href="#" class="wb-navbar-brand">Atlas</a><span class="wb-navbar-spacer"></span><div class="wb-navbar-links"><a href="#" class="wb-navbar-link is-active">Overview</a><a href="#" class="wb-navbar-link">Billing</a></div></header><p class="wb-m-0">Use navbar for top-level movement and actions.</p></div></div>
@@ -111,7 +125,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="shell-selection">
                 <h2>Shell selection</h2>
                 <div class="wb-table-wrap">
                   <table class="wb-table wb-table-sm">
@@ -127,18 +141,20 @@
                 <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Shell rule</strong> Choose the page shell before refining primitives. A dashboard should not be assembled from random cards before the frame is decided.</div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="header-hierarchy">
                 <h2>Header hierarchy</h2>
                 <div class="wb-card"><div class="wb-card-body"><div class="wb-page-header"><div class="wb-page-header-main"><nav class="wb-page-breadcrumb" aria-label="Breadcrumb example"><ol class="wb-breadcrumb wb-breadcrumb-minimal"><li class="wb-breadcrumb-item"><a href="#">Workspace</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Members</span></li></ol></nav><div><h2 class="wb-page-header-title">Members</h2><p class="wb-page-subtitle">Manage people, roles, and invitations.</p></div></div><div class="wb-page-actions"><button class="wb-btn wb-btn-primary wb-btn-sm">Invite</button></div></div></div></div>
                 <p>Breadcrumb is optional. Title is primary. Subtitle is supportive. Actions stay separate.</p>
               </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="foundation.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Foundation</span></a>
+                <a href="primitives.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Primitives</span></a>
+              </footer>
             </div>
           </div>
-
-          <footer class="wb-content-footer">
-            <a href="foundation.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Foundation</span></a>
-            <a href="primitives.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Primitives</span></a>
-          </footer>
         </div>
       </main>
     </div>
