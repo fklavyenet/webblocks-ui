@@ -501,116 +501,22 @@ Notes:
 
 ### Overlays, Modals, and Confirmation Dialogs
 
-`wb-overlay` is the canonical general overlay system for focused content above the page.
+Overlay architecture in this package has three layers:
 
-Use it for:
+- `wb-overlay-root` = shared top-layer infrastructure root used by floating and portaled UI
+- `wb-modal` = canonical public dialog pattern for structured modal UI
+- `wb-overlay` = canonical public content-first overlay pattern for viewer-style experiences
 
-- generic content dialogs
-- media viewers and lightbox-style enlargement with `wb-media`
-- confirm and action flows when you need a custom layout
-- future overlay variants such as sheet or drawer-style dialog shells
+They are related, but they are not the same thing.
 
-Do not create separate app-local modal and lightbox systems when `wb-overlay` already fits the job.
+Use `wb-modal` for:
 
-Canonical content overlay:
+- confirmation dialogs
+- form modals
+- action/decision flows
+- settings/help dialogs with explicit modal chrome and footer actions
 
-```html
-<button class="wb-btn wb-btn-primary" type="button" data-wb-overlay-open="settings-help">
-  Open overlay
-</button>
-
-<div class="wb-overlay" id="settings-help" hidden>
-  <div class="wb-overlay-backdrop" data-wb-overlay-close></div>
-
-  <div class="wb-overlay-dialog" role="dialog" aria-modal="true" aria-labelledby="settings-help-title">
-    <button class="wb-overlay-close" type="button" aria-label="Close" data-wb-overlay-close>
-      <i class="wb-icon wb-icon-x" aria-hidden="true"></i>
-    </button>
-
-    <div class="wb-overlay-body">
-      <div class="wb-stack wb-stack-4">
-        <h2 id="settings-help-title">Settings help</h2>
-        <p>Overlay content goes here.</p>
-        <div class="wb-cluster wb-cluster-end">
-          <button class="wb-btn wb-btn-secondary" type="button" data-wb-overlay-close>Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-Canonical media viewer:
-
-```html
-<figure class="wb-media">
-  <button class="wb-btn wb-btn-ghost wb-block wb-w-full wb-p-0" type="button" data-wb-overlay-open="media-viewer-1" aria-label="Open dashboard overview">
-    <img class="wb-media-img" src="/images/demo-shot.jpg" alt="Analytics dashboard with KPI cards and a weekly chart">
-  </button>
-  <figcaption class="wb-media-caption">Open the media in a focused overlay.</figcaption>
-</figure>
-
-<div class="wb-overlay" id="media-viewer-1" hidden>
-  <div class="wb-overlay-backdrop" data-wb-overlay-close></div>
-
-  <div class="wb-overlay-dialog wb-overlay-dialog-media" role="dialog" aria-modal="true" aria-labelledby="media-viewer-1-title">
-    <button class="wb-overlay-close" type="button" aria-label="Close" data-wb-overlay-close>
-      <i class="wb-icon wb-icon-x" aria-hidden="true"></i>
-    </button>
-
-    <div class="wb-overlay-body">
-      <figure class="wb-media">
-        <img class="wb-media-img" src="/images/demo-shot.jpg" alt="Analytics dashboard with KPI cards and a weekly chart">
-        <figcaption class="wb-media-caption" id="media-viewer-1-title">Dashboard overview enlarged inside the canonical overlay shell.</figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
-```
-
-Minimal subparts:
-
-- `wb-overlay` = viewport overlay wrapper
-- `wb-overlay-backdrop` = backdrop layer and close target
-- `wb-overlay-dialog` = centered dialog/content shell
-- `wb-overlay-body` = scrollable content region
-- `wb-overlay-close` = explicit close affordance
-
-Optional subparts:
-
-- `wb-overlay-header`
-- `wb-overlay-title`
-- `wb-overlay-footer`
-
-Behavior contract:
-
-- open with `data-wb-overlay-open="overlay-id"`
-- close with `data-wb-overlay-close`
-- `WBOverlay.open(elOrId)` and `WBOverlay.close(elOrId)` are available for imperative control
-- ESC closes the active overlay
-- backdrop click closes the active overlay when the backdrop uses `data-wb-overlay-close`
-- focus moves into the overlay on open and returns to the opener on close
-- body scroll locks while an overlay is open
-
-Accessibility baseline:
-
-- put `role="dialog"` and `aria-modal="true"` on `.wb-overlay-dialog`
-- provide a real label through `aria-labelledby` or `aria-label`
-- always include a visible close control; do not rely only on backdrop click
-- keep inactive overlays `hidden`
-
-Do:
-
-- treat `wb-overlay` as the shared shell for media viewers and dialog content
-- keep overlay content semantically honest
-- use `wb-media` inside media-viewer overlays instead of overlay-local image classes
-
-Do not:
-
-- invent a separate `wb-lightbox` system for the same job
-- rely only on clicking outside to close
-- hide close behavior in app-local scripts
-- duplicate the same content once for inline display and again for the viewer unless the real UX requires it
+Canonical modal example:
 
 ```html
 <button class="wb-btn wb-btn-primary" data-wb-toggle="modal" data-wb-target="#delete-modal">
@@ -656,11 +562,98 @@ Confirmation pattern:
 </div>
 ```
 
+`wb-overlay` is for content-first focus states where the content itself is primary and dialog chrome is secondary.
+
+Use it for:
+
+- media viewers and lightbox-style enlargement with `wb-media`
+- minimal-chrome viewer overlays
+- content-first focus surfaces where footer/button chrome should stay minimal
+
+Do not use `wb-overlay` as a casual replacement for structured modal dialogs that already fit `wb-modal`.
+
+Canonical media viewer:
+
+```html
+<figure class="wb-media">
+  <button class="wb-btn wb-btn-ghost wb-block wb-w-full wb-p-0" type="button" data-wb-overlay-open="media-viewer-1" aria-label="Open dashboard overview">
+    <img class="wb-media-img" src="/images/demo-shot.jpg" alt="Analytics dashboard with KPI cards and a weekly chart">
+  </button>
+  <figcaption class="wb-media-caption">Open the media in a focused overlay.</figcaption>
+</figure>
+
+<div class="wb-overlay" id="media-viewer-1" hidden>
+  <div class="wb-overlay-backdrop" data-wb-overlay-close></div>
+
+  <div class="wb-overlay-dialog wb-overlay-dialog-media" role="dialog" aria-modal="true" aria-labelledby="media-viewer-1-title">
+    <button class="wb-overlay-close" type="button" aria-label="Close" data-wb-overlay-close>
+      <i class="wb-icon wb-icon-x" aria-hidden="true"></i>
+    </button>
+
+    <div class="wb-overlay-body">
+      <figure class="wb-media">
+        <img class="wb-media-img" src="/images/demo-shot.jpg" alt="Analytics dashboard with KPI cards and a weekly chart">
+        <figcaption class="wb-media-caption" id="media-viewer-1-title">Dashboard overview enlarged inside the canonical overlay shell.</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+```
+
+Minimal subparts:
+
+- `wb-overlay` = viewport overlay wrapper
+- `wb-overlay-backdrop` = backdrop layer and close target
+- `wb-overlay-dialog` = centered content/viewer shell
+- `wb-overlay-body` = scrollable content region
+- `wb-overlay-close` = explicit close affordance
+
+Optional subparts:
+
+- `wb-overlay-header`
+- `wb-overlay-title`
+- `wb-overlay-footer`
+
+These optional subparts exist for the cases that need them, but the primary overlay job is still content-first rather than footer/action-first.
+
+Behavior contract:
+
+- open with `data-wb-overlay-open="overlay-id"`
+- close with `data-wb-overlay-close`
+- `WBOverlay.open(elOrId)` and `WBOverlay.close(elOrId)` are available for imperative control
+- ESC closes the active overlay
+- backdrop click closes the active overlay when the backdrop uses `data-wb-overlay-close`
+- focus moves into the overlay on open and returns to the opener on close
+- body scroll locks while an overlay is open
+
+Accessibility baseline:
+
+- put `role="dialog"` and `aria-modal="true"` on `.wb-overlay-dialog`
+- provide a real label through `aria-labelledby` or `aria-label`
+- always include a visible close control; do not rely only on backdrop click
+- keep inactive overlays `hidden`
+
+Do:
+
+- keep `wb-modal` as the first choice for confirms, forms, and action dialogs
+- treat `wb-overlay` as the content-first shell for media viewers and similar viewer states
+- keep overlay content semantically honest
+- use `wb-media` inside media-viewer overlays instead of overlay-local image classes
+
+Do not:
+
+- demote `wb-modal` when the job is still a modal dialog
+- invent a separate `wb-lightbox` system for the same job
+- present `wb-overlay` and `wb-modal` as interchangeable defaults
+- rely only on clicking outside to close
+- hide close behavior in app-local scripts
+- duplicate the same content once for inline display and again for the viewer unless the real UX requires it
+
 ### Drawers
 
 `wb-drawer` remains the shipped side-sheet primitive.
 
-Use it when the overlay job is specifically an edge-attached panel rather than a centered dialog. `wb-overlay` is the canonical general overlay shell; `wb-drawer` is the current specialized off-canvas implementation.
+Use it when the overlay job is specifically an edge-attached panel rather than a centered dialog or content-first viewer. `wb-modal` remains the dialog-focused choice; `wb-overlay` remains the viewer/content-first choice.
 
 ```html
 <button class="wb-btn wb-btn-secondary" data-wb-toggle="drawer" data-wb-target="#settings-drawer">
@@ -1296,11 +1289,13 @@ Also shipped for editorial/marketing surfaces:
 
 ## Overlay Runtime Infrastructure
 
-This package also ships shared internal overlay infrastructure for anchored floating UI such as dropdowns, popovers, tooltips, and command-style panels.
+This package also ships shared internal overlay infrastructure for anchored floating UI and top-layer surfaces such as dropdowns, popovers, tooltips, toasts, modals, and content overlays.
 
 Canonical rule:
 
-- public `wb-overlay` = centered viewport overlay primitive for focus-above-page content
+- `wb-overlay-root` = shared internal top-layer infrastructure root
+- public `wb-modal` = structured dialog primitive on the shared dialog layer
+- public `wb-overlay` = content-first viewer-style overlay primitive on the shared dialog layer
 - internal overlay infrastructure = shared root/layer runtime used by anchored or portaled floating UI
 
 Anchored overlay notes:
@@ -1308,6 +1303,7 @@ Anchored overlay notes:
 - authored markup for dropdowns and popovers stays inline with the trigger
 - in JS mode the active floating node is rendered under the shared `#wb-overlay-root` layer to avoid clipping
 - `WBDropdown`, `WBPopover`, and `WBTooltip` are consumers of the same internal layer utilities
+- `WBModal` and `WBOverlay` also consume the shared dialog/top-layer runtime instead of shipping unrelated overlay engines
 - do not build separate per-component positioning engines or ad hoc z-index ladders
 
 Internal layer classes such as `wb-overlay-root`, `wb-overlay-layer`, and `wb-overlay-layer--anchored` are runtime infrastructure, not the primary public authoring contract for page-level dialogs.

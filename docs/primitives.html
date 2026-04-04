@@ -90,7 +90,7 @@
                       <tr><td>Primary actions and status</td><td><code>wb-btn</code>, <code>wb-badge</code>, <code>wb-status-pill</code>, <code>wb-action-group</code></td><td>Use these when the page needs clear actions, compact signals, and row-level controls.</td></tr>
                       <tr><td>Grouped information and data display</td><td><code>wb-card</code>, <code>wb-stat</code>, <code>wb-list</code>, <code>wb-callout</code>, <code>wb-table</code></td><td>Cards, stats, lists, and callouts are surfaces. Tables remain primitives. Choose by UI role, not by folder location.</td></tr>
                       <tr><td>Orientation and section switching</td><td><code>wb-breadcrumb</code>, <code>wb-tabs</code>, <code>wb-pagination</code></td><td>Use these when the page needs context or section changes, but keep them secondary to the page title.</td></tr>
-                      <tr><td>Temporary or layered interaction</td><td><code>wb-overlay</code>, <code>wb-dropdown</code>, <code>wb-drawer</code>, <code>wb-accordion</code>, <code>wb-toast</code></td><td>Use these when the page needs temporary surfaces and explicit behavior hooks instead of hidden helper logic.</td></tr>
+                      <tr><td>Temporary or layered interaction</td><td><code>wb-modal</code>, <code>wb-overlay</code>, <code>wb-dropdown</code>, <code>wb-drawer</code>, <code>wb-accordion</code>, <code>wb-toast</code></td><td>Use these when the page needs temporary surfaces and explicit behavior hooks instead of hidden helper logic. Choose <code>wb-modal</code> for structured dialogs and <code>wb-overlay</code> for content-first viewer states.</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -304,12 +304,12 @@
                   </div>
 
                       <div class="wb-card">
-                        <div class="wb-card-header"><h3 class="wb-card-title">Accordion, overlay, drawer</h3></div>
+                        <div class="wb-card-header"><h3 class="wb-card-title">Accordion, modal, overlay, drawer</h3></div>
                         <div class="wb-card-body wb-stack-4">
                           <div class="wb-accordion">
                             <div class="wb-accordion-item is-open">
                               <button class="wb-accordion-trigger"><span>What counts as a primitive?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
-                              <div class="wb-accordion-body">A primitive is an atomic control or local UI contract such as a button, input, table, overlay, dropdown, or tabs. Cards, stats, callouts, lists, toolbars, filter bars, and empty states are surfaces.</div>
+                              <div class="wb-accordion-body">A primitive is an atomic control or local UI contract such as a button, input, table, modal, overlay, dropdown, or tabs. Cards, stats, callouts, lists, toolbars, filter bars, and empty states are surfaces.</div>
                             </div>
                             <div class="wb-accordion-item">
                               <button class="wb-accordion-trigger"><span>What does not count?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
@@ -318,6 +318,7 @@
                           </div>
 
                           <div class="wb-cluster">
+                            <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveModal">Open modal</button>
                             <button class="wb-btn wb-btn-outline" type="button" data-wb-overlay-open="primitiveOverlay">Open overlay</button>
                             <figure class="wb-media">
                               <button class="wb-btn wb-btn-ghost wb-block wb-w-full wb-p-0" type="button" data-wb-overlay-open="primitiveMediaOverlay" aria-label="Open media viewer">
@@ -327,7 +328,7 @@
                             </figure>
                             <button class="wb-btn wb-btn-secondary" data-wb-toggle="drawer" data-wb-target="#primitiveDrawer">Open drawer</button>
                           </div>
-                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-overlay</code> is now the canonical general overlay shell. Use it for dialog content and media enlargement; keep <code>wb-drawer</code> for edge-attached panels.</p>
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-modal</code> is the canonical structured dialog primitive for confirms, forms, and action flows. <code>wb-overlay</code> is the content-first viewer primitive for media enlargement and minimal-chrome focus states.</p>
                         </div>
                       </div>
                 </div>
@@ -346,17 +347,23 @@
     </div>
   </div>
 
+  <div class="wb-modal wb-modal-sm" id="primitiveModal" role="dialog" aria-modal="true" aria-labelledby="primitiveModalTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveModalTitle">Primitive modal</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body"><p class="wb-m-0">Use <code>wb-modal</code> when the interaction is a real dialog with explicit structure, decisions, or footer actions.</p></div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button><button class="wb-btn wb-btn-primary">Confirm</button></div>
+    </div>
+  </div>
+
   <div class="wb-overlay" id="primitiveOverlay" hidden>
     <div class="wb-overlay-backdrop" data-wb-overlay-close></div>
     <div class="wb-overlay-dialog" role="dialog" aria-modal="true" aria-labelledby="primitiveOverlayTitle">
       <button class="wb-overlay-close" type="button" data-wb-overlay-close aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
       <div class="wb-overlay-body">
         <div class="wb-stack-4">
-          <h2 id="primitiveOverlayTitle">Primitive overlay</h2>
-          <p class="wb-m-0">This example uses the canonical <code>wb-overlay</code> contract with backdrop close, ESC close, focus return, and body scroll lock handled by shipped <code>WBOverlay</code> behavior.</p>
-          <div class="wb-cluster wb-cluster-end">
-            <button class="wb-btn wb-btn-secondary" type="button" data-wb-overlay-close>Close</button>
-          </div>
+          <h2 id="primitiveOverlayTitle">Content-first overlay</h2>
+          <p class="wb-m-0">This example keeps chrome light on purpose. Use <code>wb-overlay</code> when the content itself is primary and the shell should stay quieter than a full modal dialog.</p>
+          <p class="wb-m-0 wb-text-sm wb-text-muted">Backdrop close, ESC close, focus return, and body scroll lock are still handled by shipped <code>WBOverlay</code> behavior.</p>
         </div>
       </div>
     </div>
@@ -369,7 +376,7 @@
       <div class="wb-overlay-body">
         <figure class="wb-media">
           <img class="wb-media-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Workspace dashboard with charts and analytics cards">
-          <figcaption class="wb-media-caption" id="primitiveMediaOverlayTitle">Use <code>wb-overlay</code> with <code>wb-media</code> for enlargement instead of inventing a separate lightbox system.</figcaption>
+          <figcaption class="wb-media-caption" id="primitiveMediaOverlayTitle">Use <code>wb-overlay</code> with <code>wb-media</code> for enlargement instead of inventing a separate lightbox system or forcing media into a decision-style modal.</figcaption>
         </figure>
       </div>
     </div>

@@ -35,6 +35,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - long-form docs pages now use canonical `wb-section-nav` rails for local section navigation instead of ad hoc page-specific indexes
 - docs and playground local asset loaders now read the built package files from local published `packages/webblocks/dist/` paths
 - overlay guidance now treats `wb-overlay` as the public general overlay shell while keeping anchored dropdown/popover/tooltip layering as internal runtime infrastructure
+- overlay architecture wording now keeps `wb-modal` as the canonical public dialog pattern, narrows `wb-overlay` to content-first viewer-style overlays, and clarifies `wb-overlay-root` as shared infrastructure
 
 ### Removed
 - Breaking simplification: removed the old dashboard-only framed-surface family and converged all framed dashboard surfaces on `wb-card`, `wb-card-header`, `wb-card-title`, `wb-card-body`, and `wb-card-footer`

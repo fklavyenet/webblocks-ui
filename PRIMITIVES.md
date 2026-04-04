@@ -97,6 +97,12 @@ Primitives are controls and local UI contracts.
 
 They are not framed content regions.
 
+Overlay boundary inside primitives:
+
+- `wb-modal` = canonical structured dialog primitive for confirms, forms, and action/decision flows
+- `wb-overlay` = canonical content-first overlay primitive for media viewers and minimal-chrome viewer states
+- `wb-overlay-root` is shared runtime infrastructure, not a public page-level primitive to author directly
+
 ## Surfaces
 
 Surfaces are visible structured regions that are larger than a single primitive but smaller than a full page pattern.
