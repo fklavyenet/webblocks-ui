@@ -8148,6 +8148,13 @@ button.wb-game-card {
 
   .wb-content-footer {
     flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wb-s3);
+  }
+
+  .wb-content-prev,
+  .wb-content-next {
+    width: 100%;
   }
 
   .wb-content-next {
