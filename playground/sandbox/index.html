@@ -9,29 +9,89 @@
   <link rel="stylesheet" href="sandbox.css">
 </head>
 <body>
-  <div class="wb-sandbox-app">
-    <header class="wb-navbar wb-navbar-glass wb-sandbox-topbar">
-      <div class="wb-container-full wb-sandbox-topbar-inner">
-        <a href="../../docs/index.html" class="wb-sandbox-brand" aria-label="WebBlocks UI docs home">
-          <span class="wb-sandbox-brand-copy">
-            <span>WebBlocks UI</span>
-            <span class="wb-sandbox-brand-note">UI building blocks for humans and AI</span>
-          </span>
-        </a>
-        <div class="wb-sandbox-header-main wb-min-w-0">
+  <div class="wb-dashboard-shell wb-sandbox-app">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
+    <aside class="wb-sandbox-rail wb-sidebar" id="playgroundSidebar">
+      <a href="../../docs/index.html" class="wb-sidebar-brand">
+        <span class="wb-sidebar-brand-copy">
+          <span>WebBlocks UI</span>
+          <span class="wb-sidebar-brand-note">UI building blocks for humans and AI</span>
+        </span>
+      </a>
+
+      <div class="wb-sandbox-rail-body">
+        <div class="wb-sidebar-nav">
+          <div class="wb-sidebar-section wb-sandbox-rail-section">
+            <span class="wb-sidebar-label">Workspace</span>
+            <div class="wb-stack-2">
+              <h2 class="wb-m-0 wb-sandbox-rail-title">Playground</h2>
+              <p class="wb-m-0 wb-text-sm wb-text-muted">Choose a starter, inspect the structure, and move into the matching docs page.</p>
+            </div>
+          </div>
+
+          <div class="wb-sidebar-section wb-sandbox-rail-section">
+            <span class="wb-sidebar-label">Starter</span>
+            <label class="wb-sandbox-control-group">
+              <select class="wb-select" data-sandbox-example></select>
+            </label>
+          </div>
+
+          <div class="wb-sidebar-section wb-sandbox-rail-section">
+            <span class="wb-sidebar-label">Selected example</span>
+            <div class="wb-stack-2">
+              <h3 class="wb-m-0" data-sandbox-example-title>Starter example</h3>
+              <p class="wb-m-0 wb-text-sm wb-text-muted" data-sandbox-example-description></p>
+            </div>
+            <div class="wb-list wb-list-sm wb-mt-3">
+              <div class="wb-list-item">
+                <div class="wb-list-item-text">
+                  <span class="wb-list-item-title">What to inspect</span>
+                  <span class="wb-list-item-sub" data-sandbox-example-hint></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wb-sidebar-section wb-sandbox-rail-section">
+            <span class="wb-sidebar-label">Related docs</span>
+            <div class="wb-link-list" data-sandbox-related-docs></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wb-sidebar-footer">
+        <div class="wb-callout wb-callout-info">
+          <strong class="wb-callout-title">AI workflow</strong>
+          Keep the markup HTML-only, prefer real shipped <code>wb-*</code> classes, and compare larger structures with the matching docs example before trusting AI output.
+        </div>
+        <p class="wb-text-xs wb-text-muted wb-mt-3 wb-mb-0">WebBlocks UI v2.3.7</p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-sandbox-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#playgroundSidebar" aria-expanded="false" aria-controls="playgroundSidebar">
+          <i class="wb-icon wb-icon-menu"></i>
+          Menu
+        </button>
+
+        <div class="wb-topbar-identity wb-min-w-0">
+          <div class="wb-topbar-identity-copy">
+            <span class="wb-topbar-context">HTML-only workspace for testing shipped WebBlocks UI markup</span>
+          </div>
+        </div>
+
+        <div class="wb-navbar-spacer"></div>
+
+        <div class="wb-sandbox-header-meta">
           <nav class="wb-sandbox-header-breadcrumb" aria-label="Breadcrumb">
             <ol class="wb-breadcrumb wb-breadcrumb-inline">
               <li class="wb-breadcrumb-item"><a href="../../docs/index.html">WebBlocks UI</a></li>
               <li class="wb-breadcrumb-item is-active"><span aria-current="page">Playground</span></li>
             </ol>
           </nav>
-          <div class="wb-topbar-identity wb-min-w-0">
-            <div class="wb-topbar-identity-copy">
-              <span class="wb-topbar-context">HTML-only workspace for testing shipped WebBlocks UI markup</span>
-            </div>
-          </div>
-        </div>
-        <div class="wb-sandbox-header-meta">
+
           <div class="wb-topbar-actions wb-cluster wb-cluster-2">
             <button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button>
             <div class="wb-dropdown wb-dropdown-end">
@@ -50,124 +110,77 @@
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <main class="wb-sandbox-workspace-shell">
-      <aside class="wb-sandbox-rail wb-sidebar">
-        <div class="wb-sandbox-rail-body">
-          <div class="wb-sidebar-nav">
-            <div class="wb-sidebar-section wb-sandbox-rail-section">
-              <span class="wb-sidebar-label">Workspace</span>
-              <div class="wb-stack-2">
-                <h2 class="wb-m-0 wb-sandbox-rail-title">Playground</h2>
-                <p class="wb-m-0 wb-text-sm wb-text-muted">Choose a starter, inspect the structure, and move into the matching docs page.</p>
+      <main class="wb-dashboard-main wb-sandbox-main">
+        <div class="wb-sandbox-workspace-shell">
+          <section class="wb-card wb-sandbox-panel wb-sandbox-editor-panel">
+            <div class="wb-card-header wb-sandbox-panel-header">
+              <div class="wb-sandbox-panel-heading">
+                <div>
+                  <h2 class="wb-m-0">HTML editor</h2>
+                  <p class="wb-m-0 wb-text-sm wb-text-muted">Paste plain HTML that uses canonical <code>wb-*</code> classes or start from a shipped example.</p>
+                </div>
+                <span class="wb-badge" data-sandbox-status>Ready</span>
               </div>
             </div>
-
-            <div class="wb-sidebar-section wb-sandbox-rail-section">
-              <span class="wb-sidebar-label">Starter</span>
-              <label class="wb-sandbox-control-group">
-                <select class="wb-select" data-sandbox-example></select>
-              </label>
+            <div class="wb-card-body wb-sandbox-panel-body wb-sandbox-editor-body">
+              <label class="wb-sr-only" for="sandboxEditor">Playground HTML</label>
+              <textarea id="sandboxEditor" class="wb-textarea wb-sandbox-editor" spellcheck="false" data-sandbox-editor></textarea>
             </div>
-
-            <div class="wb-sidebar-section wb-sandbox-rail-section">
-              <span class="wb-sidebar-label">Selected example</span>
-              <div class="wb-stack-2">
-                <h3 class="wb-m-0" data-sandbox-example-title>Starter example</h3>
-                <p class="wb-m-0 wb-text-sm wb-text-muted" data-sandbox-example-description></p>
-              </div>
-              <div class="wb-list wb-list-sm wb-mt-3">
-                <div class="wb-list-item">
-                  <div class="wb-list-item-text">
-                    <span class="wb-list-item-title">What to inspect</span>
-                    <span class="wb-list-item-sub" data-sandbox-example-hint></span>
+            <div class="wb-card-body wb-sandbox-panel-foot">
+              <div class="wb-sandbox-toolbar">
+                <div class="wb-sandbox-toolbar-copy">
+                  <strong>Markup actions</strong>
+                  <p class="wb-m-0 wb-text-sm wb-text-muted">Reset to the selected starter or copy the current HTML without leaving the workspace.</p>
+                </div>
+                <div class="wb-sandbox-toolbar-controls">
+                  <div class="wb-sandbox-control-group">
+                    <span class="wb-label">Actions</span>
+                    <div class="wb-cluster wb-cluster-2">
+                      <button type="button" class="wb-btn wb-btn-ghost wb-btn-sm" data-sandbox-reset>Reset</button>
+                      <button type="button" class="wb-btn wb-btn-outline wb-btn-sm" data-sandbox-copy>Copy HTML</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </section>
 
-            <div class="wb-sidebar-section wb-sandbox-rail-section">
-              <span class="wb-sidebar-label">Related docs</span>
-              <div class="wb-link-list" data-sandbox-related-docs></div>
-            </div>
-          </div>
-        </div>
-        <div class="wb-sidebar-footer">
-          <div class="wb-callout wb-callout-info">
-            <strong class="wb-callout-title">AI workflow</strong>
-            Keep the markup HTML-only, prefer real shipped <code>wb-*</code> classes, and compare larger structures with the matching docs example before trusting AI output.
-          </div>
-          <p class="wb-text-xs wb-text-muted wb-mt-3 wb-mb-0">WebBlocks UI v2.3.7</p>
-        </div>
-      </aside>
-
-      <section class="wb-card wb-sandbox-panel wb-sandbox-editor-panel">
-        <div class="wb-card-header wb-sandbox-panel-header">
-          <div class="wb-sandbox-panel-heading">
-            <div>
-              <h2 class="wb-m-0">HTML editor</h2>
-              <p class="wb-m-0 wb-text-sm wb-text-muted">Paste plain HTML that uses canonical <code>wb-*</code> classes or start from a shipped example.</p>
-            </div>
-            <span class="wb-badge" data-sandbox-status>Ready</span>
-          </div>
-        </div>
-        <div class="wb-card-body wb-sandbox-panel-body wb-sandbox-editor-body">
-          <label class="wb-sr-only" for="sandboxEditor">Playground HTML</label>
-          <textarea id="sandboxEditor" class="wb-textarea wb-sandbox-editor" spellcheck="false" data-sandbox-editor></textarea>
-        </div>
-        <div class="wb-card-body wb-sandbox-panel-foot">
-          <div class="wb-sandbox-toolbar">
-            <div class="wb-sandbox-toolbar-copy">
-              <strong>Markup actions</strong>
-              <p class="wb-m-0 wb-text-sm wb-text-muted">Reset to the selected starter or copy the current HTML without leaving the workspace.</p>
-            </div>
-            <div class="wb-sandbox-toolbar-controls">
-              <div class="wb-sandbox-control-group">
-                <span class="wb-label">Actions</span>
-                <div class="wb-cluster wb-cluster-2">
-                  <button type="button" class="wb-btn wb-btn-ghost wb-btn-sm" data-sandbox-reset>Reset</button>
-                  <button type="button" class="wb-btn wb-btn-outline wb-btn-sm" data-sandbox-copy>Copy HTML</button>
+          <section class="wb-card wb-sandbox-panel wb-sandbox-preview-panel">
+            <div class="wb-card-header wb-sandbox-panel-header">
+              <div class="wb-sandbox-panel-heading">
+                <div class="wb-sandbox-panel-copy">
+                  <h2 class="wb-m-0">Live preview</h2>
+                  <p class="wb-m-0 wb-text-sm wb-text-muted">Desktop uses the full preview panel width. Tablet and mobile still constrain the simulated viewport.</p>
+                </div>
+                <div class="wb-sandbox-panel-tools">
+                  <div class="wb-cluster wb-cluster-2 wb-sandbox-width-switcher" data-sandbox-widths>
+                    <button type="button" class="wb-btn wb-btn-sm" data-sandbox-width="desktop">Desktop</button>
+                    <button type="button" class="wb-btn wb-btn-ghost wb-btn-sm" data-sandbox-width="tablet">Tablet</button>
+                    <button type="button" class="wb-btn wb-btn-ghost wb-btn-sm" data-sandbox-width="mobile">Mobile</button>
+                  </div>
+                  <span class="wb-text-sm wb-text-muted" data-sandbox-width-label>Desktop preview</span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="wb-card wb-sandbox-panel wb-sandbox-preview-panel">
-        <div class="wb-card-header wb-sandbox-panel-header">
-          <div class="wb-sandbox-panel-heading">
-            <div class="wb-sandbox-panel-copy">
-              <h2 class="wb-m-0">Live preview</h2>
-              <p class="wb-m-0 wb-text-sm wb-text-muted">Desktop uses the full preview panel width. Tablet and mobile still constrain the simulated viewport.</p>
-            </div>
-            <div class="wb-sandbox-panel-tools">
-              <div class="wb-cluster wb-cluster-2 wb-sandbox-width-switcher" data-sandbox-widths>
-                <button type="button" class="wb-btn wb-btn-sm" data-sandbox-width="desktop">Desktop</button>
-                <button type="button" class="wb-btn wb-btn-ghost wb-btn-sm" data-sandbox-width="tablet">Tablet</button>
-                <button type="button" class="wb-btn wb-btn-ghost wb-btn-sm" data-sandbox-width="mobile">Mobile</button>
+            <div class="wb-card-body wb-sandbox-panel-body wb-sandbox-preview-body">
+              <div class="wb-sandbox-preview-shell">
+                <div class="wb-sandbox-preview-stage is-preview-desktop" data-sandbox-stage>
+                  <iframe class="wb-sandbox-frame" title="WebBlocks UI Playground preview" sandbox="allow-scripts" referrerpolicy="no-referrer" data-sandbox-preview></iframe>
+                </div>
               </div>
-              <span class="wb-text-sm wb-text-muted" data-sandbox-width-label>Desktop preview</span>
             </div>
-          </div>
-        </div>
-        <div class="wb-card-body wb-sandbox-panel-body wb-sandbox-preview-body">
-          <div class="wb-sandbox-preview-shell">
-            <div class="wb-sandbox-preview-stage is-preview-desktop" data-sandbox-stage>
-              <iframe class="wb-sandbox-frame" title="WebBlocks UI Playground preview" sandbox="allow-scripts" referrerpolicy="no-referrer" data-sandbox-preview></iframe>
+            <div class="wb-card-body wb-sandbox-panel-foot wb-sandbox-preview-foot">
+              <div class="wb-stack-3">
+                <p class="wb-m-0 wb-text-sm wb-text-muted">The playground keeps feedback compact. It highlights preview changes, likely class issues, and blocked content without acting like a full linter.</p>
+                <div class="wb-list wb-list-sm" data-sandbox-warnings></div>
+              </div>
             </div>
-          </div>
+          </section>
         </div>
-        <div class="wb-card-body wb-sandbox-panel-foot wb-sandbox-preview-foot">
-          <div class="wb-stack-3">
-            <p class="wb-m-0 wb-text-sm wb-text-muted">The playground keeps feedback compact. It highlights preview changes, likely class issues, and blocked content without acting like a full linter.</p>
-            <div class="wb-list wb-list-sm" data-sandbox-warnings></div>
-          </div>
-        </div>
-      </section>
-    </main>
+      </main>
+    </div>
   </div>
 
   <script src="sandbox.js"></script>
