@@ -109,18 +109,23 @@
 
               <section class="wb-stack-4" id="reusable-section-nav">
                 <h2>Reusable section nav</h2>
-                <p>`wb-section-nav` is the canonical local navigation pattern for settings rails, docs side navigation, and section-level page indexes.</p>
+                <p>`wb-section-nav` is the canonical local navigation pattern for settings rails, docs side navigation, and section-level page indexes. When links target real in-page anchors, runtime should own the active state.</p>
                 <div class="wb-grid-2">
                   <div class="wb-card">
                     <div class="wb-card-body wb-stack-3">
                       <nav class="wb-section-nav" aria-label="Example section navigation">
                         <div class="wb-section-nav-title">Sections</div>
                         <ul class="wb-section-nav-list">
-                          <li class="wb-section-nav-item"><a class="wb-section-nav-link is-active" href="#" aria-current="page">Overview</a></li>
-                          <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#">Installation</a></li>
-                          <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#">Patterns</a></li>
+                          <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#section-nav-overview">Overview</a></li>
+                          <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#section-nav-installation">Installation</a></li>
+                          <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#section-nav-patterns">Patterns</a></li>
                         </ul>
                       </nav>
+                      <div class="wb-stack-2 wb-text-sm wb-text-muted">
+                        <div id="section-nav-overview">Overview keeps the local context visible while you read.</div>
+                        <div id="section-nav-installation">Installation can become active from hash navigation or scroll position.</div>
+                        <div id="section-nav-patterns">Patterns stays inactive until it becomes the current reading section.</div>
+                      </div>
                     </div>
                   </div>
                   <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Pattern boundary</strong> Use `wb-section-nav` for local section switching inside a page or shell. It is not the global sidebar, not breadcrumb, and not a replacement for primary application navigation.</div>

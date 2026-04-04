@@ -99,6 +99,7 @@ cat \
   "$ROOT/src/js/tabs.js" \
   "$ROOT/src/js/accordion.js" \
   "$ROOT/src/js/sidebar.js" \
+  "$ROOT/src/js/section-nav.js" \
   "$ROOT/src/js/nav-group.js" \
   "$ROOT/src/js/drawer.js" \
   "$ROOT/src/js/command-palette.js" \

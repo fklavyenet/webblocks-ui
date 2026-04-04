@@ -1131,7 +1131,8 @@ Subparts:
 Active state:
 
 - use `is-active` on the current link
-- pair it with `aria-current="page"` when the current route/section is represented in the markup
+- pair it with `aria-current="page"` when the current route is truly known in static markup
+- for in-page anchor navigation, let runtime apply `is-active` and `aria-current="location"` based on the current hash or reading position instead of hardcoding a fake current item
 
 Semantic rule:
 

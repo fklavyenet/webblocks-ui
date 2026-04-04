@@ -211,7 +211,8 @@ Subparts:
 Active state:
 
 - use `is-active` on the current link
-- also include `aria-current="page"` when the link points to the current section/page state
+- include `aria-current="page"` when the current route is genuinely known in static markup
+- for in-page anchor menus, let runtime apply `is-active` and `aria-current="location"` from the real current section instead of hardcoding a fake active item
 
 Semantic guidance:
 
