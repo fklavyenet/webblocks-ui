@@ -43,6 +43,11 @@
   align-items: center;
 }
 
+.wb-sandbox-example-meta {
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+}
+
 .wb-sandbox-editor {
   min-height: 38rem;
   width: 100%;
@@ -87,6 +92,10 @@
 
 [data-sandbox-warnings] {
   min-height: 10rem;
+}
+
+[data-sandbox-related-docs] {
+  gap: var(--wb-s3);
 }
 
 @media (max-width: 900px) {

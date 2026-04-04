@@ -87,6 +87,22 @@
                   <label class="wb-sr-only" for="sandboxEditor">Playground HTML</label>
                   <textarea id="sandboxEditor" class="wb-textarea wb-sandbox-editor" spellcheck="false" data-sandbox-editor></textarea>
                 </div>
+                <div class="wb-card-body wb-sandbox-example-meta">
+                  <div class="wb-stack-3">
+                    <div>
+                      <h3 class="wb-m-0" data-sandbox-example-title>Starter example</h3>
+                      <p class="wb-m-0 wb-text-sm wb-text-muted" data-sandbox-example-description></p>
+                    </div>
+                    <div class="wb-list wb-list-sm">
+                      <div class="wb-list-item">
+                        <div class="wb-list-item-text">
+                          <span class="wb-list-item-title">What this example shows</span>
+                          <span class="wb-list-item-sub" data-sandbox-example-hint></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </article>
 
               <article class="wb-card wb-sandbox-panel">
@@ -108,49 +124,50 @@
             <section class="wb-grid-2 wb-sandbox-support-grid">
               <article class="wb-card wb-sandbox-panel">
                 <div class="wb-card-header">
-                  <h2 class="wb-m-0">Warnings and notes</h2>
+                  <h2 class="wb-m-0">Preview feedback</h2>
                 </div>
                 <div class="wb-card-body wb-stack-3">
-                  <p class="wb-m-0 wb-text-sm wb-text-muted">The playground does lightweight validation only. It reports sanitization changes and likely class-name mistakes without acting like a full linter.</p>
+                  <p class="wb-m-0 wb-text-sm wb-text-muted">The playground keeps feedback compact. It highlights preview changes, likely class issues, and blocked content without acting like a full linter.</p>
                   <div class="wb-list wb-list-sm" data-sandbox-warnings></div>
                 </div>
               </article>
 
               <article class="wb-card wb-sandbox-panel">
                 <div class="wb-card-header">
-                  <h2 class="wb-m-0">Usage notes</h2>
+                  <h2 class="wb-m-0">AI workflow and docs</h2>
                 </div>
                 <div class="wb-card-body wb-stack-3">
                   <div class="wb-callout wb-callout-accent">
-                    <strong class="wb-callout-title">V1 limits are deliberate</strong>
-                    The playground accepts HTML only. Custom CSS, custom JavaScript, inline handlers, and external user-provided assets are intentionally excluded so preview behavior stays focused and safe.
+                    <strong class="wb-callout-title">Using AI-generated HTML?</strong>
+                    Before trusting the result, confirm that the snippet uses real <code>wb-*</code> classes, sticks to shipped primitives or patterns, and stays inside HTML-only scope.
                   </div>
                   <div class="wb-list wb-list-sm">
                     <div class="wb-list-item">
                       <div class="wb-list-item-text">
-                        <span class="wb-list-item-title">Use real WebBlocks snippets</span>
-                        <span class="wb-list-item-sub">The iframe loads the canonical CDN CSS, icons CSS, and JavaScript so primitives and patterns behave like the shipped package.</span>
+                        <span class="wb-list-item-title">Check the class names</span>
+                        <span class="wb-list-item-sub">Prefer real shipped <code>wb-*</code> classes and simple semantic HTML over invented wrappers or helper vocabularies.</span>
                       </div>
                     </div>
                     <div class="wb-list-item">
                       <div class="wb-list-item-text">
-                        <span class="wb-list-item-title">External assets are blocked</span>
-                        <span class="wb-list-item-sub">Remote images, stylesheets, scripts, and embeds from user HTML are intentionally blocked so the preview stays isolated and predictable.</span>
+                        <span class="wb-list-item-title">Use shipped patterns when possible</span>
+                        <span class="wb-list-item-sub">If the markup is trying to approximate an auth shell, hero, or dashboard frame, compare it against the matching docs example instead of layering more custom structure.</span>
                       </div>
                     </div>
                     <div class="wb-list-item">
                       <div class="wb-list-item-text">
-                        <span class="wb-list-item-title">Theme attributes work</span>
-                        <span class="wb-list-item-sub">If your snippet includes safe root attributes such as <code>data-mode</code> or <code>data-accent</code>, the preview document applies them.</span>
+                        <span class="wb-list-item-title">External assets are blocked here</span>
+                        <span class="wb-list-item-sub">Remote images, stylesheets, scripts, and embeds from pasted HTML are intentionally blocked, and custom CSS or JavaScript are still out of scope in Playground V2.</span>
                       </div>
                     </div>
                     <div class="wb-list-item">
                       <div class="wb-list-item-text">
-                        <span class="wb-list-item-title">Local progress is preserved</span>
-                        <span class="wb-list-item-sub">The current HTML, selected example, and preview width are saved to local storage so refreshes do not wipe your work.</span>
+                        <span class="wb-list-item-title">Related docs for this example</span>
+                        <span class="wb-list-item-sub">Use the links below when you want the source-accurate docs page behind the selected starter example.</span>
                       </div>
                     </div>
                   </div>
+                  <div class="wb-link-list" data-sandbox-related-docs></div>
                 </div>
               </article>
             </section>

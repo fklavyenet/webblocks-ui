@@ -32,7 +32,13 @@
   var EXAMPLES = [
     {
       id: 'simple-card',
-      label: 'Simple card',
+      label: 'Card actions',
+      description: 'A compact card surface with a quiet status badge, supporting copy, and a simple action row.',
+      hint: 'Look at the card body rhythm, the badge placement, and how actions stay secondary to the content.',
+      docs: [
+        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Cards, badges, and actions' },
+        { href: '../../docs/patterns.html', label: 'Patterns', meta: 'When to start from a full page job' }
+      ],
       html: [
         '<div class="wb-card">',
         '  <div class="wb-card-body wb-stack-4">',
@@ -51,7 +57,13 @@
     },
     {
       id: 'form-fields',
-      label: 'Form fields',
+      label: 'Invite form fields',
+      description: 'A small stacked form that demonstrates labels, inputs, selects, input groups, field errors, and action rhythm.',
+      hint: 'Check how labels, controls, and the input-group stay explicit without adding custom wrappers or scripts.',
+      docs: [
+        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Inputs, selects, errors, input groups' },
+        { href: '../../docs/getting-started.html', label: 'Getting Started', meta: 'Choosing the nearest shipped example' }
+      ],
       html: [
         '<div class="wb-card">',
         '  <div class="wb-card-body wb-stack-4">',
@@ -91,7 +103,13 @@
     },
     {
       id: 'auth-card',
-      label: 'Auth card',
+      label: 'Auth sign-in card',
+      description: 'A focused auth snippet using the shipped auth-shell vocabulary instead of an invented login wrapper.',
+      hint: 'Look at the header, the centered single-task flow, and the way simple form controls fit inside the auth structure.',
+      docs: [
+        { href: '../../docs/pattern-auth-shell.html', label: 'Auth Shell', meta: 'Canonical auth pattern' },
+        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Inputs, buttons, and switches' }
+      ],
       html: [
         '<div class="wb-auth-shell">',
         '  <div class="wb-auth-card">',
@@ -126,8 +144,54 @@
       ].join('\n')
     },
     {
+      id: 'marketing-hero',
+      label: 'Marketing hero',
+      description: 'A canonical public-facing hero composition built from the shipped page-intro layout classes and a simple support row.',
+      hint: 'Look at the section rhythm, title-to-lead relationship, action cluster, and optional proof chips rather than inventing a fake wb-hero class.',
+      docs: [
+        { href: '../../docs/pattern-marketing.html', label: 'Marketing', meta: 'Canonical landing page and hero guidance' },
+        { href: '../../docs/patterns.html', label: 'Patterns', meta: 'Why marketing is still a pattern choice' },
+        { href: '../../docs/getting-started.html', label: 'Getting Started', meta: 'Copy the nearest shipped example' }
+      ],
+      html: [
+        '<section class="wb-page-intro wb-section-sm">',
+        '  <div class="wb-page-intro-grid">',
+        '    <div class="wb-page-intro-copy">',
+        '      <p class="wb-page-eyebrow">Canonical hero composition</p>',
+        '      <h1 class="wb-page-intro-title">Build public pages with explicit HTML, not hidden marketing wrappers.</h1>',
+        '      <p class="wb-page-lead">Use shipped layout, heading, lead, and CTA rhythm so the structure stays clear for humans and AI-generated snippets alike.</p>',
+        '      <div class="wb-cluster wb-cluster-2">',
+        '        <a href="#" class="wb-btn wb-btn-primary wb-btn-lg">Start free</a>',
+        '        <a href="#" class="wb-btn wb-btn-outline wb-btn-lg">See features</a>',
+        '      </div>',
+        '      <ul class="wb-inline-list">',
+        '        <li class="wb-inline-list-item">HTML-first</li>',
+        '        <li class="wb-inline-list-item">AI-friendly</li>',
+        '        <li class="wb-inline-list-item">Zero framework lock-in</li>',
+        '      </ul>',
+        '    </div>',
+        '    <aside class="wb-page-intro-aside wb-stack-3">',
+        '      <h2 class="wb-m-0">Why this hero works</h2>',
+        '      <p class="wb-m-0">The copy stack stays explicit, the CTA count stays disciplined, and the supporting aside gives proof without turning the hero into a dashboard.</p>',
+        '      <div class="wb-stat">',
+        '        <div class="wb-stat-label">Custom CSS</div>',
+        '        <div class="wb-stat-value">0</div>',
+        '        <div class="wb-stat-delta">Built with shipped classes only</div>',
+        '      </div>',
+        '    </aside>',
+        '  </div>',
+        '</section>'
+      ].join('\n')
+    },
+    {
       id: 'toolbar-header',
-      label: 'Toolbar / header',
+      label: 'Page header + toolbar',
+      description: 'A pattern-oriented page header with breadcrumb, title, actions, and a toolbar row for secondary controls.',
+      hint: 'Check the hierarchy rule: breadcrumb optional, title primary, actions separate, toolbar below.',
+      docs: [
+        { href: '../../docs/patterns.html', label: 'Patterns', meta: 'Page jobs and header hierarchy' },
+        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Breadcrumbs, buttons, toolbar' }
+      ],
       html: [
         '<div class="wb-stack-4">',
         '  <div class="wb-page-header">',
@@ -166,6 +230,12 @@
     {
       id: 'dashboard-stats',
       label: 'Dashboard stats row',
+      description: 'A lightweight dashboard fragment showing page-header rhythm above a row of shipped stat surfaces.',
+      hint: 'Look at how the title sets context first, then the stats scan cleanly as separate framed regions.',
+      docs: [
+        { href: '../../docs/pattern-dashboard-shell.html', label: 'Dashboard Shell', meta: 'Admin frame and hierarchy' },
+        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Stats and surface composition' }
+      ],
       html: [
         '<div class="wb-stack-4">',
         '  <div class="wb-page-header">',
@@ -198,7 +268,12 @@
     },
     {
       id: 'table',
-      label: 'Table',
+      label: 'Table surface',
+      description: 'A canonical table surface where the toolbar stays a control row and the table itself remains the content primitive.',
+      hint: 'Check that wb-table-wrap owns the frame while the toolbar and header row keep their roles separate.',
+      docs: [
+        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'wb-table-wrap, wb-toolbar, wb-table' }
+      ],
       html: [
         '<div class="wb-table-wrap">',
         '  <div class="wb-toolbar wb-toolbar-sm">',
@@ -234,6 +309,12 @@
     {
       id: 'empty-state',
       label: 'Empty state',
+      description: 'A simple empty-state surface that shows icon, title, explanation, and a single next action.',
+      hint: 'Look at how the empty-state stays focused on one message and one action instead of filling the surface with extra controls.',
+      docs: [
+        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Empty states, icons, actions' },
+        { href: '../../docs/pattern-content-shell.html', label: 'Content Shell', meta: 'Text-first surfaces and calm flow' }
+      ],
       html: [
         '<div class="wb-card">',
         '  <div class="wb-card-body">',
@@ -251,7 +332,13 @@
     },
     {
       id: 'layout-demo',
-      label: 'Stack / cluster / split demo',
+      label: 'Layout primitives',
+      description: 'A direct demonstration of stack rhythm, cluster wrapping, split alignment, and auto-grid behavior.',
+      hint: 'Resize the preview width and watch which parts wrap, which parts stretch, and which parts stay aligned.',
+      docs: [
+        { href: '../../docs/layout.html', label: 'Layout', meta: 'Containers, grids, split, and flow primitives' },
+        { href: '../../docs/patterns.html', label: 'Patterns', meta: 'When layout should stay supportive' }
+      ],
       html: [
         '<div class="wb-stack-6">',
         '  <div class="wb-card">',
@@ -302,6 +389,10 @@
     preview: document.querySelector('[data-sandbox-preview]'),
     stage: document.querySelector('[data-sandbox-stage]'),
     warnings: document.querySelector('[data-sandbox-warnings]'),
+    exampleTitle: document.querySelector('[data-sandbox-example-title]'),
+    exampleDescription: document.querySelector('[data-sandbox-example-description]'),
+    exampleHint: document.querySelector('[data-sandbox-example-hint]'),
+    relatedDocs: document.querySelector('[data-sandbox-related-docs]'),
     status: document.querySelector('[data-sandbox-status]'),
     widthLabel: document.querySelector('[data-sandbox-width-label]'),
     widthButtons: Array.prototype.slice.call(document.querySelectorAll('[data-sandbox-width]')),
@@ -333,13 +424,14 @@
     var savedExample = safeReadStorage(STORAGE_KEYS.example);
     var savedWidth = safeReadStorage(STORAGE_KEYS.width);
     var savedHtml = safeReadStorage(STORAGE_KEYS.html);
-    var example = getExampleById(savedExample) || EXAMPLES[0];
+    var requestedExampleId = getRequestedExampleId();
+    var example = getExampleById(requestedExampleId || savedExample) || EXAMPLES[0];
 
     state.currentExample = example.id;
     state.width = isValidWidth(savedWidth) ? savedWidth : 'desktop';
 
     elements.example.value = state.currentExample;
-    elements.editor.value = savedHtml || example.html;
+    elements.editor.value = requestedExampleId ? example.html : (savedHtml || example.html);
   }
 
   function bindEvents() {
@@ -348,6 +440,7 @@
       state.currentExample = example.id;
       elements.editor.value = example.html;
       persistState();
+      renderExampleMeta(example);
       renderPreview();
     });
 
@@ -360,6 +453,7 @@
       var example = getExampleById(state.currentExample) || EXAMPLES[0];
       elements.editor.value = example.html;
       persistState();
+      renderExampleMeta(example);
       renderPreview();
       setStatus('Reset to starter', 'info');
     });
@@ -402,11 +496,13 @@
   function renderPreview() {
     var sourceHtml = elements.editor.value;
     var sanitized = sanitizeHtml(sourceHtml);
+    var currentExample = getExampleById(state.currentExample) || EXAMPLES[0];
 
     state.previewMessageToken = createPreviewMessageToken();
     elements.preview.srcdoc = buildPreviewDocument(sanitized.html, sanitized.rootAttributes, state.previewMessageToken);
-    renderWarnings(sanitized.warnings);
-    setStatus(sanitized.didSanitize ? 'Sanitized preview' : 'Preview up to date', sanitized.didSanitize ? 'warning' : 'success');
+    renderExampleMeta(currentExample);
+    renderWarnings(sanitized.feedback);
+    setStatus(sanitized.status.label, sanitized.status.tone);
     elements.preview.style.height = Math.max(420, state.previewHeight) + 'px';
     persistState();
   }
@@ -414,7 +510,7 @@
   function sanitizeHtml(input) {
     var parser = new DOMParser();
     var doc = parser.parseFromString(input, 'text/html');
-    var warnings = [];
+    var feedback = [];
     var unknownClasses = [];
     var rootAttributes = collectRootAttributes(doc.documentElement);
     var counters = {
@@ -457,48 +553,63 @@
     var didSanitize = counters.scripts + counters.handlers + counters.externalAssets + counters.unsafeEmbeds + counters.styles + counters.dataAttrs + counters.urls > 0;
 
     if (counters.scripts) {
-      warnings.push('Removed ' + counters.scripts + ' <script> tag' + pluralize(counters.scripts) + '.');
+      feedback.push({ title: 'Removed scripts', message: 'Removed ' + counters.scripts + ' <script> tag' + pluralize(counters.scripts) + '.' });
     }
 
     if (counters.handlers) {
-      warnings.push('Removed ' + counters.handlers + ' inline event handler attribute' + pluralize(counters.handlers) + '.');
+      feedback.push({ title: 'Removed inline handlers', message: 'Removed ' + counters.handlers + ' inline event handler attribute' + pluralize(counters.handlers) + '.' });
     }
 
     if (counters.externalAssets) {
-      warnings.push('Removed ' + counters.externalAssets + ' external asset tag' + pluralize(counters.externalAssets) + ' such as stylesheet links.');
+      feedback.push({ title: 'Blocked external assets', message: 'Removed ' + counters.externalAssets + ' external asset tag' + pluralize(counters.externalAssets) + ' such as stylesheet links.' });
     }
 
     if (counters.unsafeEmbeds) {
-      warnings.push('Removed ' + counters.unsafeEmbeds + ' unsafe embed element' + pluralize(counters.unsafeEmbeds) + '.');
+      feedback.push({ title: 'Removed embeds', message: 'Removed ' + counters.unsafeEmbeds + ' unsafe embed element' + pluralize(counters.unsafeEmbeds) + '.' });
     }
 
     if (counters.styles) {
-      warnings.push('Removed ' + counters.styles + ' <style> tag' + pluralize(counters.styles) + ' to keep the sandbox HTML-only.');
+      feedback.push({ title: 'Removed style blocks', message: 'Removed ' + counters.styles + ' <style> tag' + pluralize(counters.styles) + ' to keep the playground HTML-only.' });
     }
 
     if (counters.dataAttrs) {
-      warnings.push('Removed ' + counters.dataAttrs + ' non-WebBlocks data attribute' + pluralize(counters.dataAttrs) + '.');
+      feedback.push({ title: 'Removed extra data attributes', message: 'Removed ' + counters.dataAttrs + ' non-WebBlocks data attribute' + pluralize(counters.dataAttrs) + '.' });
     }
 
     if (counters.urls) {
-      warnings.push('Removed ' + counters.urls + ' unsafe URL attribute' + pluralize(counters.urls) + '.');
+      feedback.push({ title: 'Blocked unsafe URLs', message: 'Removed ' + counters.urls + ' unsafe URL attribute' + pluralize(counters.urls) + '.' });
     }
 
     if (unknownClasses.length) {
-      warnings.push('Possible unknown wb-* classes detected by a best-effort CSS check: ' + unknownClasses.join(', ') + '.');
+      feedback.push({ title: 'Possible class issues', message: 'Possible unknown wb-* classes detected by a best-effort CSS check: ' + unknownClasses.join(', ') + '.' });
     }
 
+    var status;
+
     if (didSanitize) {
-      warnings.unshift('Preview content was sanitized before rendering in the iframe.');
-    } else if (warnings.length) {
-      warnings.unshift('Potential issues were detected, but no markup had to be removed.');
+      status = {
+        label: 'Preview changed',
+        tone: 'warning'
+      };
+      feedback.unshift({ title: 'Preview changed', message: 'Unsafe or blocked markup was removed before rendering in the iframe preview.' });
+    } else if (feedback.length) {
+      status = {
+        label: 'Check classes',
+        tone: 'info'
+      };
+      feedback.unshift({ title: 'Preview rendered', message: 'No blocking markup was removed, but the playground found a few best-effort issues worth checking.' });
     } else {
-      warnings.push('No blocking issues detected. The preview is using your current HTML as-is.');
+      status = {
+        label: 'Preview unchanged',
+        tone: 'success'
+      };
+      feedback.push({ title: 'Preview unchanged', message: 'No blocking issues were found. The preview rendered your current HTML as-is.' });
     }
 
     return {
       html: doc.body.innerHTML.trim(),
-      warnings: warnings,
+      feedback: feedback,
+      status: status,
       didSanitize: didSanitize,
       rootAttributes: rootAttributes
     };
@@ -634,13 +745,67 @@
       title.className = 'wb-list-item-title';
       subtitle.className = 'wb-list-item-sub';
 
-      title.textContent = index === 0 ? 'Preview status' : 'Note';
-      subtitle.textContent = warning;
+      title.textContent = warning.title || (index === 0 ? 'Preview status' : 'Note');
+      subtitle.textContent = warning.message || '';
 
       text.appendChild(title);
       text.appendChild(subtitle);
       item.appendChild(text);
       elements.warnings.appendChild(item);
+    });
+  }
+
+  function renderExampleMeta(example) {
+    if (!example) {
+      return;
+    }
+
+    if (elements.exampleTitle) {
+      elements.exampleTitle.textContent = example.label;
+    }
+
+    if (elements.exampleDescription) {
+      elements.exampleDescription.textContent = example.description || '';
+    }
+
+    if (elements.exampleHint) {
+      elements.exampleHint.textContent = example.hint || '';
+    }
+
+    renderRelatedDocs(example.docs || []);
+  }
+
+  function renderRelatedDocs(links) {
+    if (!elements.relatedDocs) {
+      return;
+    }
+
+    elements.relatedDocs.innerHTML = '';
+
+    links.forEach(function (link) {
+      var anchor = document.createElement('a');
+      var main = document.createElement('div');
+      var title = document.createElement('span');
+      var meta = document.createElement('span');
+      var desc = document.createElement('div');
+
+      anchor.className = 'wb-link-list-item';
+      anchor.href = link.href;
+
+      main.className = 'wb-link-list-main';
+      title.className = 'wb-link-list-title';
+      meta.className = 'wb-link-list-meta';
+      desc.className = 'wb-link-list-desc';
+
+      title.textContent = link.label;
+      meta.textContent = 'Related docs';
+      desc.textContent = link.meta;
+
+      main.appendChild(title);
+      main.appendChild(meta);
+      anchor.appendChild(main);
+      anchor.appendChild(desc);
+      elements.relatedDocs.appendChild(anchor);
     });
   }
 
@@ -752,6 +917,17 @@
 
   function isValidWidth(width) {
     return width === 'desktop' || width === 'tablet' || width === 'mobile';
+  }
+
+  function getRequestedExampleId() {
+    if (!window.URLSearchParams) {
+      return null;
+    }
+
+    var params = new URLSearchParams(window.location.search);
+    var exampleId = params.get('example');
+
+    return getExampleById(exampleId) ? exampleId : null;
   }
 
   function isTrustedPreviewMessage(event) {
