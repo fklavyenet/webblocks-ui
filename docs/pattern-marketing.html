@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebBlocks UI - Marketing</title>
-  <meta name="description" content="Integrated marketing pattern example inside the main docs surface.">
+  <meta name="description" content="Canonical public-facing landing page example and hero composition guidance built only with shipped WebBlocks UI classes.">
   <script src="webblocks-assets.js"></script>
 </head>
 <body>
@@ -45,16 +45,159 @@
     <div class="wb-dashboard-body">
       <header class="wb-navbar wb-navbar-glass">
         <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
-        <div class="wb-topbar-identity wb-min-w-0"><div class="wb-topbar-identity-copy"><span class="wb-topbar-context">Pattern example: marketing</span></div></div>
+        <div class="wb-topbar-identity wb-min-w-0"><div class="wb-topbar-identity-copy"><span class="wb-topbar-context">Pattern example: marketing landing page</span></div></div>
         <div class="wb-navbar-spacer"></div>
-        <div class="wb-topbar-actions"><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button></div>
+        <div class="wb-topbar-actions"><a href="../playground/sandbox/" class="wb-topbar-action" aria-label="Open Playground" title="Open Playground"><i class="wb-icon wb-icon-code"></i></a><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button></div>
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-container wb-stack-8">
-          <section class="wb-hero wb-section"><div class="wb-hero-content"><p class="wb-hero-note">Marketing pattern example</p><h1 class="wb-hero-title">Use calmer rhythm when the page is public, editorial, or promotional.</h1><p class="wb-hero-text">Marketing surfaces should not inherit the density or chrome of an admin dashboard. Use broader spacing, stronger type hierarchy, and clearer calls to action.</p><div class="wb-hero-actions"><a href="pattern-auth-shell.html" class="wb-btn wb-btn-primary wb-btn-lg">Start with auth</a><a href="pattern-content-shell.html" class="wb-btn wb-btn-outline wb-btn-lg">Read content shell</a></div></div></section>
-          <section class="wb-content-columns"><div class="wb-stack-4"><h2>Pattern-first still applies</h2><p>Marketing is still a pattern choice. The page should feel different from a dashboard before any individual card or button is inspected.</p></div><div class="wb-stack-4"><h2>Shipped surfaces and primitives remain enough</h2><p>Buttons are primitives. Cards and promo blocks are surfaces. Icons stay in the asset layer. The difference is in the shell, spacing, and page rhythm.</p></div></section>
-          <section class="wb-grid-3 wb-section-sm"><div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-layout"></i></span><h2 class="wb-card-title">Public hierarchy</h2><p class="wb-m-0">Keep page sections more editorial and less operational.</p></div></div><div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-sparkles"></i></span><h2 class="wb-card-title">Clear message</h2><p class="wb-m-0">Lead with proposition and action instead of dense controls.</p></div></div><div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap"><i class="wb-icon wb-icon-palette"></i></span><h2 class="wb-card-title">Theme still ships</h2><p class="wb-m-0">Accent, preset, and font axes can change tone without custom CSS.</p></div></div></section>
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <nav class="wb-content-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Marketing</span></li></ol></nav>
+            <h1 class="wb-content-title">Marketing landing page example</h1>
+            <p class="wb-content-subtitle">This page is the canonical answer to whether WebBlocks UI can support a calm, public-facing homepage using only shipped classes, patterns, and utilities.</p>
+            <div class="wb-content-meta"><span>Public page</span><span class="wb-content-meta-divider"></span><span>Hero composition included</span><span class="wb-content-meta-divider"></span><span>No custom CSS</span></div>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Canonical use</strong> Use this example when you need a simple public homepage, want a copy-pasteable hero structure, or need to prove that WebBlocks UI can support calmer promotional composition without inventing new classes.</div>
+                <div class="wb-cluster wb-cluster-2"><a href="../playground/sandbox/" class="wb-btn wb-btn-primary">Open in Playground</a><a href="#hero-composition" class="wb-btn wb-btn-outline">Read hero guidance</a></div>
+              </section>
+
+              <section class="wb-card">
+                <div class="wb-card-body wb-stack-8">
+                  <header class="wb-navbar wb-navbar-filled">
+                    <div class="wb-navbar-brand">Acorn Cloud</div>
+                    <div class="wb-navbar-spacer"></div>
+                    <nav class="wb-navbar-nav" aria-label="Marketing navigation">
+                      <a href="#why" class="wb-navbar-link">Why</a>
+                      <a href="#features" class="wb-navbar-link">Features</a>
+                      <a href="#proof" class="wb-navbar-link">Proof</a>
+                    </nav>
+                    <div class="wb-navbar-end wb-cluster wb-cluster-2">
+                      <a href="#" class="wb-btn wb-btn-ghost wb-btn-sm">Sign in</a>
+                      <a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Start free</a>
+                    </div>
+                  </header>
+
+                  <section class="wb-page-intro wb-section-sm">
+                    <div class="wb-page-intro-grid">
+                      <div class="wb-page-intro-copy">
+                        <p class="wb-page-eyebrow">Canonical hero composition</p>
+                        <h2 class="wb-page-intro-title">Build public pages with explicit HTML, not hidden marketing wrappers.</h2>
+                        <p class="wb-page-lead">WebBlocks UI gives you enough shipped structure for a clean landing page: a section wrapper, a constrained container, a strong heading, supporting copy, an action cluster, and optional proof or side content.</p>
+                        <div class="wb-cluster wb-cluster-2">
+                          <a href="#" class="wb-btn wb-btn-primary wb-btn-lg">Start free</a>
+                          <a href="#features" class="wb-btn wb-btn-outline wb-btn-lg">See features</a>
+                        </div>
+                        <ul class="wb-inline-list" id="proof">
+                          <li class="wb-inline-list-item">HTML-first</li>
+                          <li class="wb-inline-list-item">Zero framework lock-in</li>
+                          <li class="wb-inline-list-item">AI-friendly snippets</li>
+                        </ul>
+                      </div>
+                      <aside class="wb-page-intro-aside wb-stack-3">
+                        <h3 class="wb-m-0">Why this hero stays canonical</h3>
+                        <p>It is built from shipped layout and pattern classes only. The headline, lead, actions, and support row stay explicit in the markup so teams can copy and trim the structure safely.</p>
+                        <div class="wb-grid-2">
+                          <div class="wb-stat"><div class="wb-stat-label">Build setup</div><div class="wb-stat-value">0</div><div class="wb-stat-delta">No extra tooling required</div></div>
+                          <div class="wb-stat"><div class="wb-stat-label">Time to first page</div><div class="wb-stat-value">Fast</div><div class="wb-stat-delta">Start from real examples</div></div>
+                        </div>
+                      </aside>
+                    </div>
+                  </section>
+
+                  <section class="wb-grid-3" id="why">
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-info"><i class="wb-icon wb-icon-code"></i></span><h3 class="wb-m-0">Readable structure</h3><p class="wb-m-0">The landing page stays understandable from the HTML because the composition uses explicit shipped layout and surface classes.</p></div></div>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-success"><i class="wb-icon wb-icon-layers"></i></span><h3 class="wb-m-0">Real shipped surfaces</h3><p class="wb-m-0">Cards, promo blocks, callouts, buttons, and nav all come from the same package instead of a separate presentation layer.</p></div></div>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-warning"><i class="wb-icon wb-icon-sparkles"></i></span><h3 class="wb-m-0">AI-friendly validation</h3><p class="wb-m-0">Generated snippets can be tested quickly in the Playground before they are copied into a real site or docs page.</p></div></div>
+                  </section>
+
+                  <section class="wb-stack-4" id="features">
+                    <div class="wb-split">
+                      <div>
+                        <p class="wb-eyebrow">Supporting value</p>
+                        <h3 class="wb-m-0">What this landing page proves</h3>
+                      </div>
+                      <a href="../playground/sandbox/" class="wb-action-link">Try these blocks in Playground</a>
+                    </div>
+                    <div class="wb-grid-2">
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Calm hierarchy</strong><p class="wb-m-0">Use larger rhythm, stronger headline contrast, and quieter support text than you would in an admin product shell.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>CTA structure</strong><p class="wb-m-0">Keep one primary action, one secondary action, and a short support row rather than stacking too many competing controls.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Proof blocks</strong><p class="wb-m-0">Stats, inline proof chips, or compact supporting cards can reinforce the proposition without creating a fake dashboard.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Copy-pasteable markup</strong><p class="wb-m-0">Each region can be copied as plain HTML and adapted quickly because no helper layer or custom class vocabulary is required.</p></div></div>
+                    </div>
+                  </section>
+
+                  <section class="wb-promo">
+                    <div class="wb-promo-copy">
+                      <p class="wb-eyebrow">Call to action</p>
+                      <h3 class="wb-promo-title">Need to test your own public-page HTML next?</h3>
+                      <p class="wb-promo-text">Open the Playground to paste the hero, swap copy, change actions, and preview the result with the same shipped WebBlocks assets used by these docs.</p>
+                    </div>
+                    <div class="wb-promo-actions">
+                      <a href="../playground/sandbox/" class="wb-btn wb-btn-primary">Open Playground</a>
+                      <a href="getting-started.html" class="wb-btn wb-btn-outline">Read setup guide</a>
+                    </div>
+                  </section>
+
+                  <footer class="wb-split wb-section-sm">
+                    <div class="wb-stack-2">
+                      <strong>Acorn Cloud</strong>
+                      <p class="wb-m-0 wb-text-muted">HTML-first UI building blocks for product teams and AI-assisted workflows.</p>
+                    </div>
+                    <div class="wb-cluster wb-cluster-2">
+                      <a href="#" class="wb-action-link">Pricing</a>
+                      <a href="#" class="wb-action-link">Docs</a>
+                      <a href="#" class="wb-action-link">Contact</a>
+                    </div>
+                  </footer>
+                </div>
+              </section>
+
+              <section class="wb-stack-4" id="hero-composition">
+                <h2>Canonical hero composition</h2>
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Default contract</strong> Use a section wrapper, a constrained inner grid, a copy stack with eyebrow, title, lead, action cluster, and optional support row, plus an optional side card for proof or product context.</div>
+                <div class="wb-list wb-list-sm">
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">When to use it</span><span class="wb-list-item-sub">Use this for public homepages, product intros, and calm promotional sections where message clarity matters more than dense controls.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Use these shipped classes</span><span class="wb-list-item-sub"><code>wb-section</code> or <code>wb-section-sm</code>, <code>wb-page-intro</code>, <code>wb-page-intro-grid</code>, <code>wb-page-intro-copy</code>, <code>wb-page-eyebrow</code>, <code>wb-page-intro-title</code>, <code>wb-page-lead</code>, <code>wb-cluster</code>, <code>wb-inline-list</code>, and optionally <code>wb-page-intro-aside</code>.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Do not do this</span><span class="wb-list-item-sub">Do not invent a fake <code>wb-hero</code> wrapper, do not stack too many equal CTAs, and do not turn the hero into a metrics dashboard.</span></div></div>
+                </div>
+                <div class="wb-card">
+                  <div class="wb-card-body">
+<pre><code>&lt;section class="wb-page-intro wb-section-sm"&gt;
+  &lt;div class="wb-page-intro-grid"&gt;
+    &lt;div class="wb-page-intro-copy"&gt;
+      &lt;p class="wb-page-eyebrow"&gt;Canonical hero composition&lt;/p&gt;
+      &lt;h1 class="wb-page-intro-title"&gt;Build public pages with explicit HTML.&lt;/h1&gt;
+      &lt;p class="wb-page-lead"&gt;Use shipped layout, title, copy, and CTA rhythm instead of inventing a new hero class.&lt;/p&gt;
+      &lt;div class="wb-cluster wb-cluster-2"&gt;
+        &lt;a href="#" class="wb-btn wb-btn-primary wb-btn-lg"&gt;Start free&lt;/a&gt;
+        &lt;a href="#" class="wb-btn wb-btn-outline wb-btn-lg"&gt;See features&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;ul class="wb-inline-list"&gt;
+        &lt;li class="wb-inline-list-item"&gt;HTML-first&lt;/li&gt;
+        &lt;li class="wb-inline-list-item"&gt;AI-friendly&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;aside class="wb-page-intro-aside"&gt;
+      Optional proof, context, or media-adjacent support block.
+    &lt;/aside&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                  </div>
+                </div>
+                <p class="wb-text-sm wb-text-muted wb-m-0"><a href="../playground/sandbox/">Open in Playground</a> if you want to paste this hero structure directly, change the copy, and test the result with the real WebBlocks assets.</p>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <a href="pattern-content-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Content Shell</span></a>
+            <a href="utilities.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Utilities</span></a>
+          </footer>
         </div>
       </main>
     </div>
