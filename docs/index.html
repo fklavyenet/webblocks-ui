@@ -93,13 +93,12 @@
           Menu
         </button>
 
-        <div class="wb-topbar-identity wb-min-w-0">
-          <div class="wb-topbar-identity-copy">
-            <span class="wb-topbar-context">English, package-only, multi-page demo</span>
-          </div>
-        </div>
-
-        <div class="wb-navbar-spacer"></div>
+        <nav aria-label="Breadcrumb">
+          <ol class="wb-breadcrumb wb-breadcrumb-inline">
+            <li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li>
+            <li class="wb-breadcrumb-item is-active"><span aria-current="page">Home</span></li>
+          </ol>
+        </nav>
 
         <div class="wb-topbar-actions">
           <button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode">
@@ -135,12 +134,6 @@
       <main class="wb-dashboard-main">
         <div class="wb-content-shell wb-content-shell-wide">
           <header class="wb-content-header">
-            <nav class="wb-content-breadcrumb" aria-label="Breadcrumb">
-              <ol class="wb-breadcrumb wb-breadcrumb-inline">
-                <li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li>
-                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Home</span></li>
-              </ol>
-            </nav>
             <h1 class="wb-content-title">A pure WebBlocks UI site about WebBlocks UI</h1>
             <p class="wb-content-subtitle">This demo explains the project, the layer model, shipped primitives, patterns, and JavaScript behavior using only package assets and shipped <code>wb-*</code> classes.</p>
             <div class="wb-content-meta">
