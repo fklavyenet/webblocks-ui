@@ -1743,6 +1743,7 @@
   var instances = [];
   var isBound = false;
   var isScheduled = false;
+  var scrollContainers = [];
 
   function normalizeHash(hash) {
     if (!hash || hash === '#') return '';
@@ -1760,8 +1761,46 @@
     return normalizeHash(href);
   }
 
-  function getReadingLine() {
-    return window.scrollY + Math.min(window.innerHeight * 0.25, 160);
+  function isScrollable(element) {
+    if (!element || element === document.body || element === document.documentElement) return false;
+
+    var style = window.getComputedStyle(element);
+    var overflowY = style.overflowY;
+    return (overflowY === 'auto' || overflowY === 'scroll') && element.scrollHeight > element.clientHeight;
+  }
+
+  function getScrollContainer(element) {
+    var current = element.parentElement;
+
+    while (current) {
+      if (isScrollable(current)) return current;
+      current = current.parentElement;
+    }
+
+    return window;
+  }
+
+  function getScrollTop(container) {
+    return container === window ? window.scrollY : container.scrollTop;
+  }
+
+  function getViewportHeight(container) {
+    return container === window ? window.innerHeight : container.clientHeight;
+  }
+
+  function getReadingLine(container) {
+    return getScrollTop(container) + Math.min(getViewportHeight(container) * 0.25, 160);
+  }
+
+  function getTargetTop(target, container) {
+    var rect = target.getBoundingClientRect();
+
+    if (container === window) {
+      return rect.top + window.scrollY;
+    }
+
+    var containerRect = container.getBoundingClientRect();
+    return rect.top - containerRect.top + container.scrollTop;
   }
 
   function setActive(instance, activeId) {
@@ -1793,10 +1832,10 @@
 
   function findByScroll(instance) {
     var active = instance.items[0] || null;
-    var readingLine = getReadingLine();
+    var readingLine = getReadingLine(instance.scrollContainer);
 
     instance.items.forEach(function (item) {
-      var top = item.target.getBoundingClientRect().top + window.scrollY;
+      var top = getTargetTop(item.target, instance.scrollContainer);
       if (top - readingLine <= 0) active = item;
     });
 
@@ -1852,6 +1891,7 @@
     return {
       nav: nav,
       items: items,
+      scrollContainer: getScrollContainer(nav),
       activeId: null
     };
   }
@@ -1874,9 +1914,12 @@
     });
 
     window.addEventListener('hashchange', scheduleSync);
-    window.addEventListener('scroll', scheduleSync, { passive: true });
     window.addEventListener('resize', scheduleSync, { passive: true });
     window.addEventListener('load', scheduleSync);
+
+    scrollContainers.forEach(function (container) {
+      container.addEventListener('scroll', scheduleSync, { passive: true });
+    });
   }
 
   function init() {
@@ -1885,6 +1928,12 @@
       .filter(Boolean);
 
     if (!instances.length) return;
+
+    scrollContainers = instances
+      .map(function (instance) { return instance.scrollContainer; })
+      .filter(function (container, index, list) {
+        return list.indexOf(container) === index;
+      });
 
     bindEvents();
     syncAll();
