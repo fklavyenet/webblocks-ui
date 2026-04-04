@@ -243,8 +243,10 @@ body {
   min-width: 0;
   padding: var(--wb-s2) var(--wb-s3);
   border-radius: var(--wb-r-md);
+  border: 1px solid transparent;
   color: inherit;
   text-decoration: none;
+  transition: background var(--wb-t-f), border-color var(--wb-t-f), color var(--wb-t-f);
 }
 
 .wb-sandbox-doc-link-title {
@@ -263,8 +265,15 @@ body {
 
 .wb-sandbox-doc-item:hover {
   background: var(--wb-surface-2);
+  border-color: var(--wb-border);
   color: inherit;
   text-decoration: none;
+}
+
+.wb-sandbox-doc-item:focus-visible {
+  outline: none;
+  border-color: var(--wb-accent-border);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--wb-accent) 18%, transparent);
 }
 
 @media (max-width: 1200px) {
