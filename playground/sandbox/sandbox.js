@@ -748,9 +748,9 @@
     links.forEach(function (link) {
       var anchor = document.createElement('a');
       var title = document.createElement('span');
-      var desc = document.createElement('div');
+      var desc = document.createElement('span');
 
-      anchor.className = 'wb-link-list-item wb-sandbox-doc-link';
+      anchor.className = 'wb-sandbox-doc-item';
       anchor.href = link.href;
 
       title.className = 'wb-sandbox-doc-link-title';
