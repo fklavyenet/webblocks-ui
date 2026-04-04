@@ -1,5 +1,71 @@
-.wb-sandbox-page {
-  gap: var(--wb-s8);
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.wb-sandbox-app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: var(--wb-bg);
+}
+
+.wb-sandbox-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.wb-sandbox-topbar-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s6);
+  min-width: 0;
+}
+
+.wb-sandbox-title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.wb-sandbox-subtitle {
+  margin: var(--wb-s2) 0 0;
+  max-width: 62rem;
+  color: var(--wb-muted);
+}
+
+.wb-sandbox-workspace-shell {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(18rem, 21rem) minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: var(--wb-s4);
+  padding: var(--wb-s4);
+}
+
+.wb-sandbox-rail,
+.wb-sandbox-panel {
+  min-height: 0;
+}
+
+.wb-sandbox-rail {
+  display: flex;
+  flex-direction: column;
+}
+
+.wb-sandbox-rail-body {
+  min-height: 0;
+  overflow: auto;
+}
+
+.wb-sandbox-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
 }
 
 .wb-sandbox-toolbar {
@@ -12,35 +78,34 @@
 
 .wb-sandbox-toolbar-controls {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: var(--wb-s4);
   flex-wrap: wrap;
-  flex: 1 1 38rem;
+  flex: 1 1 auto;
 }
 
 .wb-sandbox-control-group {
   display: flex;
   flex-direction: column;
   gap: var(--wb-s2);
-  min-width: 12rem;
+  min-width: 0;
 }
 
 .wb-sandbox-control-group .wb-select {
-  min-width: 14rem;
-}
-
-.wb-sandbox-workspace,
-.wb-sandbox-support-grid {
-  align-items: start;
-}
-
-.wb-sandbox-panel {
-  min-height: 100%;
+  width: 100%;
 }
 
 .wb-sandbox-panel-header {
+  gap: var(--wb-s3);
+}
+
+.wb-sandbox-panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: var(--wb-s4);
-  align-items: center;
+  width: 100%;
+  min-width: 0;
 }
 
 .wb-sandbox-example-meta {
@@ -48,24 +113,55 @@
   background: var(--wb-surface-2);
 }
 
+.wb-sandbox-panel-body {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wb-sandbox-panel-foot {
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
+}
+
+.wb-sandbox-editor-body {
+  padding: 0;
+}
+
 .wb-sandbox-editor {
-  min-height: 38rem;
+  min-height: 100%;
+  height: 100%;
   width: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   font-family: var(--wb-font-mono);
   font-size: 0.95rem;
   line-height: 1.6;
   white-space: pre;
-  resize: vertical;
+  resize: none;
+}
+
+.wb-sandbox-preview-body {
+  padding: 0;
+  min-width: 0;
 }
 
 .wb-sandbox-preview-shell {
   padding: var(--wb-s4);
   background: var(--wb-surface-2);
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .wb-sandbox-preview-stage {
   width: 100%;
-  margin: 0 auto;
+  min-width: 0;
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
   transition: max-width var(--wb-t), box-shadow var(--wb-t);
 }
 
@@ -83,7 +179,8 @@
 
 .wb-sandbox-frame {
   width: 100%;
-  min-height: 40rem;
+  height: 100%;
+  min-height: 32rem;
   border: 1px solid var(--wb-border);
   border-radius: var(--wb-r-lg);
   background: var(--wb-surface);
@@ -98,10 +195,46 @@
   gap: var(--wb-s3);
 }
 
+@media (max-width: 1200px) {
+  .wb-sandbox-workspace-shell {
+    grid-template-columns: minmax(17rem, 19rem) minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1040px) {
+  .wb-sandbox-workspace-shell {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "rail"
+      "editor"
+      "preview";
+  }
+
+  .wb-sandbox-rail {
+    grid-area: rail;
+  }
+
+  .wb-sandbox-editor-panel {
+    grid-area: editor;
+  }
+
+  .wb-sandbox-preview-panel {
+    grid-area: preview;
+  }
+
+  .wb-sandbox-rail-body {
+    overflow: visible;
+  }
+}
+
 @media (max-width: 900px) {
+  .wb-sandbox-topbar-inner {
+    align-items: flex-start;
+  }
+
   .wb-sandbox-toolbar-controls {
     justify-content: flex-start;
-    flex-basis: 100%;
+    flex-basis: auto;
   }
 
   .wb-sandbox-control-group,
@@ -114,9 +247,18 @@
   .wb-sandbox-frame {
     min-height: 32rem;
   }
+
+  .wb-sandbox-panel-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 640px) {
+  .wb-sandbox-workspace-shell {
+    padding: var(--wb-s3);
+  }
+
   .wb-sandbox-preview-shell {
     padding: var(--wb-s3);
   }

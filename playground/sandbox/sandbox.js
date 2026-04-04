@@ -396,6 +396,7 @@
     status: document.querySelector('[data-sandbox-status]'),
     widthLabel: document.querySelector('[data-sandbox-width-label]'),
     widthButtons: Array.prototype.slice.call(document.querySelectorAll('[data-sandbox-width]')),
+    previewPanel: document.querySelector('.wb-sandbox-preview-panel'),
     reset: document.querySelector('[data-sandbox-reset]'),
     copy: document.querySelector('[data-sandbox-copy]')
   };
@@ -410,6 +411,7 @@
   applyWidth(state.width);
   renderPreview();
   loadKnownClasses();
+  updatePreviewMinHeight();
 
   function populateExampleSelect() {
     EXAMPLES.forEach(function (example) {
@@ -484,6 +486,10 @@
         scheduleHeightUpdate(event.data.height);
       }
     });
+
+    window.addEventListener('resize', function () {
+      updatePreviewMinHeight();
+    });
   }
 
   function schedulePreview() {
@@ -503,7 +509,7 @@
     renderExampleMeta(currentExample);
     renderWarnings(sanitized.feedback);
     setStatus(sanitized.status.label, sanitized.status.tone);
-    elements.preview.style.height = Math.max(420, state.previewHeight) + 'px';
+    elements.preview.style.height = Math.max(getPreviewBaseHeight(), state.previewHeight) + 'px';
     persistState();
   }
 
@@ -956,9 +962,26 @@
       }
 
       state.previewHeight = pendingPreviewHeight;
-      elements.preview.style.height = state.previewHeight + 'px';
+      elements.preview.style.height = Math.max(getPreviewBaseHeight(), state.previewHeight) + 'px';
       pendingPreviewHeight = null;
     }, HEIGHT_MESSAGE_DEBOUNCE_MS);
+  }
+
+  function updatePreviewMinHeight() {
+    if (!elements.preview) {
+      return;
+    }
+
+    elements.preview.style.height = Math.max(getPreviewBaseHeight(), state.previewHeight) + 'px';
+  }
+
+  function getPreviewBaseHeight() {
+    if (!elements.previewPanel) {
+      return 420;
+    }
+
+    var panelRect = elements.previewPanel.getBoundingClientRect();
+    return Math.max(420, Math.round(panelRect.height - 170));
   }
 
   function createPreviewMessageToken() {
