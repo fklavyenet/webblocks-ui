@@ -678,6 +678,12 @@
       '    document.addEventListener("submit", function (event) {',
       '      event.preventDefault();',
       '    });',
+      '    document.addEventListener("click", function (event) {',
+      '      var link = event.target.closest("a[href]");',
+      '      if (link) {',
+      '        event.preventDefault();',
+      '      }',
+      '    });',
       '  </script>',
       '</body>',
       '</html>'
