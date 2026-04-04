@@ -60,7 +60,7 @@ Use these nouns first in examples, reviews, and generated markup:
 - global surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-callout`, `wb-empty`, `wb-list`
 - shell-local surfaces: `wb-page-header`, `wb-settings-section`
 - controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
-- navigation: `wb-navbar`, `wb-sidebar`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
+- navigation: `wb-navbar`, `wb-sidebar`, `wb-section-nav`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
 
 ### Classification Rule
 
