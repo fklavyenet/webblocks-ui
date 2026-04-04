@@ -100,24 +100,37 @@ body {
 
 .wb-sandbox-toolbar {
   display: flex;
+  flex-direction: column;
+  gap: var(--wb-s3);
+}
+
+.wb-sandbox-toolbar-headings,
+.wb-sandbox-toolbar-body {
+  display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--wb-s6);
   flex-wrap: wrap;
 }
 
+.wb-sandbox-toolbar-headings {
+  width: 100%;
+}
+
+.wb-sandbox-toolbar-headings .wb-label {
+  margin-left: auto;
+}
+
 .wb-sandbox-toolbar-controls {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   gap: var(--wb-s4);
   flex-wrap: wrap;
   flex: 1 1 auto;
 }
 
-.wb-sandbox-control-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wb-s2);
+.wb-sandbox-toolbar-copy {
+  flex: 1 1 20rem;
   min-width: 0;
 }
 
@@ -309,10 +322,21 @@ body {
     flex-wrap: wrap;
   }
 
+  .wb-sandbox-toolbar-headings,
+  .wb-sandbox-toolbar-body {
+    gap: var(--wb-s3);
+  }
+
+  .wb-sandbox-toolbar-headings .wb-label {
+    margin-left: 0;
+  }
+
   .wb-sandbox-toolbar-controls {
     justify-content: flex-start;
   }
 
+  .wb-sandbox-toolbar-copy,
+  .wb-sandbox-toolbar-controls,
   .wb-sandbox-control-group,
   .wb-sandbox-control-group .wb-select {
     min-width: 0;
