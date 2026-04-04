@@ -52,7 +52,7 @@ Use these names as the default public language:
 - surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-list`, `wb-callout`, `wb-empty`
 - screen-local surfaces: `wb-page-header`, `wb-settings-section`
 - controls: `wb-btn`, `wb-badge`, `wb-input`, `wb-select`, `wb-textarea`, `wb-check`, `wb-radio`, `wb-switch`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-accordion`, `wb-collapse`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-spinner`, `wb-progress-bar`
-- navigation: `wb-navbar`, `wb-sidebar`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
+- navigation: `wb-navbar`, `wb-sidebar`, `wb-section-nav`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
 - icons: `wb-icon`, `wb-icon-*`, `wb-icon-wrap*`
 
 ## Forbidden Vocabulary
@@ -173,6 +173,11 @@ Patterns are the primary integration surface for real screens.
 - HTML owns document structure and semantics
 - CSS owns presentation and visible states
 - JS owns interaction, visibility toggles, focus handling, keyboard control, and async behavior
+
+Example:
+
+- `wb-section-nav` is a class-driven navigation pattern
+- `WBSectionNav` is the shipped runtime that applies honest current-state to in-page anchor menus during hash navigation and reading scroll
 
 Content rule:
 

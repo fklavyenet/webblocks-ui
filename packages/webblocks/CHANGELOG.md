@@ -14,6 +14,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Action icon aliases for panel workflows: `refresh` and `sync`, mapped to the existing `rotate-cw` and `repeat` glyphs with stable public names
 - Breadcrumb preset system: `minimal`, `surface`, `bordered`, `inline`, and `context`, with controlled separator modifiers and single-item context support
 - `WBPasswordToggle` and `data-wb-password-toggle` for canonical password visibility behavior inside the standard field/input-group contract
+- `wb-section-nav` as the canonical reusable section-level navigation pattern for settings rails, docs side navigation, and in-page section indexes
+- `WBSectionNav` runtime behavior for in-page anchor navigation, including hash-aware active state, scroll-container-aware docs scroll spy, and `aria-current="location"` updates
 
 ### Changed
 - Icon set refreshed to 173 curated Lucide icons for CSS mask-image delivery
@@ -27,6 +29,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - pagination now uses a semantic `nav` plus ordered-list contract with explicit current, disabled, ellipsis, and compact states
 - tables now follow a single-surface model: `wb-table-wrap` owns radius/border/clipping, inner toolbars stay control rows, and header cells no longer create competing surface corners or bands
 - automatic uppercase casing was removed from shipped UI primitives and patterns so emphasis stays locale-safe and content-defined
+- long-form docs pages now use canonical `wb-section-nav` rails for local section navigation instead of ad hoc page-specific indexes
+- docs and playground local asset loaders now read the built package files from local published `packages/webblocks/dist/` paths
 
 ### Removed
 - Breaking simplification: removed the old dashboard-only framed-surface family and converged all framed dashboard surfaces on `wb-card`, `wb-card-header`, `wb-card-title`, `wb-card-body`, and `wb-card-footer`
@@ -36,6 +40,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - CSS icon mappings are now generated from the source icon set so `<i class="wb-icon wb-icon-*"></i>` stays stable across rebuilds
 - Added refresh icon CSS aliases for `wb-icon-refresh-cw`, `wb-icon-refresh`, and `wb-icon-rotate-cw`, mapped to the existing `wb-icon-rotate-cw` glyph for downstream compatibility
 - Added a default `help-circle` mask fallback for `<i class="wb-icon ..."></i>` so unknown or missing `wb-icon-*` classes do not render as empty squares
+- playground asset loading now resolves the correct local `dist/` path from both `playground/` and `playground/sandbox/`
+- docs `wb-section-nav` active state now follows the real docs scroll container instead of assuming `window` scroll
+- docs `wb-section-nav` no longer lets the current hash permanently override scroll spy after anchor clicks
 
 ---
 

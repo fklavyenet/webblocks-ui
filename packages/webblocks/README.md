@@ -33,10 +33,10 @@ Start from patterns, not primitives.
 
 ```html
 <link rel="stylesheet" href="dist/webblocks-ui.css">
-<script src="dist/webblocks-ui.js"></script>
+<script src="dist/webblocks-ui.js" defer></script>
 ```
 
-Add the dist files to your project, choose a pattern, and adapt the surfaces and primitives it uses.
+Add the dist files to your project, choose a pattern, and adapt the surfaces and primitives it uses. Include `dist/webblocks-icons.css` only when you use `<i class="wb-icon wb-icon-*">`.
 
 ---
 
@@ -840,6 +840,7 @@ Interactive modules expose `window.*` objects for opt-in behavior:
 - `WBTabs`
 - `WBAccordion`
 - `WBSidebar`
+- `WBSectionNav`
 - `WBNavGroup`
 - `WBDrawer`
 - `WBCommandPalette`
@@ -848,9 +849,12 @@ Interactive modules expose `window.*` objects for opt-in behavior:
 - `WBTooltip`
 - `WBDismiss`
 - `WBAjaxToggle`
+- `WBPasswordToggle`
 - `WBCollapse`
 
 Use [`INTEGRATION.md`](INTEGRATION.md) for canonical method signatures, data attributes, and emitted events.
+
+`WBSectionNav` is the shared runtime for in-page `wb-section-nav` anchors. It activates the current link from the real hash and reading position, and in the docs shell it tracks the actual `.wb-dashboard-main` scroll container instead of assuming `window` scroll.
 
 ---
 
@@ -926,13 +930,17 @@ packages/webblocks/
 │       ├── tabs.js          tab panels with keyboard nav
 │       ├── accordion.js     animated accordion
 │       ├── sidebar.js       mobile sidebar + backdrop
+│       ├── section-nav.js   in-page section nav active-state sync
 │       ├── nav-group.js     collapsible sidebar nav groups
 │       ├── drawer.js        drawer with focus trap + Escape
 │       ├── command-palette.js  Cmd/Ctrl+K palette with ↑↓↵Esc
 │       ├── toast.js         programmatic toasts + auto-dismiss
 │       ├── popover.js       toggle, Escape + outside-click
 │       ├── tooltip.js       programmatic show/hide + delay
-│       └── dismiss.js       alert/banner dismiss with animation
+│       ├── dismiss.js       alert/banner dismiss with animation
+│       ├── ajax-toggle.js   checkbox-driven JSON POST helper
+│       ├── password-toggle.js canonical password visibility toggle
+│       └── collapse.js      standalone collapse helper
 └── build.sh
 ```
 
