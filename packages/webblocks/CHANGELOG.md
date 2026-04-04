@@ -16,6 +16,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - `WBPasswordToggle` and `data-wb-password-toggle` for canonical password visibility behavior inside the standard field/input-group contract
 - `wb-section-nav` as the canonical reusable section-level navigation pattern for settings rails, docs side navigation, and in-page section indexes
 - `WBSectionNav` runtime behavior for in-page anchor navigation, including hash-aware active state, scroll-container-aware docs scroll spy, and `aria-current="location"` updates
+- `wb-overlay` as the canonical general overlay primitive for focused viewport content, including dialog/content overlays and media-viewer usage
+- `WBOverlay` with `data-wb-overlay-open` and `data-wb-overlay-close` for explicit open/close wiring, ESC close, focus return, and body scroll locking
+- `wb-media`, `wb-media-img`, and `wb-media-caption` as the canonical media contract used by overlay-based media viewers
 
 ### Changed
 - Icon set refreshed to 173 curated Lucide icons for CSS mask-image delivery
@@ -31,6 +34,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - automatic uppercase casing was removed from shipped UI primitives and patterns so emphasis stays locale-safe and content-defined
 - long-form docs pages now use canonical `wb-section-nav` rails for local section navigation instead of ad hoc page-specific indexes
 - docs and playground local asset loaders now read the built package files from local published `packages/webblocks/dist/` paths
+- overlay guidance now treats `wb-overlay` as the public general overlay shell while keeping anchored dropdown/popover/tooltip layering as internal runtime infrastructure
 
 ### Removed
 - Breaking simplification: removed the old dashboard-only framed-surface family and converged all framed dashboard surfaces on `wb-card`, `wb-card-header`, `wb-card-title`, `wb-card-body`, and `wb-card-footer`

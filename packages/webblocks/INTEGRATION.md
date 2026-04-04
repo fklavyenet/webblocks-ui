@@ -59,7 +59,7 @@ Use these nouns first in examples, reviews, and generated markup:
 - layout helpers: `wb-container`, `wb-section`, `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, `wb-row`, `wb-col-*`
 - global surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-callout`, `wb-empty`, `wb-list`
 - shell-local surfaces: `wb-page-header`, `wb-settings-section`
-- controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
+- controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-media`, `wb-overlay`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
 - navigation: `wb-navbar`, `wb-sidebar`, `wb-section-nav`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
 
 ### Classification Rule
@@ -499,7 +499,118 @@ Notes:
 - right alignment can use `wb-dropdown-end` on the wrapper or `wb-dropdown-menu-end` on the menu
 - with JS enabled, the active visible dropdown menu node is rendered under the shared `#wb-overlay-root` anchored layer so it does not clip inside cards, shells, or other local containers
 
-### Modals and Confirmation Dialogs
+### Overlays, Modals, and Confirmation Dialogs
+
+`wb-overlay` is the canonical general overlay system for focused content above the page.
+
+Use it for:
+
+- generic content dialogs
+- media viewers and lightbox-style enlargement with `wb-media`
+- confirm and action flows when you need a custom layout
+- future overlay variants such as sheet or drawer-style dialog shells
+
+Do not create separate app-local modal and lightbox systems when `wb-overlay` already fits the job.
+
+Canonical content overlay:
+
+```html
+<button class="wb-btn wb-btn-primary" type="button" data-wb-overlay-open="settings-help">
+  Open overlay
+</button>
+
+<div class="wb-overlay" id="settings-help" hidden>
+  <div class="wb-overlay-backdrop" data-wb-overlay-close></div>
+
+  <div class="wb-overlay-dialog" role="dialog" aria-modal="true" aria-labelledby="settings-help-title">
+    <button class="wb-overlay-close" type="button" aria-label="Close" data-wb-overlay-close>
+      <i class="wb-icon wb-icon-x" aria-hidden="true"></i>
+    </button>
+
+    <div class="wb-overlay-body">
+      <div class="wb-stack wb-stack-4">
+        <h2 id="settings-help-title">Settings help</h2>
+        <p>Overlay content goes here.</p>
+        <div class="wb-cluster wb-cluster-end">
+          <button class="wb-btn wb-btn-secondary" type="button" data-wb-overlay-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+Canonical media viewer:
+
+```html
+<figure class="wb-media">
+  <button class="wb-btn wb-btn-ghost wb-block wb-w-full wb-p-0" type="button" data-wb-overlay-open="media-viewer-1" aria-label="Open dashboard overview">
+    <img class="wb-media-img" src="/images/demo-shot.jpg" alt="Analytics dashboard with KPI cards and a weekly chart">
+  </button>
+  <figcaption class="wb-media-caption">Open the media in a focused overlay.</figcaption>
+</figure>
+
+<div class="wb-overlay" id="media-viewer-1" hidden>
+  <div class="wb-overlay-backdrop" data-wb-overlay-close></div>
+
+  <div class="wb-overlay-dialog wb-overlay-dialog-media" role="dialog" aria-modal="true" aria-labelledby="media-viewer-1-title">
+    <button class="wb-overlay-close" type="button" aria-label="Close" data-wb-overlay-close>
+      <i class="wb-icon wb-icon-x" aria-hidden="true"></i>
+    </button>
+
+    <div class="wb-overlay-body">
+      <figure class="wb-media">
+        <img class="wb-media-img" src="/images/demo-shot.jpg" alt="Analytics dashboard with KPI cards and a weekly chart">
+        <figcaption class="wb-media-caption" id="media-viewer-1-title">Dashboard overview enlarged inside the canonical overlay shell.</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+```
+
+Minimal subparts:
+
+- `wb-overlay` = viewport overlay wrapper
+- `wb-overlay-backdrop` = backdrop layer and close target
+- `wb-overlay-dialog` = centered dialog/content shell
+- `wb-overlay-body` = scrollable content region
+- `wb-overlay-close` = explicit close affordance
+
+Optional subparts:
+
+- `wb-overlay-header`
+- `wb-overlay-title`
+- `wb-overlay-footer`
+
+Behavior contract:
+
+- open with `data-wb-overlay-open="overlay-id"`
+- close with `data-wb-overlay-close`
+- `WBOverlay.open(elOrId)` and `WBOverlay.close(elOrId)` are available for imperative control
+- ESC closes the active overlay
+- backdrop click closes the active overlay when the backdrop uses `data-wb-overlay-close`
+- focus moves into the overlay on open and returns to the opener on close
+- body scroll locks while an overlay is open
+
+Accessibility baseline:
+
+- put `role="dialog"` and `aria-modal="true"` on `.wb-overlay-dialog`
+- provide a real label through `aria-labelledby` or `aria-label`
+- always include a visible close control; do not rely only on backdrop click
+- keep inactive overlays `hidden`
+
+Do:
+
+- treat `wb-overlay` as the shared shell for media viewers and dialog content
+- keep overlay content semantically honest
+- use `wb-media` inside media-viewer overlays instead of overlay-local image classes
+
+Do not:
+
+- invent a separate `wb-lightbox` system for the same job
+- rely only on clicking outside to close
+- hide close behavior in app-local scripts
+- duplicate the same content once for inline display and again for the viewer unless the real UX requires it
 
 ```html
 <button class="wb-btn wb-btn-primary" data-wb-toggle="modal" data-wb-target="#delete-modal">
@@ -546,6 +657,10 @@ Confirmation pattern:
 ```
 
 ### Drawers
+
+`wb-drawer` remains the shipped side-sheet primitive.
+
+Use it when the overlay job is specifically an edge-attached panel rather than a centered dialog. `wb-overlay` is the canonical general overlay shell; `wb-drawer` is the current specialized off-canvas implementation.
 
 ```html
 <button class="wb-btn wb-btn-secondary" data-wb-toggle="drawer" data-wb-target="#settings-drawer">
@@ -1179,316 +1294,23 @@ Also shipped for editorial/marketing surfaces:
 
 ---
 
-## Overlay System
+## Overlay Runtime Infrastructure
 
-### Purpose
-
-The overlay system standardizes how UI elements that appear outside normal layout flow behave.
-
-This includes:
-
-* popover
-* dropdown
-* tooltip
-* select panels
-* command menus
-* anchored floating panels
-
-This section defines the canonical integration contract for overlay-capable components and overlay reviews.
-
----
-
-### Core Principles
-
-#### Overlay is not layout
-
-Overlay elements:
-
-* must not depend on parent layout
-* must not be clipped by container overflow
-* must not rely on local stacking context
-
----
-
-#### Progressive enhancement is required
-
-Overlay behavior must degrade safely:
-
-| State      | Behavior                          |
-| ---------- | --------------------------------- |
-| No JS      | inline / disclosure (layout flow) |
-| JS enabled | floating overlay (positioned)     |
-
-Content must never become inaccessible without JS.
-
----
-
-#### Authoring must remain simple
-
-Developers must:
-
-* write overlay content inline with its trigger
-* not manually move elements to body
-* not manage positioning manually
-
-Runtime handles transformation.
-
----
-
-#### Single overlay system
-
-All overlay-based components must share:
-
-* positioning logic
-* portal behavior
-* lifecycle rules
-* layering rules
-
-No component may implement its own independent overlay logic.
-
----
-
-### Overlay Primitive
-
-#### wb-overlay
-
-The core primitive responsible for overlay behavior.
-
-Responsibilities:
-
-* anchor-based positioning
-* portal to overlay root
-* open/close state handling
-* outside click handling
-* escape handling
-* z-index management
-* fallback behavior
-
----
-
-### Authoring Model
-
-Example:
-
-```html
-<div class="wb-popover">
-  <button data-wb-overlay-trigger>
-    Info
-  </button>
-
-  <div class="wb-overlay" hidden>
-    Content
-  </div>
-</div>
-```
-
-Important:
-
-* overlay is authored inline
-* no reference to body or overlay root is required
-
----
-
-### Trigger Relationship
-
-The generic `data-wb-overlay-trigger` example above expresses the shared trigger model.
+This package also ships shared internal overlay infrastructure for anchored floating UI such as dropdowns, popovers, tooltips, and command-style panels.
 
 Canonical rule:
 
-* overlay content stays inline with its trigger in authored markup
-* generic trigger ownership belongs to the overlay system
-* pattern-specific triggers such as dropdown, popover, and tooltip triggers must remain compatible with the same shared overlay model instead of redefining overlay ownership per pattern
+- public `wb-overlay` = centered viewport overlay primitive for focus-above-page content
+- internal overlay infrastructure = shared root/layer runtime used by anchored or portaled floating UI
 
-Shipped component-specific trigger APIs remain documented in their own sections below.
+Anchored overlay notes:
 
----
+- authored markup for dropdowns and popovers stays inline with the trigger
+- in JS mode the active floating node is rendered under the shared `#wb-overlay-root` layer to avoid clipping
+- `WBDropdown`, `WBPopover`, and `WBTooltip` are consumers of the same internal layer utilities
+- do not build separate per-component positioning engines or ad hoc z-index ladders
 
-### Runtime Model
-
-Use this as the canonical enhanced model for overlay-capable components at the integration layer.
-
-When JS is available:
-
-* `.wb-overlay` is moved to overlay root
-* trigger becomes anchor reference
-* position is computed dynamically
-
----
-
-### JS Integration Rule
-
-At the integration layer, treat overlay-capable JS modules such as `WBPopover`, `WBDropdown`, and `WBTooltip` as consumers of the same overlay contract.
-
-Canonical rule:
-
-* component-specific APIs may differ
-* positioning, portal behavior, and layering must not diverge into separate per-component overlay engines
-* this section does not define a separate shipped `WBOverlay` global API
-
----
-
-### Overlay Root
-
-A shared container must exist:
-
-```html
-<div id="wb-overlay-root"></div>
-```
-
-Placed as a direct child of `<body>`.
-
-Purpose:
-
-* unify overlay rendering
-* eliminate clipping issues
-* simplify z-index management
-
----
-
-### CSS Model
-
-#### Base (no JS)
-
-```css
-.wb-overlay {
-  display: none;
-  margin-top: var(--wb-s2);
-}
-
-.wb-popover.is-open .wb-overlay {
-  display: block;
-}
-```
-
-Behavior:
-
-* inline expansion
-* participates in layout
-* safe fallback
-
----
-
-#### Enhanced (JS enabled)
-
-```css
-.wb-js .wb-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
-  z-index: var(--wb-z-overlay);
-}
-
-.wb-js .wb-popover.is-open .wb-overlay {
-  display: block;
-}
-```
-
-Behavior:
-
-* removed from flow
-* positioned relative to anchor
-* rendered in overlay layer
-
----
-
-### Positioning Rules
-
-* anchor = trigger element
-* default placement: bottom-start
-* must support:
-
-  * flip (top/bottom)
-  * shift (viewport fit)
-  * boundary awareness
-
----
-
-### Lifecycle
-
-Open:
-
-* trigger click
-* set `aria-expanded="true"`
-
-Close:
-
-* outside click
-* escape key
-* repeated trigger interaction
-
----
-
-### Layering
-
-Define overlay layer:
-
-```css
---wb-z-overlay: 1000;
-```
-
-Layering integration rule:
-
-* treat `--wb-z-overlay` as the base overlay-layer concept
-* component-specific layers such as `--wb-z-dropdown`, `--wb-z-modal`, and `--wb-z-toast` must stay aligned with the same documented hierarchy
-* exact token relationships may vary by implementation, but they must not become independent overlay stacks
-
-All overlays must use this system.
-No ad-hoc z-index values allowed.
-
----
-
-### Pattern Layer
-
-Overlay primitive is used by:
-
-* wb-popover
-* wb-dropdown
-* wb-tooltip
-* wb-select-panel
-
-These are NOT independent systems.
-They are variants built on the same overlay foundation.
-
----
-
-### Pattern Integration Rule
-
-Overlay behavior must not be redefined inside patterns.
-
-`wb-popover`, `wb-dropdown`, `wb-tooltip`, `wb-select-panel`, and similar overlay consumers may extend presentation or usage, but they must not replace or duplicate overlay positioning, portal behavior, or layering logic.
-
-A component that introduces its own separate overlay engine is outside the canonical contract.
-
----
-
-### Prohibited Patterns
-
-Do NOT:
-
-* manually append overlay elements to body in markup
-* fight overflow using CSS hacks
-* use arbitrary z-index escalation
-* duplicate positioning logic per component
-* simulate overlays using pure CSS tricks
-
----
-
-### Fallback Behavior
-
-Without JS:
-
-* overlay becomes inline content
-* layout expands downward
-* no clipping issues
-* content remains accessible
-
----
-
-### System Rule
-
-Overlays are layout-independent at runtime,
-but layout-compatible at fallback.
+Internal layer classes such as `wb-overlay-root`, `wb-overlay-layer`, and `wb-overlay-layer--anchored` are runtime infrastructure, not the primary public authoring contract for page-level dialogs.
 
 ---
 

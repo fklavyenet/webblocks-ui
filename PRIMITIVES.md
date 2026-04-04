@@ -61,6 +61,8 @@ Canonical primitive families include:
 
 - button
 - badge
+- media
+- overlay
 - form controls and field system
 - table
 - modal
@@ -82,6 +84,8 @@ Canonical primitive families include:
 Examples:
 
 - `wb-btn`
+- `wb-media`
+- `wb-overlay`
 - `wb-input`
 - `wb-table`
 - `wb-modal`
@@ -177,6 +181,8 @@ Some shipped behavior contracts are not class-first.
 Examples:
 
 - `data-wb-toggle`
+- `data-wb-overlay-open`
+- `data-wb-overlay-close`
 - `data-wb-target`
 - `data-wb-dismiss`
 - `data-wb-tooltip`

@@ -43,6 +43,7 @@ cat \
   "$ROOT/src/css/primitives/section-heading.css" \
   "$ROOT/src/css/primitives/form.css" \
   "$ROOT/src/css/primitives/table.css" \
+  "$ROOT/src/css/primitives/media.css" \
   "$ROOT/src/css/primitives/overlay.css" \
   "$ROOT/src/css/primitives/modal.css" \
   "$ROOT/src/css/primitives/dropdown.css" \
@@ -96,6 +97,7 @@ cat \
   "$ROOT/src/js/theme.js" \
   "$ROOT/src/js/dropdown.js" \
   "$ROOT/src/js/modal.js" \
+  "$ROOT/src/js/overlay.js" \
   "$ROOT/src/js/tabs.js" \
   "$ROOT/src/js/accordion.js" \
   "$ROOT/src/js/sidebar.js" \

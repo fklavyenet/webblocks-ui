@@ -1,0 +1,24 @@
+/* ============================================================
+   WebBlocks UI — Media (wb-media)
+   ============================================================ */
+
+.wb-media {
+  display: grid;
+  gap: var(--wb-s3);
+  margin: 0;
+}
+
+.wb-media-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--wb-r-lg);
+  background: var(--wb-surface-2);
+}
+
+.wb-media-caption {
+  margin: 0;
+  font-size: var(--wb-font-size-sm);
+  line-height: 1.6;
+  color: var(--wb-muted);
+}

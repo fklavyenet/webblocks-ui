@@ -60,6 +60,7 @@
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-flow">Pattern flow</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#reusable-section-nav">Reusable section nav</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#page-header-stack">Page header stack</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#overlay-boundary">Overlay boundary</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-boundaries">Pattern boundaries</a></li>
             </ul>
           </nav>
@@ -156,6 +157,21 @@
                   </div>
                 </div>
                 <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Hierarchy rule</strong> Product identity belongs first in the topbar. Context comes second. Inside the page header, breadcrumb is optional, title is primary, subtitle is supportive, and actions stay separate.</div>
+              </section>
+
+              <section class="wb-stack-4" id="overlay-boundary">
+                <h2>Overlay boundary</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-3">
+                      <strong>What belongs to patterns</strong>
+                      <p class="wb-m-0">Patterns decide where an overlay trigger belongs in the page flow: header actions, table rows, gallery items, settings help links, or editorial media blocks.</p>
+                      <strong>What does not</strong>
+                      <p class="wb-m-0">The focus-above-page shell itself is not a page pattern. Use the shipped <code>wb-overlay</code> primitive for centered dialogs and media viewers instead of creating shell-local modal wrappers.</p>
+                    </div>
+                  </div>
+                  <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">One overlay noun</strong> Use <code>wb-overlay</code> as the shared overlay shell whether the content is a text dialog, help panel, or media enlargement. A lightbox is a use case, not a second foundational system name.</div>
+                </div>
               </section>
 
               <section class="wb-stack-4" id="pattern-boundaries">
