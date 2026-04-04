@@ -144,6 +144,19 @@ body {
   background: var(--wb-surface-2);
 }
 
+.wb-sandbox-workspace-shell > .wb-card > .wb-card-header > .wb-split > :first-child,
+.wb-sandbox-workspace-shell > .wb-card > .wb-card-body,
+[data-sandbox-warnings] .wb-list-item-text {
+  min-width: 0;
+}
+
+[data-sandbox-warnings] .wb-list-item-title,
+[data-sandbox-warnings] .wb-list-item-sub {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
 @media (max-width: 1200px) {
   .wb-sandbox-workspace-shell {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
