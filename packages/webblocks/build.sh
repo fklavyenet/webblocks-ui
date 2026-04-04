@@ -77,6 +77,7 @@ cat \
   "$ROOT/src/css/patterns/auth-shell.css" \
   "$ROOT/src/css/patterns/dashboard-shell.css" \
   "$ROOT/src/css/patterns/settings-shell.css" \
+  "$ROOT/src/css/patterns/section-nav.css" \
   "$ROOT/src/css/patterns/content-shell.css" \
   "$ROOT/src/css/patterns/marketing.css" \
   "$ROOT/src/css/patterns/webgames-screen.css" \

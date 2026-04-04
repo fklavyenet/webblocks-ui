@@ -65,7 +65,16 @@
 
           <div class="wb-content-body">
             <div class="wb-stack-8">
-              <section class="wb-stack-4">
+              <nav class="wb-section-nav" aria-label="Section navigation">
+                <div class="wb-section-nav-header">On this page</div>
+                <a href="#include-package-files" class="wb-section-nav-link">Include the package files</a>
+                <a href="#set-root-theme-attributes" class="wb-section-nav-link">Set root theme attributes</a>
+                <a href="#start-from-a-pattern" class="wb-section-nav-link">Start from a pattern</a>
+                <a href="#copy-the-nearest-example" class="wb-section-nav-link">Copy the nearest example</a>
+                <a href="#keep-responsibilities-clear" class="wb-section-nav-link">Keep responsibilities clear</a>
+              </nav>
+
+              <section class="wb-stack-4" id="include-package-files">
                 <h2>1. Include the package files</h2>
                 <p>The smallest correct setup includes the main CSS and JS bundles. Add the icon CSS only if you want class-based icon usage with <code>&lt;i class="wb-icon wb-icon-*"&gt;</code>. The docs site itself now loads these same assets from the versioned jsDelivr tag so it reflects the current published release instead of the moving branch head.</p>
                 <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.9/packages/webblocks/dist/webblocks-ui.css"&gt;
@@ -83,7 +92,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="set-root-theme-attributes">
                 <h2>2. Set root theme attributes</h2>
                 <p>Theme axes live on the <code>&lt;html&gt;</code> element. The package theme module reads and updates these attributes for you.</p>
                 <pre><code>&lt;html data-mode="auto"
@@ -107,7 +116,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="start-from-a-pattern">
                 <h2>3. Start from a pattern</h2>
                 <p>The fastest correct path is not to browse every primitive first. Start from the page job, then inspect the surfaces and primitives that the pattern uses.</p>
                 <div class="wb-link-list">
@@ -128,7 +137,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="copy-the-nearest-example">
                 <h2>4. Copy the nearest shipped example</h2>
                 <p>The pattern example pages in this guide are useful because they already combine shell choice, hierarchy, surfaces, primitives, and behavior hooks in one place without leaving the docs navigation.</p>
                 <div class="wb-link-list">
@@ -170,7 +179,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4">
+              <section class="wb-stack-4" id="keep-responsibilities-clear">
                 <h2>5. Keep responsibilities clear</h2>
                 <div class="wb-callout wb-callout-warning">
                   <strong class="wb-callout-title">CSS and JS should keep their own jobs</strong>

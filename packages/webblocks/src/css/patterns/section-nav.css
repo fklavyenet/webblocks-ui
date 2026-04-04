@@ -1,0 +1,53 @@
+/* ============================================================
+   WebBlocks UI — Section Nav
+   ============================================================ */
+
+.wb-section-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s1);
+  padding: var(--wb-s3);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  background: var(--wb-surface);
+}
+
+.wb-section-nav-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  color: var(--wb-muted);
+  padding: 0 var(--wb-s2) var(--wb-s1);
+}
+
+.wb-section-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  padding: var(--wb-s2) var(--wb-s3);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--wb-muted);
+  text-decoration: none;
+  border-radius: var(--wb-r-md);
+  transition: background var(--wb-t), color var(--wb-t);
+}
+
+.wb-section-nav-link:hover {
+  background: var(--wb-surface-2);
+  color: var(--wb-text);
+}
+
+.wb-section-nav-link.is-active {
+  background: var(--wb-accent-softer);
+  color: var(--wb-accent-text);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .wb-section-nav {
+    padding: var(--wb-s2);
+  }
+}
