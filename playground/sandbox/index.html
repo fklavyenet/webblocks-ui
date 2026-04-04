@@ -12,22 +12,22 @@
   <div class="wb-sandbox-app">
     <header class="wb-navbar wb-navbar-glass wb-sandbox-topbar">
       <div class="wb-container-full wb-sandbox-topbar-inner">
-        <div class="wb-topbar-identity wb-min-w-0">
-          <div class="wb-topbar-identity-copy wb-min-w-0">
-            <nav aria-label="Breadcrumb">
-              <ol class="wb-breadcrumb wb-breadcrumb-inline">
-                <li class="wb-breadcrumb-item"><a href="../../docs/index.html">WebBlocks UI</a></li>
-                <li class="wb-breadcrumb-item is-active"><span aria-current="page">Playground</span></li>
-              </ol>
-            </nav>
-            <div>
-              <h1 class="wb-sandbox-title">WebBlocks UI Playground</h1>
-              <p class="wb-sandbox-subtitle">A full-width HTML workspace for testing real WebBlocks UI snippets, validating AI-generated markup, and moving into the right docs with more confidence.</p>
-            </div>
+        <div class="wb-sandbox-header-main wb-min-w-0">
+          <div>
+            <h1 class="wb-sandbox-title">WebBlocks UI Playground</h1>
+            <p class="wb-sandbox-subtitle">Test real WebBlocks HTML, validate AI-generated markup, and move into the right docs with more confidence.</p>
           </div>
         </div>
-        <div class="wb-topbar-actions wb-cluster wb-cluster-2">
-          <a href="../../docs/index.html" class="wb-topbar-action" aria-label="Back to docs" title="Back to docs"><i class="wb-icon wb-icon-arrow-left"></i></a>
+        <div class="wb-sandbox-header-meta">
+          <nav class="wb-sandbox-header-breadcrumb" aria-label="Breadcrumb">
+            <ol class="wb-breadcrumb wb-breadcrumb-inline">
+              <li class="wb-breadcrumb-item"><a href="../../docs/index.html">WebBlocks UI</a></li>
+              <li class="wb-breadcrumb-item is-active"><span aria-current="page">Playground</span></li>
+            </ol>
+          </nav>
+          <div class="wb-topbar-actions wb-cluster wb-cluster-2">
+            <a href="../../docs/index.html" class="wb-topbar-action" aria-label="Back to docs" title="Back to docs"><i class="wb-icon wb-icon-arrow-left"></i></a>
+          </div>
         </div>
       </div>
     </header>
@@ -35,16 +35,17 @@
     <main class="wb-sandbox-workspace-shell">
       <aside class="wb-card wb-sandbox-rail">
         <div class="wb-card-header">
-          <div>
-            <h2 class="wb-m-0">Guidance rail</h2>
-            <p class="wb-m-0 wb-text-sm wb-text-muted">Choose a starter, inspect what it demonstrates, and jump to the right source docs.</p>
+          <div class="wb-stack-2">
+            <span class="wb-sandbox-rail-label">Playground guide</span>
+            <h2 class="wb-m-0 wb-sandbox-rail-title">Start from a shipped example</h2>
+            <p class="wb-m-0 wb-text-sm wb-text-muted">Choose a starter, inspect what it demonstrates, and move into the right docs page.</p>
           </div>
         </div>
         <div class="wb-card-body wb-sandbox-rail-body">
           <div class="wb-stack-4">
-            <section class="wb-stack-3">
+            <section class="wb-stack-3 wb-sandbox-rail-section">
               <div>
-                <span class="wb-label">Starter example</span>
+                <span class="wb-sandbox-rail-label">Starter</span>
                 <p class="wb-m-0 wb-text-sm wb-text-muted">Named starters map to real primitives and pattern pages.</p>
               </div>
               <label class="wb-sandbox-control-group">
@@ -52,8 +53,9 @@
               </label>
             </section>
 
-            <section class="wb-stack-3">
+            <section class="wb-stack-3 wb-sandbox-rail-section">
               <div>
+                <span class="wb-sandbox-rail-label">Selected example</span>
                 <h3 class="wb-m-0" data-sandbox-example-title>Starter example</h3>
                 <p class="wb-m-0 wb-text-sm wb-text-muted" data-sandbox-example-description></p>
               </div>
@@ -67,7 +69,10 @@
               </div>
             </section>
 
-            <section class="wb-stack-3">
+            <section class="wb-stack-3 wb-sandbox-rail-section">
+              <div>
+                <span class="wb-sandbox-rail-label">AI workflow</span>
+              </div>
               <div class="wb-callout wb-callout-accent">
                 <strong class="wb-callout-title">Using AI-generated HTML?</strong>
                 Before trusting the result, confirm that the snippet uses real <code>wb-*</code> classes, matches shipped primitives or patterns, and stays inside HTML-only scope.
@@ -94,8 +99,9 @@
               </div>
             </section>
 
-            <section class="wb-stack-3">
+            <section class="wb-stack-3 wb-sandbox-rail-section">
               <div>
+                <span class="wb-sandbox-rail-label">Related docs</span>
                 <h3 class="wb-m-0">Related docs</h3>
                 <p class="wb-m-0 wb-text-sm wb-text-muted">Use the source-accurate docs page behind the currently selected example.</p>
               </div>

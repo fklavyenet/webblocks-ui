@@ -22,9 +22,9 @@ body {
 
 .wb-sandbox-topbar-inner {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--wb-s6);
+  gap: var(--wb-s4);
   flex-wrap: wrap;
   min-width: 0;
 }
@@ -33,12 +33,21 @@ body {
   min-width: 0;
 }
 
-.wb-topbar-identity {
-  flex: 1 1 42rem;
+.wb-sandbox-header-main {
+  flex: 1 1 32rem;
   min-width: 0;
 }
 
-.wb-topbar-identity-copy {
+.wb-sandbox-header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--wb-s2);
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.wb-sandbox-header-breadcrumb {
   min-width: 0;
 }
 
@@ -50,14 +59,16 @@ body {
 
 .wb-sandbox-title {
   margin: 0;
-  font-size: clamp(1.6rem, 2vw, 2rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .wb-sandbox-subtitle {
-  margin: var(--wb-s2) 0 0;
-  max-width: 62rem;
+  margin: var(--wb-s1) 0 0;
+  max-width: 44rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
   color: var(--wb-muted);
   overflow-wrap: anywhere;
 }
@@ -81,9 +92,37 @@ body {
   flex-direction: column;
 }
 
+.wb-sandbox-rail .wb-card-header {
+  padding-bottom: var(--wb-s4);
+}
+
 .wb-sandbox-rail-body {
   min-height: 0;
   overflow: auto;
+}
+
+.wb-sandbox-rail-section {
+  padding-top: var(--wb-s3);
+  border-top: 1px solid color-mix(in srgb, var(--wb-border) 80%, transparent);
+}
+
+.wb-sandbox-rail-section:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.wb-sandbox-rail-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wb-muted);
+}
+
+.wb-sandbox-rail-title {
+  font-size: 1rem;
+  line-height: 1.25;
 }
 
 .wb-sandbox-panel {
@@ -298,9 +337,15 @@ body {
 }
 
 @media (max-width: 900px) {
+  .wb-sandbox-topbar-inner,
+  .wb-sandbox-header-meta,
   .wb-sandbox-toolbar-controls {
     justify-content: flex-start;
-    flex-basis: auto;
+  }
+
+  .wb-sandbox-topbar-inner,
+  .wb-sandbox-header-meta {
+    align-items: flex-start;
   }
 
   .wb-sandbox-control-group,
@@ -333,8 +378,13 @@ body {
     padding: var(--wb-s3);
   }
 
+  .wb-sandbox-title {
+    font-size: 1.15rem;
+  }
+
   .wb-sandbox-subtitle {
-    margin-top: var(--wb-s1);
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
   }
 
   .wb-sandbox-rail-body > .wb-stack-4,
