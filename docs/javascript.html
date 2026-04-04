@@ -43,16 +43,16 @@
     </aside>
 
     <div class="wb-dashboard-body">
-      <header class="wb-navbar wb-navbar-glass">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
         <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
-        <nav aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">JavaScript</span></li></ol></nav>
+        <nav class="wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">JavaScript</span></li></ol></nav>
         <div class="wb-navbar-spacer"></div>
         <div class="wb-topbar-actions"><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-topbar-action" data-wb-toggle="dropdown" data-wb-target="#javascriptThemeMenu" aria-expanded="false" aria-label="Theme controls" title="Theme controls"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="javascriptThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Accent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div></div>
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-settings-shell">
-          <nav class="wb-section-nav wb-settings-nav" aria-label="JavaScript sections">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="JavaScript sections">
             <div class="wb-section-nav-title">On this page</div>
             <ul class="wb-section-nav-list">
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#responsibility-split">Responsibility split</a></li>
@@ -65,22 +65,22 @@
           </nav>
 
           <div class="wb-settings-body">
-            <div class="wb-content-shell wb-content-shell-wide">
+            <div class="wb-content-shell wb-docs-main">
               <header class="wb-content-header">
                 <h1 class="wb-content-title">JavaScript</h1>
-                <p class="wb-content-subtitle">Use package JavaScript for interaction. Use CSS for layout and passive presentation. This boundary matters.</p>
+                <p class="wb-content-subtitle wb-docs-prose">Use package JavaScript for interaction. Use CSS for layout and passive presentation. This boundary matters.</p>
               </header>
 
               <div class="wb-content-body">
-                <div class="wb-stack-8">
-              <section class="wb-stack-4" id="responsibility-split">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-prose" id="responsibility-split">
                 <div class="wb-callout wb-callout-warning">
                   <strong class="wb-callout-title">Correct responsibility split</strong>
                   Layout is CSS-driven through layout and pattern classes. Overlays, tooltips, tabs, drawers, theme controls, password visibility, command palette, and dismiss flows are JavaScript-driven through shipped hooks and public APIs.
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="behavior-conventions">
+              <section class="wb-docs-section wb-docs-wide" id="behavior-conventions">
                 <h2>Behavior conventions</h2>
                 <div class="wb-grid-3">
                   <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Small modules</strong><p class="wb-m-0">The bundle stays readable because behavior is split into named modules instead of one large anonymous runtime.</p></div></div>
@@ -89,7 +89,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="common-modules">
+              <section class="wb-docs-section wb-docs-wide" id="common-modules">
                 <h2>Common modules</h2>
                 <div class="wb-table-wrap">
                   <table class="wb-table wb-table-hover wb-table-sm">
@@ -109,7 +109,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="trigger-model">
+              <section class="wb-docs-section wb-docs-wide" id="trigger-model">
                 <h2>Trigger model</h2>
                 <pre><code>&lt;button data-wb-toggle="modal" data-wb-target="#confirm-dialog"&gt;
   Delete
@@ -126,7 +126,7 @@
                 <p>Most behavior starts from a small attribute contract. Use <code>data-wb-toggle="modal"</code> for direct modal triggers, and let <code>data-wb-gallery-target</code> upgrade inline gallery items into a shared content-first modal viewer.</p>
               </section>
 
-              <section class="wb-stack-4" id="live-demos">
+              <section class="wb-docs-section wb-docs-split" id="live-demos">
                 <h2>Live package-only demos</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card">
@@ -173,7 +173,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="api-shape">
+              <section class="wb-docs-section wb-docs-wide" id="api-shape">
                 <h2>API shape</h2>
                 <pre><code>WBTheme.setMode('dark')
 WBTheme.setAccent('forest')

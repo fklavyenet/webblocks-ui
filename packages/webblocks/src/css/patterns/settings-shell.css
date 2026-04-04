@@ -51,6 +51,37 @@
   min-width: 0;
 }
 
+/* ── Docs workspace variant ────────────────────────────────── */
+
+.wb-settings-shell.wb-docs-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 18rem);
+  align-items: start;
+  gap: var(--wb-s8);
+  max-width: none;
+  margin: 0;
+  padding: var(--wb-s6) clamp(var(--wb-s4), 2.6vw, var(--wb-s8)) var(--wb-s10);
+  min-height: auto;
+}
+
+.wb-settings-shell.wb-docs-layout .wb-settings-body {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.wb-settings-shell.wb-docs-layout .wb-settings-nav,
+.wb-settings-nav.wb-docs-rail {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: 18rem;
+  position: sticky;
+  top: var(--wb-s4);
+  align-self: start;
+  max-height: calc(100vh - (var(--wb-navbar-h, 56px) + var(--wb-s8)));
+  overflow: auto;
+}
+
 /* ── Page header ──────────────────────────────────────────── */
 
 .wb-settings-header {
@@ -194,5 +225,26 @@
 
   .wb-settings-row-control {
     width: 100%;
+  }
+}
+
+@media (max-width: 1180px) {
+  .wb-settings-shell.wb-docs-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--wb-s6);
+  }
+
+  .wb-settings-shell.wb-docs-layout .wb-settings-body {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .wb-settings-shell.wb-docs-layout .wb-settings-nav,
+  .wb-settings-nav.wb-docs-rail {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: none;
+    position: static;
+    max-height: none;
   }
 }

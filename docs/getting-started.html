@@ -49,16 +49,16 @@
     </aside>
 
     <div class="wb-dashboard-body">
-      <header class="wb-navbar wb-navbar-glass">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
         <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
-        <nav aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Getting Started</span></li></ol></nav>
+        <nav class="wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Getting Started</span></li></ol></nav>
         <div class="wb-navbar-spacer"></div>
         <div class="wb-topbar-actions"><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-topbar-action" data-wb-toggle="dropdown" data-wb-target="#getting-startedThemeMenu" aria-expanded="false" aria-label="Theme controls" title="Theme controls"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="getting-startedThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Accent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div></div>
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-settings-shell">
-          <nav class="wb-section-nav wb-settings-nav" aria-label="Getting started sections">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Getting started sections">
             <div class="wb-section-nav-title">On this page</div>
             <ul class="wb-section-nav-list">
               <li class="wb-section-nav-item"><a href="#include-package-files" class="wb-section-nav-link"><i class="wb-icon wb-icon-package"></i><span>Include the package files</span></a></li>
@@ -70,15 +70,15 @@
           </nav>
 
           <div class="wb-settings-body">
-            <div class="wb-content-shell wb-content-shell-wide">
+            <div class="wb-content-shell wb-docs-main">
               <header class="wb-content-header">
                 <h1 class="wb-content-title">Getting Started</h1>
-                <p class="wb-content-subtitle">Include the built assets, set root theme attributes, and begin from patterns instead of guessing from isolated primitives.</p>
+                <p class="wb-content-subtitle wb-docs-prose">Include the built assets, set root theme attributes, and begin from patterns instead of guessing from isolated primitives.</p>
               </header>
 
               <div class="wb-content-body">
-                <div class="wb-stack-8">
-              <section class="wb-stack-4" id="include-package-files">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-wide" id="include-package-files">
                 <h2>1. Include the package files</h2>
                 <p>The smallest correct setup includes the main CSS and JS bundles. Add the icon CSS only if you want class-based icon usage with <code>&lt;i class="wb-icon wb-icon-*"&gt;</code>. The docs and playground in this repo load the same built files from the local published dist path so the examples stay aligned with the shipped package output.</p>
                 <pre><code>&lt;link rel="stylesheet" href="/packages/webblocks/dist/webblocks-ui.css"&gt;
@@ -96,7 +96,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="set-root-theme-attributes">
+              <section class="wb-docs-section wb-docs-wide" id="set-root-theme-attributes">
                 <h2>2. Set root theme attributes</h2>
                 <p>Theme axes live on the <code>&lt;html&gt;</code> element. The package theme module reads and updates these attributes for you.</p>
                 <pre><code>&lt;html data-mode="auto"
@@ -120,7 +120,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="start-from-a-pattern">
+              <section class="wb-docs-section wb-docs-wide" id="start-from-a-pattern">
                 <h2>3. Start from a pattern</h2>
                 <p>The fastest correct path is not to browse every primitive first. Start from the page job, then inspect the surfaces and primitives that the pattern uses.</p>
                 <div class="wb-link-list">
@@ -141,7 +141,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="copy-the-nearest-example">
+              <section class="wb-docs-section wb-docs-wide" id="copy-the-nearest-example">
                 <h2>4. Copy the nearest shipped example</h2>
                 <p>The pattern example pages in this guide are useful because they already combine shell choice, hierarchy, surfaces, primitives, and behavior hooks in one place without leaving the docs navigation.</p>
                 <div class="wb-link-list">
@@ -183,7 +183,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="keep-responsibilities-clear">
+              <section class="wb-docs-section wb-docs-wide" id="keep-responsibilities-clear">
                 <h2>5. Keep responsibilities clear</h2>
                 <div class="wb-callout wb-callout-warning">
                   <strong class="wb-callout-title">CSS and JS should keep their own jobs</strong>

@@ -45,6 +45,91 @@
   max-width: 1040px;
 }
 
+/* ── Docs workspace variant ────────────────────────────────── */
+
+.wb-content-shell.wb-docs-main {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wb-content-shell.wb-docs-main .wb-content-header {
+  display: grid;
+  gap: var(--wb-s3);
+  width: min(100%, 74rem);
+  max-width: 74rem;
+  margin-bottom: var(--wb-s7);
+}
+
+.wb-content-shell.wb-docs-main .wb-content-body {
+  width: 100%;
+  min-width: 0;
+}
+
+.wb-docs-breadcrumb {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.wb-docs-breadcrumb .wb-breadcrumb {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.wb-docs-flow {
+  display: grid;
+  gap: var(--wb-s8);
+}
+
+.wb-docs-section {
+  display: grid;
+  gap: var(--wb-s4);
+  min-width: 0;
+}
+
+.wb-docs-section > * {
+  min-width: 0;
+}
+
+.wb-docs-section.wb-docs-prose {
+  width: min(100%, 72ch);
+}
+
+.wb-docs-section.wb-docs-wide,
+.wb-docs-section.wb-docs-split {
+  width: 100%;
+}
+
+.wb-docs-section.wb-docs-wide > :is(h2, h3, p, ul, ol, blockquote),
+.wb-docs-section.wb-docs-split > :is(h2, h3, p, ul, ol, blockquote) {
+  width: min(100%, 72ch);
+}
+
+.wb-docs-prose {
+  width: min(100%, 72ch);
+}
+
+.wb-docs-wide,
+.wb-docs-split {
+  width: 100%;
+}
+
+.wb-docs-split :is(.wb-grid-2, .wb-row) {
+  align-items: start;
+}
+
+.wb-docs-topbar > :not(.wb-navbar-spacer) {
+  min-width: 0;
+}
+
+.wb-docs-topbar .wb-topbar-actions {
+  flex-shrink: 0;
+}
+
 /* ── Content header ───────────────────────────────────────── */
 
 .wb-content-header {
@@ -232,6 +317,16 @@
 @media (max-width: 640px) {
   .wb-content-shell {
     padding: var(--wb-s6) var(--wb-s4);
+  }
+
+  .wb-content-shell.wb-docs-main .wb-content-header {
+    width: 100%;
+    max-width: none;
+    margin-bottom: var(--wb-s6);
+  }
+
+  .wb-docs-flow {
+    gap: var(--wb-s6);
   }
 
   .wb-content-footer {

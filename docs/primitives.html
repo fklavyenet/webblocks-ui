@@ -43,16 +43,16 @@
     </aside>
 
     <div class="wb-dashboard-body">
-      <header class="wb-navbar wb-navbar-glass">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
         <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
-        <nav aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Primitives</span></li></ol></nav>
+        <nav class="wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Primitives</span></li></ol></nav>
         <div class="wb-navbar-spacer"></div>
         <div class="wb-topbar-actions"><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-topbar-action" data-wb-toggle="dropdown" data-wb-target="#primitivesThemeMenu" aria-expanded="false" aria-label="Theme controls" title="Theme controls"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="primitivesThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Accent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div></div>
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-settings-shell">
-          <nav class="wb-section-nav wb-settings-nav" aria-label="Primitives sections">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Primitives sections">
             <div class="wb-section-nav-title">On this page</div>
             <ul class="wb-section-nav-list">
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#primitive-boundaries">Primitive boundaries</a></li>
@@ -65,15 +65,15 @@
           </nav>
 
           <div class="wb-settings-body">
-            <div class="wb-content-shell wb-content-shell-wide">
+            <div class="wb-content-shell wb-docs-main">
               <header class="wb-content-header">
                 <h1 class="wb-content-title">Primitives</h1>
-                <p class="wb-content-subtitle">These examples stay inside shipped package classes. No demo helper layer is added on top.</p>
+                <p class="wb-content-subtitle wb-docs-prose">These examples stay inside shipped package classes. No demo helper layer is added on top.</p>
               </header>
 
               <div class="wb-content-body">
-                <div class="wb-stack-8">
-              <section class="wb-stack-4" id="primitive-boundaries">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-wide" id="primitive-boundaries">
                 <div class="wb-callout wb-callout-accent">
                   <strong class="wb-callout-title">Icon boundary</strong>
                   Icons support these controls and surfaces, but they are still an asset layer. This guide intentionally uses the shipped mask-image path with <code>&lt;i class="wb-icon wb-icon-..."&gt;</code> and keeps <code>webblocks-icons.css</code> included.
@@ -96,7 +96,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="actions-and-signals">
+              <section class="wb-docs-section wb-docs-wide" id="actions-and-signals">
                 <h2>Actions and signals</h2>
                 <div class="wb-card">
                   <div class="wb-card-body wb-stack-4">
@@ -122,7 +122,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="forms">
+              <section class="wb-docs-section wb-docs-wide" id="forms">
                 <h2>Forms</h2>
                 <p>Fields use a three-slot contract: label, control, and <code>wb-field-meta</code>. Keep hints and errors inside the shared meta area so multi-column <code>wb-form-row</code> layouts stay aligned even when sibling fields carry different assistive content. Do not place <code>wb-field-hint</code> or <code>wb-field-error</code> directly under <code>wb-field</code>. In stacked forms, empty meta rows are usually unnecessary.</p>
                 <div class="wb-card">
@@ -186,7 +186,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="surfaces-and-display">
+              <section class="wb-docs-section wb-docs-wide" id="surfaces-and-display">
                 <h2>Surfaces and display contracts</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card">
@@ -224,7 +224,7 @@
                 <p class="wb-text-sm wb-text-muted wb-m-0"><a href="../playground/sandbox/">Open in Playground</a> when you want to combine these primitives into a real snippet before wiring them into a full page.</p>
               </section>
 
-              <section class="wb-stack-4" id="pagination-and-context">
+              <section class="wb-docs-section wb-docs-wide" id="pagination-and-context">
                 <h2>Pagination and context navigation</h2>
                 <p>Use <code>wb-pagination</code> for page-based result sets. Keep it semantic: a <code>nav</code> landmark, an ordered list, a passive current-page marker with <code>aria-current="page"</code>, and a passive disabled previous/next state when navigation is unavailable. Do not reuse it for breadcrumb hierarchy or content footer previous-next links.</p>
                 <div class="wb-grid-2">
@@ -264,7 +264,7 @@
                 </div>
               </section>
 
-              <section class="wb-stack-4" id="interaction-shells">
+              <section class="wb-docs-section wb-docs-split" id="interaction-shells">
                 <h2>Interaction shells</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card">
