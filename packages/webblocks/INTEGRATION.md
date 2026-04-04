@@ -632,6 +632,131 @@ Do not:
 - hide close behavior in app-local scripts
 - duplicate the same content once for inline display and again for the viewer unless the real UX requires it
 
+### Gallery Pattern
+
+`wb-gallery` is the canonical inline media presentation pattern.
+
+Use it for:
+
+- screenshot grids
+- editorial image groups
+- media lists that may expand into a focused viewer
+
+Architecture rule:
+
+- `wb-gallery` owns inline layout and item authoring
+- `wb-modal` remains the only public top-layer primitive
+- gallery viewer / lightbox behavior is a content-first modal usage mode, not a second primitive
+
+Canonical authoring model:
+
+- one `.wb-gallery` wrapper
+- one `.wb-gallery-grid` for the inline arrangement
+- many `.wb-gallery-item` entries with real buttons or links as `.wb-gallery-trigger`
+- one shared `.wb-modal` viewer for the whole gallery
+
+Canonical example:
+
+```html
+<section class="wb-gallery" aria-label="Project gallery">
+  <div class="wb-gallery-grid">
+    <figure class="wb-gallery-item">
+      <button class="wb-gallery-trigger"
+              type="button"
+              data-wb-gallery-target="#project-gallery-viewer"
+              data-wb-gallery-full="/images/project-overview-full.jpg">
+        <img class="wb-gallery-media"
+             src="/images/project-overview-thumb.jpg"
+             alt="Analytics overview with KPI cards and activity charts">
+      </button>
+      <figcaption class="wb-gallery-caption">Overview</figcaption>
+      <div class="wb-gallery-meta">Weekly analytics</div>
+    </figure>
+
+    <figure class="wb-gallery-item">
+      <button class="wb-gallery-trigger"
+              type="button"
+              data-wb-gallery-target="#project-gallery-viewer"
+              data-wb-gallery-full="/images/project-members-full.jpg">
+        <img class="wb-gallery-media"
+             src="/images/project-members-thumb.jpg"
+             alt="Team members table showing roles and invitation status">
+      </button>
+      <figcaption class="wb-gallery-caption">Members</figcaption>
+      <div class="wb-gallery-meta">Roles and invitations</div>
+    </figure>
+  </div>
+</section>
+
+<div class="wb-modal wb-modal-xl" id="project-gallery-viewer" role="dialog" aria-modal="true" aria-labelledby="project-gallery-viewer-title">
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-body">
+      <div class="wb-gallery-viewer">
+        <div class="wb-gallery-viewer-toolbar">
+          <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Previous image">
+            <i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i>
+          </button>
+          <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 2</div>
+          <div class="wb-cluster wb-cluster-2">
+            <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Next image">
+              <i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i>
+            </button>
+            <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Close viewer">
+              <i class="wb-icon wb-icon-x" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <figure class="wb-gallery-viewer-media">
+          <img class="wb-gallery-viewer-image"
+               src="/images/project-overview-full.jpg"
+               alt="Analytics overview with KPI cards and activity charts">
+          <figcaption class="wb-gallery-viewer-caption" id="project-gallery-viewer-title">Overview</figcaption>
+        </figure>
+
+        <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Weekly analytics</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+Data contract:
+
+- thumbnail source lives on the inline `<img>`
+- full viewer source can come from `data-wb-gallery-full`
+- alt text can come from the inline image or `data-wb-gallery-alt`
+- caption and meta can come from visible markup or explicit `data-wb-gallery-caption` / `data-wb-gallery-meta`
+- optional `data-wb-gallery-width` / `data-wb-gallery-height` can be used as viewer hints
+
+Behavior contract:
+
+- the shipped `WBGallery` module upgrades `.wb-gallery-trigger` elements that point to a shared modal through `data-wb-gallery-target`
+- clicking a trigger populates the shared viewer modal and opens it through `WBModal`
+- `.wb-gallery-viewer-prev` and `.wb-gallery-viewer-next` move through the same gallery item set
+- left / right arrow keys also move while the viewer modal is open
+- close, Escape, and focus return remain owned by the modal runtime
+
+Accessibility baseline:
+
+- use real `button` or `a` triggers, never clickable `div`s
+- keep meaningful `alt` text on inline and viewer media
+- keep a visible close control in the modal viewer
+- keep the viewer dismissable through the normal modal contract
+
+Do:
+
+- keep thumbnail sizing and viewer sizing separate
+- let thumbnails crop for a stable grid when needed
+- let viewer images use contain/fit so the full asset stays visible
+- use one shared modal per gallery instead of one modal per item
+
+Do not:
+
+- create `wb-lightbox`, `wb-gallery-modal`, or another public top-layer primitive
+- create one modal per gallery item
+- treat the viewer as a system separate from `wb-modal`
+
 ### Drawers
 
 `wb-drawer` remains the shipped side-sheet primitive.

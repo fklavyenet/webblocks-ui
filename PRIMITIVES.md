@@ -99,6 +99,7 @@ Overlay boundary inside primitives:
 
 - `wb-modal` = canonical top-layer primitive for confirms, forms, action dialogs, and content-first viewer usage
 - `wb-overlay-root` is shared runtime infrastructure, not a public page-level primitive to author directly
+- gallery viewer behavior belongs to `wb-modal` usage, while `wb-gallery` itself belongs to patterns
 
 ## Surfaces
 

@@ -84,7 +84,7 @@
                 <h2>Behavior conventions</h2>
                 <div class="wb-grid-3">
                   <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Small modules</strong><p class="wb-m-0">The bundle stays readable because behavior is split into named modules instead of one large anonymous runtime.</p></div></div>
-                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Named APIs on <code>window</code></strong><p class="wb-m-0"><code>WBTheme</code>, <code>WBModal</code>, <code>WBDrawer</code>, <code>WBToast</code>, and related modules remain inspectable from the console.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Named APIs on <code>window</code></strong><p class="wb-m-0"><code>WBTheme</code>, <code>WBModal</code>, <code>WBGallery</code>, <code>WBDrawer</code>, <code>WBToast</code>, and related modules remain inspectable from the console.</p></div></div>
                   <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Data hooks in markup</strong><p class="wb-m-0">Most interactions start from <code>data-wb-*</code> attributes so the HTML still tells you what can open, close, or change.</p></div></div>
                 </div>
               </section>
@@ -96,7 +96,8 @@
                     <thead><tr><th>Module</th><th>Trigger pattern</th><th>Purpose</th></tr></thead>
                     <tbody>
                       <tr><td><code>WBTheme</code></td><td><code>data-wb-mode-set</code>, <code>data-wb-accent-set</code>, <code>data-wb-preset-set</code></td><td>Theme and axis control</td></tr>
-                      <tr><td><code>WBModal</code></td><td><code>data-wb-toggle="modal"</code></td><td>Canonical top-layer pattern for confirms, forms, and content-first viewer/lightbox usage</td></tr>
+                      <tr><td><code>WBModal</code></td><td><code>data-wb-toggle="modal"</code></td><td>Canonical top-layer pattern for confirms, forms, and content-first viewer or gallery-viewer usage</td></tr>
+                      <tr><td><code>WBGallery</code></td><td><code>data-wb-gallery-target</code></td><td>Inline gallery pattern runtime that populates a shared <code>wb-modal</code> viewer</td></tr>
                       <tr><td><code>WBDrawer</code></td><td><code>data-wb-toggle="drawer"</code></td><td>Off-canvas panels</td></tr>
                       <tr><td><code>WBDropdown</code></td><td><code>data-wb-toggle="dropdown"</code></td><td>Dropdown menus</td></tr>
                       <tr><td><code>WBCommandPalette</code></td><td><code>data-wb-toggle="cmd"</code> or <code>Cmd/Ctrl + K</code></td><td>Search and command surface</td></tr>
@@ -114,13 +115,15 @@
   Delete
 &lt;/button&gt;
 
-&lt;button data-wb-toggle="modal" data-wb-target="#media-viewer"&gt;
-  Open viewer
+&lt;button class="wb-gallery-trigger"
+        data-wb-gallery-target="#media-viewer"
+        data-wb-gallery-full="/images/demo-full.jpg"&gt;
+  Open gallery item
 &lt;/button&gt;
 
 &lt;button data-wb-mode-set="dark"&gt;Dark&lt;/button&gt;
 &lt;button data-wb-dismiss="modal"&gt;Close&lt;/button&gt;</code></pre>
-                <p>Most behavior starts from a small attribute contract. Use the same modal trigger path for both structured dialogs and content-first viewer/lightbox usage.</p>
+                <p>Most behavior starts from a small attribute contract. Use <code>data-wb-toggle="modal"</code> for direct modal triggers, and let <code>data-wb-gallery-target</code> upgrade inline gallery items into a shared content-first modal viewer.</p>
               </section>
 
               <section class="wb-stack-4" id="live-demos">
@@ -141,7 +144,7 @@
                         </div>
                       </div>
                       <button class="wb-btn wb-btn-outline" data-wb-mode-cycle>Cycle mode</button>
-                        <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-overlay-root</code> is shared top-layer infrastructure. Anchored overlays render there in JS mode to avoid clipping, and modal layers reuse the same runtime foundation instead of shipping separate overlay engines.</p>
+                        <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-overlay-root</code> is shared top-layer infrastructure. Anchored overlays render there in JS mode to avoid clipping, and gallery viewers still route through the same shared <code>wb-modal</code> foundation instead of a second overlay system.</p>
                       </div>
                     </div>
 
@@ -177,6 +180,7 @@ WBTheme.setAccent('forest')
 WBTheme.setRadius('soft')
 WBTheme.setDensity('compact')
 WBModal.open(document.getElementById('my-modal'))
+WBGallery.open(document.querySelector('.wb-gallery-trigger'))
 WBDrawer.open(document.getElementById('my-drawer'))
 WBPasswordToggle.toggle(document.querySelector('[data-wb-password-toggle]'))
 WBToast.show('Saved', { type: 'success' })</code></pre>

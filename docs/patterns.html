@@ -60,6 +60,7 @@
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-flow">Pattern flow</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#reusable-section-nav">Reusable section nav</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#page-header-stack">Page header stack</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#gallery-pattern">Gallery pattern</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#overlay-boundary">Overlay boundary</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-boundaries">Pattern boundaries</a></li>
             </ul>
@@ -159,6 +160,46 @@
                 <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Hierarchy rule</strong> Product identity belongs first in the topbar. Context comes second. Inside the page header, breadcrumb is optional, title is primary, subtitle is supportive, and actions stay separate.</div>
               </section>
 
+              <section class="wb-stack-4" id="gallery-pattern">
+                <h2>Gallery pattern</h2>
+                <p><code>wb-gallery</code> is the canonical inline media pattern. When the content needs immersive viewing, the same gallery expands into one shared <code>wb-modal</code> in a content-first mode instead of inventing a second top-layer primitive.</p>
+                <div class="wb-gallery" aria-label="Dashboard gallery example">
+                  <div class="wb-gallery-grid">
+                    <figure class="wb-gallery-item">
+                      <button class="wb-gallery-trigger"
+                              type="button"
+                              data-wb-gallery-target="#patternsGalleryViewer"
+                              data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80">
+                        <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Workspace dashboard with KPI cards and analytics charts">
+                      </button>
+                      <figcaption class="wb-gallery-caption">Overview dashboard</figcaption>
+                      <div class="wb-gallery-meta">Shared reporting home</div>
+                    </figure>
+                    <figure class="wb-gallery-item">
+                      <button class="wb-gallery-trigger"
+                              type="button"
+                              data-wb-gallery-target="#patternsGalleryViewer"
+                              data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80">
+                        <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Team collaboration session around a product planning table">
+                      </button>
+                      <figcaption class="wb-gallery-caption">Team planning</figcaption>
+                      <div class="wb-gallery-meta">Cross-functional review</div>
+                    </figure>
+                    <figure class="wb-gallery-item">
+                      <button class="wb-gallery-trigger"
+                              type="button"
+                              data-wb-gallery-target="#patternsGalleryViewer"
+                              data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80">
+                        <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Marketing analytics chart with performance breakdowns on a laptop screen">
+                      </button>
+                      <figcaption class="wb-gallery-caption">Performance detail</figcaption>
+                      <div class="wb-gallery-meta">Attribution breakdown</div>
+                    </figure>
+                  </div>
+                </div>
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Single-modal rule</strong> A gallery can have many inline items, but the viewer should use one shared modal so active item state, keyboard navigation, and focus return all stay coherent.</div>
+              </section>
+
               <section class="wb-stack-4" id="overlay-boundary">
                 <h2>Overlay boundary</h2>
                 <div class="wb-grid-2">
@@ -167,10 +208,10 @@
                       <strong>What belongs to patterns</strong>
                       <p class="wb-m-0">Patterns decide where an overlay trigger belongs in the page flow: header actions, table rows, gallery items, settings help links, or editorial media blocks.</p>
                       <strong>What does not</strong>
-                      <p class="wb-m-0">The focus-above-page shell itself is not a page pattern. Use the shipped <code>wb-modal</code> primitive instead of creating shell-local wrappers, whether the job is a decision dialog, form modal, or content-first viewer.</p>
+                      <p class="wb-m-0">The focus-above-page shell itself is not a page pattern. Use the shipped <code>wb-modal</code> primitive instead of creating shell-local wrappers, whether the job is a decision dialog, form modal, or gallery viewer.</p>
                     </div>
                   </div>
-                  <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Infrastructure vs public patterns</strong> <code>wb-overlay-root</code> is the shared top-layer infrastructure. Public top-layer work belongs to <code>wb-modal</code>; lightbox and viewer experiences are modal usage modes, not separate primitives.</div>
+                  <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Infrastructure vs public patterns</strong> <code>wb-overlay-root</code> is the shared top-layer infrastructure. Public top-layer work belongs to <code>wb-modal</code>; gallery viewer and lightbox behavior are modal usage modes, not separate primitives.</div>
                 </div>
               </section>
 
@@ -193,6 +234,28 @@
           </div>
         </div>
       </main>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-xl" id="patternsGalleryViewer" role="dialog" aria-modal="true" aria-labelledby="patternsGalleryViewerTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-body">
+        <div class="wb-gallery-viewer">
+          <div class="wb-gallery-viewer-toolbar">
+            <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Previous image"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+            <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 3</div>
+            <div class="wb-cluster wb-cluster-2">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Next image"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Close viewer"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <figure class="wb-gallery-viewer-media">
+            <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Workspace dashboard with KPI cards and analytics charts">
+            <figcaption class="wb-gallery-viewer-caption" id="patternsGalleryViewerTitle">Overview dashboard</figcaption>
+          </figure>
+          <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Shared reporting home</p>
+        </div>
+      </div>
     </div>
   </div>
 

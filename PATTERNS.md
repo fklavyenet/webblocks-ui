@@ -268,6 +268,98 @@ Canonical structure:
 </article>
 ```
 
+### Gallery
+
+Use `wb-gallery` for:
+
+- inline image or media collections
+- editorial asset grids
+- screenshot galleries that may expand into a focused viewer
+
+Architecture rule:
+
+- `wb-gallery` = inline media presentation pattern
+- immersive viewing uses one shared `wb-modal`
+- the viewer is content-first modal composition, not a second top-layer primitive
+
+Canonical structure:
+
+```html
+<section class="wb-gallery" aria-label="Product screenshots">
+  <div class="wb-gallery-grid">
+    <figure class="wb-gallery-item">
+      <button class="wb-gallery-trigger"
+              type="button"
+              data-wb-gallery-target="#product-gallery-viewer"
+              data-wb-gallery-full="/images/product-overview-full.jpg">
+        <img class="wb-gallery-media"
+             src="/images/product-overview-thumb.jpg"
+             alt="Analytics dashboard with KPI cards and a weekly revenue chart">
+      </button>
+      <figcaption class="wb-gallery-caption">Overview dashboard</figcaption>
+      <div class="wb-gallery-meta">Week 14 snapshot</div>
+    </figure>
+
+    <figure class="wb-gallery-item">
+      <button class="wb-gallery-trigger"
+              type="button"
+              data-wb-gallery-target="#product-gallery-viewer"
+              data-wb-gallery-full="/images/product-members-full.jpg">
+        <img class="wb-gallery-media"
+             src="/images/product-members-thumb.jpg"
+             alt="Team members table with roles and invitation status">
+      </button>
+      <figcaption class="wb-gallery-caption">Members</figcaption>
+      <div class="wb-gallery-meta">Roles and invitations</div>
+    </figure>
+  </div>
+</section>
+
+<div class="wb-modal wb-modal-xl" id="product-gallery-viewer" role="dialog" aria-modal="true" aria-labelledby="product-gallery-viewer-title">
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-body">
+      <div class="wb-gallery-viewer">
+        <div class="wb-gallery-viewer-toolbar">
+          <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Previous image">&larr;</button>
+          <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 2</div>
+          <div class="wb-cluster wb-cluster-2">
+            <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Next image">&rarr;</button>
+            <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Close viewer">&times;</button>
+          </div>
+        </div>
+
+        <figure class="wb-gallery-viewer-media">
+          <img class="wb-gallery-viewer-image"
+               src="/images/product-overview-full.jpg"
+               alt="Analytics dashboard with KPI cards and a weekly revenue chart">
+          <figcaption class="wb-gallery-viewer-caption" id="product-gallery-viewer-title">Overview dashboard</figcaption>
+        </figure>
+
+        <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Week 14 snapshot</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+Subparts:
+
+- `wb-gallery` = pattern wrapper
+- `wb-gallery-grid` = inline gallery layout
+- `wb-gallery-item` = semantic media item
+- `wb-gallery-trigger` = real interactive opener; use `button` or `a`
+- `wb-gallery-media` = thumbnail or preview media
+- `wb-gallery-caption` = visible item title/caption
+- `wb-gallery-meta` = quiet supporting metadata
+- `wb-gallery-viewer*` = viewer subparts rendered inside a shared `wb-modal`
+
+Behavior rule:
+
+- one gallery can have many triggers but should use one shared modal viewer
+- clicking a trigger updates the active item inside the shared viewer modal
+- previous / next and keyboard left / right move through the same gallery set
+- focus returns to the originating trigger when the modal closes through the normal modal runtime
+
 ## Supporting Patterns
 
 These are also shipped pattern families, but not primary app shells:
@@ -287,6 +379,7 @@ These are also shipped pattern families, but not primary app shells:
 5. Do not treat dashboard header classes as universal layout helpers.
 6. `wb-page-header` and `wb-settings-section` are pattern-local surfaces, not global layout building blocks.
 7. Focus-above-page interactions belong to the modal primitive layer, not to page-pattern markup: use `wb-modal` for dialog, confirm, form, and content-first viewer UI.
+8. `wb-gallery` is an inline pattern; when it needs immersive viewing, expand into a shared content-first `wb-modal` instead of inventing a gallery-specific top-layer primitive.
 
 Do:
 

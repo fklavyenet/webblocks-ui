@@ -8004,6 +8004,142 @@ button.wb-game-card {
   }
 }
 /* ============================================================
+   WebBlocks UI — Gallery Pattern (wb-gallery)
+   Inline media presentation pattern.
+   Immersive viewing uses a shared wb-modal in content-first mode.
+   ============================================================ */
+
+.wb-gallery {
+  display: grid;
+  gap: var(--wb-s4);
+}
+
+.wb-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--wb-s4);
+}
+
+.wb-gallery-item {
+  display: grid;
+  gap: var(--wb-s2);
+  margin: 0;
+}
+
+.wb-gallery-trigger {
+  display: block;
+  position: relative;
+  border-radius: var(--wb-r-lg);
+  overflow: hidden;
+  background: var(--wb-surface-2);
+  border: 1px solid var(--wb-border);
+  box-shadow: var(--wb-shadow-sm);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform var(--wb-t-f),
+    box-shadow var(--wb-t),
+    border-color var(--wb-t);
+}
+
+.wb-gallery-trigger:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--wb-shadow-md);
+  text-decoration: none;
+}
+
+.wb-gallery-trigger:focus-visible {
+  outline: 2px solid var(--wb-accent);
+  outline-offset: 3px;
+}
+
+.wb-gallery-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--wb-surface-2);
+}
+
+.wb-gallery-caption {
+  margin: 0;
+  color: var(--wb-text);
+  font-size: var(--wb-font-size-sm);
+  line-height: 1.5;
+}
+
+.wb-gallery-meta {
+  color: var(--wb-muted);
+  font-size: var(--wb-font-size-xs);
+  line-height: 1.5;
+}
+
+.wb-gallery-viewer {
+  display: grid;
+  gap: var(--wb-s4);
+}
+
+.wb-gallery-viewer-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+}
+
+.wb-gallery-viewer-counter {
+  color: var(--wb-muted);
+  font-size: var(--wb-font-size-sm);
+  line-height: 1.4;
+}
+
+.wb-gallery-viewer-media {
+  display: grid;
+  gap: var(--wb-s3);
+  justify-items: center;
+  margin: 0;
+}
+
+.wb-gallery-viewer-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(74vh, 56rem);
+  object-fit: contain;
+  border-radius: calc(var(--wb-r-xl) - var(--wb-s1));
+  background: var(--wb-surface-2);
+}
+
+.wb-gallery-viewer-caption {
+  max-width: min(100%, 56rem);
+  margin: 0;
+  color: var(--wb-text);
+  text-align: center;
+  font-size: var(--wb-font-size-sm);
+  line-height: 1.6;
+}
+
+.wb-gallery-viewer-meta {
+  max-width: min(100%, 56rem);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.wb-gallery-viewer-prev,
+.wb-gallery-viewer-next,
+.wb-gallery-viewer-close {
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .wb-gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
+
+  .wb-gallery-viewer-toolbar {
+    flex-wrap: wrap;
+  }
+}
+/* ============================================================
    WebBlocks UI — Content Shell Layout
    ============================================================ */
 
