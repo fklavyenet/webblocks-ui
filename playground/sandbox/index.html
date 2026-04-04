@@ -20,43 +20,41 @@
         </span>
       </a>
 
-      <div class="wb-sandbox-rail-body">
-        <div class="wb-sidebar-nav">
-          <div class="wb-sidebar-section wb-mb-4">
+      <div class="wb-sidebar-nav">
+        <div class="wb-sidebar-section wb-mb-4">
+          <div class="wb-stack-2">
+            <h2 class="wb-m-0 wb-text-base wb-leading-tight">Playground</h2>
+            <p class="wb-m-0 wb-text-sm wb-text-muted">Choose a starter, inspect the structure, and move into the matching docs page.</p>
+          </div>
+        </div>
+
+        <div class="wb-sidebar-section wb-mb-4 wb-card wb-card-muted wb-shadow-0">
+          <div class="wb-card-body wb-stack-3">
             <div class="wb-stack-2">
-              <h2 class="wb-m-0 wb-text-base wb-leading-tight">Playground</h2>
-              <p class="wb-m-0 wb-text-sm wb-text-muted">Choose a starter, inspect the structure, and move into the matching docs page.</p>
+              <h2 class="wb-m-0 wb-text-base wb-leading-tight">Choose a starter</h2>
+              <p class="wb-m-0 wb-text-sm wb-text-muted">Load a shipped snippet into the editor and preview before you start editing.</p>
+            </div>
+            <label class="wb-block wb-stack-2">
+              <select class="wb-select wb-w-full" data-sandbox-example aria-label="Choose a starter"></select>
+            </label>
+            <div class="wb-stack-2">
+              <p class="wb-m-0 wb-text-sm wb-font-semibold" data-sandbox-example-title>Starter example</p>
+              <p class="wb-m-0 wb-text-sm wb-text-muted" data-sandbox-example-description></p>
             </div>
           </div>
+        </div>
 
-          <div class="wb-sidebar-section wb-mb-4 wb-card wb-card-muted wb-shadow-0">
-            <div class="wb-card-body wb-stack-3">
-              <div class="wb-stack-2">
-                <h2 class="wb-m-0 wb-text-base wb-leading-tight">Choose a starter</h2>
-                <p class="wb-m-0 wb-text-sm wb-text-muted">Load a shipped snippet into the editor and preview before you start editing.</p>
-              </div>
-              <label class="wb-block wb-stack-2">
-                <select class="wb-select wb-w-full" data-sandbox-example aria-label="Choose a starter"></select>
-              </label>
-              <div class="wb-stack-2">
-                <p class="wb-m-0 wb-text-sm wb-font-semibold" data-sandbox-example-title>Starter example</p>
-                <p class="wb-m-0 wb-text-sm wb-text-muted" data-sandbox-example-description></p>
-              </div>
-            </div>
+        <div class="wb-sidebar-section wb-mb-4">
+          <div class="wb-stack-2">
+            <h2 class="wb-m-0 wb-text-base wb-leading-tight">What to inspect</h2>
+            <p class="wb-m-0 wb-text-sm wb-text-muted" data-sandbox-example-hint></p>
           </div>
+        </div>
 
-          <div class="wb-sidebar-section wb-mb-4">
-            <div class="wb-stack-2">
-              <h2 class="wb-m-0 wb-text-base wb-leading-tight">What to inspect</h2>
-              <p class="wb-m-0 wb-text-sm wb-text-muted" data-sandbox-example-hint></p>
-            </div>
-          </div>
-
-          <div class="wb-sidebar-section wb-mb-4">
-            <div class="wb-stack-2">
-              <h2 class="wb-m-0 wb-text-base wb-leading-tight">Related docs</h2>
-              <div class="wb-link-list" data-sandbox-related-docs></div>
-            </div>
+        <div class="wb-sidebar-section wb-mb-4">
+          <div class="wb-stack-2">
+            <h2 class="wb-m-0 wb-text-base wb-leading-tight">Related docs</h2>
+            <div class="wb-link-list" data-sandbox-related-docs></div>
           </div>
         </div>
       </div>
@@ -104,7 +102,7 @@
       <main class="wb-dashboard-main">
         <div class="wb-sandbox-workspace-shell">
           <section class="wb-card wb-sandbox-panel wb-sandbox-editor-panel">
-            <div class="wb-card-header wb-sandbox-panel-header">
+            <div class="wb-card-header">
               <div class="wb-split">
                 <div class="wb-stack-2">
                   <h2 class="wb-m-0">HTML editor</h2>
@@ -137,7 +135,7 @@
           </section>
 
           <section class="wb-card wb-sandbox-panel wb-sandbox-preview-panel">
-            <div class="wb-card-header wb-sandbox-panel-header">
+            <div class="wb-card-header">
               <div class="wb-split">
                 <div class="wb-stack-2">
                   <h2 class="wb-m-0">Live preview</h2>
@@ -160,7 +158,7 @@
                 </div>
               </div>
             </div>
-            <div class="wb-card-body wb-sandbox-panel-foot wb-sandbox-preview-foot">
+            <div class="wb-card-body wb-sandbox-panel-foot">
               <div class="wb-stack-3">
                 <p class="wb-m-0 wb-text-sm wb-text-muted">The playground keeps feedback compact. It highlights preview changes, likely class issues, and blocked content without acting like a full linter.</p>
                 <div class="wb-list wb-list-sm" data-sandbox-warnings></div>

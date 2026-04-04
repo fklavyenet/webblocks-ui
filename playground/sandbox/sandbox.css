@@ -27,11 +27,6 @@ body {
   min-height: 0;
 }
 
-.wb-sandbox-rail-body {
-  min-height: 0;
-  overflow: auto;
-}
-
 .wb-sandbox-rail .wb-sidebar-nav {
   padding: var(--wb-s5) var(--wb-s4) var(--wb-s4);
 }
@@ -56,10 +51,6 @@ body {
 
 .wb-sandbox-preview-panel {
   border-left: 1px solid var(--wb-border);
-}
-
-.wb-sandbox-panel-header {
-  gap: var(--wb-s3);
 }
 
 .wb-sandbox-panel-body {
