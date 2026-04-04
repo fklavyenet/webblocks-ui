@@ -7,7 +7,7 @@ body {
   margin: 0;
 }
 
-.wb-sandbox-topbar {
+.wb-dashboard-body > .wb-navbar {
   position: sticky;
   top: 0;
   z-index: 20;
@@ -22,20 +22,20 @@ body {
   padding: 0;
 }
 
-.wb-sandbox-rail {
+.wb-dashboard-shell > .wb-sidebar {
   --wb-sidebar-w: 320px;
   min-height: 0;
 }
 
-.wb-sandbox-rail .wb-sidebar-nav {
+.wb-dashboard-shell > .wb-sidebar .wb-sidebar-nav {
   padding: var(--wb-s5) var(--wb-s4) var(--wb-s4);
 }
 
-.wb-sandbox-rail .wb-sidebar-section {
+.wb-dashboard-shell > .wb-sidebar .wb-sidebar-section {
   margin: 0;
 }
 
-.wb-sandbox-panel {
+.wb-sandbox-workspace-shell > .wb-card {
   min-height: 0;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
@@ -45,26 +45,18 @@ body {
   box-shadow: none;
 }
 
-.wb-sandbox-editor-panel {
+.wb-sandbox-workspace-shell > .wb-card:first-child {
   border-left: 0;
 }
 
-.wb-sandbox-preview-panel {
+.wb-sandbox-workspace-shell > .wb-card + .wb-card {
   border-left: 1px solid var(--wb-border);
 }
 
-.wb-sandbox-panel-body {
+.wb-sandbox-editor-body {
   min-height: 0;
   display: flex;
   flex-direction: column;
-}
-
-.wb-sandbox-panel-foot {
-  border-top: 1px solid var(--wb-border);
-  background: var(--wb-surface-2);
-}
-
-.wb-sandbox-editor-body {
   padding: 0;
 }
 
@@ -83,6 +75,8 @@ body {
 }
 
 .wb-sandbox-preview-body {
+  display: flex;
+  flex-direction: column;
   padding: 0;
   min-width: 0;
   min-height: 0;
@@ -132,14 +126,19 @@ body {
   min-height: 10rem;
 }
 
-.wb-sandbox-rail .wb-link-list-item {
+.wb-dashboard-shell > .wb-sidebar .wb-link-list-item {
   grid-template-columns: 1fr;
   gap: var(--wb-s2);
   padding: var(--wb-s3);
 }
 
-.wb-sandbox-rail .wb-link-list-desc {
+.wb-dashboard-shell > .wb-sidebar .wb-link-list-desc {
   overflow-wrap: anywhere;
+}
+
+.wb-sandbox-workspace-shell > .wb-card > .wb-card-body:last-child {
+  border-top: 1px solid var(--wb-border);
+  background: var(--wb-surface-2);
 }
 
 @media (max-width: 1200px) {
@@ -155,8 +154,7 @@ body {
     padding: var(--wb-s3);
   }
 
-  .wb-sandbox-editor-panel,
-  .wb-sandbox-preview-panel {
+  .wb-sandbox-workspace-shell > .wb-card {
     border: 1px solid var(--wb-border);
     border-radius: var(--wb-r-xl);
     box-shadow: var(--wb-shadow-sm);
