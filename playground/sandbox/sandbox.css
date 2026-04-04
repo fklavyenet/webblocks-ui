@@ -162,6 +162,19 @@ body {
 }
 
 @media (max-width: 900px) {
+  .wb-sandbox-workspace-shell > .wb-card > .wb-card-header > .wb-split {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wb-sandbox-workspace-shell > .wb-card > .wb-card-header > .wb-split > :last-child {
+    width: 100%;
+  }
+
+  .wb-sandbox-workspace-shell > .wb-card > .wb-card-header [data-sandbox-widths] {
+    justify-content: flex-start;
+  }
+
   .wb-sandbox-editor,
   .wb-sandbox-frame {
     min-height: 32rem;
