@@ -747,22 +747,18 @@
 
     links.forEach(function (link) {
       var anchor = document.createElement('a');
-      var label = document.createElement('span');
       var title = document.createElement('span');
       var desc = document.createElement('div');
 
       anchor.className = 'wb-link-list-item wb-sandbox-doc-link';
       anchor.href = link.href;
 
-      label.className = 'wb-sandbox-doc-link-label';
       title.className = 'wb-sandbox-doc-link-title';
       desc.className = 'wb-sandbox-doc-link-desc';
 
-      label.textContent = 'Related docs';
       title.textContent = link.label;
       desc.textContent = link.meta;
 
-      anchor.appendChild(label);
       anchor.appendChild(title);
       anchor.appendChild(desc);
       elements.relatedDocs.appendChild(anchor);
