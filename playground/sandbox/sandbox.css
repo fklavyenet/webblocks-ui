@@ -101,8 +101,8 @@ body {
   display: grid;
   grid-template-columns: minmax(18rem, 21rem) minmax(0, 1fr) minmax(0, 1.15fr);
   align-items: stretch;
-  gap: var(--wb-s4);
-  padding: var(--wb-s4);
+  gap: 0;
+  padding: 0;
 }
 
 .wb-sandbox-rail,
@@ -117,11 +117,28 @@ body {
   border-radius: 0;
   box-shadow: none;
   background: var(--wb-surface);
+  min-height: 0;
 }
 
 .wb-sandbox-rail-body {
   min-height: 0;
   overflow: auto;
+}
+
+.wb-sandbox-editor-panel,
+.wb-sandbox-preview-panel {
+  border-radius: 0;
+  border-top: 0;
+  border-right: 0;
+  box-shadow: none;
+}
+
+.wb-sandbox-editor-panel {
+  border-left: 0;
+}
+
+.wb-sandbox-preview-panel {
+  border-left: 1px solid var(--wb-border);
 }
 
 .wb-sandbox-rail-section {
@@ -363,18 +380,29 @@ body {
       "rail"
       "editor"
       "preview";
+    gap: var(--wb-s3);
+    padding: var(--wb-s3);
   }
 
   .wb-sandbox-rail {
     grid-area: rail;
+    border: 1px solid var(--wb-border);
+    border-radius: var(--wb-r-xl);
+    box-shadow: var(--wb-shadow-sm);
   }
 
   .wb-sandbox-editor-panel {
     grid-area: editor;
+    border: 1px solid var(--wb-border);
+    border-radius: var(--wb-r-xl);
+    box-shadow: var(--wb-shadow-sm);
   }
 
   .wb-sandbox-preview-panel {
     grid-area: preview;
+    border: 1px solid var(--wb-border);
+    border-radius: var(--wb-r-xl);
+    box-shadow: var(--wb-shadow-sm);
   }
 
   .wb-sandbox-rail-body {
@@ -421,8 +449,8 @@ body {
 
 @media (max-height: 860px) {
   .wb-sandbox-workspace-shell {
-    gap: var(--wb-s3);
-    padding: var(--wb-s3);
+    gap: 0;
+    padding: 0;
   }
 
   .wb-sandbox-brand,
@@ -449,8 +477,8 @@ body {
 
 @media (max-height: 720px) {
   .wb-sandbox-workspace-shell {
-    padding: var(--wb-s2);
-    gap: var(--wb-s2);
+    padding: 0;
+    gap: 0;
   }
 
   .wb-sandbox-preview-shell {
@@ -466,6 +494,7 @@ body {
 @media (max-width: 640px) {
   .wb-sandbox-workspace-shell {
     padding: var(--wb-s3);
+    gap: var(--wb-s3);
   }
 
   .wb-sandbox-preview-shell {
