@@ -1,0 +1,118 @@
+.wb-sandbox-page {
+  gap: var(--wb-s8);
+}
+
+.wb-sandbox-toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--wb-s6);
+  flex-wrap: wrap;
+}
+
+.wb-sandbox-toolbar-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--wb-s4);
+  flex-wrap: wrap;
+  flex: 1 1 38rem;
+}
+
+.wb-sandbox-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+  min-width: 12rem;
+}
+
+.wb-sandbox-control-group .wb-select {
+  min-width: 14rem;
+}
+
+.wb-sandbox-workspace,
+.wb-sandbox-support-grid {
+  align-items: start;
+}
+
+.wb-sandbox-panel {
+  min-height: 100%;
+}
+
+.wb-sandbox-panel-header {
+  gap: var(--wb-s4);
+  align-items: center;
+}
+
+.wb-sandbox-editor {
+  min-height: 38rem;
+  width: 100%;
+  font-family: var(--wb-font-mono);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre;
+  resize: vertical;
+}
+
+.wb-sandbox-preview-shell {
+  padding: var(--wb-s4);
+  background: var(--wb-surface-2);
+}
+
+.wb-sandbox-preview-stage {
+  width: 100%;
+  margin: 0 auto;
+  transition: max-width var(--wb-t), box-shadow var(--wb-t);
+}
+
+.wb-sandbox-preview-stage.is-preview-desktop {
+  max-width: 100%;
+}
+
+.wb-sandbox-preview-stage.is-preview-tablet {
+  max-width: 52rem;
+}
+
+.wb-sandbox-preview-stage.is-preview-mobile {
+  max-width: 25rem;
+}
+
+.wb-sandbox-frame {
+  width: 100%;
+  min-height: 40rem;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  background: var(--wb-surface);
+  box-shadow: var(--wb-shadow-sm);
+}
+
+[data-sandbox-warnings] {
+  min-height: 10rem;
+}
+
+@media (max-width: 900px) {
+  .wb-sandbox-toolbar-controls {
+    justify-content: flex-start;
+    flex-basis: 100%;
+  }
+
+  .wb-sandbox-control-group,
+  .wb-sandbox-control-group .wb-select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .wb-sandbox-editor,
+  .wb-sandbox-frame {
+    min-height: 32rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .wb-sandbox-preview-shell {
+    padding: var(--wb-s3);
+  }
+
+  .wb-sandbox-frame {
+    min-height: 28rem;
+  }
+}
