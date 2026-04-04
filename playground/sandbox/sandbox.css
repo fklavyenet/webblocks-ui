@@ -114,34 +114,6 @@ body {
   gap: var(--wb-s3);
 }
 
-.wb-sandbox-panel-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: var(--wb-s4);
-  width: 100%;
-  min-width: 0;
-}
-
-.wb-sandbox-panel-copy {
-  flex: 1 1 18rem;
-  min-width: 0;
-}
-
-.wb-sandbox-panel-tools {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--wb-s2);
-  min-width: 0;
-}
-
-.wb-sandbox-width-switcher {
-  justify-content: flex-end;
-  flex-wrap: wrap;
-}
-
 .wb-sandbox-panel-body {
   min-height: 0;
   display: flex;
@@ -269,13 +241,6 @@ body {
     min-height: 32rem;
   }
 
-  .wb-sandbox-panel-heading {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .wb-sandbox-panel-tools,
-  .wb-sandbox-width-switcher,
   .wb-topbar-actions {
     align-items: flex-start;
     justify-content: flex-start;
