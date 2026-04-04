@@ -2,7 +2,7 @@
   'use strict';
 
   var assetMode = 'cdn';
-  var base = 'https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.8/packages/webblocks/dist/';
+  var base = 'https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@master/packages/webblocks/dist/';
 
   var head = document.head;
   var assets = [
