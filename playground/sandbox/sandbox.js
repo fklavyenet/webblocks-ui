@@ -27,6 +27,7 @@
   var ALLOWED_LINK_PATTERN = /^(https?:|mailto:|tel:|#|\/|\.\/|\.\.\/|\?)/i;
   var UNKNOWN_CLASS_LIMIT = 10;
   var PREVIEW_DEBOUNCE_MS = 220;
+  var HEIGHT_MESSAGE_DEBOUNCE_MS = 80;
 
   var EXAMPLES = [
     {
@@ -287,10 +288,13 @@
     currentExample: EXAMPLES[0].id,
     width: 'desktop',
     knownClasses: null,
-    previewHeight: 640
+    previewHeight: 640,
+    previewMessageToken: createPreviewMessageToken()
   };
 
   var previewTimer = null;
+  var heightUpdateTimer = null;
+  var pendingPreviewHeight = null;
 
   var elements = {
     example: document.querySelector('[data-sandbox-example]'),
@@ -378,13 +382,12 @@
     });
 
     window.addEventListener('message', function (event) {
-      if (!event.data || event.data.type !== 'wb-sandbox-height') {
+      if (!isTrustedPreviewMessage(event)) {
         return;
       }
 
       if (typeof event.data.height === 'number' && event.data.height > 0) {
-        state.previewHeight = Math.max(420, Math.min(2200, event.data.height));
-        elements.preview.style.height = state.previewHeight + 'px';
+        scheduleHeightUpdate(event.data.height);
       }
     });
   }
@@ -400,7 +403,8 @@
     var sourceHtml = elements.editor.value;
     var sanitized = sanitizeHtml(sourceHtml);
 
-    elements.preview.srcdoc = buildPreviewDocument(sanitized.html, sanitized.rootAttributes);
+    state.previewMessageToken = createPreviewMessageToken();
+    elements.preview.srcdoc = buildPreviewDocument(sanitized.html, sanitized.rootAttributes, state.previewMessageToken);
     renderWarnings(sanitized.warnings);
     setStatus(sanitized.didSanitize ? 'Sanitized preview' : 'Preview up to date', sanitized.didSanitize ? 'warning' : 'success');
     elements.preview.style.height = Math.max(420, state.previewHeight) + 'px';
@@ -481,7 +485,7 @@
     }
 
     if (unknownClasses.length) {
-      warnings.push('Unknown wb-* classes detected: ' + unknownClasses.join(', ') + '.');
+      warnings.push('Possible unknown wb-* classes detected by a best-effort CSS check: ' + unknownClasses.join(', ') + '.');
     }
 
     if (didSanitize) {
@@ -524,14 +528,14 @@
       }
 
       if ((name === 'href' || name === 'action' || name === 'formaction') && value) {
-        if (!ALLOWED_LINK_PATTERN.test(value) && !isSafeRelativeUrl(value)) {
+        if (isBlockedUrlValue(value) || (!ALLOWED_LINK_PATTERN.test(value) && !isSafeRelativeUrl(value))) {
           node.removeAttribute(attribute.name);
           counters.urls += 1;
         }
       }
 
       if (name === 'src' && value) {
-        if (!isSafeRelativeUrl(value)) {
+        if (isBlockedUrlValue(value) || !isSafeRelativeUrl(value)) {
           node.removeAttribute(attribute.name);
           counters.urls += 1;
         }
@@ -552,7 +556,7 @@
     return attributes;
   }
 
-  function buildPreviewDocument(html, rootAttributes) {
+  function buildPreviewDocument(html, rootAttributes, previewMessageToken) {
     var assets = window.WebBlocksAssets || {};
     var htmlAttributes = buildHtmlAttributes(rootAttributes);
     var safeHtml = html || '<div class="wb-card"><div class="wb-card-body"><p class="wb-m-0 wb-text-muted">The preview is empty. Add some HTML to render WebBlocks UI components here.</p></div></div>';
@@ -577,17 +581,26 @@
       '  <script src="' + assets.js + '" defer></script>',
       '  <script>',
       '    (function () {',
+      '      var previewMessageToken = ' + JSON.stringify(previewMessageToken) + ';',
+      '      var postHeightTimer = null;',
       '      function postHeight() {',
       '        var height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);',
-      '        parent.postMessage({ type: "wb-sandbox-height", height: height }, "*");',
+      '        parent.postMessage({ type: "wb-sandbox-height", height: height, token: previewMessageToken }, "*");',
+      '      }',
+      '      function schedulePostHeight() {',
+      '        window.clearTimeout(postHeightTimer);',
+      '        postHeightTimer = window.setTimeout(postHeight, 60);',
       '      }',
       '      window.addEventListener("load", function () {',
       '        postHeight();',
       '        window.setTimeout(postHeight, 120);',
       '      });',
-      '      window.addEventListener("resize", postHeight);',
+      '      window.addEventListener("resize", schedulePostHeight);',
+      '      document.addEventListener("submit", function (event) {',
+      '        event.preventDefault();',
+      '      });',
       '      var observer = new MutationObserver(function () {',
-      '        postHeight();',
+      '        schedulePostHeight();',
       '      });',
       '      observer.observe(document.body, { childList: true, subtree: true, attributes: true, characterData: true });',
       '    })();',
@@ -637,6 +650,10 @@
 
     if (tone === 'success') {
       elements.status.classList.add('wb-badge-success');
+    } else if (tone === 'warning') {
+      elements.status.classList.add('wb-badge-warning');
+    } else if (tone === 'info') {
+      elements.status.classList.add('wb-badge-info');
     }
   }
 
@@ -737,8 +754,49 @@
     return width === 'desktop' || width === 'tablet' || width === 'mobile';
   }
 
+  function isTrustedPreviewMessage(event) {
+    if (!event.data || event.data.type !== 'wb-sandbox-height') {
+      return false;
+    }
+
+    if (!elements.preview.contentWindow || event.source !== elements.preview.contentWindow) {
+      return false;
+    }
+
+    if (event.origin !== 'null') {
+      return false;
+    }
+
+    return event.data.token === state.previewMessageToken;
+  }
+
+  function scheduleHeightUpdate(height) {
+    pendingPreviewHeight = Math.max(420, Math.min(2200, height));
+
+    window.clearTimeout(heightUpdateTimer);
+    heightUpdateTimer = window.setTimeout(function () {
+      if (pendingPreviewHeight === null) {
+        return;
+      }
+
+      state.previewHeight = pendingPreviewHeight;
+      elements.preview.style.height = state.previewHeight + 'px';
+      pendingPreviewHeight = null;
+    }, HEIGHT_MESSAGE_DEBOUNCE_MS);
+  }
+
+  function createPreviewMessageToken() {
+    return 'wb-sandbox-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
+  function isBlockedUrlValue(value) {
+    var normalized = String(value).trim().toLowerCase();
+    return normalized.indexOf('javascript:') === 0;
+  }
+
   function isSafeRelativeUrl(value) {
-    return value.indexOf('?') === 0 || value.indexOf('./') === 0 || value.indexOf('../') === 0 || value.indexOf('/') === 0 || value.indexOf('#') === 0;
+    var normalized = String(value).trim();
+    return normalized.indexOf('?') === 0 || normalized.indexOf('./') === 0 || normalized.indexOf('../') === 0 || normalized.indexOf('/') === 0 || normalized.indexOf('#') === 0;
   }
 
   function escapeAttribute(value) {

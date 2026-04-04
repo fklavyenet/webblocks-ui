@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebBlocks UI Sandbox</title>
-  <meta name="description" content="Write plain HTML, preview it with real WebBlocks UI assets, and validate snippets in an isolated sandbox.">
+  <title>WebBlocks UI Playground</title>
+  <meta name="description" content="Write plain HTML, preview it with real WebBlocks UI assets, and validate snippets in an isolated playground.">
   <script src="../webblocks-assets.js"></script>
   <link rel="stylesheet" href="sandbox.css">
 </head>
@@ -16,10 +16,10 @@
           <nav class="wb-content-breadcrumb" aria-label="Breadcrumb">
             <ol class="wb-breadcrumb wb-breadcrumb-inline">
               <li class="wb-breadcrumb-item"><a href="../../docs/index.html">WebBlocks UI</a></li>
-              <li class="wb-breadcrumb-item is-active"><span aria-current="page">Sandbox</span></li>
+              <li class="wb-breadcrumb-item is-active"><span aria-current="page">Playground</span></li>
             </ol>
           </nav>
-          <h1 class="wb-content-title">WebBlocks UI Sandbox</h1>
+          <h1 class="wb-content-title">WebBlocks UI Playground</h1>
           <p class="wb-content-subtitle">Write plain HTML on the left, preview it with the real WebBlocks UI CSS, icons, and JavaScript on the right, and validate snippets in a safe isolated frame.</p>
           <div class="wb-content-meta">
             <span>HTML only</span>
@@ -84,7 +84,7 @@
                   <span class="wb-badge" data-sandbox-status>Ready</span>
                 </div>
                 <div class="wb-card-body">
-                  <label class="wb-sr-only" for="sandboxEditor">Sandbox HTML</label>
+                  <label class="wb-sr-only" for="sandboxEditor">Playground HTML</label>
                   <textarea id="sandboxEditor" class="wb-textarea wb-sandbox-editor" spellcheck="false" data-sandbox-editor></textarea>
                 </div>
               </article>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="wb-card-body wb-sandbox-preview-shell">
                   <div class="wb-sandbox-preview-stage is-preview-desktop" data-sandbox-stage>
-                    <iframe class="wb-sandbox-frame" title="WebBlocks UI Sandbox preview" sandbox="allow-scripts" referrerpolicy="no-referrer" data-sandbox-preview></iframe>
+                    <iframe class="wb-sandbox-frame" title="WebBlocks UI Playground preview" sandbox="allow-scripts" referrerpolicy="no-referrer" data-sandbox-preview></iframe>
                   </div>
                 </div>
               </article>
@@ -111,7 +111,7 @@
                   <h2 class="wb-m-0">Warnings and notes</h2>
                 </div>
                 <div class="wb-card-body wb-stack-3">
-                  <p class="wb-m-0 wb-text-sm wb-text-muted">The sandbox does lightweight validation only. It reports sanitization changes and likely class-name mistakes without acting like a full linter.</p>
+                  <p class="wb-m-0 wb-text-sm wb-text-muted">The playground does lightweight validation only. It reports sanitization changes and likely class-name mistakes without acting like a full linter.</p>
                   <div class="wb-list wb-list-sm" data-sandbox-warnings></div>
                 </div>
               </article>
@@ -123,13 +123,19 @@
                 <div class="wb-card-body wb-stack-3">
                   <div class="wb-callout wb-callout-accent">
                     <strong class="wb-callout-title">V1 limits are deliberate</strong>
-                    The sandbox accepts HTML only. Custom CSS, custom JavaScript, inline handlers, and external user-provided assets are intentionally excluded so preview behavior stays focused and safe.
+                    The playground accepts HTML only. Custom CSS, custom JavaScript, inline handlers, and external user-provided assets are intentionally excluded so preview behavior stays focused and safe.
                   </div>
                   <div class="wb-list wb-list-sm">
                     <div class="wb-list-item">
                       <div class="wb-list-item-text">
                         <span class="wb-list-item-title">Use real WebBlocks snippets</span>
                         <span class="wb-list-item-sub">The iframe loads the canonical CDN CSS, icons CSS, and JavaScript so primitives and patterns behave like the shipped package.</span>
+                      </div>
+                    </div>
+                    <div class="wb-list-item">
+                      <div class="wb-list-item-text">
+                        <span class="wb-list-item-title">External assets are blocked</span>
+                        <span class="wb-list-item-sub">Remote images, stylesheets, scripts, and embeds from user HTML are intentionally blocked so the preview stays isolated and predictable.</span>
                       </div>
                     </div>
                     <div class="wb-list-item">
