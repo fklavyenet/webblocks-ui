@@ -21,11 +21,17 @@ body {
   display: flex;
   align-items: center;
   gap: var(--wb-s2);
+  flex: 1 1 auto;
   min-width: 0;
 }
 
 .wb-sandbox-header-breadcrumb {
+  flex: 1 1 auto;
   min-width: 0;
+}
+
+.wb-sandbox-topbar .wb-topbar-actions {
+  margin-left: auto;
 }
 
 .wb-sandbox-main {
