@@ -62,6 +62,7 @@ body {
 }
 
 .wb-sandbox-starter-panel {
+  margin-inline: calc(var(--wb-s4) * -1);
   padding: var(--wb-s4);
   border: 1px solid var(--wb-border);
   border-radius: var(--wb-r-lg);
