@@ -19,6 +19,7 @@
          </div>
        </div>
      </div>
+   Content-first viewer usage stays on the same public modal API.
    ============================================================ */
 
 (function () {

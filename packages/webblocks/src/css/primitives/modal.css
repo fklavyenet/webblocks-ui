@@ -1,7 +1,8 @@
 /* ============================================================
    WebBlocks UI — Modal (wb-modal)
+   Public top-layer pattern for dialogs and content-first viewer usage.
    JS: data-wb-toggle="modal" data-wb-target="#id"
-       data-wb-dismiss="modal"  (close trigger)
+        data-wb-dismiss="modal"  (close trigger)
    ============================================================ */
 
 .wb-modal {
@@ -74,10 +75,24 @@
   color: var(--wb-text);
 }
 
+.wb-modal-dialog > .wb-modal-close {
+  position: absolute;
+  top: var(--wb-s4);
+  right: var(--wb-s4);
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: color-mix(in srgb, var(--wb-surface) 85%, transparent);
+}
+
 .wb-modal-body {
   padding: var(--wb-s5);
   overflow-y: auto;
   flex: 1;
+}
+
+.wb-modal-dialog > .wb-modal-body:first-child {
+  padding-top: calc(var(--wb-s10) + var(--wb-s2));
 }
 
 .wb-modal-footer {
@@ -95,6 +110,23 @@
 .wb-modal-sm .wb-modal-dialog { max-width: 380px; }
 .wb-modal-lg .wb-modal-dialog { max-width: 720px; }
 .wb-modal-xl .wb-modal-dialog { max-width: 960px; }
+
+.wb-modal-xl .wb-modal-body .wb-media {
+  justify-items: center;
+}
+
+.wb-modal-xl .wb-modal-body .wb-media-img {
+  width: auto;
+  max-width: 100%;
+  max-height: min(74vh, 56rem);
+  object-fit: contain;
+  border-radius: calc(var(--wb-r-xl) - var(--wb-s1));
+}
+
+.wb-modal-xl .wb-modal-body .wb-media-caption {
+  max-width: min(100%, 56rem);
+  text-align: center;
+}
 
 /* ── Confirmation dialog ──────────────────────────────────── */
 
@@ -151,4 +183,18 @@
 .wb-confirm .wb-modal-footer {
   justify-content: center;
   gap: var(--wb-s3);
+}
+
+@media (max-width: 640px) {
+  .wb-modal-dialog > .wb-modal-body:first-child {
+    padding-top: calc(var(--wb-s8) + var(--wb-s1));
+  }
+
+  .wb-modal-footer {
+    flex-wrap: wrap;
+  }
+
+  .wb-modal-footer > * {
+    flex: 1 1 auto;
+  }
 }

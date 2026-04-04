@@ -97,7 +97,6 @@ cat \
   "$ROOT/src/js/theme.js" \
   "$ROOT/src/js/dropdown.js" \
   "$ROOT/src/js/modal.js" \
-  "$ROOT/src/js/overlay.js" \
   "$ROOT/src/js/tabs.js" \
   "$ROOT/src/js/accordion.js" \
   "$ROOT/src/js/sidebar.js" \

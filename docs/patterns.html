@@ -167,10 +167,10 @@
                       <strong>What belongs to patterns</strong>
                       <p class="wb-m-0">Patterns decide where an overlay trigger belongs in the page flow: header actions, table rows, gallery items, settings help links, or editorial media blocks.</p>
                       <strong>What does not</strong>
-                      <p class="wb-m-0">The focus-above-page shell itself is not a page pattern. Use the shipped overlay primitives instead of creating shell-local wrappers: <code>wb-modal</code> for dialog/decision UI and <code>wb-overlay</code> for content-first viewer UI.</p>
+                      <p class="wb-m-0">The focus-above-page shell itself is not a page pattern. Use the shipped <code>wb-modal</code> primitive instead of creating shell-local wrappers, whether the job is a decision dialog, form modal, or content-first viewer.</p>
                     </div>
                   </div>
-                  <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Infrastructure vs public patterns</strong> <code>wb-overlay-root</code> is the shared top-layer infrastructure. Public dialog work still belongs to <code>wb-modal</code>, while public viewer/lightbox-style work belongs to <code>wb-overlay</code>.</div>
+                  <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Infrastructure vs public patterns</strong> <code>wb-overlay-root</code> is the shared top-layer infrastructure. Public top-layer work belongs to <code>wb-modal</code>; lightbox and viewer experiences are modal usage modes, not separate primitives.</div>
                 </div>
               </section>
 

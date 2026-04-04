@@ -286,7 +286,7 @@ These are also shipped pattern families, but not primary app shells:
 4. Do not flatten a shell into a generic wrapper abstraction.
 5. Do not treat dashboard header classes as universal layout helpers.
 6. `wb-page-header` and `wb-settings-section` are pattern-local surfaces, not global layout building blocks.
-7. Focus-above-page interactions belong to the overlay primitive layer, not to page-pattern markup: use `wb-modal` for dialog/decision UI and `wb-overlay` for content-first viewer UI.
+7. Focus-above-page interactions belong to the modal primitive layer, not to page-pattern markup: use `wb-modal` for dialog, confirm, form, and content-first viewer UI.
 
 Do:
 
