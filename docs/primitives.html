@@ -266,6 +266,7 @@
 
               <section class="wb-docs-section wb-docs-split" id="interaction-shells">
                 <h2>Interaction shells</h2>
+                <p>Keep lightweight reveal-and-expand patterns close to the page, and reserve <code>wb-modal</code> for true top-layer dialog or viewer work.</p>
                 <div class="wb-grid-2">
                   <div class="wb-card">
                     <div class="wb-card-header"><h3 class="wb-card-title">Dropdown, popover, and tabs</h3></div>
@@ -304,7 +305,7 @@
                   </div>
 
                       <div class="wb-card">
-                        <div class="wb-card-header"><h3 class="wb-card-title">Accordion, modal, drawer</h3></div>
+                        <div class="wb-card-header"><h3 class="wb-card-title">Accordion and drawer flows</h3></div>
                         <div class="wb-card-body wb-stack-4">
                           <div class="wb-accordion">
                             <div class="wb-accordion-item is-open">
@@ -318,8 +319,15 @@
                           </div>
 
                           <div class="wb-cluster">
-                            <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveModal">Open modal</button>
                             <button class="wb-btn wb-btn-secondary" data-wb-toggle="drawer" data-wb-target="#primitiveDrawer">Open drawer</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-grid-col-span-2">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Modal dialogs and media viewer</h3></div>
+                        <div class="wb-card-body wb-stack-4">
+                          <div class="wb-cluster">
+                            <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveModal">Open modal</button>
                           </div>
                           <div class="wb-gallery" aria-label="Primitive gallery example">
                             <div class="wb-gallery-grid">
