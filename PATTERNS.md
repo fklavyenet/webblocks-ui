@@ -281,6 +281,7 @@ Architecture rule:
 - `wb-gallery` = inline media presentation pattern
 - immersive viewing uses one shared `wb-modal`
 - the viewer is content-first modal composition, not a second top-layer primitive
+- author one shared viewer per gallery context instead of one modal per gallery item
 
 Canonical structure:
 
@@ -315,7 +316,8 @@ Canonical structure:
   </div>
 </section>
 
-<div class="wb-modal wb-modal-xl" id="product-gallery-viewer" role="dialog" aria-modal="true" aria-labelledby="product-gallery-viewer-title">
+<div id="wb-overlay-root" class="wb-overlay-root">
+  <div class="wb-modal wb-modal-xl" id="product-gallery-viewer" role="dialog" aria-modal="true" aria-labelledby="product-gallery-viewer-title">
   <div class="wb-modal-dialog">
     <div class="wb-modal-body">
       <div class="wb-gallery-viewer">
@@ -339,6 +341,7 @@ Canonical structure:
       </div>
     </div>
   </div>
+  </div>
 </div>
 ```
 
@@ -359,6 +362,7 @@ Behavior rule:
 - clicking a trigger updates the active item inside the shared viewer modal
 - previous / next and keyboard left / right move through the same gallery set
 - focus returns to the originating trigger when the modal closes through the normal modal runtime
+- runtime stepping is scoped to the current `.wb-gallery` set rather than every trigger on the page
 
 ## Supporting Patterns
 

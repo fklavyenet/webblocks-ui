@@ -65,6 +65,7 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 - `wb-card` is the single canonical framed surface noun
 - `wb-table-wrap` is the single table surface
 - `wb-section-nav` is the canonical local section navigation pattern
+- `wb-gallery` is the canonical inline media pattern; viewer behavior stays inside one shared `wb-modal`
 - in-page `wb-section-nav` active state is runtime-owned; `WBSectionNav` applies `.is-active` and `aria-current="location"` from real hash/scroll state
 - text casing is content-defined; shipped UI should not force uppercase or capitalize
 
@@ -78,6 +79,7 @@ Shipped interactive modules expose `window.*` APIs:
 - `WBTabs`
 - `WBAccordion`
 - `WBSidebar`
+- `WBGallery`
 - `WBSectionNav`
 - `WBNavGroup`
 - `WBDrawer`
@@ -91,6 +93,8 @@ Shipped interactive modules expose `window.*` APIs:
 - `WBCollapse`
 
 `WBSectionNav` handles in-page `wb-section-nav` anchors, including hash-aware active state and scroll-container-aware docs behavior.
+
+`WBGallery` upgrades `.wb-gallery-trigger` elements that target one shared modal viewer, updates caption/meta/image state from the active item, and keeps stepping scoped to the current `.wb-gallery` set.
 
 Use `INTEGRATION.md` for canonical data attributes, method names, and behavioral rules.
 
@@ -106,6 +110,26 @@ Canonical usage:
 ```
 
 If you do not use icons, omit `dist/webblocks-icons.css`.
+
+## Gallery
+
+WebBlocks ships `wb-gallery` as the canonical equal-tile inline media pattern.
+
+Use it when the page needs:
+
+- screenshot sets
+- editorial image groups
+- inline image collections that may open a focused viewer
+
+Keep the contract small:
+
+- one `.wb-gallery` wrapper
+- one `.wb-gallery-grid`
+- many `.wb-gallery-item` entries
+- one real trigger per item as `.wb-gallery-trigger`
+- one shared `.wb-modal` viewer for the gallery context
+
+Do not treat immersive viewing as a second public primitive such as `wb-lightbox` or per-item gallery modals.
 
 ## Build
 
