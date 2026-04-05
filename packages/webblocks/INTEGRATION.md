@@ -19,9 +19,9 @@ This document is sourced from `packages/webblocks/src/` and `packages/webblocks/
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/dist/webblocks-ui.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/dist/webblocks-icons.css">
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.3.11/dist/webblocks-ui.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.4.0/dist/webblocks-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.4.0/dist/webblocks-icons.css">
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.4.0/dist/webblocks-ui.js" defer></script>
 ```
 
 Notes:

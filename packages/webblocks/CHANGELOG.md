@@ -8,6 +8,10 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.4.0] — 2026-04-05
+
 ### Added
 - Icon System v1: curated expansion for editorial, marketing, business, and social brand usage
 - New high-value icons: `external-link`, `eye`, `eye-off`, `star`, `bookmark`, `heart`, `share2`, `book-open`, `newspaper`, `map-pin`, `briefcase`, `building2`, `linkedin`, `twitter`, `instagram`, `youtube`
