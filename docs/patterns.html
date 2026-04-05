@@ -240,23 +240,25 @@
     </div>
   </div>
 
-  <div class="wb-modal wb-modal-xl" id="patternsGalleryViewer" role="dialog" aria-modal="true" aria-labelledby="patternsGalleryViewerTitle">
-    <div class="wb-modal-dialog">
-      <div class="wb-modal-body">
-        <div class="wb-gallery-viewer">
-          <div class="wb-gallery-viewer-toolbar">
-            <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Previous image"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
-            <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 3</div>
-            <div class="wb-cluster wb-cluster-2">
-              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Next image"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
-              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Close viewer"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+  <div id="wb-overlay-root" class="wb-overlay-root">
+    <div class="wb-modal wb-modal-xl" id="patternsGalleryViewer" role="dialog" aria-modal="true" aria-labelledby="patternsGalleryViewerTitle">
+      <div class="wb-modal-dialog">
+        <div class="wb-modal-body">
+          <div class="wb-gallery-viewer">
+            <div class="wb-gallery-viewer-toolbar">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Previous image"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+              <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 3</div>
+              <div class="wb-cluster wb-cluster-2">
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Next image"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Close viewer"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+              </div>
             </div>
+            <figure class="wb-gallery-viewer-media">
+              <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Workspace dashboard with KPI cards and analytics charts">
+              <figcaption class="wb-gallery-viewer-caption" id="patternsGalleryViewerTitle">Overview dashboard</figcaption>
+            </figure>
+            <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Shared reporting home</p>
           </div>
-          <figure class="wb-gallery-viewer-media">
-            <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Workspace dashboard with KPI cards and analytics charts">
-            <figcaption class="wb-gallery-viewer-caption" id="patternsGalleryViewerTitle">Overview dashboard</figcaption>
-          </figure>
-          <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Shared reporting home</p>
         </div>
       </div>
     </div>
