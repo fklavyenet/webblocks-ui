@@ -264,7 +264,7 @@
                 </div>
               </section>
 
-              <section class="wb-docs-section wb-docs-split" id="interaction-shells">
+              <section class="wb-docs-section wb-docs-wide" id="interaction-shells">
                 <h2>Interaction shells</h2>
                 <p>Keep lightweight reveal-and-expand patterns close to the page, and reserve <code>wb-modal</code> for true top-layer dialog or viewer work.</p>
                 <div class="wb-grid-2">
@@ -323,34 +323,34 @@
                           </div>
                         </div>
                       </div>
-                      <div class="wb-card wb-grid-col-span-2">
-                        <div class="wb-card-header"><h3 class="wb-card-title">Modal dialogs and media viewer</h3></div>
-                        <div class="wb-card-body wb-stack-4">
-                          <p class="wb-m-0">Use <code>wb-modal</code> for explicit dialog decisions, confirmations, and content-first viewer flows that should sit above the page.</p>
-                          <div class="wb-cluster">
-                            <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveModal">Open modal</button>
-                          </div>
-                          <div class="wb-gallery" aria-label="Primitive gallery example">
-                            <div class="wb-gallery-grid">
-                              <figure class="wb-gallery-item">
-                                <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#primitiveGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80">
-                                  <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Workspace dashboard with charts and analytics cards">
-                                </button>
-                                <figcaption class="wb-gallery-caption">Overview dashboard</figcaption>
-                                <div class="wb-gallery-meta">Content-first modal viewer</div>
-                              </figure>
-                              <figure class="wb-gallery-item">
-                                <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#primitiveGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80">
-                                  <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Product planning session around a shared table with laptops and notes">
-                                </button>
-                                <figcaption class="wb-gallery-caption">Planning session</figcaption>
-                                <div class="wb-gallery-meta">One shared viewer modal</div>
-                              </figure>
-                            </div>
-                          </div>
-                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-modal</code> is the single canonical top-layer primitive. Gallery viewer behavior stays inside that modal contract instead of becoming a separate public overlay or lightbox component.</p>
-                        </div>
+                </div>
+                <div class="wb-card">
+                  <div class="wb-card-header"><h3 class="wb-card-title">Modal dialogs and media viewer</h3></div>
+                  <div class="wb-card-body wb-stack-4">
+                    <p class="wb-m-0">Use <code>wb-modal</code> for explicit dialog decisions, confirmations, and content-first viewer flows that should sit above the page.</p>
+                    <div class="wb-cluster">
+                      <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveModal">Open modal</button>
+                    </div>
+                    <div class="wb-gallery" aria-label="Primitive gallery example">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#primitiveGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Workspace dashboard with charts and analytics cards">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Overview dashboard</figcaption>
+                          <div class="wb-gallery-meta">Content-first modal viewer</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#primitiveGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Product planning session around a shared table with laptops and notes">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Planning session</figcaption>
+                          <div class="wb-gallery-meta">One shared viewer modal</div>
+                        </figure>
                       </div>
+                    </div>
+                    <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-modal</code> is the single canonical top-layer primitive. Gallery viewer behavior stays inside that modal contract instead of becoming a separate public overlay or lightbox component.</p>
+                  </div>
                 </div>
               </section>
                 </div>
