@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Gallery</title>
+  <meta name="description" content="Canonical wb-gallery pattern guidance and examples built only from the current shipped WebBlocks UI gallery contract.">
+  <script src="webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI building blocks for humans and AI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Documentation navigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Home</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Getting Started</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architecture</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-package wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item">Overview</a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item">Dashboard Shell</a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item is-active">Gallery</a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../playground/sandbox/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v2.3.11</p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
+        <nav class="wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Gallery</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-topbar-actions"><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-topbar-action" data-wb-toggle="dropdown" data-wb-target="#pattern-galleryThemeMenu" aria-expanded="false" aria-label="Theme controls" title="Theme controls"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-galleryThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Accent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Gallery pattern sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#intro" class="wb-section-nav-link">Intro</a></li>
+              <li class="wb-section-nav-item"><a href="#when-to-use" class="wb-section-nav-link">When to use</a></li>
+              <li class="wb-section-nav-item"><a href="#core-contract" class="wb-section-nav-link">Core contract</a></li>
+              <li class="wb-section-nav-item"><a href="#official-examples" class="wb-section-nav-link">Official examples</a></li>
+              <li class="wb-section-nav-item"><a href="#inline-captioned" class="wb-section-nav-link">Inline captioned</a></li>
+              <li class="wb-section-nav-item"><a href="#gallery-with-metadata" class="wb-section-nav-link">With metadata</a></li>
+              <li class="wb-section-nav-item"><a href="#shared-modal-viewer" class="wb-section-nav-link">Shared modal viewer</a></li>
+              <li class="wb-section-nav-item"><a href="#editorial-content-gallery" class="wb-section-nav-link">Editorial block</a></li>
+              <li class="wb-section-nav-item"><a href="#card-contained-gallery" class="wb-section-nav-link">Card-contained</a></li>
+              <li class="wb-section-nav-item"><a href="#product-screenshot-gallery" class="wb-section-nav-link">Product screenshots</a></li>
+              <li class="wb-section-nav-item"><a href="#composition-guidance" class="wb-section-nav-link">Composition guidance</a></li>
+              <li class="wb-section-nav-item"><a href="#do-do-not" class="wb-section-nav-link">Do / Do not</a></li>
+              <li class="wb-section-nav-item"><a href="#accessibility-behavior" class="wb-section-nav-link">Accessibility</a></li>
+              <li class="wb-section-nav-item"><a href="#related-primitives" class="wb-section-nav-link">Related primitives</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Gallery</h1>
+                <p class="wb-content-subtitle wb-docs-prose"><code>wb-gallery</code> is the canonical inline media pattern for equal-tile image grids. When the job needs immersive viewing, the same gallery can populate one shared <code>wb-modal</code> viewer instead of becoming a separate lightbox system.</p>
+                <div class="wb-content-meta"><span>Equal-tile media grid</span><span class="wb-content-meta-divider"></span><span>Shared modal viewer</span><span class="wb-content-meta-divider"></span><span>No masonry or slider behavior</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="intro">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Pattern boundary</strong> <code>wb-gallery</code> is good at equal-tile responsive image collections and one shared modal viewer. It is not a layout system, not masonry, not a featured-grid pattern, and not a carousel.</div>
+                    <p>Use this page when the job is to present a set of images cleanly in the page flow, optionally with captions and one shared viewer modal. If you need mixed media, zoom, hero-plus-thumbnails, or uneven tile sizing, the current shipped contract is the wrong fit.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="when-to-use">
+                    <div>
+                      <h2>When to use</h2>
+                      <ul>
+                        <li>Image collections</li>
+                        <li>Screenshot sets</li>
+                        <li>Editorial visuals</li>
+                        <li>Inline content galleries</li>
+                      </ul>
+                    </div>
+                    <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Do not use it for</strong> Masonry layouts, featured-grid spans, sliders, carousels, zoom tooling, or mixed-media viewers. Those capabilities are not present in the shipped source.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="core-contract">
+                    <h2>Core contract</h2>
+                    <p>Keep the base markup small. The gallery pattern is an inline grid wrapper, an item wrapper, one interactive trigger, one image, and optional caption or meta text.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-gallery" aria-label="Release gallery"&gt;
+  &lt;div class="wb-gallery-grid"&gt;
+    &lt;figure class="wb-gallery-item"&gt;
+      &lt;button class="wb-gallery-trigger"
+              type="button"
+              data-wb-gallery-target="#releaseViewer"
+              data-wb-gallery-full="/images/release-full.jpg"&gt;
+        &lt;img class="wb-gallery-media"
+             src="/images/release-thumb.jpg"
+             alt="Release dashboard screenshot"&gt;
+      &lt;/button&gt;
+      &lt;figcaption class="wb-gallery-caption"&gt;Release dashboard&lt;/figcaption&gt;
+      &lt;div class="wb-gallery-meta"&gt;Shared viewer modal&lt;/div&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+                    <div class="wb-table-wrap">
+                      <table class="wb-table wb-table-sm">
+                        <thead><tr><th>Hook</th><th>Real support</th><th>Notes</th></tr></thead>
+                        <tbody>
+                          <tr><td><code>data-wb-gallery-target</code></td><td>Yes</td><td>Preferred gallery-to-modal connection hook.</td></tr>
+                          <tr><td><code>data-wb-target</code></td><td>Yes</td><td>Accepted as a fallback modal selector source.</td></tr>
+                          <tr><td><code>data-wb-gallery-full</code></td><td>Yes</td><td>Full-size viewer image source.</td></tr>
+                          <tr><td><code>data-wb-gallery-alt</code></td><td>Yes</td><td>Viewer alt text override.</td></tr>
+                          <tr><td><code>data-wb-gallery-caption</code></td><td>Yes</td><td>Viewer caption override.</td></tr>
+                          <tr><td><code>data-wb-gallery-meta</code></td><td>Yes</td><td>Viewer meta override.</td></tr>
+                          <tr><td><code>data-wb-gallery-width</code></td><td>Yes</td><td>Optional width attribute for viewer image.</td></tr>
+                          <tr><td><code>data-wb-gallery-height</code></td><td>Yes</td><td>Optional height attribute for viewer image.</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-modal wb-modal-xl" id="releaseViewer" role="dialog" aria-modal="true" aria-labelledby="releaseViewerTitle"&gt;
+  &lt;div class="wb-modal-dialog"&gt;
+    &lt;div class="wb-modal-body"&gt;
+      &lt;div class="wb-gallery-viewer"&gt;
+        &lt;div class="wb-gallery-viewer-toolbar"&gt;
+          &lt;button class="wb-gallery-viewer-prev" type="button" aria-label="Previous image"&gt;...&lt;/button&gt;
+          &lt;div class="wb-gallery-viewer-counter" aria-live="polite"&gt;1 / 3&lt;/div&gt;
+          &lt;button class="wb-gallery-viewer-next" type="button" aria-label="Next image"&gt;...&lt;/button&gt;
+          &lt;button class="wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Close viewer"&gt;...&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;figure class="wb-gallery-viewer-media"&gt;
+          &lt;img class="wb-gallery-viewer-image" src="..." alt="..."&gt;
+          &lt;figcaption class="wb-gallery-viewer-caption" id="releaseViewerTitle"&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p class="wb-gallery-viewer-meta"&gt;&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="official-examples">
+                    <h2>Official examples</h2>
+                    <p>These six examples are the strongest current uses of <code>wb-gallery</code>. Each one demonstrates a different job without pretending the pattern can do masonry, featured spans, or slider behavior.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="inline-captioned">
+                    <h2>1. Inline captioned gallery</h2>
+                    <p>Baseline pattern: equal tiles with one visible caption per image.</p>
+                    <div class="wb-gallery" aria-label="Inline captioned workspace gallery">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Workspace lounge with tables and daylight">
+                          </a>
+                          <figcaption class="wb-gallery-caption">Workspace lounge</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Meeting room with long desk and wall display">
+                          </a>
+                          <figcaption class="wb-gallery-caption">Team room</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Desk setup with monitor keyboard and notebook">
+                          </a>
+                          <figcaption class="wb-gallery-caption">Desk setup</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Collaborative open office area with large windows">
+                          </a>
+                          <figcaption class="wb-gallery-caption">Open office</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="gallery-with-metadata">
+                    <h2>2. Gallery with metadata</h2>
+                    <p>Second text layer: the gallery keeps the same equal-tile structure but adds muted support text below each caption.</p>
+                    <div class="wb-gallery" aria-label="Release asset gallery with metadata">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Analytics dashboard shown on a laptop screen">
+                          </a>
+                          <figcaption class="wb-gallery-caption">Analytics dashboard</figcaption>
+                          <div class="wb-gallery-meta">Release review / KPI summary</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planning workshop with sticky notes and laptops">
+                          </a>
+                          <figcaption class="wb-gallery-caption">Planning workshop</figcaption>
+                          <div class="wb-gallery-meta">Sprint framing / product decisions</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Marketing chart and conversion breakdown on a screen">
+                          </a>
+                          <figcaption class="wb-gallery-caption">Attribution detail</figcaption>
+                          <div class="wb-gallery-meta">Campaign review / channel mix</div>
+                        </figure>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="shared-modal-viewer">
+                    <h2>3. Shared modal viewer gallery</h2>
+                    <p>Behavior example: one gallery set, one modal, prev/next controls, viewer counter, and caption/meta population from real trigger attributes.</p>
+                    <div class="wb-gallery" aria-label="Release viewer gallery example">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Release dashboard showing KPI cards and trend charts" data-wb-gallery-caption="Release dashboard" data-wb-gallery-meta="Counter, caption, and meta are populated from one shared viewer modal.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Release dashboard thumbnail">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Open release dashboard</figcaption>
+                          <div class="wb-gallery-meta">Uses data attribute overrides</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Sprint planning session with wall notes and laptops" data-wb-gallery-caption="Sprint planning wall" data-wb-gallery-meta="Prev and next move only inside this gallery and this modal target.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planning wall thumbnail">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Open planning wall</figcaption>
+                          <div class="wb-gallery-meta">Same modal, second item</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Performance chart on a laptop with channel metrics" data-wb-gallery-caption="Performance breakdown" data-wb-gallery-meta="Keyboard left and right arrows step through the active viewer items.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Performance chart thumbnail">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Open performance breakdown</figcaption>
+                          <div class="wb-gallery-meta">Shared viewer modal</div>
+                        </figure>
+                      </div>
+                    </div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Single-modal rule</strong> The viewer stays inside one shared <code>wb-modal</code>. The gallery runtime does not invent a second overlay system or a separate lightbox primitive.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="editorial-content-gallery">
+                    <h2>4. Editorial/content gallery block</h2>
+                    <p>Content integration: the gallery sits inside a readable article flow instead of pretending to be a standalone layout engine.</p>
+                    <div class="wb-content-shell wb-content-shell-narrow">
+                      <header class="wb-content-header">
+                        <h3 class="wb-content-title">Case-study image block</h3>
+                        <p class="wb-content-subtitle">Use <code>wb-gallery</code> inside a content shell when an article or case study needs a calm inline media group.</p>
+                      </header>
+                      <div class="wb-content-body wb-stack-6">
+                        <p>These images support the story; they do not replace the page hierarchy. The gallery stays equal-tile, readable, and easy to drop into long-form content.</p>
+                        <div class="wb-gallery" aria-label="Editorial content gallery">
+                          <div class="wb-gallery-grid">
+                            <figure class="wb-gallery-item">
+                              <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Open studio workspace with multiple zones">
+                              </a>
+                              <figcaption class="wb-gallery-caption">The workspace before the rollout</figcaption>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Bright office setup after the refresh">
+                              </a>
+                              <figcaption class="wb-gallery-caption">The same area after the refresh</figcaption>
+                            </figure>
+                          </div>
+                        </div>
+                        <div class="wb-callout wb-callout-muted"><strong class="wb-callout-title">Composition note</strong> This is a content-shell composition. The gallery remains the same shipped equal-tile pattern inside a different page context.</div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="card-contained-gallery">
+                    <h2>5. Card-contained media gallery</h2>
+                    <p>App/dashboard usage: the gallery lives inside a framed surface with header and body rhythm.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-header"><h3 class="wb-card-title">Recent launch assets</h3><a href="primitives.html#interaction-shells" class="wb-action-link">Viewer boundary</a></div>
+                      <div class="wb-card-body wb-stack-4">
+                        <p class="wb-m-0">Use this composition for release recaps, property/image modules, or detail surfaces that need a compact image set inside one card.</p>
+                        <div class="wb-gallery" aria-label="Card-contained launch asset gallery">
+                          <div class="wb-gallery-grid">
+                            <figure class="wb-gallery-item">
+                              <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Boardroom launch presentation scene">
+                              </a>
+                              <figcaption class="wb-gallery-caption">Launch review</figcaption>
+                              <div class="wb-gallery-meta">Stakeholder readout</div>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Desk with release checklist and laptop">
+                              </a>
+                              <figcaption class="wb-gallery-caption">Checklist workspace</figcaption>
+                              <div class="wb-gallery-meta">Ship-day coordination</div>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Performance screen with launch metrics">
+                              </a>
+                              <figcaption class="wb-gallery-caption">Launch metrics</figcaption>
+                              <div class="wb-gallery-meta">Adoption snapshot</div>
+                            </figure>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="product-screenshot-gallery">
+                    <h2>6. Product screenshot gallery</h2>
+                    <p>Realistic product usage: screenshot sets work well when each frame has similar importance and the page does not need a featured hero-plus-thumbnail relationship.</p>
+                    <div class="wb-stack-4">
+                      <div class="wb-split">
+                        <div>
+                          <h3 class="wb-m-0">Atlas product tour</h3>
+                          <p class="wb-m-0">A clean equal-tile screenshot set is often enough for feature overviews, release notes, and docs pages.</p>
+                        </div>
+                        <a href="javascript.html#common-modules" class="wb-action-link">Viewer runtime reference</a>
+                      </div>
+                      <div class="wb-gallery" aria-label="Product screenshot gallery">
+                        <div class="wb-gallery-grid">
+                          <figure class="wb-gallery-item">
+                            <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Dashboard overview screenshot">
+                            </a>
+                            <figcaption class="wb-gallery-caption">Overview</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planning and collaboration screenshot">
+                            </a>
+                            <figcaption class="wb-gallery-caption">Planning</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Performance detail screenshot">
+                            </a>
+                            <figcaption class="wb-gallery-caption">Reporting</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <a class="wb-gallery-trigger" href="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" target="_blank" rel="noreferrer noopener">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Settings workspace screenshot">
+                            </a>
+                            <figcaption class="wb-gallery-caption">Settings</figcaption>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="composition-guidance">
+                    <div>
+                      <h2>Composition guidance</h2>
+                      <p><code>wb-gallery</code> combines cleanly with <code>wb-card</code>, <code>wb-content-shell</code>, <code>wb-stack</code>, <code>wb-split</code>, and <code>wb-grid-*</code> helpers. These are composition patterns, not gallery variants.</p>
+                    </div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Keep the vocabulary honest</strong> The gallery contract stays the same. Changing the surrounding shell, card, or stack does not create a new gallery primitive or a new gallery layout system.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="do-do-not">
+                    <h2>Do / Do not</h2>
+                    <div class="wb-grid-2">
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Do</h3></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <p class="wb-m-0">Use equal-importance image sets.</p>
+                          <p class="wb-m-0">Keep one shared viewer modal per gallery set.</p>
+                          <p class="wb-m-0">Use real captions and optional meta only when they add context.</p>
+                          <p class="wb-m-0">Combine with content shells, cards, and layout helpers when the page job needs it.</p>
+                        </div>
+                      </div>
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Do not</h3></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <p class="wb-m-0">Do not imply masonry.</p>
+                          <p class="wb-m-0">Do not imply featured spans or hero-plus-thumbnails.</p>
+                          <p class="wb-m-0">Do not imply carousel, zoom, or mixed-media support.</p>
+                          <p class="wb-m-0">Do not add docs-only helper classes just to fake unsupported gallery behavior.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="accessibility-behavior">
+                    <h2>Accessibility / behavior notes</h2>
+                    <div class="wb-list wb-list-sm">
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Alt text</span><span class="wb-list-item-sub">The viewer uses <code>data-wb-gallery-alt</code> first, then falls back to the inline image <code>alt</code>.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Caption and meta</span><span class="wb-list-item-sub">The viewer reads <code>data-wb-gallery-caption</code> and <code>data-wb-gallery-meta</code> first, then falls back to <code>wb-gallery-caption</code> and <code>wb-gallery-meta</code> text.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Modal labeling</span><span class="wb-list-item-sub">If a viewer caption is present and has an <code>id</code>, the modal uses <code>aria-labelledby</code>. Otherwise it falls back to an <code>aria-label</code> from caption, alt, or the text "Gallery viewer".</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Keyboard navigation</span><span class="wb-list-item-sub">When the shared viewer modal is active, left and right arrow keys step through items unless focus is inside an input, textarea, or editable field.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Scoped stepping</span><span class="wb-list-item-sub">Prev and next only step through triggers inside the same <code>.wb-gallery</code> that point to the same modal selector.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Boundary behavior</span><span class="wb-list-item-sub">Prev and next controls are disabled at the beginning and end of the active item list.</span></div></div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="related-primitives">
+                    <h2>Related primitives</h2>
+                    <div class="wb-link-list">
+                      <a href="primitives.html#interaction-shells" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-modal</span><span class="wb-link-list-meta">Viewer boundary</span></div><div class="wb-link-list-desc">Gallery viewing stays inside the shipped modal primitive instead of becoming a separate overlay family.</div></a>
+                      <a href="primitives.html#surfaces-and-display" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-card</span><span class="wb-link-list-meta">Framed surface</span></div><div class="wb-link-list-desc">Use cards when the gallery belongs inside a dashboard, detail panel, or contained module.</div></a>
+                      <a href="pattern-content-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-content-shell</span><span class="wb-link-list-meta">Editorial context</span></div><div class="wb-link-list-desc">Use content shells when the gallery supports a long-form article, guide, or case-study flow.</div></a>
+                      <a href="layout.html#base-composition-primitives" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Layout primitives</span><span class="wb-link-list-meta">Composition helpers</span></div><div class="wb-link-list-desc">Use <code>wb-stack</code>, <code>wb-split</code>, and <code>wb-grid-*</code> to frame the surrounding page without changing the gallery contract.</div></a>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-content-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Content Shell</span></a>
+                <a href="pattern-marketing.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Marketing</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-xl" id="galleryPatternViewer" role="dialog" aria-modal="true" aria-labelledby="galleryPatternViewerTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-body">
+        <div class="wb-gallery-viewer">
+          <div class="wb-gallery-viewer-toolbar">
+            <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Previous image"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+            <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 3</div>
+            <div class="wb-cluster wb-cluster-2">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Next image"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Close viewer"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <figure class="wb-gallery-viewer-media">
+            <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Release dashboard showing KPI cards and trend charts">
+            <figcaption class="wb-gallery-viewer-caption" id="galleryPatternViewerTitle">Release dashboard</figcaption>
+          </figure>
+          <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Counter, caption, and meta are populated from one shared viewer modal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
