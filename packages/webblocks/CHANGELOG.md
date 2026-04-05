@@ -48,7 +48,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - CSS icon mappings are now generated from the source icon set so `<i class="wb-icon wb-icon-*"></i>` stays stable across rebuilds
 - Added refresh icon CSS aliases for `wb-icon-refresh-cw`, `wb-icon-refresh`, and `wb-icon-rotate-cw`, mapped to the existing `wb-icon-rotate-cw` glyph for downstream compatibility
 - Added a default `help-circle` mask fallback for `<i class="wb-icon ..."></i>` so unknown or missing `wb-icon-*` classes do not render as empty squares
-- playground asset loading now resolves the correct local `dist/` path from both `playground/` and `playground/sandbox/`
+- playground asset loading now resolves the correct local `dist/` path for the docs surface and the root `playground/` entry point
 - docs `wb-section-nav` active state now follows the real docs scroll container instead of assuming `window` scroll
 - docs `wb-section-nav` no longer lets the current hash permanently override scroll spy after anchor clicks
 

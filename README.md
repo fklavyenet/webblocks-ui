@@ -45,12 +45,12 @@ Start from patterns, not primitives.
 - docs: `docs/index.html`
 - pattern examples: `docs/patterns.html`
 - gallery pattern: `docs/pattern-gallery.html`
-- playground: `playground/sandbox/`
+- playground: `playground/`
 
 ## Notes
 
 - docs pages consume built assets from `packages/webblocks/dist/`
-- docs and playground local asset loaders resolve the built files from `packages/webblocks/dist/`; the playground loader also handles the deeper `playground/sandbox/` path correctly
+- docs and playground local asset loaders resolve the built files from `packages/webblocks/dist/`; the playground loader also handles the deeper `playground/` path correctly
 - the playground is a thin sandbox layer built on top of shipped WebBlocks primitives, surfaces, and layout utilities
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive
 - long-form docs pages now use `wb-section-nav` for local section indexes, with runtime-driven active state tied to the real current section instead of static markup
