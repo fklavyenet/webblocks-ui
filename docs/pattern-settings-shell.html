@@ -43,40 +43,95 @@
     </aside>
 
     <div class="wb-dashboard-body">
-      <header class="wb-navbar wb-navbar-glass">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
         <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
-        <nav aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Settings shell</span></li></ol></nav>
+        <nav class="wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Settings shell</span></li></ol></nav>
         <div class="wb-navbar-spacer"></div>
         <div class="wb-topbar-actions"><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-topbar-action" data-wb-toggle="dropdown" data-wb-target="#pattern-settings-shellThemeMenu" aria-expanded="false" aria-label="Theme controls" title="Theme controls"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-settings-shellThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Accent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div></div>
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-settings-shell">
-          <nav class="wb-section-nav wb-settings-nav" aria-label="Settings sections">
-            <div class="wb-section-nav-title">Workspace</div>
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Settings shell sections">
+            <div class="wb-section-nav-title">On this page</div>
             <ul class="wb-section-nav-list">
-              <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link is-active" aria-current="page"><i class="wb-icon wb-icon-contact"></i><span>Profile</span></a></li>
-              <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-shield"></i><span>Security</span></a></li>
-              <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-bell"></i><span>Notifications</span></a></li>
-              <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-credit-card"></i><span>Billing</span></a></li>
+              <li class="wb-section-nav-item"><a href="#when-to-use-it" class="wb-section-nav-link"><i class="wb-icon wb-icon-settings"></i><span>When to use it</span></a></li>
+              <li class="wb-section-nav-item"><a href="#workspace-rail" class="wb-section-nav-link"><i class="wb-icon wb-icon-columns2"></i><span>Workspace rail</span></a></li>
+              <li class="wb-section-nav-item"><a href="#embedded-demo" class="wb-section-nav-link"><i class="wb-icon wb-icon-settings"></i><span>Embedded demo</span></a></li>
+              <li class="wb-section-nav-item"><a href="#danger-zone" class="wb-section-nav-link"><i class="wb-icon wb-icon-octagon-alert"></i><span>Danger zone</span></a></li>
             </ul>
           </nav>
 
           <div class="wb-settings-body">
-            <div class="wb-settings-header"><h1 class="wb-settings-title">Account settings</h1><p class="wb-settings-desc">Use the settings shell for slower form work, grouped decisions, and a local `wb-section-nav` rail that stays close to the content.</p></div>
-            <section class="wb-settings-section">
-              <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Public profile</h2><p class="wb-settings-section-desc">Manage how teammates see your workspace identity.</p></div></div>
-              <div class="wb-settings-section-body wb-stack-4"><div class="wb-form-row"><div class="wb-field"><label class="wb-label" for="workspaceName">Workspace name</label><input class="wb-input" id="workspaceName" type="text" value="Atlas Cloud"><div class="wb-field-meta"><div class="wb-field-hint">Used in navigation, invites, and workspace switchers.</div></div></div><div class="wb-field"><label class="wb-label" for="workspaceSlug">Slug</label><input class="wb-input" id="workspaceSlug" type="text" value="atlas-cloud"><div class="wb-field-meta"></div></div></div><div class="wb-field"><label class="wb-label" for="workspaceDesc">Description</label><textarea class="wb-textarea" id="workspaceDesc">Pattern-first admin tools for internal teams.</textarea><div class="wb-field-meta"><div class="wb-field-hint">Optional context shown on the public workspace profile.</div></div></div></div>
-              <div class="wb-settings-section-footer"><button class="wb-btn wb-btn-secondary wb-btn-sm">Cancel</button><button class="wb-btn wb-btn-primary wb-btn-sm">Save changes</button></div>
-            </section>
-            <section class="wb-settings-section">
-              <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Preferences</h2><p class="wb-settings-section-desc">Row-based settings work well when each preference needs a short explanation and one clear control.</p></div></div>
-              <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Default density</strong><span>Choose the baseline spacing scale for the workspace interface.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Comfortable</option><option>Compact</option></select></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Security alerts</strong><span>Notify owners when a new device signs in or a role changes.</span></div><div class="wb-settings-row-control"><label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span><span>Enabled</span></label></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Default landing page</strong><span>Choose where members land after they sign in.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Dashboard</option><option>Projects</option><option>Members</option></select></div></div></div>
-            </section>
-            <section class="wb-settings-section wb-settings-danger">
-              <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Danger zone</h2><p class="wb-settings-section-desc">Reserve the final section for destructive actions that should stay separate from everyday settings.</p></div></div>
-              <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Delete workspace</strong><span>Permanently remove all members, projects, and billing history from this workspace.</span></div><div class="wb-settings-row-control"><button class="wb-btn wb-btn-danger wb-btn-sm" data-wb-toggle="modal" data-wb-target="#deleteWorkspace">Delete workspace</button></div></div></div>
-            </section>
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Settings shell</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Use the settings shell when the page needs slower form work, grouped decisions, and a local section rail that stays close to the active task.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="when-to-use-it">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Why this shell exists</strong> Settings pages usually need a calmer navigation rail, clearer section grouping, and enough width for forms without turning into a full application dashboard.</div>
+                    <p>Choose this shell for profile settings, billing preferences, notification rules, workspace options, and other pages where users move through grouped controls instead of hopping across dense application views.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="workspace-rail">
+                    <div>
+                      <h2>Local workspace rail</h2>
+                      <p>The local rail is a real <code>wb-section-nav</code>, not a custom settings-only component. It keeps nearby settings areas visible without competing with the global docs or app navigation.</p>
+                    </div>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-3">
+                        <strong>Good fit</strong>
+                        <ul>
+                          <li>Grouped form sections with short descriptions</li>
+                          <li>Preferences that benefit from local navigation</li>
+                          <li>Destructive actions isolated at the end of the page</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="embedded-demo">
+                    <h2>Embedded settings demo</h2>
+                    <div class="wb-settings-shell">
+                      <nav class="wb-section-nav wb-settings-nav" aria-label="Example settings workspace">
+                        <div class="wb-section-nav-title">Workspace</div>
+                        <ul class="wb-section-nav-list">
+                          <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link is-active" aria-current="page"><i class="wb-icon wb-icon-contact"></i><span>Profile</span></a></li>
+                          <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-shield"></i><span>Security</span></a></li>
+                          <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-bell"></i><span>Notifications</span></a></li>
+                          <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-credit-card"></i><span>Billing</span></a></li>
+                        </ul>
+                      </nav>
+
+                      <div class="wb-settings-body">
+                        <div class="wb-settings-header"><h2 class="wb-settings-title">Account settings</h2><p class="wb-settings-desc">Use the settings shell for slower form work, grouped decisions, and a local <code>wb-section-nav</code> rail that stays close to the content.</p></div>
+                        <section class="wb-settings-section">
+                          <div class="wb-settings-section-header"><div><h3 class="wb-settings-section-title">Public profile</h3><p class="wb-settings-section-desc">Manage how teammates see your workspace identity.</p></div></div>
+                          <div class="wb-settings-section-body wb-stack-4"><div class="wb-form-row"><div class="wb-field"><label class="wb-label" for="workspaceName">Workspace name</label><input class="wb-input" id="workspaceName" type="text" value="Atlas Cloud"><div class="wb-field-meta"><div class="wb-field-hint">Used in navigation, invites, and workspace switchers.</div></div></div><div class="wb-field"><label class="wb-label" for="workspaceSlug">Slug</label><input class="wb-input" id="workspaceSlug" type="text" value="atlas-cloud"><div class="wb-field-meta"></div></div></div><div class="wb-field"><label class="wb-label" for="workspaceDesc">Description</label><textarea class="wb-textarea" id="workspaceDesc">Pattern-first admin tools for internal teams.</textarea><div class="wb-field-meta"><div class="wb-field-hint">Optional context shown on the public workspace profile.</div></div></div></div>
+                          <div class="wb-settings-section-footer"><button class="wb-btn wb-btn-secondary wb-btn-sm">Cancel</button><button class="wb-btn wb-btn-primary wb-btn-sm">Save changes</button></div>
+                        </section>
+                        <section class="wb-settings-section">
+                          <div class="wb-settings-section-header"><div><h3 class="wb-settings-section-title">Preferences</h3><p class="wb-settings-section-desc">Row-based settings work well when each preference needs a short explanation and one clear control.</p></div></div>
+                          <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Default density</strong><span>Choose the baseline spacing scale for the workspace interface.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Comfortable</option><option>Compact</option></select></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Security alerts</strong><span>Notify owners when a new device signs in or a role changes.</span></div><div class="wb-settings-row-control"><label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span><span>Enabled</span></label></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Default landing page</strong><span>Choose where members land after they sign in.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Dashboard</option><option>Projects</option><option>Members</option></select></div></div></div>
+                        </section>
+                        <section class="wb-settings-section wb-settings-danger" id="danger-zone">
+                          <div class="wb-settings-section-header"><div><h3 class="wb-settings-section-title">Danger zone</h3><p class="wb-settings-section-desc">Reserve the final section for destructive actions that should stay separate from everyday settings.</p></div></div>
+                          <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Delete workspace</strong><span>Permanently remove all members, projects, and billing history from this workspace.</span></div><div class="wb-settings-row-control"><button class="wb-btn wb-btn-danger wb-btn-sm" data-wb-toggle="modal" data-wb-target="#deleteWorkspace">Delete workspace</button></div></div></div>
+                        </section>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-dashboard-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Dashboard Shell</span></a>
+                <a href="pattern-auth-shell.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Auth Shell</span></a>
+              </footer>
+            </div>
           </div>
         </div>
       </main>

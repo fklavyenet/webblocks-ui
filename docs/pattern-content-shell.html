@@ -43,17 +43,83 @@
     </aside>
 
     <div class="wb-dashboard-body">
-      <header class="wb-navbar wb-navbar-glass">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
         <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar"><i class="wb-icon wb-icon-menu"></i>Menu</button>
-        <nav aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Content shell</span></li></ol></nav>
+        <nav class="wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Content shell</span></li></ol></nav>
         <div class="wb-navbar-spacer"></div>
         <div class="wb-topbar-actions"><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-topbar-action" data-wb-toggle="dropdown" data-wb-target="#pattern-content-shellThemeMenu" aria-expanded="false" aria-label="Theme controls" title="Theme controls"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-content-shellThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Accent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div></div>
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-content-shell">
-          <header class="wb-content-header"><h1 class="wb-content-title">Content shell example</h1><p class="wb-content-subtitle">Use the content shell when hierarchy, reading width, references, and calm progression matter more than application chrome.</p><div class="wb-content-meta"><span>Docs surface</span><span class="wb-content-meta-divider"></span><span>Centered reading width</span><span class="wb-content-meta-divider"></span><span>Pattern-first</span></div></header>
-          <div class="wb-content-body"><div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">When to use it</strong> Choose the content shell for docs, onboarding, policies, changelogs, and longer articles where page hierarchy should stay obvious.</div><h2>Why content shells stay narrow</h2><p>Documentation and article pages work best when the layout keeps reading width stable, separates header metadata from body content, and uses footer navigation for linear progression.</p><div class="wb-link-list"><a href="pattern-dashboard-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Need persistent navigation?</span><span class="wb-link-list-meta">Use dashboard shell</span></div><div class="wb-link-list-desc">Operational products should switch to the dashboard frame instead of stretching a content shell into an app shell.</div></a><a href="pattern-settings-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Need grouped form work?</span><span class="wb-link-list-meta">Use settings shell</span></div><div class="wb-link-list-desc">Settings pages need local navigation and sectioned controls, not only article flow.</div></a></div><h2>Reference blocks still use shipped surfaces and primitives</h2><p>The content shell does not invent its own building blocks. Callouts and link lists are surfaces. Tables remain primitives. Public classification follows UI role, not file path.</p><div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Need</th><th>Class type</th><th>Why</th></tr></thead><tbody><tr><td>Inline warning</td><td><code>wb-callout</code> surface</td><td>Keeps emphasis inside the reading flow.</td></tr><tr><td>Cross-links</td><td><code>wb-link-list</code> surface</td><td>Makes adjacent docs or examples easy to scan.</td></tr><tr><td>Structured comparison</td><td><code>wb-table</code> primitive</td><td>Clarifies differences without breaking the shell.</td></tr></tbody></table></div><blockquote>The shell sets the page job. Surfaces and primitives do the visible UI work inside it.</blockquote></div>
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Content shell sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#when-to-use-it" class="wb-section-nav-link"><i class="wb-icon wb-icon-book"></i><span>When to use it</span></a></li>
+              <li class="wb-section-nav-item"><a href="#why-reading-width-matters" class="wb-section-nav-link"><i class="wb-icon wb-icon-align-left"></i><span>Reading width</span></a></li>
+              <li class="wb-section-nav-item"><a href="#reference-surfaces" class="wb-section-nav-link"><i class="wb-icon wb-icon-package"></i><span>Reference surfaces</span></a></li>
+              <li class="wb-section-nav-item"><a href="#embedded-demo" class="wb-section-nav-link"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Embedded demo</span></a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Content shell</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Use the content shell when hierarchy, reading width, references, and calm progression matter more than application chrome.</p>
+                <div class="wb-content-meta"><span>Docs surface</span><span class="wb-content-meta-divider"></span><span>Centered reading width</span><span class="wb-content-meta-divider"></span><span>Pattern-first</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="when-to-use-it">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">When to use it</strong> Choose the content shell for docs, onboarding, policies, changelogs, and longer articles where page hierarchy should stay obvious.</div>
+                    <p>The content shell is for text-first pages. It keeps the content readable, leaves room for reference blocks, and gives footer navigation a clear role in linear reading flows.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="why-reading-width-matters">
+                    <div>
+                      <h2>Why reading width matters</h2>
+                      <p>Documentation and article pages work best when the layout keeps reading width stable, separates header metadata from body content, and avoids stretching paragraphs to match application-scale demos.</p>
+                    </div>
+                    <div class="wb-link-list">
+                      <a href="pattern-dashboard-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Need persistent navigation?</span><span class="wb-link-list-meta">Use dashboard shell</span></div><div class="wb-link-list-desc">Operational products should switch to the dashboard frame instead of stretching a content shell into an app shell.</div></a>
+                      <a href="pattern-settings-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Need grouped form work?</span><span class="wb-link-list-meta">Use settings shell</span></div><div class="wb-link-list-desc">Settings pages need local navigation and sectioned controls, not only article flow.</div></a>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="reference-surfaces">
+                    <h2>Reference blocks still use shipped surfaces and primitives</h2>
+                    <p>The content shell does not invent its own building blocks. Callouts and link lists are surfaces. Tables remain primitives. Public classification follows UI role, not file path.</p>
+                    <div class="wb-table-wrap">
+                      <table class="wb-table wb-table-sm">
+                        <thead><tr><th>Need</th><th>Class type</th><th>Why</th></tr></thead>
+                        <tbody>
+                          <tr><td>Inline warning</td><td><code>wb-callout</code> surface</td><td>Keeps emphasis inside the reading flow.</td></tr>
+                          <tr><td>Cross-links</td><td><code>wb-link-list</code> surface</td><td>Makes adjacent docs or examples easy to scan.</td></tr>
+                          <tr><td>Structured comparison</td><td><code>wb-table</code> primitive</td><td>Clarifies differences without inventing a new article-specific table style.</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="embedded-demo">
+                    <h2>Embedded content-shell demo</h2>
+                    <div class="wb-content-shell">
+                      <header class="wb-content-header"><h2 class="wb-content-title">Content shell example</h2><p class="wb-content-subtitle">Use the content shell when hierarchy, reading width, references, and calm progression matter more than application chrome.</p><div class="wb-content-meta"><span>Docs surface</span><span class="wb-content-meta-divider"></span><span>Centered reading width</span><span class="wb-content-meta-divider"></span><span>Pattern-first</span></div></header>
+                      <div class="wb-content-body wb-stack-6"><div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">When to use it</strong> Choose the content shell for docs, onboarding, policies, changelogs, and longer articles where page hierarchy should stay obvious.</div><h3>Why content shells stay narrow</h3><p>Documentation and article pages work best when the layout keeps reading width stable, separates header metadata from body content, and uses footer navigation for linear progression.</p><div class="wb-link-list"><a href="pattern-dashboard-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Need persistent navigation?</span><span class="wb-link-list-meta">Use dashboard shell</span></div><div class="wb-link-list-desc">Operational products should switch to the dashboard frame instead of stretching a content shell into an app shell.</div></a><a href="pattern-settings-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Need grouped form work?</span><span class="wb-link-list-meta">Use settings shell</span></div><div class="wb-link-list-desc">Settings pages need local navigation and sectioned controls, not only article flow.</div></a></div><div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Need</th><th>Class type</th><th>Why</th></tr></thead><tbody><tr><td>Inline warning</td><td><code>wb-callout</code> surface</td><td>Keeps emphasis inside the reading flow.</td></tr><tr><td>Cross-links</td><td><code>wb-link-list</code> surface</td><td>Makes adjacent docs or examples easy to scan.</td></tr><tr><td>Structured comparison</td><td><code>wb-table</code> primitive</td><td>Clarifies differences without inventing a new article-specific table style.</td></tr></tbody></table></div></div>
+                      <footer class="wb-content-footer"><a href="patterns.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Patterns</span></a><a href="javascript.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">JavaScript</span></a></footer>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-auth-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Auth Shell</span></a>
+                <a href="pattern-marketing.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Marketing</span></a>
+              </footer>
+            </div>
+          </div>
         </div>
       </main>
     </div>
