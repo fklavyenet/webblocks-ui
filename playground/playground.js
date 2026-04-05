@@ -29,8 +29,8 @@
       description: 'A compact card surface with a quiet status badge, supporting copy, and a simple action row.',
       hint: 'Look at the card body rhythm, the badge placement, and how actions stay secondary to the content.',
       docs: [
-        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Cards, badges, and actions' },
-        { href: '../../docs/patterns.html', label: 'Patterns', meta: 'When to start from a full page job' }
+        { href: '../docs/primitives.html', label: 'Primitives', meta: 'Cards, badges, and actions' },
+        { href: '../docs/patterns.html', label: 'Patterns', meta: 'When to start from a full page job' }
       ],
       html: [
         '<div class="wb-card">',
@@ -54,8 +54,8 @@
       description: 'A small stacked form that demonstrates labels, inputs, selects, input groups, field errors, and action rhythm.',
       hint: 'Check how labels, controls, and the input-group stay explicit without adding custom wrappers or scripts.',
       docs: [
-        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Inputs, selects, errors, input groups' },
-        { href: '../../docs/getting-started.html', label: 'Getting Started', meta: 'Choosing the nearest shipped example' }
+        { href: '../docs/primitives.html', label: 'Primitives', meta: 'Inputs, selects, errors, input groups' },
+        { href: '../docs/getting-started.html', label: 'Getting Started', meta: 'Choosing the nearest shipped example' }
       ],
       html: [
         '<div class="wb-card">',
@@ -100,8 +100,8 @@
       description: 'A focused auth snippet using the shipped auth-shell vocabulary instead of an invented login wrapper.',
       hint: 'Look at the header, the centered single-task flow, and the way simple form controls fit inside the auth structure.',
       docs: [
-        { href: '../../docs/pattern-auth-shell.html', label: 'Auth Shell', meta: 'Canonical auth pattern' },
-        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Inputs, buttons, and switches' }
+        { href: '../docs/pattern-auth-shell.html', label: 'Auth Shell', meta: 'Canonical auth pattern' },
+        { href: '../docs/primitives.html', label: 'Primitives', meta: 'Inputs, buttons, and switches' }
       ],
       html: [
         '<div class="wb-auth-shell">',
@@ -142,9 +142,9 @@
       description: 'A canonical public-facing hero composition built from the shipped page-intro layout classes and a simple support row.',
       hint: 'Look at the section rhythm, title-to-lead relationship, action cluster, and optional proof chips rather than inventing a fake wb-hero class.',
       docs: [
-        { href: '../../docs/pattern-marketing.html', label: 'Marketing', meta: 'Canonical landing page and hero guidance' },
-        { href: '../../docs/patterns.html', label: 'Patterns', meta: 'Why marketing is still a pattern choice' },
-        { href: '../../docs/getting-started.html', label: 'Getting Started', meta: 'Copy the nearest shipped example' }
+        { href: '../docs/pattern-marketing.html', label: 'Marketing', meta: 'Canonical landing page and hero guidance' },
+        { href: '../docs/patterns.html', label: 'Patterns', meta: 'Why marketing is still a pattern choice' },
+        { href: '../docs/getting-started.html', label: 'Getting Started', meta: 'Copy the nearest shipped example' }
       ],
       html: [
         '<section class="wb-page-intro wb-section-sm">',
@@ -182,8 +182,8 @@
       description: 'A pattern-oriented page header with breadcrumb, title, actions, and a toolbar row for secondary controls.',
       hint: 'Check the hierarchy rule: breadcrumb optional, title primary, actions separate, toolbar below.',
       docs: [
-        { href: '../../docs/patterns.html', label: 'Patterns', meta: 'Page jobs and header hierarchy' },
-        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Breadcrumbs, buttons, toolbar' }
+        { href: '../docs/patterns.html', label: 'Patterns', meta: 'Page jobs and header hierarchy' },
+        { href: '../docs/primitives.html', label: 'Primitives', meta: 'Breadcrumbs, buttons, toolbar' }
       ],
       html: [
         '<div class="wb-stack-4">',
@@ -226,8 +226,8 @@
       description: 'A lightweight dashboard fragment showing page-header rhythm above a row of shipped stat surfaces.',
       hint: 'Look at how the title sets context first, then the stats scan cleanly as separate framed regions.',
       docs: [
-        { href: '../../docs/pattern-dashboard-shell.html', label: 'Dashboard Shell', meta: 'Admin frame and hierarchy' },
-        { href: '../../docs/primitives.html', label: 'Primitives', meta: 'Stats and surface composition' }
+        { href: '../docs/pattern-dashboard-shell.html', label: 'Dashboard Shell', meta: 'Admin frame and hierarchy' },
+        { href: '../docs/primitives.html', label: 'Primitives', meta: 'Stats and surface composition' }
       ],
       html: [
         '<div class="wb-stack-4">',
