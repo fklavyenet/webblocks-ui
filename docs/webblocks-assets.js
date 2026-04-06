@@ -33,6 +33,10 @@
   themeColor.content = '#0b1020';
   head.appendChild(themeColor);
 
+  var docsStyle = document.createElement('style');
+  docsStyle.textContent = '.wb-dashboard-shell > .wb-sidebar{--wb-sidebar-w:320px;}';
+  head.appendChild(docsStyle);
+
   var script = document.createElement('script');
   script.src = base + 'webblocks-ui.js';
   script.defer = true;
