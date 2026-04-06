@@ -2057,8 +2057,8 @@ html[data-mode="dark"] .wb-game-ui {
 }
 
 .wb-sidebar-brand-logo {
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 3rem;
+  height: 3rem;
   flex-shrink: 0;
   object-fit: contain;
 }
