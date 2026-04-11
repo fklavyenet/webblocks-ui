@@ -50,7 +50,6 @@ cat \
   "$ROOT/src/css/primitives/tabs.css" \
   "$ROOT/src/css/primitives/accordion.css" \
   "$ROOT/src/css/primitives/pagination.css" \
-  "$ROOT/src/css/primitives/breadcrumb.css" \
   "$ROOT/src/css/primitives/avatar.css" \
   "$ROOT/src/css/primitives/toast.css" \
   "$ROOT/src/css/primitives/skeleton.css" \
@@ -75,6 +74,7 @@ cat \
   "$ROOT/src/css/primitives/webgames-panel.css" \
   "$ROOT/src/css/primitives/webgames-status.css" \
   "$ROOT/src/css/patterns/page-intro.css" \
+  "$ROOT/src/css/patterns/breadcrumb.css" \
   "$ROOT/src/css/patterns/auth-shell.css" \
   "$ROOT/src/css/patterns/dashboard-shell.css" \
   "$ROOT/src/css/patterns/settings-shell.css" \

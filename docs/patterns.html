@@ -29,6 +29,7 @@
               <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
               <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
               <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item">Breadcrumb</a>
               <a href="pattern-gallery.html" class="wb-nav-group-item">Gallery</a>
               <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
             </div>
@@ -46,7 +47,7 @@
     <div class="wb-dashboard-body">
       <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
         <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Open menu"><i class="wb-icon wb-icon-menu"></i></button>
-        <nav class="wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb wb-breadcrumb-inline"><li class="wb-breadcrumb-item"><a href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item is-active"><span aria-current="page">Patterns</span></li></ol></nav>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Patterns</span></li></ol></nav>
         <div class="wb-navbar-spacer"></div>
         <div class="wb-topbar-actions"><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-topbar-action" data-wb-toggle="dropdown" data-wb-target="#patternsThemeMenu" aria-expanded="false" aria-label="Theme controls" title="Theme controls"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="patternsThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Accent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div></div>
       </header>
@@ -61,6 +62,7 @@
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-flow">Pattern flow</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#reusable-section-nav">Reusable section nav</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#page-header-stack">Page header stack</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#breadcrumb-pattern">Breadcrumb pattern</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#gallery-pattern">Gallery pattern</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#overlay-boundary">Overlay boundary</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-boundaries">Pattern boundaries</a></li>
@@ -83,6 +85,7 @@
                   <a href="pattern-auth-shell.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Auth shell</strong><p class="wb-m-0">Focused entry screens for login, registration, and lightweight onboarding.</p></div></a>
                   <a href="pattern-settings-shell.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Settings shell</strong><p class="wb-m-0">Structured settings navigation with a dedicated content region.</p></div></a>
                   <a href="pattern-content-shell.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Content shell</strong><p class="wb-m-0">Readable widths and strong hierarchy for docs, guides, and editorial pages.</p></div></a>
+                  <a href="pattern-breadcrumb.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Breadcrumb</strong><p class="wb-m-0">Semantic hierarchy paths for page headers, docs surfaces, and calmer public-site context.</p></div></a>
                   <a href="pattern-gallery.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Gallery</strong><p class="wb-m-0">Equal-tile inline media collections with an optional shared modal viewer boundary.</p></div></a>
                   <a href="pattern-marketing.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Marketing</strong><p class="wb-m-0">Public-facing landing pages, hero composition, proof sections, and calmer promotional rhythm.</p></div></a>
                 </div>
@@ -142,10 +145,10 @@
                   <div class="wb-card-body">
                     <div class="wb-page-header">
                       <div class="wb-page-header-main">
-                        <nav class="wb-page-breadcrumb" aria-label="Breadcrumb example">
-                          <ol class="wb-breadcrumb wb-breadcrumb-minimal">
-                            <li class="wb-breadcrumb-item"><a href="#">Workspace</a></li>
-                            <li class="wb-breadcrumb-item is-active"><span aria-current="page">Members</span></li>
+                        <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb example">
+                          <ol class="wb-breadcrumb-list">
+                            <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Workspace</a></li>
+                            <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Members</span></li>
                           </ol>
                         </nav>
                         <div>
@@ -160,6 +163,30 @@
                   </div>
                 </div>
                 <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Hierarchy rule</strong> Product identity belongs first in the topbar. Context comes second. Inside the page header, breadcrumb is optional, title is primary, subtitle is supportive, and actions stay separate.</div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="breadcrumb-pattern">
+                <h2>Breadcrumb pattern</h2>
+                <p><code>wb-breadcrumb</code> is the canonical semantic path pattern for hierarchy context. It keeps separators in CSS, uses ordered list semantics, and stays quiet enough for both admin and public pages.</p>
+                <div class="wb-card">
+                  <div class="wb-card-body wb-stack-4">
+                    <nav class="wb-breadcrumb" aria-label="Breadcrumb example">
+                      <ol class="wb-breadcrumb-list">
+                        <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+                        <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Pages</a></li>
+                        <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Home</span></li>
+                      </ol>
+                    </nav>
+                    <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Compact breadcrumb example">
+                      <ol class="wb-breadcrumb-list">
+                        <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Docs</a></li>
+                        <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Patterns</a></li>
+                        <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Breadcrumb</span></li>
+                      </ol>
+                    </nav>
+                    <div class="wb-cluster wb-cluster-2"><a href="pattern-breadcrumb.html" class="wb-btn wb-btn-outline wb-btn-sm">Open breadcrumb pattern page</a><a href="../playground/?example=breadcrumb" class="wb-btn wb-btn-ghost wb-btn-sm">Open playground starter</a></div>
+                  </div>
+                </div>
               </section>
 
               <section class="wb-docs-section wb-docs-wide" id="gallery-pattern">

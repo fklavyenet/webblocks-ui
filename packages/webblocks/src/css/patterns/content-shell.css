@@ -13,7 +13,7 @@
   Structure:
   <div class="wb-content-shell">
     <header class="wb-content-header">
-      <nav class="wb-content-breadcrumb"> ... </nav>
+      <nav class="wb-breadcrumb wb-content-breadcrumb"> ... </nav>
       <h1 class="wb-content-title">Page Title</h1>
       <p class="wb-content-meta"> ... </p>
     </header>
@@ -75,7 +75,7 @@
   scrollbar-width: thin;
 }
 
-.wb-docs-breadcrumb .wb-breadcrumb {
+.wb-docs-breadcrumb .wb-breadcrumb-list {
   flex-wrap: nowrap;
   white-space: nowrap;
 }

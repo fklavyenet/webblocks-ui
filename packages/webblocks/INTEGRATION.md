@@ -955,17 +955,17 @@ Supported positions:
   <div class="wb-pagination-info">Page 1 of 8</div>
 </nav>
 
-<nav aria-label="Breadcrumb">
-  <ol class="wb-breadcrumb wb-breadcrumb-minimal wb-breadcrumb-truncate">
-    <li class="wb-breadcrumb-item"><a href="#">Home</a></li>
-    <li class="wb-breadcrumb-item"><a href="#">Docs</a></li>
-    <li class="wb-breadcrumb-item is-active"><span aria-current="page">Icons</span></li>
+<nav class="wb-breadcrumb" aria-label="Breadcrumb">
+  <ol class="wb-breadcrumb-list">
+    <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Home</a></li>
+    <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Docs</a></li>
+    <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Icons</span></li>
   </ol>
 </nav>
 
-<nav aria-label="Current section">
-  <ol class="wb-breadcrumb wb-breadcrumb-context wb-breadcrumb-sep-none">
-    <li class="wb-breadcrumb-item is-active"><span aria-current="page">Workspace Settings</span></li>
+<nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Current section">
+  <ol class="wb-breadcrumb-list">
+    <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Workspace Settings</span></li>
   </ol>
 </nav>
 
@@ -990,28 +990,15 @@ Pagination rules:
 - use `wb-pagination-compact` only when the standard rhythm is too large for dense tables or narrow control rows
 - do not use pagination for content/article previous-next footers or breadcrumb-style hierarchy; those are different navigation jobs
 
-Breadcrumb preset system:
-
-- `wb-breadcrumb-minimal` -> safe default for admin/dashboard headers; subdued and title-safe
-- `wb-breadcrumb-surface` -> soft surface-backed variant for pages that need gentle separation from the header background
-- `wb-breadcrumb-bordered` -> more structured enterprise/data-heavy variant with visible containment
-- `wb-breadcrumb-inline` -> compact developer-tool style variant; tighter and slash-first by default
-- `wb-breadcrumb-context` -> single-item-friendly location/context label; use when a full navigation trail is unnecessary
-
-Separator controls:
-
-- `wb-breadcrumb-sep-chevron` -> `>` separator
-- `wb-breadcrumb-sep-slash` -> `/` separator
-- `wb-breadcrumb-sep-none` -> no separator; primarily for `wb-breadcrumb-context`
-
 Canonical rules:
 
+- apply `wb-breadcrumb` to the semantic `nav`, then use `ol.wb-breadcrumb-list` inside it
+- use `wb-breadcrumb-link` for ancestor links and `wb-breadcrumb-current` for the current page text
 - breadcrumb is secondary; it must not compete with the page title
 - page title is the primary screen heading inside a page header
-- single-item breadcrumb use is not the default navigation pattern; reserve it for `wb-breadcrumb-context`
-- active state is `.wb-breadcrumb-item.is-active`; older `.is-current` usage is not canonical
-- links should remain clickable, keyboard-focusable, and semantically inside `nav[aria-label]`
-- use `wb-breadcrumb-truncate` when long labels must be safely ellipsized
+- current page should normally be non-link text and expose `aria-current="page"`
+- separators are CSS-generated; do not type them into the markup
+- use `wb-breadcrumb-compact` for denser toolbars, drawers, and topbars
 
 ### Radio Cards and Button Checks
 
@@ -1210,10 +1197,10 @@ Stacked navbar:
     <main class="wb-dashboard-main">
       <div class="wb-page-header">
         <div class="wb-page-header-main">
-          <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
-            <ol class="wb-breadcrumb wb-breadcrumb-minimal">
-              <li class="wb-breadcrumb-item"><a href="#">Dashboard</a></li>
-              <li class="wb-breadcrumb-item is-active"><span aria-current="page">Overview</span></li>
+          <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb">
+            <ol class="wb-breadcrumb-list">
+              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+              <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Overview</span></li>
             </ol>
           </nav>
           <div>
@@ -1485,10 +1472,10 @@ These are canonical starting structures. Extend them with shipped primitives and
     <main class="wb-dashboard-main">
       <div class="wb-page-header">
         <div class="wb-page-header-main">
-          <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
-            <ol class="wb-breadcrumb wb-breadcrumb-minimal">
-              <li class="wb-breadcrumb-item"><a href="#">Workspace</a></li>
-              <li class="wb-breadcrumb-item is-active"><span aria-current="page">Overview</span></li>
+          <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb">
+            <ol class="wb-breadcrumb-list">
+              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Workspace</a></li>
+              <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Overview</span></li>
             </ol>
           </nav>
           <div>
@@ -1526,10 +1513,10 @@ These are canonical starting structures. Extend them with shipped primitives and
 
   <div class="wb-settings-body">
     <div class="wb-settings-header">
-      <nav class="wb-page-breadcrumb" aria-label="Breadcrumb">
-        <ol class="wb-breadcrumb wb-breadcrumb-surface">
-          <li class="wb-breadcrumb-item"><a href="#">Account</a></li>
-          <li class="wb-breadcrumb-item is-active"><span aria-current="page">Profile</span></li>
+      <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb">
+        <ol class="wb-breadcrumb-list">
+          <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Account</a></li>
+          <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Profile</span></li>
         </ol>
       </nav>
       <h1 class="wb-settings-title">Profile</h1>

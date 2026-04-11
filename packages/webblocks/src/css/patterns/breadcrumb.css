@@ -1,0 +1,91 @@
+/* ============================================================
+   WebBlocks UI — Breadcrumb Pattern
+   Semantic hierarchy navigation for admin and public pages.
+   ============================================================ */
+
+.wb-breadcrumb {
+  --wb-breadcrumb-gap-y: var(--wb-s1);
+  --wb-breadcrumb-separator-gap: var(--wb-s2);
+  --wb-breadcrumb-separator: "/";
+  --wb-breadcrumb-separator-color: color-mix(in srgb, var(--wb-muted) 70%, transparent);
+  --wb-breadcrumb-link-color: color-mix(in srgb, var(--wb-muted) 92%, var(--wb-text) 8%);
+  --wb-breadcrumb-link-hover: var(--wb-text);
+  --wb-breadcrumb-current-color: var(--wb-text);
+  --wb-breadcrumb-font-size: 0.875rem;
+  --wb-breadcrumb-line-height: 1.45;
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  font-size: var(--wb-breadcrumb-font-size);
+  line-height: var(--wb-breadcrumb-line-height);
+}
+
+.wb-breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wb-breadcrumb-gap-y) 0;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wb-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.wb-breadcrumb-item + .wb-breadcrumb-item::before {
+  content: var(--wb-breadcrumb-separator);
+  margin-inline: var(--wb-breadcrumb-separator-gap);
+  color: var(--wb-breadcrumb-separator-color);
+  flex-shrink: 0;
+}
+
+.wb-breadcrumb-link,
+.wb-breadcrumb-current {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: inherit;
+}
+
+.wb-breadcrumb-link {
+  color: var(--wb-breadcrumb-link-color);
+  text-decoration: none;
+  transition: color var(--wb-t), text-decoration-color var(--wb-t), box-shadow var(--wb-t);
+}
+
+.wb-breadcrumb-link:hover {
+  color: var(--wb-breadcrumb-link-hover);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.16em;
+}
+
+.wb-breadcrumb-link:focus-visible {
+  outline: none;
+  color: var(--wb-breadcrumb-link-hover);
+  border-radius: var(--wb-r-sm);
+  box-shadow:
+    0 0 0 2px var(--wb-surface),
+    0 0 0 4px rgb(var(--wb-accent-ring-rgb) / 0.34);
+}
+
+.wb-breadcrumb-current,
+.wb-breadcrumb-current[aria-current="page"] {
+  color: var(--wb-breadcrumb-current-color);
+  font-weight: 600;
+}
+
+.wb-breadcrumb-compact {
+  --wb-breadcrumb-gap-y: 0;
+  --wb-breadcrumb-separator-gap: var(--wb-s1);
+  --wb-breadcrumb-font-size: var(--wb-font-size-xs);
+  --wb-breadcrumb-line-height: 1.35;
+}
