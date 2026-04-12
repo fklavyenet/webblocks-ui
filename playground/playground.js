@@ -213,6 +213,34 @@
       ].join('\n')
     },
     {
+      id: 'utility-alignment',
+      label: 'Utility alignment',
+      description: 'Logical text-alignment utilities and a table action cell aligned directly on the td without extra wrappers.',
+      hint: 'Check that wb-text-start, wb-text-center, and wb-text-end override the default alignment, including inside table cells.',
+      docs: [
+        { href: '../docs/utilities.html', label: 'Utilities', meta: 'Logical alignment and override-first utility helpers' },
+        { href: '../docs/primitives.html', label: 'Primitives', meta: 'Table surface example with td.wb-text-end' }
+      ],
+      html: [
+        '<div class="wb-stack-5">',
+        '  <div class="wb-grid-3">',
+        '    <div class="wb-card"><div class="wb-card-body wb-text-start">wb-text-start</div></div>',
+        '    <div class="wb-card"><div class="wb-card-body wb-text-center">wb-text-center</div></div>',
+        '    <div class="wb-card"><div class="wb-card-body wb-text-end">wb-text-end</div></div>',
+        '  </div>',
+        '  <div class="wb-table-wrap">',
+        '    <table class="wb-table wb-table-sm">',
+        '      <thead><tr><th>Page</th><th>Status</th><th class="wb-text-end">Actions</th></tr></thead>',
+        '      <tbody>',
+        '        <tr><td>About</td><td><span class="wb-status-pill wb-status-active">Live</span></td><td class="wb-text-end"><a href="#" class="wb-action-link">Edit</a></td></tr>',
+        '        <tr><td>Pricing</td><td><span class="wb-status-pill wb-status-pending">Draft</span></td><td class="wb-text-end"><a href="#" class="wb-action-link">Review</a></td></tr>',
+        '      </tbody>',
+        '    </table>',
+        '  </div>',
+        '</div>'
+      ].join('\n')
+    },
+    {
       id: 'toolbar-header',
       label: 'Page header + toolbar',
       description: 'A pattern-oriented page header with breadcrumb, title, actions, and a toolbar row for secondary controls.',

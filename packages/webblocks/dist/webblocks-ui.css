@@ -1222,19 +1222,19 @@ html[data-mode="dark"] .wb-game-ui {
 
 /* ── Flex helpers ─────────────────────────────────────────── */
 
-.wb-flex-col      { flex-direction: column; }
-.wb-flex-row      { flex-direction: row; }
-.wb-flex-wrap     { flex-wrap: wrap; }
-.wb-flex-nowrap   { flex-wrap: nowrap; }
-.wb-flex-1        { flex: 1; }
-.wb-flex-shrink-0 { flex-shrink: 0; }
-.wb-items-start   { align-items: flex-start; }
-.wb-items-center  { align-items: center; }
-.wb-items-end     { align-items: flex-end; }
-.wb-justify-start   { justify-content: flex-start; }
-.wb-justify-center  { justify-content: center; }
-.wb-justify-end     { justify-content: flex-end; }
-.wb-justify-between { justify-content: space-between; }
+.wb-flex-col      { flex-direction: column !important; }
+.wb-flex-row      { flex-direction: row !important; }
+.wb-flex-wrap     { flex-wrap: wrap !important; }
+.wb-flex-nowrap   { flex-wrap: nowrap !important; }
+.wb-flex-1        { flex: 1 !important; }
+.wb-flex-shrink-0 { flex-shrink: 0 !important; }
+.wb-items-start   { align-items: flex-start !important; }
+.wb-items-center  { align-items: center !important; }
+.wb-items-end     { align-items: flex-end !important; }
+.wb-justify-start   { justify-content: flex-start !important; }
+.wb-justify-center  { justify-content: center !important; }
+.wb-justify-end     { justify-content: flex-end !important; }
+.wb-justify-between { justify-content: space-between !important; }
 .wb-gap-1  { gap: var(--wb-s1); }
 .wb-gap-2  { gap: var(--wb-s2); }
 .wb-gap-3  { gap: var(--wb-s3); }
@@ -1244,22 +1244,22 @@ html[data-mode="dark"] .wb-game-ui {
 
 /* ── Width / height ───────────────────────────────────────── */
 
-.wb-w-full  { width: 100%; }
-.wb-w-auto  { width: auto; }
-.wb-h-full  { height: 100%; }
-.wb-min-w-0 { min-width: 0; }
+.wb-w-full  { width: 100% !important; }
+.wb-w-auto  { width: auto !important; }
+.wb-h-full  { height: 100% !important; }
+.wb-min-w-0 { min-width: 0 !important; }
 
 /* ── Overflow ─────────────────────────────────────────────── */
 
-.wb-overflow-hidden  { overflow: hidden; }
-.wb-overflow-auto    { overflow: auto; }
-.wb-overflow-scroll  { overflow: scroll; }
-.wb-overflow-x-auto  { overflow-x: auto; }
-.wb-overflow-y-auto  { overflow-y: auto; }
+.wb-overflow-hidden  { overflow: hidden !important; }
+.wb-overflow-auto    { overflow: auto !important; }
+.wb-overflow-scroll  { overflow: scroll !important; }
+.wb-overflow-x-auto  { overflow-x: auto !important; }
+.wb-overflow-y-auto  { overflow-y: auto !important; }
 .wb-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
 }
 
 /* ── Spacing (margin) ─────────────────────────────────────── */
@@ -1300,32 +1300,36 @@ html[data-mode="dark"] .wb-game-ui {
 
 /* ── Typography ───────────────────────────────────────────── */
 
-.wb-text-xs   { font-size: 0.75rem; }
-.wb-text-sm   { font-size: 0.85rem; }
-.wb-text-base { font-size: 1rem; }
-.wb-text-lg   { font-size: 1.125rem; }
-.wb-text-xl   { font-size: 1.25rem; }
-.wb-text-2xl  { font-size: 1.5rem; }
-.wb-text-3xl  { font-size: 1.875rem; }
-.wb-text-4xl  { font-size: 2.25rem; }
+.wb-text-xs   { font-size: 0.75rem !important; }
+.wb-text-sm   { font-size: 0.85rem !important; }
+.wb-text-base { font-size: 1rem !important; }
+.wb-text-lg   { font-size: 1.125rem !important; }
+.wb-text-xl   { font-size: 1.25rem !important; }
+.wb-text-2xl  { font-size: 1.5rem !important; }
+.wb-text-3xl  { font-size: 1.875rem !important; }
+.wb-text-4xl  { font-size: 2.25rem !important; }
 
-.wb-font-normal  { font-weight: 400; }
-.wb-font-medium  { font-weight: 500; }
-.wb-font-semibold { font-weight: 600; }
-.wb-font-bold    { font-weight: 700; }
+.wb-font-normal  { font-weight: 400 !important; }
+.wb-font-medium  { font-weight: 500 !important; }
+.wb-font-semibold { font-weight: 600 !important; }
+.wb-font-bold    { font-weight: 700 !important; }
 .wb-mono         { font-family: var(--wb-font-mono) !important; }
 
-.wb-text-left    { text-align: left; }
-.wb-text-center  { text-align: center; }
-.wb-text-right   { text-align: right; }
+/* Preferred logical text alignment utilities use start/end.
+   left/right remain as legacy physical aliases for compatibility. */
+.wb-text-start   { text-align: start !important; }
+.wb-text-center  { text-align: center !important; }
+.wb-text-end     { text-align: end !important; }
+.wb-text-left    { text-align: left !important; }
+.wb-text-right   { text-align: right !important; }
 
-.wb-leading-tight  { line-height: 1.25; }
-.wb-leading-normal { line-height: 1.5; }
-.wb-leading-loose  { line-height: 2; }
+.wb-leading-tight  { line-height: 1.25 !important; }
+.wb-leading-normal { line-height: 1.5 !important; }
+.wb-leading-loose  { line-height: 2 !important; }
 
 .wb-no-decoration  { text-decoration: none !important; }
-.wb-lowercase      { text-transform: lowercase; }
-.wb-nowrap         { white-space: nowrap; }
+.wb-lowercase      { text-transform: lowercase !important; }
+.wb-nowrap         { white-space: nowrap !important; }
 
 .wb-tracking-tight  { letter-spacing: -0.025em; }
 .wb-tracking-normal { letter-spacing: 0; }
@@ -1370,23 +1374,23 @@ html[data-mode="dark"] .wb-game-ui {
 
 /* ── Position ─────────────────────────────────────────────── */
 
-.wb-relative  { position: relative; }
-.wb-absolute  { position: absolute; }
-.wb-fixed     { position: fixed; }
-.wb-sticky    { position: sticky; }
-.wb-inset-0   { inset: 0; }
+.wb-relative  { position: relative !important; }
+.wb-absolute  { position: absolute !important; }
+.wb-fixed     { position: fixed !important; }
+.wb-sticky    { position: sticky !important; }
+.wb-inset-0   { inset: 0 !important; }
 
 /* ── Cursor ───────────────────────────────────────────────── */
 
-.wb-cursor-pointer  { cursor: pointer; }
-.wb-cursor-default  { cursor: default; }
-.wb-cursor-not-allowed { cursor: not-allowed; }
+.wb-cursor-pointer  { cursor: pointer !important; }
+.wb-cursor-default  { cursor: default !important; }
+.wb-cursor-not-allowed { cursor: not-allowed !important; }
 
 /* ── Opacity ──────────────────────────────────────────────── */
 
-.wb-opacity-50  { opacity: 0.5; }
-.wb-opacity-75  { opacity: 0.75; }
-.wb-opacity-100 { opacity: 1; }
+.wb-opacity-50  { opacity: 0.5 !important; }
+.wb-opacity-75  { opacity: 0.75 !important; }
+.wb-opacity-100 { opacity: 1 !important; }
 
 /* ── SR only (accessible hidden) ─────────────────────────── */
 

@@ -1577,7 +1577,7 @@ Typography:
 
 - sizes: `wb-text-xs`, `wb-text-sm`, `wb-text-base`, `wb-text-lg`, `wb-text-xl`, `wb-text-2xl`, `wb-text-3xl`, `wb-text-4xl`
 - weight: `wb-font-normal`, `wb-font-medium`, `wb-font-semibold`, `wb-font-bold`, `wb-mono`
-- align: `wb-text-left`, `wb-text-center`, `wb-text-right`
+- align: `wb-text-start`, `wb-text-center`, `wb-text-end` (`wb-text-left` and `wb-text-right` remain compatibility aliases)
 - line-height: `wb-leading-tight`, `wb-leading-normal`, `wb-leading-loose`
 - case-safe emphasis and spacing: `wb-lowercase`, `wb-tracking-tight`, `wb-tracking-normal`, `wb-tracking-wide`, `wb-tracking-wider`, `wb-tracking-widest`
 - text flow: `wb-nowrap`, `wb-truncate`, `wb-no-decoration`
@@ -1973,3 +1973,5 @@ Implementation source of truth:
 - build manifest/order: `packages/webblocks/build.sh`
 
 If this guide conflicts with the source files, trust the source files and update this guide.
+- utility helpers are override-first; in normal usage they should win over component or base defaults
+- prefer logical alignment utilities (`wb-text-start`, `wb-text-end`) in new markup

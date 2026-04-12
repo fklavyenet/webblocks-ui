@@ -99,7 +99,7 @@
                     <thead><tr><th>Family</th><th>Examples</th><th>Use them for</th></tr></thead>
                     <tbody>
                       <tr><td>Spacing</td><td><code>wb-mt-4</code>, <code>wb-mb-2</code>, <code>wb-p-4</code>, <code>wb-px-6</code>, <code>wb-py-4</code></td><td>Small local spacing corrections.</td></tr>
-                      <tr><td>Typography</td><td><code>wb-text-sm</code>, <code>wb-text-xl</code>, <code>wb-font-semibold</code>, <code>wb-mono</code></td><td>Text size and weight adjustments.</td></tr>
+                      <tr><td>Typography</td><td><code>wb-text-sm</code>, <code>wb-text-xl</code>, <code>wb-text-end</code>, <code>wb-font-semibold</code>, <code>wb-mono</code></td><td>Text size, alignment, and weight adjustments that should win over component defaults.</td></tr>
                       <tr><td>Flex and gap</td><td><code>wb-flex</code>, <code>wb-items-center</code>, <code>wb-justify-between</code>, <code>wb-gap-3</code></td><td>Refine alignment inside an existing primitive.</td></tr>
                       <tr><td>Color</td><td><code>wb-text-muted</code>, <code>wb-text-danger</code>, <code>wb-bg-surface-2</code></td><td>Small visual emphasis changes without custom CSS.</td></tr>
                       <tr><td>Visibility</td><td><code>wb-hidden</code>, <code>wb-visible-mobile</code>, <code>wb-visible-desktop</code>, <code>wb-sr-only</code></td><td>Hide, reveal, or improve accessibility.</td></tr>
@@ -110,6 +110,7 @@
 
               <section class="wb-docs-section wb-docs-wide" id="healthy-utility-usage">
                 <h2>Healthy utility usage</h2>
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Logical alignment is preferred</strong> Use <code>wb-text-start</code> and <code>wb-text-end</code> for new work. <code>wb-text-left</code> and <code>wb-text-right</code> remain as compatibility aliases. Utility classes are expected to override component defaults in normal usage.</div>
                 <pre><code>&lt;div class="wb-card wb-mt-4"&gt;
   &lt;div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3"&gt;
     &lt;strong class="wb-text-lg"&gt;Activity&lt;/strong&gt;
@@ -130,7 +131,11 @@
                 <h2>Typography and spacing helpers</h2>
                 <div class="wb-grid-2">
                   <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Text scale</h3></div><div class="wb-card-body wb-stack-2"><div class="wb-text-xs">wb-text-xs</div><div class="wb-text-sm">wb-text-sm</div><div class="wb-text-base">wb-text-base</div><div class="wb-text-lg">wb-text-lg</div><div class="wb-text-xl">wb-text-xl</div><div class="wb-text-2xl">wb-text-2xl</div></div></div>
-                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Weight, color, and truncation</h3></div><div class="wb-card-body wb-stack-3"><div class="wb-font-semibold">wb-font-semibold</div><div class="wb-font-bold wb-text-danger">wb-font-bold + wb-text-danger</div><div class="wb-mono">wb-mono</div><div class="wb-truncate" style="max-width: 220px;">wb-truncate keeps a long line from breaking a compact layout surface.</div></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Weight, color, and truncation</h3></div><div class="wb-card-body wb-stack-3"><div class="wb-font-semibold">wb-font-semibold</div><div class="wb-font-bold wb-text-danger">wb-font-bold + wb-text-danger</div><div class="wb-mono">wb-mono</div><div class="wb-truncate wb-w-full">wb-truncate keeps a long line from breaking a compact layout surface.</div></div></div>
+                </div>
+                <div class="wb-grid-2 wb-mt-4">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Logical text alignment</h3></div><div class="wb-card-body wb-stack-3"><div class="wb-text-start wb-border wb-rounded wb-p-3">wb-text-start</div><div class="wb-text-center wb-border wb-rounded wb-p-3">wb-text-center</div><div class="wb-text-end wb-border wb-rounded wb-p-3">wb-text-end</div></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Table action alignment</h3></div><div class="wb-card-body wb-p-0"><div class="wb-table-wrap wb-border-0 wb-rounded-0"><table class="wb-table wb-table-sm"><thead><tr><th>Page</th><th>Status</th><th class="wb-text-end">Actions</th></tr></thead><tbody><tr><td>About</td><td><span class="wb-status-pill wb-status-active">Live</span></td><td class="wb-text-end"><a href="#" class="wb-action-link">Edit</a></td></tr><tr><td>Pricing</td><td><span class="wb-status-pill wb-status-pending">Draft</span></td><td class="wb-text-end"><a href="#" class="wb-action-link">Review</a></td></tr></tbody></table></div></div></div>
                 </div>
               </section>
 
