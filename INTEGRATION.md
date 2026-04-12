@@ -1,20 +1,29 @@
-# WebBlocks UI — Canonical Integration Rules
+# WebBlocks UI — Integration & Layout Rules (Canonical)
 
 ## Purpose
 
-This file defines the top-level integration rules for WebBlocks UI.
+This document is the **single source of truth** for:
 
-Source of truth:
-
-- shipped CSS: `packages/webblocks/src/css/`
-- shipped JS: `packages/webblocks/src/js/`
-- build manifest: `packages/webblocks/build.sh`
+* integration rules
+* layout system
+* decision tree
+* AI enforcement behavior
 
 If this file conflicts with shipped source, shipped source wins.
 
-## Core Model
+---
 
-WebBlocks is a controlled HTML/CSS/JS language with these layers:
+# 1. Core Principle
+
+**Do not reach for custom CSS first.**
+
+All layout must be expressed using WebBlocks primitives.
+
+---
+
+# 2. Core Model
+
+WebBlocks is a controlled system:
 
 1. Foundation
 2. Layout helpers
@@ -23,264 +32,255 @@ WebBlocks is a controlled HTML/CSS/JS language with these layers:
 5. Patterns
 6. Interactive hooks
 
-WebBlocks is not:
+---
 
-- a framework
-- a custom element system
-- a utility-first architecture
-- a generated markup system
-- a config-driven renderer
+# 3. Start From Patterns
 
-## Start Here
+Always start from:
 
-Start from a pattern when the page has a page-level job.
+* `wb-dashboard-shell`
+* `wb-content-shell`
+* `wb-auth-shell`
+* `wb-settings-shell`
 
-Canonical shells:
+---
 
-- `wb-auth-shell`
-- `wb-dashboard-shell`
-- `wb-settings-shell`
-- `wb-content-shell`
+# 4. Layout Decision Tree (MANDATORY)
 
-Then compose inside those shells using shipped layout helpers and primitives.
+## 4.1 Horizontal
 
-## Canonical Vocabulary
+→ `wb-cluster`
 
-Use these names as the default public language:
+## 4.2 Vertical
 
-- layout: `wb-container`, `wb-section`, `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, `wb-row`, `wb-col-*`
-- surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-list`, `wb-callout`, `wb-empty`
-- screen-local surfaces: `wb-page-header`, `wb-settings-section`
-- controls: `wb-btn`, `wb-badge`, `wb-input`, `wb-select`, `wb-textarea`, `wb-check`, `wb-radio`, `wb-switch`, `wb-table`, `wb-dropdown`, `wb-tabs`, `wb-accordion`, `wb-collapse`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-spinner`, `wb-progress-bar`
-- navigation: `wb-navbar`, `wb-sidebar`, `wb-section-nav`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
-- icons: `wb-icon`, `wb-icon-*`, `wb-icon-wrap*`
+→ `wb-stack`
 
-## Forbidden Vocabulary
+## 4.3 Left / Right
 
-Do not present these as canonical:
+→ `wb-cluster wb-cluster-between`
 
-- `wb-page`
-- `wb-page-center`
-- `wb-btn-block`
-- `wb-stack-sm`
-- `wb-stack-md`
-- `wb-align-center`
-- `wb-checkbox`
-- a second framed-surface noun beside `wb-card`
-- a generic page-title class shared across page-header and page-intro contexts
-- `data-theme`
-- `.is-current` for breadcrumbs
-- `data-wb-toggle="collapse"`
+⚠️ Container MUST be full-width
 
-## Boundary Rules
+---
 
-### Foundation
+## 4.4 Centering
 
-Foundation owns tokens, theme axes, resets, and global element styling.
+* Layout → primitives
+* Text → `text-align` ONLY for typography
 
-It also owns the locale-safe default casing rule: content casing is not rewritten by UI styling.
+---
 
-It does not define page architecture.
+## 4.5 Multi-column
 
-### Layout Helpers
+→ `wb-grid`, `wb-grid-auto`, `wb-split`
 
-Layout helpers solve structure and flow only.
+---
 
-Use:
+## 4.6 Spacing
 
-- `wb-container*`
-- `wb-section*`
-- `wb-stack*`
-- `wb-cluster*`
-- `wb-split`
-- `wb-grid*`
-- `wb-row` and `wb-col-*`
+→ `wb-stack-*`, `wb-cluster-*`
 
-Do not invent new layout wrappers before trying these.
+---
 
-### UI Primitives
+## 4.7 🚨 Red Flag
 
-Primitives are reusable controls or local UI building blocks.
+If using:
 
-Examples:
+* `text-align`
+* `margin-left: auto`
+* inline styles
+* spacer div
+* custom flex
 
-- `wb-btn`
-- `wb-input`
-- `wb-card`
-- `wb-table`
-- `wb-dropdown`
-- `wb-tabs`
-- `wb-modal`
+→ STOP → return to primitives
 
-### Surfaces
+---
 
-Surfaces are larger framed regions that still are not full page patterns.
-
-Examples:
-
-- `wb-card`
-- `wb-stat`
-- `wb-toolbar`
-- `wb-filter-bar`
-- `wb-callout`
-- `wb-empty`
-- `wb-page-header`
-- `wb-settings-section`
-
-Boundary rule:
-
-- `wb-card` is the canonical global container surface and the only generic framed surface noun
-- dashboard work areas still use `wb-card`
-- `wb-page-header` is a dashboard/header surface, not a generic page wrapper primitive
-- `wb-table-wrap` is the single table surface; inner toolbars stay control rows and `thead` stays a header band
-
-### Framed Surface Naming Rule
-
-- `wb-card` is the ONLY generic framed surface.
-- `wb-panel` is forbidden as a generic class.
-- `wb-box` is forbidden as a generic class.
-- `*-panel` naming is allowed ONLY for component-internal parts such as `wb-popover-panel`, `wb-collapse-panel`, `wb-auth-panel`, or other scoped pattern/component structures.
-
-DO:
+# 5. Canonical Header Pattern
 
 ```html
-<div class="wb-card">...</div>
+<div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2">
+  <strong>Title</strong>
+  <a href="#" class="wb-btn wb-btn-primary">Action</a>
+</div>
 ```
 
-DO NOT:
+Rules:
+
+* no inner wrapper
+* must be full width
+* layout on same element
+
+---
+
+# 6. Layout Helpers
+
+Allowed:
+
+* `wb-container`
+* `wb-section`
+* `wb-stack`
+* `wb-cluster`
+* `wb-split`
+* `wb-grid`
+
+❌ Do NOT invent wrappers
+
+---
+
+# 7. Surfaces
+
+Only generic surface:
 
 ```html
-<div class="wb-panel">...</div>
-<div class="wb-box">...</div>
+wb-card
 ```
 
-### Patterns
+❌ Forbidden:
 
-Patterns define real page jobs and expected regions.
+* `wb-panel`
+* `wb-box`
 
-Examples:
+---
 
-- auth shell
-- dashboard shell
-- settings shell
-- content shell
-- marketing/page-intro structures
+# 8. Sidebar Anatomy
 
-Patterns are the primary integration surface for real screens.
+```
+wb-sidebar
+  ├── wb-sidebar-brand
+  ├── wb-sidebar-nav
+  └── wb-sidebar-footer
+```
 
-## HTML / CSS / JS Separation
+---
 
-- HTML owns document structure and semantics
-- CSS owns presentation and visible states
-- JS owns interaction, visibility toggles, focus handling, keyboard control, and async behavior
+# 9. Dashboard Shell Rules
 
-Example:
+Required structure:
 
-- `wb-section-nav` is a class-driven navigation pattern
-- `WBSectionNav` is the shipped runtime that applies honest current-state to in-page anchor menus during hash navigation and reading scroll
+* `wb-dashboard-shell`
+* `wb-sidebar`
+* `wb-dashboard-body`
+* `wb-navbar`
+* `wb-dashboard-main`
 
-Content rule:
+❌ No custom shell CSS
 
-- text casing is content-defined, not UI-forced
-- use typography for emphasis instead of automatic uppercase or capitalize transforms
+---
 
-Use HTML structure instead of a new class when the problem is only hierarchy, reading order, grouping, or heading semantics.
+# 10. Responsibilities
 
-Use JS instead of CSS-only tricks when the problem is:
+* HTML → structure
+* CSS → visuals
+* JS → behavior
 
-- open / close behavior
-- focus trap
-- keyboard navigation
-- Escape handling
-- outside click dismissal
-- async state changes
+---
 
-## Aliases And Compatibility
+# 11. New Class Rule
 
-Some compatibility names still ship.
+Add ONLY if:
 
-Do not prefer them in primary examples.
+1. primitives fail
+2. reusable
+3. clear role
+4. not duplicate
+5. correct layer
 
-Examples:
+---
 
-- prefer `wb-dashboard-shell` over `wb-shell`
-- prefer `wb-sidebar-brand` over `wb-sidebar-header`
-- prefer `wb-dropdown-end` over `wb-dropdown-menu-end`
-- prefer modern tabs names over legacy tab aliases
+# 12. Violations
 
-## Theme Rules
+❌ inline styles
+❌ layout via text-align
+❌ margin hacks
+❌ spacer divs
+❌ custom wrappers
 
-Theme state lives on `<html>`.
+---
 
-Use:
+# 13. Final Checklist
 
-- `data-mode`
-- `data-accent`
-- `data-preset`
-- `data-radius`
-- `data-density`
-- `data-shadow`
-- `data-font`
-- `data-border`
+* Is this layout or styling?
+* Is there a primitive?
+* Am I breaking shell?
 
-Do not use `data-theme`.
+---
 
-## Breadcrumb And Header Rules
+# 14. 🔒 AI ENFORCEMENT PROMPT (CRITICAL)
 
-Canonical page-header stack:
+Use this prompt in ALL AI integrations:
 
-- breadcrumb optional
-- `wb-page-header-title` required
-- subtitle optional
-- actions optional
+---
 
-`wb-page-intro` uses its own display-heading contract:
+## SYSTEM PROMPT
 
-- `wb-page-intro-title`
-- `wb-page-eyebrow`
-- `wb-page-lead`
+You are working inside WebBlocks UI.
 
-Do not collapse those two title families into a single generic title class.
+STRICT RULES:
 
-Keep breadcrumb secondary to the page title.
+1. NEVER use custom CSS for layout unless explicitly approved
+2. ALWAYS solve layout using:
 
-Topbar hierarchy rule:
+   * wb-stack
+   * wb-cluster
+   * wb-grid
+   * wb-split
+3. NEVER use:
 
-- product first
-- context second
+   * inline styles
+   * text-align for layout
+   * margin hacks
+   * spacer divs
+4. ALWAYS apply layout classes to the correct container:
 
-## New Class Threshold
+   * not inner wrappers
+   * must respect full-width requirement
+5. FOLLOW the Layout Decision Tree EXACTLY
+6. If unsure:
 
-Only add a new class if all are true:
+   * DO NOT invent solution
+   * fallback to primitives
+7. If primitives cannot solve it:
 
-1. shipped composition cannot solve the problem cleanly
-2. the need repeats across more than one screen or component
-3. the new class has one clear contract
-4. it does not duplicate an existing noun or alias
-5. its job belongs clearly to one layer
+   * explain WHY before proposing custom CSS
 
-Bad reasons:
+---
 
-- one-off spacing
-- naming a region that HTML already describes
-- slight visual variation on an existing primitive
-- avoiding semantic HTML
+## OUTPUT RULES
 
-## Review Checklist
+* produce clean WebBlocks UI markup only
+* no extra wrappers
+* no custom classes unless necessary
+* no inline styles
 
-1. Does the example use shipped classes only?
-2. Is the vocabulary canonical instead of legacy?
-3. Is the page starting from the correct shell?
-4. Are layout helpers solving layout before utilities do?
-5. Are forms using the canonical field system?
-6. Are breadcrumb and page-header/page-intro title families kept separate?
-7. Is product identity stronger than context in the topbar?
-8. Are JS hooks source-accurate?
-9. Does the example avoid non-shipped classes?
-10. If a new class is proposed, did composition fail first?
+---
 
-## Related Docs
+## FAILURE CONDITIONS (MUST AVOID)
 
-- `PRIMITIVES.md` explains the current classification model
-- `PATTERNS.md` explains the current pattern and shell model
-- `packages/webblocks/INTEGRATION.md` is the detailed package implementation reference
+* adding `<div style="...">`
+* using `text-align: right` for layout
+* wrapping layout inside inner div
+* ignoring `wb-cluster-between` full-width rule
+
+---
+
+## SUCCESS CRITERIA
+
+* layout expressed purely with primitives
+* matches WebBlocks vocabulary
+* no hacks
+* no overrides
+
+---
+
+# 15. Key Insight
+
+WebBlocks is:
+
+✔ composition system
+❌ utility system
+❌ CSS playground
+
+---
+
+# END
