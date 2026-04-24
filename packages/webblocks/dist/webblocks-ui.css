@@ -8092,6 +8092,17 @@ button.wb-game-card {
   margin-left: auto;
 }
 
+.wb-cookie-consent-banner .wb-card-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'header actions'
+    'copy actions';
+  align-items: start;
+  column-gap: var(--wb-s4);
+  row-gap: var(--wb-s3);
+}
+
 [data-wb-cookie-consent-preview].wb-cookie-consent-banner,
 [data-wb-cookie-consent-preview].wb-cookie-consent-card {
   position: static;
@@ -8123,6 +8134,14 @@ button.wb-game-card {
   gap: var(--wb-s3);
 }
 
+.wb-cookie-consent-banner .wb-cookie-consent-header {
+  grid-area: header;
+}
+
+.wb-cookie-consent-banner .wb-cookie-consent-copy {
+  grid-area: copy;
+}
+
 .wb-cookie-consent-header .wb-cookie-consent-copy {
   flex: 1 1 auto;
 }
@@ -8149,6 +8168,11 @@ button.wb-game-card {
   align-items: center;
   justify-content: flex-end;
   gap: var(--wb-s2);
+}
+
+.wb-cookie-consent-banner .wb-cookie-consent-actions {
+  grid-area: actions;
+  align-self: end;
 }
 
 .wb-cookie-consent-modal .wb-modal-body {
@@ -8203,6 +8227,14 @@ button.wb-game-card {
   .wb-cookie-consent-card {
     inset-inline: var(--wb-s3);
     bottom: var(--wb-s3);
+  }
+
+  .wb-cookie-consent-banner .wb-card-body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'copy'
+      'actions';
   }
 
   .wb-cookie-consent-category {
