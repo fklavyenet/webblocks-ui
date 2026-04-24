@@ -119,24 +119,24 @@
                         <div class="wb-card-header"><h3 class="wb-card-title">Bottom banner preview</h3></div>
                         <div class="wb-card-body wb-stack-4">
                           <div class="wb-cookie-consent wb-cookie-consent-banner" data-wb-cookie-consent-preview>
-                            <div class="wb-cookie-consent-body wb-card">
-                              <div class="wb-card-body wb-stack-3">
-                                <div class="wb-cookie-consent-header">
-                                  <div class="wb-cookie-consent-copy">
-                                    <strong>We use cookies</strong>
+                            <section class="wb-card wb-cookie-consent-card" aria-label="Cookie consent preview">
+                              <div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start">
+                                <div class="wb-stack-1">
+                                  <strong>We use cookies</strong>
+                                </div>
+                                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" aria-label="Close cookie settings" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+                              </div>
+                              <div class="wb-card-body">
+                                <div class="wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
+                                  <p class="wb-text-sm wb-text-muted wb-m-0">Necessary cookies keep the site running. Optional cookies help us remember preferences and understand usage.</p>
+                                  <div class="wb-cluster wb-cluster-2">
+                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Reject</button>
+                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Customize</button>
+                                    <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Accept all</button>
                                   </div>
-                                  <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" aria-label="Close cookie settings" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
-                                </div>
-                                <div class="wb-cookie-consent-copy">
-                                  <p class="wb-text-sm wb-text-muted">Necessary cookies keep the site running. Optional cookies help us remember preferences and understand usage.</p>
-                                </div>
-                                <div class="wb-cookie-consent-actions">
-                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Reject</button>
-                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Customize</button>
-                                  <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Accept all</button>
                                 </div>
                               </div>
-                            </div>
+                            </section>
                           </div>
                           <p class="wb-text-sm wb-text-muted wb-m-0">Recommended default for most public pages.</p>
                         </div>
@@ -144,23 +144,23 @@
                       <div class="wb-card">
                         <div class="wb-card-header"><h3 class="wb-card-title">Floating card preview</h3></div>
                         <div class="wb-card-body wb-stack-4">
-                          <div class="wb-cookie-consent wb-cookie-consent-card" data-wb-cookie-consent-preview>
-                            <div class="wb-cookie-consent-body wb-card">
-                              <div class="wb-card-body wb-stack-3">
-                                <div class="wb-cookie-consent-header">
-                                  <div class="wb-cookie-consent-copy">
-                                    <strong>Cookie settings</strong>
-                                    <p class="wb-text-sm wb-text-muted">Use the compact card when the page wants a lighter public-site footprint.</p>
-                                  </div>
-                                  <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" aria-label="Close cookie settings" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+                          <div class="wb-cookie-consent wb-cookie-consent-floating" data-wb-cookie-consent-preview>
+                            <section class="wb-card wb-cookie-consent-card" aria-label="Cookie settings preview">
+                              <div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start">
+                                <div class="wb-stack-1">
+                                  <strong>Cookie settings</strong>
+                                  <p class="wb-text-sm wb-text-muted wb-m-0">Use the compact card when the page wants a lighter public-site footprint.</p>
                                 </div>
-                                <div class="wb-cookie-consent-actions">
+                                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" aria-label="Close cookie settings" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+                              </div>
+                              <div class="wb-card-body wb-stack-3">
+                                <div class="wb-cluster wb-cluster-2">
                                   <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Reject</button>
                                   <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Customize</button>
                                   <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Accept all</button>
                                 </div>
                               </div>
-                            </div>
+                            </section>
                           </div>
                           <p class="wb-text-sm wb-text-muted wb-m-0">Compact alternative for calmer marketing pages.</p>
                         </div>
@@ -176,26 +176,26 @@
 <pre><code class="language-html">&lt;div class="wb-cookie-consent wb-cookie-consent-banner"
      data-wb-cookie-consent
      hidden&gt;
-  &lt;div class="wb-cookie-consent-body wb-card"&gt;
-    &lt;div class="wb-card-body wb-stack-3"&gt;
-      &lt;div class="wb-cluster wb-cluster-between wb-cluster-3"&gt;
-        &lt;div class="wb-cookie-consent-header"&gt;
-          &lt;div class="wb-cookie-consent-copy"&gt;
-            &lt;strong&gt;We use cookies&lt;/strong&gt;
-            &lt;p class="wb-text-sm wb-text-muted"&gt;
-              We use necessary cookies to make this site work and optional cookies to improve your experience.
-            &lt;/p&gt;
-          &lt;/div&gt;
-          &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" data-wb-cookie-consent-close aria-label="Close cookie settings"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
-        &lt;/div&gt;
-        &lt;div class="wb-cookie-consent-actions"&gt;
+  &lt;section class="wb-card wb-cookie-consent-card" aria-label="Cookie consent"&gt;
+    &lt;div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start"&gt;
+      &lt;div class="wb-stack-1"&gt;
+        &lt;strong&gt;We use cookies&lt;/strong&gt;
+      &lt;/div&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Close cookie settings"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-card-body"&gt;
+      &lt;div class="wb-cluster wb-cluster-between wb-cluster-3 wb-items-center"&gt;
+        &lt;p class="wb-text-sm wb-text-muted wb-m-0"&gt;
+          Necessary cookies keep the site running. Optional cookies help us remember preferences and understand usage.
+        &lt;/p&gt;
+        &lt;div class="wb-cluster wb-cluster-2"&gt;
           &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject&gt;Reject&lt;/button&gt;
           &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#siteCookiePreferences"&gt;Customize&lt;/button&gt;
           &lt;button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept&gt;Accept all&lt;/button&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
+  &lt;/section&gt;
 &lt;/div&gt;
 
 &lt;div class="wb-modal wb-cookie-consent-modal" id="siteCookiePreferences" data-wb-cookie-consent role="dialog" aria-modal="true" aria-labelledby="siteCookiePreferencesTitle"&gt;
@@ -205,61 +205,69 @@
       &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Close cookie settings"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class="wb-modal-body"&gt;
-      &lt;div class="wb-cookie-consent-summary"&gt;
+      &lt;div class="wb-stack-1"&gt;
         &lt;p class="wb-text-sm wb-text-muted"&gt;
           Necessary cookies are always on. Optional categories can be changed at any time.
         &lt;/p&gt;
       &lt;/div&gt;
-      &lt;div class="wb-cookie-consent-categories"&gt;
-        &lt;div class="wb-cookie-consent-category"&gt;
-          &lt;div class="wb-cookie-consent-category-copy"&gt;
+      &lt;div class="wb-stack-3"&gt;
+        &lt;div class="wb-card wb-card-muted"&gt;
+          &lt;div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center"&gt;
+            &lt;div class="wb-stack-1"&gt;
             &lt;strong&gt;Necessary&lt;/strong&gt;
-            &lt;p class="wb-text-sm wb-text-muted"&gt;Required for core site behavior.&lt;/p&gt;
+              &lt;p class="wb-text-sm wb-text-muted wb-m-0"&gt;Required for core site behavior.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;label class="wb-switch"&gt;
+              &lt;input type="checkbox" data-wb-cookie-category="necessary" data-wb-cookie-required="true" checked disabled&gt;
+              &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
+              &lt;span&gt;Always on&lt;/span&gt;
+            &lt;/label&gt;
           &lt;/div&gt;
-          &lt;label class="wb-switch"&gt;
-            &lt;input type="checkbox" data-wb-cookie-category="necessary" data-wb-cookie-required="true" checked disabled&gt;
-            &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
-            &lt;span&gt;Always on&lt;/span&gt;
-          &lt;/label&gt;
         &lt;/div&gt;
-        &lt;div class="wb-cookie-consent-category"&gt;
-          &lt;div class="wb-cookie-consent-category-copy"&gt;
+        &lt;div class="wb-card wb-card-muted"&gt;
+          &lt;div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center"&gt;
+            &lt;div class="wb-stack-1"&gt;
             &lt;strong&gt;Preferences&lt;/strong&gt;
-            &lt;p class="wb-text-sm wb-text-muted"&gt;Remember language and interface choices.&lt;/p&gt;
+              &lt;p class="wb-text-sm wb-text-muted wb-m-0"&gt;Remember language and interface choices.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;label class="wb-switch"&gt;
+              &lt;input type="checkbox" data-wb-cookie-category="preferences"&gt;
+              &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
+              &lt;span&gt;Allow&lt;/span&gt;
+            &lt;/label&gt;
           &lt;/div&gt;
-          &lt;label class="wb-switch"&gt;
-            &lt;input type="checkbox" data-wb-cookie-category="preferences"&gt;
-            &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
-            &lt;span&gt;Allow&lt;/span&gt;
-          &lt;/label&gt;
         &lt;/div&gt;
-        &lt;div class="wb-cookie-consent-category"&gt;
-          &lt;div class="wb-cookie-consent-category-copy"&gt;
+        &lt;div class="wb-card wb-card-muted"&gt;
+          &lt;div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center"&gt;
+            &lt;div class="wb-stack-1"&gt;
             &lt;strong&gt;Analytics&lt;/strong&gt;
-            &lt;p class="wb-text-sm wb-text-muted"&gt;Measure usage and content performance.&lt;/p&gt;
+              &lt;p class="wb-text-sm wb-text-muted wb-m-0"&gt;Measure usage and content performance.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;label class="wb-switch"&gt;
+              &lt;input type="checkbox" data-wb-cookie-category="analytics"&gt;
+              &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
+              &lt;span&gt;Allow&lt;/span&gt;
+            &lt;/label&gt;
           &lt;/div&gt;
-          &lt;label class="wb-switch"&gt;
-            &lt;input type="checkbox" data-wb-cookie-category="analytics"&gt;
-            &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
-            &lt;span&gt;Allow&lt;/span&gt;
-          &lt;/label&gt;
         &lt;/div&gt;
-        &lt;div class="wb-cookie-consent-category"&gt;
-          &lt;div class="wb-cookie-consent-category-copy"&gt;
+        &lt;div class="wb-card wb-card-muted"&gt;
+          &lt;div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center"&gt;
+            &lt;div class="wb-stack-1"&gt;
             &lt;strong&gt;Marketing&lt;/strong&gt;
-            &lt;p class="wb-text-sm wb-text-muted"&gt;Support campaign attribution and ad measurement.&lt;/p&gt;
+              &lt;p class="wb-text-sm wb-text-muted wb-m-0"&gt;Support campaign attribution and ad measurement.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;label class="wb-switch"&gt;
+              &lt;input type="checkbox" data-wb-cookie-category="marketing"&gt;
+              &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
+              &lt;span&gt;Allow&lt;/span&gt;
+            &lt;/label&gt;
           &lt;/div&gt;
-          &lt;label class="wb-switch"&gt;
-            &lt;input type="checkbox" data-wb-cookie-category="marketing"&gt;
-            &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
-            &lt;span&gt;Allow&lt;/span&gt;
-          &lt;/label&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;div class="wb-modal-footer"&gt;
       &lt;button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-reject&gt;Reject all&lt;/button&gt;
-      &lt;div class="wb-cookie-consent-actions"&gt;
+      &lt;div class="wb-cluster wb-cluster-2"&gt;
         &lt;button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-save&gt;Save preferences&lt;/button&gt;
         &lt;button class="wb-btn wb-btn-primary" type="button" data-wb-cookie-consent-accept&gt;Accept all&lt;/button&gt;
       &lt;/div&gt;
@@ -275,27 +283,27 @@
                     <p>Use the same modal and behavior hooks, but swap the entry surface to a smaller floating card for promotional or editorial pages.</p>
                     <div class="wb-card">
                       <div class="wb-card-body">
-<pre><code class="language-html">&lt;div class="wb-cookie-consent wb-cookie-consent-card"
+<pre><code class="language-html">&lt;div class="wb-cookie-consent wb-cookie-consent-floating"
      data-wb-cookie-consent
      hidden&gt;
-  &lt;div class="wb-cookie-consent-body wb-card"&gt;
-    &lt;div class="wb-card-body wb-stack-3"&gt;
-      &lt;div class="wb-cookie-consent-header"&gt;
-        &lt;div class="wb-cookie-consent-copy"&gt;
+  &lt;section class="wb-card wb-cookie-consent-card" aria-label="Cookie settings"&gt;
+    &lt;div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start"&gt;
+      &lt;div class="wb-stack-1"&gt;
           &lt;strong&gt;Cookie settings&lt;/strong&gt;
-          &lt;p class="wb-text-sm wb-text-muted"&gt;
+          &lt;p class="wb-text-sm wb-text-muted wb-m-0"&gt;
             Necessary cookies keep the site working. Optional cookies help personalize and measure the experience.
           &lt;/p&gt;
-        &lt;/div&gt;
-        &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" data-wb-cookie-consent-close aria-label="Close cookie settings"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
       &lt;/div&gt;
-       &lt;div class="wb-cookie-consent-actions"&gt;
-         &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject&gt;Reject&lt;/button&gt;
-         &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#marketingCookiePreferences"&gt;Customize&lt;/button&gt;
-         &lt;button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept&gt;Accept all&lt;/button&gt;
-       &lt;/div&gt;
-     &lt;/div&gt;
-   &lt;/div&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Close cookie settings"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-card-body wb-stack-3"&gt;
+      &lt;div class="wb-cluster wb-cluster-2"&gt;
+        &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject&gt;Reject&lt;/button&gt;
+        &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#marketingCookiePreferences"&gt;Customize&lt;/button&gt;
+        &lt;button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept&gt;Accept all&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
 &lt;/div&gt;
 
 &lt;div class="wb-modal wb-cookie-consent-modal" id="marketingCookiePreferences" data-wb-cookie-consent role="dialog" aria-modal="true" aria-labelledby="marketingCookiePreferencesTitle" hidden&gt;
@@ -400,24 +408,24 @@ WBCookieConsent.hasConsent()</code></pre>
   </div>
 
   <div class="wb-cookie-consent wb-cookie-consent-banner" data-wb-cookie-consent hidden aria-hidden="true">
-    <div class="wb-cookie-consent-body wb-card">
-      <div class="wb-card-body wb-stack-3">
-        <div class="wb-cookie-consent-header">
-          <div class="wb-cookie-consent-copy">
-            <strong>We use cookies</strong>
+    <section class="wb-card wb-cookie-consent-card" aria-label="Cookie consent">
+      <div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start">
+        <div class="wb-stack-1">
+          <strong>We use cookies</strong>
+        </div>
+        <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Close cookie settings"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+      </div>
+      <div class="wb-card-body">
+        <div class="wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
+          <p class="wb-text-sm wb-text-muted wb-m-0">We use necessary cookies to make this docs page work and optional cookies to understand usage and remember preferences.</p>
+          <div class="wb-cluster wb-cluster-2">
+            <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject>Reject</button>
+            <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#docsCookiePreferences">Customize</button>
+            <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept>Accept all</button>
           </div>
-          <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" data-wb-cookie-consent-close aria-label="Close cookie settings"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
-        </div>
-        <div class="wb-cookie-consent-copy">
-          <p class="wb-text-sm wb-text-muted">We use necessary cookies to make this docs page work and optional cookies to understand usage and remember preferences.</p>
-        </div>
-        <div class="wb-cookie-consent-actions">
-          <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject>Reject</button>
-          <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#docsCookiePreferences">Customize</button>
-          <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept>Accept all</button>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 
   <div class="wb-modal wb-cookie-consent-modal" id="docsCookiePreferences" data-wb-cookie-consent role="dialog" aria-modal="true" aria-labelledby="docsCookiePreferencesTitle" hidden aria-hidden="true">
@@ -427,59 +435,67 @@ WBCookieConsent.hasConsent()</code></pre>
         <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Close cookie settings"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
       </div>
       <div class="wb-modal-body">
-        <div class="wb-cookie-consent-summary">
-          <p class="wb-text-sm wb-text-muted">Necessary cookies are always on. Accept, Reject, or Save preferences stores the user choice. Close does not save consent.</p>
+        <div class="wb-stack-1">
+          <p class="wb-text-sm wb-text-muted wb-m-0">Necessary cookies are always on. Accept, Reject, or Save preferences stores the user choice. Close does not save consent.</p>
         </div>
-        <div class="wb-cookie-consent-categories">
-          <div class="wb-cookie-consent-category">
-            <div class="wb-cookie-consent-category-copy">
-              <strong>Necessary</strong>
-              <p class="wb-text-sm wb-text-muted">Required for docs navigation, overlays, and saved UI behavior.</p>
+        <div class="wb-stack-3">
+          <div class="wb-card wb-card-muted">
+            <div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
+              <div class="wb-stack-1">
+                <strong>Necessary</strong>
+                <p class="wb-text-sm wb-text-muted wb-m-0">Required for docs navigation, overlays, and saved UI behavior.</p>
+              </div>
+              <label class="wb-switch">
+                <input type="checkbox" data-wb-cookie-category="necessary" data-wb-cookie-required="true" checked disabled>
+                <span class="wb-switch-track"></span>
+                <span>Always on</span>
+              </label>
             </div>
-            <label class="wb-switch">
-              <input type="checkbox" data-wb-cookie-category="necessary" data-wb-cookie-required="true" checked disabled>
-              <span class="wb-switch-track"></span>
-              <span>Always on</span>
-            </label>
           </div>
-          <div class="wb-cookie-consent-category">
-            <div class="wb-cookie-consent-category-copy">
-              <strong>Preferences</strong>
-              <p class="wb-text-sm wb-text-muted">Remember local docs and viewing preferences.</p>
+          <div class="wb-card wb-card-muted">
+            <div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
+              <div class="wb-stack-1">
+                <strong>Preferences</strong>
+                <p class="wb-text-sm wb-text-muted wb-m-0">Remember local docs and viewing preferences.</p>
+              </div>
+              <label class="wb-switch">
+                <input type="checkbox" data-wb-cookie-category="preferences">
+                <span class="wb-switch-track"></span>
+                <span>Allow</span>
+              </label>
             </div>
-            <label class="wb-switch">
-              <input type="checkbox" data-wb-cookie-category="preferences">
-              <span class="wb-switch-track"></span>
-              <span>Allow</span>
-            </label>
           </div>
-          <div class="wb-cookie-consent-category">
-            <div class="wb-cookie-consent-category-copy">
-              <strong>Analytics</strong>
-              <p class="wb-text-sm wb-text-muted">Measure page usage and documentation performance.</p>
+          <div class="wb-card wb-card-muted">
+            <div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
+              <div class="wb-stack-1">
+                <strong>Analytics</strong>
+                <p class="wb-text-sm wb-text-muted wb-m-0">Measure page usage and documentation performance.</p>
+              </div>
+              <label class="wb-switch">
+                <input type="checkbox" data-wb-cookie-category="analytics">
+                <span class="wb-switch-track"></span>
+                <span>Allow</span>
+              </label>
             </div>
-            <label class="wb-switch">
-              <input type="checkbox" data-wb-cookie-category="analytics">
-              <span class="wb-switch-track"></span>
-              <span>Allow</span>
-            </label>
           </div>
-          <div class="wb-cookie-consent-category">
-            <div class="wb-cookie-consent-category-copy">
-              <strong>Marketing</strong>
-              <p class="wb-text-sm wb-text-muted">Support campaign attribution and related public-site measurement.</p>
+          <div class="wb-card wb-card-muted">
+            <div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
+              <div class="wb-stack-1">
+                <strong>Marketing</strong>
+                <p class="wb-text-sm wb-text-muted wb-m-0">Support campaign attribution and related public-site measurement.</p>
+              </div>
+              <label class="wb-switch">
+                <input type="checkbox" data-wb-cookie-category="marketing">
+                <span class="wb-switch-track"></span>
+                <span>Allow</span>
+              </label>
             </div>
-            <label class="wb-switch">
-              <input type="checkbox" data-wb-cookie-category="marketing">
-              <span class="wb-switch-track"></span>
-              <span>Allow</span>
-            </label>
           </div>
         </div>
       </div>
       <div class="wb-modal-footer">
         <button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-reject>Reject all</button>
-        <div class="wb-cookie-consent-actions">
+        <div class="wb-cluster wb-cluster-2">
           <button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-save>Save preferences</button>
           <button class="wb-btn wb-btn-primary" type="button" data-wb-cookie-consent-accept>Accept all</button>
         </div>

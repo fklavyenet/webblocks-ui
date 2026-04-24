@@ -4,7 +4,7 @@
    ============================================================ */
 
 .wb-cookie-consent-banner,
-.wb-cookie-consent-card {
+.wb-cookie-consent-floating {
   position: fixed;
   inset-inline: var(--wb-s4);
   bottom: var(--wb-s4);
@@ -12,11 +12,14 @@
   pointer-events: none;
 }
 
-.wb-cookie-consent-body {
-  pointer-events: auto;
+.wb-cookie-consent-floating {
+  inset-inline-start: auto;
+  inset-inline-end: var(--wb-s4);
+  width: min(calc(100vw - (var(--wb-s4) * 2)), 28rem);
 }
 
-.wb-cookie-consent-body.wb-card {
+.wb-cookie-consent-card {
+  pointer-events: auto;
   margin: 0;
   border-radius: var(--wb-r-xl);
   box-shadow: var(--wb-shadow-lg);
@@ -25,179 +28,38 @@
   backdrop-filter: blur(18px);
 }
 
-.wb-cookie-consent-banner .wb-cookie-consent-body {
+.wb-cookie-consent-banner > .wb-cookie-consent-card {
   width: min(100%, 72rem);
   margin-inline: auto;
 }
 
-.wb-cookie-consent-card .wb-cookie-consent-body {
-  width: min(100%, 28rem);
-  margin-left: auto;
-}
-
-.wb-cookie-consent-banner .wb-card-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    'header actions'
-    'copy actions';
-  align-items: start;
-  column-gap: var(--wb-s4);
-  row-gap: var(--wb-s3);
-}
-
 [data-wb-cookie-consent-preview].wb-cookie-consent-banner,
-[data-wb-cookie-consent-preview].wb-cookie-consent-card {
+[data-wb-cookie-consent-preview].wb-cookie-consent-floating {
   position: static;
   inset-inline: auto;
+  inset-inline-start: auto;
+  inset-inline-end: auto;
   bottom: auto;
+  width: auto;
   z-index: auto;
   pointer-events: auto;
 }
 
-[data-wb-cookie-consent-preview].wb-cookie-consent-banner .wb-cookie-consent-body,
-[data-wb-cookie-consent-preview].wb-cookie-consent-card .wb-cookie-consent-body {
+[data-wb-cookie-consent-preview] > .wb-cookie-consent-card {
   width: 100%;
 }
 
-[data-wb-cookie-consent-preview].wb-cookie-consent-card .wb-cookie-consent-body {
-  margin-left: 0;
-}
-
-.wb-cookie-consent-copy,
-.wb-cookie-consent-summary,
-.wb-cookie-consent-category-copy {
-  min-width: 0;
-}
-
-.wb-cookie-consent-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--wb-s3);
-}
-
-.wb-cookie-consent-banner .wb-cookie-consent-header {
-  grid-area: header;
-}
-
-.wb-cookie-consent-banner .wb-cookie-consent-copy {
-  grid-area: copy;
-}
-
-.wb-cookie-consent-header .wb-cookie-consent-copy {
-  flex: 1 1 auto;
-}
-
-.wb-cookie-consent-dismiss {
-  flex-shrink: 0;
-}
-
-.wb-cookie-consent-copy,
-.wb-cookie-consent-summary {
-  display: grid;
-  gap: var(--wb-s2);
-}
-
-.wb-cookie-consent-copy p,
-.wb-cookie-consent-summary p,
-.wb-cookie-consent-category-copy p {
-  margin: 0;
-}
-
-.wb-cookie-consent-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--wb-s2);
-}
-
-.wb-cookie-consent-banner .wb-cookie-consent-actions {
-  grid-area: actions;
-  align-self: end;
-}
-
-.wb-cookie-consent-modal .wb-modal-body {
-  display: grid;
-  gap: var(--wb-s5);
-}
-
-.wb-cookie-consent-modal .wb-modal-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--wb-s3);
-}
-
-.wb-cookie-consent-modal .wb-modal-footer .wb-cookie-consent-actions {
-  margin-left: auto;
-}
-
-.wb-cookie-consent-categories {
-  display: grid;
-  gap: var(--wb-s3);
-}
-
-.wb-cookie-consent-category {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--wb-s4);
-  padding: var(--wb-s4);
-  border: 1px solid var(--wb-border);
-  border-radius: var(--wb-r-lg);
-  background: var(--wb-surface-2);
-}
-
-.wb-cookie-consent-category-copy {
-  display: grid;
-  gap: var(--wb-s1);
-}
-
-.wb-cookie-consent-category .wb-switch {
-  justify-self: end;
-}
-
-.wb-cookie-consent-category [data-wb-cookie-required="true"] + .wb-switch-track,
-.wb-cookie-consent-category input[disabled] + .wb-switch-track {
+/* Required cookie switches stay visually on even though the input is disabled. */
+.wb-cookie-consent [data-wb-cookie-required="true"] + .wb-switch-track,
+.wb-cookie-consent input[disabled] + .wb-switch-track {
   opacity: 0.9;
 }
 
 @media (max-width: 768px) {
   .wb-cookie-consent-banner,
-  .wb-cookie-consent-card {
+  .wb-cookie-consent-floating {
     inset-inline: var(--wb-s3);
     bottom: var(--wb-s3);
-  }
-
-  .wb-cookie-consent-banner .wb-card-body {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'header'
-      'copy'
-      'actions';
-  }
-
-  .wb-cookie-consent-category {
-    grid-template-columns: 1fr;
-  }
-
-  .wb-cookie-consent-category .wb-switch {
-    justify-self: start;
-  }
-
-  .wb-cookie-consent-actions {
-    justify-content: stretch;
-  }
-
-  .wb-cookie-consent-actions .wb-btn {
-    flex: 1 1 12rem;
-    justify-content: center;
-  }
-
-  .wb-cookie-consent-header {
-    align-items: stretch;
+    width: auto;
   }
 }
