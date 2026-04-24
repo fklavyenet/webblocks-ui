@@ -66,6 +66,7 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 - `wb-table-wrap` is the single table surface
 - `wb-section-nav` is the canonical local section navigation pattern
 - `wb-gallery` is the canonical inline media pattern; viewer behavior stays inside one shared `wb-modal`
+- `wb-cookie-consent` is the reusable public-site consent pattern; entry UI can be a bottom banner or floating card, and preferences stay inside one shared `wb-modal`
 - in-page `wb-section-nav` active state is runtime-owned; `WBSectionNav` applies `.is-active` and `aria-current="location"` from real hash/scroll state
 - text casing is content-defined; shipped UI should not force uppercase or capitalize
 
@@ -80,6 +81,7 @@ Shipped interactive modules expose `window.*` APIs:
 - `WBAccordion`
 - `WBSidebar`
 - `WBGallery`
+- `WBCookieConsent`
 - `WBSectionNav`
 - `WBNavGroup`
 - `WBDrawer`
@@ -95,6 +97,8 @@ Shipped interactive modules expose `window.*` APIs:
 `WBSectionNav` handles in-page `wb-section-nav` anchors, including hash-aware active state and scroll-container-aware docs behavior.
 
 `WBGallery` upgrades `.wb-gallery-trigger` elements that target one shared modal viewer, updates caption/meta/image state from the active item, and keeps stepping scoped to the current `.wb-gallery` set.
+
+`WBCookieConsent` handles reusable consent storage, accept/reject/custom preference flows, reopen hooks, and the public API around the `wb-cookie-consent` pattern.
 
 Use `INTEGRATION.md` for canonical data attributes, method names, and behavioral rules.
 
@@ -130,6 +134,29 @@ Keep the contract small:
 - one shared `.wb-modal` viewer for the gallery context
 
 Do not treat immersive viewing as a second public primitive such as `wb-lightbox` or per-item gallery modals.
+
+## Cookie Consent
+
+WebBlocks ships `wb-cookie-consent` as the reusable public-site consent pattern.
+
+Use it when the project needs:
+
+- a shared bottom banner or floating card consent entry point
+- one reusable preference-center modal
+- a stable footer or settings reopen hook
+- localStorage-backed consent state without project-local helper code
+
+Core hooks:
+
+- `data-wb-cookie-consent`
+- `data-wb-cookie-consent-accept`
+- `data-wb-cookie-consent-reject`
+- `data-wb-cookie-consent-save`
+- `data-wb-cookie-consent-open`
+- `data-wb-cookie-consent-close`
+- `data-wb-cookie-category`
+
+Host projects must still adapt legal copy and conditionally load optional third-party scripts from the stored preferences.
 
 ## Build
 

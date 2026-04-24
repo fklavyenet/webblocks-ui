@@ -203,6 +203,22 @@ Use `--wb-accent*` in new code. `--wb-primary*` exists for backward compatibilit
 
 ## Canonical UI Primitives And Patterns
 
+### Cookie Consent
+
+Use the shipped Cookie Consent pattern when a project needs reusable consent storage and a reopenable preference center.
+
+Rules:
+
+- compose the visible UI from shipped primitives first: `wb-card`, `wb-btn`, `wb-modal`, `wb-switch`, `wb-stack`, `wb-cluster`, `wb-grid`, `wb-split`
+- use `wb-cookie-consent-banner` as the default public-site entry variant
+- use `wb-cookie-consent-card` only when a more compact floating entry point is appropriate
+- keep one shared `wb-modal wb-cookie-consent-modal` for preferences instead of creating a second overlay family
+- always include a reopen trigger such as a footer button with `data-wb-cookie-consent-open`
+- stored keys are `wb-cookie-consent` and `wb-cookie-consent-preferences`
+- runtime emits `wb:cookie-consent:change` after saved changes
+- host projects must gate analytics, marketing, and other optional scripts from the stored preferences; the WebBlocks runtime does not load third-party scripts for you
+- necessary cookies stay enabled and should not be presented as an optional category
+
 ### Buttons
 
 ```html

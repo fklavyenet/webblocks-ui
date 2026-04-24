@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Cookie Consent</title>
+  <meta name="description" content="Reusable WebBlocks UI cookie consent pattern guidance for bottom banners, floating cards, and wb-modal preference centers.">
+  <script src="webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI building blocks for humans and AI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Documentation navigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Home</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Getting Started</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architecture</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-columns2 wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-package wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-dashboard"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item">Overview</a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item">Dashboard Shell</a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item">Breadcrumb</a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item">Gallery</a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item is-active">Cookie Consent</a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-square-terminal wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v2.4.0</p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Open menu"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Cookie Consent</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-topbar-actions"><a href="patterns.html" class="wb-topbar-action" aria-label="Back to patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-topbar-action" data-wb-mode-cycle aria-label="Cycle mode" title="Cycle mode"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-topbar-action" data-wb-toggle="dropdown" data-wb-target="#pattern-cookie-consentThemeMenu" aria-expanded="false" aria-label="Theme controls" title="Theme controls"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-cookie-consentThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Accent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Cookie consent pattern sections">
+            <div class="wb-section-nav-title">On this page</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#intro" class="wb-section-nav-link">Intro</a></li>
+              <li class="wb-section-nav-item"><a href="#when-to-use" class="wb-section-nav-link">When to use</a></li>
+              <li class="wb-section-nav-item"><a href="#live-previews" class="wb-section-nav-link">Static previews</a></li>
+              <li class="wb-section-nav-item"><a href="#bottom-banner-modal" class="wb-section-nav-link">Bottom banner + modal</a></li>
+              <li class="wb-section-nav-item"><a href="#floating-card-modal" class="wb-section-nav-link">Floating card + modal</a></li>
+              <li class="wb-section-nav-item"><a href="#footer-reopen" class="wb-section-nav-link">Footer reopen</a></li>
+              <li class="wb-section-nav-item"><a href="#storage-event" class="wb-section-nav-link">Storage + event</a></li>
+              <li class="wb-section-nav-item"><a href="#api" class="wb-section-nav-link">Public API</a></li>
+              <li class="wb-section-nav-item"><a href="#integration-guidance" class="wb-section-nav-link">Integration guidance</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Cookie Consent</h1>
+                <p class="wb-content-subtitle wb-docs-prose"><code>wb-cookie-consent</code> is the reusable public-site consent pattern for bottom banners, floating cards, and one shared <code>wb-modal</code> preference center. It stores consent state only; host projects still decide when analytics or marketing scripts actually load.</p>
+                <div class="wb-content-meta"><span>Public-site pattern</span><span class="wb-content-meta-divider"></span><span>Shared modal preference center</span><span class="wb-content-meta-divider"></span><span>Required reopen hook</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="intro">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Pattern boundary</strong> Cookie Consent is not a primitive and not a separate overlay system. It is a reusable pattern composed from <code>wb-card</code>, layout primitives, buttons, form controls, and one shipped <code>wb-modal</code>.</div>
+                    <p>Use this pattern when a public site, CMS surface, or product landing page needs one consistent consent flow that can be reopened later from a footer or settings link. Keep the markup explicit, keep the copy legal-reviewable, and keep script loading decisions in the host project.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="when-to-use">
+                    <div>
+                      <h2>When to use</h2>
+                      <ul>
+                        <li>Public websites that need a reusable consent banner</li>
+                        <li>Products that need one shared preference center modal</li>
+                        <li>Projects that must reopen cookie settings from the footer</li>
+                        <li>Teams that want consent state stored consistently in localStorage</li>
+                      </ul>
+                    </div>
+                    <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">What it does not do</strong> This runtime does not decide whether Google Analytics, Meta Pixel, or other third-party code should execute. It only stores and exposes consent state so the host project can gate those integrations correctly.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="live-previews">
+                    <h2>Static previews</h2>
+                    <p>These previews show the visual contract without auto-opening a real consent prompt inside the docs surface. Copy the markup examples below when you need the real hooks.</p>
+                    <div class="wb-grid-2">
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Bottom banner preview</h3></div>
+                        <div class="wb-card-body wb-stack-4">
+                          <div class="wb-cookie-consent wb-cookie-consent-banner">
+                            <div class="wb-cookie-consent-body wb-card">
+                              <div class="wb-card-body wb-stack-3">
+                                <div class="wb-split">
+                                  <div class="wb-cookie-consent-copy">
+                                    <strong>We use cookies</strong>
+                                    <p class="wb-text-sm wb-text-muted">Necessary cookies keep the site running. Optional cookies help us remember preferences and understand usage.</p>
+                                  </div>
+                                  <div class="wb-cookie-consent-actions">
+                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Reject</button>
+                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Customize</button>
+                                    <button class="wb-btn wb-btn-primary wb-btn-sm" type="button">Accept all</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <p class="wb-text-sm wb-text-muted wb-m-0">Recommended default for most public pages.</p>
+                        </div>
+                      </div>
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Floating card preview</h3></div>
+                        <div class="wb-card-body wb-stack-4">
+                          <div class="wb-cookie-consent wb-cookie-consent-card">
+                            <div class="wb-cookie-consent-body wb-card">
+                              <div class="wb-card-body wb-stack-3">
+                                <div class="wb-cookie-consent-copy">
+                                  <strong>Cookie settings</strong>
+                                  <p class="wb-text-sm wb-text-muted">Use the compact card when the page wants a lighter public-site footprint.</p>
+                                </div>
+                                <div class="wb-cookie-consent-actions">
+                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Reject</button>
+                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Customize</button>
+                                  <button class="wb-btn wb-btn-primary wb-btn-sm" type="button">Accept all</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <p class="wb-text-sm wb-text-muted wb-m-0">Compact alternative for calmer marketing pages.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="bottom-banner-modal">
+                    <h2>1. Bottom banner + preference modal</h2>
+                    <p>This is the recommended default. The banner owns the first decision, while one shared modal handles category-level preferences.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-cookie-consent wb-cookie-consent-banner"
+     data-wb-cookie-consent
+     hidden&gt;
+  &lt;div class="wb-cookie-consent-body wb-card"&gt;
+    &lt;div class="wb-card-body wb-stack-3"&gt;
+      &lt;div class="wb-cluster wb-cluster-between wb-cluster-3"&gt;
+        &lt;div class="wb-cookie-consent-copy"&gt;
+          &lt;strong&gt;We use cookies&lt;/strong&gt;
+          &lt;p class="wb-text-sm wb-text-muted"&gt;
+            We use necessary cookies to make this site work and optional cookies to improve your experience.
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="wb-cookie-consent-actions"&gt;
+          &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject&gt;Reject&lt;/button&gt;
+          &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#siteCookiePreferences"&gt;Customize&lt;/button&gt;
+          &lt;button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept&gt;Accept all&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="wb-modal wb-cookie-consent-modal" id="siteCookiePreferences" data-wb-cookie-consent role="dialog" aria-modal="true" aria-labelledby="siteCookiePreferencesTitle"&gt;
+  &lt;div class="wb-modal-dialog"&gt;
+    &lt;div class="wb-modal-header"&gt;
+      &lt;h2 class="wb-modal-title" id="siteCookiePreferencesTitle"&gt;Cookie preferences&lt;/h2&gt;
+      &lt;button class="wb-modal-close" type="button" data-wb-cookie-consent-close aria-label="Close"&gt;
+        &lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-modal-body"&gt;
+      &lt;div class="wb-cookie-consent-summary"&gt;
+        &lt;p class="wb-text-sm wb-text-muted"&gt;
+          Necessary cookies are always on. Optional categories can be changed at any time.
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="wb-cookie-consent-categories"&gt;
+        &lt;div class="wb-cookie-consent-category"&gt;
+          &lt;div class="wb-cookie-consent-category-copy"&gt;
+            &lt;strong&gt;Necessary&lt;/strong&gt;
+            &lt;p class="wb-text-sm wb-text-muted"&gt;Required for core site behavior.&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;label class="wb-switch"&gt;
+            &lt;input type="checkbox" data-wb-cookie-category="necessary" data-wb-cookie-required="true" checked disabled&gt;
+            &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
+            &lt;span&gt;Always on&lt;/span&gt;
+          &lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class="wb-cookie-consent-category"&gt;
+          &lt;div class="wb-cookie-consent-category-copy"&gt;
+            &lt;strong&gt;Preferences&lt;/strong&gt;
+            &lt;p class="wb-text-sm wb-text-muted"&gt;Remember language and interface choices.&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;label class="wb-switch"&gt;
+            &lt;input type="checkbox" data-wb-cookie-category="preferences"&gt;
+            &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
+            &lt;span&gt;Allow&lt;/span&gt;
+          &lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class="wb-cookie-consent-category"&gt;
+          &lt;div class="wb-cookie-consent-category-copy"&gt;
+            &lt;strong&gt;Analytics&lt;/strong&gt;
+            &lt;p class="wb-text-sm wb-text-muted"&gt;Measure usage and content performance.&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;label class="wb-switch"&gt;
+            &lt;input type="checkbox" data-wb-cookie-category="analytics"&gt;
+            &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
+            &lt;span&gt;Allow&lt;/span&gt;
+          &lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class="wb-cookie-consent-category"&gt;
+          &lt;div class="wb-cookie-consent-category-copy"&gt;
+            &lt;strong&gt;Marketing&lt;/strong&gt;
+            &lt;p class="wb-text-sm wb-text-muted"&gt;Support campaign attribution and ad measurement.&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;label class="wb-switch"&gt;
+            &lt;input type="checkbox" data-wb-cookie-category="marketing"&gt;
+            &lt;span class="wb-switch-track"&gt;&lt;/span&gt;
+            &lt;span&gt;Allow&lt;/span&gt;
+          &lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-modal-footer"&gt;
+      &lt;button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-reject&gt;Reject all&lt;/button&gt;
+      &lt;div class="wb-cookie-consent-actions"&gt;
+        &lt;button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-save&gt;Save preferences&lt;/button&gt;
+        &lt;button class="wb-btn wb-btn-primary" type="button" data-wb-cookie-consent-accept&gt;Accept all&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="floating-card-modal">
+                    <h2>2. Floating card + preference modal</h2>
+                    <p>Use the same modal and behavior hooks, but swap the entry surface to a smaller floating card for promotional or editorial pages.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-cookie-consent wb-cookie-consent-card"
+     data-wb-cookie-consent
+     hidden&gt;
+  &lt;div class="wb-cookie-consent-body wb-card"&gt;
+    &lt;div class="wb-card-body wb-stack-3"&gt;
+      &lt;div class="wb-cookie-consent-copy"&gt;
+        &lt;strong&gt;Cookie settings&lt;/strong&gt;
+        &lt;p class="wb-text-sm wb-text-muted"&gt;
+          Necessary cookies keep the site working. Optional cookies help personalize and measure the experience.
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="wb-cookie-consent-actions"&gt;
+        &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject&gt;Reject&lt;/button&gt;
+        &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#marketingCookiePreferences"&gt;Customize&lt;/button&gt;
+        &lt;button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept&gt;Accept all&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Reuse the same preference modal structure shown above. --&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="footer-reopen">
+                    <h2>3. Footer reopen hook</h2>
+                    <p>Every host project should expose a stable way to reopen the preference center after consent is already saved.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;button class="wb-btn wb-btn-ghost wb-btn-sm"
+        type="button"
+        data-wb-cookie-consent-open
+        data-wb-target="#siteCookiePreferences"&gt;
+  Cookie settings
+&lt;/button&gt;</code></pre>
+                      </div>
+                    </div>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">The reopen button should normally point at the preference modal rather than the first-entry banner.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="storage-event">
+                    <h2>Storage keys and emitted event</h2>
+                    <div class="wb-grid-2">
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Stored keys</h3></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <div><strong><code>wb-cookie-consent</code></strong><p class="wb-text-sm wb-text-muted wb-m-0">Stores <code>accepted</code>, <code>rejected</code>, or <code>custom</code>.</p></div>
+                          <div><strong><code>wb-cookie-consent-preferences</code></strong><p class="wb-text-sm wb-text-muted wb-m-0">Stores a JSON object with <code>necessary</code>, <code>preferences</code>, <code>analytics</code>, and <code>marketing</code>.</p></div>
+                        </div>
+                      </div>
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Change event</h3></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <p class="wb-m-0">Whenever consent changes, WebBlocks emits <code>wb:cookie-consent:change</code> on <code>document.documentElement</code>.</p>
+<pre><code>document.documentElement.addEventListener('wb:cookie-consent:change', function (event) {
+  var state = event.detail;
+
+  if (state.preferences.analytics) {
+    // Load analytics here.
+  }
+});</code></pre>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="api">
+                    <h2>Public API</h2>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>WBCookieConsent.open()
+WBCookieConsent.close()
+WBCookieConsent.get()
+WBCookieConsent.set({
+  necessary: true,
+  preferences: true,
+  analytics: false,
+  marketing: false
+})
+WBCookieConsent.clear()
+WBCookieConsent.hasConsent()</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="integration-guidance">
+                    <div>
+                      <h2>Integration guidance</h2>
+                      <ul>
+                        <li>Necessary cookies cannot be disabled</li>
+                        <li>Site owners must adapt the legal copy for their own jurisdiction and policy text</li>
+                        <li>Use layout primitives such as <code>wb-stack</code>, <code>wb-cluster</code>, <code>wb-grid</code>, and <code>wb-split</code> inside the pattern</li>
+                        <li>Use the shipped modal primitive for the preference center instead of creating a second overlay family</li>
+                      </ul>
+                    </div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Testing tip</strong> During development, call <code>WBCookieConsent.clear()</code> from the console to remove the stored keys and force the first-entry consent UI to appear again.</div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-gallery.html" class="wb-content-prev"><span class="wb-content-prev-label">Previous</span><span class="wb-content-prev-title">Gallery</span></a>
+                <a href="pattern-marketing.html" class="wb-content-next"><span class="wb-content-next-label">Next</span><span class="wb-content-next-title">Marketing</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

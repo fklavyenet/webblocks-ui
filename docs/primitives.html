@@ -31,6 +31,7 @@
               <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
               <a href="pattern-breadcrumb.html" class="wb-nav-group-item">Breadcrumb</a>
               <a href="pattern-gallery.html" class="wb-nav-group-item">Gallery</a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item">Cookie Consent</a>
               <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
             </div>
           </div>
@@ -92,7 +93,7 @@
                       <tr><td>Primary actions and status</td><td><code>wb-btn</code>, <code>wb-badge</code>, <code>wb-status-pill</code>, <code>wb-action-group</code></td><td>Use these when the page needs clear actions, compact signals, and row-level controls.</td></tr>
                       <tr><td>Grouped information and data display</td><td><code>wb-card</code>, <code>wb-stat</code>, <code>wb-list</code>, <code>wb-callout</code>, <code>wb-table</code></td><td>Cards, stats, lists, and callouts are surfaces. Tables remain primitives. Choose by UI role, not by folder location.</td></tr>
                       <tr><td>Orientation and section switching</td><td><code>wb-tabs</code>, <code>wb-pagination</code>, pattern <code>wb-breadcrumb</code></td><td>Use these when the page needs context or section changes, but keep breadcrumb secondary to the page title.</td></tr>
-                      <tr><td>Temporary or layered interaction</td><td><code>wb-modal</code>, <code>wb-dropdown</code>, <code>wb-drawer</code>, <code>wb-accordion</code>, <code>wb-toast</code></td><td>Use these when the page needs temporary surfaces and explicit behavior hooks instead of hidden helper logic. Use <code>wb-modal</code> for structured dialogs and also for content-first viewer or gallery-viewer usage.</td></tr>
+                      <tr><td>Temporary or layered interaction</td><td><code>wb-modal</code>, <code>wb-dropdown</code>, <code>wb-drawer</code>, <code>wb-accordion</code>, <code>wb-toast</code></td><td>Use these when the page needs temporary surfaces and explicit behavior hooks instead of hidden helper logic. Use <code>wb-modal</code> for structured dialogs, content-first viewer work, and cookie-consent preference centers.</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -268,7 +269,8 @@
 
               <section class="wb-docs-section wb-docs-wide" id="interaction-shells">
                 <h2>Interaction shells</h2>
-                <p>Keep lightweight reveal-and-expand patterns close to the page, and reserve <code>wb-modal</code> for true top-layer dialog or viewer work.</p>
+                <p>Keep lightweight reveal-and-expand patterns close to the page, and reserve <code>wb-modal</code> for true top-layer dialog, viewer, or cookie-preference work.</p>
+                <div class="wb-callout wb-callout-info wb-mb-4"><strong class="wb-callout-title">Cookie consent boundary</strong> Cookie Consent is not a primitive. It is a pattern plus interactive hooks that composes <code>wb-card</code>, switches, buttons, and one shared <code>wb-modal</code> preference center.</div>
                 <div class="wb-grid-2">
                   <div class="wb-card">
                     <div class="wb-card-header"><h3 class="wb-card-title">Dropdown, popover, and tabs</h3></div>

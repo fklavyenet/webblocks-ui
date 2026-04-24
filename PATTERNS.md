@@ -446,6 +446,32 @@ Behavior rule:
 - focus returns to the originating trigger when the modal closes through the normal modal runtime
 - runtime stepping is scoped to the current `.wb-gallery` set rather than every trigger on the page
 
+### Cookie Consent
+
+Use `wb-cookie-consent` for:
+
+- reusable public-site cookie banners
+- floating consent cards on public pages
+- one shared preference-center modal that can be reopened later
+
+Architecture rule:
+
+- `wb-cookie-consent` = public-site consent pattern
+- use `wb-cookie-consent-banner` for the recommended bottom banner entry
+- use `wb-cookie-consent-card` for the compact floating card entry
+- preference management lives inside one shared `wb-modal wb-cookie-consent-modal`
+- the pattern must include a reopen hook such as a footer `data-wb-cookie-consent-open` trigger
+
+Behavior rule:
+
+- if no saved consent exists, runtime shows the first `data-wb-cookie-consent` root
+- accept all enables all optional categories and stores `accepted`
+- reject disables all optional categories and stores `rejected`
+- save preferences stores category values and marks the state `custom` when needed
+- close without changing consent is allowed only after consent already exists, unless markup explicitly opts into dismissal
+- runtime emits `wb:cookie-consent:change` after each persisted change
+- runtime stores consent only; host projects still decide whether to load analytics or marketing scripts
+
 ## Supporting Patterns
 
 These are also shipped pattern families, but not primary app shells:
@@ -466,6 +492,7 @@ These are also shipped pattern families, but not primary app shells:
 6. `wb-page-header` and `wb-settings-section` are pattern-local surfaces, not global layout building blocks.
 7. Focus-above-page interactions belong to the modal primitive layer, not to page-pattern markup: use `wb-modal` for dialog, confirm, form, and content-first viewer UI.
 8. `wb-gallery` is an inline pattern; when it needs immersive viewing, expand into a shared content-first `wb-modal` instead of inventing a gallery-specific top-layer primitive.
+9. `wb-cookie-consent` is a reusable public-site pattern; keep it composed from shipped primitives and one shared `wb-modal`, not project-local banner code.
 
 Do:
 

@@ -31,6 +31,7 @@
               <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
               <a href="pattern-breadcrumb.html" class="wb-nav-group-item">Breadcrumb</a>
               <a href="pattern-gallery.html" class="wb-nav-group-item">Gallery</a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item">Cookie Consent</a>
               <a href="pattern-marketing.html" class="wb-nav-group-item">Marketing</a>
             </div>
           </div>
@@ -100,6 +101,7 @@
                       <tr><td><code>WBTheme</code></td><td><code>data-wb-mode-set</code>, <code>data-wb-accent-set</code>, <code>data-wb-preset-set</code></td><td>Theme and axis control</td></tr>
                       <tr><td><code>WBModal</code></td><td><code>data-wb-toggle="modal"</code></td><td>Canonical top-layer pattern for confirms, forms, and content-first viewer or gallery-viewer usage</td></tr>
                       <tr><td><code>WBGallery</code></td><td><code>data-wb-gallery-target</code></td><td>Inline gallery pattern runtime that populates a shared <code>wb-modal</code> viewer</td></tr>
+                      <tr><td><code>WBCookieConsent</code></td><td><code>data-wb-cookie-consent-*</code></td><td>Reusable consent storage, reopen, and preference-center behavior for public sites</td></tr>
                       <tr><td><code>WBDrawer</code></td><td><code>data-wb-toggle="drawer"</code></td><td>Off-canvas panels</td></tr>
                       <tr><td><code>WBDropdown</code></td><td><code>data-wb-toggle="dropdown"</code></td><td>Dropdown menus</td></tr>
                       <tr><td><code>WBCommandPalette</code></td><td><code>data-wb-toggle="cmd"</code> or <code>Cmd/Ctrl + K</code></td><td>Search and command surface</td></tr>
@@ -123,9 +125,13 @@
   Open gallery item
 &lt;/button&gt;
 
+&lt;button data-wb-cookie-consent-open data-wb-target="#siteCookiePreferences"&gt;
+  Cookie settings
+&lt;/button&gt;
+
 &lt;button data-wb-mode-set="dark"&gt;Dark&lt;/button&gt;
 &lt;button data-wb-dismiss="modal"&gt;Close&lt;/button&gt;</code></pre>
-                <p>Most behavior starts from a small attribute contract. Use <code>data-wb-toggle="modal"</code> for direct modal triggers, and let <code>data-wb-gallery-target</code> upgrade inline gallery items into a shared content-first modal viewer.</p>
+                <p>Most behavior starts from a small attribute contract. Use <code>data-wb-toggle="modal"</code> for direct modal triggers, let <code>data-wb-gallery-target</code> upgrade inline gallery items into a shared content-first modal viewer, and use the cookie-consent hooks when a project needs one reusable consent and reopen flow.</p>
               </section>
 
               <section class="wb-docs-section wb-docs-split" id="live-demos">
@@ -185,7 +191,9 @@ WBModal.open(document.getElementById('my-modal'))
 WBGallery.open(document.querySelector('.wb-gallery-trigger'))
 WBDrawer.open(document.getElementById('my-drawer'))
 WBPasswordToggle.toggle(document.querySelector('[data-wb-password-toggle]'))
-WBToast.show('Saved', { type: 'success' })</code></pre>
+WBToast.show('Saved', { type: 'success' })
+WBCookieConsent.open()
+WBCookieConsent.clear()</code></pre>
                 <p>Use the public API when you really need imperative control. If a declarative <code>data-wb-*</code> trigger already exists, prefer that markup path first.</p>
               </section>
                 </div>

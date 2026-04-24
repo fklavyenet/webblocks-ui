@@ -42,6 +42,7 @@ Always start from:
 * `wb-content-shell`
 * `wb-auth-shell`
 * `wb-settings-shell`
+* `wb-cookie-consent` for reusable public-site consent UI
 
 ---
 
@@ -123,6 +124,13 @@ Allowed:
 * `wb-cluster`
 * `wb-split`
 * `wb-grid`
+
+Cookie consent rule:
+
+* use `wb-cookie-consent` plus shipped primitives when a project needs consent UI
+* do not write project-local cookie banners when WebBlocks UI already ships the pattern
+* preference centers must use the existing `wb-modal` primitive
+* always include a reopen trigger such as `data-wb-cookie-consent-open`
 
 ❌ Do NOT invent wrappers
 

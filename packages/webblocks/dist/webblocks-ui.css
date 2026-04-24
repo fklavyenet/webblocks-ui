@@ -8056,6 +8056,140 @@ button.wb-game-card {
   }
 }
 /* ============================================================
+   WebBlocks UI — Cookie Consent Pattern
+   Reusable public-site consent banner, card, and preference modal.
+   ============================================================ */
+
+.wb-cookie-consent-banner,
+.wb-cookie-consent-card {
+  position: fixed;
+  inset-inline: var(--wb-s4);
+  bottom: var(--wb-s4);
+  z-index: calc(var(--wb-z-modal) - 1);
+  pointer-events: none;
+}
+
+.wb-cookie-consent-body {
+  pointer-events: auto;
+}
+
+.wb-cookie-consent-body.wb-card {
+  margin: 0;
+  border-radius: var(--wb-r-xl);
+  box-shadow: var(--wb-shadow-lg);
+  background: color-mix(in srgb, var(--wb-surface) 92%, transparent);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.wb-cookie-consent-banner .wb-cookie-consent-body {
+  width: min(100%, 72rem);
+  margin-inline: auto;
+}
+
+.wb-cookie-consent-card .wb-cookie-consent-body {
+  width: min(100%, 28rem);
+  margin-left: auto;
+}
+
+.wb-cookie-consent-copy,
+.wb-cookie-consent-summary,
+.wb-cookie-consent-category-copy {
+  min-width: 0;
+}
+
+.wb-cookie-consent-copy,
+.wb-cookie-consent-summary {
+  display: grid;
+  gap: var(--wb-s2);
+}
+
+.wb-cookie-consent-copy p,
+.wb-cookie-consent-summary p,
+.wb-cookie-consent-category-copy p {
+  margin: 0;
+}
+
+.wb-cookie-consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--wb-s2);
+}
+
+.wb-cookie-consent-modal .wb-modal-body {
+  display: grid;
+  gap: var(--wb-s5);
+}
+
+.wb-cookie-consent-modal .wb-modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+}
+
+.wb-cookie-consent-modal .wb-modal-footer .wb-cookie-consent-actions {
+  margin-left: auto;
+}
+
+.wb-cookie-consent-categories {
+  display: grid;
+  gap: var(--wb-s3);
+}
+
+.wb-cookie-consent-category {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--wb-s4);
+  padding: var(--wb-s4);
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  background: var(--wb-surface-2);
+}
+
+.wb-cookie-consent-category-copy {
+  display: grid;
+  gap: var(--wb-s1);
+}
+
+.wb-cookie-consent-category .wb-switch {
+  justify-self: end;
+}
+
+.wb-cookie-consent-category [data-wb-cookie-required="true"] + .wb-switch-track,
+.wb-cookie-consent-category input[disabled] + .wb-switch-track {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .wb-cookie-consent-banner,
+  .wb-cookie-consent-card {
+    inset-inline: var(--wb-s3);
+    bottom: var(--wb-s3);
+  }
+
+  .wb-cookie-consent-category {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-cookie-consent-category .wb-switch {
+    justify-self: start;
+  }
+
+  .wb-cookie-consent-actions {
+    justify-content: stretch;
+  }
+
+  .wb-cookie-consent-actions .wb-btn {
+    flex: 1 1 12rem;
+    justify-content: center;
+  }
+}
+/* ============================================================
    WebBlocks UI — Content Shell Layout
    ============================================================ */
 

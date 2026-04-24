@@ -100,6 +100,7 @@ Overlay boundary inside primitives:
 - `wb-modal` = canonical top-layer primitive for confirms, forms, action dialogs, and content-first viewer usage
 - `wb-overlay-root` is shared runtime infrastructure, not a public page-level primitive to author directly
 - gallery viewer behavior belongs to `wb-modal` usage, while `wb-gallery` itself belongs to patterns
+- cookie consent preference centers also belong to `wb-modal` usage, while `wb-cookie-consent` itself belongs to patterns plus interactive hooks
 
 ## Surfaces
 
@@ -173,6 +174,7 @@ Canonical pattern families:
 - `wb-dashboard-shell`
 - `wb-settings-shell`
 - `wb-content-shell`
+- `wb-cookie-consent`
 - `wb-page-intro`
 - marketing families such as `wb-hero` and footer structures
 
@@ -192,9 +194,20 @@ Examples:
 - `data-wb-nav-group`
 - `data-wb-ajax-toggle`
 - `data-wb-password-toggle`
+- `data-wb-cookie-consent`
+- `data-wb-cookie-consent-open`
+- `data-wb-cookie-consent-accept`
+- `data-wb-cookie-consent-reject`
+- `data-wb-cookie-consent-save`
 
 These are not UI primitives.
 They are interaction hooks owned by shipped JS and attribute-driven CSS behavior.
+
+Cookie Consent classification rule:
+
+- Cookie Consent is not a primitive
+- it is a pattern plus interactive hooks
+- it composes `wb-card`, `wb-btn`, form controls, layout primitives, and one `wb-modal` preference center
 
 ## What Is Not Canonical Primitive Vocabulary
 
