@@ -35,6 +35,24 @@
   margin-left: auto;
 }
 
+[data-wb-cookie-consent-preview].wb-cookie-consent-banner,
+[data-wb-cookie-consent-preview].wb-cookie-consent-card {
+  position: static;
+  inset-inline: auto;
+  bottom: auto;
+  z-index: auto;
+  pointer-events: auto;
+}
+
+[data-wb-cookie-consent-preview].wb-cookie-consent-banner .wb-cookie-consent-body,
+[data-wb-cookie-consent-preview].wb-cookie-consent-card .wb-cookie-consent-body {
+  width: 100%;
+}
+
+[data-wb-cookie-consent-preview].wb-cookie-consent-card .wb-cookie-consent-body {
+  margin-left: 0;
+}
+
 .wb-cookie-consent-copy,
 .wb-cookie-consent-summary,
 .wb-cookie-consent-category-copy {
