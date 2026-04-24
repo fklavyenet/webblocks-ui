@@ -8098,6 +8098,21 @@ button.wb-game-card {
   min-width: 0;
 }
 
+.wb-cookie-consent-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+}
+
+.wb-cookie-consent-header .wb-cookie-consent-copy {
+  flex: 1 1 auto;
+}
+
+.wb-cookie-consent-dismiss {
+  flex-shrink: 0;
+}
+
 .wb-cookie-consent-copy,
 .wb-cookie-consent-summary {
   display: grid;
@@ -8187,6 +8202,10 @@ button.wb-game-card {
   .wb-cookie-consent-actions .wb-btn {
     flex: 1 1 12rem;
     justify-content: center;
+  }
+
+  .wb-cookie-consent-header {
+    align-items: stretch;
   }
 }
 /* ============================================================

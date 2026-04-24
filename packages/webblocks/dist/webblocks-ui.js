@@ -1326,6 +1326,8 @@
   var CONSENT_KEY = 'wb-cookie-consent';
   var PREFERENCES_KEY = 'wb-cookie-consent-preferences';
   var OPTIONAL_CATEGORIES = ['preferences', 'analytics', 'marketing'];
+  var dismissedForPage = false;
+  var suppressModalReopen = false;
 
   function toArray(list) {
     return Array.prototype.slice.call(list || []);
@@ -1386,6 +1388,16 @@
 
   function hasConsent() {
     return !!getStoredStatus();
+  }
+
+  function withModalReopenSuppressed(callback) {
+    suppressModalReopen = true;
+
+    try {
+      return callback();
+    } finally {
+      suppressModalReopen = false;
+    }
   }
 
   function getRoots() {
@@ -1470,8 +1482,11 @@
   }
 
   function closeAll() {
-    getRoots().forEach(function (root) {
-      hideRoot(root);
+    return withModalReopenSuppressed(function () {
+      getRoots().forEach(function (root) {
+        hideRoot(root);
+      });
+      return true;
     });
   }
 
@@ -1527,6 +1542,7 @@
     var normalized = normalizePreferences(preferences);
     var nextStatus = status || getStatusForPreferences(normalized);
 
+    dismissedForPage = true;
     WBStorage.set(CONSENT_KEY, nextStatus);
     WBStorage.set(PREFERENCES_KEY, JSON.stringify(normalized));
     syncAllRoots();
@@ -1558,7 +1574,7 @@
   }
 
   function savePreferences(scope) {
-    return save(readPreferencesFromScope(scope));
+    return save(readPreferencesFromScope(scope), 'custom');
   }
 
   function getPreferredOpenRoot(trigger) {
@@ -1574,21 +1590,30 @@
       return false;
     }
 
+    if (dismissedForPage) {
+      closeAll();
+      return false;
+    }
+
     return showRoot(getFirstRoot());
   }
 
   function open(target) {
+    dismissedForPage = false;
     syncAllRoots();
     return showRoot(resolveRoot(target) || getFirstModalRoot() || getFirstRoot());
   }
 
   function close(target) {
     var root = resolveRoot(target) || getOpenRoot();
-    if (!root || !canDismiss(root)) return false;
-    return hideRoot(root);
+    if (!root) return false;
+
+    if (!hasConsent()) dismissedForPage = true;
+    return closeAll();
   }
 
   function clear() {
+    dismissedForPage = false;
     WBStorage.remove(CONSENT_KEY);
     WBStorage.remove(PREFERENCES_KEY);
     syncAllRoots();
@@ -1641,7 +1666,7 @@
     if (closeButton) {
       root = closeButton.closest('[data-wb-cookie-consent]');
 
-      if (!root || !canDismiss(root)) {
+      if (!root) {
         e.preventDefault();
         e.stopPropagation();
         return;
@@ -1657,6 +1682,7 @@
     var modal = e.target;
 
     if (!modal || !modal.hasAttribute('data-wb-cookie-consent')) return;
+    if (suppressModalReopen || dismissedForPage) return;
     if (canDismiss(modal) || hasConsent()) return;
 
     requestAnimationFrame(function () {
