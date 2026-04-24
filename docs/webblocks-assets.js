@@ -4,11 +4,17 @@
   var assetMode = 'local';
   var base = '../packages/webblocks/dist/';
   var brandingBase = '../assets/branding/';
+  var version = '20260424b';
+
+  function withVersion(path) {
+    var separator = path.indexOf('?') === -1 ? '?' : '&';
+    return path + separator + 'v=' + version;
+  }
 
   var head = document.head;
   var assets = [
-    { rel: 'stylesheet', href: base + 'webblocks-ui.css' },
-    { rel: 'stylesheet', href: base + 'webblocks-icons.css' },
+    { rel: 'stylesheet', href: withVersion(base + 'webblocks-ui.css') },
+    { rel: 'stylesheet', href: withVersion(base + 'webblocks-icons.css') },
     { rel: 'icon', href: brandingBase + 'favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     { rel: 'icon', href: brandingBase + 'favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     { rel: 'apple-touch-icon', href: brandingBase + 'apple-touch-icon.png', sizes: '180x180' },
@@ -38,7 +44,7 @@
   head.appendChild(docsStyle);
 
   var script = document.createElement('script');
-  script.src = base + 'webblocks-ui.js';
+  script.src = withVersion(base + 'webblocks-ui.js');
   script.defer = true;
   head.appendChild(script);
 
