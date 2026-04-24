@@ -1627,10 +1627,10 @@
     return showRoot(getFirstRoot());
   }
 
-  function open(target) {
+  function open(target, trigger) {
     dismissedForPage = false;
     syncAllRoots();
-    return showRoot(resolveRoot(target) || getFirstModalRoot() || getFirstRoot());
+    return showRoot(resolveRoot(target) || getFirstModalRoot() || getFirstRoot(), trigger || null);
   }
 
   function close(target) {
@@ -1694,7 +1694,7 @@
     if (openButton) {
       e.preventDefault();
       e.stopPropagation();
-      open(getPreferredOpenRoot(openButton));
+      open(getPreferredOpenRoot(openButton), openButton);
       return;
     }
 
