@@ -1228,6 +1228,10 @@
   var instances = new WeakMap();
   var activeModal = null;
 
+  function staysInOverlayRoot(modal) {
+    return !!(modal && modal.classList && modal.classList.contains('wb-cookie-consent-modal'));
+  }
+
   function ensureInstance(modal, trigger) {
     var instance = instances.get(modal);
     if (instance) {
@@ -1247,11 +1251,20 @@
       trapFocus: true,
       autoFocus: true,
       returnFocus: true,
+      restoreOnClose: !staysInOverlayRoot(modal),
       onAfterOpen: function () {
+        if (staysInOverlayRoot(modal)) {
+          modal.hidden = false;
+          modal.removeAttribute('aria-hidden');
+        }
         activeModal = modal;
         WBDom.emit(modal, 'wb:modal:open');
       },
       onAfterClose: function () {
+        if (staysInOverlayRoot(modal)) {
+          modal.hidden = true;
+          modal.setAttribute('aria-hidden', 'true');
+        }
         if (activeModal === modal) activeModal = null;
         WBDom.emit(modal, 'wb:modal:close');
       }
