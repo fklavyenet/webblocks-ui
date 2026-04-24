@@ -1421,8 +1421,9 @@
 
   function resolveRoot(target) {
     if (!target) return null;
-    if (typeof target === 'string') return document.querySelector(target);
-    return target.nodeType === 1 ? target : null;
+    if (typeof target === 'string') target = document.querySelector(target);
+    if (!target || target.nodeType !== 1 || isInertElement(target)) return null;
+    return target;
   }
 
   function getFirstRoot() {
