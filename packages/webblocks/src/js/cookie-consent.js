@@ -13,6 +13,7 @@
   var OPTIONAL_CATEGORIES = ['preferences', 'analytics', 'marketing'];
   var dismissedForPage = false;
   var suppressModalReopen = false;
+  var INERT_ROOT_SELECTOR = '[data-wb-cookie-consent-preview], [data-wb-demo-static], pre, code, template';
 
   function toArray(list) {
     return Array.prototype.slice.call(list || []);
@@ -86,7 +87,17 @@
   }
 
   function getRoots() {
-    return toArray(document.querySelectorAll('[data-wb-cookie-consent]'));
+    return toArray(document.querySelectorAll('[data-wb-cookie-consent]')).filter(function (root) {
+      return !isInertElement(root);
+    });
+  }
+
+  function isInertElement(element) {
+    return !!(element && element.closest && element.closest(INERT_ROOT_SELECTOR));
+  }
+
+  function isDisabledTrigger(element) {
+    return !!(element && (element.disabled || element.getAttribute('aria-disabled') === 'true'));
   }
 
   function isModalRoot(root) {
@@ -134,6 +145,8 @@
 
     if (isModalRoot(root)) {
       if (window.WBModal) WBModal.close(root);
+      root.hidden = true;
+      root.setAttribute('aria-hidden', 'true');
       return true;
     }
 
@@ -157,6 +170,8 @@
     hideNonModalRootsExcept(root);
 
     if (isModalRoot(root)) {
+      root.hidden = false;
+      root.removeAttribute('aria-hidden');
       if (window.WBModal) WBModal.open(root, trigger || null);
       return true;
     }
@@ -318,6 +333,12 @@
     var openButton = e.target.closest('[data-wb-cookie-consent-open]');
     var closeButton = e.target.closest('[data-wb-cookie-consent-close]');
     var root;
+
+    if (isDisabledTrigger(accept) || isDisabledTrigger(reject) || isDisabledTrigger(saveButton) || isDisabledTrigger(openButton) || isDisabledTrigger(closeButton)) {
+      return;
+    }
+
+    if (isInertElement(e.target)) return;
 
     if (accept) {
       e.preventDefault();

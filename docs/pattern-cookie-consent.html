@@ -113,12 +113,12 @@
 
                   <section class="wb-docs-section wb-docs-wide" id="live-previews">
                     <h2>Static previews</h2>
-                    <p>These previews show the visual contract without auto-opening a real consent prompt inside the docs surface. Copy the markup examples below when you need the real hooks.</p>
+                    <p>Static previews are inert; only the Live demo section contains active consent hooks. Copy the markup examples below when you need the real hooks.</p>
                     <div class="wb-grid-2">
                       <div class="wb-card">
                         <div class="wb-card-header"><h3 class="wb-card-title">Bottom banner preview</h3></div>
                         <div class="wb-card-body wb-stack-4">
-                          <div class="wb-cookie-consent wb-cookie-consent-banner">
+                          <div class="wb-cookie-consent wb-cookie-consent-banner" data-wb-cookie-consent-preview>
                             <div class="wb-cookie-consent-body wb-card">
                               <div class="wb-card-body wb-stack-3">
                                 <div class="wb-split">
@@ -127,12 +127,12 @@
                                       <strong>We use cookies</strong>
                                       <p class="wb-text-sm wb-text-muted">Necessary cookies keep the site running. Optional cookies help us remember preferences and understand usage.</p>
                                     </div>
-                                    <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" aria-label="Close cookie settings"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+                                    <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" aria-label="Close cookie settings" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
                                   </div>
                                   <div class="wb-cookie-consent-actions">
-                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Reject</button>
-                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Customize</button>
-                                    <button class="wb-btn wb-btn-primary wb-btn-sm" type="button">Accept all</button>
+                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Reject</button>
+                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Customize</button>
+                                    <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Accept all</button>
                                   </div>
                                 </div>
                               </div>
@@ -144,7 +144,7 @@
                       <div class="wb-card">
                         <div class="wb-card-header"><h3 class="wb-card-title">Floating card preview</h3></div>
                         <div class="wb-card-body wb-stack-4">
-                          <div class="wb-cookie-consent wb-cookie-consent-card">
+                          <div class="wb-cookie-consent wb-cookie-consent-card" data-wb-cookie-consent-preview>
                             <div class="wb-cookie-consent-body wb-card">
                               <div class="wb-card-body wb-stack-3">
                                 <div class="wb-cookie-consent-header">
@@ -152,12 +152,12 @@
                                     <strong>Cookie settings</strong>
                                     <p class="wb-text-sm wb-text-muted">Use the compact card when the page wants a lighter public-site footprint.</p>
                                   </div>
-                                  <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" aria-label="Close cookie settings"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+                                  <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm wb-cookie-consent-dismiss" type="button" aria-label="Close cookie settings" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
                                 </div>
                                 <div class="wb-cookie-consent-actions">
-                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Reject</button>
-                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Customize</button>
-                                  <button class="wb-btn wb-btn-primary wb-btn-sm" type="button">Accept all</button>
+                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Reject</button>
+                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Customize</button>
+                                  <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Accept all</button>
                                 </div>
                               </div>
                             </div>
