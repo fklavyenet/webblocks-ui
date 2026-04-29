@@ -28,7 +28,6 @@ h6 { font-size: 0.875rem; }
 
 /* ── Paragraph & inline ───────────────────────────────────── */
 p {
-  max-width: 70ch;
   color: var(--wb-text);
 }
 

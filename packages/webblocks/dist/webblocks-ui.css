@@ -1026,7 +1026,6 @@ h6 { font-size: 0.875rem; }
 
 /* ── Paragraph & inline ───────────────────────────────────── */
 p {
-  max-width: 70ch;
   color: var(--wb-text);
 }
 
@@ -8229,7 +8228,7 @@ button.wb-game-card {
   min-width: 0;
 }
 
-.wb-docs-section.wb-docs-prose {
+.wb-docs-section:is(.wb-docs-prose, .wb-prose) {
   width: min(100%, 72ch);
 }
 
@@ -8243,8 +8242,14 @@ button.wb-game-card {
   width: min(100%, 72ch);
 }
 
-.wb-docs-prose {
+.wb-docs-prose,
+.wb-prose {
   width: min(100%, 72ch);
+}
+
+.wb-docs-prose p,
+.wb-prose p {
+  max-width: 70ch;
 }
 
 .wb-docs-wide,

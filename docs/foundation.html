@@ -133,15 +133,20 @@
               <section class="wb-docs-section wb-docs-prose" id="base-element-styling">
                 <h2>Base element styling</h2>
                 <p>Raw HTML already has package styling before you add any primitives. This is where <code>h1-h6</code>, paragraphs, links, code, blockquotes, tables, and focus rings are defined.</p>
+                <p>Paragraph width is no longer globally constrained. Use <code>.wb-prose</code> or the docs alias <code>.wb-docs-prose</code> when a content block needs a calmer reading measure.</p>
                 <div class="wb-card">
                   <div class="wb-card-body wb-stack-4">
                     <h1>Heading Level 1</h1>
                     <h2>Heading Level 2</h2>
                     <h3>Heading Level 3</h3>
-                    <p>A paragraph uses the base body font, line-height, and maximum measure. Inline <code>code</code> and <a href="#">links</a> are already styled at the element layer.</p>
+                    <div class="wb-prose">
+                      <p>A paragraph uses the base body font and line-height. Apply <code>.wb-prose</code> when you want a readable max-width for docs, policies, and other text-first surfaces. Inline <code>code</code> and <a href="#">links</a> are already styled at the element layer.</p>
+                    </div>
                     <blockquote>Foundation handles the default reading feel before any page-level primitive is introduced.</blockquote>
                     <pre><code>&lt;h1&gt;Heading Level 1&lt;/h1&gt;
-&lt;p&gt;Paragraph copy with &lt;code&gt;inline code&lt;/code&gt;.&lt;/p&gt;</code></pre>
+&lt;div class="wb-prose"&gt;
+  &lt;p&gt;Paragraph copy with &lt;code&gt;inline code&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
                   </div>
                 </div>
               </section>

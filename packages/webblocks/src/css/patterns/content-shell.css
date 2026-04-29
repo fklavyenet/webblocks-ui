@@ -95,7 +95,7 @@
   min-width: 0;
 }
 
-.wb-docs-section.wb-docs-prose {
+.wb-docs-section:is(.wb-docs-prose, .wb-prose) {
   width: min(100%, 72ch);
 }
 
@@ -109,8 +109,14 @@
   width: min(100%, 72ch);
 }
 
-.wb-docs-prose {
+.wb-docs-prose,
+.wb-prose {
   width: min(100%, 72ch);
+}
+
+.wb-docs-prose p,
+.wb-prose p {
+  max-width: 70ch;
 }
 
 .wb-docs-wide,
