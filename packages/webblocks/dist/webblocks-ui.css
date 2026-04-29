@@ -2554,9 +2554,7 @@ html[data-mode="dark"] .wb-game-ui {
    ============================================================ */
 
 .wb-alert {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--wb-s3);
+  display: block;
   padding: var(--wb-s3) var(--wb-s4);
   border-radius: var(--wb-r-lg);
   border: 1px solid var(--wb-border);
@@ -2570,17 +2568,30 @@ html[data-mode="dark"] .wb-game-ui {
   margin-bottom: 0;
 }
 
+.wb-alert > * {
+  margin: 0;
+}
+
+.wb-alert > * + * {
+  margin-top: var(--wb-s2);
+}
+
+.wb-alert > .wb-alert-title + * {
+  margin-top: 0;
+}
+
 .wb-alert-icon {
-  flex-shrink: 0;
+  display: inline-block;
   width: 1.1rem;
   height: 1.1rem;
-  margin-top: 0.1em;
+  margin: 0 0 var(--wb-s2);
+  vertical-align: middle;
 }
 
 .wb-alert-title {
   font-weight: 600;
-  margin-bottom: var(--wb-s1);
   display: block;
+  margin: 0 0 var(--wb-s1);
 }
 
 /* ── Variants ─────────────────────────────────────────────── */
@@ -2630,6 +2641,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--wb-s3);
 }
 
 .wb-alert-close {

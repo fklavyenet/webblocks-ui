@@ -279,10 +279,24 @@ Useful modifiers:
 ### Alerts and Callouts
 
 ```html
-<div class="wb-alert wb-alert-info">Info message</div>
-<div class="wb-alert wb-alert-success">Success message</div>
-<div class="wb-alert wb-alert-warning">Warning message</div>
-<div class="wb-alert wb-alert-danger">Error message</div>
+<div class="wb-alert wb-alert-info">
+  <h3 class="wb-alert-title">Info</h3>
+  <p>Info message</p>
+</div>
+
+<div class="wb-alert wb-alert-success">
+  <p>Success message</p>
+</div>
+
+<div class="wb-alert wb-alert-warning">
+  <h3 class="wb-alert-title">Warning</h3>
+  <p>Warning message</p>
+</div>
+
+<div class="wb-alert wb-alert-danger">
+  <h3 class="wb-alert-title">Error</h3>
+  <p>Error message</p>
+</div>
 
 <div class="wb-callout wb-callout-accent">
   <strong class="wb-callout-title">Note</strong>

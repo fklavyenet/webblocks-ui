@@ -204,9 +204,20 @@
                   <div class="wb-card">
                     <div class="wb-card-header"><h3 class="wb-card-title">Alerts</h3></div>
                     <div class="wb-card-body wb-stack-3">
-                      <div class="wb-alert wb-alert-info"><div><strong class="wb-alert-title">Info</strong>Use alerts for contextual system feedback.</div></div>
-                      <div class="wb-alert wb-alert-success"><div><strong class="wb-alert-title">Success</strong>The settings were saved correctly.</div></div>
-                      <div class="wb-alert wb-alert-warning"><div><strong class="wb-alert-title">Warning</strong>Review destructive actions before confirming.</div></div>
+                      <h4>Recommended markup</h4>
+                      <pre><code>&lt;div class="wb-alert wb-alert-info"&gt;
+  &lt;h3 class="wb-alert-title"&gt;Title&lt;/h3&gt;
+  &lt;p&gt;Content...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="wb-alert wb-alert-info"&gt;
+  &lt;p&gt;Content only...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                      <p class="wb-text-sm wb-text-muted wb-m-0">Legacy wrapper markup still renders, but direct semantic headings and paragraphs are now the recommended pattern.</p>
+                      <div class="wb-alert wb-alert-info"><h3 class="wb-alert-title">Info</h3><p>Use alerts for contextual system feedback.</p></div>
+                      <div class="wb-alert wb-alert-success"><h3 class="wb-alert-title">Success</h3><p>The settings were saved correctly.</p></div>
+                      <div class="wb-alert wb-alert-warning"><h3 class="wb-alert-title">Warning</h3><p>Review destructive actions before confirming.</p></div>
+                      <div class="wb-alert wb-alert-info"><p>Content-only alerts work without an extra wrapper or title element.</p></div>
                     </div>
                   </div>
                 </div>
