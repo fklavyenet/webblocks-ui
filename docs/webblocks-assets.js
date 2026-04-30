@@ -4,7 +4,7 @@
   var assetMode = 'local';
   var base = '../packages/webblocks/dist/';
   var brandingBase = '../assets/branding/';
-  var version = '20260424b';
+  var version = window.WebBlocksVersion || 'dev';
 
   function withVersion(path) {
     var separator = path.indexOf('?') === -1 ? '?' : '&';

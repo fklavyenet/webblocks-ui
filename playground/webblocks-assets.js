@@ -3,6 +3,7 @@
 
   var base = '../packages/webblocks/dist/';
   var brandingBase = '../assets/branding/';
+  var version = window.WebBlocksVersion || 'dev';
 
   var assets = {
     css: base + 'webblocks-ui.css',
@@ -10,11 +11,16 @@
     js: base + 'webblocks-ui.js'
   };
 
+  function withVersion(path) {
+    var separator = path.indexOf('?') === -1 ? '?' : '&';
+    return path + separator + 'v=' + version;
+  }
+
   var head = document.head;
 
   [
-    { rel: 'stylesheet', href: assets.css },
-    { rel: 'stylesheet', href: assets.icons },
+    { rel: 'stylesheet', href: withVersion(assets.css) },
+    { rel: 'stylesheet', href: withVersion(assets.icons) },
     { rel: 'icon', href: brandingBase + 'favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     { rel: 'icon', href: brandingBase + 'favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     { rel: 'apple-touch-icon', href: brandingBase + 'apple-touch-icon.png', sizes: '180x180' },
@@ -38,7 +44,7 @@
   head.appendChild(themeColor);
 
   var script = document.createElement('script');
-  script.src = assets.js;
+  script.src = withVersion(assets.js);
   script.defer = true;
   head.appendChild(script);
 

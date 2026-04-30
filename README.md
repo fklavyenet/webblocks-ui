@@ -52,6 +52,9 @@ Start from patterns, not primitives.
 
 - docs pages consume built assets from `packages/webblocks/dist/`
 - docs and playground local asset loaders resolve the built files from `packages/webblocks/dist/`; the playground loader also handles the deeper `playground/` path correctly
+- the single source of truth for the shipped package version is `packages/webblocks/VERSION`
+- update `packages/webblocks/VERSION` before a release or tag so the package banner metadata and docs version label stay in sync
+- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to `webblocks-ui.css`, `webblocks-icons.css`, and `webblocks-ui.js`, and regenerates `docs/version.js`
 - the playground is a thin sandbox layer built on top of shipped WebBlocks primitives, surfaces, and layout utilities
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive
 - `wb-cookie-consent` is the reusable public-site consent pattern; it supports bottom-banner and floating-card entry variants plus one shared `wb-modal` preference center and a required reopen hook

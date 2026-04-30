@@ -6,14 +6,144 @@
 # Usage: ./build.sh
 # ============================================================
 
-set -e
+set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$ROOT/../.." && pwd)"
 DIST="$ROOT/dist"
 CSS_OUT="$DIST/webblocks-ui.css"
 JS_OUT="$DIST/webblocks-ui.js"
+ICONS_OUT="$DIST/webblocks-icons.css"
+VERSION_FILE="$ROOT/VERSION"
+DOCS_VERSION_OUT="$REPO_ROOT/docs/version.js"
+
+if [ ! -f "$VERSION_FILE" ]; then
+  echo "Error: missing version file at $VERSION_FILE" >&2
+  exit 1
+fi
+
+VERSION="$(tr -d '[:space:]' < "$VERSION_FILE")"
+
+if [ -z "$VERSION" ]; then
+  echo "Error: $VERSION_FILE is empty" >&2
+  exit 1
+fi
+
+VERSION_TAG="v$VERSION"
 
 mkdir -p "$DIST"
+
+strip_generated_banner() {
+  local input_file="$1"
+  local output_file="$2"
+
+  awk '
+    BEGIN {
+      stripping = 1
+      in_banner = 0
+    }
+    stripping && $0 == "@charset \"UTF-8\";" {
+      next
+    }
+    stripping && $0 ~ /^\/\*!$/ {
+      in_banner = 1
+      next
+    }
+    in_banner {
+      if ($0 ~ /^[[:space:]]*\*\/$/) {
+        in_banner = 0
+        next
+      }
+      next
+    }
+    {
+      stripping = 0
+      print
+    }
+  ' "$input_file" > "$output_file"
+}
+
+write_css_banner() {
+  cat <<EOF
+@charset "UTF-8";
+/*!
+ * WebBlocks UI $VERSION_TAG (https://webblocksui.com/)
+ * Copyright 2026 WebBlocks UI
+ * Licensed under MIT
+ */
+
+EOF
+}
+
+write_js_banner() {
+  cat <<EOF
+/*!
+ * WebBlocks UI $VERSION_TAG (https://webblocksui.com/)
+ * Copyright 2026 WebBlocks UI
+ * Licensed under MIT
+ */
+
+EOF
+}
+
+add_css_banner() {
+  local file="$1"
+  local stripped_file="$file.stripped"
+  local output_file="$file.banner"
+
+  strip_generated_banner "$file" "$stripped_file"
+  {
+    write_css_banner
+    cat "$stripped_file"
+  } > "$output_file"
+
+  mv "$output_file" "$file"
+  rm -f "$stripped_file"
+}
+
+add_js_banner() {
+  local file="$1"
+  local stripped_file="$file.stripped"
+  local output_file="$file.banner"
+
+  strip_generated_banner "$file" "$stripped_file"
+  {
+    write_js_banner
+    cat "$stripped_file"
+  } > "$output_file"
+
+  mv "$output_file" "$file"
+  rm -f "$stripped_file"
+}
+
+write_docs_version_asset() {
+  mkdir -p "$(dirname "$DOCS_VERSION_OUT")"
+
+  cat > "$DOCS_VERSION_OUT" <<EOF
+(function () {
+  'use strict';
+
+  var version = '$VERSION';
+  var versionTag = '$VERSION_TAG';
+
+  function applyVersion() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-webblocks-version]'), function (node) {
+      node.textContent = version;
+    });
+  }
+
+  window.WebBlocksVersion = version;
+  window.WebBlocksVersionTag = versionTag;
+  document.documentElement.setAttribute('data-webblocks-version', version);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyVersion);
+  } else {
+    applyVersion();
+  }
+})();
+EOF
+}
 
 echo "Building CSS..."
 
@@ -87,6 +217,8 @@ cat \
   "$ROOT/src/css/icons/icons.css" \
   > "$CSS_OUT"
 
+add_css_banner "$CSS_OUT"
+
 CSS_LINES=$(wc -l < "$CSS_OUT")
 echo "  -> dist/webblocks-ui.css  ($CSS_LINES lines)"
 
@@ -117,6 +249,8 @@ cat \
   "$ROOT/src/js/collapse.js" \
   > "$JS_OUT"
 
+add_js_banner "$JS_OUT"
+
 JS_LINES=$(wc -l < "$JS_OUT")
 echo "  -> dist/webblocks-ui.js   ($JS_LINES lines)"
 
@@ -127,6 +261,20 @@ if command -v node &> /dev/null; then
 else
   echo "  -> Skipped (node not found — run: node scripts/build-icons.js)"
 fi
+
+if [ ! -f "$ICONS_OUT" ]; then
+  echo "Error: missing icon output at $ICONS_OUT" >&2
+  exit 1
+fi
+
+add_css_banner "$ICONS_OUT"
+
+ICONS_LINES=$(wc -l < "$ICONS_OUT")
+echo "  -> dist/webblocks-icons.css  ($ICONS_LINES lines)"
+
+echo "Generating docs version asset..."
+write_docs_version_asset
+echo "  -> docs/version.js"
 
 echo ""
 echo "Build complete."

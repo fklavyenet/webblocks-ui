@@ -1,3 +1,9 @@
+/*!
+ * WebBlocks UI v2.4.0 (https://webblocksui.com/)
+ * Copyright 2026 WebBlocks UI
+ * Licensed under MIT
+ */
+
 /* ============================================================
    WebBlocks UI — Storage Utilities (utils/storage.js)
 

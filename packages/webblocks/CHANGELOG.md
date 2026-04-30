@@ -8,6 +8,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- `packages/webblocks/VERSION` is now the single source of truth for the shipped package version, build banners, and generated docs version metadata
+
 ---
 
 ## [2.4.0] — 2026-04-05

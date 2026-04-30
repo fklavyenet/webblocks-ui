@@ -19,9 +19,9 @@ This document is sourced from `packages/webblocks/src/` and `packages/webblocks/
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.4.0/dist/webblocks-ui.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.4.0/dist/webblocks-icons.css">
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.4.0/dist/webblocks-ui.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-icons.css">
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.js" defer></script>
 ```
 
 Notes:
@@ -29,6 +29,7 @@ Notes:
 - `webblocks-icons.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
 - `webblocks-ui.css` already includes tokens, UI primitive source output, layouts, utilities, and the scoped `webgames` extension classes
 - `webblocks-ui.js` exposes `window.*` APIs and data-attribute behavior for interactive patterns
+- replace `<VERSION>` with the value from `packages/webblocks/VERSION` when linking a tagged CDN release
 
 ---
 
