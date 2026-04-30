@@ -8,8 +8,15 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.4.4] — 2026-04-30
+
 ### Added
 - Add Lucide-sourced admin/builder icons to the WebBlocks UI mask-image icon set: `grip-vertical`, `arrow-up`, `arrow-down`, and `arrow-up-down`
+
+### Changed
+- Keep the existing WebBlocks UI icon architecture unchanged: class-based `wb-icon-*` names backed by CSS mask-image data URLs and generated icon CSS
 
 ---
 
