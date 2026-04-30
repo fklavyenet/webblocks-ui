@@ -8,8 +8,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.4.3] — 2026-04-30
+
 ### Changed
 - `packages/webblocks/VERSION` is now the single source of truth for the shipped package version, build banners, and generated docs version metadata
+- `packages/webblocks/build.sh` now prepends official version banners to `webblocks-ui.css`, `webblocks-icons.css`, and `webblocks-ui.js`
+- docs and playground version labels now read from generated `docs/version.js` instead of hardcoded page strings
 
 ---
 
