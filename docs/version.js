@@ -12,7 +12,6 @@
 
   window.WebBlocksVersion = version;
   window.WebBlocksVersionTag = versionTag;
-  document.documentElement.setAttribute('data-webblocks-version', version);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', applyVersion);
