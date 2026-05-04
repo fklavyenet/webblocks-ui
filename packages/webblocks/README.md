@@ -66,9 +66,31 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 - `wb-table-wrap` is the single table surface
 - `wb-section-nav` is the canonical local section navigation pattern
 - `wb-gallery` is the canonical inline media pattern; viewer behavior stays inside one shared `wb-modal`
+- `wb-rich-text` is the canonical primitive for sanitized editorial body copy; keep headings, media, tables, buttons, and page layout outside it
 - `wb-cookie-consent` is the reusable public-site consent pattern; entry UI can be a bottom banner or floating card, and preferences stay inside one shared `wb-modal`
 - in-page `wb-section-nav` active state is runtime-owned; `WBSectionNav` applies `.is-active` and `aria-current="location"` from real hash/scroll state
 - text casing is content-defined; shipped UI should not force uppercase or capitalize
+
+## Rich Text
+
+Use `wb-rich-text` when a host project has already rendered sanitized editorial HTML for body copy.
+
+- supported content: paragraphs, emphasis, inline code, links, simple unordered/ordered lists, and blockquotes
+- optional modifiers: `wb-rich-text-readable`, `wb-rich-text-compact`, `wb-rich-text-loose`
+- keep headings, buttons, media, tables, layout composition, and raw HTML handling outside this primitive
+
+```html
+<div class="wb-rich-text wb-rich-text-readable">
+  <p>Editorial body copy with <strong>strong emphasis</strong>, <em>tone</em>, <code>inline code</code>, and <a href="#">links</a>.</p>
+  <ul>
+    <li>Safe unordered list item</li>
+    <li>Another list item</li>
+  </ul>
+  <blockquote>
+    <p>Use this primitive for readable body copy, not for page layout or rich app widgets.</p>
+  </blockquote>
+</div>
+```
 
 ## JavaScript Modules
 

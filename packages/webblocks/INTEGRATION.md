@@ -62,6 +62,7 @@ Use these nouns first in examples, reviews, and generated markup:
 - shell-local surfaces: `wb-page-header`, `wb-settings-section`
 - controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-media`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
 - navigation: `wb-navbar`, `wb-sidebar`, `wb-section-nav`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
+- editorial body copy: `wb-rich-text`
 
 ### Classification Rule
 
@@ -306,6 +307,49 @@ Useful modifiers:
 ```
 
 For dismissible alerts, use `data-wb-dismiss="alert"` on the close button.
+
+### Rich Text
+
+Use `wb-rich-text` when sanitized editorial body copy has already been rendered to standard HTML.
+
+Supported body-copy elements in the shipped contract:
+
+- `p`
+- `a`
+- `strong`
+- `em`
+- `code`
+- `ul`
+- `ol`
+- `li`
+- `blockquote`
+
+Optional modifiers:
+
+- `wb-rich-text-readable` - opt-in readable measure around `70ch`
+- `wb-rich-text-compact` - tighter vertical rhythm
+- `wb-rich-text-loose` - more generous vertical rhythm
+
+Rules:
+
+- keep headings, buttons, media, tables, figures, and page layout outside this primitive
+- do not treat `wb-rich-text` as a replacement for `wb-stack`, `wb-content-shell`, or app-level content composition
+- the primitive is CSS-only; no JavaScript hook or editor behavior ships with it
+
+```html
+<div class="wb-rich-text wb-rich-text-readable">
+  <p>Body copy with <strong>strong text</strong>, <em>emphasis</em>, <code>inline code</code>, and <a href="#">links</a>.</p>
+
+  <ul>
+    <li>Unordered list item</li>
+    <li>Another list item</li>
+  </ul>
+
+  <blockquote>
+    <p>Use `wb-rich-text` for readable editorial copy after sanitization, not for arbitrary rich embeds or layout.</p>
+  </blockquote>
+</div>
+```
 
 ### Forms
 

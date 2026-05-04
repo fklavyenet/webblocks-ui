@@ -63,6 +63,7 @@
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#actions-and-signals">Actions and signals</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#forms">Forms</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#surfaces-and-display">Surfaces and display</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#editorial-body-copy">Editorial body copy</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pagination-and-context">Pagination and context</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#interaction-shells">Interaction shells</a></li>
             </ul>
@@ -237,6 +238,54 @@
                   </table>
                 </div>
                 <p class="wb-text-sm wb-text-muted wb-m-0"><a href="../playground/">Open in Playground</a> when you want to combine these primitives into a real snippet before wiring them into a full page. Use <code>td.wb-text-end</code> directly when an action cell only needs end alignment.</p>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="editorial-body-copy">
+                <h2>Editorial body copy</h2>
+                <p><code>wb-rich-text</code> is the CSS-only primitive for sanitized editorial body copy after safe Markdown-like content has already been rendered to HTML. Keep headings, buttons, media, tables, layout composition, and raw HTML handling outside this primitive.</p>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Readable body copy</h3></div>
+                    <div class="wb-card-body">
+                      <div class="wb-rich-text wb-rich-text-readable">
+                        <p>Use this primitive for longer editorial copy where paragraphs, <strong>strong emphasis</strong>, <em>tone shifts</em>, <code>inline code</code>, and <a href="#">links</a> should stay readable without leaking typography rules into the global page.</p>
+                        <p>The readable modifier keeps the measure calm and intentional, but the width limit stays opt-in on the wrapper instead of being pushed onto every paragraph in the system.</p>
+                        <ul>
+                          <li>Supports safe unordered lists.</li>
+                          <li>Keeps spacing predictable inside one scoped primitive.</li>
+                        </ul>
+                        <ol>
+                          <li>Render sanitized content first.</li>
+                          <li>Apply <code>wb-rich-text</code> to the output wrapper.</li>
+                        </ol>
+                        <blockquote>
+                          <p>Rich text is a body-copy contract, not a page builder. Compose headings, media blocks, tables, and actions with their own shipped primitives and patterns.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Rhythm variants</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <div>
+                        <p class="wb-text-sm wb-text-muted wb-mb-2"><code>wb-rich-text wb-rich-text-compact</code></p>
+                        <div class="wb-rich-text wb-rich-text-compact">
+                          <p>Compact rhythm fits denser panels, side notes, and shorter editorial summaries.</p>
+                          <p>Paragraph spacing tightens while list and quote behavior stays scoped to the same primitive.</p>
+                        </div>
+                      </div>
+                      <div>
+                        <p class="wb-text-sm wb-text-muted wb-mb-2"><code>wb-rich-text wb-rich-text-loose</code></p>
+                        <div class="wb-rich-text wb-rich-text-loose">
+                          <p>Loose rhythm gives longer reading surfaces more air.</p>
+                          <blockquote>
+                            <p>Use it when the page wants calmer editorial pacing, not when you need a new layout wrapper.</p>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </section>
 
               <section class="wb-docs-section wb-docs-wide" id="pagination-and-context">
