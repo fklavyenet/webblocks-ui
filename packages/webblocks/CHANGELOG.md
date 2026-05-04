@@ -8,8 +8,15 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.5.0] — 2026-05-04
+
 ### Added
 - Add `wb-rich-text` as a CSS-only primitive for sanitized editorial body copy, including opt-in readable measure and compact/loose rhythm modifiers
+
+### Changed
+- Add canonical docs, primitive-boundary guidance, and package integration coverage for the new scoped editorial body-copy contract
 
 ---
 

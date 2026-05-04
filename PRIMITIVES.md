@@ -78,6 +78,7 @@ Canonical primitive families include:
 - drawer
 - radio-card
 - action controls
+- local editorial body copy
 - icons
 
 Examples:
@@ -90,10 +91,20 @@ Examples:
 - `wb-dropdown`
 - `wb-tabs`
 - `wb-pagination`
+- `wb-rich-text`
 
 Primitives are controls and local UI contracts.
 
 They are not framed content regions.
+
+`wb-rich-text` is a CSS-only scoped typography primitive for sanitized editorial body copy.
+
+Boundary rules for `wb-rich-text`:
+
+- it is not a layout helper or a replacement for `wb-stack`
+- it is not a pattern and it is not a WYSIWYG/editor contract
+- it scopes body-copy rules to one wrapper instead of changing global typography
+- headings, media, tables, buttons, figures, and larger composition blocks stay in their own primitives, surfaces, or patterns
 
 Overlay boundary inside primitives:
 
