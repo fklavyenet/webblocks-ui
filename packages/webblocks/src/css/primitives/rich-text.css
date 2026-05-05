@@ -7,10 +7,6 @@
   font-size: var(--wb-font-size-md);
 }
 
-.wb-rich-text-readable {
-  max-inline-size: 70ch;
-}
-
 .wb-rich-text > :where(p, ul, ol, blockquote) {
   margin-block: 0;
 }

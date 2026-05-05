@@ -326,7 +326,7 @@ Supported body-copy elements in the shipped contract:
 
 Optional modifiers:
 
-- `wb-rich-text-readable` - opt-in readable measure around `70ch`
+- `wb-rich-text-readable` - keep the standard readable body-copy treatment without adding a width clamp
 - `wb-rich-text-compact` - tighter vertical rhythm
 - `wb-rich-text-loose` - more generous vertical rhythm
 
@@ -334,6 +334,7 @@ Rules:
 
 - keep headings, buttons, media, tables, figures, and page layout outside this primitive
 - do not treat `wb-rich-text` as a replacement for `wb-stack`, `wb-content-shell`, or app-level content composition
+- let the parent layout, shell, or container own width decisions; rich-text modifiers should only affect body-copy presentation
 - the primitive is CSS-only; no JavaScript hook or editor behavior ships with it
 
 ```html
@@ -346,7 +347,7 @@ Rules:
   </ul>
 
   <blockquote>
-    <p>Use `wb-rich-text` for readable editorial copy after sanitization, not for arbitrary rich embeds or layout.</p>
+    <p>Use `wb-rich-text` for readable editorial copy after sanitization, not for arbitrary rich embeds, layout, or width control.</p>
   </blockquote>
 </div>
 ```

@@ -8,6 +8,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Remove the fixed `70ch` readable-width clamp from `wb-rich-text-readable` so parent layouts and containers own width decisions
+
 ---
 
 ## [2.5.0] — 2026-05-04

@@ -78,6 +78,7 @@ Use `wb-rich-text` when a host project has already rendered sanitized editorial 
 - supported content: paragraphs, emphasis, inline code, links, simple unordered/ordered lists, and blockquotes
 - optional modifiers: `wb-rich-text-readable`, `wb-rich-text-compact`, `wb-rich-text-loose`
 - keep headings, buttons, media, tables, layout composition, and raw HTML handling outside this primitive
+- let the parent layout or container own width; `wb-rich-text-readable` does not clamp measure
 
 ```html
 <div class="wb-rich-text wb-rich-text-readable">
@@ -87,7 +88,7 @@ Use `wb-rich-text` when a host project has already rendered sanitized editorial 
     <li>Another list item</li>
   </ul>
   <blockquote>
-    <p>Use this primitive for readable body copy, not for page layout or rich app widgets.</p>
+    <p>Use this primitive for readable body copy rhythm, not for page layout or width management.</p>
   </blockquote>
 </div>
 ```
