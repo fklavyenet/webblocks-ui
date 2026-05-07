@@ -2940,6 +2940,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 /* ── Field (label + control + meta) ─────────────────────── */
 .wb-field,
+/* Compatibility alias added in v2.6.0. Prefer wb-field in new markup. */
 .wb-form-field {
   display: grid;
   gap: var(--wb-s2);
@@ -2963,25 +2964,16 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   min-height: calc(var(--wb-font-size-xs) * var(--wb-line-height-base));
 }
 
-.wb-field-hint {
-  font-size: var(--wb-font-size-xs);
-  line-height: var(--wb-line-height-base);
-  color: var(--wb-muted);
-}
-
+.wb-field-hint,
+/* Compatibility alias added in v2.6.0. Prefer wb-field-hint in new markup. */
 .wb-form-help {
   font-size: var(--wb-font-size-xs);
   line-height: var(--wb-line-height-base);
   color: var(--wb-muted);
 }
 
-.wb-field-error {
-  font-size: var(--wb-font-size-xs);
-  line-height: var(--wb-line-height-base);
-  color: var(--wb-danger);
-  font-weight: 500;
-}
-
+.wb-field-error,
+/* Compatibility alias added in v2.6.0. Prefer wb-field-error in new markup. */
 .wb-form-error {
   font-size: var(--wb-font-size-xs);
   line-height: var(--wb-line-height-base);
@@ -3189,6 +3181,8 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   gap: var(--wb-s4);
 }
 
+/* Convenience form layout aliases added in v2.6.0.
+   Prefer wb-stack-* and wb-grid-2 where those primitives already fit. */
 .wb-form-grid {
   display: grid;
   gap: var(--wb-s4);
@@ -3200,6 +3194,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   gap: var(--wb-s4);
 }
 
+/* Compatibility helper: prefer wb-card plus explicit wb-stack-* or wb-grid-* on the body. */
 .wb-form-card .wb-card-body {
   display: grid;
   gap: var(--wb-s5);
@@ -3234,6 +3229,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   color: var(--wb-muted);
 }
 
+/* Compatibility helper: prefer wb-card-footer or wb-settings-section-footer in new markup. */
 .wb-form-footer {
   display: flex;
   align-items: center;
@@ -3242,6 +3238,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   flex-wrap: wrap;
 }
 
+/* Compatibility helper: prefer wb-action-group in new markup. */
 .wb-form-actions {
   display: flex;
   align-items: center;
@@ -3249,6 +3246,9 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
   flex-wrap: wrap;
 }
 
+.wb-card-footer .wb-action-group,
+.wb-settings-section-footer .wb-action-group,
+.wb-form-footer .wb-action-group,
 .wb-card-footer .wb-form-actions,
 .wb-form-footer .wb-form-actions {
   margin-inline-start: auto;
@@ -5153,6 +5153,7 @@ button.wb-pagination-link {
 /* ── Action button (icon-only) ────────────────────────────── */
 
 .wb-action-btn,
+/* Compatibility alias added in v2.6.0. Prefer wb-action-btn in new markup. */
 .wb-action-icon {
   display: inline-flex;
   align-items: center;
@@ -5173,13 +5174,7 @@ button.wb-pagination-link {
   flex-shrink: 0;
 }
 
-.wb-action-btn:hover {
-  background: var(--wb-surface-2);
-  border-color: var(--wb-border);
-  color: var(--wb-text);
-  text-decoration: none;
-}
-
+.wb-action-btn:hover,
 .wb-action-icon:hover {
   background: var(--wb-surface-2);
   border-color: var(--wb-border);
@@ -5187,11 +5182,7 @@ button.wb-pagination-link {
   text-decoration: none;
 }
 
-.wb-action-btn:focus-visible {
-  outline: 2px solid var(--wb-primary);
-  outline-offset: 2px;
-}
-
+.wb-action-btn:focus-visible,
 .wb-action-icon:focus-visible {
   outline: 2px solid var(--wb-primary);
   outline-offset: 2px;
@@ -7589,6 +7580,8 @@ button.wb-game-card {
   text-decoration: none;
 }
 
+/* Manual separator escape hatch kept for compatibility.
+   Prefer the built-in item pseudo-element separators in new markup. */
 .wb-breadcrumb-separator {
   display: inline-flex;
   align-items: center;
@@ -7860,6 +7853,7 @@ button.wb-game-card {
 }
 
 .wb-page-breadcrumb,
+/* Compatibility alias added in v2.6.0. Prefer wb-page-breadcrumb in new markup. */
 .wb-page-breadcrumbs {
   margin: 0;
   min-width: 0;
@@ -8072,6 +8066,7 @@ button.wb-game-card {
   flex-wrap: wrap;
 }
 
+.wb-settings-section-footer .wb-action-group,
 .wb-settings-section-footer .wb-form-actions {
   margin-inline-start: auto;
 }

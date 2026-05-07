@@ -16,6 +16,7 @@
 /* ── Action button (icon-only) ────────────────────────────── */
 
 .wb-action-btn,
+/* Compatibility alias added in v2.6.0. Prefer wb-action-btn in new markup. */
 .wb-action-icon {
   display: inline-flex;
   align-items: center;
@@ -36,13 +37,7 @@
   flex-shrink: 0;
 }
 
-.wb-action-btn:hover {
-  background: var(--wb-surface-2);
-  border-color: var(--wb-border);
-  color: var(--wb-text);
-  text-decoration: none;
-}
-
+.wb-action-btn:hover,
 .wb-action-icon:hover {
   background: var(--wb-surface-2);
   border-color: var(--wb-border);
@@ -50,11 +45,7 @@
   text-decoration: none;
 }
 
-.wb-action-btn:focus-visible {
-  outline: 2px solid var(--wb-primary);
-  outline-offset: 2px;
-}
-
+.wb-action-btn:focus-visible,
 .wb-action-icon:focus-visible {
   outline: 2px solid var(--wb-primary);
   outline-offset: 2px;

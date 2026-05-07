@@ -8,6 +8,10 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- audit the v2.6.0 admin standards class surface so docs and examples now prefer existing `wb-card`, `wb-card-footer`, `wb-field`, `wb-field-hint`, `wb-field-error`, `wb-action-group`, `wb-grid-2`, `wb-stack-*`, and `wb-page-breadcrumb` classes where they already cover the same job
+- keep newer v2.6.0 aliases such as `wb-page-breadcrumbs`, `wb-form-field`, `wb-form-help`, `wb-form-error`, `wb-form-footer`, `wb-form-actions`, `wb-form-card`, `wb-form-grid`, `wb-form-grid-2`, `wb-breadcrumb-separator`, and `wb-action-icon` as compatibility classes instead of preferred API guidance
+
 ---
 
 ## [2.6.0] — 2026-05-07

@@ -22,6 +22,7 @@
 
 /* ── Field (label + control + meta) ─────────────────────── */
 .wb-field,
+/* Compatibility alias added in v2.6.0. Prefer wb-field in new markup. */
 .wb-form-field {
   display: grid;
   gap: var(--wb-s2);
@@ -45,25 +46,16 @@
   min-height: calc(var(--wb-font-size-xs) * var(--wb-line-height-base));
 }
 
-.wb-field-hint {
-  font-size: var(--wb-font-size-xs);
-  line-height: var(--wb-line-height-base);
-  color: var(--wb-muted);
-}
-
+.wb-field-hint,
+/* Compatibility alias added in v2.6.0. Prefer wb-field-hint in new markup. */
 .wb-form-help {
   font-size: var(--wb-font-size-xs);
   line-height: var(--wb-line-height-base);
   color: var(--wb-muted);
 }
 
-.wb-field-error {
-  font-size: var(--wb-font-size-xs);
-  line-height: var(--wb-line-height-base);
-  color: var(--wb-danger);
-  font-weight: 500;
-}
-
+.wb-field-error,
+/* Compatibility alias added in v2.6.0. Prefer wb-field-error in new markup. */
 .wb-form-error {
   font-size: var(--wb-font-size-xs);
   line-height: var(--wb-line-height-base);
@@ -271,6 +263,8 @@
   gap: var(--wb-s4);
 }
 
+/* Convenience form layout aliases added in v2.6.0.
+   Prefer wb-stack-* and wb-grid-2 where those primitives already fit. */
 .wb-form-grid {
   display: grid;
   gap: var(--wb-s4);
@@ -282,6 +276,7 @@
   gap: var(--wb-s4);
 }
 
+/* Compatibility helper: prefer wb-card plus explicit wb-stack-* or wb-grid-* on the body. */
 .wb-form-card .wb-card-body {
   display: grid;
   gap: var(--wb-s5);
@@ -316,6 +311,7 @@
   color: var(--wb-muted);
 }
 
+/* Compatibility helper: prefer wb-card-footer or wb-settings-section-footer in new markup. */
 .wb-form-footer {
   display: flex;
   align-items: center;
@@ -324,6 +320,7 @@
   flex-wrap: wrap;
 }
 
+/* Compatibility helper: prefer wb-action-group in new markup. */
 .wb-form-actions {
   display: flex;
   align-items: center;
@@ -331,6 +328,9 @@
   flex-wrap: wrap;
 }
 
+.wb-card-footer .wb-action-group,
+.wb-settings-section-footer .wb-action-group,
+.wb-form-footer .wb-action-group,
 .wb-card-footer .wb-form-actions,
 .wb-form-footer .wb-form-actions {
   margin-inline-start: auto;
