@@ -8,8 +8,12 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Add canonical admin standards docs covering page headers, breadcrumbs, form cards, form footers, detail lists, action columns, danger zones, and health-notice presentation guidance
+
 ### Changed
 - Remove the fixed `70ch` readable-width clamp from `wb-rich-text-readable` so parent layouts and containers own width decisions
+- Existing page, card, form, table, and action primitives now document and support clearer admin-oriented aliases and helper classes such as `wb-page-title`, `wb-page-description`, `wb-form-grid-2`, `wb-form-footer`, `wb-detail-list`, `wb-table-actions`, and `wb-danger-zone`
 
 ---
 

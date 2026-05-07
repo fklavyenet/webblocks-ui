@@ -28,6 +28,7 @@
               <a href="patterns.html" class="wb-nav-group-item">Overview</a>
               <a href="pattern-dashboard-shell.html" class="wb-nav-group-item is-active">Dashboard Shell</a>
               <a href="pattern-settings-shell.html" class="wb-nav-group-item">Settings Shell</a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
               <a href="pattern-auth-shell.html" class="wb-nav-group-item">Auth Shell</a>
               <a href="pattern-content-shell.html" class="wb-nav-group-item">Content Shell</a>
               <a href="pattern-breadcrumb.html" class="wb-nav-group-item">Breadcrumb</a>
@@ -55,16 +56,22 @@
       </header>
 
       <main class="wb-dashboard-main">
-        <div class="wb-stack-6">
-          <div class="wb-page-header">
-            <div class="wb-page-header-main">
-              <div>
-                <h1 class="wb-page-header-title">Operations overview</h1>
-                <p class="wb-page-subtitle">Monitor workspaces, members, billing, and queue health from one application frame.</p>
+          <div class="wb-stack-6">
+            <div class="wb-page-header">
+              <div class="wb-page-header-main">
+                <nav class="wb-page-breadcrumbs wb-breadcrumb" aria-label="Dashboard hierarchy">
+                  <ol class="wb-breadcrumb-list">
+                    <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+                    <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Operations overview</span></li>
+                  </ol>
+                </nav>
+                <div>
+                  <h1 class="wb-page-title">Operations overview</h1>
+                  <p class="wb-page-description">Monitor workspaces, members, billing, and queue health from one application frame. Header actions stay contextual; row and form actions stay closer to the content they affect.</p>
+                </div>
               </div>
+              <div class="wb-page-actions"><a href="pattern-admin-standards.html" class="wb-btn wb-btn-outline wb-btn-sm">Admin standard</a><a href="pattern-settings-shell.html" class="wb-btn wb-btn-secondary wb-btn-sm">Open settings shell</a></div>
             </div>
-            <div class="wb-page-actions"><a href="pattern-settings-shell.html" class="wb-btn wb-btn-outline wb-btn-sm">Open settings shell</a><button class="wb-btn wb-btn-primary wb-btn-sm">Create workspace</button></div>
-          </div>
 
           <div class="wb-stat-row">
             <div class="wb-stat"><span class="wb-stat-label">Active workspaces</span><strong class="wb-stat-value">124</strong><span class="wb-stat-delta wb-stat-delta-up">+8 this week</span></div>
@@ -73,23 +80,23 @@
             <div class="wb-stat"><span class="wb-stat-label">Incident queue</span><strong class="wb-stat-value">4</strong><span class="wb-stat-delta wb-stat-delta-down">2 urgent</span></div>
           </div>
 
-          <section class="wb-card wb-card-flat">
-            <div class="wb-card-header"><h2 class="wb-card-title">Workspace activity</h2><a href="pattern-content-shell.html" class="wb-action-link">Open content shell</a></div>
-            <div class="wb-card-body wb-stack-4">
-              <div class="wb-filter-bar">
-                <div class="wb-filter-bar-start"><div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Search workspaces"></div><select class="wb-filter-select"><option>All plans</option><option>Starter</option><option>Growth</option><option>Enterprise</option></select><button class="wb-filter-chip is-active">Live</button><button class="wb-filter-chip">Needs review</button></div>
+            <section class="wb-card wb-card-flat">
+              <div class="wb-card-header"><div><h2 class="wb-card-title">Workspace activity</h2><p class="wb-card-description">Index tables should keep a clearly named final <code>Actions</code> column and let long summaries wrap naturally.</p></div><a href="pattern-content-shell.html" class="wb-action-link">Open content shell</a></div>
+              <div class="wb-card-body wb-stack-4">
+                <div class="wb-filter-bar">
+                  <div class="wb-filter-bar-start"><div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Search workspaces"></div><select class="wb-filter-select"><option>All plans</option><option>Starter</option><option>Growth</option><option>Enterprise</option></select><button class="wb-filter-chip is-active">Live</button><button class="wb-filter-chip">Needs review</button></div>
+                </div>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-hover">
+                    <thead><tr><th>Workspace</th><th>Owner</th><th>Status</th><th>Summary</th><th>Plan</th><th class="wb-table-actions">Actions</th></tr></thead>
+                    <tbody>
+                      <tr><td>Atlas EU</td><td>Mina Ray</td><td><span class="wb-status-pill wb-status-active">Healthy</span></td><td>Primary production workspace with billing, invites, and queue workers all matching the expected baseline.</td><td>Enterprise</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace" title="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace" title="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                      <tr><td>Studio North</td><td>Emre Aksoy</td><td><span class="wb-status-pill wb-status-pending">Healthy with notices</span></td><td>Core infrastructure is healthy. Optional outbound webhook delivery is paused while the destination is being replaced.</td><td>Growth</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace" title="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace" title="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                      <tr><td>Docs Lab</td><td>Alice Brown</td><td><span class="wb-status-pill wb-status-info">Queued</span></td><td>Provisioning is still running, so health checks have not started yet.</td><td>Starter</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace" title="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-delete" aria-label="Archive workspace" title="Archive workspace"><i class="wb-icon wb-icon-x"></i></a></div></td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              <div class="wb-table-wrap">
-                <table class="wb-table wb-table-hover">
-                  <thead><tr><th>Workspace</th><th>Owner</th><th>Status</th><th>Plan</th><th>Actions</th></tr></thead>
-                  <tbody>
-                    <tr><td>Atlas EU</td><td>Mina Ray</td><td><span class="wb-status-pill wb-status-active">Active</span></td><td>Enterprise</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
-                    <tr><td>Studio North</td><td>Emre Aksoy</td><td><span class="wb-status-pill wb-status-pending">Pending</span></td><td>Growth</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit workspace"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
-                    <tr><td>Docs Lab</td><td>Alice Brown</td><td><span class="wb-status-pill wb-status-info">Queued</span></td><td>Starter</td><td><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View workspace"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-delete" aria-label="Archive workspace"><i class="wb-icon wb-icon-x"></i></a></div></td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
             <div class="wb-card-footer"><span class="wb-filter-results">12 workspaces</span></div>
           </section>
         </div>

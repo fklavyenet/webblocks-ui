@@ -117,3 +117,13 @@
 .wb-filter-row .wb-select {
   max-width: 220px;
 }
+
+.wb-table-actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.wb-table-actions .wb-action-group {
+  justify-content: flex-end;
+}

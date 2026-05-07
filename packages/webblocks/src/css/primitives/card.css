@@ -19,11 +19,22 @@
   gap: var(--wb-s3);
 }
 
+.wb-card-header > * {
+  min-width: 0;
+}
+
 .wb-card-title {
   font-size: 1rem;
   font-weight: 600;
   color: var(--wb-text);
   margin: 0;
+}
+
+.wb-card-description {
+  margin: var(--wb-s1) 0 0;
+  font-size: 0.85rem;
+  line-height: var(--wb-line-height-base);
+  color: var(--wb-muted);
 }
 
 .wb-card-body {
@@ -36,7 +47,74 @@
   background: var(--wb-surface-2);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--wb-s2);
+  flex-wrap: wrap;
+}
+
+.wb-detail-list {
+  display: grid;
+  gap: 0;
+}
+
+.wb-detail-row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr);
+  gap: var(--wb-s2) var(--wb-s4);
+  padding: var(--wb-s3) 0;
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-detail-row:last-child {
+  border-bottom: none;
+}
+
+.wb-detail-label {
+  font-size: var(--wb-font-size-xs);
+  font-weight: 600;
+  line-height: var(--wb-line-height-base);
+  color: var(--wb-muted);
+}
+
+.wb-detail-value {
+  min-width: 0;
+  color: var(--wb-text);
+  overflow-wrap: anywhere;
+}
+
+.wb-detail-value-mono {
+  font-family: var(--wb-font-mono);
+  font-size: 0.875rem;
+}
+
+.wb-danger-zone {
+  border-color: color-mix(in srgb, var(--wb-danger) 32%, var(--wb-border));
+  background: color-mix(in srgb, var(--wb-danger-soft) 24%, var(--wb-surface) 76%);
+}
+
+.wb-danger-zone .wb-card-header,
+.wb-danger-zone .wb-card-footer {
+  border-color: color-mix(in srgb, var(--wb-danger) 22%, var(--wb-border));
+}
+
+.wb-danger-zone .wb-card-title,
+.wb-danger-zone-title {
+  color: var(--wb-danger);
+}
+
+.wb-danger-zone-description {
+  margin: var(--wb-s1) 0 0;
+  font-size: 0.85rem;
+  line-height: var(--wb-line-height-base);
+  color: color-mix(in srgb, var(--wb-danger) 72%, var(--wb-muted));
+}
+
+.wb-danger-zone-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-wrap: wrap;
+  margin-inline-start: auto;
 }
 
 /* ── Shorthand: card without header/footer structure ─────── */
@@ -103,3 +181,9 @@
 .wb-stat-up    { color: var(--wb-success); font-size: 0.8rem; font-weight: 500; }
 .wb-stat-down  { color: var(--wb-danger);  font-size: 0.8rem; font-weight: 500; }
 .wb-stat-bar   { margin-top: var(--wb-s3); }
+
+@media (max-width: 640px) {
+  .wb-detail-row {
+    grid-template-columns: 1fr;
+  }
+}

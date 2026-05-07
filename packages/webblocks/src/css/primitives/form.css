@@ -21,7 +21,8 @@
 }
 
 /* ── Field (label + control + meta) ─────────────────────── */
-.wb-field {
+.wb-field,
+.wb-form-field {
   display: grid;
   gap: var(--wb-s2);
   align-content: start;
@@ -29,7 +30,8 @@
 
 /* Keep the field contract singular: assistive content belongs only in wb-field-meta.
    Reserve empty meta height only in aligned wb-form-row layouts, not in dense stacked forms. */
-.wb-field > :not(.wb-field-meta) {
+.wb-field > :not(.wb-field-meta),
+.wb-form-field > :not(.wb-field-meta) {
   min-width: 0;
 }
 
@@ -49,11 +51,43 @@
   color: var(--wb-muted);
 }
 
+.wb-form-help {
+  font-size: var(--wb-font-size-xs);
+  line-height: var(--wb-line-height-base);
+  color: var(--wb-muted);
+}
+
 .wb-field-error {
   font-size: var(--wb-font-size-xs);
   line-height: var(--wb-line-height-base);
   color: var(--wb-danger);
   font-weight: 500;
+}
+
+.wb-form-error {
+  font-size: var(--wb-font-size-xs);
+  line-height: var(--wb-line-height-base);
+  color: var(--wb-danger);
+  font-weight: 500;
+}
+
+.wb-form-error-summary {
+  display: grid;
+  gap: var(--wb-s2);
+  padding: var(--wb-s4);
+  border: 1px solid color-mix(in srgb, var(--wb-danger) 22%, var(--wb-border));
+  border-radius: var(--wb-r-md);
+  background: var(--wb-danger-soft);
+  color: color-mix(in srgb, var(--wb-danger) 88%, var(--wb-text));
+}
+
+.wb-form-error-summary strong {
+  font-size: 0.9rem;
+}
+
+.wb-form-error-summary ul {
+  margin: 0;
+  padding-left: 1.25rem;
 }
 
 /* ── Text inputs ──────────────────────────────────────────── */
@@ -104,6 +138,12 @@
 .wb-textarea-error:focus {
   border-color: var(--wb-danger);
   box-shadow: 0 0 0 3px var(--wb-danger-soft);
+}
+
+.wb-input-mono {
+  font-family: var(--wb-font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
 }
 
 /* ── Textarea ─────────────────────────────────────────────── */
@@ -230,8 +270,77 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--wb-s4);
 }
+
+.wb-form-grid {
+  display: grid;
+  gap: var(--wb-s4);
+}
+
+.wb-form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--wb-s4);
+}
+
+.wb-form-card .wb-card-body {
+  display: grid;
+  gap: var(--wb-s5);
+}
+
+.wb-form-section {
+  display: grid;
+  gap: var(--wb-s4);
+}
+
+.wb-form-section + .wb-form-section {
+  padding-top: var(--wb-s5);
+  border-top: 1px solid var(--wb-border);
+}
+
+.wb-form-section-header {
+  display: grid;
+  gap: var(--wb-s1);
+}
+
+.wb-form-section-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--wb-text);
+}
+
+.wb-form-section-description {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: var(--wb-line-height-base);
+  color: var(--wb-muted);
+}
+
+.wb-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+  flex-wrap: wrap;
+}
+
+.wb-form-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--wb-s2);
+  flex-wrap: wrap;
+}
+
+.wb-card-footer .wb-form-actions,
+.wb-form-footer .wb-form-actions {
+  margin-inline-start: auto;
+}
 @media (max-width: 600px) {
   .wb-form-row { grid-template-columns: 1fr; }
+
+  .wb-form-grid-2 {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── Form group (label + fields in a row) ─────────────────── */

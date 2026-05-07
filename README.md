@@ -44,6 +44,7 @@ Start from patterns, not primitives.
 - repository entry: `index.html`
 - docs: `docs/index.html`
 - pattern examples: `docs/patterns.html`
+- admin standards: `docs/pattern-admin-standards.html`
 - gallery pattern: `docs/pattern-gallery.html`
 - cookie consent pattern: `docs/pattern-cookie-consent.html`
 - playground: `playground/`
@@ -58,8 +59,11 @@ Start from patterns, not primitives.
 - the playground is a thin sandbox layer built on top of shipped WebBlocks primitives, surfaces, and layout utilities
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive
 - `wb-cookie-consent` is the reusable public-site consent pattern; it supports bottom-banner and floating-card entry variants plus one shared `wb-modal` preference center and a required reopen hook
+- the admin standards page documents the canonical admin page header, breadcrumb, form-card, form-footer, detail-list, action-column, and danger-zone rules used by the docs examples
 - long-form docs pages now use `wb-section-nav` for local section indexes, with runtime-driven active state tied to the real current section instead of static markup
 - `wb-table-wrap` is the single table surface; toolbars inside it stay control rows and table headers stay header bands
+- admin index tables should keep an explicit `Actions` header and use `wb-table-actions` for the final action column alignment
+- page-level submit actions should stay in the owning form or card footer; page headers are for navigation and context actions only
 - text casing is content-defined; shipped UI should not automatically uppercase or capitalize content
 
 ## Cookie Consent
