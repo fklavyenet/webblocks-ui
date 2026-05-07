@@ -8,6 +8,10 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.6.0] — 2026-05-07
+
 ### Added
 - Add canonical admin standards docs covering page headers, breadcrumbs, form cards, form footers, detail lists, action columns, danger zones, and health-notice presentation guidance
 
