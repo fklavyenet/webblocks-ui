@@ -61,6 +61,7 @@
 }
 
 .wb-page-breadcrumb,
+/* Compatibility alias added in v2.6.0. Prefer wb-page-breadcrumb in new markup. */
 .wb-page-breadcrumbs {
   margin: 0;
   min-width: 0;

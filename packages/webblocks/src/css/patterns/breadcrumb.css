@@ -84,6 +84,8 @@
   text-decoration: none;
 }
 
+/* Manual separator escape hatch kept for compatibility.
+   Prefer the built-in item pseudo-element separators in new markup. */
 .wb-breadcrumb-separator {
   display: inline-flex;
   align-items: center;

@@ -82,17 +82,17 @@
                 <div class="wb-docs-flow">
                   <section class="wb-docs-section wb-docs-prose" id="overview">
                     <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Standard goal</strong> Page title and breadcrumb explain where the user is. Cards and sections explain what they can do next. Submit actions belong to the form they submit, not to the global page header.</div>
-                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Job</th><th>Primary pattern</th><th>Rule</th></tr></thead><tbody><tr><td>Admin create or edit page</td><td><code>wb-page-header</code> + <code>wb-card wb-form-card</code></td><td>Keep the page <code>h1</code> outside cards and group fields by purpose.</td></tr><tr><td>Detail page</td><td><code>wb-detail-list</code> + supporting cards</td><td>Use label/value rows instead of loose paragraphs.</td></tr><tr><td>Index table</td><td><code>wb-table</code> + <code>wb-table-actions</code></td><td>Always label the final column <code>Actions</code>.</td></tr><tr><td>Destructive action</td><td><code>wb-danger-zone</code></td><td>Keep it in the final card with a specific consequence label.</td></tr></tbody></table></div>
-                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Class</th><th>Purpose</th><th>Notes</th></tr></thead><tbody><tr><td><code>wb-page-header</code>, <code>wb-page-breadcrumbs</code>, <code>wb-page-title</code>, <code>wb-page-description</code>, <code>wb-page-actions</code></td><td>Page-level admin hierarchy</td><td>Use one page <code>h1</code> outside cards and keep only context actions here.</td></tr><tr><td><code>wb-breadcrumb</code>, <code>wb-breadcrumb-item</code>, <code>wb-breadcrumb-separator</code></td><td>Secondary hierarchy context</td><td>Separators are normally CSS-owned; keep the current item readable and non-link-like.</td></tr><tr><td><code>wb-form-card</code>, <code>wb-form-section</code>, <code>wb-form-footer</code>, <code>wb-form-actions</code></td><td>Grouped form structure</td><td>Primary action first. Cancel second.</td></tr><tr><td><code>wb-detail-list</code></td><td>Detail page label/value rows</td><td>Use monospace values for paths, tokens, commands, and URLs.</td></tr><tr><td><code>wb-table-actions</code></td><td>Explicit final action column</td><td>Pair it with an <code>Actions</code> table header and accessible icon labels.</td></tr><tr><td><code>wb-danger-zone</code></td><td>Final destructive section</td><td>Use specific destructive labels such as <code>Delete CMS Installation</code>.</td></tr></tbody></table></div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Job</th><th>Preferred structure</th><th>Rule</th></tr></thead><tbody><tr><td>Admin create or edit page</td><td><code>wb-page-header</code> + <code>wb-card</code> + <code>wb-form-section</code></td><td>Keep the page <code>h1</code> outside cards and group fields by purpose.</td></tr><tr><td>Detail page</td><td><code>wb-detail-list</code> + supporting cards</td><td>Use label/value rows instead of loose paragraphs.</td></tr><tr><td>Index table</td><td><code>wb-table</code> + <code>wb-table-actions</code></td><td>Always label the final column <code>Actions</code>.</td></tr><tr><td>Destructive action</td><td><code>wb-danger-zone</code></td><td>Keep it in the final card with a specific consequence label.</td></tr></tbody></table></div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Preferred classes</th><th>Purpose</th><th>Notes</th></tr></thead><tbody><tr><td><code>wb-page-header</code>, <code>wb-page-breadcrumb</code>, <code>wb-page-title</code>, <code>wb-page-description</code>, <code>wb-page-actions</code></td><td>Page-level admin hierarchy</td><td>Use one page <code>h1</code> outside cards and keep only context actions here. <code>wb-page-breadcrumbs</code> remains a compatibility alias.</td></tr><tr><td><code>wb-breadcrumb</code>, <code>wb-breadcrumb-item</code>, <code>wb-breadcrumb-link</code>, <code>wb-breadcrumb-current</code></td><td>Secondary hierarchy context</td><td>Separators are CSS-owned by default. <code>wb-breadcrumb-separator</code> remains only as a manual escape hatch.</td></tr><tr><td><code>wb-card</code>, <code>wb-card-footer</code>, <code>wb-field</code>, <code>wb-field-hint</code>, <code>wb-field-error</code>, <code>wb-action-group</code>, <code>wb-grid-2</code>, <code>wb-stack-4</code></td><td>Existing card, field, action, and layout structure</td><td>Use existing primitives first. The v2.6.0 form aliases stay available for compatibility.</td></tr><tr><td><code>wb-form-section</code>, <code>wb-form-section-header</code>, <code>wb-form-section-title</code>, <code>wb-form-section-description</code>, <code>wb-form-error-summary</code>, <code>wb-input-mono</code></td><td>Admin-specific form semantics</td><td>Keep these when the markup needs explicit sectioning, whole-form validation summary, or code-like input treatment.</td></tr><tr><td><code>wb-detail-list</code>, <code>wb-detail-row</code>, <code>wb-detail-label</code>, <code>wb-detail-value</code>, <code>wb-detail-value-mono</code></td><td>Detail page label/value rows</td><td>Use monospace values for paths, tokens, commands, and URLs.</td></tr><tr><td><code>wb-table-actions</code></td><td>Explicit final action column</td><td>Pair it with an <code>Actions</code> table header and accessible icon labels.</td></tr><tr><td><code>wb-danger-zone</code>, <code>wb-danger-zone-title</code>, <code>wb-danger-zone-description</code>, <code>wb-danger-zone-actions</code></td><td>Final destructive section</td><td>Use specific destructive labels such as <code>Delete CMS Installation</code>.</td></tr></tbody></table></div>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="page-header">
                     <h2>Admin page header and form cards</h2>
-                    <div class="wb-card wb-card-flat wb-form-card">
+                    <div class="wb-card wb-card-flat">
                       <div class="wb-card-body wb-stack-6">
                         <div class="wb-page-header">
                           <div class="wb-page-header-main">
-                            <nav class="wb-page-breadcrumbs wb-breadcrumb" aria-label="Breadcrumb example">
+                            <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb example">
                               <ol class="wb-breadcrumb-list">
                                 <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
                                 <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">CMS Installations</a></li>
@@ -118,25 +118,25 @@
                           </ul>
                         </div>
 
-                        <section class="wb-card wb-form-card">
+                        <section class="wb-card">
                           <div class="wb-card-header">
                             <div>
                               <h2 class="wb-card-title">Installation identity</h2>
                               <p class="wb-card-description">Short identity fields can share a two-column grid on desktop, then stack naturally on smaller screens.</p>
                             </div>
                           </div>
-                          <div class="wb-card-body">
+                          <div class="wb-card-body wb-stack-5">
                             <section class="wb-form-section">
-                              <div class="wb-form-grid wb-form-grid-2">
-                                <div class="wb-form-field wb-field">
+                              <div class="wb-grid-2">
+                                <div class="wb-field">
                                   <label class="wb-label" for="adminStandardDomain">Domain</label>
                                   <input class="wb-input wb-input-error" id="adminStandardDomain" type="text" placeholder="example.com">
-                                  <div class="wb-field-meta"><div class="wb-form-error">Enter the production domain.</div></div>
+                                  <div class="wb-field-meta"><div class="wb-field-error">Enter the production domain.</div></div>
                                 </div>
-                                <div class="wb-form-field wb-field">
+                                <div class="wb-field">
                                   <label class="wb-label" for="adminStandardLabel">Label</label>
                                   <input class="wb-input" id="adminStandardLabel" type="text" value="WebBlocks CMS Production">
-                                  <div class="wb-field-meta"><div class="wb-form-help">Optional internal label used in admin lists.</div></div>
+                                  <div class="wb-field-meta"><div class="wb-field-hint">Optional internal label used in admin lists.</div></div>
                                 </div>
                               </div>
                             </section>
@@ -145,28 +145,28 @@
                                 <h3 class="wb-form-section-title">Paths and integration values</h3>
                                 <p class="wb-form-section-description">Long values such as paths, tokens, URLs, and commands stay full-width and use monospace styling.</p>
                               </div>
-                              <div class="wb-form-grid">
-                                <div class="wb-form-field wb-field">
+                              <div class="wb-stack-4">
+                                <div class="wb-field">
                                   <label class="wb-label" for="adminStandardAppPath">CMS app path</label>
                                   <input class="wb-input wb-input-mono" id="adminStandardAppPath" type="text" value="/var/www/webblockscms.com/web_root">
-                                  <div class="wb-field-meta"><div class="wb-form-help">Absolute path to the CMS application root.</div></div>
+                                  <div class="wb-field-meta"><div class="wb-field-hint">Absolute path to the CMS application root.</div></div>
                                 </div>
-                                <div class="wb-form-field wb-field">
+                                <div class="wb-field">
                                   <label class="wb-label" for="adminStandardPublicPath">Document root</label>
                                   <input class="wb-input wb-input-mono wb-input-error" id="adminStandardPublicPath" type="text" value="web_root/public">
-                                  <div class="wb-field-meta"><div class="wb-form-error">Use an absolute path such as <code>/var/www/webblockscms.com/web_root/public</code>.</div></div>
+                                  <div class="wb-field-meta"><div class="wb-field-error">Use an absolute path such as <code>/var/www/webblockscms.com/web_root/public</code>.</div></div>
                                 </div>
-                                <div class="wb-form-field wb-field">
+                                <div class="wb-field">
                                   <label class="wb-label" for="adminStandardHealthEndpoint">Health check URL</label>
                                   <input class="wb-input wb-input-mono" id="adminStandardHealthEndpoint" type="url" value="https://status.webblockscms.com/healthz">
-                                  <div class="wb-field-meta"><div class="wb-form-help">Keep code-like and infrastructure values visually distinct from human text.</div></div>
+                                  <div class="wb-field-meta"><div class="wb-field-hint">Keep code-like and infrastructure values visually distinct from human text.</div></div>
                                 </div>
                               </div>
                             </section>
                           </div>
-                          <div class="wb-card-footer wb-form-footer">
+                          <div class="wb-card-footer">
                             <span class="wb-text-sm wb-text-muted">Primary action first. Cancel second.</span>
-                            <div class="wb-form-actions">
+                            <div class="wb-action-group">
                               <button class="wb-btn wb-btn-primary" type="button">Create CMS Installation</button>
                               <button class="wb-btn wb-btn-secondary" type="button">Cancel</button>
                             </div>
@@ -176,7 +176,7 @@
                     </div>
                     <pre><code>&lt;div class="wb-page-header"&gt;
   &lt;div class="wb-page-header-main"&gt;
-    &lt;nav class="wb-page-breadcrumbs wb-breadcrumb" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
+    &lt;nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
     &lt;h1 class="wb-page-title"&gt;Edit CMS Installation&lt;/h1&gt;
     &lt;p class="wb-page-description"&gt;Short page description.&lt;/p&gt;
   &lt;/div&gt;
@@ -185,13 +185,13 @@
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;section class="wb-card wb-form-card"&gt;
+&lt;section class="wb-card"&gt;
   &lt;div class="wb-card-header"&gt;
     &lt;h2 class="wb-card-title"&gt;Installation identity&lt;/h2&gt;
   &lt;/div&gt;
-  &lt;div class="wb-card-body"&gt;...&lt;/div&gt;
-  &lt;div class="wb-card-footer wb-form-footer"&gt;
-    &lt;div class="wb-form-actions"&gt;
+  &lt;div class="wb-card-body wb-stack-5"&gt;...&lt;/div&gt;
+  &lt;div class="wb-card-footer"&gt;
+    &lt;div class="wb-action-group"&gt;
       &lt;button class="wb-btn wb-btn-primary"&gt;Save Changes&lt;/button&gt;
       &lt;button class="wb-btn wb-btn-secondary"&gt;Cancel&lt;/button&gt;
     &lt;/div&gt;
@@ -204,7 +204,7 @@
                     <div class="wb-stack-5">
                       <div class="wb-page-header">
                         <div class="wb-page-header-main">
-                          <nav class="wb-page-breadcrumbs wb-breadcrumb" aria-label="Breadcrumb example">
+                          <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb example">
                             <ol class="wb-breadcrumb-list">
                               <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
                               <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">CMS Installations</a></li>
@@ -223,20 +223,20 @@
                         </div>
                       </div>
 
-                      <section class="wb-card wb-form-card">
+                      <section class="wb-card">
                         <div class="wb-card-header"><div><h2 class="wb-card-title">Primary settings</h2><p class="wb-card-description">Form cards stay focused by purpose instead of mixing unrelated controls.</p></div></div>
-                        <div class="wb-card-body">
+                        <div class="wb-card-body wb-stack-5">
                           <section class="wb-form-section">
-                            <div class="wb-form-grid wb-form-grid-2">
-                              <div class="wb-form-field wb-field"><label class="wb-label" for="editDomain">Domain</label><input class="wb-input" id="editDomain" type="text" value="webblockscms.com"><div class="wb-field-meta"><div class="wb-form-help">Public hostname used by the installation.</div></div></div>
-                              <div class="wb-form-field wb-field"><label class="wb-label" for="editEnvironment">Environment</label><select class="wb-select" id="editEnvironment"><option selected>Production</option><option>Staging</option><option>Local</option></select><div class="wb-field-meta"><div class="wb-form-help">Use a compact field for short categorical values.</div></div></div>
+                            <div class="wb-grid-2">
+                              <div class="wb-field"><label class="wb-label" for="editDomain">Domain</label><input class="wb-input" id="editDomain" type="text" value="webblockscms.com"><div class="wb-field-meta"><div class="wb-field-hint">Public hostname used by the installation.</div></div></div>
+                              <div class="wb-field"><label class="wb-label" for="editEnvironment">Environment</label><select class="wb-select" id="editEnvironment"><option selected>Production</option><option>Staging</option><option>Local</option></select><div class="wb-field-meta"><div class="wb-field-hint">Use a compact field for short categorical values.</div></div></div>
                             </div>
                           </section>
                         </div>
-                        <div class="wb-card-footer wb-form-footer"><div class="wb-form-actions"><button class="wb-btn wb-btn-primary" type="button">Save Changes</button><button class="wb-btn wb-btn-secondary" type="button">Cancel</button></div></div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><button class="wb-btn wb-btn-primary" type="button">Save Changes</button><button class="wb-btn wb-btn-secondary" type="button">Cancel</button></div></div>
                       </section>
 
-                      <section class="wb-card wb-form-card">
+                      <section class="wb-card">
                         <div class="wb-card-header"><div><h2 class="wb-card-title">Aliases</h2><p class="wb-card-description">Related records can live in their own management card with explicit footer actions.</p></div></div>
                         <div class="wb-card-body">
                           <div class="wb-table-wrap">
@@ -249,7 +249,7 @@
                             </table>
                           </div>
                         </div>
-                        <div class="wb-card-footer wb-form-footer"><div class="wb-form-actions"><button class="wb-btn wb-btn-primary wb-btn-sm" type="button">Create CMS Alias</button></div></div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><button class="wb-btn wb-btn-primary wb-btn-sm" type="button">Create CMS Alias</button></div></div>
                       </section>
 
                       <section class="wb-card wb-danger-zone">
@@ -273,7 +273,7 @@
                             <div class="wb-detail-row"><div class="wb-detail-label">Deploy hook</div><div class="wb-detail-value wb-detail-value-mono">https://deploy.example.com/hooks/webblocks-ui-production</div></div>
                           </div>
                         </div>
-                        <div class="wb-card-footer"><div class="wb-form-actions"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Edit CMS Installation</a><a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Back to list</a></div></div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Edit CMS Installation</a><a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Back to list</a></div></div>
                       </section>
 
                       <section class="wb-card">

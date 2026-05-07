@@ -151,6 +151,7 @@
   flex-wrap: wrap;
 }
 
+.wb-settings-section-footer .wb-action-group,
 .wb-settings-section-footer .wb-form-actions {
   margin-inline-start: auto;
 }
