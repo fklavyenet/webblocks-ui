@@ -81,6 +81,15 @@
 .wb-breadcrumb-current[aria-current="page"] {
   color: var(--wb-breadcrumb-current-color);
   font-weight: 600;
+  text-decoration: none;
+}
+
+.wb-breadcrumb-separator {
+  display: inline-flex;
+  align-items: center;
+  margin-inline: var(--wb-breadcrumb-separator-gap);
+  color: var(--wb-breadcrumb-separator-color);
+  flex-shrink: 0;
 }
 
 .wb-breadcrumb-compact {

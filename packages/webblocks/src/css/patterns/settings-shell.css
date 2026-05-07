@@ -148,6 +148,11 @@
   padding: var(--wb-s3) var(--wb-s5);
   border-top: 1px solid var(--wb-border);
   background: var(--wb-surface-2);
+  flex-wrap: wrap;
+}
+
+.wb-settings-section-footer .wb-form-actions {
+  margin-inline-start: auto;
 }
 
 /* ── Settings row (label + control side by side) ──────────── */
