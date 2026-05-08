@@ -127,7 +127,7 @@ Use `INTEGRATION.md` for canonical data attributes, method names, and behavioral
 
 ## Icons
 
-WebBlocks ships 177 curated Lucide icons through `dist/webblocks-icons.css`, including admin/builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, `arrow-up-down`, `copy`, `external-link`, `chevron-right`, and `chevron-down`.
+WebBlocks ships 179 curated Lucide icons through `dist/webblocks-icons.css`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
 
 Canonical usage:
 

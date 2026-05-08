@@ -33,12 +33,13 @@ const ICONS = [
   'Search','Eye','EyeOff',
   // engagement_editorial
   'Star','Bookmark','Heart','Share2','Book','BookOpen',
+  'Box',
   // content_editor
   'FileText','Files','StickyNote','Heading',
   'Type','List','ListOrdered','Quote','Code','PenTool',
   'Newspaper',
   // media
-  'Image','Camera','Video','Play',
+  'Image','Images','Camera','Video','Play',
   'Pause','Volume2','Mic','Music','Film','Clapperboard',
   // files_folders
   'Folder','FolderOpen','FolderTree','File',
@@ -51,7 +52,7 @@ const ICONS = [
   // communication
   'Mail','Send','Inbox','MessageSquare',
   'MessagesSquare','Phone','Bell','BellRing','AtSign','Globe','MapPin',
-  'Languages',
+  'Languages','Megaphone',
   // business_brands
   'Briefcase','Building2','Github','Linkedin','Twitter','Instagram','Youtube',
   // users_security
@@ -74,9 +75,10 @@ const ICONS = [
   // devices_integration
   'Monitor','Laptop','TabletSmartphone','Smartphone',
   'Tablet','Watch','Printer','Router','Wifi','Cloud',
+  'Route',
   // feedback_status
   'Info','HelpCircle','CircleHelp',
-  'OctagonAlert','TriangleAlert','Circle','Rocket',
+  'OctagonAlert','TriangleAlert','Circle','CircleDot','Rocket','Cookie',
 ];
 
 // kebab-case helper (PascalCase → kebab-case)

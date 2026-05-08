@@ -8,6 +8,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Add a focused set of docs/admin navigation icons to the curated mask-image catalog: `box`, `circle-dot`, `cookie`, `images`, `megaphone`, and `route`
+
 ---
 
 ## [2.6.3] — 2026-05-08
