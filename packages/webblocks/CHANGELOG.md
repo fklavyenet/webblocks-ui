@@ -9,7 +9,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Changed
-- Corrected admin table action alignment so action headers and button groups are left-aligned by default.
+- Corrected admin table action alignment so action headers, single action links/buttons, and grouped action buttons are left-aligned by default.
 
 ---
 

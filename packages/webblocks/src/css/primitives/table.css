@@ -121,6 +121,7 @@
 .wb-table-actions {
   width: 1%;
   white-space: nowrap;
+  text-align: left;
 }
 
 .wb-table-actions .wb-action-group {
