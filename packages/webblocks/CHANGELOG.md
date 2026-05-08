@@ -10,6 +10,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ### Added
 - Add a focused set of docs/admin navigation icons to the curated mask-image catalog: `box`, `circle-dot`, `cookie`, `images`, `megaphone`, and `route`
+- Add generated `dist/webblocks-icons.json` so consumers can build icon pickers from the shipped WebBlocks UI catalog with generic categories, contexts, and keywords
 
 ---
 

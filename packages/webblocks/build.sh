@@ -14,6 +14,7 @@ DIST="$ROOT/dist"
 CSS_OUT="$DIST/webblocks-ui.css"
 JS_OUT="$DIST/webblocks-ui.js"
 ICONS_OUT="$DIST/webblocks-icons.css"
+ICONS_JSON_OUT="$DIST/webblocks-icons.json"
 VERSION_FILE="$ROOT/VERSION"
 DOCS_VERSION_OUT="$REPO_ROOT/docs/version.js"
 
@@ -267,10 +268,18 @@ if [ ! -f "$ICONS_OUT" ]; then
   exit 1
 fi
 
+if [ ! -f "$ICONS_JSON_OUT" ]; then
+  echo "Error: missing icon manifest output at $ICONS_JSON_OUT" >&2
+  exit 1
+fi
+
 add_css_banner "$ICONS_OUT"
 
 ICONS_LINES=$(wc -l < "$ICONS_OUT")
 echo "  -> dist/webblocks-icons.css  ($ICONS_LINES lines)"
+
+ICON_JSON_COUNT=$(node -e "const fs=require('fs');const data=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));console.log(data.length);" "$ICONS_JSON_OUT")
+echo "  -> dist/webblocks-icons.json  ($ICON_JSON_COUNT entries)"
 
 echo "Generating docs version asset..."
 write_docs_version_asset

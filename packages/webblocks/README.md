@@ -9,6 +9,7 @@ No npm. No framework runtime. No dependency install step.
 - `dist/webblocks-ui.css` - main stylesheet
 - `dist/webblocks-ui.js` - opt-in interaction runtime
 - `dist/webblocks-icons.css` - class-based icon file for `<i class="wb-icon wb-icon-*">`
+- `dist/webblocks-icons.json` - structured icon manifest for pickers and catalog sync
 
 WebBlocks stays HTML-first: use standard markup, shipped classes, and opt-in JS behavior.
 
@@ -129,6 +130,10 @@ Use `INTEGRATION.md` for canonical data attributes, method names, and behavioral
 
 WebBlocks ships 179 curated Lucide icons through `dist/webblocks-icons.css`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
 
+For structured picker data, WebBlocks also ships `dist/webblocks-icons.json`. Each manifest entry includes a canonical `slug`, human label, `css_class`, generic `source`, plus `categories`, `contexts`, and `keywords` so consuming projects can build icon pickers without hardcoding icon lists.
+
+Use `contexts` such as `navigation` to scope menus, sidebars, tabs, and page-group icon choices without exposing the entire catalog by default.
+
 Canonical usage:
 
 ```html
@@ -196,6 +201,7 @@ This regenerates:
 - `dist/webblocks-ui.css`
 - `dist/webblocks-ui.js`
 - `dist/webblocks-icons.css`
+- `dist/webblocks-icons.json`
 
 ## Package Structure
 

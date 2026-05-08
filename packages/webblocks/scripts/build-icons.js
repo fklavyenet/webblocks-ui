@@ -12,11 +12,14 @@
 const fs   = require('fs');
 const path = require('path');
 
+const { ICON_REGISTRY, toLabel } = require('./icon-registry');
+
 const ROOT     = path.join(__dirname, '..');
 const SRC_SVG  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.svg');
 const SRC_CSS  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.css');
 const DIST_DIR = path.join(ROOT, 'dist');
 const DIST_CSS = path.join(DIST_DIR, 'webblocks-icons.css');
+const DIST_JSON = path.join(DIST_DIR, 'webblocks-icons.json');
 
 // ── Read source SVG ──────────────────────────────────────────
 if (!fs.existsSync(SRC_SVG)) {
@@ -50,6 +53,32 @@ const aliases = {
     'wb-icon-sync'
   ]
 };
+
+const registryByCssClass = new Map(ICON_REGISTRY.map((icon) => [icon.cssClass, icon]));
+
+function buildManifestEntry(id) {
+  const fallbackSlug = id.replace(/^wb-icon-/, '');
+  const fallbackLabel = toLabel(fallbackSlug.replace(/-([a-z0-9])/g, (_, char) => char.toUpperCase()));
+  const meta = registryByCssClass.get(id) || {
+    slug: fallbackSlug,
+    label: fallbackLabel,
+    cssClass: id,
+    source: 'webblocks-ui',
+    categories: ['uncategorized'],
+    contexts: [],
+    keywords: fallbackSlug.split('-')
+  };
+
+  return {
+    slug: meta.slug,
+    label: meta.label,
+    css_class: meta.cssClass,
+    source: meta.source,
+    categories: meta.categories,
+    contexts: meta.contexts,
+    keywords: meta.keywords
+  };
+}
 
 function buildAliasSymbols() {
   const aliasSymbols = [];
@@ -131,3 +160,10 @@ console.log(`Generated src/css/icons/webblocks-icons.css — ${icons.length} gly
 
 fs.writeFileSync(DIST_CSS, cssRules, 'utf8');
 console.log(`Generated dist/webblocks-icons.css — ${icons.length} glyphs, ${aliasSymbols.length} aliases`);
+
+const manifest = icons
+  .map(({ id }) => buildManifestEntry(id))
+  .sort((left, right) => left.slug.localeCompare(right.slug));
+
+fs.writeFileSync(DIST_JSON, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+console.log(`Generated dist/webblocks-icons.json — ${manifest.length} canonical icons`);

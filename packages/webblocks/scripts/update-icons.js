@@ -15,78 +15,13 @@ const fs    = require('fs');
 const path  = require('path');
 const https = require('https');
 
+const { ICON_REGISTRY, toKebab } = require('./icon-registry');
+
 const ROOT    = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'src', 'css', 'icons');
 const OUT_SVG = path.join(OUT_DIR, 'webblocks-icons.svg');
 
-// ── Icon list (curated from Lucide) ─────────────────────────
-const ICONS = [
-  // navigation
-  'Menu','PanelLeft','PanelRight','Sidebar',
-  'ChevronLeft','ChevronRight','ChevronUp','ChevronDown',
-  'ArrowLeft','ArrowRight','ArrowUpCircle','LogOut',
-  // actions
-  'Plus','Minus','X','Check',
-  'Pencil','Trash','Trash2','Copy','Save','Download','Upload',
-  'RotateCw','RotateCcw','Repeat','ExternalLink',
-  // visibility_state
-  'Search','Eye','EyeOff',
-  // engagement_editorial
-  'Star','Bookmark','Heart','Share2','Book','BookOpen',
-  'Box',
-  // content_editor
-  'FileText','Files','StickyNote','Heading',
-  'Type','List','ListOrdered','Quote','Code','PenTool',
-  'Newspaper',
-  // media
-  'Image','Images','Camera','Video','Play',
-  'Pause','Volume2','Mic','Music','Film','Clapperboard',
-  // files_folders
-  'Folder','FolderOpen','FolderTree','File',
-  'FilePlus','FileCode','FileImage','FileArchive','FileSearch','Receipt',
-  'FolderPlus','FileX','FileLock',
-  // commerce
-  'ShoppingCart','ShoppingBag','Store','Package',
-  'CreditCard','Wallet','BadgePercent','Banknote','HandCoins','ReceiptText',
-  'Calculator',
-  // communication
-  'Mail','Send','Inbox','MessageSquare',
-  'MessagesSquare','Phone','Bell','BellRing','AtSign','Globe','MapPin',
-  'Languages','Megaphone',
-  // business_brands
-  'Briefcase','Building2','Github','Linkedin','Twitter','Instagram','Youtube',
-  // users_security
-  'User','UserRound','Users','Contact',
-  'BadgeCheck','Shield','ShieldCheck','Lock','KeyRound','Fingerprint',
-  'UserPlus','LockOpen','Ban',
-  // settings_system
-  'Settings','SlidersHorizontal','ToggleLeft','ToggleRight',
-  'Wrench','Hammer','Bug','Database','Server','Plug',
-  'Cpu','Terminal','SquareTerminal','Layers','MemoryStick',
-  // charts_dashboard
-  'LayoutDashboard','BarChart','BarChart2','BarChart3','LineChart','PieChart',
-  'AreaChart','Activity','Gauge','Target','TrendingUp','Calendar',
-  'History',
-  // layout_design
-  'Home','Layout','LayoutGrid','Columns2','Rows2','Square',
-  'RectangleHorizontal','Maximize2','Minimize2','MousePointer2','Palette','Sparkles',
-  // theme_mode
-  'Sun','Moon','SunMoon',
-  // devices_integration
-  'Monitor','Laptop','TabletSmartphone','Smartphone',
-  'Tablet','Watch','Printer','Router','Wifi','Cloud',
-  'Route',
-  // feedback_status
-  'Info','HelpCircle','CircleHelp',
-  'OctagonAlert','TriangleAlert','Circle','CircleDot','Rocket','Cookie',
-];
-
-// kebab-case helper (PascalCase → kebab-case)
-function toKebab(str) {
-  return str
-    .replace(/([A-Z])/g, (m, c, i) => (i > 0 ? '-' : '') + c.toLowerCase())
-    .replace(/--+/g, '-');
-}
+const ICONS = ICON_REGISTRY.map((icon) => icon.name);
 
 // Render a single Lucide node to SVG string
 function renderNode(node) {
