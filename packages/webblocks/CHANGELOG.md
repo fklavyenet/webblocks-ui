@@ -8,6 +8,10 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.6.3] — 2026-05-08
+
 ### Changed
 - table action groups now stay left-aligned and no-wrap inside `wb-table-actions` so compact icon actions remain on one line.
 
