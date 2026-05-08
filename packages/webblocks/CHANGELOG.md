@@ -9,7 +9,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Changed
-- Corrected admin table action alignment so action headers, single action links/buttons, and grouped action buttons are left-aligned by default.
+- Removed the remaining `wb-text-end` table action docs guidance; action headers, single action links/buttons, and grouped action buttons now use `wb-table-actions` and left alignment by default.
 
 ---
 
