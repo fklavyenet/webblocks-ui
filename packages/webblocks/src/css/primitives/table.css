@@ -126,4 +126,5 @@
 
 .wb-table-actions .wb-action-group {
   justify-content: flex-start;
+  flex-wrap: nowrap;
 }

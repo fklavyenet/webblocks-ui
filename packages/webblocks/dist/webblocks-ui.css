@@ -3480,6 +3480,7 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 
 .wb-table-actions .wb-action-group {
   justify-content: flex-start;
+  flex-wrap: nowrap;
 }
 /* ============================================================
    WebBlocks UI — Media (wb-media)
