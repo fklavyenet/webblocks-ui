@@ -8,9 +8,17 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.7.0] — 2026-05-08
+
 ### Added
 - Add a focused set of docs/admin navigation icons to the curated mask-image catalog: `box`, `circle-dot`, `cookie`, `images`, `megaphone`, and `route`
 - Add generated `dist/webblocks-icons.json` so consumers can build icon pickers from the shipped WebBlocks UI catalog with generic categories, contexts, and keywords
+
+### Changed
+- Add a shared icon registry so the curated Lucide set, generated SVG/CSS output, and structured icon manifest all stay aligned through the existing build flow
+- Update icon docs/catalog output and generic package docs so consumers can use the shipped icon manifest for picker UIs and filtered navigation icon sets
 
 ---
 
