@@ -8,6 +8,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Corrected admin table action alignment so action headers and button groups are left-aligned by default.
+
 ---
 
 ## [2.6.1] — 2026-05-07

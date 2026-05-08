@@ -121,9 +121,8 @@
 .wb-table-actions {
   width: 1%;
   white-space: nowrap;
-  text-align: right;
 }
 
 .wb-table-actions .wb-action-group {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }

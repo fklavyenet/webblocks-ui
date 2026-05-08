@@ -3475,11 +3475,10 @@ html[data-theme="auto"]:not([data-mode="light"]) .wb-alert-danger {
 .wb-table-actions {
   width: 1%;
   white-space: nowrap;
-  text-align: right;
 }
 
 .wb-table-actions .wb-action-group {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 /* ============================================================
    WebBlocks UI — Media (wb-media)
