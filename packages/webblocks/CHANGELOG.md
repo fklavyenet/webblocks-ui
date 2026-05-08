@@ -8,6 +8,10 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.6.2] — 2026-05-08
+
 ### Changed
 - Removed the remaining `wb-text-end` table action docs guidance; action headers, single action links/buttons, and grouped action buttons now use `wb-table-actions` and left alignment by default.
 
