@@ -35,6 +35,28 @@
     ]
   },
   {
+    "slug": "arrow-down",
+    "label": "Arrow Down",
+    "css_class": "wb-icon-arrow-down",
+    "source": "webblocks-ui",
+    "categories": [
+      "controls"
+    ],
+    "contexts": [
+      "controls",
+      "navigation"
+    ],
+    "keywords": [
+      "arrow",
+      "down",
+      "ui",
+      "control",
+      "move",
+      "sort",
+      "reorder"
+    ]
+  },
+  {
     "slug": "arrow-left",
     "label": "Arrow Left",
     "css_class": "wb-icon-arrow-left",
@@ -77,6 +99,28 @@
     ]
   },
   {
+    "slug": "arrow-up",
+    "label": "Arrow Up",
+    "css_class": "wb-icon-arrow-up",
+    "source": "webblocks-ui",
+    "categories": [
+      "controls"
+    ],
+    "contexts": [
+      "controls",
+      "navigation"
+    ],
+    "keywords": [
+      "arrow",
+      "up",
+      "ui",
+      "control",
+      "move",
+      "sort",
+      "reorder"
+    ]
+  },
+  {
     "slug": "arrow-up-circle",
     "label": "Arrow Up Circle",
     "css_class": "wb-icon-arrow-up-circle",
@@ -93,6 +137,30 @@
       "circle",
       "ui",
       "control"
+    ]
+  },
+  {
+    "slug": "arrow-up-down",
+    "label": "Arrow Up Down",
+    "css_class": "wb-icon-arrow-up-down",
+    "source": "webblocks-ui",
+    "categories": [
+      "controls"
+    ],
+    "contexts": [
+      "controls",
+      "navigation",
+      "sorting"
+    ],
+    "keywords": [
+      "arrow",
+      "up",
+      "down",
+      "ui",
+      "control",
+      "sort",
+      "reorder",
+      "drag"
     ]
   },
   {
@@ -1183,6 +1251,28 @@
       "globe",
       "message",
       "communication"
+    ]
+  },
+  {
+    "slug": "grip-vertical",
+    "label": "Grip Vertical",
+    "css_class": "wb-icon-grip-vertical",
+    "source": "webblocks-ui",
+    "categories": [
+      "layout"
+    ],
+    "contexts": [
+      "layout",
+      "sorting"
+    ],
+    "keywords": [
+      "grip",
+      "vertical",
+      "layout",
+      "structure",
+      "drag",
+      "reorder",
+      "handle"
     ]
   },
   {

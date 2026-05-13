@@ -3,7 +3,7 @@ const GROUPS = [
     category: 'controls',
     contexts: ['controls'],
     keywords: ['ui', 'control'],
-    names: ['Menu', 'PanelLeft', 'PanelRight', 'Sidebar', 'ChevronLeft', 'ChevronRight', 'ChevronUp', 'ChevronDown', 'ArrowLeft', 'ArrowRight', 'ArrowUpCircle', 'LogOut']
+    names: ['Menu', 'PanelLeft', 'PanelRight', 'Sidebar', 'ChevronLeft', 'ChevronRight', 'ChevronUp', 'ChevronDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'ArrowUpDown', 'ArrowUpCircle', 'LogOut']
   },
   {
     category: 'actions',
@@ -81,7 +81,7 @@ const GROUPS = [
     category: 'layout',
     contexts: ['layout'],
     keywords: ['layout', 'structure'],
-    names: ['Home', 'Layout', 'LayoutGrid', 'Columns2', 'Rows2', 'Square', 'RectangleHorizontal', 'Maximize2', 'Minimize2', 'MousePointer2', 'Palette', 'Sparkles']
+    names: ['Home', 'Layout', 'LayoutGrid', 'Columns2', 'Rows2', 'Square', 'RectangleHorizontal', 'GripVertical', 'Maximize2', 'Minimize2', 'MousePointer2', 'Palette', 'Sparkles']
   },
   {
     category: 'theme',
@@ -218,6 +218,22 @@ const OVERRIDES = {
   'arrow-right': {
     contexts: ['navigation'],
     keywords: ['next', 'forward', 'right']
+  },
+  'arrow-up': {
+    contexts: ['navigation'],
+    keywords: ['up', 'move', 'sort', 'reorder']
+  },
+  'arrow-down': {
+    contexts: ['navigation'],
+    keywords: ['down', 'move', 'sort', 'reorder']
+  },
+  'arrow-up-down': {
+    contexts: ['navigation', 'sorting'],
+    keywords: ['up', 'down', 'sort', 'reorder', 'drag']
+  },
+  'grip-vertical': {
+    contexts: ['layout', 'sorting'],
+    keywords: ['grip', 'vertical', 'drag', 'reorder', 'handle']
   }
 };
 

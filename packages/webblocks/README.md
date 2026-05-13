@@ -128,7 +128,7 @@ Use `INTEGRATION.md` for canonical data attributes, method names, and behavioral
 
 ## Icons
 
-WebBlocks ships 179 curated Lucide icons through `dist/webblocks-icons.css`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
+WebBlocks ships 183 curated Lucide icons through `dist/webblocks-icons.css`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
 
 For structured picker data, WebBlocks also ships `dist/webblocks-icons.json`. Each manifest entry includes a canonical `slug`, human label, `css_class`, generic `source`, plus `categories`, `contexts`, and `keywords` so consuming projects can build icon pickers without hardcoding icon lists.
 
@@ -228,4 +228,5 @@ packages/webblocks/
 - icon source lives in `src/css/icons/webblocks-icons.svg`
 - `scripts/build-icons.js` regenerates icon CSS from the source icon set
 - `scripts/update-icons.js` refreshes the curated icon source from Lucide and is maintainer-only
+- `scripts/validate-icons.js` verifies shipped manifest and docs icon classes resolve to generated selectors in `dist/webblocks-icons.css`
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing

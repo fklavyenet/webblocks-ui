@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   WebBlocks Icon Source — Lucide 0.577.0
-  179 icons in a curated product set.
+  183 icons in a curated product set.
 
   Canonical usage (requires dist/webblocks-icons.css):
     <i class="wb-icon wb-icon-settings"></i>
@@ -63,6 +63,26 @@
     stroke-linecap="round" stroke-linejoin="round">
     <path d="M5 12h14"/>
     <path d="m12 5 7 7-7 7"/>
+  </symbol>
+  <symbol id="wb-icon-arrow-up" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="m5 12 7-7 7 7"/>
+    <path d="M12 19V5"/>
+  </symbol>
+  <symbol id="wb-icon-arrow-down" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 5v14"/>
+    <path d="m19 12-7 7-7-7"/>
+  </symbol>
+  <symbol id="wb-icon-arrow-up-down" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="m21 16-4 4-4-4"/>
+    <path d="M17 20V4"/>
+    <path d="m3 8 4-4 4 4"/>
+    <path d="M7 4v16"/>
   </symbol>
   <symbol id="wb-icon-arrow-up-circle" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" stroke-width="2"
@@ -1068,6 +1088,16 @@
     stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <rect width="20" height="12" x="2" y="6" rx="2"/>
+  </symbol>
+  <symbol id="wb-icon-grip-vertical" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="12" r="1"/>
+    <circle cx="9" cy="5" r="1"/>
+    <circle cx="9" cy="19" r="1"/>
+    <circle cx="15" cy="12" r="1"/>
+    <circle cx="15" cy="5" r="1"/>
+    <circle cx="15" cy="19" r="1"/>
   </symbol>
   <symbol id="wb-icon-maximize2" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" stroke-width="2"

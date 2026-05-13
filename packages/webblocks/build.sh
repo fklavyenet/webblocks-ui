@@ -281,6 +281,9 @@ echo "  -> dist/webblocks-icons.css  ($ICONS_LINES lines)"
 ICON_JSON_COUNT=$(node -e "const fs=require('fs');const data=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));console.log(data.length);" "$ICONS_JSON_OUT")
 echo "  -> dist/webblocks-icons.json  ($ICON_JSON_COUNT entries)"
 
+echo "Validating icons..."
+node "$ROOT/scripts/validate-icons.js"
+
 echo "Generating docs version asset..."
 write_docs_version_asset
 echo "  -> docs/version.js"

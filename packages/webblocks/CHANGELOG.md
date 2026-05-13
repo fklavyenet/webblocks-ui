@@ -10,6 +10,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.1] — 2026-05-13
+
+### Fixed
+- Restore the curated `arrow-down`, `arrow-up`, `arrow-up-down`, and `grip-vertical` glyphs to the shipped icon registry so the icon manifest, generated CSS, and `/icons` docs catalog no longer advertise classes without generated masks
+- Add a maintainer icon validation step to the package build so manifest entries and docs-listed icon classes fail the build when they drift from generated `webblocks-icons.css`
+
+---
+
 ## [2.7.0] — 2026-05-08
 
 ### Added
