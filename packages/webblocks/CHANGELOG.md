@@ -10,6 +10,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.2] — 2026-05-14
+
+### Fixed
+- Unhide authored `#wb-overlay-root` infrastructure wrappers such as `.wb-overlay-layer` when a modal or gallery viewer target opens inside them, then restore `hidden` only after the last active overlay in that wrapper closes
+- Add a docs regression fixture for hidden overlay-layer modal and gallery flows so the shared runtime behavior can be verified against CMS-style authored overlay markup
+
+---
+
 ## [2.7.1] — 2026-05-13
 
 ### Fixed

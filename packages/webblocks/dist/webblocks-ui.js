@@ -1,5 +1,5 @@
 /*!
- * WebBlocks UI v2.7.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.7.2 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -157,6 +157,7 @@
   var root = null;
   var layers = {};
   var backdrop = null;
+  var visibilityStates = new WeakMap();
 
   if (html) html.classList.add('wb-js');
 
@@ -194,6 +195,100 @@
 
     layers[name] = layer;
     return layer;
+  }
+
+  function isVisibilityAncestor(node) {
+    return !!(node && node.nodeType === 1 && (
+      node.id === ROOT_ID ||
+      (node.classList && node.classList.contains('wb-overlay-layer'))
+    ));
+  }
+
+  function getVisibilityAncestors(element) {
+    var ancestors = [];
+    var node = element ? element.parentElement : null;
+
+    while (node) {
+      if (isVisibilityAncestor(node)) {
+        ancestors.push(node);
+      }
+
+      if (node.id === ROOT_ID) break;
+      node = node.parentElement;
+    }
+
+    return ancestors;
+  }
+
+  function hasActiveDescendant(ancestor) {
+    return activeStack.some(function (instance) {
+      return !!(instance.active && instance.element && ancestor.contains(instance.element));
+    });
+  }
+
+  function trackVisibility(instance) {
+    var ancestors;
+
+    if (!instance || !instance.element) return;
+
+    instance.restoreElementHidden = instance.element.hasAttribute('hidden');
+    if (instance.restoreElementHidden) {
+      instance.element.hidden = false;
+    }
+
+    ancestors = getVisibilityAncestors(instance.element);
+    instance.visibilityAncestors = ancestors;
+
+    ancestors.forEach(function (ancestor) {
+      var state = visibilityStates.get(ancestor);
+
+      if (!state) {
+        state = {
+          count: 0,
+          originalHidden: ancestor.hasAttribute('hidden')
+        };
+        visibilityStates.set(ancestor, state);
+      }
+
+      state.count += 1;
+
+      if (state.originalHidden) {
+        ancestor.hidden = false;
+      }
+    });
+  }
+
+  function untrackVisibility(instance) {
+    var ancestors = instance && instance.visibilityAncestors ? instance.visibilityAncestors : [];
+
+    if (instance && instance.restoreElementHidden) {
+      instance.element.hidden = true;
+      instance.restoreElementHidden = false;
+    }
+
+    ancestors.forEach(function (ancestor) {
+      var state = visibilityStates.get(ancestor);
+
+      if (!state) return;
+
+      state.count = Math.max(0, state.count - 1);
+
+      if (state.count === 0) {
+        if (state.originalHidden && !hasActiveDescendant(ancestor)) {
+          ancestor.hidden = true;
+        }
+        visibilityStates.delete(ancestor);
+        return;
+      }
+
+      if (state.originalHidden) {
+        ancestor.hidden = false;
+      }
+    });
+
+    if (instance) {
+      instance.visibilityAncestors = [];
+    }
   }
 
   function getBackdrop() {
@@ -448,6 +543,7 @@
     instance.active = true;
 
     portalToLayer(instance);
+    trackVisibility(instance);
 
     instance.element.classList.add('is-open');
     if (typeof instance.onToggle === 'function') instance.onToggle(true, instance);
@@ -471,10 +567,11 @@
     instance.element.classList.remove('is-open');
     if (typeof instance.onToggle === 'function') instance.onToggle(false, instance);
     syncTriggerAria(instance, false);
+    unregisterActive(instance);
+    untrackVisibility(instance);
     if (instance.restoreOnClose !== false) {
       restoreFromLayer(instance);
     }
-    unregisterActive(instance);
     syncBodyLock();
     syncBackdrop();
 
@@ -537,7 +634,9 @@
       originalParent: null,
       originalNextSibling: null,
       previouslyFocused: null,
-      active: false
+      active: false,
+      visibilityAncestors: [],
+      restoreElementHidden: false
     };
   }
 

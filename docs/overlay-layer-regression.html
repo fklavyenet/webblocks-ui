@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Overlay Layer Regression</title>
+  <meta name="description" content="Regression fixture for authored hidden overlay layers used by modal and gallery viewer flows.">
+  <script src="version.js"></script>
+  <script src="webblocks-assets.js"></script>
+</head>
+<body>
+  <main class="wb-container wb-section wb-stack-6">
+    <header class="wb-stack-2">
+      <p class="wb-text-sm wb-text-muted wb-m-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      <h1 class="wb-m-0">Overlay Layer Regression Fixture</h1>
+      <p class="wb-text-muted wb-m-0">Validates that modal and gallery viewer targets inside authored hidden <code>.wb-overlay-layer</code> wrappers become visible on open and only restore <code>hidden</code> after the last active target closes.</p>
+    </header>
+
+    <section class="wb-card wb-stack-4" aria-labelledby="overlayRegressionManualHeading">
+      <div class="wb-card-body wb-stack-4">
+        <div>
+          <h2 class="wb-card-title wb-m-0" id="overlayRegressionManualHeading">Manual triggers</h2>
+          <p class="wb-text-sm wb-text-muted wb-m-0">Use these buttons to inspect live state changes in DevTools if needed.</p>
+        </div>
+
+        <div class="wb-cluster">
+          <button class="wb-btn wb-btn-primary" type="button" data-wb-toggle="modal" data-wb-target="#overlayRegressionModalA">Open modal A</button>
+          <button class="wb-btn wb-btn-secondary" type="button" data-wb-toggle="modal" data-wb-target="#overlayRegressionModalB">Open modal B</button>
+          <button class="wb-btn wb-btn-outline" type="button" data-wb-gallery-target="#overlayRegressionGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Workspace dashboard with charts and analytics cards" data-wb-gallery-caption="Workspace dashboard" data-wb-gallery-meta="Gallery viewer regression target">
+            Open gallery viewer
+          </button>
+        </div>
+
+        <div class="wb-gallery" aria-label="Overlay regression gallery">
+          <div class="wb-gallery-grid">
+            <figure class="wb-gallery-item">
+              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#overlayRegressionGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Workspace dashboard with charts and analytics cards" data-wb-gallery-caption="Workspace dashboard" data-wb-gallery-meta="First viewer image">
+                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Workspace dashboard with charts and analytics cards">
+              </button>
+              <figcaption class="wb-gallery-caption">Open shared viewer</figcaption>
+            </figure>
+            <figure class="wb-gallery-item">
+              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#overlayRegressionGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Planning session around a table with laptops and notes" data-wb-gallery-caption="Planning session" data-wb-gallery-meta="Second viewer image">
+                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planning session around a table with laptops and notes">
+              </button>
+              <figcaption class="wb-gallery-caption">Shared viewer, second item</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wb-card" aria-labelledby="overlayRegressionResultsHeading">
+      <div class="wb-card-body wb-stack-3">
+        <div>
+          <h2 class="wb-card-title wb-m-0" id="overlayRegressionResultsHeading">Automated checks</h2>
+          <p class="wb-text-sm wb-text-muted wb-m-0">The page runs the checks below after the package runtime loads.</p>
+        </div>
+        <ol class="wb-list" id="overlayRegressionResults" aria-live="polite"></ol>
+      </div>
+    </section>
+  </main>
+
+  <div id="wb-overlay-root" class="wb-overlay-root">
+    <div class="wb-overlay-layer wb-overlay-layer--dialog" hidden>
+      <div class="wb-modal wb-modal-sm" id="overlayRegressionModalA" role="dialog" aria-modal="true" aria-labelledby="overlayRegressionModalATitle" hidden>
+        <div class="wb-modal-dialog">
+          <div class="wb-modal-header"><h2 class="wb-modal-title" id="overlayRegressionModalATitle">Regression modal A</h2><button class="wb-modal-close" type="button" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+          <div class="wb-modal-body"><p class="wb-m-0">Opening this modal should unhide the authored dialog layer wrapper.</p></div>
+          <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" type="button" data-wb-dismiss="modal">Close</button></div>
+        </div>
+      </div>
+
+      <div class="wb-modal wb-modal-sm" id="overlayRegressionModalB" role="dialog" aria-modal="true" aria-labelledby="overlayRegressionModalBTitle" hidden>
+        <div class="wb-modal-dialog">
+          <div class="wb-modal-header"><h2 class="wb-modal-title" id="overlayRegressionModalBTitle">Regression modal B</h2><button class="wb-modal-close" type="button" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+          <div class="wb-modal-body"><p class="wb-m-0">The shared layer should stay visible while either modal remains open.</p></div>
+          <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" type="button" data-wb-dismiss="modal">Close</button></div>
+        </div>
+      </div>
+
+      <div class="wb-modal wb-modal-xl" id="overlayRegressionGalleryViewer" role="dialog" aria-modal="true" aria-labelledby="overlayRegressionGalleryViewerTitle" hidden>
+        <div class="wb-modal-dialog">
+          <div class="wb-modal-body">
+            <div class="wb-gallery-viewer">
+              <div class="wb-gallery-viewer-toolbar">
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Previous image"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+                <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 2</div>
+                <div class="wb-cluster wb-cluster-2">
+                  <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Next image"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+                  <button class="wb-btn wb-btn-secondary wb-btn-icon" type="button" data-wb-dismiss="modal" aria-label="Close viewer"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+                </div>
+              </div>
+              <figure class="wb-gallery-viewer-media">
+                <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Workspace dashboard with charts and analytics cards">
+                <figcaption class="wb-gallery-viewer-caption" id="overlayRegressionGalleryViewerTitle">Workspace dashboard</figcaption>
+              </figure>
+              <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Gallery viewer overlay regression fixture.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      function delay(ms) {
+        return new Promise(function (resolve) {
+          window.setTimeout(resolve, ms);
+        });
+      }
+
+      function waitForRuntime() {
+        return new Promise(function (resolve, reject) {
+          var startedAt = Date.now();
+
+          function check() {
+            if (window.WBModal && window.WBGallery) {
+              resolve();
+              return;
+            }
+
+            if (Date.now() - startedAt > 4000) {
+              reject(new Error('WebBlocks UI runtime failed to load within 4s.'));
+              return;
+            }
+
+            window.setTimeout(check, 16);
+          }
+
+          check();
+        });
+      }
+
+      function assert(condition, message) {
+        if (!condition) throw new Error(message);
+      }
+
+      function addResult(message, ok) {
+        var list = document.getElementById('overlayRegressionResults');
+        var item = document.createElement('li');
+
+        item.className = 'wb-list-item';
+        item.innerHTML = '<span class="wb-status-dot ' + (ok ? 'wb-status-success' : 'wb-status-danger') + '"></span><span>' + message + '</span>';
+        list.appendChild(item);
+      }
+
+      async function run() {
+        var layer = document.querySelector('#wb-overlay-root .wb-overlay-layer--dialog');
+        var modalA = document.getElementById('overlayRegressionModalA');
+        var modalB = document.getElementById('overlayRegressionModalB');
+        var galleryModal = document.getElementById('overlayRegressionGalleryViewer');
+        var galleryTrigger = document.querySelector('.wb-gallery-trigger[data-wb-gallery-target="#overlayRegressionGalleryViewer"]');
+
+        await waitForRuntime();
+
+        assert(layer && modalA && modalB && galleryModal && galleryTrigger, 'Regression fixture markup is incomplete.');
+
+        assert(layer.hidden, 'Dialog layer should start hidden.');
+        assert(modalA.hidden, 'Modal A should start hidden.');
+        window.WBModal.open(modalA);
+        await delay(40);
+        assert(document.body.classList.contains('wb-overlay-lock'), 'Opening a modal should lock the body.');
+        assert(!layer.hidden, 'Opening a modal should unhide the parent overlay layer.');
+        assert(!modalA.hidden, 'Opening a modal should unhide the target modal.');
+        addResult('Modal open removes hidden from the parent .wb-overlay-layer and target modal.', true);
+
+        window.WBModal.open(modalB);
+        await delay(40);
+        window.WBModal.close(modalB);
+        await delay(40);
+        assert(!layer.hidden, 'Shared overlay layer should remain visible while another modal in the same layer is still open.');
+        addResult('Closing one of two active modals keeps the shared .wb-overlay-layer visible.', true);
+
+        window.WBModal.close(modalA);
+        await delay(40);
+        assert(layer.hidden, 'Parent overlay layer should be hidden again after the last modal closes.');
+        assert(modalA.hidden, 'Modal A should be hidden again after close.');
+        addResult('Closing the last active modal restores hidden on the authored .wb-overlay-layer.', true);
+
+        window.WBGallery.open(galleryTrigger);
+        await delay(40);
+        assert(!layer.hidden, 'Opening a gallery viewer should unhide the parent overlay layer.');
+        assert(!galleryModal.hidden, 'Opening a gallery viewer should unhide the viewer modal.');
+        addResult('Gallery viewer open removes hidden from the parent .wb-overlay-layer and viewer modal.', true);
+
+        window.WBModal.close(galleryModal);
+        await delay(40);
+        assert(layer.hidden, 'Parent overlay layer should be hidden again after the gallery viewer closes.');
+        assert(galleryModal.hidden, 'Gallery viewer modal should be hidden again after close.');
+        addResult('Gallery viewer close restores hidden state safely after the last active target closes.', true);
+      }
+
+      function onReady() {
+        run().catch(function (error) {
+          console.error(error);
+          addResult(error.message, false);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', onReady);
+      } else {
+        onReady();
+      }
+    })();
+  </script>
+</body>
+</html>
