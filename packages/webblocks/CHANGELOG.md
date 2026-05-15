@@ -10,6 +10,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.3] — 2026-05-15
+
+### Added
+- `wb-card-media` as the canonical non-cropping media frame for card bodies so mixed image heights can keep text aligned and card grids visually even
+- alignment modifiers for card media frames: `wb-card-media--start`, `wb-card-media--center`, `wb-card-media--end`, and `wb-card-media--stretch`
+- aspect modifiers for card media frames: `wb-card-media--aspect-auto`, `wb-card-media--aspect-square`, `wb-card-media--aspect-wide`, and `wb-card-media--aspect-portrait`
+
+### Changed
+- card media guidance now defaults to `object-fit: contain` so logos, screenshots, and service images keep their full content visible instead of cropping by default
+
+---
+
 ## [2.7.2] — 2026-05-14
 
 ### Fixed

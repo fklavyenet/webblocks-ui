@@ -64,6 +64,7 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 ## Canonical Notes
 
 - `wb-card` is the single canonical framed surface noun
+- `wb-card-media` is the canonical non-cropping media frame for card bodies when mixed image sizes need consistent text rhythm
 - `wb-table-wrap` is the single table surface
 - `wb-section-nav` is the canonical local section navigation pattern
 - `wb-gallery` is the canonical inline media pattern; viewer behavior stays inside one shared `wb-modal`

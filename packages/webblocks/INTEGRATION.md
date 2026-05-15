@@ -278,6 +278,40 @@ Useful modifiers:
 - `wb-card-highlight`
 - `wb-card-accent`
 
+Use `wb-card-media` inside `wb-card-body` when cards need a predictable media area so mixed logo, screenshot, and service-image heights do not push text to different starting positions in a grid.
+
+```html
+<article class="wb-card">
+  <div class="wb-card-body wb-stack wb-gap-2">
+    <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-auto">
+      <img src="/images/service-logo.png" alt="Service logo">
+    </figure>
+    <strong>Card title</strong>
+    <p class="wb-m-0">Card text.</p>
+  </div>
+</article>
+```
+
+Alignment modifiers:
+
+- `wb-card-media--start`
+- `wb-card-media--center`
+- `wb-card-media--end`
+- `wb-card-media--stretch`
+
+Aspect modifiers:
+
+- `wb-card-media--aspect-auto`
+- `wb-card-media--aspect-square`
+- `wb-card-media--aspect-wide`
+- `wb-card-media--aspect-portrait`
+
+Notes:
+
+- default image fit is `contain` so logos, screenshots, and service images are not cropped by default
+- fixed aspect modifiers switch the frame to `aspect-ratio` sizing and let the image fill the frame box with `object-fit: contain`
+- use `wb-gallery` instead when the job is an equal-tile image set with shared viewer behavior
+
 ### Alerts and Callouts
 
 ```html

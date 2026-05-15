@@ -194,6 +194,7 @@
 
               <section class="wb-docs-section wb-docs-wide" id="surfaces-and-display">
                 <h2>Surfaces and display contracts</h2>
+                <p><code>wb-card-media</code> gives card bodies a predictable media frame so mixed logos, screenshots, and service imagery keep the text baseline consistent across a card grid. The default fit is <code>contain</code>, so the full image stays visible instead of cropping by default.</p>
                 <div class="wb-grid-2">
                   <div class="wb-card">
                     <div class="wb-card-header"><h3 class="wb-card-title">Stats</h3></div>
@@ -221,6 +222,112 @@
                       <div class="wb-alert wb-alert-success"><h3 class="wb-alert-title">Success</h3><p>The settings were saved correctly.</p></div>
                       <div class="wb-alert wb-alert-warning"><h3 class="wb-alert-title">Warning</h3><p>Review destructive actions before confirming.</p></div>
                       <div class="wb-alert wb-alert-info"><p>Content-only alerts work without an extra wrapper or title element.</p></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wb-grid-2 wb-mt-4">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Card body without media</h3></div>
+                    <div class="wb-card-body wb-stack-3">
+                      <strong>Billing summary</strong>
+                      <p class="wb-m-0">Existing card content keeps the same padding and rhythm when no media frame is present.</p>
+                      <div class="wb-cluster">
+                        <span class="wb-badge wb-badge-success">Healthy</span>
+                        <span class="wb-text-sm wb-text-muted">No card-media markup required.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Card body with media</h3></div>
+                    <div class="wb-card-body wb-stack-3">
+                      <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-auto">
+                        <img src="../assets/branding/logo-hd.png" alt="WebBlocks UI logo lockup">
+                      </figure>
+                      <strong>Shared media rhythm</strong>
+                      <p class="wb-m-0">Use the media frame inside <code>wb-card-body</code> when image heights vary but the text start line should stay aligned across cards.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wb-card wb-mt-4">
+                  <div class="wb-card-header"><h3 class="wb-card-title">Card media alignment</h3></div>
+                  <div class="wb-card-body wb-stack-3">
+                    <p class="wb-m-0">Use alignment modifiers to place smaller media inside the reserved frame without changing the card body spacing contract. <code>wb-card-media--stretch</code> lets the image use the full width while still fitting safely with <code>contain</code>.</p>
+                    <div class="wb-grid-2">
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--start</code></p>
+                          <figure class="wb-card-media wb-card-media--start wb-card-media--aspect-auto">
+                            <img src="../assets/branding/brand-logo-64.png" alt="Brand symbol aligned to the start">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--center</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-auto">
+                            <img src="../assets/branding/brand-logo-64.png" alt="Brand symbol aligned to the center">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--end</code></p>
+                          <figure class="wb-card-media wb-card-media--end wb-card-media--aspect-auto">
+                            <img src="../assets/branding/brand-logo-64.png" alt="Brand symbol aligned to the end">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--stretch</code></p>
+                          <figure class="wb-card-media wb-card-media--stretch wb-card-media--aspect-auto">
+                            <img src="../assets/branding/logo-hd.png" alt="Logo stretched across the frame width without cropping">
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wb-card wb-mt-4">
+                  <div class="wb-card-header"><h3 class="wb-card-title">Card media aspect ratios</h3></div>
+                  <div class="wb-card-body wb-stack-3">
+                    <p class="wb-m-0">Use <code>wb-card-media--aspect-auto</code> when the base minimum height is enough, or switch to a fixed aspect ratio when the grid should reserve a stricter visual slot. All fixed aspect variants keep <code>object-fit: contain</code> so logos and screenshots stay fully visible.</p>
+                    <div class="wb-grid-2">
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--aspect-auto</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-auto">
+                            <img src="../assets/branding/logo-hd.png" alt="Wide logo inside the automatic-height card media frame">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--aspect-square</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-square">
+                            <img src="../assets/branding/brand-logo-64.png" alt="Square brand symbol inside a square card media frame">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--aspect-wide</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-wide">
+                            <img src="../assets/branding/logo-hd.png" alt="Wide logo inside a 16 by 9 card media frame">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--aspect-portrait</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-portrait">
+                            <img src="../assets/branding/brand-logo-64.png" alt="Brand symbol inside a portrait card media frame">
+                          </figure>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

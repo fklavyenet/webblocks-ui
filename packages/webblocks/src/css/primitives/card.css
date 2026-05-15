@@ -41,6 +41,68 @@
   padding: var(--wb-s5);
 }
 
+.wb-card-media {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--wb-card-media-min-height, 10rem);
+}
+
+.wb-card-media img {
+  display: block;
+  max-width: 100%;
+  max-height: var(--wb-card-media-max-height, 10rem);
+  object-fit: contain;
+}
+
+.wb-card-media--start {
+  justify-content: flex-start;
+}
+
+.wb-card-media--center {
+  justify-content: center;
+}
+
+.wb-card-media--end {
+  justify-content: flex-end;
+}
+
+.wb-card-media--stretch img {
+  width: 100%;
+}
+
+.wb-card-media--aspect-auto {
+  aspect-ratio: auto;
+}
+
+.wb-card-media--aspect-square,
+.wb-card-media--aspect-wide,
+.wb-card-media--aspect-portrait {
+  min-height: 0;
+}
+
+.wb-card-media--aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.wb-card-media--aspect-wide {
+  aspect-ratio: 16 / 9;
+}
+
+.wb-card-media--aspect-portrait {
+  aspect-ratio: 4 / 5;
+}
+
+.wb-card-media--aspect-square img,
+.wb-card-media--aspect-wide img,
+.wb-card-media--aspect-portrait img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+}
+
 .wb-card-footer {
   padding: var(--wb-s3) var(--wb-s5);
   border-top: 1px solid var(--wb-border);

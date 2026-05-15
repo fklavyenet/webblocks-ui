@@ -57,6 +57,7 @@ Start from patterns, not primitives.
 - update `packages/webblocks/VERSION` before a release or tag so the package banner metadata and docs version label stay in sync
 - `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to `webblocks-ui.css`, `webblocks-icons.css`, and `webblocks-ui.js`, and regenerates `docs/version.js`
 - the playground is a thin sandbox layer built on top of shipped WebBlocks primitives, surfaces, and layout utilities
+- `wb-card-media` is the canonical card-body media frame when mixed image dimensions need consistent card-grid rhythm without default cropping
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive
 - `wb-cookie-consent` is the reusable public-site consent pattern; it supports bottom-banner and floating-card entry variants plus one shared `wb-modal` preference center and a required reopen hook
 - the admin standards page documents the canonical admin page header, detail-list, action-column, and danger-zone rules while preferring existing `wb-card`, `wb-field`, `wb-action-group`, and breadcrumb primitives wherever they already cover the job
