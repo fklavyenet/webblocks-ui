@@ -10,6 +10,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.4] — 2026-05-15
+
+### Changed
+- Document the shared overlay stack contract across the repo and package docs while keeping `wb-modal` as the canonical public top-layer primitive and `wb-overlay-root` as internal runtime infrastructure
+
+### Fixed
+- Harden the shared overlay runtime so nested modals, drawers, command palettes, and elevated anchored overlays stack deterministically with per-instance backdrops instead of relying on incidental DOM order
+- Keep Escape, outside click, pointer ownership, focus return, and body scroll locking scoped to the topmost active overlay in stacked flows
+- Preserve anchored overlay clipping avoidance under `#wb-overlay-root` while allowing nested picker/popover style overlays to elevate above parent dialog surfaces when enhanced runtime is active
+
+---
+
 ## [2.7.3] — 2026-05-15
 
 ### Added

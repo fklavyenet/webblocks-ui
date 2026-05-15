@@ -420,6 +420,15 @@ Expand and harden canonical HTML-first patterns.
 
 No wrapper systems, template adapters, or framework-specific abstraction layers.
 
+## Overlay Stack Hardening
+
+Near-term follow-up work around the existing overlay architecture:
+
+* documented overlay stack standard
+* future runtime hardening for stack-aware modal, drawer, picker, and confirmation behavior
+* future docs/examples for nested modal, modal-launched picker, drawer-launched modal, and stacked confirmation flows
+* no new public `wb-overlay` primitive; harden shared runtime infrastructure around existing public primitives instead
+
 ---
 
 # Development Philosophy

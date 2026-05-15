@@ -44,7 +44,6 @@
   'use strict';
 
   var instances = new WeakMap();
-  var activePalette = null;
   var selectedIndex = -1;
   var items = [];
 
@@ -79,6 +78,14 @@
     items[selectedIndex].click();
   }
 
+  function getActivePalette() {
+    var top = WBDom.overlay.getTopmost(function (instance) {
+      return instance.active && instance.kind === 'command-palette';
+    });
+
+    return top ? top.element : null;
+  }
+
   function ensureInstance(palette, trigger) {
     var instance = instances.get(palette);
     if (instance) {
@@ -93,6 +100,7 @@
       element: palette,
       panel: palette.querySelector('.wb-cmd-dialog') || palette,
       trigger: trigger,
+      exclusive: false,
       backdrop: true,
       backdropClass: 'wb-overlay-backdrop-dark',
       lockScroll: true,
@@ -100,11 +108,9 @@
       autoFocus: false,
       returnFocus: true,
       onAfterOpen: function () {
-        activePalette = palette;
         palette.dispatchEvent(new CustomEvent('wb:cmd:open', { bubbles: true }));
       },
       onAfterClose: function () {
-        if (activePalette === palette) activePalette = null;
         palette.dispatchEvent(new CustomEvent('wb:cmd:close', { bubbles: true }));
       }
     });
@@ -137,7 +143,7 @@
   // ── Close ─────────────────────────────────────────────────
 
   function close(palette) {
-    if (!palette) palette = activePalette;
+    if (!palette) palette = getActivePalette();
     if (!palette) return;
     WBDom.overlay.close(ensureInstance(palette), 'api');
   }
@@ -218,9 +224,9 @@
 
     // Item click — close after selection
     var item = e.target.closest('.wb-cmd-item');
-    if (item && activePalette) {
+    if (item && getActivePalette()) {
       // Allow item click to propagate first, then close
-      setTimeout(function () { close(activePalette); }, 80);
+      setTimeout(function () { close(getActivePalette()); }, 80);
     }
   });
 
@@ -228,6 +234,7 @@
     // Global shortcut: Cmd/Ctrl + K (or custom)
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
+      var activePalette = getActivePalette();
       if (activePalette) {
         close(activePalette);
       } else {
@@ -239,6 +246,7 @@
       return;
     }
 
+    var activePalette = getActivePalette();
     if (!activePalette) return;
 
     switch (e.key) {
@@ -271,7 +279,7 @@
   window.WBCommandPalette = {
     open:      open,
     close:     close,
-    getActive: function () { return activePalette; },
+    getActive: getActivePalette,
     onSearch:  function (fn) { searchHandler = fn; }
   };
 

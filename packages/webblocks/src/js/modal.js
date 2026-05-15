@@ -26,10 +26,16 @@
   'use strict';
 
   var instances = new WeakMap();
-  var activeModal = null;
-
   function staysInOverlayRoot(modal) {
     return !!(modal && modal.classList && modal.classList.contains('wb-cookie-consent-modal'));
+  }
+
+  function getActiveModal() {
+    var top = WBDom.overlay.getTopmost(function (instance) {
+      return instance.active && instance.kind === 'modal';
+    });
+
+    return top ? top.element : null;
   }
 
   function ensureInstance(modal, trigger) {
@@ -46,6 +52,7 @@
       element: modal,
       panel: modal.querySelector('.wb-modal-dialog') || modal,
       trigger: trigger,
+      exclusive: false,
       backdrop: true,
       lockScroll: true,
       trapFocus: true,
@@ -57,7 +64,6 @@
           modal.hidden = false;
           modal.removeAttribute('aria-hidden');
         }
-        activeModal = modal;
         WBDom.emit(modal, 'wb:modal:open');
       },
       onAfterClose: function () {
@@ -65,7 +71,6 @@
           modal.hidden = true;
           modal.setAttribute('aria-hidden', 'true');
         }
-        if (activeModal === modal) activeModal = null;
         WBDom.emit(modal, 'wb:modal:close');
       }
     });
@@ -86,7 +91,7 @@
   // ── Close ─────────────────────────────────────────────────
 
   function close(modal) {
-    if (!modal) modal = activeModal;
+    if (!modal) modal = getActiveModal();
     if (!modal) return;
     WBDom.overlay.close(ensureInstance(modal), 'api');
   }
@@ -107,11 +112,12 @@
     // Dismiss button
     var dismiss = e.target.closest('[data-wb-dismiss="modal"]');
     if (dismiss) {
-      close(activeModal);
+      close(dismiss.closest('.wb-modal') || getActiveModal());
       return;
     }
 
     // Backdrop click — close if click is directly on .wb-modal (backdrop layer)
+    var activeModal = getActiveModal();
     if (activeModal && e.target === activeModal) {
       close(activeModal);
     }
@@ -122,7 +128,7 @@
   window.WBModal = {
     open:      open,
     close:     close,
-    getActive: function () { return activeModal; }
+    getActive: getActiveModal
   };
 
 })();

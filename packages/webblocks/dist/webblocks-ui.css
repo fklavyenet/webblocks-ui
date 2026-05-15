@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.7.3 (https://webblocksui.com/)
+ * WebBlocks UI v2.7.4 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -3581,6 +3581,7 @@ body.wb-overlay-lock {
   position: fixed;
   inset: 0;
   z-index: var(--wb-z-overlay);
+  isolation: isolate;
   pointer-events: none;
   overflow: visible;
 }
@@ -3592,29 +3593,26 @@ body.wb-overlay-lock {
   overflow: visible;
 }
 
-.wb-overlay-layer--anchored {
-  z-index: var(--wb-z-dropdown);
+.wb-overlay-layer > * {
+  pointer-events: auto;
 }
 
-.wb-overlay-layer--dialog {
-  z-index: var(--wb-z-modal);
-}
-
-.wb-overlay-layer--toast {
+.wb-overlay-layer--toast > * {
   z-index: var(--wb-z-toast);
 }
 
-.wb-overlay-layer--loading {
+.wb-overlay-layer--loading > * {
   z-index: var(--wb-z-loading);
 }
 
-.wb-overlay-layer > * {
-  pointer-events: auto;
+[data-wb-overlay-runtime="true"][data-wb-overlay-interactive="false"] {
+  pointer-events: none;
 }
 
 .wb-overlay-backdrop {
   position: absolute;
   inset: 0;
+  pointer-events: auto;
   background: var(--wb-overlay);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);

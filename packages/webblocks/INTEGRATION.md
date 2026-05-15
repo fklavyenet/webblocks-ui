@@ -619,6 +619,15 @@ Overlay architecture in this package has three layers:
 
 There is no separate public `wb-overlay` component.
 
+Public authoring contract remains:
+
+- `wb-modal`
+- `wb-drawer`
+- `wb-popover`
+- `wb-toast`
+- `data-wb-tooltip`
+- other shipped `data-wb-*` hooks tied to those public primitives and patterns
+
 Use `wb-modal` for:
 
 - confirmation dialogs
@@ -741,6 +750,21 @@ Do not:
 - rely only on clicking outside to close
 - hide close behavior in app-local scripts
 - duplicate the same content once for inline display and again for the viewer unless the real UX requires it
+
+### Nested overlays / overlay stack
+
+This section documents the intended overlay stack contract. It hardens the public rules around the existing runtime infrastructure and does not introduce a new public component.
+
+- `wb-overlay-root` is runtime infrastructure used by enhanced overlays
+- host projects should provide one `#wb-overlay-root` per page or shell where enhanced overlays are expected
+- enhanced runtime should avoid clipping by moving active floating or top-layer nodes under the shared root
+- nested overlays must not remain clipped by cards, drawers, local shells, or parent modal bodies
+- nested overlay order must be: page, parent overlay backdrop, parent overlay, nested overlay backdrop, nested overlay
+- only the topmost overlay is interactive
+- Escape, backdrop handling, focus return, and body scroll locking must be stack-aware
+- a nested modal, picker, or dialog should render above the opener overlay rather than inside its visual clipping context
+- do not create a public `wb-overlay` component for this job
+- this is documentation-only for now where the current runtime is not yet fully stack-aware
 
 ### Gallery Pattern
 
@@ -1509,6 +1533,8 @@ Anchored overlay notes:
 - `WBDropdown`, `WBPopover`, and `WBTooltip` are consumers of the same internal layer utilities
 - `WBModal` consumes the shared dialog/top-layer runtime instead of shipping a separate overlay engine
 - do not build separate per-component positioning engines or ad hoc z-index ladders
+- stack-aware behavior should keep backdrop order, pointer ownership, Escape handling, focus return, and body scroll locking deterministic when overlays open on top of overlays
+- runtime-mounted overlay nodes may receive internal state attributes such as `data-wb-overlay-runtime`, `data-wb-overlay-layer`, `data-wb-overlay-interactive`, and internal backdrop ownership markers; these are maintainer infrastructure, not public authoring hooks
 
 Internal layer classes such as `wb-overlay-root`, `wb-overlay-layer`, and `wb-overlay-layer--anchored` are runtime infrastructure, not the primary public authoring contract for page-level dialogs.
 

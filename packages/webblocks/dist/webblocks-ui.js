@@ -1,5 +1,5 @@
 /*!
- * WebBlocks UI v2.7.3 (https://webblocksui.com/)
+ * WebBlocks UI v2.7.4 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -156,7 +156,6 @@
   var uid = 0;
   var root = null;
   var layers = {};
-  var backdrop = null;
   var visibilityStates = new WeakMap();
 
   if (html) html.classList.add('wb-js');
@@ -291,20 +290,6 @@
     }
   }
 
-  function getBackdrop() {
-    if (backdrop && ensureLayer('dialog').contains(backdrop)) return backdrop;
-
-    backdrop = ensureLayer('dialog').querySelector('.wb-overlay-backdrop');
-    if (!backdrop) {
-      backdrop = document.createElement('div');
-      backdrop.className = 'wb-overlay-backdrop';
-      backdrop.hidden = true;
-      ensureLayer('dialog').appendChild(backdrop);
-    }
-
-    return backdrop;
-  }
-
   function getPlacement(value) {
     return typeof value === 'function' ? value() : (value || 'bottom-start');
   }
@@ -384,29 +369,134 @@
     document.body.classList.toggle('wb-overlay-lock', lock);
   }
 
-  function syncBackdrop() {
-    var topmost = null;
+  function isDialogInstance(instance) {
+    return !!(instance && instance.layer === 'dialog');
+  }
+
+  function canReceiveFocus(element) {
+    return !!(
+      element &&
+      typeof element.focus === 'function' &&
+      document.contains(element) &&
+      !element.hasAttribute('disabled') &&
+      element.getAttribute('aria-hidden') !== 'true'
+    );
+  }
+
+  function getParentOverlay(instance) {
     var i;
 
+    if (!instance || !instance.trigger) return null;
+
     for (i = activeStack.length - 1; i >= 0; i -= 1) {
-      if (activeStack[i].active && activeStack[i].backdrop) {
-        topmost = activeStack[i];
-        break;
+      var candidate = activeStack[i];
+      if (!candidate.active || candidate === instance) continue;
+      if (candidate.element && candidate.element.contains(instance.trigger)) return candidate;
+      if (candidate.panel && candidate.panel.contains(instance.trigger)) return candidate;
+    }
+
+    return null;
+  }
+
+  function shouldElevateAnchored(instance) {
+    return !!(instance && instance.layer === 'anchored' && getParentOverlay(instance));
+  }
+
+  function getBackdropElement(instance) {
+    var el;
+
+    if (!instance || !instance.backdrop) return null;
+    if (instance.backdropElement && ensureLayer('dialog').contains(instance.backdropElement)) {
+      return instance.backdropElement;
+    }
+
+    el = instance.backdropElement || document.createElement('div');
+    el.className = 'wb-overlay-backdrop';
+    el.hidden = true;
+    el.setAttribute('data-wb-overlay-backdrop', 'true');
+    el.setAttribute('data-wb-overlay-owner', instance.id);
+    ensureLayer('dialog').appendChild(el);
+    instance.backdropElement = el;
+    return el;
+  }
+
+  function syncBackdropElement(instance) {
+    var el = getBackdropElement(instance);
+
+    if (!el) return;
+
+    el.className = 'wb-overlay-backdrop' + (instance.backdropClass ? ' ' + instance.backdropClass : '');
+    el.hidden = !instance.active;
+    el.setAttribute('data-wb-overlay-owner', instance.id);
+  }
+
+  function updateLayering() {
+    var dialogOffset = 0;
+    var anchoredOffset = 0;
+
+    activeStack.forEach(function (instance) {
+      var element;
+      var backdropElement;
+      var zIndex;
+
+      if (!instance.active || !instance.element) return;
+
+      element = instance.element;
+      backdropElement = instance.backdrop ? getBackdropElement(instance) : null;
+
+      if (isDialogInstance(instance) || shouldElevateAnchored(instance)) {
+        zIndex = 'calc(var(--wb-z-modal) + ' + (dialogOffset + 1) + ')';
+        if (backdropElement) {
+          backdropElement.style.zIndex = 'calc(var(--wb-z-modal) + ' + dialogOffset + ')';
+          syncBackdropElement(instance);
+        }
+        dialogOffset += 2;
+      } else if (instance.layer === 'anchored') {
+        zIndex = 'calc(var(--wb-z-dropdown) + ' + anchoredOffset + ')';
+        anchoredOffset += 1;
+      } else {
+        zIndex = '';
       }
-    }
 
-    var el = getBackdrop();
-    if (!topmost) {
-      el.hidden = true;
-      el.className = 'wb-overlay-backdrop';
-      delete el.dataset.wbOverlayOwner;
-      return;
-    }
+      element.style.zIndex = zIndex;
+    });
 
-    el.className = 'wb-overlay-backdrop' + (topmost.backdropClass ? ' ' + topmost.backdropClass : '');
-    el.hidden = false;
-    el.dataset.wbOverlayOwner = topmost.id;
-    ensureLayer('dialog').insertBefore(el, ensureLayer('dialog').firstChild);
+    activeStack.forEach(function (instance) {
+      if (!instance.active || !instance.backdropElement) return;
+      if (!instance.backdrop) return;
+      syncBackdropElement(instance);
+    });
+  }
+
+  function syncInteractions() {
+    var topDialog = getTopmost(function (instance) {
+      return instance.active && isDialogInstance(instance);
+    });
+    var topInteractive = getTopmost(function (instance) {
+      return instance.active && instance.interactive !== false;
+    });
+
+    activeStack.forEach(function (instance) {
+      if (!instance.element) return;
+
+      if (!instance.active) {
+        instance.element.removeAttribute('data-wb-overlay-interactive');
+        return;
+      }
+
+      if (isDialogInstance(instance)) {
+        instance.element.setAttribute('data-wb-overlay-interactive', instance === topInteractive && instance === topDialog ? 'true' : 'false');
+        return;
+      }
+
+      instance.element.setAttribute('data-wb-overlay-interactive', instance === topInteractive ? 'true' : 'false');
+    });
+  }
+
+  function syncStackState() {
+    syncBodyLock();
+    updateLayering();
+    syncInteractions();
   }
 
   function registerActive(instance) {
@@ -437,6 +527,10 @@
   function mount(instance) {
     if (!instance || !instance.element) return;
     portalToLayer(instance);
+    instance.element.setAttribute('data-wb-overlay-runtime', 'true');
+    instance.element.setAttribute('data-wb-overlay-kind', instance.kind || 'overlay');
+    instance.element.setAttribute('data-wb-overlay-layer', instance.layer || 'anchored');
+    if (instance.backdrop) getBackdropElement(instance);
   }
 
   function restoreFromLayer(instance) {
@@ -450,6 +544,7 @@
     instance.element.removeAttribute('data-wb-overlay-portaled');
     instance.element.removeAttribute('data-wb-overlay-runtime');
     instance.element.removeAttribute('data-wb-overlay-kind');
+    instance.element.removeAttribute('data-wb-overlay-layer');
   }
 
   function syncTriggerAria(instance, expanded) {
@@ -465,8 +560,24 @@
   }
 
   function restoreFocus(instance) {
-    if (!instance.returnFocus || !instance.previouslyFocused || typeof instance.previouslyFocused.focus !== 'function') return;
-    instance.previouslyFocused.focus();
+    var fallback;
+
+    if (!instance.returnFocus) return;
+
+    if (canReceiveFocus(instance.previouslyFocused)) {
+      instance.previouslyFocused.focus();
+      instance.previouslyFocused = null;
+      return;
+    }
+
+    fallback = getTopmost(function (activeInstance) {
+      return activeInstance.active && activeInstance.trapFocus;
+    });
+
+    if (fallback) {
+      WBDom.focusFirst(fallback.panel || fallback.element);
+    }
+
     instance.previouslyFocused = null;
   }
 
@@ -549,8 +660,7 @@
     if (typeof instance.onToggle === 'function') instance.onToggle(true, instance);
     syncTriggerAria(instance, true);
     registerActive(instance);
-    syncBodyLock();
-    syncBackdrop();
+    syncStackState();
     update(instance);
 
     if (instance.autoFocus === true) {
@@ -569,11 +679,13 @@
     syncTriggerAria(instance, false);
     unregisterActive(instance);
     untrackVisibility(instance);
+    if (instance.backdropElement) {
+      instance.backdropElement.hidden = true;
+    }
     if (instance.restoreOnClose !== false) {
       restoreFromLayer(instance);
     }
-    syncBodyLock();
-    syncBackdrop();
+    syncStackState();
 
     if (typeof instance.onAfterClose === 'function') instance.onAfterClose(instance, reason);
     restoreFocus(instance);
@@ -625,11 +737,13 @@
       manageControls: options.manageControls !== false,
       outsideClose: options.outsideClose !== false,
       escapeClose: options.escapeClose !== false,
+      interactive: options.interactive !== false,
       onToggle: options.onToggle,
       onUpdate: options.onUpdate,
       onRequestClose: options.onRequestClose,
       onAfterOpen: options.onAfterOpen,
       onAfterClose: options.onAfterClose,
+      backdropElement: null,
       placeholder: null,
       originalParent: null,
       originalNextSibling: null,
@@ -1331,10 +1445,16 @@
   'use strict';
 
   var instances = new WeakMap();
-  var activeModal = null;
-
   function staysInOverlayRoot(modal) {
     return !!(modal && modal.classList && modal.classList.contains('wb-cookie-consent-modal'));
+  }
+
+  function getActiveModal() {
+    var top = WBDom.overlay.getTopmost(function (instance) {
+      return instance.active && instance.kind === 'modal';
+    });
+
+    return top ? top.element : null;
   }
 
   function ensureInstance(modal, trigger) {
@@ -1351,6 +1471,7 @@
       element: modal,
       panel: modal.querySelector('.wb-modal-dialog') || modal,
       trigger: trigger,
+      exclusive: false,
       backdrop: true,
       lockScroll: true,
       trapFocus: true,
@@ -1362,7 +1483,6 @@
           modal.hidden = false;
           modal.removeAttribute('aria-hidden');
         }
-        activeModal = modal;
         WBDom.emit(modal, 'wb:modal:open');
       },
       onAfterClose: function () {
@@ -1370,7 +1490,6 @@
           modal.hidden = true;
           modal.setAttribute('aria-hidden', 'true');
         }
-        if (activeModal === modal) activeModal = null;
         WBDom.emit(modal, 'wb:modal:close');
       }
     });
@@ -1391,7 +1510,7 @@
   // ── Close ─────────────────────────────────────────────────
 
   function close(modal) {
-    if (!modal) modal = activeModal;
+    if (!modal) modal = getActiveModal();
     if (!modal) return;
     WBDom.overlay.close(ensureInstance(modal), 'api');
   }
@@ -1412,11 +1531,12 @@
     // Dismiss button
     var dismiss = e.target.closest('[data-wb-dismiss="modal"]');
     if (dismiss) {
-      close(activeModal);
+      close(dismiss.closest('.wb-modal') || getActiveModal());
       return;
     }
 
     // Backdrop click — close if click is directly on .wb-modal (backdrop layer)
+    var activeModal = getActiveModal();
     if (activeModal && e.target === activeModal) {
       close(activeModal);
     }
@@ -1427,7 +1547,7 @@
   window.WBModal = {
     open:      open,
     close:     close,
-    getActive: function () { return activeModal; }
+    getActive: getActiveModal
   };
 
 })();
@@ -2886,7 +3006,13 @@
   'use strict';
 
   var instances = new WeakMap();
-  var activeDrawer = null;
+  function getActiveDrawer() {
+    var top = WBDom.overlay.getTopmost(function (instance) {
+      return instance.active && instance.kind === 'drawer';
+    });
+
+    return top ? top.element : null;
+  }
 
   function ensureInstance(drawer, trigger) {
     var instance = instances.get(drawer);
@@ -2902,17 +3028,16 @@
       element: drawer,
       panel: drawer,
       trigger: trigger,
+      exclusive: false,
       backdrop: true,
       lockScroll: true,
       trapFocus: true,
       autoFocus: true,
       returnFocus: true,
       onAfterOpen: function () {
-        activeDrawer = drawer;
         WBDom.emit(drawer, 'wb:drawer:open');
       },
       onAfterClose: function () {
-        if (activeDrawer === drawer) activeDrawer = null;
         WBDom.emit(drawer, 'wb:drawer:close');
       }
     });
@@ -2933,7 +3058,7 @@
   // ── Close ─────────────────────────────────────────────────
 
   function close(drawer) {
-    if (!drawer) drawer = activeDrawer;
+    if (!drawer) drawer = getActiveDrawer();
     if (!drawer) return;
     WBDom.overlay.close(ensureInstance(drawer), 'api');
   }
@@ -2954,7 +3079,7 @@
     // Dismiss button (data-wb-dismiss="drawer")
     var dismiss = e.target.closest('[data-wb-dismiss="drawer"]');
     if (dismiss) {
-      close(activeDrawer);
+      close(dismiss.closest('.wb-drawer') || getActiveDrawer());
       return;
     }
   });
@@ -2964,7 +3089,7 @@
   window.WBDrawer = {
     open:      open,
     close:     close,
-    getActive: function () { return activeDrawer; }
+    getActive: getActiveDrawer
   };
 
 })();
@@ -3014,7 +3139,6 @@
   'use strict';
 
   var instances = new WeakMap();
-  var activePalette = null;
   var selectedIndex = -1;
   var items = [];
 
@@ -3049,6 +3173,14 @@
     items[selectedIndex].click();
   }
 
+  function getActivePalette() {
+    var top = WBDom.overlay.getTopmost(function (instance) {
+      return instance.active && instance.kind === 'command-palette';
+    });
+
+    return top ? top.element : null;
+  }
+
   function ensureInstance(palette, trigger) {
     var instance = instances.get(palette);
     if (instance) {
@@ -3063,6 +3195,7 @@
       element: palette,
       panel: palette.querySelector('.wb-cmd-dialog') || palette,
       trigger: trigger,
+      exclusive: false,
       backdrop: true,
       backdropClass: 'wb-overlay-backdrop-dark',
       lockScroll: true,
@@ -3070,11 +3203,9 @@
       autoFocus: false,
       returnFocus: true,
       onAfterOpen: function () {
-        activePalette = palette;
         palette.dispatchEvent(new CustomEvent('wb:cmd:open', { bubbles: true }));
       },
       onAfterClose: function () {
-        if (activePalette === palette) activePalette = null;
         palette.dispatchEvent(new CustomEvent('wb:cmd:close', { bubbles: true }));
       }
     });
@@ -3107,7 +3238,7 @@
   // ── Close ─────────────────────────────────────────────────
 
   function close(palette) {
-    if (!palette) palette = activePalette;
+    if (!palette) palette = getActivePalette();
     if (!palette) return;
     WBDom.overlay.close(ensureInstance(palette), 'api');
   }
@@ -3188,9 +3319,9 @@
 
     // Item click — close after selection
     var item = e.target.closest('.wb-cmd-item');
-    if (item && activePalette) {
+    if (item && getActivePalette()) {
       // Allow item click to propagate first, then close
-      setTimeout(function () { close(activePalette); }, 80);
+      setTimeout(function () { close(getActivePalette()); }, 80);
     }
   });
 
@@ -3198,6 +3329,7 @@
     // Global shortcut: Cmd/Ctrl + K (or custom)
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
+      var activePalette = getActivePalette();
       if (activePalette) {
         close(activePalette);
       } else {
@@ -3209,6 +3341,7 @@
       return;
     }
 
+    var activePalette = getActivePalette();
     if (!activePalette) return;
 
     switch (e.key) {
@@ -3241,7 +3374,7 @@
   window.WBCommandPalette = {
     open:      open,
     close:     close,
-    getActive: function () { return activePalette; },
+    getActive: getActivePalette,
     onSearch:  function (fn) { searchHandler = fn; }
   };
 
@@ -3677,6 +3810,7 @@
     manageControls: false,
     outsideClose: false,
     escapeClose: false,
+    interactive: false,
     onToggle: function (isOpen) {
       tooltip.hidden = !isOpen;
     }

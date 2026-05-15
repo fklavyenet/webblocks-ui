@@ -59,6 +59,7 @@
     manageControls: false,
     outsideClose: false,
     escapeClose: false,
+    interactive: false,
     onToggle: function (isOpen) {
       tooltip.hidden = !isOpen;
     }

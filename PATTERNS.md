@@ -364,6 +364,7 @@ Architecture rule:
 - immersive viewing uses one shared `wb-modal`
 - the viewer is content-first modal composition, not a second top-layer primitive
 - author one shared viewer per gallery context instead of one modal per gallery item
+- if a gallery viewer opens another picker or dialog from inside overlay UI, that nested overlay must follow the overlay stack standard instead of staying inside a clipping parent
 
 Canonical structure:
 
@@ -461,6 +462,7 @@ Architecture rule:
 - use `wb-cookie-consent-card` for the compact floating card entry
 - preference management lives inside one shared `wb-modal wb-cookie-consent-modal`
 - the pattern must include a reopen hook such as a footer `data-wb-cookie-consent-open` trigger
+- if the preference center opens another picker, viewer, or dialog, that nested overlay must follow the overlay stack standard instead of rendering inside the parent overlay body
 
 Behavior rule:
 
@@ -493,6 +495,7 @@ These are also shipped pattern families, but not primary app shells:
 7. Focus-above-page interactions belong to the modal primitive layer, not to page-pattern markup: use `wb-modal` for dialog, confirm, form, and content-first viewer UI.
 8. `wb-gallery` is an inline pattern; when it needs immersive viewing, expand into a shared content-first `wb-modal` instead of inventing a gallery-specific top-layer primitive.
 9. `wb-cookie-consent` is a reusable public-site pattern; keep it composed from shipped primitives and one shared `wb-modal`, not project-local banner code.
+10. If a pattern opens a picker, viewer, preference center, or confirmation flow from inside another overlay, the nested overlay must follow the overlay stack standard instead of rendering inside a clipping parent.
 
 Do:
 

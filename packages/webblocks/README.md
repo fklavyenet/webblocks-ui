@@ -70,6 +70,9 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 - `wb-gallery` is the canonical inline media pattern; viewer behavior stays inside one shared `wb-modal`
 - `wb-rich-text` is the canonical primitive for sanitized editorial body copy; keep headings, media, tables, buttons, and page layout outside it
 - `wb-cookie-consent` is the reusable public-site consent pattern; entry UI can be a bottom banner or floating card, and preferences stay inside one shared `wb-modal`
+- `wb-overlay-root` is shared runtime infrastructure for enhanced overlays; `wb-modal` remains the canonical public top-layer primitive
+- nested overlays should follow the overlay stack contract and must not stay clipped inside parent containers or overlay bodies
+- avoid teaching `panel` as a generic surface or overlay noun; keep it only for scoped internal structures such as `wb-popover-panel`
 - in-page `wb-section-nav` active state is runtime-owned; `WBSectionNav` applies `.is-active` and `aria-current="location"` from real hash/scroll state
 - text casing is content-defined; shipped UI should not force uppercase or capitalize
 

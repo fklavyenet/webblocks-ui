@@ -26,7 +26,13 @@
   'use strict';
 
   var instances = new WeakMap();
-  var activeDrawer = null;
+  function getActiveDrawer() {
+    var top = WBDom.overlay.getTopmost(function (instance) {
+      return instance.active && instance.kind === 'drawer';
+    });
+
+    return top ? top.element : null;
+  }
 
   function ensureInstance(drawer, trigger) {
     var instance = instances.get(drawer);
@@ -42,17 +48,16 @@
       element: drawer,
       panel: drawer,
       trigger: trigger,
+      exclusive: false,
       backdrop: true,
       lockScroll: true,
       trapFocus: true,
       autoFocus: true,
       returnFocus: true,
       onAfterOpen: function () {
-        activeDrawer = drawer;
         WBDom.emit(drawer, 'wb:drawer:open');
       },
       onAfterClose: function () {
-        if (activeDrawer === drawer) activeDrawer = null;
         WBDom.emit(drawer, 'wb:drawer:close');
       }
     });
@@ -73,7 +78,7 @@
   // ── Close ─────────────────────────────────────────────────
 
   function close(drawer) {
-    if (!drawer) drawer = activeDrawer;
+    if (!drawer) drawer = getActiveDrawer();
     if (!drawer) return;
     WBDom.overlay.close(ensureInstance(drawer), 'api');
   }
@@ -94,7 +99,7 @@
     // Dismiss button (data-wb-dismiss="drawer")
     var dismiss = e.target.closest('[data-wb-dismiss="drawer"]');
     if (dismiss) {
-      close(activeDrawer);
+      close(dismiss.closest('.wb-drawer') || getActiveDrawer());
       return;
     }
   });
@@ -104,7 +109,7 @@
   window.WBDrawer = {
     open:      open,
     close:     close,
-    getActive: function () { return activeDrawer; }
+    getActive: getActiveDrawer
   };
 
 })();

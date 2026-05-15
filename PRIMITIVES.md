@@ -113,6 +113,21 @@ Overlay boundary inside primitives:
 - gallery viewer behavior belongs to `wb-modal` usage, while `wb-gallery` itself belongs to patterns
 - cookie consent preference centers also belong to `wb-modal` usage, while `wb-cookie-consent` itself belongs to patterns plus interactive hooks
 
+Overlay Stack Standard:
+
+- `wb-modal` remains the canonical public top-layer primitive for focused dialog-like experiences
+- `wb-overlay-root` remains shared runtime infrastructure and is not authored as a public page primitive
+- runtime-owned overlays that can escape normal flow must mount, portal, or hoist into `#wb-overlay-root` when enhanced JS behavior is active
+- nested overlays must not remain clipped by local containers, cards, drawers, or parent modal bodies
+- a nested modal, picker, or dialog must render above the opener overlay, not inside its visual clipping context
+- only the topmost overlay receives pointer and keyboard interaction
+- Escape closes the topmost overlay first
+- body scroll locking must be stack-aware
+- focus should return to the opener of the overlay that just closed when practical
+- backdrop and modal stacking must be deterministic rather than relying only on incidental DOM order
+- do not introduce a public `wb-overlay` primitive or a second lightbox/viewer primitive beside `wb-modal`
+- do not teach `panel` as a generic public noun; `panel` may remain only in scoped internal names such as `wb-popover-panel`, `wb-collapse-panel`, or `wb-auth-panel`
+
 ## Surfaces
 
 Surfaces are visible structured regions that are larger than a single primitive but smaller than a full page pattern.
