@@ -148,6 +148,14 @@
     WBDom.overlay.close(ensureInstance(palette), 'api');
   }
 
+  function requestUserClose(palette, reason, originalEvent) {
+    if (!palette) palette = getActivePalette();
+    if (!palette) return;
+    WBDom.overlay.requestClose(ensureInstance(palette), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   // ── Input / search ─────────────────────────────────────── 
 
   function handleInput(input) {
@@ -218,7 +226,7 @@
     // Backdrop click to close
     var backdrop = e.target.closest('.wb-cmd-backdrop');
     if (backdrop && e.target === backdrop) {
-      close(backdrop);
+      requestUserClose(backdrop, 'outside', e);
       return;
     }
 
@@ -250,9 +258,6 @@
     if (!activePalette) return;
 
     switch (e.key) {
-      case 'Escape':
-        close(activePalette);
-        break;
       case 'ArrowDown':
         e.preventDefault();
         selectItem(selectedIndex + 1);

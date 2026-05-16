@@ -117,6 +117,13 @@
     WBDom.overlay.close(instance, 'api');
   }
 
+  function requestUserClose(menu, reason, originalEvent) {
+    if (!menu) return;
+    WBDom.overlay.requestClose(ensureInstance(menu, getTrigger(menu)), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   function toggle(trigger) {
     var menu = getMenu(trigger);
     if (!menu) return;
@@ -141,7 +148,7 @@
     var dismiss = e.target.closest('[data-wb-dismiss="dropdown"]');
     if (dismiss) {
       var menu = dismiss.closest('.wb-dropdown-menu');
-      if (menu) close(menu);
+      if (menu) requestUserClose(menu, 'dismiss-control', e);
       return;
     }
 

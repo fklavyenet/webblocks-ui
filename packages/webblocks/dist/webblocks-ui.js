@@ -1,5 +1,5 @@
 /*!
- * WebBlocks UI v2.7.4 (https://webblocksui.com/)
+ * WebBlocks UI v2.7.5 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -153,6 +153,12 @@
   var html = document.documentElement;
   var ROOT_ID = 'wb-overlay-root';
   var activeStack = [];
+  var CLOSE_REQUEST_REASONS = {
+    escape: true,
+    outside: true,
+    'close-control': true,
+    'dismiss-control': true
+  };
   var uid = 0;
   var root = null;
   var layers = {};
@@ -499,6 +505,32 @@
     syncInteractions();
   }
 
+  function normalizeCloseReason(reason) {
+    if (reason === 'backdrop-click' || reason === 'outside-click') return 'outside';
+    return reason || '';
+  }
+
+  function dispatchCloseRequest(instance, reason, originalEvent) {
+    var event;
+
+    if (!instance || !instance.element || !CLOSE_REQUEST_REASONS[reason]) return true;
+
+    event = new CustomEvent('wb:overlay:close-request', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        overlay: instance.element,
+        type: instance.kind || 'overlay',
+        reason: reason,
+        opener: instance.trigger || null,
+        trigger: instance.trigger || null,
+        originalEvent: originalEvent || null
+      }
+    });
+
+    return instance.element.dispatchEvent(event);
+  }
+
   function registerActive(instance) {
     unregisterActive(instance);
     activeStack.push(instance);
@@ -632,15 +664,24 @@
     });
   }
 
-  function requestClose(instance, reason) {
+  function requestClose(instance, reason, options) {
+    var normalizedReason;
+
     if (!instance || !instance.active) return;
 
+    options = options || {};
+    normalizedReason = normalizeCloseReason(reason);
+
+    if (options.userInitiated !== false && CLOSE_REQUEST_REASONS[normalizedReason]) {
+      if (!dispatchCloseRequest(instance, normalizedReason, options.originalEvent)) return;
+    }
+
     if (typeof instance.onRequestClose === 'function') {
-      instance.onRequestClose(reason, instance);
+      instance.onRequestClose(normalizedReason, instance, options.originalEvent || null);
       return;
     }
 
-    close(instance, reason);
+    close(instance, normalizedReason);
   }
 
   function open(instance) {
@@ -760,7 +801,7 @@
       var owner = getTopmost(function (instance) {
         return instance.active && instance.backdrop && (!ownerId || instance.id === ownerId);
       });
-      if (owner) requestClose(owner, 'backdrop-click');
+      if (owner) requestClose(owner, 'outside', { originalEvent: e });
       return;
     }
 
@@ -771,7 +812,7 @@
     if (!top) return;
     if (top.element && top.element.contains(e.target)) return;
     if (top.trigger && top.trigger.contains(e.target)) return;
-    requestClose(top, 'outside-click');
+    requestClose(top, 'outside', { originalEvent: e });
   });
 
   document.addEventListener('keydown', function (e) {
@@ -781,7 +822,7 @@
       });
       if (esc) {
         e.preventDefault();
-        requestClose(esc, 'escape');
+        requestClose(esc, 'escape', { originalEvent: e });
         return;
       }
     }
@@ -1355,6 +1396,13 @@
     WBDom.overlay.close(instance, 'api');
   }
 
+  function requestUserClose(menu, reason, originalEvent) {
+    if (!menu) return;
+    WBDom.overlay.requestClose(ensureInstance(menu, getTrigger(menu)), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   function toggle(trigger) {
     var menu = getMenu(trigger);
     if (!menu) return;
@@ -1379,7 +1427,7 @@
     var dismiss = e.target.closest('[data-wb-dismiss="dropdown"]');
     if (dismiss) {
       var menu = dismiss.closest('.wb-dropdown-menu');
-      if (menu) close(menu);
+      if (menu) requestUserClose(menu, 'dismiss-control', e);
       return;
     }
 
@@ -1515,6 +1563,14 @@
     WBDom.overlay.close(ensureInstance(modal), 'api');
   }
 
+  function requestUserClose(modal, reason, originalEvent) {
+    if (!modal) modal = getActiveModal();
+    if (!modal) return;
+    WBDom.overlay.requestClose(ensureInstance(modal), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   // ── Event delegation ──────────────────────────────────────
 
   document.addEventListener('click', function (e) {
@@ -1531,14 +1587,18 @@
     // Dismiss button
     var dismiss = e.target.closest('[data-wb-dismiss="modal"]');
     if (dismiss) {
-      close(dismiss.closest('.wb-modal') || getActiveModal());
+      requestUserClose(
+        dismiss.closest('.wb-modal') || getActiveModal(),
+        dismiss.classList.contains('wb-modal-close') ? 'close-control' : 'dismiss-control',
+        e
+      );
       return;
     }
 
     // Backdrop click — close if click is directly on .wb-modal (backdrop layer)
     var activeModal = getActiveModal();
     if (activeModal && e.target === activeModal) {
-      close(activeModal);
+      requestUserClose(activeModal, 'outside', e);
     }
   });
 
@@ -3063,6 +3123,14 @@
     WBDom.overlay.close(ensureInstance(drawer), 'api');
   }
 
+  function requestUserClose(drawer, reason, originalEvent) {
+    if (!drawer) drawer = getActiveDrawer();
+    if (!drawer) return;
+    WBDom.overlay.requestClose(ensureInstance(drawer), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   // ── Event delegation ──────────────────────────────────────
 
   document.addEventListener('click', function (e) {
@@ -3079,7 +3147,11 @@
     // Dismiss button (data-wb-dismiss="drawer")
     var dismiss = e.target.closest('[data-wb-dismiss="drawer"]');
     if (dismiss) {
-      close(dismiss.closest('.wb-drawer') || getActiveDrawer());
+      requestUserClose(
+        dismiss.closest('.wb-drawer') || getActiveDrawer(),
+        dismiss.classList.contains('wb-drawer-close') ? 'close-control' : 'dismiss-control',
+        e
+      );
       return;
     }
   });
@@ -3243,6 +3315,14 @@
     WBDom.overlay.close(ensureInstance(palette), 'api');
   }
 
+  function requestUserClose(palette, reason, originalEvent) {
+    if (!palette) palette = getActivePalette();
+    if (!palette) return;
+    WBDom.overlay.requestClose(ensureInstance(palette), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   // ── Input / search ─────────────────────────────────────── 
 
   function handleInput(input) {
@@ -3313,7 +3393,7 @@
     // Backdrop click to close
     var backdrop = e.target.closest('.wb-cmd-backdrop');
     if (backdrop && e.target === backdrop) {
-      close(backdrop);
+      requestUserClose(backdrop, 'outside', e);
       return;
     }
 
@@ -3345,9 +3425,6 @@
     if (!activePalette) return;
 
     switch (e.key) {
-      case 'Escape':
-        close(activePalette);
-        break;
       case 'ArrowDown':
         e.preventDefault();
         selectItem(selectedIndex + 1);
@@ -3705,6 +3782,20 @@
     WBDom.overlay.close(instance, 'api');
   }
 
+  function requestUserClose(wrapper, reason, originalEvent) {
+    wrapper = getWrapper(wrapper);
+    if (!wrapper) return;
+
+    var panel = getPanel(wrapper);
+    var trigger = wrapper.querySelector('[data-wb-toggle="popover"]') || (panel ? getTrigger(panel) : null);
+    panel = getPanel(wrapper, trigger);
+    if (!panel) return;
+
+    WBDom.overlay.requestClose(ensureInstance(wrapper, trigger, panel), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   function closeAll() {
     WBDom.overlay.closeAll(function (instance) {
       return instance.kind === 'popover';
@@ -3733,7 +3824,7 @@
     var dismiss = e.target.closest('[data-wb-dismiss="popover"]');
     if (dismiss) {
       var wrapper = getWrapper(dismiss.closest('.wb-popover-panel') || dismiss);
-      if (wrapper) close(wrapper);
+      if (wrapper) requestUserClose(wrapper, 'dismiss-control', e);
       return;
     }
   });

@@ -96,6 +96,14 @@
     WBDom.overlay.close(ensureInstance(modal), 'api');
   }
 
+  function requestUserClose(modal, reason, originalEvent) {
+    if (!modal) modal = getActiveModal();
+    if (!modal) return;
+    WBDom.overlay.requestClose(ensureInstance(modal), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   // ── Event delegation ──────────────────────────────────────
 
   document.addEventListener('click', function (e) {
@@ -112,14 +120,18 @@
     // Dismiss button
     var dismiss = e.target.closest('[data-wb-dismiss="modal"]');
     if (dismiss) {
-      close(dismiss.closest('.wb-modal') || getActiveModal());
+      requestUserClose(
+        dismiss.closest('.wb-modal') || getActiveModal(),
+        dismiss.classList.contains('wb-modal-close') ? 'close-control' : 'dismiss-control',
+        e
+      );
       return;
     }
 
     // Backdrop click — close if click is directly on .wb-modal (backdrop layer)
     var activeModal = getActiveModal();
     if (activeModal && e.target === activeModal) {
-      close(activeModal);
+      requestUserClose(activeModal, 'outside', e);
     }
   });
 

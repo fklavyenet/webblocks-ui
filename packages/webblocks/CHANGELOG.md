@@ -10,6 +10,20 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.5] — 2026-05-16
+
+### Added
+- Add a cancelable `wb:overlay:close-request` event for user-initiated overlay close attempts so host apps can guard unsaved state without introducing modal-only close rules
+
+### Changed
+- Document `wb:overlay:close-request` as the canonical overlay-level hook for unsaved-change guards while keeping dirty-state policy and confirmation UI in host apps
+
+### Fixed
+- Normalize user close reasons to `escape`, `outside`, `close-control`, and `dismiss-control` across the shared overlay runtime and shipped dialog-style overlay modules
+- Keep trusted programmatic close APIs such as `WBModal.close(...)` and `WBDrawer.close(...)` outside the close-request flow so confirmed save/discard paths can close cleanly after guard logic
+
+---
+
 ## [2.7.4] — 2026-05-15
 
 ### Changed

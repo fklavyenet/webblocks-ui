@@ -83,6 +83,14 @@
     WBDom.overlay.close(ensureInstance(drawer), 'api');
   }
 
+  function requestUserClose(drawer, reason, originalEvent) {
+    if (!drawer) drawer = getActiveDrawer();
+    if (!drawer) return;
+    WBDom.overlay.requestClose(ensureInstance(drawer), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   // ── Event delegation ──────────────────────────────────────
 
   document.addEventListener('click', function (e) {
@@ -99,7 +107,11 @@
     // Dismiss button (data-wb-dismiss="drawer")
     var dismiss = e.target.closest('[data-wb-dismiss="drawer"]');
     if (dismiss) {
-      close(dismiss.closest('.wb-drawer') || getActiveDrawer());
+      requestUserClose(
+        dismiss.closest('.wb-drawer') || getActiveDrawer(),
+        dismiss.classList.contains('wb-drawer-close') ? 'close-control' : 'dismiss-control',
+        e
+      );
       return;
     }
   });

@@ -727,6 +727,8 @@ Behavior contract:
 - `WBModal.open(el)` and `WBModal.close(el)` are available for imperative control
 - ESC closes the active modal
 - backdrop click closes the active modal
+- before a user-initiated close attempt, overlays emit a cancelable `wb:overlay:close-request` event for guard logic
+- trusted programmatic closes such as `WBModal.close(el)` or `WBDrawer.close(el)` do not emit `wb:overlay:close-request`
 - focus moves into the modal on open and returns to the opener on close
 - body scroll locks while a modal is open
 
@@ -762,9 +764,18 @@ This section documents the intended overlay stack contract. It hardens the publi
 - nested overlay order must be: page, parent overlay backdrop, parent overlay, nested overlay backdrop, nested overlay
 - only the topmost overlay is interactive
 - Escape, backdrop handling, focus return, and body scroll locking must be stack-aware
+- `wb:overlay:close-request` is overlay-level infrastructure, not modal-only; use it as the canonical unsaved-change guard hook when a user tries to close the topmost overlay
+- host apps own dirty-state policy and any confirmation UI; after save or confirmed discard, close the overlay programmatically so `wb:overlay:close-request` does not fire again
 - a nested modal, picker, or dialog should render above the opener overlay rather than inside its visual clipping context
 - do not create a public `wb-overlay` component for this job
 - this is documentation-only for now where the current runtime is not yet fully stack-aware
+
+Close-request event detail:
+
+- event name: `wb:overlay:close-request`
+- cancelable: call `event.preventDefault()` to keep the overlay open
+- reasons: `escape`, `outside`, `close-control`, `dismiss-control`
+- detail payload includes `overlay`, `type`, `reason`, `opener`, and `trigger` / `originalEvent` when available
 
 ### Gallery Pattern
 

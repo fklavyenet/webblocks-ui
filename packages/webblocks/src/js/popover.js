@@ -166,6 +166,20 @@
     WBDom.overlay.close(instance, 'api');
   }
 
+  function requestUserClose(wrapper, reason, originalEvent) {
+    wrapper = getWrapper(wrapper);
+    if (!wrapper) return;
+
+    var panel = getPanel(wrapper);
+    var trigger = wrapper.querySelector('[data-wb-toggle="popover"]') || (panel ? getTrigger(panel) : null);
+    panel = getPanel(wrapper, trigger);
+    if (!panel) return;
+
+    WBDom.overlay.requestClose(ensureInstance(wrapper, trigger, panel), reason, {
+      originalEvent: originalEvent || null
+    });
+  }
+
   function closeAll() {
     WBDom.overlay.closeAll(function (instance) {
       return instance.kind === 'popover';
@@ -194,7 +208,7 @@
     var dismiss = e.target.closest('[data-wb-dismiss="popover"]');
     if (dismiss) {
       var wrapper = getWrapper(dismiss.closest('.wb-popover-panel') || dismiss);
-      if (wrapper) close(wrapper);
+      if (wrapper) requestUserClose(wrapper, 'dismiss-control', e);
       return;
     }
   });

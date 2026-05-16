@@ -124,6 +124,8 @@ Overlay Stack Standard:
 - Escape closes the topmost overlay first
 - body scroll locking must be stack-aware
 - focus should return to the opener of the overlay that just closed when practical
+- `wb:overlay:close-request` is the canonical overlay-level hook for unsaved-change guards before user-initiated overlay close attempts
+- host apps own dirty-state policy and any follow-up confirmation UI; a save/discard-confirmed programmatic close should not trigger `wb:overlay:close-request`
 - backdrop and modal stacking must be deterministic rather than relying only on incidental DOM order
 - do not introduce a public `wb-overlay` primitive or a second lightbox/viewer primitive beside `wb-modal`
 - do not teach `panel` as a generic public noun; `panel` may remain only in scoped internal names such as `wb-popover-panel`, `wb-collapse-panel`, or `wb-auth-panel`

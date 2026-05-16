@@ -12,6 +12,12 @@
   var html = document.documentElement;
   var ROOT_ID = 'wb-overlay-root';
   var activeStack = [];
+  var CLOSE_REQUEST_REASONS = {
+    escape: true,
+    outside: true,
+    'close-control': true,
+    'dismiss-control': true
+  };
   var uid = 0;
   var root = null;
   var layers = {};
@@ -358,6 +364,32 @@
     syncInteractions();
   }
 
+  function normalizeCloseReason(reason) {
+    if (reason === 'backdrop-click' || reason === 'outside-click') return 'outside';
+    return reason || '';
+  }
+
+  function dispatchCloseRequest(instance, reason, originalEvent) {
+    var event;
+
+    if (!instance || !instance.element || !CLOSE_REQUEST_REASONS[reason]) return true;
+
+    event = new CustomEvent('wb:overlay:close-request', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        overlay: instance.element,
+        type: instance.kind || 'overlay',
+        reason: reason,
+        opener: instance.trigger || null,
+        trigger: instance.trigger || null,
+        originalEvent: originalEvent || null
+      }
+    });
+
+    return instance.element.dispatchEvent(event);
+  }
+
   function registerActive(instance) {
     unregisterActive(instance);
     activeStack.push(instance);
@@ -491,15 +523,24 @@
     });
   }
 
-  function requestClose(instance, reason) {
+  function requestClose(instance, reason, options) {
+    var normalizedReason;
+
     if (!instance || !instance.active) return;
 
+    options = options || {};
+    normalizedReason = normalizeCloseReason(reason);
+
+    if (options.userInitiated !== false && CLOSE_REQUEST_REASONS[normalizedReason]) {
+      if (!dispatchCloseRequest(instance, normalizedReason, options.originalEvent)) return;
+    }
+
     if (typeof instance.onRequestClose === 'function') {
-      instance.onRequestClose(reason, instance);
+      instance.onRequestClose(normalizedReason, instance, options.originalEvent || null);
       return;
     }
 
-    close(instance, reason);
+    close(instance, normalizedReason);
   }
 
   function open(instance) {
@@ -619,7 +660,7 @@
       var owner = getTopmost(function (instance) {
         return instance.active && instance.backdrop && (!ownerId || instance.id === ownerId);
       });
-      if (owner) requestClose(owner, 'backdrop-click');
+      if (owner) requestClose(owner, 'outside', { originalEvent: e });
       return;
     }
 
@@ -630,7 +671,7 @@
     if (!top) return;
     if (top.element && top.element.contains(e.target)) return;
     if (top.trigger && top.trigger.contains(e.target)) return;
-    requestClose(top, 'outside-click');
+    requestClose(top, 'outside', { originalEvent: e });
   });
 
   document.addEventListener('keydown', function (e) {
@@ -640,7 +681,7 @@
       });
       if (esc) {
         e.preventDefault();
-        requestClose(esc, 'escape');
+        requestClose(esc, 'escape', { originalEvent: e });
         return;
       }
     }
