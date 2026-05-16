@@ -10,6 +10,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.6] — 2026-05-16
+
+### Changed
+- Add HTML docs for overlay stack and `wb:overlay:close-request` behavior in the primitives reference, including default dismissible modal, nested modal stack, guarded unsaved-change flow, and confirmed programmatic close examples
+- Keep `wb-modal` as the public top-layer primitive in the docs while treating `wb-overlay-root` as shared runtime infrastructure rather than a separate public component
+
+---
+
 ## [2.7.5] — 2026-05-16
 
 ### Added

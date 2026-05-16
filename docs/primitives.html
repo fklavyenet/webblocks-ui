@@ -499,18 +499,48 @@
                       </div>
                 </div>
                 <div class="wb-card">
-                  <div class="wb-card-header"><h3 class="wb-card-title">Modal: dialog and media viewer</h3></div>
+                  <div class="wb-card-header"><h3 class="wb-card-title">Modal: dialog, stack, and guarded close flows</h3></div>
                   <div class="wb-card-body wb-stack-5">
-                    <p class="wb-m-0">Use <code>wb-modal</code> for two jobs: explicit decisions and content-first viewing.</p>
+                    <p class="wb-m-0">Use <code>wb-modal</code> for explicit decisions, content-first viewing, and guarded close flows that still stay inside one shared top-layer contract.</p>
 
                     <section class="wb-stack-3" aria-labelledby="primitiveModalDialogHeading">
                       <div>
-                        <h4 class="wb-m-0" id="primitiveModalDialogHeading">Dialog modal</h4>
-                        <p class="wb-text-sm wb-text-muted wb-m-0">Use it when the user needs to confirm, cancel, continue, or make a focused decision above the page.</p>
+                        <h4 class="wb-m-0" id="primitiveModalDialogHeading">Default dismissible modal</h4>
+                        <p class="wb-text-sm wb-text-muted wb-m-0">Use the shipped dismiss controls, outside click, and Escape behavior when the dialog does not need unsaved-change policy.</p>
                       </div>
                       <div class="wb-cluster">
                         <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveModal">Open modal</button>
                       </div>
+                    </section>
+
+                    <hr class="wb-divider">
+
+                    <section class="wb-stack-3" aria-labelledby="primitiveModalStackHeading">
+                      <div>
+                        <h4 class="wb-m-0" id="primitiveModalStackHeading">Nested modal stack</h4>
+                        <p class="wb-text-sm wb-text-muted wb-m-0">Open one modal from another when the second step is a tighter confirm or secondary decision. The topmost modal owns dismissal and focus first.</p>
+                      </div>
+                      <div class="wb-cluster">
+                        <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveStackParent">Open stacked flow</button>
+                      </div>
+                    </section>
+
+                    <hr class="wb-divider">
+
+                    <section class="wb-stack-3" aria-labelledby="primitiveModalGuardHeading">
+                      <div>
+                        <h4 class="wb-m-0" id="primitiveModalGuardHeading">Guard unsaved changes with <code>wb:overlay:close-request</code></h4>
+                        <p class="wb-text-sm wb-text-muted wb-m-0">Close attempts from <code>escape</code>, <code>outside</code>, <code>close-control</code>, and <code>dismiss-control</code> dispatch one cancelable overlay-level event. Host apps decide whether to block, confirm, save, or allow close.</p>
+                      </div>
+                      <div class="wb-cluster">
+                        <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveGuardedModal">Open guarded editor</button>
+                        <a class="wb-btn wb-btn-ghost" href="javascript.html">JavaScript reference</a>
+                      </div>
+                      <pre><code>editor.addEventListener('wb:overlay:close-request', function (event) {
+  if (!hasUnsavedChanges) return
+  event.preventDefault()
+  WBModal.open(confirmDiscardDialog)
+})</code></pre>
                     </section>
 
                     <hr class="wb-divider">
@@ -540,7 +570,7 @@
 
                     <div class="wb-callout wb-callout-info wb-mt-4">
                       <strong class="wb-callout-title">Canonical rule</strong>
-                      <code>wb-modal</code> is the single canonical top-layer primitive. Gallery viewer behavior stays inside that modal contract instead of becoming a separate public overlay or lightbox component.
+                      <code>wb-modal</code> is the single canonical top-layer primitive. Runtime infrastructure such as <code>wb-overlay-root</code> stays internal, and gallery viewer behavior stays inside the modal contract instead of becoming a separate public component.
                     </div>
                   </div>
                 </div>
@@ -561,9 +591,52 @@
 
   <div class="wb-modal wb-modal-sm" id="primitiveModal" role="dialog" aria-modal="true" aria-labelledby="primitiveModalTitle">
     <div class="wb-modal-dialog">
-      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveModalTitle">Primitive modal</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
-      <div class="wb-modal-body"><p class="wb-m-0">Use <code>wb-modal</code> when the interaction is a real dialog with explicit structure, decisions, or footer actions.</p></div>
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveModalTitle">Default dismissible modal</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body wb-stack-3"><p class="wb-m-0">Use <code>wb-modal</code> when the interaction is a real dialog with explicit structure, decisions, or footer actions.</p><p class="wb-text-sm wb-text-muted wb-m-0">This example keeps the default shipped close behavior: close button, footer dismiss button, outside click, and Escape.</p></div>
       <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button><button class="wb-btn wb-btn-primary">Confirm</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-md" id="primitiveStackParent" role="dialog" aria-modal="true" aria-labelledby="primitiveStackParentTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveStackParentTitle">Primary flow</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body wb-stack-3">
+        <p class="wb-m-0">Use a second modal only when the follow-up step is narrower than the current task.</p>
+        <p class="wb-text-sm wb-text-muted wb-m-0">Open the child confirm to see the active stack move to the topmost dialog.</p>
+      </div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Close</button><button class="wb-btn wb-btn-primary" data-wb-toggle="modal" data-wb-target="#primitiveStackChild">Launch nested confirm</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-sm" id="primitiveStackChild" role="dialog" aria-modal="true" aria-labelledby="primitiveStackChildTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveStackChildTitle">Nested confirm</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body"><p class="wb-m-0">The nested modal becomes the active top layer until it closes.</p></div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Back</button><button class="wb-btn wb-btn-primary" data-wb-dismiss="modal">Done</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-md" id="primitiveGuardedModal" role="dialog" aria-modal="true" aria-labelledby="primitiveGuardedModalTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveGuardedModalTitle">Guarded editor</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body wb-stack-4">
+        <p class="wb-m-0">Try the close button, the footer dismiss button, outside click, or Escape while unsaved changes are enabled.</p>
+        <div class="wb-field">
+          <label class="wb-label" for="primitiveGuardedName">Collection name</label>
+          <input class="wb-input" id="primitiveGuardedName" type="text" value="Spring campaign assets">
+        </div>
+        <label class="wb-switch"><input type="checkbox" id="primitiveGuardDirty" checked><span class="wb-switch-track"></span> Unsaved changes pending</label>
+        <p class="wb-text-sm wb-text-muted wb-m-0">Last blocked close reason: <strong id="primitiveGuardReason">none yet</strong></p>
+      </div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Cancel</button><button class="wb-btn wb-btn-primary" type="button" id="primitiveGuardSaveClose">Save and close</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-sm" id="primitiveGuardConfirm" role="dialog" aria-modal="true" aria-labelledby="primitiveGuardConfirmTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveGuardConfirmTitle">Discard changes?</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body wb-stack-3"><p class="wb-m-0">The close request was blocked because unsaved changes are still active.</p><p class="wb-text-sm wb-text-muted wb-m-0">Choosing discard closes this confirm first, then closes the editor programmatically through <code>WBModal.close(...)</code>.</p></div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Keep editing</button><button class="wb-btn wb-btn-primary" type="button" id="primitiveGuardDiscard">Discard and close</button></div>
     </div>
   </div>
 
@@ -600,5 +673,43 @@
     </div>
     <div class="wb-drawer-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Close</button></div>
   </div>
+
+  <script>
+    (function () {
+      var guardedModal = document.getElementById('primitiveGuardedModal')
+      var confirmModal = document.getElementById('primitiveGuardConfirm')
+      var dirtyToggle = document.getElementById('primitiveGuardDirty')
+      var reasonValue = document.getElementById('primitiveGuardReason')
+      var saveButton = document.getElementById('primitiveGuardSaveClose')
+      var discardButton = document.getElementById('primitiveGuardDiscard')
+
+      if (!guardedModal || !confirmModal || !dirtyToggle || !reasonValue || !saveButton || !discardButton || !window.WBModal) {
+        return
+      }
+
+      guardedModal.addEventListener('wb:overlay:close-request', function (event) {
+        if (!dirtyToggle.checked) {
+          return
+        }
+
+        event.preventDefault()
+        reasonValue.textContent = event.detail && event.detail.reason ? event.detail.reason : 'close-control'
+        window.WBModal.open(confirmModal)
+      })
+
+      saveButton.addEventListener('click', function () {
+        dirtyToggle.checked = false
+        reasonValue.textContent = 'saved with programmatic close'
+        window.WBModal.close(guardedModal)
+      })
+
+      discardButton.addEventListener('click', function () {
+        dirtyToggle.checked = false
+        reasonValue.textContent = 'discard confirmed with programmatic close'
+        window.WBModal.close(confirmModal)
+        window.WBModal.close(guardedModal)
+      })
+    })()
+  </script>
 </body>
 </html>
