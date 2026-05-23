@@ -10,6 +10,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.7] — 2026-05-23
+
+### Changed
+- Direct `wb-card` children of `wb-grid`, `wb-grid-2`, `wb-grid-3`, `wb-grid-4`, `wb-grid-auto`, `wb-grid-auto-sm`, and `wb-grid-auto-lg` now stretch to the row height and keep `wb-card-footer` aligned to the bottom without requiring extra utility classes.
+
+---
+
 ## [2.7.6] — 2026-05-16
 
 ### Changed

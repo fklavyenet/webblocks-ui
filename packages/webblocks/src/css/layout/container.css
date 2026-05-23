@@ -96,6 +96,38 @@
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
 }
 
+.wb-grid > .wb-card,
+.wb-grid-2 > .wb-card,
+.wb-grid-3 > .wb-card,
+.wb-grid-4 > .wb-card,
+.wb-grid-auto > .wb-card,
+.wb-grid-auto-sm > .wb-card,
+.wb-grid-auto-lg > .wb-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wb-grid > .wb-card > .wb-card-body,
+.wb-grid-2 > .wb-card > .wb-card-body,
+.wb-grid-3 > .wb-card > .wb-card-body,
+.wb-grid-4 > .wb-card > .wb-card-body,
+.wb-grid-auto > .wb-card > .wb-card-body,
+.wb-grid-auto-sm > .wb-card > .wb-card-body,
+.wb-grid-auto-lg > .wb-card > .wb-card-body {
+  flex: 1 1 auto;
+}
+
+.wb-grid > .wb-card > .wb-card-footer,
+.wb-grid-2 > .wb-card > .wb-card-footer,
+.wb-grid-3 > .wb-card > .wb-card-footer,
+.wb-grid-4 > .wb-card > .wb-card-footer,
+.wb-grid-auto > .wb-card > .wb-card-footer,
+.wb-grid-auto-sm > .wb-card > .wb-card-footer,
+.wb-grid-auto-lg > .wb-card > .wb-card-footer {
+  margin-top: auto;
+}
+
 /* ── Breakpoint collapse ──────────────────────────────────── */
 
 @media (max-width: 900px) {
