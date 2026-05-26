@@ -8,8 +8,17 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+---
+
+## [2.7.8] — 2026-05-26
+
+### Added
+- Add dependency-free minified production artifacts for CDN consumers: `dist/webblocks-ui.min.css`, `dist/webblocks-icons.min.css`, and `dist/webblocks-ui.min.js`.
+- Add build guards that verify the minified CSS/JS banners, key icon selectors, public `window.WB*` APIs, and minified JS syntax when Node is available.
+
 ### Changed
 - Clarify the official toast and contextual feedback standard in docs: transient success/info feedback uses `wb-toast` outside normal layout flow, while validation errors, user-correctable failures, persistent warnings, and blocking failures stay inline with contextual feedback such as `wb-alert`.
+- Keep the existing non-minified dist files unchanged as backward-compatible debug/development assets.
 
 ---
 

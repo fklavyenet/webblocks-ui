@@ -55,7 +55,7 @@ Start from patterns, not primitives.
 - docs and playground local asset loaders resolve the built files from `packages/webblocks/dist/`; the playground loader also handles the deeper `playground/` path correctly
 - the single source of truth for the shipped package version is `packages/webblocks/VERSION`
 - update `packages/webblocks/VERSION` before a release or tag so the package banner metadata and docs version label stay in sync
-- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to `webblocks-ui.css`, `webblocks-icons.css`, and `webblocks-ui.js`, and regenerates `docs/version.js`
+- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to readable dist files, emits minified production CDN artifacts, and regenerates `docs/version.js`
 - the playground is a thin sandbox layer built on top of shipped WebBlocks primitives, surfaces, and layout utilities
 - `wb-card-media` is the canonical card-body media frame when mixed image dimensions need consistent card-grid rhythm without default cropping
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive

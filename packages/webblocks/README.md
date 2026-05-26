@@ -7,13 +7,26 @@ No npm. No framework runtime. No dependency install step.
 ## What This Package Ships
 
 - `dist/webblocks-ui.css` - main stylesheet
+- `dist/webblocks-ui.min.css` - minified production stylesheet
 - `dist/webblocks-ui.js` - opt-in interaction runtime
+- `dist/webblocks-ui.min.js` - conservative minified production runtime
 - `dist/webblocks-icons.css` - class-based icon file for `<i class="wb-icon wb-icon-*">`
+- `dist/webblocks-icons.min.css` - minified class-based icon file
 - `dist/webblocks-icons.json` - structured icon manifest for pickers and catalog sync
 
 WebBlocks stays HTML-first: use standard markup, shipped classes, and opt-in JS behavior.
 
 ## Install
+
+Production CDN or production static usage should prefer the minified files:
+
+```html
+<link rel="stylesheet" href="dist/webblocks-ui.min.css">
+<link rel="stylesheet" href="dist/webblocks-icons.min.css">
+<script src="dist/webblocks-ui.min.js" defer></script>
+```
+
+Debug/development usage can keep the readable files:
 
 ```html
 <link rel="stylesheet" href="dist/webblocks-ui.css">
@@ -23,8 +36,8 @@ WebBlocks stays HTML-first: use standard markup, shipped classes, and opt-in JS 
 
 Notes:
 
-- `webblocks-icons.css` is optional unless you use class-based icons
-- `webblocks-ui.js` is optional unless you use shipped interactive behavior
+- `webblocks-icons.css` / `webblocks-icons.min.css` is optional unless you use class-based icons
+- `webblocks-ui.js` / `webblocks-ui.min.js` is optional unless you use shipped interactive behavior
 
 ## Start Correctly
 
@@ -148,7 +161,7 @@ Canonical usage:
 <i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent" aria-hidden="true"></i>
 ```
 
-If you do not use icons, omit `dist/webblocks-icons.css`.
+If you do not use icons, omit `dist/webblocks-icons.css` or `dist/webblocks-icons.min.css`.
 
 ## Gallery
 
@@ -206,8 +219,11 @@ To rebuild package output from source:
 This regenerates:
 
 - `dist/webblocks-ui.css`
+- `dist/webblocks-ui.min.css`
 - `dist/webblocks-ui.js`
+- `dist/webblocks-ui.min.js`
 - `dist/webblocks-icons.css`
+- `dist/webblocks-icons.min.css`
 - `dist/webblocks-icons.json`
 
 ## Package Structure
@@ -220,8 +236,12 @@ packages/webblocks/
 ├── README.md
 ├── dist/
 │   ├── webblocks-ui.css
+│   ├── webblocks-ui.min.css
 │   ├── webblocks-ui.js
-│   └── webblocks-icons.css
+│   ├── webblocks-ui.min.js
+│   ├── webblocks-icons.css
+│   ├── webblocks-icons.min.css
+│   └── webblocks-icons.json
 ├── scripts/
 │   ├── build-icons.js
 │   └── update-icons.js

@@ -10,6 +10,16 @@ This document is sourced from `packages/webblocks/src/` and `packages/webblocks/
 
 ### Local dist files
 
+Production builds should use minified assets:
+
+```html
+<link rel="stylesheet" href="dist/webblocks-ui.min.css">
+<link rel="stylesheet" href="dist/webblocks-icons.min.css">
+<script src="dist/webblocks-ui.min.js" defer></script>
+```
+
+Readable files stay available for debug/development:
+
 ```html
 <link rel="stylesheet" href="dist/webblocks-ui.css">
 <link rel="stylesheet" href="dist/webblocks-icons.css">
@@ -17,6 +27,16 @@ This document is sourced from `packages/webblocks/src/` and `packages/webblocks/
 ```
 
 ### CDN
+
+Production CDN usage should prefer the minified files:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-icons.min.css">
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.min.js" defer></script>
+```
+
+Readable CDN files stay available for debug/development:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.css">
@@ -26,9 +46,9 @@ This document is sourced from `packages/webblocks/src/` and `packages/webblocks/
 
 Notes:
 
-- `webblocks-icons.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
+- `webblocks-icons.css` / `webblocks-icons.min.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
 - `webblocks-ui.css` already includes tokens, UI primitive source output, layouts, utilities, and the scoped `webgames` extension classes
-- `webblocks-ui.js` exposes `window.*` APIs and data-attribute behavior for interactive patterns
+- `webblocks-ui.js` / `webblocks-ui.min.js` exposes `window.*` APIs and data-attribute behavior for interactive patterns
 - replace `<VERSION>` with the value from `packages/webblocks/VERSION` when linking a tagged CDN release
 
 ---
@@ -2159,7 +2179,7 @@ Always classify by UI role, not by file location.
 
 ## Common Gotchas
 
-1. `webblocks-icons.css` is optional, but required for `<i class="wb-icon wb-icon-..."></i>` usage.
+1. `webblocks-icons.css` / `webblocks-icons.min.css` is optional, but required for `<i class="wb-icon wb-icon-..."></i>` usage.
 2. Missing `<i>` icon classes render the fallback `help-circle` mask, not an empty placeholder.
 3. `wb-confirm` is a modal variant on the `.wb-modal` wrapper.
 4. `wb-stat` lives in `card.css`; there is no separate stat stylesheet.
@@ -2191,6 +2211,13 @@ Implementation source of truth:
 - icon source: `packages/webblocks/src/css/icons/webblocks-icons.svg`
 - icon CSS source: `packages/webblocks/src/css/icons/webblocks-icons.css`
 - build manifest/order: `packages/webblocks/build.sh`
+
+Build output includes readable debug/development files plus minified production files:
+
+- `dist/webblocks-ui.css` and `dist/webblocks-ui.min.css`
+- `dist/webblocks-icons.css` and `dist/webblocks-icons.min.css`
+- `dist/webblocks-ui.js` and `dist/webblocks-ui.min.js`
+- `dist/webblocks-icons.json`
 
 If this guide conflicts with the source files, trust the source files and update this guide.
 - utility helpers are override-first; in normal usage they should win over component or base defaults
