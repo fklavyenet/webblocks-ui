@@ -431,6 +431,20 @@ Near-term follow-up work around the existing overlay architecture:
 
 ---
 
+## Minification Hardening (Deferred)
+
+Minified dist artifacts exist in the repository, but downstream production/CDN usage should stay on the standard non-minified dist files until the minification pipeline is hardened.
+
+Required coverage before recommending `.min.css` / `.min.js` consumption:
+
+* CSS math functions: `calc()`, `min()`, `max()`, and `clamp()`
+* custom properties and `var()` fallback safety
+* selector whitespace safety, including nested navigation and descendant selectors
+* `data-url` / SVG data URI safety
+* visual and computed-style smoke checks comparing minified and unminified assets
+
+---
+
 # Development Philosophy
 
 WebBlocks should prioritize:

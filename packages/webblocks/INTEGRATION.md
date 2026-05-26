@@ -10,15 +10,17 @@ This document is sourced from `packages/webblocks/src/` and `packages/webblocks/
 
 ### Local dist files
 
-Production builds should use minified assets:
+Production builds should use the standard non-minified dist files:
 
 ```html
-<link rel="stylesheet" href="dist/webblocks-ui.min.css">
-<link rel="stylesheet" href="dist/webblocks-icons.min.css">
-<script src="dist/webblocks-ui.min.js" defer></script>
+<link rel="stylesheet" href="dist/webblocks-ui.css">
+<link rel="stylesheet" href="dist/webblocks-icons.css">
+<script src="dist/webblocks-ui.js" defer></script>
 ```
 
-Readable files stay available for debug/development:
+The committed `.min.css` / `.min.js` files are experimental/deferred artifacts. Do not consume them in downstream production yet; use the standard files until minification hardening and regression coverage are complete.
+
+Readable local development usage uses the same files:
 
 ```html
 <link rel="stylesheet" href="dist/webblocks-ui.css">
@@ -28,15 +30,17 @@ Readable files stay available for debug/development:
 
 ### CDN
 
-Production CDN usage should prefer the minified files:
+Production CDN usage should use the standard non-minified dist files:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-icons.min.css">
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.min.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-icons.css">
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.js" defer></script>
 ```
 
-Readable CDN files stay available for debug/development:
+The `.min.css` / `.min.js` CDN paths are not the recommended integration path yet. They remain published to avoid breaking already-visible versioned paths, but downstream projects should not switch production traffic to them until the minification pipeline is hardened.
+
+Readable CDN files for development use the same paths:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.css">
@@ -46,9 +50,10 @@ Readable CDN files stay available for debug/development:
 
 Notes:
 
-- `webblocks-icons.css` / `webblocks-icons.min.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
+- `webblocks-icons.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
 - `webblocks-ui.css` already includes tokens, UI primitive source output, layouts, utilities, and the scoped `webgames` extension classes
-- `webblocks-ui.js` / `webblocks-ui.min.js` exposes `window.*` APIs and data-attribute behavior for interactive patterns
+- `webblocks-ui.js` exposes `window.*` APIs and data-attribute behavior for interactive patterns
+- `.min.css` / `.min.js` artifacts are experimental/deferred and not recommended for downstream production consumption yet
 - replace `<VERSION>` with the value from `packages/webblocks/VERSION` when linking a tagged CDN release
 
 ---
@@ -2209,7 +2214,7 @@ Always classify by UI role, not by file location.
 
 ## Common Gotchas
 
-1. `webblocks-icons.css` / `webblocks-icons.min.css` is optional, but required for `<i class="wb-icon wb-icon-..."></i>` usage.
+1. `webblocks-icons.css` is optional, but required for `<i class="wb-icon wb-icon-..."></i>` usage.
 2. Missing `<i>` icon classes render the fallback `help-circle` mask, not an empty placeholder.
 3. `wb-confirm` is a modal variant on the `.wb-modal` wrapper.
 4. `wb-stat` lives in `card.css`; there is no separate stat stylesheet.
@@ -2242,12 +2247,14 @@ Implementation source of truth:
 - icon CSS source: `packages/webblocks/src/css/icons/webblocks-icons.css`
 - build manifest/order: `packages/webblocks/build.sh`
 
-Build output includes readable debug/development files plus minified production files:
+Build output includes standard recommended dist files plus deferred experimental minified artifacts:
 
 - `dist/webblocks-ui.css` and `dist/webblocks-ui.min.css`
 - `dist/webblocks-icons.css` and `dist/webblocks-icons.min.css`
 - `dist/webblocks-ui.js` and `dist/webblocks-ui.min.js`
 - `dist/webblocks-icons.json`
+
+Use the non-minified files for downstream production/CDN integrations. The `.min.css` / `.min.js` outputs are retained to avoid breaking published CDN paths, but remain deferred until CSS grammar-sensitive minification fixtures and visual/computed style smoke tests are in place.
 
 If this guide conflicts with the source files, trust the source files and update this guide.
 - utility helpers are override-first; in normal usage they should win over component or base defaults

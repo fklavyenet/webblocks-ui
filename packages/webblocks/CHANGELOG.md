@@ -10,6 +10,16 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.10] — 2026-05-26
+
+### Changed
+- Defer the minified CSS/JS production recommendation after a CSS grammar regression was found in the minification pipeline around meaningful whitespace in `calc()` and nested CMS sidebar navigation indentation.
+- Restore downstream production/CDN guidance to the standard non-minified dist files: `dist/webblocks-ui.css`, `dist/webblocks-icons.css`, and `dist/webblocks-ui.js`.
+- Keep committed `.min.css` / `.min.js` artifacts in the repository as experimental/deferred outputs so already-visible versioned CDN paths do not break, but mark them as not recommended for downstream production yet.
+- Document that downstream integrations should use the standard non-minified dist files until minification hardening and regression coverage are completed.
+
+---
+
 ## [2.7.9] — 2026-05-26
 
 ### Fixed

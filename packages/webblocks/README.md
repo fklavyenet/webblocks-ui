@@ -7,26 +7,28 @@ No npm. No framework runtime. No dependency install step.
 ## What This Package Ships
 
 - `dist/webblocks-ui.css` - main stylesheet
-- `dist/webblocks-ui.min.css` - minified production stylesheet
+- `dist/webblocks-ui.min.css` - experimental/deferred minified stylesheet; do not consume in downstream production yet
 - `dist/webblocks-ui.js` - opt-in interaction runtime
-- `dist/webblocks-ui.min.js` - conservative minified production runtime
+- `dist/webblocks-ui.min.js` - experimental/deferred minified runtime; do not consume in downstream production yet
 - `dist/webblocks-icons.css` - class-based icon file for `<i class="wb-icon wb-icon-*">`
-- `dist/webblocks-icons.min.css` - minified class-based icon file
+- `dist/webblocks-icons.min.css` - experimental/deferred minified icon file; do not consume in downstream production yet
 - `dist/webblocks-icons.json` - structured icon manifest for pickers and catalog sync
 
 WebBlocks stays HTML-first: use standard markup, shipped classes, and opt-in JS behavior.
 
 ## Install
 
-Production CDN or production static usage should prefer the minified files:
+Production CDN or production static usage should use the standard non-minified dist files:
 
 ```html
-<link rel="stylesheet" href="dist/webblocks-ui.min.css">
-<link rel="stylesheet" href="dist/webblocks-icons.min.css">
-<script src="dist/webblocks-ui.min.js" defer></script>
+<link rel="stylesheet" href="dist/webblocks-ui.css">
+<link rel="stylesheet" href="dist/webblocks-icons.css">
+<script src="dist/webblocks-ui.js" defer></script>
 ```
 
-Debug/development usage can keep the readable files:
+The committed `.min.css` / `.min.js` files are currently experimental/deferred artifacts. They are kept in the repository so existing versioned CDN paths do not break, but they are not the recommended integration path until minification hardening and regression coverage are complete.
+
+Readable local development usage uses the same files:
 
 ```html
 <link rel="stylesheet" href="dist/webblocks-ui.css">
@@ -36,8 +38,9 @@ Debug/development usage can keep the readable files:
 
 Notes:
 
-- `webblocks-icons.css` / `webblocks-icons.min.css` is optional unless you use class-based icons
-- `webblocks-ui.js` / `webblocks-ui.min.js` is optional unless you use shipped interactive behavior
+- `webblocks-icons.css` is optional unless you use class-based icons
+- `webblocks-ui.js` is optional unless you use shipped interactive behavior
+- do not use `.min.css` / `.min.js` in downstream production yet
 
 ## Start Correctly
 
@@ -161,7 +164,7 @@ Canonical usage:
 <i class="wb-icon wb-icon-settings wb-icon-lg wb-icon-accent" aria-hidden="true"></i>
 ```
 
-If you do not use icons, omit `dist/webblocks-icons.css` or `dist/webblocks-icons.min.css`.
+If you do not use icons, omit `dist/webblocks-icons.css`.
 
 ## Gallery
 
@@ -219,12 +222,11 @@ To rebuild package output from source:
 This regenerates:
 
 - `dist/webblocks-ui.css`
-- `dist/webblocks-ui.min.css`
 - `dist/webblocks-ui.js`
-- `dist/webblocks-ui.min.js`
 - `dist/webblocks-icons.css`
-- `dist/webblocks-icons.min.css`
 - `dist/webblocks-icons.json`
+
+The build also emits `dist/webblocks-ui.min.css`, `dist/webblocks-icons.min.css`, and `dist/webblocks-ui.min.js` as experimental/deferred artifacts. Keep them out of downstream production integrations until the minification pipeline has fixture and smoke-test coverage for CSS grammar-sensitive cases.
 
 ## Package Structure
 
