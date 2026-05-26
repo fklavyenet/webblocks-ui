@@ -1,5 +1,5 @@
 /*!
- * WebBlocks UI v2.7.8 (https://webblocksui.com/)
+ * WebBlocks UI v2.7.9 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -3471,20 +3471,21 @@
      WBToast.show('Manual', { duration: 0 }); // no auto-dismiss
 
    Usage (HTML declarative — dismiss button):
-     <div class="wb-toast wb-toast-success" id="myToast">
-       <div class="wb-toast-body">Message</div>
-       <button class="wb-toast-close" data-wb-dismiss="toast">&times;</button>
-     </div>
+      <div class="wb-toast wb-toast-success" id="myToast" data-wb-toast-timeout="6000">
+        <div class="wb-toast-body">Message</div>
+        <button class="wb-toast-close" data-wb-dismiss="toast">&times;</button>
+      </div>
 
    Options:
      message   {string}  Toast text (required)
      title     {string}  Optional bold title above message
      type      {string}  success | warning | danger | info (default: none)
-     position  {string}  top-right | top-center | top-left |
-                         bottom-right (default) | bottom-center | bottom-left
-     duration  {number}  ms before auto-dismiss (default: 4000, 0 = no auto-dismiss)
-     closable  {boolean} show close button (default: true)
-   ============================================================ */
+      position  {string}  top-right (default) | top-center | top-left |
+                          bottom-right | bottom-center | bottom-left
+      duration  {number}  ms before auto-dismiss (default: 6000 for success/info,
+                          0 for warning/danger, 0 = no auto-dismiss)
+      closable  {boolean} show close button (default: true)
+    ============================================================ */
 
 (function () {
   'use strict';
@@ -3497,13 +3498,19 @@
     'bottom-right', 'bottom-center', 'bottom-left'
   ];
 
+  var TRANSIENT_TYPES = { success: true, info: true };
+  var PERSISTENT_TYPES = { warning: true, danger: true, error: true };
+  var DEFAULT_TRANSIENT_DURATION = 6000;
+
   function getContainer(position) {
-    position = position || 'bottom-right';
+    position = position || 'top-right';
     if (containers[position]) return containers[position];
 
     var el = document.createElement('div');
     el.className = 'wb-toast-container';
-    if (position !== 'bottom-right') {
+    el.setAttribute('aria-live', 'polite');
+    el.setAttribute('aria-atomic', 'true');
+    if (position !== 'top-right') {
       el.classList.add('wb-toast-container-' + position);
     }
     WBDom.overlay.ensureLayer('toast').appendChild(el);
@@ -3515,6 +3522,10 @@
 
   function dismiss(toast) {
     if (!toast || toast.classList.contains('is-leaving')) return;
+    if (toast.__wbToastTimer) {
+      clearTimeout(toast.__wbToastTimer);
+      toast.__wbToastTimer = null;
+    }
     toast.classList.add('is-leaving');
 
     var done = false;
@@ -3545,12 +3556,13 @@
 
     var type      = opts.type     || null;
     var title     = opts.title    || null;
-    var position  = POSITIONS.indexOf(opts.position) !== -1 ? opts.position : 'bottom-right';
-    var duration  = opts.duration !== undefined ? opts.duration : 4000;
+    var position  = POSITIONS.indexOf(opts.position) !== -1 ? opts.position : 'top-right';
+    var duration  = opts.duration !== undefined ? opts.duration : defaultDuration(type);
     var closable  = opts.closable !== false;
 
     var toast = document.createElement('div');
     toast.className = 'wb-toast' + (type ? ' wb-toast-' + type : '');
+    toast.setAttribute('role', type === 'warning' || type === 'danger' || type === 'error' ? 'alert' : 'status');
 
     var html = '';
 
@@ -3569,22 +3581,82 @@
 
     // Close button
     if (closable) {
-      html += '<button class="wb-toast-close" data-wb-dismiss="toast" aria-label="Close">&times;</button>';
+      html += '<button type="button" class="wb-toast-close" data-wb-dismiss="toast" aria-label="Close">&times;</button>';
     }
 
     toast.innerHTML = html;
+    if (duration !== undefined) {
+      toast.setAttribute('data-wb-toast-timeout', String(duration));
+    }
 
     var container = getContainer(position);
     container.appendChild(toast);
+    initToast(toast);
 
-    WBDom.emit(toast, 'wb:toast:open');
+    return toast;
+  }
 
-    // Auto-dismiss
+  function inferType(toast) {
+    if (toast.classList.contains('wb-toast-success')) return 'success';
+    if (toast.classList.contains('wb-toast-info')) return 'info';
+    if (toast.classList.contains('wb-toast-warning')) return 'warning';
+    if (toast.classList.contains('wb-toast-danger')) return 'danger';
+    if (toast.classList.contains('wb-toast-error')) return 'error';
+    return null;
+  }
+
+  function defaultDuration(type) {
+    if (TRANSIENT_TYPES[type]) return DEFAULT_TRANSIENT_DURATION;
+    if (PERSISTENT_TYPES[type]) return 0;
+    return DEFAULT_TRANSIENT_DURATION;
+  }
+
+  function parseDuration(value) {
+    if (value === null || value === undefined || value === '') return null;
+    var duration = parseInt(value, 10);
+    return isNaN(duration) ? null : Math.max(0, duration);
+  }
+
+  function resolveDuration(toast) {
+    var autoDismiss = toast.getAttribute('data-wb-auto-dismiss');
+    if (autoDismiss === 'false' || autoDismiss === '0') return 0;
+    var explicit = parseDuration(toast.getAttribute('data-wb-toast-timeout'));
+    if (explicit !== null) return explicit;
+    return defaultDuration(inferType(toast));
+  }
+
+  function initToast(toast) {
+    if (!toast || toast.__wbToastInitialized) return toast;
+    toast.__wbToastInitialized = true;
+
+    var duration = resolveDuration(toast);
+    WBDom.emit(toast, 'wb:toast:open', { duration: duration });
+
     if (duration > 0) {
-      setTimeout(function () { dismiss(toast); }, duration);
+      toast.__wbToastTimer = setTimeout(function () { dismiss(toast); }, duration);
     }
 
     return toast;
+  }
+
+  function initAll(root) {
+    root = root || document;
+    if (root.matches && root.matches('.wb-toast')) initToast(root);
+    Array.prototype.forEach.call(root.querySelectorAll ? root.querySelectorAll('.wb-toast') : [], initToast);
+  }
+
+  function observeToasts() {
+    if (!window.MutationObserver || !document.body) return;
+
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        Array.prototype.forEach.call(mutation.addedNodes, function (node) {
+          if (node.nodeType === 1) initAll(node);
+        });
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   // ── HTML escape helper ────────────────────────────────────
@@ -3600,16 +3672,28 @@
   // ── Event delegation — dismiss button ────────────────────
 
   document.addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-wb-dismiss="toast"]');
+    var btn = e.target.closest('[data-wb-dismiss="toast"], .wb-toast-close');
     if (!btn) return;
     var toast = btn.closest('.wb-toast');
     if (toast) dismiss(toast);
   });
 
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      initAll(document);
+      observeToasts();
+    });
+  } else {
+    initAll(document);
+    observeToasts();
+  }
+
   // ── Public API ────────────────────────────────────────────
 
   window.WBToast = {
     show:    show,
+    init:    initToast,
+    initAll: initAll,
     dismiss: dismiss
   };
 

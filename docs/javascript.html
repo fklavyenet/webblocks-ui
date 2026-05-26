@@ -194,12 +194,14 @@ WBGallery.open(document.querySelector('.wb-gallery-trigger'))
 WBDrawer.open(document.getElementById('my-drawer'))
 WBPasswordToggle.toggle(document.querySelector('[data-wb-password-toggle]'))
 WBToast.show('Saved', { type: 'success' })
+WBToast.show('Draft saved', { type: 'info', duration: 7000 })
+WBToast.show('Delivery failed', { type: 'danger', duration: 0 })
 WBCookieConsent.open()
 WBCookieConsent.clear()</code></pre>
                 <p>Use the public API when you really need imperative control. If a declarative <code>data-wb-*</code> trigger already exists, prefer that markup path first.</p>
                 <div class="wb-callout wb-callout-info">
                   <strong class="wb-callout-title">Toast feedback</strong>
-                  <code>WBToast</code> is for transient non-blocking success/info feedback. Validation errors, user-correctable failures, persistent warnings, and blocking failures should render inline near the related form, card, or section with contextual feedback such as <code>wb-alert</code>.
+                  <code>WBToast</code> is for transient non-blocking success/info feedback. Success/info toasts auto-dismiss by default; warning/error toasts stay persistent unless a timeout is explicitly set. Validation errors, user-correctable failures, persistent warnings, and blocking failures should render inline near the related form, card, or section with contextual feedback such as <code>wb-alert</code>.
                 </div>
               </section>
                 </div>

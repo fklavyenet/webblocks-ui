@@ -435,6 +435,9 @@ echo "  -> dist/webblocks-icons.json  ($ICON_JSON_COUNT entries)"
 echo "Validating icons..."
 node "$ROOT/scripts/validate-icons.js"
 
+echo "Validating toast lifecycle..."
+node "$ROOT/scripts/validate-toast.js"
+
 echo "Building minified artifacts..."
 minify_dist_assets
 validate_minified_assets

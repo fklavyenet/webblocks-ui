@@ -10,6 +10,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.9] — 2026-05-26
+
+### Fixed
+- Restore the shared toast lifecycle for server-rendered and dynamically inserted markup so success/info toasts auto-dismiss by default without consumer-project JavaScript.
+- Keep warning, danger, and error toasts persistent by default while preserving manual close buttons and explicit timeout overrides.
+
+### Changed
+- Make top-right the default toast stack for programmatic and static usage, with bottom-right retained through `wb-toast-container-bottom-right` / `position: 'bottom-right'`.
+- Document declarative toast lifecycle controls: `data-wb-toast-timeout` and `data-wb-auto-dismiss="false"`.
+
+---
+
 ## [2.7.8] — 2026-05-26
 
 ### Added

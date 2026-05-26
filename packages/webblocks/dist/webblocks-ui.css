@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.7.8 (https://webblocksui.com/)
+ * WebBlocks UI v2.7.9 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -4427,7 +4427,8 @@ button.wb-pagination-link {
 
 .wb-toast-container {
   position: fixed;
-  bottom: var(--wb-s6);
+  top: var(--wb-s6);
+  bottom: auto;
   right: var(--wb-s6);
   display: flex;
   flex-direction: column;
@@ -4504,13 +4505,20 @@ button.wb-pagination-link {
 .wb-toast-info    { border-left: 3px solid var(--wb-info);    }
 
 /* ── Notification stack positions ────────────────────────────
-   Default is bottom-right. Use modifier classes to reposition.
+   Default is top-right. Use modifier classes to reposition.
    ──────────────────────────────────────────────────────────── */
 
 /* Top-right */
 .wb-toast-container-top-right {
   top: var(--wb-s6);
   bottom: auto;
+  right: var(--wb-s6);
+  left: auto;
+}
+
+.wb-toast-container-bottom-right {
+  top: auto;
+  bottom: var(--wb-s6);
   right: var(--wb-s6);
   left: auto;
 }
@@ -4536,6 +4544,7 @@ button.wb-pagination-link {
 
 /* Bottom-center */
 .wb-toast-container-bottom-center {
+  top: auto;
   bottom: var(--wb-s6);
   right: auto;
   left: 50%;
@@ -4559,12 +4568,30 @@ button.wb-pagination-link {
 
 /* Bottom-left */
 .wb-toast-container-bottom-left {
+  top: auto;
   bottom: var(--wb-s6);
   right: auto;
   left: var(--wb-s6);
 }
 .wb-toast-container-bottom-left .wb-toast {
   animation: wb-toast-in-left 0.22s ease;
+}
+
+.wb-toast-container-bottom-right .wb-toast,
+.wb-toast-container-bottom-center .wb-toast {
+  animation: wb-toast-in 0.22s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-toast,
+  .wb-toast-container-top-right .wb-toast,
+  .wb-toast-container-top-center .wb-toast,
+  .wb-toast-container-top-left .wb-toast,
+  .wb-toast-container-bottom-right .wb-toast,
+  .wb-toast-container-bottom-center .wb-toast,
+  .wb-toast-container-bottom-left .wb-toast {
+    animation-duration: 0.01ms;
+  }
 }
 /* ============================================================
    WebBlocks UI — Skeleton Loader (wb-skeleton)

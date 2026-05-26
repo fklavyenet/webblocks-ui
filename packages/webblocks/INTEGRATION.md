@@ -380,7 +380,9 @@ Toasts are not modals:
 - no body scroll lock
 - no page interaction blocking
 
-Preferred app placement is inside the shared overlay root. Keep the markup minimal:
+Preferred app placement is inside the shared overlay root. The default stack is top-right; add a position class only when a product intentionally needs another corner. Success and info toasts auto-dismiss after about 6 seconds by default, including server-rendered markup that is already in the DOM when `webblocks-ui.js` loads.
+
+Keep the markup minimal:
 
 ```html
 <div id="wb-overlay-root" class="wb-overlay-root">
@@ -402,6 +404,34 @@ Compact single-message toast:
 <div class="wb-toast wb-toast-success" role="status">
   <div class="wb-toast-body">
     <span>Message sent. Thanks for your message.</span>
+  </div>
+  <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
+</div>
+```
+
+Auto-dismiss controls for declarative markup:
+
+- `data-wb-toast-timeout="7000"` sets the timeout in milliseconds
+- `data-wb-toast-timeout="0"` disables auto-dismiss
+- `data-wb-auto-dismiss="false"` explicitly makes a toast persistent
+- success and info toasts auto-dismiss when no attribute is present
+- warning, danger, and error toasts stay persistent by default unless a timeout is set
+
+Examples:
+
+```html
+<div class="wb-toast wb-toast-info" role="status" data-wb-toast-timeout="7000">
+  <div class="wb-toast-body">
+    <strong class="wb-toast-title">Draft saved</strong>
+    <span>Your changes were saved automatically.</span>
+  </div>
+  <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
+</div>
+
+<div class="wb-toast wb-toast-danger" role="alert" data-wb-auto-dismiss="false">
+  <div class="wb-toast-body">
+    <strong class="wb-toast-title">Delivery failed</strong>
+    <span>Review the error and try again.</span>
   </div>
   <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
 </div>

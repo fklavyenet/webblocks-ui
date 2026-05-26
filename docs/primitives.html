@@ -230,9 +230,9 @@
                 <div class="wb-card wb-mt-4">
                   <div class="wb-card-header"><h3 class="wb-card-title">Feedback and Toast Standard</h3></div>
                   <div class="wb-card-body wb-stack-3">
-                    <p>Transient success and informational feedback should use a toast outside normal layout flow so the topbar, page header, main content, cards, and forms do not shift. Validation errors, user-correctable failures, persistent warnings, and blocking failures stay inline near the related form, card, or section with contextual feedback such as <code>wb-alert</code>. Page-global alerts are reserved for truly global or system-level states.</p>
+                    <p>Transient success and informational feedback should use a toast outside normal layout flow so the topbar, page header, main content, cards, and forms do not shift. Success and info toasts auto-dismiss after about 6 seconds by default, including server-rendered markup. Validation errors, user-correctable failures, persistent warnings, and blocking failures stay inline near the related form, card, or section with contextual feedback such as <code>wb-alert</code>. Page-global alerts are reserved for truly global or system-level states.</p>
                     <p class="wb-text-sm wb-text-muted wb-m-0">Toasts are not modals: no backdrop, focus trap, body scroll lock, or page interaction blocking. Use a real button with an accessible label for dismiss controls.</p>
-                    <h4>Canonical toast placement</h4>
+                    <h4>Success auto-dismiss toast</h4>
                     <pre><code>&lt;div id="wb-overlay-root" class="wb-overlay-root"&gt;
   &lt;div class="wb-toast-container wb-toast-container-top-right" aria-live="polite" aria-atomic="true"&gt;
     &lt;div class="wb-toast wb-toast-success" role="status"&gt;
@@ -244,13 +244,23 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-                    <h4>Compact single-message toast</h4>
-                    <pre><code>&lt;div class="wb-toast wb-toast-success" role="status"&gt;
+                    <h4>Info auto-dismiss toast with custom timeout</h4>
+                    <pre><code>&lt;div class="wb-toast wb-toast-info" role="status" data-wb-toast-timeout="7000"&gt;
   &lt;div class="wb-toast-body"&gt;
-    &lt;span&gt;Message sent. Thanks for your message.&lt;/span&gt;
+    &lt;strong class="wb-toast-title"&gt;Draft saved&lt;/strong&gt;
+    &lt;span&gt;Your changes were saved automatically.&lt;/span&gt;
   &lt;/div&gt;
   &lt;button type="button" class="wb-toast-close" aria-label="Dismiss"&gt;×&lt;/button&gt;
 &lt;/div&gt;</code></pre>
+                    <h4>Persistent warning/error toast</h4>
+                    <pre><code>&lt;div class="wb-toast wb-toast-danger" role="alert" data-wb-auto-dismiss="false"&gt;
+  &lt;div class="wb-toast-body"&gt;
+    &lt;strong class="wb-toast-title"&gt;Delivery failed&lt;/strong&gt;
+    &lt;span&gt;Review the error and try again.&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;button type="button" class="wb-toast-close" aria-label="Dismiss"&gt;×&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">Use <code>data-wb-toast-timeout="7000"</code> to set a timeout in milliseconds. Use <code>data-wb-toast-timeout="0"</code> or <code>data-wb-auto-dismiss="false"</code> only for intentionally persistent toasts.</p>
                     <p class="wb-text-sm wb-text-muted wb-m-0"><code>.wb-overlay-layer.wb-overlay-layer--toast</code> may wrap the toast container when an application already manages overlay layers, but simple app markup does not require it.</p>
                   </div>
                 </div>

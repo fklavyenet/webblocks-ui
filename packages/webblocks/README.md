@@ -86,7 +86,7 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 - `wb-overlay-root` is shared runtime infrastructure for enhanced overlays; `wb-modal` remains the canonical public top-layer primitive
 - nested overlays should follow the overlay stack contract and must not stay clipped inside parent containers or overlay bodies
 - `wb:overlay:close-request` is the canonical overlay-level hook for unsaved-change guards; host apps own dirty-state policy and should use programmatic close after save or confirmed discard
-- transient success/info feedback should use `wb-toast` outside normal layout flow, preferably under `#wb-overlay-root`; validation errors, user-correctable failures, persistent warnings, and blocking failures should stay inline with contextual feedback such as `wb-alert`
+- transient success/info feedback should use `wb-toast` outside normal layout flow, preferably under `#wb-overlay-root`; success/info toasts auto-dismiss by default, while validation errors, user-correctable failures, persistent warnings, and blocking failures should stay inline with contextual feedback such as `wb-alert`
 - toasts are not modals: no backdrop, focus trap, body scroll lock, or page interaction blocking
 - avoid teaching `panel` as a generic surface or overlay noun; keep it only for scoped internal structures such as `wb-popover-panel`
 - in-page `wb-section-nav` active state is runtime-owned; `WBSectionNav` applies `.is-active` and `aria-current="location"` from real hash/scroll state
