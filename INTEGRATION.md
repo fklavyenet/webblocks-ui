@@ -184,7 +184,37 @@ Required structure:
 
 ---
 
-# 11. New Class Rule
+# 11. Feedback Standard
+
+Use the shipped feedback primitives without inventing wrappers or classes.
+
+* transient success/info feedback → `wb-toast` outside normal layout flow, preferably inside `#wb-overlay-root.wb-overlay-root`
+* validation errors and user-correctable failures → inline contextual feedback near the related form, card, or section, usually `wb-alert`
+* persistent warnings or blocking failures → inline in the related card or section
+* page-global alerts → only truly global/system-level states
+* no-JS fallback → contextual inline alert
+
+Canonical toast container:
+
+```html
+<div id="wb-overlay-root" class="wb-overlay-root">
+  <div class="wb-toast-container wb-toast-container-top-right" aria-live="polite" aria-atomic="true">
+    <div class="wb-toast wb-toast-success" role="status">
+      <div class="wb-toast-body">
+        <strong class="wb-toast-title">Message sent</strong>
+        <span>Thanks for your message.</span>
+      </div>
+      <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
+    </div>
+  </div>
+</div>
+```
+
+Toasts are not modals: no backdrop, focus trap, body scroll lock, or page interaction blocking.
+
+---
+
+# 12. New Class Rule
 
 Add ONLY if:
 
@@ -196,7 +226,7 @@ Add ONLY if:
 
 ---
 
-# 12. Violations
+# 13. Violations
 
 ❌ inline styles
 ❌ layout via text-align
@@ -206,7 +236,7 @@ Add ONLY if:
 
 ---
 
-# 13. Final Checklist
+# 14. Final Checklist
 
 * Is this layout or styling?
 * Is there a primitive?
@@ -214,7 +244,7 @@ Add ONLY if:
 
 ---
 
-# 14. 🔒 AI ENFORCEMENT PROMPT (CRITICAL)
+# 15. 🔒 AI ENFORCEMENT PROMPT (CRITICAL)
 
 Use this prompt in ALL AI integrations:
 
@@ -281,7 +311,7 @@ STRICT RULES:
 
 ---
 
-# 15. Key Insight
+# 16. Key Insight
 
 WebBlocks is:
 

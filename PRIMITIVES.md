@@ -130,6 +130,44 @@ Overlay Stack Standard:
 - do not introduce a public `wb-overlay` primitive or a second lightbox/viewer primitive beside `wb-modal`
 - do not teach `panel` as a generic public noun; `panel` may remain only in scoped internal names such as `wb-popover-panel`, `wb-collapse-panel`, or `wb-auth-panel`
 
+Feedback and toast standard:
+
+- transient success feedback belongs in a toast and must not push the topbar, page header, main content, cards, or forms downward
+- validation errors and user-correctable failures belong inline at the top of the related form, card, or section using contextual feedback primitives such as `wb-alert`
+- persistent warnings or blocking failures belong inline in the related card or section
+- page-global alerts are reserved for truly global or system-level states
+- toasts are not modals: no backdrop, focus trap, body scroll lock, or page interaction blocking
+- toast containers should stay outside normal layout flow, preferably inside `#wb-overlay-root.wb-overlay-root`
+- `.wb-overlay-layer.wb-overlay-layer--toast` is optional for applications that already manage overlay layers; it is not required for simple app markup
+- dismiss controls must be real buttons with accessible labels
+
+Canonical toast markup:
+
+```html
+<div id="wb-overlay-root" class="wb-overlay-root">
+  <div class="wb-toast-container wb-toast-container-top-right" aria-live="polite" aria-atomic="true">
+    <div class="wb-toast wb-toast-success" role="status">
+      <div class="wb-toast-body">
+        <strong class="wb-toast-title">Message sent</strong>
+        <span>Thanks for your message.</span>
+      </div>
+      <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
+    </div>
+  </div>
+</div>
+```
+
+Compact single-message toast:
+
+```html
+<div class="wb-toast wb-toast-success" role="status">
+  <div class="wb-toast-body">
+    <span>Message sent. Thanks for your message.</span>
+  </div>
+  <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
+</div>
+```
+
 ## Surfaces
 
 Surfaces are visible structured regions that are larger than a single primitive but smaller than a full page pattern.

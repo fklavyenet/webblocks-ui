@@ -60,6 +60,8 @@ Start from patterns, not primitives.
 - `wb-card-media` is the canonical card-body media frame when mixed image dimensions need consistent card-grid rhythm without default cropping
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive
 - `wb-cookie-consent` is the reusable public-site consent pattern; it supports bottom-banner and floating-card entry variants plus one shared `wb-modal` preference center and a required reopen hook
+- transient success/info feedback should use `wb-toast` outside normal layout flow, preferably under `#wb-overlay-root`; validation errors, user-correctable failures, persistent warnings, and blocking failures should stay inline with contextual feedback such as `wb-alert`
+- toasts are not modals: no backdrop, focus trap, body scroll lock, or page interaction blocking
 - the admin standards page documents the canonical admin page header, detail-list, action-column, and danger-zone rules while preferring existing `wb-card`, `wb-field`, `wb-action-group`, and breadcrumb primitives wherever they already cover the job
 - long-form docs pages now use `wb-section-nav` for local section indexes, with runtime-driven active state tied to the real current section instead of static markup
 - `wb-table-wrap` is the single table surface; toolbars inside it stay control rows and table headers stay header bands

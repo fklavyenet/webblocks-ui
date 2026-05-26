@@ -342,6 +342,70 @@ Notes:
 
 For dismissible alerts, use `data-wb-dismiss="alert"` on the close button.
 
+### Feedback Standard
+
+Use feedback where the user can understand and act on it without layout jumps.
+
+- transient success and informational feedback should use a toast outside normal layout flow
+- toasts must not push the topbar, page header, main content, cards, or forms downward
+- validation errors and user-correctable failures should render inline at the top of the related form, card, or section with contextual primitives such as `wb-alert`
+- persistent warnings and blocking failures should render inline in the related card or section
+- page-global alerts are reserved for truly global or system-level states
+- no-JS fallbacks should be contextual inline alerts near the affected form, card, or section
+
+Toasts are not modals:
+
+- no backdrop
+- no focus trap
+- no body scroll lock
+- no page interaction blocking
+
+Preferred app placement is inside the shared overlay root. Keep the markup minimal:
+
+```html
+<div id="wb-overlay-root" class="wb-overlay-root">
+  <div class="wb-toast-container wb-toast-container-top-right" aria-live="polite" aria-atomic="true">
+    <div class="wb-toast wb-toast-success" role="status">
+      <div class="wb-toast-body">
+        <strong class="wb-toast-title">Message sent</strong>
+        <span>Thanks for your message.</span>
+      </div>
+      <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
+    </div>
+  </div>
+</div>
+```
+
+Compact single-message toast:
+
+```html
+<div class="wb-toast wb-toast-success" role="status">
+  <div class="wb-toast-body">
+    <span>Message sent. Thanks for your message.</span>
+  </div>
+  <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
+</div>
+```
+
+When an application already manages overlay layers, the toast container may sit inside a runtime/layering wrapper:
+
+```html
+<div id="wb-overlay-root" class="wb-overlay-root">
+  <div class="wb-overlay-layer wb-overlay-layer--toast">
+    <div class="wb-toast-container wb-toast-container-top-right" aria-live="polite" aria-atomic="true">
+      ...
+    </div>
+  </div>
+</div>
+```
+
+Variant guidance:
+
+- success and info toasts are for transient feedback; pair the toast with `role="status"` and a polite live region on the container
+- danger and warning toasts are only for non-blocking transient feedback; blocking or fixable errors stay inline
+- validation errors must not be toast-only
+- dismiss controls must be real `button` elements with accessible labels
+
 ### Rich Text
 
 Use `wb-rich-text` when sanitized editorial body copy has already been rendered to standard HTML.
@@ -1038,7 +1102,7 @@ Enhanced behavior notes:
 
 ### Toasts
 
-Programmatic usage is primary:
+Programmatic usage is primary for transient feedback:
 
 ```js
 WBToast.show('Saved successfully', { type: 'success', duration: 2500 })
@@ -1048,9 +1112,11 @@ WBToast.show('Something went wrong', { type: 'danger', position: 'top-right' })
 Static HTML also works:
 
 ```html
-<div class="wb-toast wb-toast-success">
-  <div class="wb-toast-body">Saved successfully</div>
-  <button class="wb-toast-close" data-wb-dismiss="toast" aria-label="Close">&times;</button>
+<div class="wb-toast wb-toast-success" role="status">
+  <div class="wb-toast-body">
+    <span>Saved successfully.</span>
+  </div>
+  <button type="button" class="wb-toast-close" data-wb-dismiss="toast" aria-label="Dismiss">×</button>
 </div>
 ```
 
@@ -1062,6 +1128,13 @@ Supported positions:
 - `top-right`
 - `top-center`
 - `top-left`
+
+Feedback rules:
+
+- use success/info toasts for transient non-blocking feedback
+- use danger/warning toasts only when the issue is transient and non-blocking
+- keep validation errors, user-correctable failures, persistent warnings, and blocking failures inline with contextual feedback such as `wb-alert`
+- keep toast containers outside normal layout flow, preferably under `#wb-overlay-root`
 
 ### Lists, Pagination, Breadcrumbs, Avatars, Empty States
 

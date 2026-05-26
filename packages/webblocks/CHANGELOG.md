@@ -8,6 +8,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Clarify the official toast and contextual feedback standard in docs: transient success/info feedback uses `wb-toast` outside normal layout flow, while validation errors, user-correctable failures, persistent warnings, and blocking failures stay inline with contextual feedback such as `wb-alert`.
+
 ---
 
 ## [2.7.7] — 2026-05-23
