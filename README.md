@@ -66,7 +66,7 @@ Start from patterns, not primitives.
 - the admin standards page documents the canonical admin page header, detail-list, action-column, and danger-zone rules while preferring existing `wb-card`, `wb-field`, `wb-action-group`, and breadcrumb primitives wherever they already cover the job
 - long-form docs pages now use `wb-section-nav` for local section indexes, with runtime-driven active state tied to the real current section instead of static markup
 - `wb-table-wrap` is the single table surface; toolbars inside it stay control rows and table headers stay header bands
-- admin index tables should keep an explicit left-aligned `Actions` header and use `wb-table-actions` for both single and grouped actions; reserve `wb-text-end` for intentionally right-aligned data such as totals, prices, or metrics
+- admin index tables should keep an explicit left-aligned `Actions` header and use `td.wb-table-actions` for both single and grouped row actions; `wb-action-group` remains a generic responsive grouping utility outside table cells, and `wb-text-end` is reserved for intentionally right-aligned data such as totals, prices, or metrics
 - page-level submit actions should stay in the owning form or card footer; page headers are for navigation and context actions only
 - text casing is content-defined; shipped UI should not automatically uppercase or capitalize content
 

@@ -8,6 +8,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Clarify the admin table action standard in docs: use a normal left-aligned `Actions` header with `td.wb-table-actions` row cells, and keep `wb-action-group` generic outside table cells.
+
 ---
 
 ## [2.7.10] — 2026-05-26
