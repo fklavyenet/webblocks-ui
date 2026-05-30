@@ -62,6 +62,7 @@
             <ul class="wb-section-nav-list">
               <li class="wb-section-nav-item"><a href="#overview" class="wb-section-nav-link">Overview</a></li>
               <li class="wb-section-nav-item"><a href="#page-header" class="wb-section-nav-link">Page header</a></li>
+              <li class="wb-section-nav-item"><a href="#admin-index-list" class="wb-section-nav-link">Admin index/list</a></li>
               <li class="wb-section-nav-item"><a href="#form-cards" class="wb-section-nav-link">Form cards</a></li>
               <li class="wb-section-nav-item"><a href="#detail-page" class="wb-section-nav-link">Detail page</a></li>
               <li class="wb-section-nav-item"><a href="#table-actions" class="wb-section-nav-link">Table actions</a></li>
@@ -74,7 +75,7 @@
             <div class="wb-content-shell wb-docs-main">
               <header class="wb-content-header">
                 <h1 class="wb-content-title">Admin Standards</h1>
-                <p class="wb-content-subtitle wb-docs-prose">Use these patterns for admin create, edit, detail, and index screens. The standard keeps hierarchy outside cards, keeps form submit actions inside form footers, and keeps destructive work isolated in a clear final danger zone.</p>
+                <p class="wb-content-subtitle wb-docs-prose">Use these patterns for admin create, edit, detail, and index/list screens. The standard keeps hierarchy outside cards, keeps filters and list cards consistent across products, keeps form submit actions inside form footers, and keeps destructive work isolated in a clear final danger zone.</p>
                 <div class="wb-content-meta"><span>Pattern guidance</span><span class="wb-content-meta-divider"></span><span>CSS-first</span><span class="wb-content-meta-divider"></span><span>Copyable markup</span></div>
               </header>
 
@@ -197,6 +198,144 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="admin-index-list">
+                    <h2>Admin index/list standard</h2>
+                    <div class="wb-stack-5">
+                      <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Canonical contract</strong> Admin index/list screens in CMS, Publisher, QuizTem, Herne, and future projects should share this DOM shape so table spacing, filter placement, row actions, and pagination behave the same way.</div>
+
+                      <div class="wb-table-wrap">
+                        <table class="wb-table wb-table-sm">
+                          <thead><tr><th>Area</th><th>Rule</th></tr></thead>
+                          <tbody>
+                            <tr><td>Page header</td><td>Keep <code>wb-page-header</code> at page level. It owns the page title, breadcrumb, description, and only page-context actions.</td></tr>
+                            <tr><td>Filters</td><td>Render filters before the list card as a separate compact <code>wb-filter-bar</code> or filter card. Do not place filters inside the table card body.</td></tr>
+                            <tr><td>List card</td><td>Render the list in <code>section.wb-card</code>. The card header owns the list title, description, and right-side create/import/export actions.</td></tr>
+                            <tr><td>Card spacing</td><td><code>wb-card-body</code> should contain <code>wb-table-wrap</code> directly. Avoid extra project-specific wrappers around the table.</td></tr>
+                            <tr><td>Table</td><td>Use <code>wb-table wb-table-hover</code>. Add <code>wb-table-striped</code> only when striping is intentionally needed.</td></tr>
+                            <tr><td>Action column</td><td>Never leave the final header blank. Label it <code>Actions</code>, and put row controls in <code>td.wb-table-actions</code>.</td></tr>
+                            <tr><td>Row actions</td><td>Wrap action icons in <code>wb-action-group</code> and render each action as <code>wb-action-btn</code>.</td></tr>
+                            <tr><td>Pagination</td><td>Place pagination or result summary in <code>wb-card-footer</code>, not above the table and not inside <code>wb-table-wrap</code>.</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Legacy class guidance</strong> Do not use project-specific wrappers such as <code>wb-admin-table-card</code>, <code>wb-admin-table-card-body</code>, or <code>wb-admin-pages-table-wrap</code> in new canonical examples. If older projects need compatibility, they may keep CSS aliases that map those names to the canonical <code>wb-card</code>, <code>wb-card-body</code>, and <code>wb-table-wrap</code> behavior.</div>
+
+                      <div class="wb-page-header">
+                        <div class="wb-page-header-main">
+                          <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Admin index breadcrumb example">
+                            <ol class="wb-breadcrumb-list">
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Admin</a></li>
+                              <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Pages</span></li>
+                            </ol>
+                          </nav>
+                          <div>
+                            <h1 class="wb-page-title">Pages</h1>
+                            <p class="wb-page-description">Manage published, draft, and archived CMS pages from one canonical admin index.</p>
+                          </div>
+                        </div>
+                        <div class="wb-page-actions">
+                          <a href="#" class="wb-btn wb-btn-outline wb-btn-sm">Back to dashboard</a>
+                        </div>
+                      </div>
+
+                      <div class="wb-filter-bar" role="search" aria-label="Filter pages">
+                        <div class="wb-filter-bar-start">
+                          <div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Search pages"></div>
+                          <select class="wb-filter-select" aria-label="Filter by status"><option>All statuses</option><option>Published</option><option>Draft</option><option>Archived</option></select>
+                          <button class="wb-filter-chip is-active" type="button">Published</button>
+                          <button class="wb-filter-chip" type="button">Needs review</button>
+                        </div>
+                        <div class="wb-filter-bar-end"><span class="wb-filter-results">24 pages</span></div>
+                      </div>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header">
+                          <div><h2 class="wb-card-title">Page list</h2><p class="wb-card-description">The list card owns the table title and resource-level actions.</p></div>
+                          <div class="wb-action-group"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Create Page</a><button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Import</button></div>
+                        </div>
+                        <div class="wb-card-body">
+                          <div class="wb-table-wrap">
+                            <table class="wb-table wb-table-hover">
+                              <thead><tr><th>Title</th><th>Status</th><th>Updated</th><th>Owner</th><th>Actions</th></tr></thead>
+                              <tbody>
+                                <tr><td>Landing Page</td><td><span class="wb-status-pill wb-status-active">Published</span></td><td>2026-05-30</td><td>CMS Team</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View page" title="View page"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit page" title="Edit page"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Archive page" title="Archive page"><i class="wb-icon wb-icon-archive"></i></button></div></td></tr>
+                                <tr><td>Release Notes</td><td><span class="wb-status-pill wb-status-pending">Draft</span></td><td>2026-05-28</td><td>Publisher Team</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View page" title="View page"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit page" title="Edit page"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Archive page" title="Archive page"><i class="wb-icon wb-icon-archive"></i></button></div></td></tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="wb-card-footer"><span class="wb-filter-results">Showing 1-2 of 24 pages</span><nav class="wb-pagination wb-pagination-compact" aria-label="Pages pagination"><ul class="wb-pagination-list"><li class="wb-pagination-item is-disabled"><span class="wb-pagination-link" aria-disabled="true">Previous</span></li><li class="wb-pagination-item is-active"><span class="wb-pagination-link" aria-current="page">1</span></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">2</a></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">Next</a></li></ul></nav></div>
+                      </section>
+
+                      <pre><code>&lt;div class="wb-page-header"&gt;
+  &lt;div class="wb-page-header-main"&gt;
+    &lt;nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
+    &lt;div&gt;
+      &lt;h1 class="wb-page-title"&gt;Pages&lt;/h1&gt;
+      &lt;p class="wb-page-description"&gt;Manage published, draft, and archived pages.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-page-actions"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="wb-filter-bar" role="search" aria-label="Filter pages"&gt;
+  &lt;div class="wb-filter-bar-start"&gt;
+    &lt;div class="wb-search-bar wb-search-bar-full"&gt;
+      &lt;span class="wb-search-bar-icon"&gt;&lt;i class="wb-icon wb-icon-search"&gt;&lt;/i&gt;&lt;/span&gt;
+      &lt;input class="wb-search-bar-input" type="search" placeholder="Search pages"&gt;
+    &lt;/div&gt;
+    &lt;select class="wb-filter-select" aria-label="Filter by status"&gt;
+      &lt;option&gt;All statuses&lt;/option&gt;
+      &lt;option&gt;Published&lt;/option&gt;
+      &lt;option&gt;Draft&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-filter-bar-end"&gt;&lt;span class="wb-filter-results"&gt;24 pages&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;section class="wb-card"&gt;
+  &lt;div class="wb-card-header"&gt;
+    &lt;div&gt;
+      &lt;h2 class="wb-card-title"&gt;Page list&lt;/h2&gt;
+      &lt;p class="wb-card-description"&gt;All pages matching the current filters.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-action-group"&gt;
+      &lt;a class="wb-btn wb-btn-primary wb-btn-sm" href="#"&gt;Create Page&lt;/a&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button"&gt;Import&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body"&gt;
+    &lt;div class="wb-table-wrap"&gt;
+      &lt;table class="wb-table wb-table-hover"&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;&lt;th&gt;Title&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Updated&lt;/th&gt;&lt;th&gt;Owner&lt;/th&gt;&lt;th&gt;Actions&lt;/th&gt;&lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;
+            &lt;td&gt;Landing Page&lt;/td&gt;
+            &lt;td&gt;&lt;span class="wb-status-pill wb-status-active"&gt;Published&lt;/span&gt;&lt;/td&gt;
+            &lt;td&gt;2026-05-30&lt;/td&gt;
+            &lt;td&gt;CMS Team&lt;/td&gt;
+            &lt;td class="wb-table-actions"&gt;
+              &lt;div class="wb-action-group"&gt;
+                &lt;a class="wb-action-btn wb-action-btn-view" href="#" aria-label="View page" title="View page"&gt;&lt;i class="wb-icon wb-icon-eye"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Edit page" title="Edit page"&gt;&lt;i class="wb-icon wb-icon-pencil"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-footer"&gt;
+    &lt;span class="wb-filter-results"&gt;Showing 1-20 of 24 pages&lt;/span&gt;
+    &lt;nav class="wb-pagination wb-pagination-compact" aria-label="Pages pagination"&gt;...&lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="form-cards">

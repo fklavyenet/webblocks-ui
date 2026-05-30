@@ -55,18 +55,20 @@ Start from patterns, not primitives.
 - docs and playground local asset loaders resolve the built files from `packages/webblocks/dist/`; the playground loader also handles the deeper `playground/` path correctly
 - the single source of truth for the shipped package version is `packages/webblocks/VERSION`
 - update `packages/webblocks/VERSION` before a release or tag so the package banner metadata and docs version label stay in sync
-- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to dist files, emits deferred experimental minified artifacts, and regenerates `docs/version.js`
-- production and CDN integrations should currently use `dist/webblocks-ui.css`, `dist/webblocks-icons.css`, and `dist/webblocks-ui.js`; `.min.css` / `.min.js` artifacts are not the recommended downstream path until minification hardening is complete
+- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to non-minified dist files, and regenerates `docs/version.js` using only shell and standard command-line utilities
+- production and CDN integrations use `dist/webblocks-ui.css`, `dist/webblocks-icons.css`, and `dist/webblocks-ui.js`; `.min.css` / `.min.js` artifacts are no longer published by the canonical build
+- `dist/webblocks-icons.json` is preserved as a maintained dist artifact for icon pickers and catalog sync, but the shell build does not regenerate it
 - the playground is a thin sandbox layer built on top of shipped WebBlocks primitives, surfaces, and layout utilities
 - `wb-card-media` is the canonical card-body media frame when mixed image dimensions need consistent card-grid rhythm without default cropping
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive
 - `wb-cookie-consent` is the reusable public-site consent pattern; it supports bottom-banner and floating-card entry variants plus one shared `wb-modal` preference center and a required reopen hook
 - transient success/info feedback should use `wb-toast` outside normal layout flow, preferably under `#wb-overlay-root`; success/info toasts auto-dismiss by default, while validation errors, user-correctable failures, persistent warnings, and blocking failures should stay inline with contextual feedback such as `wb-alert`
 - toasts are not modals: no backdrop, focus trap, body scroll lock, or page interaction blocking
-- the admin standards page documents the canonical admin page header, detail-list, action-column, and danger-zone rules while preferring existing `wb-card`, `wb-field`, `wb-action-group`, and breadcrumb primitives wherever they already cover the job
+- the admin standards page documents the canonical admin page header, admin index/list, detail-list, action-column, and danger-zone rules while preferring existing `wb-card`, `wb-field`, `wb-filter-bar`, `wb-action-group`, and breadcrumb primitives wherever they already cover the job
 - long-form docs pages now use `wb-section-nav` for local section indexes, with runtime-driven active state tied to the real current section instead of static markup
 - `wb-table-wrap` is the single table surface; toolbars inside it stay control rows and table headers stay header bands
-- admin index tables should keep an explicit left-aligned `Actions` header and use `td.wb-table-actions` for both single and grouped row actions; `wb-action-group` remains a generic responsive grouping utility outside table cells, and `wb-text-end` is reserved for intentionally right-aligned data such as totals, prices, or metrics
+- admin index/list screens should use the canonical DOM contract: page-level `wb-page-header`, filters before the list card, the table inside `section.wb-card > .wb-card-body > .wb-table-wrap`, explicit `Actions` header, `td.wb-table-actions`, row icon buttons inside `wb-action-group`, and pagination in `wb-card-footer`
+- do not introduce project-specific admin list wrappers such as `wb-admin-table-card`, `wb-admin-table-card-body`, or `wb-admin-pages-table-wrap` in new work; keep compatibility aliases only where older projects need them
 - page-level submit actions should stay in the owning form or card footer; page headers are for navigation and context actions only
 - text casing is content-defined; shipped UI should not automatically uppercase or capitalize content
 

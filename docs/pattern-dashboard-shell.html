@@ -80,12 +80,14 @@
             <div class="wb-stat"><span class="wb-stat-label">Incident queue</span><strong class="wb-stat-value">4</strong><span class="wb-stat-delta wb-stat-delta-down">2 urgent</span></div>
           </div>
 
+            <div class="wb-filter-bar" role="search" aria-label="Filter workspaces">
+              <div class="wb-filter-bar-start"><div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Search workspaces"></div><select class="wb-filter-select" aria-label="Filter by plan"><option>All plans</option><option>Starter</option><option>Growth</option><option>Enterprise</option></select><button class="wb-filter-chip is-active" type="button">Live</button><button class="wb-filter-chip" type="button">Needs review</button></div>
+              <div class="wb-filter-bar-end"><span class="wb-filter-results">12 workspaces</span></div>
+            </div>
+
             <section class="wb-card wb-card-flat">
-              <div class="wb-card-header"><div><h2 class="wb-card-title">Workspace activity</h2><p class="wb-card-description">Index tables should keep a clearly named final <code>Actions</code> column, keep that header left-aligned, and let long summaries wrap naturally.</p></div><a href="pattern-content-shell.html" class="wb-action-link">Open content shell</a></div>
-              <div class="wb-card-body wb-stack-4">
-                <div class="wb-filter-bar">
-                  <div class="wb-filter-bar-start"><div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Search workspaces"></div><select class="wb-filter-select"><option>All plans</option><option>Starter</option><option>Growth</option><option>Enterprise</option></select><button class="wb-filter-chip is-active">Live</button><button class="wb-filter-chip">Needs review</button></div>
-                </div>
+              <div class="wb-card-header"><div><h2 class="wb-card-title">Workspace activity</h2><p class="wb-card-description">Index tables follow the admin list standard: filters before the card, table inside <code>wb-card-body</code>, explicit <code>Actions</code> column, and pagination in the footer.</p></div><div class="wb-action-group"><a href="pattern-content-shell.html" class="wb-btn wb-btn-secondary wb-btn-sm">Open content shell</a><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Create workspace</a></div></div>
+              <div class="wb-card-body">
                 <div class="wb-table-wrap">
                   <table class="wb-table wb-table-hover">
                     <thead><tr><th>Workspace</th><th>Owner</th><th>Status</th><th>Summary</th><th>Plan</th><th>Actions</th></tr></thead>
@@ -97,7 +99,7 @@
                   </table>
                 </div>
               </div>
-            <div class="wb-card-footer"><span class="wb-filter-results">12 workspaces</span></div>
+            <div class="wb-card-footer"><span class="wb-filter-results">Showing 1-3 of 12 workspaces</span><nav class="wb-pagination wb-pagination-compact" aria-label="Workspace pagination"><ul class="wb-pagination-list"><li class="wb-pagination-item is-disabled"><span class="wb-pagination-link" aria-disabled="true">Previous</span></li><li class="wb-pagination-item is-active"><span class="wb-pagination-link" aria-current="page">1</span></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">2</a></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">Next</a></li></ul></nav></div>
           </section>
         </div>
       </main>

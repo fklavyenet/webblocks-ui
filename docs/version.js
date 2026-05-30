@@ -5,8 +5,8 @@
   var versionTag = 'v2.7.10';
 
   function applyVersion() {
-    Array.prototype.forEach.call(document.querySelectorAll('[data-webblocks-version]'), function (node) {
-      node.textContent = version;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-webblocks-version]'), function (element) {
+      element.textContent = version;
     });
   }
 

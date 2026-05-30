@@ -9,7 +9,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Changed
-- Clarify the admin table action standard in docs: use a normal left-aligned `Actions` header with `td.wb-table-actions` row cells, and keep `wb-action-group` generic outside table cells.
+- Restore the canonical build script to a shell-only concat flow with no Node, npm, Python, minification, icon generation, or validation subprocesses.
+- Keep `dist/webblocks-icons.json` as a maintained dist artifact that the shell build preserves instead of regenerating.
+- Define the canonical Admin Index/List Standard in docs so CMS Pages, Publisher Releases, QuizTem, Herne, and future admin lists share the same page header, filter placement, list card, table body, row action, and pagination DOM contract.
+- Align the dashboard shell example table with the Admin Index/List Standard by moving filters before the list card, keeping table markup directly under `wb-card-body > wb-table-wrap`, and placing pagination in `wb-card-footer`.
+- Document that project-specific list wrappers such as `wb-admin-table-card`, `wb-admin-table-card-body`, and `wb-admin-pages-table-wrap` should not be used in new canonical examples; compatibility aliases may remain only for older projects.
+
+### Removed
+- Remove minified dist artifact generation from `packages/webblocks/build.sh` and stop publishing `dist/webblocks-ui.min.css`, `dist/webblocks-icons.min.css`, and `dist/webblocks-ui.min.js`.
 
 ---
 

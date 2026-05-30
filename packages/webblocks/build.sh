@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # ============================================================
 # WebBlocks UI — Build Script
-# Concatenates src files into dist/webblocks-ui.css and .js,
-# then emits conservative minified production artifacts.
-# No npm required — plain shell cat
+# Concatenates source files into canonical dist assets.
+# Uses only shell and standard command-line utilities.
 # Usage: ./build.sh
 # ============================================================
 
@@ -16,9 +15,6 @@ CSS_OUT="$DIST/webblocks-ui.css"
 JS_OUT="$DIST/webblocks-ui.js"
 ICONS_OUT="$DIST/webblocks-icons.css"
 ICONS_JSON_OUT="$DIST/webblocks-icons.json"
-CSS_MIN_OUT="$DIST/webblocks-ui.min.css"
-JS_MIN_OUT="$DIST/webblocks-ui.min.js"
-ICONS_MIN_OUT="$DIST/webblocks-icons.min.css"
 VERSION_FILE="$ROOT/VERSION"
 DOCS_VERSION_OUT="$REPO_ROOT/docs/version.js"
 
@@ -121,153 +117,6 @@ add_js_banner() {
   rm -f "$stripped_file"
 }
 
-minify_dist_assets() {
-  python3 - "$CSS_OUT" "$CSS_MIN_OUT" "$ICONS_OUT" "$ICONS_MIN_OUT" "$JS_OUT" "$JS_MIN_OUT" <<'PY'
-import re
-import sys
-from pathlib import Path
-
-css_in, css_out, icons_in, icons_out, js_in, js_out = [Path(arg) for arg in sys.argv[1:]]
-
-
-def split_css_banner(text):
-    charset = ''
-    rest = text
-    if rest.startswith('@charset "UTF-8";'):
-        charset = '@charset "UTF-8";'
-        rest = rest[len(charset):].lstrip()
-    match = re.match(r'/\*!.*?\*/', rest, flags=re.S)
-    if not match:
-        raise SystemExit('Error: CSS banner not found')
-    return charset, match.group(0), rest[match.end():]
-
-
-def split_js_banner(text):
-    match = re.match(r'\s*(/\*!.*?\*/)', text, flags=re.S)
-    if not match:
-        raise SystemExit('Error: JS banner not found')
-    return match.group(1), text[match.end():]
-
-
-def remove_css_comments(text):
-    return re.sub(r'/\*[^!].*?\*/', '', text, flags=re.S)
-
-
-def minify_css(input_path, output_path):
-    text = input_path.read_text(encoding='utf-8')
-    charset, banner, body = split_css_banner(text)
-    body = remove_css_comments(body)
-    body = re.sub(r'\s+', ' ', body)
-    body = re.sub(r'\s*([{}:;,>+~])\s*', r'\1', body)
-    body = re.sub(r';}', '}', body)
-    body = body.strip()
-    prefix = f'{charset}\n{banner}\n' if charset else f'{banner}\n'
-    output_path.write_text(prefix + body + '\n', encoding='utf-8')
-
-
-def strip_js_comments(text):
-    out = []
-    i = 0
-    length = len(text)
-    state = 'code'
-    escaped = False
-    line_has_code = False
-
-    while i < length:
-        ch = text[i]
-        nxt = text[i + 1] if i + 1 < length else ''
-
-        if state == 'code':
-            if ch == '/' and nxt == '*':
-                i += 2
-                while i + 1 < length and not (text[i] == '*' and text[i + 1] == '/'):
-                    i += 1
-                i += 2
-                continue
-            if ch == '/' and nxt == '/' and not line_has_code:
-                i += 2
-                while i < length and text[i] not in '\r\n':
-                    i += 1
-                continue
-            out.append(ch)
-            if ch in ("'", '"', '`'):
-                state = ch
-                escaped = False
-            if ch == '\n':
-                line_has_code = False
-            elif not ch.isspace():
-                line_has_code = True
-            i += 1
-            continue
-
-        out.append(ch)
-        if escaped:
-            escaped = False
-        elif ch == '\\':
-            escaped = True
-        elif ch == state:
-            state = 'code'
-        if ch == '\n':
-            line_has_code = False
-        i += 1
-
-    return ''.join(out)
-
-
-def minify_js(input_path, output_path):
-    text = input_path.read_text(encoding='utf-8')
-    banner, body = split_js_banner(text)
-    body = strip_js_comments(body)
-    lines = []
-    for line in body.splitlines():
-        compact = re.sub(r'[ \t]+', ' ', line).strip()
-        if compact:
-            lines.append(compact)
-    output_path.write_text(banner + '\n' + '\n'.join(lines) + '\n', encoding='utf-8')
-
-
-minify_css(css_in, css_out)
-minify_css(icons_in, icons_out)
-minify_js(js_in, js_out)
-PY
-}
-
-assert_file_contains() {
-  local file="$1"
-  local needle="$2"
-
-  if ! grep -Fq "$needle" "$file"; then
-    echo "Error: expected $file to contain $needle" >&2
-    exit 1
-  fi
-}
-
-validate_minified_assets() {
-  for file in "$CSS_MIN_OUT" "$ICONS_MIN_OUT" "$JS_MIN_OUT"; do
-    if [ ! -s "$file" ]; then
-      echo "Error: missing minified output at $file" >&2
-      exit 1
-    fi
-  done
-
-  assert_file_contains "$CSS_MIN_OUT" "WebBlocks UI $VERSION_TAG"
-  assert_file_contains "$ICONS_MIN_OUT" "WebBlocks UI $VERSION_TAG"
-  assert_file_contains "$ICONS_MIN_OUT" ".wb-icon-settings"
-  assert_file_contains "$ICONS_MIN_OUT" ".wb-icon-arrow-down"
-  assert_file_contains "$ICONS_MIN_OUT" ".wb-icon-grip-vertical"
-  assert_file_contains "$JS_MIN_OUT" "WebBlocks UI $VERSION_TAG"
-  assert_file_contains "$JS_MIN_OUT" "window.WBModal"
-  assert_file_contains "$JS_MIN_OUT" "window.WBDropdown"
-  assert_file_contains "$JS_MIN_OUT" "window.WBToast"
-  assert_file_contains "$JS_MIN_OUT" "window.WBTheme"
-
-  if command -v node &> /dev/null; then
-    node --check "$JS_MIN_OUT"
-  else
-    echo "  -> Skipped JS syntax check (node not found)"
-  fi
-}
-
 write_docs_version_asset() {
   mkdir -p "$(dirname "$DOCS_VERSION_OUT")"
 
@@ -279,8 +128,8 @@ write_docs_version_asset() {
   var versionTag = '$VERSION_TAG';
 
   function applyVersion() {
-    Array.prototype.forEach.call(document.querySelectorAll('[data-webblocks-version]'), function (node) {
-      node.textContent = version;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-webblocks-version]'), function (element) {
+      element.textContent = version;
     });
   }
 
@@ -408,19 +257,10 @@ echo "  -> dist/webblocks-ui.js   ($JS_LINES lines)"
 
 echo "Building icons..."
 
-if command -v node &> /dev/null; then
-  node "$ROOT/scripts/build-icons.js"
-else
-  echo "  -> Skipped (node not found — run: node scripts/build-icons.js)"
-fi
+cat "$ROOT/src/css/icons/icons.css" > "$ICONS_OUT"
 
 if [ ! -f "$ICONS_OUT" ]; then
   echo "Error: missing icon output at $ICONS_OUT" >&2
-  exit 1
-fi
-
-if [ ! -f "$ICONS_JSON_OUT" ]; then
-  echo "Error: missing icon manifest output at $ICONS_JSON_OUT" >&2
   exit 1
 fi
 
@@ -429,24 +269,9 @@ add_css_banner "$ICONS_OUT"
 ICONS_LINES=$(wc -l < "$ICONS_OUT")
 echo "  -> dist/webblocks-icons.css  ($ICONS_LINES lines)"
 
-ICON_JSON_COUNT=$(node -e "const fs=require('fs');const data=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));console.log(data.length);" "$ICONS_JSON_OUT")
-echo "  -> dist/webblocks-icons.json  ($ICON_JSON_COUNT entries)"
-
-echo "Validating icons..."
-node "$ROOT/scripts/validate-icons.js"
-
-echo "Validating toast lifecycle..."
-node "$ROOT/scripts/validate-toast.js"
-
-echo "Building minified artifacts..."
-minify_dist_assets
-validate_minified_assets
-CSS_MIN_BYTES=$(wc -c < "$CSS_MIN_OUT")
-ICONS_MIN_BYTES=$(wc -c < "$ICONS_MIN_OUT")
-JS_MIN_BYTES=$(wc -c < "$JS_MIN_OUT")
-echo "  -> dist/webblocks-ui.min.css     ($CSS_MIN_BYTES bytes)"
-echo "  -> dist/webblocks-icons.min.css  ($ICONS_MIN_BYTES bytes)"
-echo "  -> dist/webblocks-ui.min.js      ($JS_MIN_BYTES bytes)"
+if [ -f "$ICONS_JSON_OUT" ]; then
+  echo "  -> dist/webblocks-icons.json  (preserved)"
+fi
 
 echo "Generating docs version asset..."
 write_docs_version_asset

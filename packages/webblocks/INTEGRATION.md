@@ -10,7 +10,7 @@ This document is sourced from `packages/webblocks/src/` and `packages/webblocks/
 
 ### Local dist files
 
-Production builds should use the standard non-minified dist files:
+Production builds use the standard dist files:
 
 ```html
 <link rel="stylesheet" href="dist/webblocks-ui.css">
@@ -18,7 +18,7 @@ Production builds should use the standard non-minified dist files:
 <script src="dist/webblocks-ui.js" defer></script>
 ```
 
-The committed `.min.css` / `.min.js` files are experimental/deferred artifacts. Do not consume them in downstream production yet; use the standard files until minification hardening and regression coverage are complete.
+Minified dist artifacts are not published by the canonical build.
 
 Readable local development usage uses the same files:
 
@@ -30,7 +30,7 @@ Readable local development usage uses the same files:
 
 ### CDN
 
-Production CDN usage should use the standard non-minified dist files:
+Production CDN usage uses the standard dist files:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.css">
@@ -38,7 +38,7 @@ Production CDN usage should use the standard non-minified dist files:
 <script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.js" defer></script>
 ```
 
-The `.min.css` / `.min.js` CDN paths are not the recommended integration path yet. They remain published to avoid breaking already-visible versioned paths, but downstream projects should not switch production traffic to them until the minification pipeline is hardened.
+Minified CDN paths are not part of the canonical package output.
 
 Readable CDN files for development use the same paths:
 
@@ -53,7 +53,7 @@ Notes:
 - `webblocks-icons.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
 - `webblocks-ui.css` already includes tokens, UI primitive source output, layouts, utilities, and the scoped `webgames` extension classes
 - `webblocks-ui.js` exposes `window.*` APIs and data-attribute behavior for interactive patterns
-- `.min.css` / `.min.js` artifacts are experimental/deferred and not recommended for downstream production consumption yet
+- `.min.css` / `.min.js` artifacts are not published by the canonical build
 - replace `<VERSION>` with the value from `packages/webblocks/VERSION` when linking a tagged CDN release
 
 ---
@@ -2247,14 +2247,14 @@ Implementation source of truth:
 - icon CSS source: `packages/webblocks/src/css/icons/webblocks-icons.css`
 - build manifest/order: `packages/webblocks/build.sh`
 
-Build output includes standard recommended dist files plus deferred experimental minified artifacts:
+Build output includes the standard dist files:
 
-- `dist/webblocks-ui.css` and `dist/webblocks-ui.min.css`
-- `dist/webblocks-icons.css` and `dist/webblocks-icons.min.css`
-- `dist/webblocks-ui.js` and `dist/webblocks-ui.min.js`
-- `dist/webblocks-icons.json`
+- `dist/webblocks-ui.css`
+- `dist/webblocks-icons.css`
+- `dist/webblocks-ui.js`
+- `dist/webblocks-icons.json` maintained as a preserved manifest artifact
 
-Use the non-minified files for downstream production/CDN integrations. The `.min.css` / `.min.js` outputs are retained to avoid breaking published CDN paths, but remain deferred until CSS grammar-sensitive minification fixtures and visual/computed style smoke tests are in place.
+Use these standard files for downstream production/CDN integrations. The canonical build does not generate minified outputs or regenerate the icon manifest.
 
 If this guide conflicts with the source files, trust the source files and update this guide.
 - utility helpers are override-first; in normal usage they should win over component or base defaults
