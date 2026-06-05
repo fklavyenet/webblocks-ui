@@ -51,7 +51,7 @@ Readable CDN files for development use the same paths:
 Notes:
 
 - `webblocks-icons.css` is optional unless you use `<i class="wb-icon wb-icon-*">`
-- `webblocks-ui.css` already includes tokens, UI primitive source output, layouts, utilities, and the scoped `webgames` extension classes
+- `webblocks-ui.css` includes WebBlocks tokens, UI primitive source output, layouts, utilities, and patterns; game-specific classes now live in the standalone WebGames UI package
 - `webblocks-ui.js` exposes `window.*` APIs and data-attribute behavior for interactive patterns
 - `.min.css` / `.min.js` artifacts are not published by the canonical build
 - replace `<VERSION>` with the value from `packages/webblocks/VERSION` when linking a tagged CDN release
@@ -74,7 +74,7 @@ Use [`../../PATTERNS.md`](../../PATTERNS.md) to choose a canonical auth, dashboa
 - introduce custom wrapper classes only as a last resort after primitive composition is exhausted
 - use design tokens and shipped utilities instead of hardcoded colors, radii, or spacing
 - interactive behavior is opt-in through `data-wb-*` attributes or `window.WB*` APIs
-- build order is strict: foundation -> base -> UI primitive source files -> layouts -> scoped extensions -> utilities
+- build order is strict: foundation -> base -> UI primitive source files -> layouts -> patterns -> utilities
 - if you modify source CSS, JS, or icons in this package, rebuild `dist/` with `./build.sh`
 
 ### Canonical Vocabulary
@@ -2133,19 +2133,9 @@ Useful emitted events:
 
 ---
 
-## Scoped WebGames Extension
+## WebGames UI Migration
 
-`build.sh` currently ships a scoped game-oriented extension under `.wb-game-ui`. These classes do not alter the base library outside that scope.
-
-Available classes include:
-
-- tokens scope: `.wb-game-ui`
-- screens: `wb-game-screen`, `wb-game-screen-head`, `wb-game-screen-copy`, `wb-game-screen-eyebrow`, `wb-game-screen-title`, `wb-game-screen-lead`, `wb-game-screen-meta`, `wb-game-screen-actions`, `wb-game-screen-side`
-- panels/cards: `wb-game-panel`, `wb-game-panel--soft`, `wb-game-panel--accent`, `wb-game-card`, `wb-game-card.is-selected`
-- buttons: `wb-game-btn`, `wb-game-btn-primary`, `wb-game-btn-secondary`, `wb-game-btn-ghost`, `wb-game-btn-lg`, `wb-game-btn-block`
-- statuses: `wb-game-status`, `wb-game-status-dot`, `wb-game-status-accent`, `wb-game-status-success`, `wb-game-status-warning`, `wb-game-status-danger`
-
-Use this extension only inside a deliberately scoped game-like surface.
+WebGames UI classes were split out into the standalone WebGames UI package and are no longer shipped in the core WebBlocks UI bundle.
 
 ---
 

@@ -487,7 +487,6 @@ These are also shipped pattern families, but not primary app shells:
 - `wb-hero`
 - `wb-content-columns`
 - `wb-footer-grid`
-- scoped `wb-game-screen*`
 
 ## Boundary Rules
 

@@ -194,7 +194,6 @@ cat \
   "$ROOT/src/css/foundation/border.css" \
   "$ROOT/src/css/foundation/reset.css" \
   "$ROOT/src/css/foundation/elements.css" \
-  "$ROOT/src/css/foundation/webgames-tokens.css" \
   "$ROOT/src/css/utilities/helpers.css" \
   "$ROOT/src/css/layout/container.css" \
   "$ROOT/src/css/layout/grid.css" \
@@ -236,9 +235,6 @@ cat \
   "$ROOT/src/css/primitives/toolbar.css" \
   "$ROOT/src/css/primitives/radio-card.css" \
   "$ROOT/src/css/primitives/collapse.css" \
-  "$ROOT/src/css/primitives/webgames-button.css" \
-  "$ROOT/src/css/primitives/webgames-panel.css" \
-  "$ROOT/src/css/primitives/webgames-status.css" \
   "$ROOT/src/css/patterns/page-intro.css" \
   "$ROOT/src/css/patterns/breadcrumb.css" \
   "$ROOT/src/css/patterns/auth-shell.css" \
@@ -249,7 +245,6 @@ cat \
   "$ROOT/src/css/patterns/cookie-consent.css" \
   "$ROOT/src/css/patterns/content-shell.css" \
   "$ROOT/src/css/patterns/marketing.css" \
-  "$ROOT/src/css/patterns/webgames-screen.css" \
   "$ROOT/src/css/icons/icons.css" \
   > "$CSS_OUT"
 

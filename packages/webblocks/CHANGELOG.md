@@ -24,6 +24,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.12] — 2026-06-05
+
+### Removed
+- WebGames UI classes were split out into the standalone WebGames UI package and are no longer shipped in the core WebBlocks UI bundle.
+
+---
+
 ## [2.7.11] — 2026-06-05
 
 ### Added
