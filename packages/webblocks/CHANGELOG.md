@@ -20,6 +20,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.11] — 2026-06-05
+
+### Added
+- Add auth brand-mark helper classes for normal, dark-safe, inverse, and on-accent logo assets inside auth cards and split panels.
+- Document the auth brand asset contract: WebBlocks UI owns layout and sizing slots, while products provide appropriate logo variants for light, dark, accent, and favicon/browser-tab surfaces.
+
+### Changed
+- Align inline auth logo/title markup with centered flex behavior so marks and heading text share a stable vertical axis in auth headers.
+- Update the auth shell docs, integration guide, pattern catalog, and playground starter to use the shared brand-mark contract instead of app-specific logo selectors.
+
+---
+
 ## [2.7.10] — 2026-05-26
 
 ### Changed
