@@ -255,9 +255,9 @@ add_js_banner "$JS_OUT"
 JS_LINES=$(wc -l < "$JS_OUT")
 echo "  -> dist/webblocks-ui.js   ($JS_LINES lines)"
 
-echo "Building icons..."
+echo "Building icon CSS..."
 
-cat "$ROOT/src/css/icons/icons.css" > "$ICONS_OUT"
+cat "$ROOT/src/css/icons/webblocks-icons.css" > "$ICONS_OUT"
 
 if [ ! -f "$ICONS_OUT" ]; then
   echo "Error: missing icon output at $ICONS_OUT" >&2

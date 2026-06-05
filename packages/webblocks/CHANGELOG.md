@@ -30,6 +30,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Align inline auth logo/title markup with centered flex behavior so marks and heading text share a stable vertical axis in auth headers.
 - Update the auth shell docs, integration guide, pattern catalog, and playground starter to use the shared brand-mark contract instead of app-specific logo selectors.
 
+### Fixed
+- Restore generated icon mask selectors in `dist/webblocks-icons.css` for the canonical v2.7.11 CDN tag assets.
+
 ---
 
 ## [2.7.10] — 2026-05-26
