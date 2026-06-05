@@ -10,6 +10,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ### Added
 - Add shell-build and icon-validation guards so `dist/webblocks-icons.css` fails validation if generated icon mask selectors are missing.
+- Replace normal icon and toast validation scripts with shell-only checks so release validation does not require Node.
 
 ### Changed
 - Restore the canonical build script to a shell-only concat flow with no Node, npm, Python, minification, icon generation, or validation subprocesses.

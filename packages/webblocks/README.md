@@ -244,7 +244,9 @@ packages/webblocks/
 │   └── webblocks-icons.json
 ├── scripts/
 │   ├── build-icons.js
-│   └── update-icons.js
+│   ├── update-icons.js
+│   ├── validate-icons.sh
+│   └── validate-toast.sh
 └── src/
     ├── css/
     └── js/
@@ -255,5 +257,6 @@ packages/webblocks/
 - icon source lives in `src/css/icons/webblocks-icons.svg`
 - `scripts/build-icons.js` regenerates icon CSS from the source icon set
 - `scripts/update-icons.js` refreshes the curated icon source from Lucide and is maintainer-only
-- `scripts/validate-icons.js` verifies shipped manifest and docs icon classes resolve to generated selectors in `dist/webblocks-icons.css`
+- `scripts/validate-icons.sh` verifies shipped manifest and docs icon classes resolve to generated selectors in `dist/webblocks-icons.css`
+- `scripts/validate-toast.sh` verifies the toast source and integration guide keep the documented transient/persistent behavior contract
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing

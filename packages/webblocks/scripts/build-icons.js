@@ -4,7 +4,7 @@
 // Reads src/css/icons/webblocks-icons.svg (source icon source),
 // and generates src/dist webblocks-icons.css.
 //
-// Run via:  node scripts/build-icons.js  (or ./build.sh)
+// Run via:  node scripts/build-icons.js
 //
 // To update the icon list from Lucide CDN, run:
 //   node scripts/update-icons.js
