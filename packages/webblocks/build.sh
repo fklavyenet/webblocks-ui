@@ -15,6 +15,7 @@ CSS_OUT="$DIST/webblocks-ui.css"
 JS_OUT="$DIST/webblocks-ui.js"
 ICONS_OUT="$DIST/webblocks-icons.css"
 ICONS_JSON_OUT="$DIST/webblocks-icons.json"
+ICONS_SOURCE="$ROOT/src/css/icons/webblocks-icons.css"
 VERSION_FILE="$ROOT/VERSION"
 DOCS_VERSION_OUT="$REPO_ROOT/docs/version.js"
 
@@ -115,6 +116,40 @@ add_js_banner() {
 
   mv "$output_file" "$file"
   rm -f "$stripped_file"
+}
+
+assert_icon_css_has_selectors() {
+  local file="$1"
+  local label="$2"
+  local mask_rule_count
+  local required_class
+
+  if [ ! -s "$file" ]; then
+    echo "Error: missing $label at $file" >&2
+    exit 1
+  fi
+
+  mask_rule_count=$(grep -c -- "-webkit-mask-image:" "$file" || true)
+  if [ "$mask_rule_count" -lt 50 ]; then
+    echo "Error: $label appears to be helper-only; expected generated icon mask selectors in $file" >&2
+    exit 1
+  fi
+
+  for required_class in \
+    wb-icon-pencil \
+    wb-icon-trash \
+    wb-icon-user \
+    wb-icon-settings \
+    wb-icon-search \
+    wb-icon-plus \
+    wb-icon-x \
+    wb-icon-eye
+  do
+    if ! grep -Eq "(^|[[:space:]])\\.${required_class}([,[:space:]\\{]|$)" "$file"; then
+      echo "Error: $label is missing required selector .$required_class" >&2
+      exit 1
+    fi
+  done
 }
 
 write_docs_version_asset() {
@@ -257,7 +292,9 @@ echo "  -> dist/webblocks-ui.js   ($JS_LINES lines)"
 
 echo "Building icon CSS..."
 
-cat "$ROOT/src/css/icons/webblocks-icons.css" > "$ICONS_OUT"
+assert_icon_css_has_selectors "$ICONS_SOURCE" "source icon CSS"
+
+cat "$ICONS_SOURCE" > "$ICONS_OUT"
 
 if [ ! -f "$ICONS_OUT" ]; then
   echo "Error: missing icon output at $ICONS_OUT" >&2
@@ -265,6 +302,7 @@ if [ ! -f "$ICONS_OUT" ]; then
 fi
 
 add_css_banner "$ICONS_OUT"
+assert_icon_css_has_selectors "$ICONS_OUT" "dist icon CSS"
 
 ICONS_LINES=$(wc -l < "$ICONS_OUT")
 echo "  -> dist/webblocks-icons.css  ($ICONS_LINES lines)"
