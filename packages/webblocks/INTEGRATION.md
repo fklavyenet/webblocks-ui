@@ -1507,7 +1507,9 @@ Important:
   <div class="wb-auth-card">
     <div class="wb-auth-header">
       <h1 class="wb-auth-header-title">
-        <img src="/brand/logo-mark.svg" alt="" class="wb-auth-brand-mark wb-auth-brand-mark-sm">
+        <svg class="wb-auth-brand-mark wb-auth-brand-mark-sm product-brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <path fill="currentColor" d="M32 6 56 18v28L32 58 8 46V18l24-12Zm0 10L18 23v17l14 7 14-7V23l-14-7Z" />
+        </svg>
         <span>Sign in</span>
       </h1>
       <p class="wb-auth-header-subtitle">Welcome back</p>
@@ -1525,28 +1527,32 @@ Canonical auth shell:
 - header and footer should integrate into one calm card shell while the body remains the primary work zone
 - build all auth form controls with the standard field system, not auth-specific field wrappers
 - there is no alternate legacy shell class to prefer over `wb-auth-shell`
-- `wb-auth-header-title` can contain an inline `img` or `svg` plus text; it owns centered flex alignment so the mark and heading sit on the same optical axis
-- use `wb-auth-brand` as a generic brand slot and `wb-auth-brand-mark` for logo image sizing inside auth headers or panels
+- `wb-auth-header-title` can contain an inline SVG brand mark plus text; it owns centered flex alignment so the mark and heading sit on the same optical axis
+- use `wb-auth-brand` as a generic brand slot and `wb-auth-brand-mark` for brand mark sizing inside auth headers or panels
 
-Auth brand assets:
+Auth brand marks:
 
-- normal/light surfaces: use the product's default readable logo with `wb-auth-brand-mark`
-- dark surfaces: use a dark-background-safe asset with `wb-auth-brand-mark-dark`
-- accent or brand panels: use an inverse/on-accent asset with `wb-auth-brand-mark-on-accent` or `wb-auth-brand-mark-inverse`
-- do not rely on CSS filters as the primary contrast fix for product logos; arbitrary logo artwork usually needs real light, dark, and inverse variants
-- favicons and browser-tab icons are separate browser assets and need their own high-contrast variants; page CSS does not affect them
+- ecosystem products should render auth/sidebar product marks with a project-owned inline SVG component or partial whose visible mark uses `currentColor`
+- normal/admin surfaces use `color: var(--wb-accent)` or product-approved `var(--wb-text)` when contrast requires it
+- accent panels use `color: var(--wb-accent-on)`
+- do not add `width` or `height` attributes to brand mark SVG markup
+- do not use duplicated light/dark `img` assets when inline SVG with `currentColor` can solve the color problem
+- favicons and browser-tab icons are separate browser assets; page CSS does not affect them
+- see `docs/admin-product-brand.md` for the WebBlocks ecosystem admin/auth/sidebar brand standard
 
 Split variant:
 
 - `wb-auth-shell wb-auth-split`
 - `wb-auth-panel`
 - `wb-auth-form-area`
-- if the split panel includes a logo, place it in `wb-auth-brand` and use an inverse/on-accent image asset:
+- if the split panel includes a logo, place the inline SVG product mark in `wb-auth-brand` and set the surrounding brand color to `var(--wb-accent-on)`:
 
 ```html
 <div class="wb-auth-panel">
-  <div class="wb-auth-brand">
-    <img src="/brand/logo-inverse.svg" alt="Product" class="wb-auth-brand-mark wb-auth-brand-mark-on-accent">
+  <div class="wb-auth-brand product-brand-on-accent">
+    <svg class="wb-auth-brand-mark product-brand-mark" viewBox="0 0 64 64" role="img" aria-label="Product">
+      <path fill="currentColor" d="..." />
+    </svg>
   </div>
   <h1 class="wb-auth-panel-title">Sign in to your workspace</h1>
   <p class="wb-auth-panel-text">Continue with your organization account.</p>
@@ -1714,7 +1720,9 @@ These are canonical starting structures. Extend them with shipped primitives and
   <div class="wb-auth-card">
     <div class="wb-auth-header">
       <h1 class="wb-auth-header-title">
-        <img src="/brand/logo-mark.svg" alt="" class="wb-auth-brand-mark wb-auth-brand-mark-sm">
+        <svg class="wb-auth-brand-mark wb-auth-brand-mark-sm product-brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <path fill="currentColor" d="M32 6 56 18v28L32 58 8 46V18l24-12Zm0 10L18 23v17l14 7 14-7V23l-14-7Z" />
+        </svg>
         <span>Sign in</span>
       </h1>
       <p class="wb-auth-header-subtitle">Access your dashboard</p>

@@ -45,6 +45,7 @@ Start from patterns, not primitives.
 - docs: `docs/index.html`
 - pattern examples: `docs/patterns.html`
 - admin standards: `docs/pattern-admin-standards.html`
+- admin product brand standard: `docs/admin-product-brand.md`
 - gallery pattern: `docs/pattern-gallery.html`
 - cookie consent pattern: `docs/pattern-cookie-consent.html`
 - playground: `playground/`
@@ -69,6 +70,7 @@ Start from patterns, not primitives.
 - `wb-table-wrap` is the single table surface; toolbars inside it stay control rows and table headers stay header bands
 - admin index/list screens should use the canonical DOM contract: page-level `wb-page-header`, filters before the list card, the table inside `section.wb-card > .wb-card-body > .wb-table-wrap`, explicit `Actions` header, `td.wb-table-actions`, row icon buttons inside `wb-action-group`, and pagination in `wb-card-footer`
 - do not introduce project-specific admin list wrappers such as `wb-admin-table-card`, `wb-admin-table-card-body`, or `wb-admin-pages-table-wrap` in new work; keep compatibility aliases only where older projects need them
+- admin/auth/sidebar product brand marks across CMS, QuizTem, Herne Panel, Publisher/Plugins, and future products should follow `docs/admin-product-brand.md`: project-owned inline SVG components using `currentColor`, no default `img`/`picture`/CSS-mask shell marks, no width/height attributes on brand mark markup, standard WebBlocks UI sidebar/auth sizing classes, and separate favicon/app icon files
 - page-level submit actions should stay in the owning form or card footer; page headers are for navigation and context actions only
 - text casing is content-defined; shipped UI should not automatically uppercase or capitalize content
 

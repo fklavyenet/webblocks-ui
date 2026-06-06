@@ -16,6 +16,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Restore the canonical build script to a shell-only concat flow with no Node, npm, Python, minification, icon generation, or validation subprocesses.
 - Keep `dist/webblocks-icons.json` as a maintained dist artifact that the shell build preserves instead of regenerating.
 - Define the canonical Admin Index/List Standard in docs so CMS Pages, Publisher Releases, QuizTem, Herne, and future admin lists share the same page header, filter placement, list card, table body, row action, and pagination DOM contract.
+- Document the ecosystem admin product brand standard for CMS, QuizTem, Herne Panel, Publisher/Plugins, and future products, covering inline SVG shell marks, token-aware color, sidebar/auth contracts, favicon separation, asset cleanup, and implementation guards.
+- Clarify the auth product brand standard so panel and form/card titles use the same inline mark-plus-text row pattern by default, with CMS as the reference implementation.
 - Align the dashboard shell example table with the Admin Index/List Standard by moving filters before the list card, keeping table markup directly under `wb-card-body > wb-table-wrap`, and placing pagination in `wb-card-footer`.
 - Document that project-specific list wrappers such as `wb-admin-table-card`, `wb-admin-table-card-body`, and `wb-admin-pages-table-wrap` should not be used in new canonical examples; compatibility aliases may remain only for older projects.
 

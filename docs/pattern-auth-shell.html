@@ -58,8 +58,8 @@
       <main class="wb-dashboard-main">
         <div class="wb-stack-6">
           <div class="wb-auth-shell wb-auth-split">
-            <div class="wb-auth-panel"><div class="wb-auth-brand"><img src="../assets/branding/brand-logo-64.png" alt="Product logo for accent surfaces" class="wb-auth-brand-mark wb-auth-brand-mark-on-accent wb-auth-brand-mark-lg"></div><h1 class="wb-auth-panel-title">Sign in without inventing a separate auth UI layer.</h1><p class="wb-auth-panel-text">The auth shell keeps the page quiet, centers the form work, and gives onboarding or login screens a clear job immediately.</p></div>
-            <div class="wb-auth-form-area"><div class="wb-auth-card"><div class="wb-auth-header"><h1 class="wb-auth-header-title"><img src="../assets/branding/brand-logo-64.png" alt="" class="wb-auth-brand-mark wb-auth-brand-mark-sm"><span>Welcome back</span></h1><p class="wb-auth-header-subtitle">Use the auth shell for focused entry flows with a single calm card wrapped around the whole sign-in task.</p></div><div class="wb-auth-body wb-stack-4"><form class="wb-stack-4"><div class="wb-field"><label class="wb-label" for="emailField">Email address</label><input class="wb-input" id="emailField" type="email" placeholder="you@example.com"></div><div class="wb-field"><label class="wb-label" for="passwordField">Password</label><div class="wb-input-group"><input class="wb-input wb-input-error" id="passwordField" type="password" placeholder="Enter your password" autocomplete="current-password"><button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-toggle data-wb-target="#passwordField" aria-label="Show password" aria-pressed="false"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></div><div class="wb-field-meta"><div class="wb-field-error">Password is required.</div></div></div><div class="wb-split"><label class="wb-check"><input type="checkbox" checked><span>Remember this device</span></label><a href="#" class="wb-action-link">Forgot password</a></div><button class="wb-btn wb-btn-primary wb-w-full" type="submit">Continue</button></form><div class="wb-auth-divider">or continue with</div><div class="wb-grid-2"><button class="wb-btn wb-btn-outline wb-w-full" type="button"><i class="wb-icon wb-icon-github"></i><span>GitHub</span></button><button class="wb-btn wb-btn-outline wb-w-full" type="button"><i class="wb-icon wb-icon-mail"></i><span>Email link</span></button></div></div><div class="wb-auth-footer"><p>Use the footer as quiet closure for alternate help or route guidance, not as a detached helper panel.</p></div></div></div>
+            <div class="wb-auth-panel"><div class="wb-auth-brand"><svg class="wb-auth-brand-mark wb-auth-brand-mark-on-accent wb-auth-brand-mark-lg" viewBox="0 0 64 64" role="img" aria-label="Product"><path fill="currentColor" d="M32 6 56 18v28L32 58 8 46V18l24-12Zm0 10L18 23v17l14 7 14-7V23l-14-7Z" /></svg></div><h1 class="wb-auth-panel-title">Sign in without inventing a separate auth UI layer.</h1><p class="wb-auth-panel-text">The auth shell keeps the page quiet, centers the form work, and gives onboarding or login screens a clear job immediately.</p></div>
+            <div class="wb-auth-form-area"><div class="wb-auth-card"><div class="wb-auth-header"><h1 class="wb-auth-header-title"><svg class="wb-auth-brand-mark wb-auth-brand-mark-sm" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M32 6 56 18v28L32 58 8 46V18l24-12Zm0 10L18 23v17l14 7 14-7V23l-14-7Z" /></svg><span>Welcome back</span></h1><p class="wb-auth-header-subtitle">Use the auth shell for focused entry flows with a single calm card wrapped around the whole sign-in task.</p></div><div class="wb-auth-body wb-stack-4"><form class="wb-stack-4"><div class="wb-field"><label class="wb-label" for="emailField">Email address</label><input class="wb-input" id="emailField" type="email" placeholder="you@example.com"></div><div class="wb-field"><label class="wb-label" for="passwordField">Password</label><div class="wb-input-group"><input class="wb-input wb-input-error" id="passwordField" type="password" placeholder="Enter your password" autocomplete="current-password"><button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-toggle data-wb-target="#passwordField" aria-label="Show password" aria-pressed="false"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></div><div class="wb-field-meta"><div class="wb-field-error">Password is required.</div></div></div><div class="wb-split"><label class="wb-check"><input type="checkbox" checked><span>Remember this device</span></label><a href="#" class="wb-action-link">Forgot password</a></div><button class="wb-btn wb-btn-primary wb-w-full" type="submit">Continue</button></form><div class="wb-auth-divider">or continue with</div><div class="wb-grid-2"><button class="wb-btn wb-btn-outline wb-w-full" type="button"><i class="wb-icon wb-icon-github"></i><span>GitHub</span></button><button class="wb-btn wb-btn-outline wb-w-full" type="button"><i class="wb-icon wb-icon-mail"></i><span>Email link</span></button></div></div><div class="wb-auth-footer"><p>Use the footer as quiet closure for alternate help or route guidance, not as a detached helper panel.</p></div></div></div>
           </div>
 
           <section class="wb-card">
@@ -67,16 +67,18 @@
               <h2 class="wb-card-title">Brand Asset Contract</h2>
             </div>
             <div class="wb-card-body wb-stack-4">
-              <p class="wb-m-0">WebBlocks UI provides auth layout, alignment, and brand-mark slots. Products provide the actual logo files for normal/light, dark, and accent surfaces.</p>
+              <p class="wb-m-0">WebBlocks UI provides auth layout, alignment, and brand-mark slots. Products provide the actual inline SVG brand component and keep the visible mark color on <code>currentColor</code>.</p>
               <div class="wb-grid-3">
-                <div class="wb-callout"><strong class="wb-callout-title">Normal surface</strong> Use <code>wb-auth-brand-mark</code> for the default logo on light or neutral auth cards.</div>
-                <div class="wb-callout"><strong class="wb-callout-title">Dark surface</strong> Use <code>wb-auth-brand-mark-dark</code> with an asset designed for dark backgrounds.</div>
-                <div class="wb-callout"><strong class="wb-callout-title">Accent surface</strong> Use <code>wb-auth-brand-mark-on-accent</code> or <code>wb-auth-brand-mark-inverse</code> with an inverse logo on brand panels.</div>
+                <div class="wb-callout"><strong class="wb-callout-title">Normal surface</strong> Use <code>wb-auth-brand-mark</code> and set color to <code>var(--wb-accent)</code> or approved <code>var(--wb-text)</code>.</div>
+                <div class="wb-callout"><strong class="wb-callout-title">Inline SVG</strong> Render auth/sidebar product marks as inline <code>svg</code> by default, with no <code>width</code> or <code>height</code> attributes.</div>
+                <div class="wb-callout"><strong class="wb-callout-title">Accent surface</strong> Use <code>var(--wb-accent-on)</code> for product marks on accent panels.</div>
               </div>
-              <div class="wb-alert wb-alert-info"><strong>Asset note:</strong> CSS cannot reliably recolor arbitrary product logos. Ship high-contrast logo variants for dark and accent auth surfaces. Browser-tab favicons also need separate high-contrast favicon assets; page CSS does not affect them.</div>
+              <div class="wb-alert wb-alert-info"><strong>Brand note:</strong> See <a href="admin-product-brand.md">Admin Product Brand Standard</a> for the ecosystem rule covering auth, sidebar, favicon, asset cleanup, and product implementation guards.</div>
               <pre><code>&lt;div class="wb-auth-header"&gt;
   &lt;h1 class="wb-auth-header-title"&gt;
-    &lt;img src="/brand/logo-mark.svg" alt="" class="wb-auth-brand-mark wb-auth-brand-mark-sm"&gt;
+    &lt;svg class="wb-auth-brand-mark wb-auth-brand-mark-sm" viewBox="0 0 64 64" aria-hidden="true"&gt;
+      &lt;path fill="currentColor" d="..." /&gt;
+    &lt;/svg&gt;
     &lt;span&gt;Welcome back&lt;/span&gt;
   &lt;/h1&gt;
   &lt;p class="wb-auth-header-subtitle"&gt;Use your workspace email to continue.&lt;/p&gt;
@@ -84,7 +86,9 @@
 
 &lt;div class="wb-auth-panel"&gt;
   &lt;div class="wb-auth-brand"&gt;
-    &lt;img src="/brand/logo-inverse.svg" alt="Product" class="wb-auth-brand-mark wb-auth-brand-mark-on-accent"&gt;
+    &lt;svg class="wb-auth-brand-mark wb-auth-brand-mark-on-accent" viewBox="0 0 64 64" role="img" aria-label="Product"&gt;
+      &lt;path fill="currentColor" d="..." /&gt;
+    &lt;/svg&gt;
   &lt;/div&gt;
   &lt;h1 class="wb-auth-panel-title"&gt;Sign in to your workspace&lt;/h1&gt;
 &lt;/div&gt;</code></pre>

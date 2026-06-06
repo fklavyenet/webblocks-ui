@@ -35,7 +35,9 @@ Canonical structure:
   <div class="wb-auth-card">
     <div class="wb-auth-header">
       <h1 class="wb-auth-header-title">
-        <img src="/brand/logo-mark.svg" alt="" class="wb-auth-brand-mark wb-auth-brand-mark-sm">
+        <svg class="wb-auth-brand-mark wb-auth-brand-mark-sm product-brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <path fill="currentColor" d="M32 6 56 18v28L32 58 8 46V18l24-12Zm0 10L18 23v17l14 7 14-7V23l-14-7Z" />
+        </svg>
         <span>Sign in</span>
       </h1>
       <p class="wb-auth-header-subtitle">Access your workspace</p>
@@ -70,7 +72,7 @@ Canonical structure:
 
 Keep the explicit header/body/footer anatomy intact: all three regions should read as one auth card, with the body as the center of gravity rather than a form stranded between two mini-panels.
 
-Auth brand assets are a product responsibility. Use `wb-auth-brand-mark` for normal auth card marks, `wb-auth-brand-mark-dark` for dark surfaces, and `wb-auth-brand-mark-on-accent` / `wb-auth-brand-mark-inverse` for accent split panels. Do not depend on CSS filters as the primary way to make product logos readable.
+Auth brand marks are a product responsibility. Ecosystem products should use a project-owned inline SVG component or partial whose visible mark uses `currentColor`; WebBlocks UI owns the auth sizing slot through `wb-auth-brand-mark`. See `docs/admin-product-brand.md` for the admin/auth/sidebar brand standard.
 
 Password visibility is a field-level enhancement, not an auth-only abstraction: keep the toggle inside the standard `wb-input-group` trailing button slot.
 

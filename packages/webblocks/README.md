@@ -84,6 +84,7 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 - admin index/list screens use the canonical admin list contract: page-level `wb-page-header`, separate filters before the list card, `section.wb-card` for the list, `wb-card-header` for title/description and create/import actions, `wb-card-body > wb-table-wrap` for the table, and `wb-card-footer` for pagination or result summaries
 - admin tables should use `wb-table wb-table-hover`; add `wb-table-striped` only intentionally, never leave the final action header blank, and render row actions in `td.wb-table-actions > .wb-action-group > .wb-action-btn`
 - avoid new project-specific admin list wrappers such as `wb-admin-table-card`, `wb-admin-table-card-body`, or `wb-admin-pages-table-wrap`; keep CSS aliases only for backward compatibility when needed
+- ecosystem admin/auth/sidebar product brand marks should follow `docs/admin-product-brand.md`: project-owned inline SVG components using `currentColor`, WebBlocks UI sizing classes, no width/height attributes on brand mark markup, and separate favicon/app icon files
 - `wb-section-nav` is the canonical local section navigation pattern
 - `wb-gallery` is the canonical inline media pattern; viewer behavior stays inside one shared `wb-modal`
 - `wb-rich-text` is the canonical primitive for sanitized editorial body copy; keep headings, media, tables, buttons, and page layout outside it
