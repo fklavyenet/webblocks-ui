@@ -282,6 +282,8 @@ function openai_request(string $method, string $path, string $apiKey, array $opt
 
 function upload_file(string $apiKey, string $path): array
 {
+    // OpenAI Files upload endpoint. This creates a file object only; vector store
+    // indexing starts after the file is attached to a vector store below.
     $file = curl_file_create($path, 'text/markdown', basename($path));
     return openai_request('POST', '/files', $apiKey, [
         'multipart' => [
@@ -293,6 +295,9 @@ function upload_file(string $apiKey, string $path): array
 
 function attach_file(string $apiKey, string $storeId, string $fileId): array
 {
+    // Vector store file attach endpoint. This script attaches one uploaded file
+    // at a time and records local state after the attach request is accepted.
+    // It does not poll vector store processing status after attachment.
     return openai_request('POST', '/vector_stores/' . rawurlencode($storeId) . '/files', $apiKey, [
         'json' => [
             'file_id' => $fileId,
@@ -302,6 +307,26 @@ function attach_file(string $apiKey, string $storeId, string $fileId): array
 
 function base_report(string $mode, array $files, int $totalBytes, int $errorCount): array
 {
+    $uploadCandidates = 0;
+    $skipped = 0;
+    $errors = [];
+
+    foreach ($files as $file) {
+        $status = $file['status'] ?? 'error';
+        if ($status === 'ready' || $status === 'uploaded') {
+            $uploadCandidates++;
+        }
+        if ($status === 'skipped') {
+            $skipped++;
+        }
+        if ($status === 'error') {
+            $errors[] = [
+                'file_path' => $file['file_path'] ?? null,
+                'errors' => $file['errors'] ?? ['unknown error'],
+            ];
+        }
+    }
+
     return [
         'mode' => $mode,
         'checked_at' => now_utc(),
@@ -310,6 +335,9 @@ function base_report(string $mode, array $files, int $totalBytes, int $errorCoun
         'state_path' => STATE_PATH,
         'total_files' => count($files),
         'total_bytes' => $totalBytes,
+        'upload_candidates' => $uploadCandidates,
+        'skipped' => $skipped,
+        'errors' => $errors,
         'error_count' => $errorCount,
         'files' => $files,
     ];

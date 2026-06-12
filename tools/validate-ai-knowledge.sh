@@ -8,6 +8,7 @@ RULES="$OUT_DIR/webblocks-ui-rules.md"
 EXAMPLES="$OUT_DIR/webblocks-ui-examples.md"
 ADVISOR_PROMPT="$OUT_DIR/advisor-system-prompt.md"
 SYNC_PLAN="$OUT_DIR/vector-store-sync-plan.json"
+SYNC_REPORT="$OUT_DIR/vector-store-sync-report.json"
 CHUNKS_DIR="$OUT_DIR/chunks"
 SYNC_CLIENT="tools/sync-ai-knowledge-vector-store.php"
 SYNC_EXAMPLE_ENV="tools/vector-store-sync.example.env"
@@ -118,6 +119,68 @@ if [ -f "$SYNC_CLIENT" ]; then
   else
     fail "sync client report/state paths are not under build/ai-knowledge"
   fi
+
+  if grep -n -E '/Users/|/Users/osm/' "$SYNC_CLIENT" >/tmp/webblocks-ai-knowledge-sync-paths.$$ 2>/dev/null; then
+    cat /tmp/webblocks-ai-knowledge-sync-paths.$$
+    fail "sync client contains local absolute paths"
+  else
+    pass "sync client contains no local absolute paths"
+  fi
+  rm -f /tmp/webblocks-ai-knowledge-sync-paths.$$
+
+  env_line="$(grep -n "env_required('OPENAI_API_KEY')" "$SYNC_CLIENT" | sed 's/:.*//' | head -n 1)"
+  dry_run_exit_line="$(grep -n "exit(\$errorCount === 0 ? 0 : 1);" "$SYNC_CLIENT" | sed 's/:.*//' | head -n 1)"
+  if [ -n "$env_line" ] && [ -n "$dry_run_exit_line" ] && [ "$env_line" -gt "$dry_run_exit_line" ]; then
+    pass "sync client does not require OPENAI_API_KEY before dry-run exits"
+  else
+    fail "sync client may require OPENAI_API_KEY before dry-run exits"
+  fi
+
+  if grep -q "'upload_candidates' =>" "$SYNC_CLIENT" \
+    && grep -q "'skipped' =>" "$SYNC_CLIENT" \
+    && grep -q "'errors' =>" "$SYNC_CLIENT"; then
+    pass "sync client report includes upload_candidates, skipped, and errors"
+  else
+    fail "sync client report is missing upload_candidates, skipped, or errors"
+  fi
+
+  if command -v php >/dev/null 2>&1; then
+    if php "$SYNC_CLIENT" --dry-run >/tmp/webblocks-ai-knowledge-sync-dry-run.$$ 2>&1; then
+      if grep -n -E 'OPENAI_API_KEY|WEBBLOCKS_UI_VECTOR_STORE_ID|(^|[^A-Za-z0-9_-])sk-[A-Za-z0-9_-]{16,}|vector_store_id' /tmp/webblocks-ai-knowledge-sync-dry-run.$$ >/tmp/webblocks-ai-knowledge-sync-dry-run-private.$$ 2>/dev/null; then
+        cat /tmp/webblocks-ai-knowledge-sync-dry-run-private.$$
+        fail "sync client dry-run output contains private/API leakage risk patterns"
+      else
+        pass "sync client dry-run output contains no private/API leakage risk patterns"
+      fi
+      rm -f /tmp/webblocks-ai-knowledge-sync-dry-run-private.$$
+    else
+      cat /tmp/webblocks-ai-knowledge-sync-dry-run.$$
+      fail "sync client dry-run failed during validation"
+    fi
+    rm -f /tmp/webblocks-ai-knowledge-sync-dry-run.$$
+  else
+    fail "php is required to validate sync client dry-run output"
+  fi
+fi
+
+if [ -f "$SYNC_REPORT" ]; then
+  for key in mode checked_at total_files total_bytes upload_candidates skipped errors files; do
+    if grep -q "\"$key\"" "$SYNC_REPORT"; then
+      pass "sync report contains $key"
+    else
+      fail "sync report is missing $key"
+    fi
+  done
+
+  if grep -n -E 'OPENAI_API_KEY|WEBBLOCKS_UI_VECTOR_STORE_ID|(^|[^A-Za-z0-9_-])sk-[A-Za-z0-9_-]{16,}|vector_store_id' "$SYNC_REPORT" >/tmp/webblocks-ai-knowledge-report-private.$$ 2>/dev/null; then
+    cat /tmp/webblocks-ai-knowledge-report-private.$$
+    fail "sync report contains private/API leakage risk patterns"
+  else
+    pass "sync report contains no private/API leakage risk patterns"
+  fi
+  rm -f /tmp/webblocks-ai-knowledge-report-private.$$
+else
+  pass "$SYNC_REPORT not present yet; run sync dry-run to generate it"
 fi
 
 for term in \

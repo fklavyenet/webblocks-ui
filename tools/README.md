@@ -24,6 +24,8 @@ php tools/sync-ai-knowledge-vector-store.php --apply
 
 Before using apply mode, export `OPENAI_API_KEY` and `WEBBLOCKS_UI_VECTOR_STORE_ID` in your local shell. `tools/vector-store-sync.example.env` shows the variable names only; do not commit real secrets or private IDs.
 
+Apply mode uses the OpenAI Files upload endpoint (`POST /v1/files`) with `purpose=assistants`, then attaches each uploaded file one at a time with the vector store file attach endpoint (`POST /v1/vector_stores/{vector_store_id}/files`). It records accepted uploads in local state after attach succeeds. This client does not use the batch attach endpoint and does not poll vector store processing status after attachment; check processing status separately before treating a first real sync as complete.
+
 ## Output
 
 The export script creates:
@@ -51,6 +53,17 @@ The export script creates:
 `vector-store-sync-state.json` is generated only by apply mode. It records local file path, SHA-256, byte size, upload time, and OpenAI file IDs so the client can skip files with the same SHA-256 on future runs. It never includes API keys.
 
 `chunks/*.md` are source-based markdown chunks. Each chunk starts with front matter containing `source_path`, `source_group`, `content_type`, `priority`, and `generated_at`.
+
+## First Real Sync Checklist
+
+- Run `./tools/export-ai-knowledge.sh`.
+- Run `./tools/validate-ai-knowledge.sh`.
+- Run `php tools/sync-ai-knowledge-vector-store.php --dry-run`.
+- Review `build/ai-knowledge/vector-store-sync-report.json` and confirm `total_files`, `total_bytes`, `upload_candidates`, `skipped`, and `errors`.
+- Export `OPENAI_API_KEY` and `WEBBLOCKS_UI_VECTOR_STORE_ID` in your local shell only.
+- Run `php tools/sync-ai-knowledge-vector-store.php --apply` only when you intentionally want live OpenAI upload and attach calls.
+- After apply, review `build/ai-knowledge/vector-store-sync-state.json` and `build/ai-knowledge/vector-store-sync-report.json`.
+- Do not commit secrets, private vector store IDs, or generated `build/ai-knowledge/` artifacts.
 
 ## Public Repository Safety Rules
 
