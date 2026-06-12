@@ -44,13 +44,9 @@ Use WebBlocks UI pattern-first:
 When reviewing UI changes, verify shells, surfaces, tables, forms, overlays, feedback, branding, custom CSS/JS, and tests against the WebBlocks UI checklist.
 ```
 
-## Local Path Example
+## Public-Safe Path Note
 
-Current local WebBlocks UI repo path example:
-
-```text
-/Users/osm/Sites/projects/project-web_blocks/project-webblocks-ui/webblocks-ui
-```
+Set `<WEBBLOCKS_UI_REPO_PATH>` to the local checkout path of the WebBlocks UI repository. Do not commit machine-specific absolute paths to public repositories.
 
 ## Usage Notes
 
