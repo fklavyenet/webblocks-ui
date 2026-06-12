@@ -20,3 +20,5 @@ Thumbs.db
 test-results/
 playwright-report/
 
+# Generated AI knowledge export
+/build/ai-knowledge/
