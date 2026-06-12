@@ -9,6 +9,8 @@ EXAMPLES="$OUT_DIR/webblocks-ui-examples.md"
 ADVISOR_PROMPT="$OUT_DIR/advisor-system-prompt.md"
 SYNC_PLAN="$OUT_DIR/vector-store-sync-plan.json"
 CHUNKS_DIR="$OUT_DIR/chunks"
+SYNC_CLIENT="tools/sync-ai-knowledge-vector-store.php"
+SYNC_EXAMPLE_ENV="tools/vector-store-sync.example.env"
 FAILED=0
 
 pass() {
@@ -34,6 +36,8 @@ check_file "$RULES"
 check_file "$EXAMPLES"
 check_file "$ADVISOR_PROMPT"
 check_file "$SYNC_PLAN"
+check_file "$SYNC_CLIENT"
+check_file "$SYNC_EXAMPLE_ENV"
 
 if [ -d "$CHUNKS_DIR" ] && find "$CHUNKS_DIR" -type f -name '*.md' | grep -q .; then
   pass "$CHUNKS_DIR contains chunk markdown files"
@@ -97,6 +101,23 @@ if [ -d "$OUT_DIR" ]; then
   fi
 else
   fail "$OUT_DIR is missing"
+fi
+
+if [ -f "$SYNC_CLIENT" ]; then
+  if grep -n -E 'sk-[A-Za-z0-9_-]{16,}|OPENAI_API_KEY=[^[:space:]]+|Bearer[[:space:]]+[A-Za-z0-9._-]{16,}' "$SYNC_CLIENT" >/tmp/webblocks-ai-knowledge-sync-private.$$ 2>/dev/null; then
+    cat /tmp/webblocks-ai-knowledge-sync-private.$$
+    fail "sync client contains hardcoded API key/token risk patterns"
+  else
+    pass "sync client contains no hardcoded API key/token risk patterns"
+  fi
+  rm -f /tmp/webblocks-ai-knowledge-sync-private.$$
+
+  if grep -q "build/ai-knowledge/vector-store-sync-report.json" "$SYNC_CLIENT" \
+    && grep -q "build/ai-knowledge/vector-store-sync-state.json" "$SYNC_CLIENT"; then
+    pass "sync client writes report/state under build/ai-knowledge"
+  else
+    fail "sync client report/state paths are not under build/ai-knowledge"
+  fi
 fi
 
 for term in \
