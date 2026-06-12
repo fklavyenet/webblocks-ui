@@ -121,6 +121,10 @@
         "description": "Compact correct and incorrect usage examples for common downstream UI cases."
       },
       {
+        "path": "ai/DOWNSTREAM_AGENT_BLOCK.md",
+        "description": "Copyable WebBlocks UI usage block for downstream AGENTS.md or equivalent AI context files."
+      },
+      {
         "path": "ai/knowledge-map.json",
         "description": "Manually readable manifest for future knowledge export or vector-store preparation."
       }

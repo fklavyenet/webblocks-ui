@@ -13,8 +13,11 @@ WebBlocks UI is a source of truth for both humans and AI agents. Human developer
 5. `ai/REVIEW_CHECKLIST.md`
 6. `ai/RESPONSE_FORMATS.md`
 7. `ai/EXAMPLES.md`
-8. `ai/knowledge-map.json`
-9. Canonical source and docs listed in the knowledge map
+8. `ai/DOWNSTREAM_AGENT_BLOCK.md`
+9. `ai/knowledge-map.json`
+10. Canonical source and docs listed in the knowledge map
+
+Use `ai/DOWNSTREAM_AGENT_BLOCK.md` when a downstream project needs a copyable WebBlocks UI section for `AGENTS.md`, `AI_RULES.md`, `TO_DEVELOPER.md`, or an equivalent AI context file.
 
 ## Source of Truth
 
