@@ -431,6 +431,39 @@ Near-term follow-up work around the existing overlay architecture:
 
 ---
 
+## AI Knowledge / Advisor Layer
+
+WebBlocks UI should be a source of truth for AI coding agents as well as human developers. Downstream projects such as CMS, QuizTem, Herne Panel, Publisher, Plugins, Workbench, and future products should be able to ask an AI agent for WebBlocks UI guidance and receive answers that match the shipped package, canonical patterns, and documented primitive contracts.
+
+### Short term: static knowledge contract
+
+Create an `ai/` directory in the repository with a static usage contract for AI agents:
+
+* expert role definition and source priority
+* downstream usage rules for shells, surfaces, tables, overlays, feedback, and branding
+* forbidden downstream patterns and compatibility-alias caveats
+* review checklist for UI changes in downstream projects
+* response format for WebBlocks UI advisor answers
+* compact correct/incorrect examples
+* a manually readable knowledge map for future export work
+
+This phase is documentation-only. It does not create a vector store, API service, runtime advisor, Workbench integration, package source change, dist change, or docs HTML behavior change.
+
+### Medium term: export and validation tools
+
+Add tooling that can export the static knowledge contract and validate that AI-facing docs stay aligned with shipped package surfaces. Useful follow-up checks include:
+
+* missing or stale source references
+* forbidden vocabulary appearing in primary examples
+* downstream table/shell/overlay contract validation
+* package-source and dist-reference drift reports
+
+### Long term: private WebBlocks UI Advisor
+
+Build a private WebBlocks UI Advisor backed by curated repo knowledge, vector search, and optional Workbench integration. This later phase should use the static `ai/` contract as seed material, but the vector store itself is explicitly out of scope for the current documentation preparation phase.
+
+---
+
 ## Minification Hardening (Deferred)
 
 Minified dist artifacts exist in the repository, but downstream production/CDN usage should stay on the standard non-minified dist files until the minification pipeline is hardened.

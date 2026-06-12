@@ -1,0 +1,129 @@
+{
+  "purpose": "Static map of WebBlocks UI knowledge sources for AI agents and future export tooling. This manifest does not create or reference a live vector store.",
+  "source_groups": {
+    "root_docs": [
+      {
+        "path": "README.md",
+        "description": "Repository overview, entry points, notes, and high-level project identity."
+      },
+      {
+        "path": "INTEGRATION.md",
+        "description": "Canonical root integration and layout rules, including AI enforcement behavior."
+      },
+      {
+        "path": "PATTERNS.md",
+        "description": "Canonical pattern-first guidance for common screens and compositions."
+      },
+      {
+        "path": "PRIMITIVES.md",
+        "description": "Primitive, surface, utility, and component vocabulary reference."
+      },
+      {
+        "path": "ROADMAP.md",
+        "description": "Project roadmap, including future AI knowledge and advisor phases."
+      }
+    ],
+    "package_docs": [
+      {
+        "path": "packages/webblocks/README.md",
+        "description": "Shipped package usage details and package-level entry points."
+      },
+      {
+        "path": "packages/webblocks/INTEGRATION.md",
+        "description": "Package-level integration rules for consumers of shipped WebBlocks UI assets."
+      }
+    ],
+    "package_source": [
+      {
+        "path": "packages/webblocks/src/css/",
+        "description": "Canonical source CSS for foundations, layout, primitives, patterns, utilities, and icons."
+      },
+      {
+        "path": "packages/webblocks/src/js/",
+        "description": "Canonical source JavaScript for shipped hooks and runtime behavior."
+      }
+    ],
+    "package_dist": [
+      {
+        "path": "packages/webblocks/dist/webblocks-ui.css",
+        "description": "Shipped CSS consumed by production and CDN integrations."
+      },
+      {
+        "path": "packages/webblocks/dist/webblocks-icons.css",
+        "description": "Shipped icon CSS consumed by production and CDN integrations."
+      },
+      {
+        "path": "packages/webblocks/dist/webblocks-ui.js",
+        "description": "Shipped JavaScript consumed by production and CDN integrations."
+      },
+      {
+        "path": "packages/webblocks/dist/webblocks-icons.json",
+        "description": "Maintained icon registry artifact for icon pickers and catalog sync."
+      }
+    ],
+    "html_docs": [
+      {
+        "path": "docs/index.html",
+        "description": "Documentation home and navigation entry."
+      },
+      {
+        "path": "docs/patterns.html",
+        "description": "Pattern examples and canonical pattern navigation."
+      },
+      {
+        "path": "docs/pattern-admin-standards.html",
+        "description": "Admin page, list, detail, action column, and danger-zone standards."
+      },
+      {
+        "path": "docs/pattern-dashboard-shell.html",
+        "description": "Dashboard shell pattern reference."
+      },
+      {
+        "path": "docs/pattern-auth-shell.html",
+        "description": "Auth shell pattern reference."
+      },
+      {
+        "path": "docs/pattern-settings-shell.html",
+        "description": "Settings shell pattern reference."
+      },
+      {
+        "path": "docs/admin-product-brand.md",
+        "description": "Admin, auth, and sidebar product brand mark rules."
+      }
+    ],
+    "ai_contract": [
+      {
+        "path": "ai/README.md",
+        "description": "AI knowledge layer overview, reading order, and source-of-truth rules."
+      },
+      {
+        "path": "ai/WEBBLOCKS_UI_EXPERT.md",
+        "description": "Role and behavior contract for a WebBlocks UI expert agent."
+      },
+      {
+        "path": "ai/DOWNSTREAM_USAGE_RULES.md",
+        "description": "Rules for downstream projects consuming WebBlocks UI."
+      },
+      {
+        "path": "ai/REVIEW_CHECKLIST.md",
+        "description": "Checklist for reviewing downstream UI changes."
+      },
+      {
+        "path": "ai/FORBIDDEN_PATTERNS.md",
+        "description": "Forbidden downstream vocabulary, wrappers, overlay patterns, and framework UI layers."
+      },
+      {
+        "path": "ai/RESPONSE_FORMATS.md",
+        "description": "Preferred answer structure for WebBlocks UI advisor responses."
+      },
+      {
+        "path": "ai/EXAMPLES.md",
+        "description": "Compact correct and incorrect usage examples for common downstream UI cases."
+      },
+      {
+        "path": "ai/knowledge-map.json",
+        "description": "Manually readable manifest for future knowledge export or vector-store preparation."
+      }
+    ]
+  }
+}

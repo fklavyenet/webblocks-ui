@@ -38,6 +38,7 @@ Start from patterns, not primitives.
 
 - `packages/webblocks/` - shipped CSS, JS, icons, build script, and package docs
 - `docs/` - documentation and integrated pattern examples built around the package
+- `ai/` - static WebBlocks UI usage contract for AI coding agents working in downstream projects
 
 ## Entry Points
 
@@ -49,6 +50,12 @@ Start from patterns, not primitives.
 - gallery pattern: `docs/pattern-gallery.html`
 - cookie consent pattern: `docs/pattern-cookie-consent.html`
 - playground: `playground/`
+
+## Audience Guides
+
+- human developers: start with `docs/`, `PATTERNS.md`, `PRIMITIVES.md`, and root `INTEGRATION.md`
+- package consumers: use `packages/webblocks/` and `packages/webblocks/INTEGRATION.md`
+- AI coding agents: use `ai/` as the downstream usage contract before consulting shipped source and canonical docs
 
 ## Notes
 
