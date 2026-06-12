@@ -4,6 +4,8 @@ set -eu
 OUT_DIR="build/ai-knowledge"
 CHUNKS_DIR="$OUT_DIR/chunks"
 MANIFEST="$OUT_DIR/manifest.json"
+SYNC_PLAN="$OUT_DIR/vector-store-sync-plan.json"
+ADVISOR_PROMPT="$OUT_DIR/advisor-system-prompt.md"
 KNOWLEDGE="$OUT_DIR/webblocks-ui-knowledge.md"
 RULES="$OUT_DIR/webblocks-ui-rules.md"
 EXAMPLES="$OUT_DIR/webblocks-ui-examples.md"
@@ -13,10 +15,12 @@ if [ ! -f "ai/knowledge-map.json" ] || [ ! -d "packages/webblocks/src" ]; then
   exit 1
 fi
 
-if ! command -v awk >/dev/null 2>&1 || ! command -v sed >/dev/null 2>&1; then
-  echo "FAIL: awk and sed are required." >&2
-  exit 1
-fi
+for cmd in awk sed find sort wc shasum; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "FAIL: $cmd is required." >&2
+    exit 1
+  fi
+done
 
 TS="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
@@ -25,10 +29,21 @@ mkdir -p "$CHUNKS_DIR"
 
 SOURCE_INDEX="$OUT_DIR/.source-index.tsv"
 : > "$SOURCE_INDEX"
-CHUNK_COUNT=0
 
 slugify() {
   printf '%s' "$1" | sed 's#[^A-Za-z0-9._-]#-#g; s#--*#-#g; s#^-##; s#-$##'
+}
+
+json_escape() {
+  printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'
+}
+
+sha256_file() {
+  shasum -a 256 "$1" | awk '{ print $1 }'
+}
+
+bytes_file() {
+  wc -c < "$1" | sed 's/[[:space:]]//g'
 }
 
 source_group_for() {
@@ -39,6 +54,49 @@ source_group_for() {
     docs/*.html|docs/admin-product-brand.md) printf '%s\n' "html_docs" ;;
     ai/*) printf '%s\n' "ai_contract" ;;
     *) printf '%s\n' "root_docs" ;;
+  esac
+}
+
+content_type_for() {
+  case "$1" in
+    ai/DOWNSTREAM_USAGE_RULES.md|ai/FORBIDDEN_PATTERNS.md|ai/REVIEW_CHECKLIST.md|ai/RESPONSE_FORMATS.md|ai/WEBBLOCKS_UI_EXPERT.md)
+      printf '%s\n' "rules" ;;
+    ai/EXAMPLES.md)
+      printf '%s\n' "example" ;;
+    PATTERNS.md|docs/pattern-*.html)
+      printf '%s\n' "pattern" ;;
+    PRIMITIVES.md)
+      printf '%s\n' "primitive" ;;
+    INTEGRATION.md|packages/webblocks/INTEGRATION.md)
+      printf '%s\n' "integration" ;;
+    docs/admin-product-brand.md)
+      printf '%s\n' "brand_standard" ;;
+    packages/webblocks/src/css/*)
+      printf '%s\n' "source_css" ;;
+    packages/webblocks/src/js/*)
+      printf '%s\n' "source_js" ;;
+    packages/webblocks/dist/webblocks-icons.json)
+      printf '%s\n' "icon_registry" ;;
+    packages/webblocks/dist/*)
+      printf '%s\n' "dist" ;;
+    docs/*.html)
+      printf '%s\n' "docs" ;;
+    *)
+      printf '%s\n' "other" ;;
+  esac
+}
+
+priority_for() {
+  case "$1" in
+    packages/webblocks/src/*) printf '%s\n' "1" ;;
+    packages/webblocks/dist/*) printf '%s\n' "2" ;;
+    packages/webblocks/INTEGRATION.md) printf '%s\n' "3" ;;
+    INTEGRATION.md) printf '%s\n' "4" ;;
+    PATTERNS.md) printf '%s\n' "5" ;;
+    PRIMITIVES.md) printf '%s\n' "6" ;;
+    docs/*.html|docs/admin-product-brand.md) printf '%s\n' "7" ;;
+    ai/*.md|ai/knowledge-map.json) printf '%s\n' "8" ;;
+    *) printf '%s\n' "9" ;;
   esac
 }
 
@@ -67,15 +125,18 @@ write_chunk() {
   src="$1"
   group="$2"
   title="$3"
-  body_file="$4"
+  content_type="$4"
+  priority="$5"
+  body_file="$6"
   slug="$(slugify "$src")"
   chunk="$CHUNKS_DIR/$slug.md"
 
-  CHUNK_COUNT=$((CHUNK_COUNT + 1))
   {
     printf '%s\n' "---"
     printf 'source_path: %s\n' "$src"
     printf 'source_group: %s\n' "$group"
+    printf 'content_type: %s\n' "$content_type"
+    printf 'priority: %s\n' "$priority"
     printf 'generated_at: %s\n' "$TS"
     printf '%s\n' "---"
     printf '\n# %s\n\n' "$title"
@@ -83,13 +144,17 @@ write_chunk() {
     printf '\n'
   } > "$chunk"
 
-  printf '%s\t%s\t%s\n' "$src" "$group" "$chunk" >> "$SOURCE_INDEX"
+  sha="$(sha256_file "$chunk")"
+  bytes="$(bytes_file "$chunk")"
+  printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$chunk" "$src" "$group" "$title" "$content_type" "$priority" "$sha" "$bytes" >> "$SOURCE_INDEX"
 }
 
 add_file() {
   src="$1"
   [ -f "$src" ] || return 0
   group="$(source_group_for "$src")"
+  content_type="$(content_type_for "$src")"
+  priority="$(priority_for "$src")"
   tmp="$OUT_DIR/.chunk-body"
 
   case "$src" in
@@ -104,7 +169,7 @@ add_file() {
       ;;
   esac
 
-  write_chunk "$src" "$group" "$src" "$tmp"
+  write_chunk "$src" "$group" "$src" "$content_type" "$priority" "$tmp"
 }
 
 add_dir_files() {
@@ -115,7 +180,48 @@ add_dir_files() {
   done
 }
 
-cat > "$KNOWLEDGE" <<EOF
+write_advisor_prompt() {
+  cat > "$ADVISOR_PROMPT" <<EOF
+# WebBlocks UI Advisor System Prompt
+
+You are a WebBlocks UI advisor. Use shipped WebBlocks UI patterns, surfaces, primitives, utilities, and JavaScript hooks. Do not invent a parallel UI system or replace WebBlocks UI with project-local abstractions.
+
+Source priority:
+1. \`packages/webblocks/src/\`
+2. \`packages/webblocks/dist/\`
+3. \`packages/webblocks/INTEGRATION.md\`
+4. \`INTEGRATION.md\`
+5. \`PATTERNS.md\`
+6. \`PRIMITIVES.md\`
+7. \`docs/*.html\`
+8. \`ai/*.md\`
+
+Canonical standards:
+- Use \`wb-dashboard-shell\` for admin and dashboard screens.
+- Use \`wb-auth-shell\` for auth screens.
+- Use \`wb-settings-shell\` for settings screens.
+- Use \`wb-card\` as the canonical framed surface.
+- Use \`wb-modal\` for dialogs and confirmation flows.
+- Use \`wb-toast\` for transient success and info feedback.
+- Use \`wb-alert\` for validation, blocking, persistent, or user-correctable feedback.
+- Use \`td.wb-table-actions\` with \`wb-action-group\` for row actions.
+
+Forbidden patterns:
+- Do not use browser \`confirm()\`.
+- Do not use \`wb-panel\` or \`wb-box\` as canonical surfaces.
+- Do not create duplicated modal roots or custom overlay stacks.
+- Do not introduce Tailwind, Vite, React, Vue, Inertia, or Livewire UI layers to replace WebBlocks UI vocabulary.
+
+Answer format:
+- Start with the recommended WebBlocks UI structure or decision.
+- Include concise HTML/CSS/JS only when it helps implementation.
+- Call out forbidden replacements only as corrections or review findings.
+- Prefer direct, source-grounded guidance over broad UI theory.
+EOF
+}
+
+write_base_exports() {
+  cat > "$KNOWLEDGE" <<EOF
 # WebBlocks UI Knowledge Export
 
 Generated: $TS
@@ -161,7 +267,7 @@ Use \`wb-alert\` for validation, blocking, and user-correctable feedback.
 The chunk source list is generated from the same source groups represented in \`ai/knowledge-map.json\`.
 EOF
 
-cat > "$RULES" <<EOF
+  cat > "$RULES" <<EOF
 # WebBlocks UI Rules Export
 
 Generated: $TS
@@ -206,9 +312,9 @@ The export must carry these as forbidden or anti-pattern vocabulary, not as prim
 
 EOF
 
-cat ai/FORBIDDEN_PATTERNS.md >> "$RULES"
+  cat ai/FORBIDDEN_PATTERNS.md >> "$RULES"
 
-cat > "$EXAMPLES" <<EOF
+  cat > "$EXAMPLES" <<EOF
 # WebBlocks UI Examples Export
 
 Generated: $TS
@@ -261,7 +367,88 @@ Generated: $TS
 
 EOF
 
-cat ai/EXAMPLES.md >> "$EXAMPLES"
+  cat ai/EXAMPLES.md >> "$EXAMPLES"
+}
+
+write_manifest() {
+  chunk_count="$(wc -l < "$SOURCE_INDEX" | sed 's/[[:space:]]//g')"
+  advisor_sha="$(sha256_file "$ADVISOR_PROMPT")"
+  advisor_bytes="$(bytes_file "$ADVISOR_PROMPT")"
+
+  {
+    printf '{\n'
+    printf '  "generated_at": "%s",\n' "$TS"
+    printf '  "schema": "webblocks-ui-ai-knowledge-export-v2",\n'
+    printf '  "purpose": "Static public-safe AI knowledge export for RAG/vector-store preparation. No API calls and no vector store creation.",\n'
+    printf '  "output_dir": "%s",\n' "$OUT_DIR"
+    printf '  "source_map": "ai/knowledge-map.json",\n'
+    printf '  "source_priority": [\n'
+    printf '    {"path": "packages/webblocks/src/", "priority": 1},\n'
+    printf '    {"path": "packages/webblocks/dist/", "priority": 2},\n'
+    printf '    {"path": "packages/webblocks/INTEGRATION.md", "priority": 3},\n'
+    printf '    {"path": "INTEGRATION.md", "priority": 4},\n'
+    printf '    {"path": "PATTERNS.md", "priority": 5},\n'
+    printf '    {"path": "PRIMITIVES.md", "priority": 6},\n'
+    printf '    {"path": "docs/*.html", "priority": 7},\n'
+    printf '    {"path": "ai/*.md", "priority": 8}\n'
+    printf '  ],\n'
+    printf '  "files": {\n'
+    printf '    "knowledge": "%s",\n' "$KNOWLEDGE"
+    printf '    "rules": "%s",\n' "$RULES"
+    printf '    "examples": "%s",\n' "$EXAMPLES"
+    printf '    "advisor_system_prompt": "%s",\n' "$ADVISOR_PROMPT"
+    printf '    "vector_store_sync_plan": "%s"\n' "$SYNC_PLAN"
+    printf '  },\n'
+    printf '  "chunks": [\n'
+    awk -F '\t' '
+      {
+        if (NR > 1) printf ",\n";
+        printf "    {\"path\":\"%s\",\"source_path\":\"%s\",\"source_group\":\"%s\",\"title\":\"%s\",\"content_type\":\"%s\",\"priority\":%s,\"sha256\":\"%s\",\"bytes\":%s}", $1, $2, $3, $4, $5, $6, $7, $8
+      }
+    ' "$SOURCE_INDEX"
+    printf '\n  ],\n'
+    printf '  "chunk_count": %s,\n' "$chunk_count"
+    printf '  "advisor_system_prompt": {\n'
+    printf '    "path": "%s",\n' "$ADVISOR_PROMPT"
+    printf '    "source_path": "ai/RESPONSE_FORMATS.md",\n'
+    printf '    "source_group": "ai_contract",\n'
+    printf '    "title": "WebBlocks UI Advisor System Prompt",\n'
+    printf '    "content_type": "rules",\n'
+    printf '    "priority": 8,\n'
+    printf '    "sha256": "%s",\n' "$advisor_sha"
+    printf '    "bytes": %s\n' "$advisor_bytes"
+    printf '  }\n'
+    printf '}\n'
+  } > "$MANIFEST"
+}
+
+write_sync_plan() {
+  advisor_sha="$(sha256_file "$ADVISOR_PROMPT")"
+  advisor_bytes="$(bytes_file "$ADVISOR_PROMPT")"
+
+  {
+    printf '{\n'
+    printf '  "generated_at": "%s",\n' "$TS"
+    printf '  "mode": "dry_run",\n'
+    printf '  "purpose": "List files and metadata prepared for a future vector store upload. This file performs no API calls.",\n'
+    printf '  "files": [\n'
+    awk -F '\t' '
+      {
+        if (NR > 1) printf ",\n";
+        printf "    {\"file_path\":\"%s\",\"source_path\":\"%s\",\"source_group\":\"%s\",\"content_type\":\"%s\",\"priority\":%s,\"sha256\":\"%s\",\"bytes\":%s}", $1, $2, $3, $5, $6, $7, $8
+      }
+    ' "$SOURCE_INDEX"
+    if [ -s "$SOURCE_INDEX" ]; then
+      printf ',\n'
+    fi
+    printf '    {"file_path":"%s","source_path":"ai/RESPONSE_FORMATS.md","source_group":"ai_contract","content_type":"rules","priority":8,"sha256":"%s","bytes":%s}\n' "$ADVISOR_PROMPT" "$advisor_sha" "$advisor_bytes"
+    printf '  ]\n'
+    printf '}\n'
+  } > "$SYNC_PLAN"
+}
+
+write_base_exports
+write_advisor_prompt
 
 # Priority 1: package source.
 add_dir_files "packages/webblocks/src/css/foundation"
@@ -287,6 +474,7 @@ add_file "PRIMITIVES.md"
 find docs -maxdepth 1 -type f -name '*.html' | sort | while IFS= read -r file; do
   add_file "$file"
 done
+add_file "docs/admin-product-brand.md"
 for file in ai/README.md ai/WEBBLOCKS_UI_EXPERT.md ai/DOWNSTREAM_USAGE_RULES.md ai/REVIEW_CHECKLIST.md ai/FORBIDDEN_PATTERNS.md ai/RESPONSE_FORMATS.md ai/EXAMPLES.md ai/DOWNSTREAM_AGENT_BLOCK.md; do
   add_file "$file"
 done
@@ -294,46 +482,16 @@ add_file "ai/knowledge-map.json"
 
 {
   printf '\n## Chunks\n\n'
-  awk -F '\t' '{ printf "- `%s` (%s) -> `%s`\n", $1, $2, $3 }' "$SOURCE_INDEX"
+  awk -F '\t' '{ printf "- `%s` (%s, %s, priority %s) -> `%s`\n", $2, $3, $5, $6, $1 }' "$SOURCE_INDEX"
 } >> "$KNOWLEDGE"
 
-CHUNK_COUNT="$(wc -l < "$SOURCE_INDEX" | sed 's/[[:space:]]//g')"
+write_sync_plan
+write_manifest
 
-{
-  printf '{\n'
-  printf '  "generated_at": "%s",\n' "$TS"
-  printf '  "schema": "webblocks-ui-ai-knowledge-export-v1",\n'
-  printf '  "purpose": "Static public-safe AI knowledge export. No OpenAI API calls and no vector store creation.",\n'
-  printf '  "output_dir": "%s",\n' "$OUT_DIR"
-  printf '  "source_priority": [\n'
-  printf '    "packages/webblocks/src/",\n'
-  printf '    "packages/webblocks/dist/",\n'
-  printf '    "packages/webblocks/INTEGRATION.md",\n'
-  printf '    "INTEGRATION.md",\n'
-  printf '    "PATTERNS.md",\n'
-  printf '    "PRIMITIVES.md",\n'
-  printf '    "docs/*.html",\n'
-  printf '    "ai/*.md"\n'
-  printf '  ],\n'
-  printf '  "source_map": "ai/knowledge-map.json",\n'
-  printf '  "files": {\n'
-  printf '    "knowledge": "%s",\n' "$KNOWLEDGE"
-  printf '    "rules": "%s",\n' "$RULES"
-  printf '    "examples": "%s"\n' "$EXAMPLES"
-  printf '  },\n'
-  printf '  "chunks": [\n'
-  awk -F '\t' '
-    {
-      if (NR > 1) printf ",\n";
-      printf "    {\"source_path\":\"%s\",\"source_group\":\"%s\",\"chunk_path\":\"%s\"}", $1, $2, $3
-    }
-  ' "$SOURCE_INDEX"
-  printf '\n  ],\n'
-  printf '  "chunk_count": %s\n' "$CHUNK_COUNT"
-  printf '}\n'
-} > "$MANIFEST"
-
+chunk_count="$(wc -l < "$SOURCE_INDEX" | sed 's/[[:space:]]//g')"
 rm -f "$SOURCE_INDEX" "$OUT_DIR/.chunk-body"
 
 echo "PASS: exported AI knowledge to $OUT_DIR"
-echo "PASS: wrote $CHUNK_COUNT chunks"
+echo "PASS: wrote $chunk_count chunks"
+echo "PASS: wrote advisor system prompt"
+echo "PASS: wrote vector-store sync plan dry run"
