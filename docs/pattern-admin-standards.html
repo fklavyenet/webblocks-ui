@@ -63,6 +63,7 @@
               <li class="wb-section-nav-item"><a href="#overview" class="wb-section-nav-link">Overview</a></li>
               <li class="wb-section-nav-item"><a href="#page-header" class="wb-section-nav-link">Page header</a></li>
               <li class="wb-section-nav-item"><a href="#admin-index-list" class="wb-section-nav-link">Admin index/list</a></li>
+              <li class="wb-section-nav-item"><a href="#dense-table-content" class="wb-section-nav-link">Dense table content</a></li>
               <li class="wb-section-nav-item"><a href="#form-cards" class="wb-section-nav-link">Form cards</a></li>
               <li class="wb-section-nav-item"><a href="#detail-page" class="wb-section-nav-link">Detail page</a></li>
               <li class="wb-section-nav-item"><a href="#table-actions" class="wb-section-nav-link">Table actions</a></li>
@@ -216,6 +217,8 @@
                             <tr><td>Table</td><td>Use <code>wb-table wb-table-hover</code>. Add <code>wb-table-striped</code> only when striping is intentionally needed.</td></tr>
                             <tr><td>Action column</td><td>Never leave the final header blank. Label it <code>Actions</code>, and put row controls in <code>td.wb-table-actions</code>.</td></tr>
                             <tr><td>Row actions</td><td>Wrap action icons in <code>wb-action-group</code> and render each action as <code>wb-action-btn</code>.</td></tr>
+                            <tr><td>Dense technical values</td><td>Render product keys, slugs, source paths, checksums, versions, route names, and similar machine values as compact monospace/code values, for example <code>&lt;code class="wb-nowrap"&gt;webblocks-ui&lt;/code&gt;</code>, so the value remains scannable and the table can scroll inside <code>wb-table-wrap</code> instead of forcing aggressive character wrapping.</td></tr>
+                            <tr><td>Long status summaries</td><td>Let human-readable status and last-run summaries wrap as normal prose. Keep them concise in the table; move diagnostic detail to a detail page or secondary metadata block when it competes with identity, status, and actions.</td></tr>
                             <tr><td>Pagination</td><td>Place pagination or result summary in <code>wb-card-footer</code>, not above the table and not inside <code>wb-table-wrap</code>.</td></tr>
                           </tbody>
                         </table>
@@ -335,6 +338,41 @@
     &lt;nav class="wb-pagination wb-pagination-compact" aria-label="Pages pagination"&gt;...&lt;/nav&gt;
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="dense-table-content">
+                    <h2>Dense table content and technical values</h2>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-4">
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Technical value rule</strong> Long machine-readable values in admin tables should stay visually distinct from human copy. Use compact monospace/code presentation for product keys, slugs, source paths, checksums, versions, route names, queue names, command names, and similar identifiers. Prefer existing WebBlocks UI primitives and utilities such as <code>code</code>, <code>wb-mono</code>, <code>wb-text-sm</code>, and <code>wb-nowrap</code>; do not add project-local table CSS just to bypass the shared wrapping behavior.</div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Product key</th><th>Source path</th><th>Last status/summary</th><th>Actions</th></tr></thead>
+                            <tbody>
+                              <tr><td><code class="wb-nowrap">webblocks-ui</code></td><td><code class="wb-nowrap">build/ai-knowledge</code></td><td>Import complete: 124 chunks imported, 0 skipped, 0 failed. Validation: 0 empty bodies, 0 duplicate sha256 values.</td><td class="wb-table-actions"><div class="wb-action-group"><button class="wb-action-btn wb-action-btn-view" type="button" aria-label="View import" title="View import"><i class="wb-icon wb-icon-eye"></i></button></div></td></tr>
+                              <tr><td><code class="wb-nowrap">webblocks-advisor</code></td><td><code class="wb-nowrap">resources/knowledge/webblocks-project-standards</code></td><td>Validation passed. The built-in source is allowlisted and can be re-imported from the admin screen.</td><td class="wb-table-actions"><div class="wb-action-group"><button class="wb-action-btn wb-action-btn-edit" type="button" aria-label="Re-import source" title="Re-import source"><i class="wb-icon wb-icon-refresh-cw"></i></button></div></td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Content type</th><th>Table treatment</th><th>When to move it out</th></tr></thead>
+                            <tbody>
+                              <tr><td>Product key, slug, source path, checksum, version, route</td><td>Use compact monospace/code styling. Add <code>wb-nowrap</code> when preserving the complete token is more readable than character-level wrapping and the table is already inside <code>wb-table-wrap</code>.</td><td>Move full values to a detail page or secondary metadata block when several long technical values make the row harder to scan.</td></tr>
+                              <tr><td>Last status or last-run summary</td><td>Use normal prose wrapping. Keep it short enough for the row to remain readable next to identity and actions.</td><td>Move logs, validation lists, stack traces, or multi-step diagnostics to a detail page, modal, or secondary metadata block.</td></tr>
+                              <tr><td>Actions</td><td>Keep the final header as <code>Actions</code>. Use <code>td.wb-table-actions</code> and a single <code>wb-action-group</code> so the column remains narrow, stable, and aligned.</td><td>Use a detail page when a row needs many operations or explanatory action copy.</td></tr>
+                              <tr><td>Confirmation flows</td><td>Use <code>wb-modal</code> and the shared overlay root for destructive, import, publish, deploy, or re-run confirmation.</td><td>Do not use browser <code>confirm()</code>; if the flow needs more context, put the context in the modal body.</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <pre><code>&lt;td&gt;&lt;code class="wb-nowrap"&gt;webblocks-ui&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code class="wb-nowrap"&gt;resources/knowledge/webblocks-project-standards&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Import complete: 10 chunks imported, 0 skipped, 0 failed.&lt;/td&gt;
+&lt;td class="wb-table-actions"&gt;
+  &lt;div class="wb-action-group"&gt;...&lt;/div&gt;
+&lt;/td&gt;</code></pre>
+                      </div>
                     </div>
                   </section>
 
