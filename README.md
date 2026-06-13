@@ -57,6 +57,12 @@ Start from patterns, not primitives.
 - package consumers: use `packages/webblocks/` and `packages/webblocks/INTEGRATION.md`
 - AI coding agents: use `ai/` as the downstream usage contract before consulting shipped source and canonical docs
 
+## Advisor-First Development Standard
+
+For cross-project WebBlocks UI decisions, ask WebBlocks Advisor before implementation and include the Advisor response as an implementation note in the report. This applies to admin shell alignment, table/action/modal/dashboard standards, downstream usage contracts, product branding conventions, release/publish expectations, native/local workflow, and other shared WebBlocks conventions.
+
+If Advisor guidance is missing or wrong, update the relevant WebBlocks UI source doc or Advisor knowledge chunk before using a local workaround as the standard.
+
 ## Notes
 
 - docs pages consume built assets from `packages/webblocks/dist/`

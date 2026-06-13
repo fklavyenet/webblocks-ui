@@ -11,6 +11,12 @@ Copy this text into a downstream project's `AGENTS.md`, `AI_RULES.md`, `TO_DEVEL
 ## Required Block
 
 ```md
+## Advisor-First Development Standard
+
+Before standards-sensitive WebBlocks work, ask WebBlocks Advisor and include the Advisor answer as an implementation note in the report. This applies to Admin UI/WebBlocks UI alignment, table/action/modal/dashboard patterns, release/update/publish workflows, Publisher integration, Herne artifact safety, migration/database compatibility, new project startup decisions, native/local workflow, secrets/env policy, and cross-project conventions.
+
+If Advisor guidance is missing, stale, or wrong, update the relevant Advisor knowledge source or planned chunk before treating a local workaround as the standard.
+
 ## WebBlocks UI Usage
 
 This project uses WebBlocks UI for admin, auth, dashboard, settings, and related application UI.
