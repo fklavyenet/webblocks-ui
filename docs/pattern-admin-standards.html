@@ -217,7 +217,7 @@
                             <tr><td>Card spacing</td><td><code>wb-card-body</code> should contain <code>wb-table-wrap</code> directly. Avoid extra project-specific wrappers around the table.</td></tr>
                             <tr><td>Table</td><td>Use <code>wb-table wb-table-hover</code>. Add <code>wb-table-striped</code> only when striping is intentionally needed.</td></tr>
                             <tr><td>Action column</td><td>Never leave the final header blank. Label it <code>Actions</code>, and put row controls in <code>td.wb-table-actions</code>.</td></tr>
-                            <tr><td>Row actions</td><td>Wrap action icons in <code>wb-action-group</code> and render each action as <code>wb-action-btn</code>.</td></tr>
+                            <tr><td>Row actions</td><td>Use icon-first, quiet row controls. Wrap action icons in <code>wb-action-group</code>, render each action as <code>wb-action-btn</code>, and provide at least an <code>aria-label</code> with a matching <code>title</code> recommended.</td></tr>
                             <tr><td>Dense technical values</td><td>Render product keys, slugs, source paths, checksums, versions, route names, and similar machine values as compact monospace/code values, for example <code>&lt;code class="wb-nowrap"&gt;webblocks-ui&lt;/code&gt;</code>, so the value remains scannable and the table can scroll inside <code>wb-table-wrap</code> instead of forcing aggressive character wrapping.</td></tr>
                             <tr><td>Long status summaries</td><td>Let human-readable status and last-run summaries wrap as normal prose. Keep them concise in the table; move diagnostic detail to a detail page or secondary metadata block when it competes with identity, status, and actions.</td></tr>
                             <tr><td>Pagination</td><td>Place pagination or result summary in <code>wb-card-footer</code>, not above the table and not inside <code>wb-table-wrap</code>.</td></tr>
@@ -538,11 +538,38 @@
                             <thead><tr><th>Site</th><th>Status</th><th>Summary</th><th>Actions</th></tr></thead>
                             <tbody>
                               <tr><td>WebBlocks UI</td><td><span class="wb-status-pill wb-status-active">Healthy</span></td><td>Primary production site. Queue workers, cache, and storage permissions all match the expected baseline.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View site" title="View site"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit site" title="Edit site"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
-                              <tr><td>Publisher</td><td><span class="wb-status-pill wb-status-pending">Healthy with notices</span></td><td>Core infrastructure is healthy. Optional outbound webhook delivery is paused until a replacement endpoint is confirmed.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View site" title="View site"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit site" title="Edit site"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                              <tr><td>Publisher</td><td><span class="wb-status-pill wb-status-pending">Healthy with notices</span></td><td>Core infrastructure is healthy. Optional outbound webhook delivery is paused until a replacement endpoint is confirmed.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="View site" title="View site"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Edit site" title="Edit site"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Delete site" title="Delete site"><i class="wb-icon wb-icon-trash"></i></button></div></td></tr>
                             </tbody>
                           </table>
                         </div>
                         <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Action column rule</strong> Never leave an action-only header blank. Use the explicit <code>Actions</code> label, keep the header left-aligned like the rest of the table, and put row controls in <code>td.wb-table-actions</code>. The generic <code>wb-action-group</code> may wrap outside table cells, while grouped actions inside a table action cell stay on one line.</div>
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Icon-first quiet row actions</strong> Admin/app list row actions should stay icon-first, quiet, and neutral by default so they do not compete with page-level primary actions. Text buttons belong in page-level primary/context actions, filter bars, card footers, modal footers, or non-row single actions that need extra clarity.</div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Row action area</th><th>Standard</th></tr></thead>
+                            <tbody>
+                              <tr><td>Cell and header</td><td>Use the final <code>td.wb-table-actions</code> cell with an explicit <code>Actions</code> header. Do not leave the header blank.</td></tr>
+                              <tr><td>Grouping</td><td>Group row controls in one <code>wb-action-group</code>. Each icon-only control uses the <code>wb-action-btn</code> rhythm.</td></tr>
+                              <tr><td>Accessibility</td><td><code>aria-label</code> is required for icon-only row controls. <code>title</code> is recommended and accepted as part of the standard.</td></tr>
+                              <tr><td>Destructive actions</td><td>Do not make destructive row actions red or filled by default. Carry danger through specific confirm modal copy, action label, <code>aria-label</code>, <code>title</code>, measured hover/focus danger state, and the WebBlocks modal confirm flow. Do not use browser <code>confirm()</code>.</td></tr>
+                              <tr><td>Visual priority</td><td>Row meta and status icons must not visually compete with action icons. If a row needs many actions, prefer a detail page, overflow/menu, or secondary surface instead of adding more visible row controls.</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <pre><code>&lt;td class="wb-table-actions"&gt;
+  &lt;div class="wb-action-group"&gt;
+    &lt;a class="wb-action-btn wb-action-btn-view" href="#" aria-label="View site" title="View site"&gt;
+      &lt;i class="wb-icon wb-icon-eye"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Edit site" title="Edit site"&gt;
+      &lt;i class="wb-icon wb-icon-pencil"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Delete site" title="Delete site"&gt;
+      &lt;i class="wb-icon wb-icon-trash"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/td&gt;</code></pre>
+                        <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-action-btn-delete</code> marks destructive intent for the icon action rhythm; it does not mean row delete actions should become filled red buttons by default.</p>
                       </div>
                     </div>
                   </section>
