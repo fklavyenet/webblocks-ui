@@ -67,6 +67,16 @@ Required pieces:
 * `.wb-action-group`
 * pagination inside `.wb-card-footer`
 
+Admin filter bar actions:
+
+* use canonical English labels `Filter` and `Clear`
+* render `Clear` only when filters are active
+* use normal `wb-btn` sizing for filter action buttons; do not use `wb-btn-sm`
+* align fields and actions with existing composition such as `wb-filter-bar`, `wb-filter-bar-start`, `wb-filter-bar-end`, `wb-field`, `wb-items-end`, `wb-flex-1`, and `wb-min-w-0`
+* do not use `Apply`, `Apply Filters`, `Reset`, or `Clear filters` on new WebBlocks admin filter surfaces
+* do not add project-specific filter alignment CSS
+* keep row actions and compact toolbar icon buttons under their separate action standards
+
 ## Forms
 
 Use shipped field, input, select, textarea, checkbox/radio, button, card, and layout primitives. Put page-level submit actions in the owning form or card footer, not in the page header.

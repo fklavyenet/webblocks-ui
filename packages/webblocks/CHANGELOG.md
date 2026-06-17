@@ -20,6 +20,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Clarify the auth product brand standard so panel and form/card titles use the same inline mark-plus-text row pattern by default, with CMS as the reference implementation.
 - Align the dashboard shell example table with the Admin Index/List Standard by moving filters before the list card, keeping table markup directly under `wb-card-body > wb-table-wrap`, and placing pagination in `wb-card-footer`.
 - Document that project-specific list wrappers such as `wb-admin-table-card`, `wb-admin-table-card-body`, and `wb-admin-pages-table-wrap` should not be used in new canonical examples; compatibility aliases may remain only for older projects.
+- Document the Admin Filter Bar Actions standard: canonical `Filter` and conditional `Clear` labels, normal `wb-btn` sizing instead of `wb-btn-sm`, existing `wb-filter-bar` / `wb-field` / utility alignment composition, and no project-specific filter alignment CSS.
 
 ### Removed
 - Remove minified dist artifact generation from `packages/webblocks/build.sh` and stop publishing `dist/webblocks-ui.min.css`, `dist/webblocks-icons.min.css`, and `dist/webblocks-ui.min.js`.
