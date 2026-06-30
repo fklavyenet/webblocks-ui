@@ -18,6 +18,7 @@ ICONS_JSON_OUT="$DIST/webblocks-icons.json"
 ICONS_SOURCE="$ROOT/src/css/icons/webblocks-icons.css"
 VERSION_FILE="$ROOT/VERSION"
 DOCS_VERSION_OUT="$REPO_ROOT/docs/version.js"
+DIST_AI="$DIST/ai"
 
 if [ ! -f "$VERSION_FILE" ]; then
   echo "Error: missing version file at $VERSION_FILE" >&2
@@ -180,6 +181,67 @@ write_docs_version_asset() {
 EOF
 }
 
+write_dist_ai_artifacts() {
+  local contract_source="$REPO_ROOT/ai/contract.md"
+  local checklist_source="$REPO_ROOT/ai/review-checklist.md"
+  local forbidden_source="$REPO_ROOT/ai/forbidden-patterns.md"
+  local examples_source="$REPO_ROOT/ai/examples.md"
+  local agent_block_source="$REPO_ROOT/ai/downstream-agent-block.md"
+  local manifest="$DIST_AI/manifest.json"
+
+  for required_file in "$contract_source" "$checklist_source" "$forbidden_source" "$examples_source" "$agent_block_source"; do
+    if [ ! -f "$required_file" ]; then
+      echo "Error: missing AI source file at $required_file" >&2
+      exit 1
+    fi
+  done
+
+  mkdir -p "$DIST_AI"
+
+  sed "s/@WEBBLOCKS_UI_VERSION@/$VERSION_TAG/g" "$contract_source" > "$DIST_AI/contract.md"
+  cp "$checklist_source" "$DIST_AI/review-checklist.md"
+  cp "$forbidden_source" "$DIST_AI/forbidden-patterns.md"
+  cp "$examples_source" "$DIST_AI/examples.md"
+  sed "s/@WEBBLOCKS_UI_VERSION@/$VERSION_TAG/g" "$agent_block_source" > "$DIST_AI/downstream-agent-block.md"
+
+  local contract_sha
+  local checklist_sha
+  local forbidden_sha
+  local examples_sha
+  local agent_block_sha
+  contract_sha="$(shasum -a 256 "$DIST_AI/contract.md" | awk '{ print $1 }')"
+  checklist_sha="$(shasum -a 256 "$DIST_AI/review-checklist.md" | awk '{ print $1 }')"
+  forbidden_sha="$(shasum -a 256 "$DIST_AI/forbidden-patterns.md" | awk '{ print $1 }')"
+  examples_sha="$(shasum -a 256 "$DIST_AI/examples.md" | awk '{ print $1 }')"
+  agent_block_sha="$(shasum -a 256 "$DIST_AI/downstream-agent-block.md" | awk '{ print $1 }')"
+
+  cat > "$manifest" <<EOF
+{
+  "schema": "webblocks-ui-dist-ai-v1",
+  "version": "$VERSION_TAG",
+  "contract": "contract.md",
+  "cdn_base": "https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@$VERSION_TAG/packages/webblocks/dist/ai",
+  "source_priority": [
+    "packages/webblocks/src/",
+    "packages/webblocks/dist/",
+    "packages/webblocks/INTEGRATION.md",
+    "INTEGRATION.md",
+    "PATTERNS.md",
+    "PRIMITIVES.md",
+    "docs/",
+    "ai/"
+  ],
+  "files": [
+    {"path": "contract.md", "sha256": "$contract_sha"},
+    {"path": "review-checklist.md", "sha256": "$checklist_sha"},
+    {"path": "forbidden-patterns.md", "sha256": "$forbidden_sha"},
+    {"path": "examples.md", "sha256": "$examples_sha"},
+    {"path": "downstream-agent-block.md", "sha256": "$agent_block_sha"}
+  ]
+}
+EOF
+}
+
 echo "Building CSS..."
 
 cat \
@@ -309,6 +371,10 @@ fi
 echo "Generating docs version asset..."
 write_docs_version_asset
 echo "  -> docs/version.js"
+
+echo "Generating AI contract artifacts..."
+write_dist_ai_artifacts
+echo "  -> dist/ai/contract.md"
 
 echo ""
 echo "Build complete."

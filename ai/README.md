@@ -1,23 +1,24 @@
 # WebBlocks UI AI Knowledge Layer
 
-This directory contains the static AI usage contract for WebBlocks UI. It is written for AI coding agents that need to advise or edit downstream projects while staying aligned with shipped WebBlocks UI patterns, surfaces, primitives, hooks, and integration rules.
+This directory contains the source AI usage contract for WebBlocks UI. It is written for AI coding agents that need to advise or edit downstream projects while staying aligned with shipped WebBlocks UI patterns, surfaces, primitives, hooks, and integration rules.
 
-WebBlocks UI is a source of truth for both humans and AI agents. Human developers can use the docs and package guides directly; AI agents should use this directory as an orientation layer before reading the canonical package and documentation sources.
+WebBlocks UI is a source of truth for both humans and AI agents. Human developers can use the docs and package guides directly; downstream AI agents should use the versioned `packages/webblocks/dist/ai/contract.md` copy shipped with the pinned WebBlocks UI release.
 
 ## Recommended AI Reading Order
 
 1. `ai/README.md`
-2. `ai/WEBBLOCKS_UI_EXPERT.md`
-3. `ai/DOWNSTREAM_USAGE_RULES.md`
-4. `ai/FORBIDDEN_PATTERNS.md`
-5. `ai/REVIEW_CHECKLIST.md`
-6. `ai/RESPONSE_FORMATS.md`
-7. `ai/EXAMPLES.md`
-8. `ai/DOWNSTREAM_AGENT_BLOCK.md`
-9. `ai/knowledge-map.json`
-10. Canonical source and docs listed in the knowledge map
+2. `ai/contract.md`
+3. `ai/webblocks-ui-expert.md`
+4. `ai/downstream-usage-rules.md`
+5. `ai/forbidden-patterns.md`
+6. `ai/review-checklist.md`
+7. `ai/response-formats.md`
+8. `ai/examples.md`
+9. `ai/downstream-agent-block.md`
+10. `ai/knowledge-map.json`
+11. Canonical source and docs listed in the knowledge map
 
-Use `ai/DOWNSTREAM_AGENT_BLOCK.md` when a downstream project needs a copyable WebBlocks UI section for `AGENTS.md`, `AI_RULES.md`, `TO_DEVELOPER.md`, or an equivalent AI context file.
+Use `ai/downstream-agent-block.md` when a downstream project needs a copyable WebBlocks UI section for `AGENTS.md`, `AI_RULES.md`, `TO_DEVELOPER.md`, or an equivalent AI context file.
 
 ## Source of Truth
 
@@ -35,4 +36,4 @@ If this AI contract conflicts with shipped package source or canonical documenta
 
 ## Scope
 
-This directory is documentation-only. It does not implement a vector store, API service, runtime advisor, Workbench integration, package build change, docs HTML behavior change, or downstream project integration. Those belong to later phases.
+This directory is source documentation. The package build publishes versioned downstream AI artifacts under `packages/webblocks/dist/ai/`. It does not create a vector store, API service, runtime advisor, Workbench integration, docs HTML behavior change, or downstream project integration.

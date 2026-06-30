@@ -59,9 +59,9 @@ source_group_for() {
 
 content_type_for() {
   case "$1" in
-    ai/DOWNSTREAM_USAGE_RULES.md|ai/FORBIDDEN_PATTERNS.md|ai/REVIEW_CHECKLIST.md|ai/RESPONSE_FORMATS.md|ai/WEBBLOCKS_UI_EXPERT.md)
+    ai/contract.md|ai/downstream-usage-rules.md|ai/forbidden-patterns.md|ai/review-checklist.md|ai/response-formats.md|ai/webblocks-ui-expert.md)
       printf '%s\n' "rules" ;;
-    ai/EXAMPLES.md)
+    ai/examples.md)
       printf '%s\n' "example" ;;
     PATTERNS.md|docs/pattern-*.html)
       printf '%s\n' "pattern" ;;
@@ -312,7 +312,7 @@ The export must carry these as forbidden or anti-pattern vocabulary, not as prim
 
 EOF
 
-  cat ai/FORBIDDEN_PATTERNS.md >> "$RULES"
+  cat ai/forbidden-patterns.md >> "$RULES"
 
   cat > "$EXAMPLES" <<EOF
 # WebBlocks UI Examples Export
@@ -367,7 +367,7 @@ Generated: $TS
 
 EOF
 
-  cat ai/EXAMPLES.md >> "$EXAMPLES"
+  cat ai/examples.md >> "$EXAMPLES"
 }
 
 write_manifest() {
@@ -410,7 +410,7 @@ write_manifest() {
     printf '  "chunk_count": %s,\n' "$chunk_count"
     printf '  "advisor_system_prompt": {\n'
     printf '    "path": "%s",\n' "$ADVISOR_PROMPT"
-    printf '    "source_path": "ai/RESPONSE_FORMATS.md",\n'
+    printf '    "source_path": "ai/response-formats.md",\n'
     printf '    "source_group": "ai_contract",\n'
     printf '    "title": "WebBlocks UI Advisor System Prompt",\n'
     printf '    "content_type": "rules",\n'
@@ -441,7 +441,7 @@ write_sync_plan() {
     if [ -s "$SOURCE_INDEX" ]; then
       printf ',\n'
     fi
-    printf '    {"file_path":"%s","source_path":"ai/RESPONSE_FORMATS.md","source_group":"ai_contract","content_type":"rules","priority":8,"sha256":"%s","bytes":%s}\n' "$ADVISOR_PROMPT" "$advisor_sha" "$advisor_bytes"
+    printf '    {"file_path":"%s","source_path":"ai/response-formats.md","source_group":"ai_contract","content_type":"rules","priority":8,"sha256":"%s","bytes":%s}\n' "$ADVISOR_PROMPT" "$advisor_sha" "$advisor_bytes"
     printf '  ]\n'
     printf '}\n'
   } > "$SYNC_PLAN"
@@ -465,6 +465,11 @@ add_file "packages/webblocks/dist/webblocks-icons.json"
 add_file "packages/webblocks/dist/webblocks-ui.css"
 add_file "packages/webblocks/dist/webblocks-ui.js"
 add_file "packages/webblocks/dist/webblocks-icons.css"
+if [ -d "packages/webblocks/dist/ai" ]; then
+  find packages/webblocks/dist/ai -maxdepth 1 -type f | sort | while IFS= read -r file; do
+    add_file "$file"
+  done
+fi
 
 # Priority 3-8: docs and AI contract.
 add_file "packages/webblocks/INTEGRATION.md"
@@ -475,7 +480,7 @@ find docs -maxdepth 1 -type f -name '*.html' | sort | while IFS= read -r file; d
   add_file "$file"
 done
 add_file "docs/admin-product-brand.md"
-for file in ai/README.md ai/WEBBLOCKS_UI_EXPERT.md ai/DOWNSTREAM_USAGE_RULES.md ai/REVIEW_CHECKLIST.md ai/FORBIDDEN_PATTERNS.md ai/RESPONSE_FORMATS.md ai/EXAMPLES.md ai/DOWNSTREAM_AGENT_BLOCK.md; do
+for file in ai/README.md ai/contract.md ai/webblocks-ui-expert.md ai/downstream-usage-rules.md ai/review-checklist.md ai/forbidden-patterns.md ai/response-formats.md ai/examples.md ai/downstream-agent-block.md; do
   add_file "$file"
 done
 add_file "ai/knowledge-map.json"

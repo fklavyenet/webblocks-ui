@@ -38,7 +38,7 @@ Start from patterns, not primitives.
 
 - `packages/webblocks/` - shipped CSS, JS, icons, build script, and package docs
 - `docs/` - documentation and integrated pattern examples built around the package
-- `ai/` - static WebBlocks UI usage contract for AI coding agents working in downstream projects
+- `ai/` - source AI usage contract for coding agents working in downstream projects
 
 ## Entry Points
 
@@ -55,7 +55,7 @@ Start from patterns, not primitives.
 
 - human developers: start with `docs/`, `PATTERNS.md`, `PRIMITIVES.md`, and root `INTEGRATION.md`
 - package consumers: use `packages/webblocks/` and `packages/webblocks/INTEGRATION.md`
-- AI coding agents: use `ai/` as the downstream usage contract before consulting shipped source and canonical docs
+- AI coding agents: use the versioned contract shipped at `packages/webblocks/dist/ai/contract.md` for downstream work; use `ai/` as the source layer for that contract
 
 ## Advisor-First Development Standard
 
@@ -69,8 +69,9 @@ If Advisor guidance is missing or wrong, update the relevant WebBlocks UI source
 - docs and playground local asset loaders resolve the built files from `packages/webblocks/dist/`; the playground loader also handles the deeper `playground/` path correctly
 - the single source of truth for the shipped package version is `packages/webblocks/VERSION`
 - update `packages/webblocks/VERSION` before a release or tag so the package banner metadata and docs version label stay in sync
-- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to non-minified dist files, and regenerates `docs/version.js` using only shell and standard command-line utilities
+- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to non-minified dist files, regenerates `docs/version.js`, and publishes `packages/webblocks/dist/ai/` contract artifacts using only shell and standard command-line utilities
 - production and CDN integrations use `dist/webblocks-ui.css`, `dist/webblocks-icons.css`, and `dist/webblocks-ui.js`; `.min.css` / `.min.js` artifacts are no longer published by the canonical build
+- downstream AI integrations should reference the pinned release contract at `packages/webblocks/dist/ai/contract.md`; `INTEGRATION.md` remains the implementation-accurate reference that feeds the contract
 - `dist/webblocks-icons.json` is preserved as a maintained dist artifact for icon pickers and catalog sync, but the shell build does not regenerate it
 - the playground is a thin sandbox layer built on top of shipped WebBlocks primitives, surfaces, and layout utilities
 - `wb-card-media` is the canonical card-body media frame when mixed image dimensions need consistent card-grid rhythm without default cropping

@@ -10,6 +10,9 @@ ADVISOR_PROMPT="$OUT_DIR/advisor-system-prompt.md"
 SYNC_PLAN="$OUT_DIR/vector-store-sync-plan.json"
 SYNC_REPORT="$OUT_DIR/vector-store-sync-report.json"
 CHUNKS_DIR="$OUT_DIR/chunks"
+DIST_AI_DIR="packages/webblocks/dist/ai"
+DIST_AI_MANIFEST="$DIST_AI_DIR/manifest.json"
+VERSION_FILE="packages/webblocks/VERSION"
 SYNC_CLIENT="tools/sync-ai-knowledge-vector-store.php"
 SYNC_EXAMPLE_ENV="tools/vector-store-sync.example.env"
 FAILED=0
@@ -39,6 +42,12 @@ check_file "$ADVISOR_PROMPT"
 check_file "$SYNC_PLAN"
 check_file "$SYNC_CLIENT"
 check_file "$SYNC_EXAMPLE_ENV"
+check_file "$DIST_AI_DIR/contract.md"
+check_file "$DIST_AI_DIR/review-checklist.md"
+check_file "$DIST_AI_DIR/forbidden-patterns.md"
+check_file "$DIST_AI_DIR/examples.md"
+check_file "$DIST_AI_DIR/downstream-agent-block.md"
+check_file "$DIST_AI_MANIFEST"
 
 if [ -d "$CHUNKS_DIR" ] && find "$CHUNKS_DIR" -type f -name '*.md' | grep -q .; then
   pass "$CHUNKS_DIR contains chunk markdown files"
@@ -102,6 +111,40 @@ if [ -d "$OUT_DIR" ]; then
   fi
 else
   fail "$OUT_DIR is missing"
+fi
+
+if [ -f "$VERSION_FILE" ] && [ -f "$DIST_AI_MANIFEST" ] && [ -f "$DIST_AI_DIR/contract.md" ]; then
+  version_tag="v$(tr -d '[:space:]' < "$VERSION_FILE")"
+  if grep -q "\"version\": \"$version_tag\"" "$DIST_AI_MANIFEST" \
+    && grep -q "Version: $version_tag" "$DIST_AI_DIR/contract.md"; then
+    pass "dist AI contract version matches $version_tag"
+  else
+    fail "dist AI contract version does not match $version_tag"
+  fi
+
+  if grep -q "cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@$version_tag/packages/webblocks/dist/ai" "$DIST_AI_MANIFEST"; then
+    pass "dist AI manifest contains canonical pinned CDN base"
+  else
+    fail "dist AI manifest is missing canonical pinned CDN base"
+  fi
+fi
+
+if [ -d "$DIST_AI_DIR" ]; then
+  if grep -R -n -E '/Users/|<WEBBLOCKS_UI_REPO_PATH>|local checkout path' "$DIST_AI_DIR" >/tmp/webblocks-dist-ai-local-paths.$$ 2>/dev/null; then
+    cat /tmp/webblocks-dist-ai-local-paths.$$
+    fail "dist AI artifacts contain local checkout/path guidance"
+  else
+    pass "dist AI artifacts contain no local checkout/path guidance"
+  fi
+  rm -f /tmp/webblocks-dist-ai-local-paths.$$
+
+  if grep -R -n -E 'OPENAI_API_KEY|(^|[^A-Za-z0-9_-])sk-[A-Za-z0-9_-]{16,}|assistant_id|vector_store_id' "$DIST_AI_DIR" >/tmp/webblocks-dist-ai-private.$$ 2>/dev/null; then
+    cat /tmp/webblocks-dist-ai-private.$$
+    fail "dist AI artifacts contain private/API leakage risk patterns"
+  else
+    pass "dist AI artifacts contain no private/API leakage risk patterns"
+  fi
+  rm -f /tmp/webblocks-dist-ai-private.$$
 fi
 
 if [ -f "$SYNC_CLIENT" ]; then

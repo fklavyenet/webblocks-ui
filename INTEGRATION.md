@@ -9,7 +9,7 @@ This document is the **single source of truth** for:
 * decision tree
 * AI enforcement behavior
 
-For downstream AI usage rules and review checklists, also see `ai/DOWNSTREAM_USAGE_RULES.md`.
+For downstream AI usage rules and review checklists, also see `ai/contract.md`.
 
 If this file conflicts with shipped source, shipped source wins.
 

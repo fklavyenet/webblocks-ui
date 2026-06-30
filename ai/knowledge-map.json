@@ -97,31 +97,35 @@
         "description": "AI knowledge layer overview, reading order, and source-of-truth rules."
       },
       {
-        "path": "ai/WEBBLOCKS_UI_EXPERT.md",
+        "path": "ai/contract.md",
+        "description": "Canonical downstream AI contract source published into versioned dist artifacts."
+      },
+      {
+        "path": "ai/webblocks-ui-expert.md",
         "description": "Role and behavior contract for a WebBlocks UI expert agent."
       },
       {
-        "path": "ai/DOWNSTREAM_USAGE_RULES.md",
+        "path": "ai/downstream-usage-rules.md",
         "description": "Rules for downstream projects consuming WebBlocks UI."
       },
       {
-        "path": "ai/REVIEW_CHECKLIST.md",
+        "path": "ai/review-checklist.md",
         "description": "Checklist for reviewing downstream UI changes."
       },
       {
-        "path": "ai/FORBIDDEN_PATTERNS.md",
+        "path": "ai/forbidden-patterns.md",
         "description": "Forbidden downstream vocabulary, wrappers, overlay patterns, and framework UI layers."
       },
       {
-        "path": "ai/RESPONSE_FORMATS.md",
+        "path": "ai/response-formats.md",
         "description": "Preferred answer structure for WebBlocks UI advisor responses."
       },
       {
-        "path": "ai/EXAMPLES.md",
+        "path": "ai/examples.md",
         "description": "Compact correct and incorrect usage examples for common downstream UI cases."
       },
       {
-        "path": "ai/DOWNSTREAM_AGENT_BLOCK.md",
+        "path": "ai/downstream-agent-block.md",
         "description": "Copyable WebBlocks UI usage block for downstream AGENTS.md or equivalent AI context files."
       },
       {
