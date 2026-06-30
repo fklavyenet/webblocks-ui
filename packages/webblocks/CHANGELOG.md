@@ -8,11 +8,21 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+No unreleased changes.
+
+---
+
+## [2.7.13] — 2026-06-30
+
 ### Added
+- Add versioned downstream AI contract artifacts under `dist/ai/`, including the canonical contract, review checklist, forbidden patterns, examples, downstream agent block, and manifest.
+- Add AI knowledge export validation for the shipped `dist/ai/` contract version, pinned CDN base, local-path guidance, and private/API leakage risk patterns.
 - Add shell-build and icon-validation guards so `dist/webblocks-icons.css` fails validation if generated icon mask selectors are missing.
 - Replace normal icon and toast validation scripts with shell-only checks so release validation does not require Node.
 
 ### Changed
+- Rename source AI contract files to lowercase kebab-case and make `ai/contract.md` the source for the shipped downstream contract.
+- Publish versioned `dist/ai/` artifacts from the shell build so downstream projects can reference the pinned public contract alongside runtime assets.
 - Restore the canonical build script to a shell-only concat flow with no Node, npm, Python, minification, icon generation, or validation subprocesses.
 - Keep `dist/webblocks-icons.json` as a maintained dist artifact that the shell build preserves instead of regenerating.
 - Define the canonical Admin Index/List Standard in docs so CMS Pages, Publisher Releases, QuizTem, Herne, and future admin lists share the same page header, filter placement, list card, table body, row action, and pagination DOM contract.
