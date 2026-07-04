@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.7.15] — 2026-07-04
+
+### Added
+- Extend `wb-slider` with height-auto, 4:3 ratio, and top/bottom start/center/end content-position modifiers so CMS block settings can map directly to native UI classes.
+
+---
+
 ## [2.7.14] — 2026-07-04
 
 ### Added
