@@ -26,6 +26,7 @@ When a question requires deeper source inspection, use this priority order:
 - Use `wb-auth-shell` for authentication screens.
 - Use `wb-settings-shell` for settings and account screens.
 - Use `wb-content-shell` for editorial, documentation, or content-heavy public pages when it fits.
+- Use `wb-slider` for media/content carousel sections such as hero sliders, split sections, and contained sliders.
 - Use `wb-card` as the only generic framed content surface.
 - Compose layout with shipped helpers such as `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, and `wb-grid-auto` before adding project-specific CSS.
 
@@ -70,6 +71,14 @@ Do not introduce these in new downstream work:
 - browser `confirm()` or `alert()` for product UI
 - Tailwind, Vite, React, Vue, Inertia, Livewire, or another UI layer to replace WebBlocks UI surfaces
 - custom CSS or JavaScript before shipped WebBlocks UI composition is proven insufficient
+
+## Public Media Patterns
+
+- Use `wb-gallery` for equal-tile inline image collections and shared modal viewing.
+- Use `wb-slider` for track-based media/content carousel sections.
+- Keep slider anatomy explicit: `.wb-slider > .wb-slider-viewport > .wb-slider-track > .wb-slide`, with optional `.wb-slide-media`, `.wb-slide-content`, `.wb-slider-controls`, and `.wb-slider-dots`.
+- Prefer real `img` or `picture` elements with `wb-slide-media`; coverage is handled by shipped `object-fit: cover` CSS.
+- Do not replace `WBSlider` with project-local carousel JavaScript unless the shipped behavior is proven insufficient.
 
 ## Review Checklist
 

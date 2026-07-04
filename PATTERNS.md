@@ -454,6 +454,44 @@ Behavior rule:
 - focus returns to the originating trigger when the modal closes through the normal modal runtime
 - runtime stepping is scoped to the current `.wb-gallery` set rather than every trigger on the page
 
+### Slider
+
+Use `wb-slider` for:
+
+- hero sliders
+- split slider/text sections
+- contained sliders inside cards or editorial pages
+- carousels that need arrows, dots, keyboard navigation, swipe, loop, or optional autoplay
+
+Canonical structure:
+
+```html
+<div class="wb-slider wb-slider-height-lg" data-wb-slider>
+  <div class="wb-slider-viewport">
+    <div class="wb-slider-track">
+      <article class="wb-slide">
+        <img class="wb-slide-media" src="..." alt="">
+        <div class="wb-slide-content">...</div>
+      </article>
+    </div>
+  </div>
+  <div class="wb-slider-controls">
+    <button class="wb-btn wb-btn-icon wb-slider-arrow wb-slider-prev" type="button" data-wb-slider-prev aria-label="Previous slide">...</button>
+    <div class="wb-slider-dots" data-wb-slider-dots></div>
+    <button class="wb-btn wb-btn-icon wb-slider-arrow wb-slider-next" type="button" data-wb-slider-next aria-label="Next slide">...</button>
+  </div>
+</div>
+```
+
+Rules:
+
+- `wb-slider` owns the public pattern root.
+- `wb-slider-viewport` clips the visible slide area.
+- `wb-slider-track` is the movement layer.
+- `wb-slide-media` should be a real `img`, `picture`, or `video` element when possible.
+- `wb-slide-content` is a normal content slot for headings, text, buttons, cards, and product-owned child blocks.
+- The slider fills the box it is placed in; use explicit height or ratio modifiers for full-viewport or fixed-format designs.
+
 ### Cookie Consent
 
 Use `wb-cookie-consent` for:

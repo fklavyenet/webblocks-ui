@@ -1,0 +1,290 @@
+/* ============================================================
+   WebBlocks UI — Slider Pattern (wb-slider)
+   Track-based media/content carousel pattern.
+   ============================================================ */
+
+.wb-slider {
+  --wb-slider-min-height: 28rem;
+  --wb-slider-content-width: min(88%, 42rem);
+  --wb-slider-content-x: 50%;
+  --wb-slider-content-y: 50%;
+  --wb-slider-content-translate-x: -50%;
+  --wb-slider-content-translate-y: -50%;
+  --wb-slider-overlay:
+    linear-gradient(90deg, rgba(8, 16, 22, .62), rgba(8, 16, 22, .24) 54%, rgba(8, 16, 22, .08)),
+    linear-gradient(0deg, rgba(8, 16, 22, .34), rgba(8, 16, 22, .04));
+  --wb-slider-transition-duration: 520ms;
+  --wb-slider-transition-easing: cubic-bezier(.2, .8, .2, 1);
+  position: relative;
+  display: block;
+  min-block-size: var(--wb-slider-min-height);
+  overflow: hidden;
+  border-radius: var(--wb-r-lg);
+  background: var(--wb-surface-2);
+  color: #fff;
+  isolation: isolate;
+}
+
+.wb-slider-height-sm {
+  --wb-slider-min-height: 18rem;
+}
+
+.wb-slider-height-md {
+  --wb-slider-min-height: 28rem;
+}
+
+.wb-slider-height-lg {
+  --wb-slider-min-height: 38rem;
+}
+
+.wb-slider-height-xl {
+  --wb-slider-min-height: 48rem;
+}
+
+.wb-slider-height-viewport {
+  --wb-slider-min-height: 100vh;
+}
+
+.wb-slider-fill,
+.wb-slider-height-fill {
+  min-block-size: 100%;
+  block-size: 100%;
+}
+
+.wb-slider-ratio-square {
+  aspect-ratio: 1;
+}
+
+.wb-slider-ratio-video {
+  aspect-ratio: 16 / 9;
+}
+
+.wb-slider-ratio-wide {
+  aspect-ratio: 21 / 9;
+}
+
+.wb-slider-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.wb-slider-track {
+  display: flex;
+  block-size: 100%;
+  transition: transform var(--wb-slider-transition-duration) var(--wb-slider-transition-easing);
+  will-change: transform;
+}
+
+.wb-slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-inline-size: 100%;
+  block-size: 100%;
+  overflow: hidden;
+  color: inherit;
+}
+
+.wb-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--wb-slider-overlay);
+  pointer-events: none;
+}
+
+.wb-slider-overlay-none {
+  --wb-slider-overlay: transparent;
+}
+
+.wb-slider-overlay-soft {
+  --wb-slider-overlay:
+    linear-gradient(90deg, rgba(8, 16, 22, .42), rgba(8, 16, 22, .12) 56%, rgba(8, 16, 22, .02)),
+    linear-gradient(0deg, rgba(8, 16, 22, .22), rgba(8, 16, 22, .02));
+}
+
+.wb-slider-overlay-strong {
+  --wb-slider-overlay:
+    linear-gradient(90deg, rgba(8, 16, 22, .76), rgba(8, 16, 22, .36) 58%, rgba(8, 16, 22, .16)),
+    linear-gradient(0deg, rgba(8, 16, 22, .5), rgba(8, 16, 22, .08));
+}
+
+.wb-slide-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  background: var(--wb-surface-2);
+}
+
+.wb-slide-media-contain {
+  object-fit: contain;
+}
+
+.wb-slide-content {
+  position: absolute;
+  left: var(--wb-slider-content-x);
+  top: var(--wb-slider-content-y);
+  z-index: 2;
+  display: grid;
+  gap: var(--wb-s4);
+  inline-size: var(--wb-slider-content-width);
+  transform: translate(var(--wb-slider-content-translate-x), var(--wb-slider-content-translate-y));
+}
+
+.wb-slider-content-start {
+  --wb-slider-content-x: clamp(var(--wb-s5), 8vw, var(--wb-s14));
+  --wb-slider-content-y: 50%;
+  --wb-slider-content-translate-x: 0;
+  --wb-slider-content-translate-y: -50%;
+}
+
+.wb-slider-content-center {
+  --wb-slider-content-x: 50%;
+  --wb-slider-content-y: 50%;
+  --wb-slider-content-translate-x: -50%;
+  --wb-slider-content-translate-y: -50%;
+}
+
+.wb-slider-content-end {
+  --wb-slider-content-x: calc(100% - clamp(var(--wb-s5), 8vw, var(--wb-s14)));
+  --wb-slider-content-y: 50%;
+  --wb-slider-content-translate-x: -100%;
+  --wb-slider-content-translate-y: -50%;
+}
+
+.wb-slider-content-bottom {
+  --wb-slider-content-x: 50%;
+  --wb-slider-content-y: calc(100% - clamp(var(--wb-s8), 12vw, var(--wb-s16)));
+  --wb-slider-content-translate-x: -50%;
+  --wb-slider-content-translate-y: -100%;
+}
+
+.wb-slider-content-sm {
+  --wb-slider-content-width: min(88%, 32rem);
+}
+
+.wb-slider-content-md {
+  --wb-slider-content-width: min(88%, 42rem);
+}
+
+.wb-slider-content-lg {
+  --wb-slider-content-width: min(88%, 56rem);
+}
+
+.wb-slider-content-full {
+  --wb-slider-content-width: min(92%, 72rem);
+}
+
+.wb-slider-text-light {
+  color: #fff;
+}
+
+.wb-slider-text-dark {
+  color: var(--wb-text);
+}
+
+.wb-slider-text-dark .wb-slide::after {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .42) 54%, rgba(255, 255, 255, .12)),
+    linear-gradient(0deg, rgba(255, 255, 255, .38), rgba(255, 255, 255, .08));
+}
+
+.wb-slider-controls {
+  position: absolute;
+  inset-inline: var(--wb-s4);
+  inset-block-end: var(--wb-s4);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wb-s3);
+  pointer-events: none;
+}
+
+.wb-slider-controls button {
+  pointer-events: auto;
+}
+
+.wb-slider-arrow {
+  border-color: rgba(255, 255, 255, .2);
+  background: rgba(8, 16, 22, .42);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.wb-slider-arrow:hover {
+  border-color: rgba(255, 255, 255, .34);
+  background: rgba(8, 16, 22, .58);
+  color: #fff;
+}
+
+.wb-slider-dots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wb-s2);
+  padding: var(--wb-s2) var(--wb-s3);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  background: rgba(8, 16, 22, .42);
+  backdrop-filter: blur(10px);
+  pointer-events: auto;
+}
+
+.wb-slider-dot {
+  display: block;
+  inline-size: .6rem;
+  block-size: .6rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .45);
+  cursor: pointer;
+  transition:
+    inline-size var(--wb-t-f),
+    background-color var(--wb-t-f);
+}
+
+.wb-slider-dot:hover,
+.wb-slider-dot.is-active {
+  background: #fff;
+}
+
+.wb-slider-dot.is-active {
+  inline-size: 1.75rem;
+}
+
+.wb-slider[data-wb-slider-single="true"] .wb-slider-controls {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .wb-slider {
+    --wb-slider-min-height: 24rem;
+  }
+
+  .wb-slider-height-viewport {
+    --wb-slider-min-height: 100svh;
+  }
+
+  .wb-slide-content {
+    --wb-slider-content-width: min(90%, 34rem);
+  }
+
+  .wb-slider-controls {
+    inset-inline: var(--wb-s3);
+    inset-block-end: var(--wb-s3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-slider-track,
+  .wb-slider-dot {
+    transition: none;
+  }
+}

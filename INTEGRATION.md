@@ -44,6 +44,7 @@ Always start from:
 * `wb-content-shell`
 * `wb-auth-shell`
 * `wb-settings-shell`
+* `wb-slider` for media/content carousel sections
 * `wb-cookie-consent` for reusable public-site consent UI
 
 ---
@@ -133,6 +134,14 @@ Cookie consent rule:
 * do not write project-local cookie banners when WebBlocks UI already ships the pattern
 * preference centers must use the existing `wb-modal` primitive
 * always include a reopen trigger such as `data-wb-cookie-consent-open`
+
+Slider rule:
+
+* use `wb-slider` for hero sliders, split-section sliders, and contained media/content carousels
+* keep the canonical anatomy: `wb-slider` -> `wb-slider-viewport` -> `wb-slider-track` -> `wb-slide`
+* keep media and content separate with `wb-slide-media` and `wb-slide-content`
+* use real `img` or `picture` media with `object-fit: cover` before falling back to CSS background images
+* do not write project-local slider JavaScript when `WBSlider` fits the behavior
 
 ❌ Do NOT invent wrappers
 

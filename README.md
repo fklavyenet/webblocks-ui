@@ -48,6 +48,7 @@ Start from patterns, not primitives.
 - admin standards: `docs/pattern-admin-standards.html`
 - admin product brand standard: `docs/admin-product-brand.md`
 - gallery pattern: `docs/pattern-gallery.html`
+- slider pattern: `docs/pattern-slider.html`
 - cookie consent pattern: `docs/pattern-cookie-consent.html`
 - playground: `playground/`
 
@@ -56,12 +57,6 @@ Start from patterns, not primitives.
 - human developers: start with `docs/`, `PATTERNS.md`, `PRIMITIVES.md`, and root `INTEGRATION.md`
 - package consumers: use `packages/webblocks/` and `packages/webblocks/INTEGRATION.md`
 - AI coding agents: use the versioned contract shipped at `packages/webblocks/dist/ai/contract.md` for downstream work; use `ai/` as the source layer for that contract
-
-## Advisor-First Development Standard
-
-For cross-project WebBlocks UI decisions, ask WebBlocks Advisor before implementation and include the Advisor response as an implementation note in the report. This applies to admin shell alignment, table/action/modal/dashboard standards, downstream usage contracts, product branding conventions, release/publish expectations, native/local workflow, and other shared WebBlocks conventions.
-
-If Advisor guidance is missing or wrong, update the relevant WebBlocks UI source doc or Advisor knowledge chunk before using a local workaround as the standard.
 
 ## Notes
 
@@ -76,6 +71,7 @@ If Advisor guidance is missing or wrong, update the relevant WebBlocks UI source
 - the playground is a thin sandbox layer built on top of shipped WebBlocks primitives, surfaces, and layout utilities
 - `wb-card-media` is the canonical card-body media frame when mixed image dimensions need consistent card-grid rhythm without default cropping
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive
+- `wb-slider` is the canonical track-based media/content carousel pattern for hero sliders, split sections, and contained sliders
 - `wb-cookie-consent` is the reusable public-site consent pattern; it supports bottom-banner and floating-card entry variants plus one shared `wb-modal` preference center and a required reopen hook
 - transient success/info feedback should use `wb-toast` outside normal layout flow, preferably under `#wb-overlay-root`; success/info toasts auto-dismiss by default, while validation errors, user-correctable failures, persistent warnings, and blocking failures should stay inline with contextual feedback such as `wb-alert`
 - toasts are not modals: no backdrop, focus trap, body scroll lock, or page interaction blocking

@@ -1021,6 +1021,81 @@ Do not:
 - create one modal per gallery item
 - treat the viewer as a system separate from `wb-modal`
 
+### Slider Pattern
+
+`wb-slider` is the canonical track-based media/content carousel pattern.
+
+Use it for:
+
+- full-width or full-height hero sliders
+- split sections where one side is a slider and the other side is text
+- contained sliders inside cards, sections, or editorial layouts
+- arrows, dots, keyboard, swipe, loop, or optional autoplay without project-local runtime code
+
+Canonical authoring model:
+
+- one `.wb-slider` root with `data-wb-slider`
+- one `.wb-slider-viewport`
+- one `.wb-slider-track`
+- many `.wb-slide` entries
+- optional real media elements as `.wb-slide-media`
+- one `.wb-slide-content` slot per slide
+- optional `.wb-slider-controls` with scoped previous/next buttons and `.wb-slider-dots`
+
+Canonical example:
+
+```html
+<div class="wb-slider wb-slider-height-lg wb-slider-content-start wb-slider-overlay-strong" data-wb-slider>
+  <div class="wb-slider-viewport">
+    <div class="wb-slider-track">
+      <article class="wb-slide is-active">
+        <img class="wb-slide-media" src="/images/studio.jpg" alt="Open studio workspace with daylight">
+        <div class="wb-slide-content">
+          <h2>Layered pages, calm movement</h2>
+          <p>The image covers the whole slide while content keeps a readable width.</p>
+        </div>
+      </article>
+      <article class="wb-slide">
+        <img class="wb-slide-media" src="/images/workshop.jpg" alt="Creative workshop wall with notes and laptops">
+        <div class="wb-slide-content">...</div>
+      </article>
+    </div>
+  </div>
+  <div class="wb-slider-controls">
+    <button class="wb-btn wb-btn-icon wb-slider-arrow wb-slider-prev" type="button" data-wb-slider-prev aria-label="Previous slide">
+      <i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i>
+    </button>
+    <div class="wb-slider-dots" data-wb-slider-dots aria-label="Slide navigation"></div>
+    <button class="wb-btn wb-btn-icon wb-slider-arrow wb-slider-next" type="button" data-wb-slider-next aria-label="Next slide">
+      <i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+```
+
+Behavior contract:
+
+- the shipped `WBSlider` module upgrades `[data-wb-slider]` roots
+- arrow controls are scoped to the nearest slider
+- dot buttons are created automatically when `.wb-slider-dots` is empty
+- left / right arrow keys work when focus is inside the slider unless disabled
+- pointer swipe is enabled by default
+- loop is enabled by default
+- autoplay is disabled by default and can be enabled with `data-wb-slider-autoplay="true"`
+
+Do:
+
+- use real `img` or `picture` media with `wb-slide-media`
+- let `object-fit: cover` provide background-like coverage
+- keep visible copy and child components inside `wb-slide-content`
+- let the placed container decide whether the slider is full viewport, split-section, or card-contained
+
+Do not:
+
+- write project-local carousel JavaScript when `WBSlider` fits the behavior
+- use CSS background images as the default media path when real image elements are available
+- force full-viewport layout from the base `wb-slider` class
+
 ### Drawers
 
 `wb-drawer` remains the shipped side-sheet primitive.
@@ -2000,6 +2075,11 @@ WBAccordion.toggle(document.querySelector('.wb-accordion-trigger'))
 WBSidebar.open(document.getElementById('app-sidebar'))
 WBSidebar.close(document.getElementById('app-sidebar'))
 WBSidebar.toggle(document.getElementById('app-sidebar'))
+
+WBSlider.init(document.querySelector('[data-wb-slider]'))
+WBSlider.next(document.querySelector('[data-wb-slider]'))
+WBSlider.prev(document.querySelector('[data-wb-slider]'))
+WBSlider.goTo(document.querySelector('[data-wb-slider]'), 0)
 
 WBNavGroup.open(document.querySelector('[data-wb-nav-group]'))
 WBNavGroup.close(document.querySelector('[data-wb-nav-group]'))

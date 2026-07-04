@@ -136,6 +136,7 @@ Shipped interactive modules expose `window.*` APIs:
 - `WBAccordion`
 - `WBSidebar`
 - `WBGallery`
+- `WBSlider`
 - `WBCookieConsent`
 - `WBSectionNav`
 - `WBNavGroup`
@@ -152,6 +153,8 @@ Shipped interactive modules expose `window.*` APIs:
 `WBSectionNav` handles in-page `wb-section-nav` anchors, including hash-aware active state and scroll-container-aware docs behavior.
 
 `WBGallery` upgrades `.wb-gallery-trigger` elements that target one shared modal viewer, updates caption/meta/image state from the active item, and keeps stepping scoped to the current `.wb-gallery` set.
+
+`WBSlider` upgrades `[data-wb-slider]` roots with track-based slide movement, scoped arrows, auto-created dots, keyboard navigation, pointer swipe, loop, and optional autoplay.
 
 `WBCookieConsent` handles reusable consent storage, accept/reject/custom preference flows, reopen hooks, and the public API around the `wb-cookie-consent` pattern.
 
@@ -193,6 +196,29 @@ Keep the contract small:
 - one shared `.wb-modal` viewer for the gallery context
 
 Do not treat immersive viewing as a second public primitive such as `wb-lightbox` or per-item gallery modals.
+
+## Slider
+
+WebBlocks ships `wb-slider` as the canonical track-based media and content carousel pattern.
+
+Use it when the page needs:
+
+- full-width or full-height hero sliders
+- split sections where one side is a slider and the other side is text
+- contained sliders inside cards, sections, or editorial layouts
+- arrows, dots, keyboard, swipe, loop, or optional autoplay without project-local runtime code
+
+Keep the contract explicit:
+
+- one `.wb-slider` root with `data-wb-slider`
+- one `.wb-slider-viewport`
+- one `.wb-slider-track`
+- many `.wb-slide` entries
+- optional real media elements as `.wb-slide-media`
+- one `.wb-slide-content` slot per slide
+- optional `.wb-slider-controls` with scoped previous/next buttons and `.wb-slider-dots`
+
+Prefer real `img` or `picture` elements with `wb-slide-media`; `object-fit: cover` gives background-like coverage while preserving alt text, loading, and responsive image support.
 
 ## Cookie Consent
 

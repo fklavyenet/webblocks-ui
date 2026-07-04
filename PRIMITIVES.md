@@ -111,6 +111,7 @@ Overlay boundary inside primitives:
 - `wb-modal` = canonical top-layer primitive for confirms, forms, action dialogs, and content-first viewer usage
 - `wb-overlay-root` is shared runtime infrastructure, not a public page-level primitive to author directly
 - gallery viewer behavior belongs to `wb-modal` usage, while `wb-gallery` itself belongs to patterns
+- slider behavior belongs to the `wb-slider` pattern plus interactive hooks, not to a primitive
 - cookie consent preference centers also belong to `wb-modal` usage, while `wb-cookie-consent` itself belongs to patterns plus interactive hooks
 
 Overlay Stack Standard:
@@ -241,6 +242,7 @@ Canonical pattern families:
 - `wb-settings-shell`
 - `wb-content-shell`
 - `wb-cookie-consent`
+- `wb-slider`
 - `wb-page-intro`
 - marketing families such as `wb-hero` and footer structures
 
@@ -260,6 +262,10 @@ Examples:
 - `data-wb-nav-group`
 - `data-wb-ajax-toggle`
 - `data-wb-password-toggle`
+- `data-wb-slider`
+- `data-wb-slider-prev`
+- `data-wb-slider-next`
+- `data-wb-slider-dots`
 - `data-wb-cookie-consent`
 - `data-wb-cookie-consent-open`
 - `data-wb-cookie-consent-accept`
@@ -274,6 +280,13 @@ Cookie Consent classification rule:
 - Cookie Consent is not a primitive
 - it is a pattern plus interactive hooks
 - it composes `wb-card`, `wb-btn`, form controls, layout primitives, and one `wb-modal` preference center
+
+Slider classification rule:
+
+- Slider is not a primitive
+- it is a pattern plus interactive hooks
+- it composes media, buttons, icons, layout helpers, and normal content inside each `wb-slide-content` slot
+- `wb-slider-viewport` and `wb-slider-track` are pattern anatomy for movement, not generic layout helpers
 
 ## What Is Not Canonical Primitive Vocabulary
 

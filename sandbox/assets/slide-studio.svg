@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Bright art studio with framed works">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d7efe7"/>
+      <stop offset="0.48" stop-color="#8ebaae"/>
+      <stop offset="1" stop-color="#304a55"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9ded1"/>
+      <stop offset="1" stop-color="#a57b5f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect y="610" width="1600" height="290" fill="url(#floor)"/>
+  <circle cx="1260" cy="145" r="130" fill="#f6d985" opacity=".75"/>
+  <rect x="120" y="140" width="310" height="420" rx="8" fill="#f8f3e9" opacity=".88"/>
+  <rect x="170" y="190" width="210" height="300" fill="#39585f"/>
+  <path d="M170 430c72-104 138-116 210-36v96H170z" fill="#d59d66"/>
+  <rect x="510" y="115" width="250" height="340" rx="8" fill="#f8f3e9" opacity=".78"/>
+  <rect x="552" y="160" width="166" height="250" fill="#bd6f59"/>
+  <circle cx="632" cy="260" r="64" fill="#f1cc8d"/>
+  <rect x="920" y="190" width="390" height="270" rx="10" fill="#ffffff" opacity=".32"/>
+  <path d="M930 462c120-190 264-174 390-20v20z" fill="#263b45" opacity=".5"/>
+  <path d="M0 700c210-70 420-84 640-42s380 94 620 50c154-28 248-68 340-118v310H0z" fill="#28444d" opacity=".28"/>
+</svg>

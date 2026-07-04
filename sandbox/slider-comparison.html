@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="forest" data-preset="editorial" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI Slider Anatomy Sandbox</title>
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--wb-color-bg);
+      color: var(--wb-color-text);
+    }
+
+    .sandbox-page {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 56px);
+    }
+
+    .sandbox-hero {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .sandbox-hero h1 {
+      max-width: 860px;
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      line-height: 0.96;
+    }
+
+    .sandbox-hero p {
+      max-width: 780px;
+      margin: 0;
+      color: var(--wb-color-muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .sandbox-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .sandbox-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .sandbox-note {
+      padding: 16px;
+      border: 1px solid var(--wb-color-border);
+      border-radius: var(--wb-radius-lg);
+      background: var(--wb-color-surface);
+    }
+
+    .sandbox-note strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .wb-slider {
+      --wb-slider-content-width: min(88%, 560px);
+      --wb-slider-content-x: 50%;
+      --wb-slider-content-y: 50%;
+      --wb-slider-content-translate-x: -50%;
+      --wb-slider-content-translate-y: -50%;
+      position: relative;
+      min-height: clamp(360px, 56vw, 540px);
+      overflow: hidden;
+      border-radius: 8px;
+      background: #1f2933;
+      isolation: isolate;
+    }
+
+    .wb-slider-viewport {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .wb-slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 520ms cubic-bezier(.2, .8, .2, 1);
+      will-change: transform;
+    }
+
+    .wb-slider-demo-track .wb-slide {
+      position: relative;
+      flex: 0 0 100%;
+      min-width: 100%;
+      height: 100%;
+    }
+
+    .wb-slider-demo-simple .wb-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 420ms ease;
+    }
+
+    .wb-slider-demo-simple .wb-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .wb-slide {
+      color: #fff;
+    }
+
+    .wb-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(8, 16, 22, .62), rgba(8, 16, 22, .24) 52%, rgba(8, 16, 22, .08)),
+        linear-gradient(0deg, rgba(8, 16, 22, .38), rgba(8, 16, 22, .04));
+      pointer-events: none;
+    }
+
+    .wb-slide-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .wb-slide-content {
+      position: absolute;
+      left: var(--wb-slider-content-x);
+      top: var(--wb-slider-content-y);
+      z-index: 2;
+      width: var(--wb-slider-content-width);
+      transform: translate(var(--wb-slider-content-translate-x), var(--wb-slider-content-translate-y));
+      display: grid;
+      gap: 14px;
+    }
+
+    .wb-slide-kicker {
+      margin: 0;
+      color: rgba(255, 255, 255, .78);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .wb-slide-title {
+      max-width: 780px;
+      margin: 0;
+      color: #fff;
+      font-size: clamp(2.25rem, 5.4vw, 4.85rem);
+      line-height: .98;
+    }
+
+    .wb-slide-text {
+      max-width: 520px;
+      margin: 0;
+      color: rgba(255, 255, 255, .84);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .wb-slider-controls {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      pointer-events: none;
+    }
+
+    .wb-slider-controls button {
+      pointer-events: auto;
+    }
+
+    .wb-slider-dots {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 999px;
+      background: rgba(10, 18, 24, .38);
+      backdrop-filter: blur(10px);
+      pointer-events: auto;
+    }
+
+    .wb-slider-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .45);
+      cursor: pointer;
+    }
+
+    .wb-slider-dot.is-active {
+      width: 26px;
+      background: #fff;
+    }
+
+    .sandbox-code {
+      overflow: auto;
+      margin: 0;
+      padding: 16px;
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--wb-color-text) 9%, transparent);
+      font-size: .82rem;
+      line-height: 1.55;
+    }
+
+    .media-proof {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .media-proof-box {
+      position: relative;
+      min-height: 220px;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--wb-color-border);
+      background: #1f2933;
+    }
+
+    .media-proof-box img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-proof-bg {
+      background-image: url("assets/slide-studio.svg");
+      background-position: center;
+      background-size: cover;
+    }
+
+    .media-proof-label {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      z-index: 1;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(8, 16, 22, .72);
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .sandbox-grid,
+      .sandbox-notes,
+      .media-proof {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wb-slider-track,
+      .wb-slider-demo-simple .wb-slide {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="sandbox-page">
+    <header class="sandbox-hero">
+      <p class="wb-slide-kicker">WebBlocks UI sandbox</p>
+      <h1>Slider anatomy comparison</h1>
+      <p>Bu sayfa, slider pattern icin iki markup yaklasimini ayni icerik ve ayni gorsellerle karsilastirir. Birinci ornek track/viewport katmani kullanir; ikinci ornek dogrudan <code>wb-slider &gt; wb-slide</code> yapisini kullanir.</p>
+    </header>
+
+    <section class="sandbox-notes" aria-label="Comparison notes">
+      <div class="sandbox-note">
+        <strong>Track'li surum</strong>
+        <span>Horizontal transform, swipe ve sonsuz kaydirma gibi davranislar icin daha acik bir hareket katmani verir.</span>
+      </div>
+      <div class="sandbox-note">
+        <strong>Sade surum</strong>
+        <span>CMS renderer icin daha dogal: slider dogrudan slide cocuklarini tasir. Fade/crossfade davranisi icin yeterlidir.</span>
+      </div>
+      <div class="sandbox-note">
+        <strong>Media testi</strong>
+        <span>Iki slider da gercek <code>img</code> kullanir. Tam kaplama <code>object-fit: cover</code> ile cozulur.</span>
+      </div>
+    </section>
+
+    <section class="sandbox-grid" aria-label="Slider anatomy variants">
+      <article class="wb-card">
+        <div class="wb-card-header">
+          <h2 class="wb-card-title">Track'li anatomy</h2>
+        </div>
+        <div class="wb-card-body wb-stack-4">
+          <div class="wb-slider wb-slider-demo-track" data-demo-slider aria-label="Track based slider example">
+            <div class="wb-slider-viewport">
+              <div class="wb-slider-track">
+                <article class="wb-slide is-active">
+                  <img class="wb-slide-media" src="assets/slide-studio.svg" alt="Bright art studio with framed works">
+                  <div class="wb-slide-content">
+                    <p class="wb-slide-kicker">Studio</p>
+                    <h3 class="wb-slide-title">Layered work, quiet rhythm</h3>
+                    <p class="wb-slide-text">Media and content are independent layers. The image covers the full slide while text keeps its own readable width.</p>
+                  </div>
+                </article>
+                <article class="wb-slide">
+                  <img class="wb-slide-media" src="assets/slide-workshop.svg" alt="Warm workshop table with paint and paper">
+                  <div class="wb-slide-content">
+                    <p class="wb-slide-kicker">Workshop</p>
+                    <h3 class="wb-slide-title">A flexible content slot</h3>
+                    <p class="wb-slide-text">The content area can hold a heading, rich text, buttons, cards, or CMS child blocks.</p>
+                  </div>
+                </article>
+                <article class="wb-slide">
+                  <img class="wb-slide-media" src="assets/slide-gallery.svg" alt="Quiet gallery wall with large paintings">
+                  <div class="wb-slide-content">
+                    <p class="wb-slide-kicker">Gallery</p>
+                    <h3 class="wb-slide-title">Good for motion-heavy sliders</h3>
+                    <p class="wb-slide-text">Track gives JavaScript one explicit element to translate when slides move horizontally.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="wb-slider-controls">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon" type="button" data-demo-prev aria-label="Previous slide"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+              <div class="wb-slider-dots" aria-label="Slide navigation"></div>
+              <button class="wb-btn wb-btn-secondary wb-btn-icon" type="button" data-demo-next aria-label="Next slide"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+            </div>
+          </div>
+
+<pre class="sandbox-code"><code>&lt;div class="wb-slider" data-wb-slider&gt;
+  &lt;div class="wb-slider-viewport"&gt;
+    &lt;div class="wb-slider-track"&gt;
+      &lt;article class="wb-slide"&gt;
+        &lt;img class="wb-slide-media" src="..." alt=""&gt;
+        &lt;div class="wb-slide-content"&gt;...&lt;/div&gt;
+      &lt;/article&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+
+      <article class="wb-card">
+        <div class="wb-card-header">
+          <h2 class="wb-card-title">Sade anatomy</h2>
+        </div>
+        <div class="wb-card-body wb-stack-4">
+          <div class="wb-slider wb-slider-demo-simple" data-demo-slider aria-label="Simple direct slide example">
+            <article class="wb-slide is-active">
+              <img class="wb-slide-media" src="assets/slide-studio.svg" alt="Bright art studio with framed works">
+              <div class="wb-slide-content">
+                <p class="wb-slide-kicker">Studio</p>
+                <h3 class="wb-slide-title">Layered work, quiet rhythm</h3>
+                <p class="wb-slide-text">Same image, same content, fewer structural elements. The slide itself owns media and content.</p>
+              </div>
+            </article>
+            <article class="wb-slide">
+              <img class="wb-slide-media" src="assets/slide-workshop.svg" alt="Warm workshop table with paint and paper">
+              <div class="wb-slide-content">
+                <p class="wb-slide-kicker">Workshop</p>
+                <h3 class="wb-slide-title">A flexible content slot</h3>
+                <p class="wb-slide-text">This maps closely to CMS parent blocks: Slider contains Slide blocks; Slide contains child content blocks.</p>
+              </div>
+            </article>
+            <article class="wb-slide">
+              <img class="wb-slide-media" src="assets/slide-gallery.svg" alt="Quiet gallery wall with large paintings">
+              <div class="wb-slide-content">
+                <p class="wb-slide-kicker">Gallery</p>
+                <h3 class="wb-slide-title">Best default for CMS output</h3>
+                <p class="wb-slide-text">For fade or crossfade, direct slides are enough and the public markup stays smaller.</p>
+              </div>
+            </article>
+            <div class="wb-slider-controls">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon" type="button" data-demo-prev aria-label="Previous slide"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+              <div class="wb-slider-dots" aria-label="Slide navigation"></div>
+              <button class="wb-btn wb-btn-secondary wb-btn-icon" type="button" data-demo-next aria-label="Next slide"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+            </div>
+          </div>
+
+<pre class="sandbox-code"><code>&lt;div class="wb-slider" data-wb-slider&gt;
+  &lt;article class="wb-slide"&gt;
+    &lt;img class="wb-slide-media" src="..." alt=""&gt;
+    &lt;div class="wb-slide-content"&gt;...&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </article>
+    </section>
+
+    <section class="wb-card wb-mt-4">
+      <div class="wb-card-header">
+        <h2 class="wb-card-title">Img cover vs background cover</h2>
+      </div>
+      <div class="wb-card-body">
+        <p class="wb-mt-0">Tam genislik ve yukseklik icin background-image sart degil. Sol kutu gercek <code>img</code> ve <code>object-fit: cover</code>; sag kutu <code>background-size: cover</code>. Gorsel kaplama davranisi pratikte ayni.</p>
+        <div class="media-proof">
+          <div class="media-proof-box">
+            <img src="assets/slide-studio.svg" alt="Bright art studio with framed works">
+            <span class="media-proof-label">img + object-fit: cover</span>
+          </div>
+          <div class="media-proof-box media-proof-bg">
+            <span class="media-proof-label">background-size: cover</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../packages/webblocks/dist/webblocks-ui.js"></script>
+  <script>
+    document.querySelectorAll('[data-demo-slider]').forEach(function (slider) {
+      var slides = Array.prototype.slice.call(slider.querySelectorAll('.wb-slide'));
+      var track = slider.querySelector('.wb-slider-track');
+      var dotsWrap = slider.querySelector('.wb-slider-dots');
+      var current = 0;
+
+      slides.forEach(function (_, index) {
+        var dot = document.createElement('button');
+        dot.className = 'wb-slider-dot';
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Show slide ' + (index + 1));
+        dot.addEventListener('click', function () {
+          setSlide(index);
+        });
+        dotsWrap.appendChild(dot);
+      });
+
+      var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.wb-slider-dot'));
+
+      function setSlide(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach(function (slide, slideIndex) {
+          slide.classList.toggle('is-active', slideIndex === current);
+          slide.setAttribute('aria-hidden', slideIndex === current ? 'false' : 'true');
+        });
+        dots.forEach(function (dot, dotIndex) {
+          dot.classList.toggle('is-active', dotIndex === current);
+          dot.setAttribute('aria-current', dotIndex === current ? 'true' : 'false');
+        });
+        if (track) {
+          track.style.transform = 'translateX(' + (-current * 100) + '%)';
+        }
+      }
+
+      slider.querySelector('[data-demo-prev]').addEventListener('click', function () {
+        setSlide(current - 1);
+      });
+
+      slider.querySelector('[data-demo-next]').addEventListener('click', function () {
+        setSlide(current + 1);
+      });
+
+      setSlide(0);
+    });
+  </script>
+</body>
+</html>

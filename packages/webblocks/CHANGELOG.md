@@ -12,6 +12,15 @@ No unreleased changes.
 
 ---
 
+## [2.7.14] — 2026-07-04
+
+### Added
+- Add the canonical `wb-slider` track-based media/content carousel pattern with viewport, track, slide, media, content, arrow, dot, keyboard, swipe, loop, and optional autoplay support.
+- Add the `WBSlider` runtime API and `data-wb-slider` hooks so downstream products can use shipped slider behavior without project-local carousel JavaScript.
+- Document the Slider pattern across the package guide, pattern catalog, primitive boundary map, integration rules, AI contract source, and docs site.
+
+---
+
 ## [2.7.13] — 2026-06-30
 
 ### Added

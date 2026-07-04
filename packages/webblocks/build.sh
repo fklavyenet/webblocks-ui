@@ -304,6 +304,7 @@ cat \
   "$ROOT/src/css/patterns/settings-shell.css" \
   "$ROOT/src/css/patterns/section-nav.css" \
   "$ROOT/src/css/patterns/gallery.css" \
+  "$ROOT/src/css/patterns/slider.css" \
   "$ROOT/src/css/patterns/cookie-consent.css" \
   "$ROOT/src/css/patterns/content-shell.css" \
   "$ROOT/src/css/patterns/marketing.css" \
@@ -326,6 +327,7 @@ cat \
   "$ROOT/src/js/modal.js" \
   "$ROOT/src/js/cookie-consent.js" \
   "$ROOT/src/js/gallery.js" \
+  "$ROOT/src/js/slider.js" \
   "$ROOT/src/js/tabs.js" \
   "$ROOT/src/js/accordion.js" \
   "$ROOT/src/js/sidebar.js" \
