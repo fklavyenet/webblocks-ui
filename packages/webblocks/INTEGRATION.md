@@ -1431,6 +1431,7 @@ The first palette marked with `data-wb-cmd-default` is used by `Cmd/Ctrl + K`.
 ```html
 <span class="wb-spinner" aria-hidden="true"></span>
 <span class="wb-spinner wb-spinner-sm" aria-hidden="true"></span>
+<span class="wb-spinner-pulse" aria-hidden="true"><span></span><span></span><span></span></span>
 <div class="wb-progress-bar"><div class="wb-progress-bar-fill" style="width:60%"></div></div>
 
 <div class="wb-skeleton" style="height:1rem;width:60%"></div>
@@ -2031,7 +2032,7 @@ Semantic guidance:
 - use `refresh` for reloading current data
 - use `sync` for reconciling with a remote source
 - use `rotate-cw` or `rotate-ccw` for literal rotation/cycle actions
-- use `wb-spinner` for loading state instead of inventing a loader icon class
+- use `wb-spinner` or `wb-spinner-pulse` for loading state instead of inventing a loader icon class
 
 Important icon behavior:
 
@@ -2278,7 +2279,7 @@ DO NOT:
 - do not assume `WBDropdown.open(triggerEl)`; pass the menu element
 - do not hardcode accent colors in new CSS; use `--wb-accent*` tokens
 - do not mix `wb-shell` and `wb-dashboard-shell` in the same layout tree
-- do not invent a separate loader icon class when `wb-spinner` already exists
+- do not invent a separate loader icon class when `wb-spinner` or `wb-spinner-pulse` already exists
 - do not introduce or reintroduce a second generic framed surface noun beside `wb-card`
 
 ---

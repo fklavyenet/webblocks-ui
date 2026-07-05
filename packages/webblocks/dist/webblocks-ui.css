@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.7.16 (https://webblocksui.com/)
+ * WebBlocks UI v2.7.17 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -5531,6 +5531,61 @@ button.wb-pagination-link {
 .wb-spinner-muted {
   border-color: var(--wb-surface-3);
   border-top-color: var(--wb-muted);
+}
+
+/* ── Pulse dots spinner ───────────────────────────────────── */
+
+.wb-spinner-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.wb-spinner-pulse > span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-primary);
+  animation: wb-spinner-pulse 0.9s ease-in-out infinite;
+}
+
+.wb-spinner-pulse > span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.wb-spinner-pulse > span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.wb-spinner-pulse-sm > span {
+  width: 0.42rem;
+  height: 0.42rem;
+}
+
+.wb-spinner-pulse-lg > span {
+  width: 0.68rem;
+  height: 0.68rem;
+}
+
+.wb-spinner-pulse-muted > span {
+  background: var(--wb-muted);
+}
+
+.wb-spinner-pulse-white > span {
+  background: var(--wb-white);
+}
+
+@keyframes wb-spinner-pulse {
+  0%, 80%, 100% {
+    opacity: 0.35;
+    transform: scale(0.72);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ── Inline loading state ─────────────────────────────────── */

@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.7.17] — 2026-07-05
+
+### Added
+- Add `wb-spinner-pulse` with small, large, muted, and white variants for compact indeterminate loading states.
+
+---
+
 ## [2.7.16] — 2026-07-05
 
 ### Added
