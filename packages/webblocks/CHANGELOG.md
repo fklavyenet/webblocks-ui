@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.7.16] — 2026-07-05
+
+### Added
+- Add native navbar active indicator variants for `wb-navbar-nav`, including underline, pill, accent dot, background, and none styles that respond to `is-active` and `aria-current="page"`.
+
+---
+
 ## [2.7.15] — 2026-07-04
 
 ### Added

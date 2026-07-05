@@ -254,6 +254,12 @@ Active state:
 - include `aria-current="page"` when the current route is genuinely known in static markup
 - for in-page anchor menus, let runtime apply `is-active` and `aria-current="location"` from the real current section instead of hardcoding a fake active item
 
+Navbar active indicators:
+
+- put `wb-navbar-nav--active-underline`, `wb-navbar-nav--active-pill`, `wb-navbar-nav--active-dot`, `wb-navbar-nav--active-background`, or `wb-navbar-nav--active-none` on the `wb-navbar-nav` list
+- keep current-page state on the link with `is-active` and `aria-current="page"`
+- prefer these shipped indicator classes over project-local navbar active CSS
+
 Semantic guidance:
 
 - wrap the pattern in `nav`
