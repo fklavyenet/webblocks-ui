@@ -1508,6 +1508,74 @@ Topbar identity hierarchy:
 - use product-first order, then context second; avoid ambiguous patterns like `Teacher / QuizTem`
 - preferred pattern is `QuizTem` as product, with `Teacher Workspace` or `Admin Panel` as the secondary label
 
+Topbar language, guest auth entry, and user menus are additive compositions over existing primitives. Dropdown variants require no additional JavaScript beyond `data-wb-toggle="dropdown"`; `wb-auth-entry` is a direct link and needs no JavaScript.
+
+Language switcher with the recommended code trigger:
+
+```html
+<div class="wb-language-switcher wb-language-switcher--code wb-dropdown wb-dropdown-end">
+  <button class="wb-topbar-action wb-language-switcher-trigger"
+          type="button"
+          data-wb-toggle="dropdown"
+          data-wb-target="#language-menu"
+          aria-label="Current language: English. Choose language"
+          aria-expanded="false">
+    <i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i>
+    <span class="wb-language-switcher-code" lang="en" aria-hidden="true">EN</span>
+    <i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i>
+  </button>
+  <div class="wb-dropdown-menu" id="language-menu">
+    <a class="wb-dropdown-item is-active" href="/" hreflang="en" lang="en" aria-current="page"><span class="wb-language-switcher-item-code">EN</span>English</a>
+    <a class="wb-dropdown-item" href="/de" hreflang="de" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a>
+    <a class="wb-dropdown-item" href="/tr" hreflang="tr" lang="tr"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a>
+  </div>
+</div>
+```
+
+Use `wb-language-switcher--icon` or `wb-language-switcher--icon-code` for the other trigger styles. The host must provide the visible code and accessible current-language name; CSS intentionally does not transform casing.
+
+Guest login entry with the recommended icon-label variant:
+
+```html
+<a class="wb-auth-entry wb-auth-entry--icon-label" href="/login">
+  <i class="wb-icon wb-icon-log-in wb-auth-entry-icon" aria-hidden="true"></i>
+  <span class="wb-auth-entry-label">Log in</span>
+</a>
+```
+
+Use `wb-auth-entry--icon`, `wb-auth-entry--label`, or `wb-auth-entry--icon-label`. The host owns authentication state, the login URL, and the localized label. `wb-auth-entry` is a topbar entry control; it does not replace the existing `wb-auth-shell`, `wb-auth-card`, or auth form contracts used on login pages.
+
+Responsive user menu:
+
+```html
+<div class="wb-user-menu wb-user-menu--full wb-user-menu--responsive wb-dropdown wb-dropdown-end">
+  <button class="wb-topbar-user wb-user-menu-trigger"
+          type="button"
+          data-wb-toggle="dropdown"
+          data-wb-target="#user-menu"
+          aria-label="Open user menu"
+          aria-expanded="false">
+    <span class="wb-avatar wb-avatar-sm" aria-hidden="true">OS</span>
+    <span class="wb-user-menu-copy">
+      <span class="wb-user-menu-name">Osman</span>
+      <span class="wb-user-menu-context">Administrator</span>
+    </span>
+    <i class="wb-icon wb-icon-chevron-down wb-user-menu-chevron" aria-hidden="true"></i>
+  </button>
+  <div class="wb-dropdown-menu" id="user-menu">
+    <a class="wb-dropdown-item" href="/profile"><i class="wb-icon wb-icon-user" aria-hidden="true"></i>Profile</a>
+    <a class="wb-dropdown-item" href="/settings"><i class="wb-icon wb-icon-settings" aria-hidden="true"></i>Settings</a>
+    <hr class="wb-dropdown-divider">
+    <form class="wb-user-menu-form" method="POST" action="/logout">
+      <!-- Host framework renders its CSRF token here. -->
+      <button class="wb-dropdown-item wb-dropdown-item-danger" type="submit"><i class="wb-icon wb-icon-log-out" aria-hidden="true"></i>Log out</button>
+    </form>
+  </div>
+</div>
+```
+
+`wb-user-menu--compact` hides the context line. `wb-user-menu--avatar` keeps only the avatar trigger. Render `wb-auth-entry` for guests and `wb-user-menu` for authenticated users; do not render both as the same auth state. WebBlocks UI does not own authentication, permissions, user data, URLs, or logout handling.
+
 Stacked navbar:
 
 ```html

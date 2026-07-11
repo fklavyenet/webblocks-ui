@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.7.17
+Version: v2.7.18
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -59,6 +59,16 @@ Row actions should be compact, icon-first where appropriate, and accessible thro
 ## Branding
 
 Admin, auth, and sidebar product brand marks should follow `docs/admin-product-brand.md`: project-owned inline SVG components using `currentColor`, standard WebBlocks UI sizing classes, no default `img`/`picture`/CSS-mask shell marks, and separate favicon/app icon files.
+
+## Topbar Menus
+
+- Use `wb-language-switcher` for locale selection and choose one explicit trigger variant: `--icon`, `--code`, or `--icon-code`.
+- Use `wb-auth-entry` for guest login entry and choose `--icon`, `--label`, or `--icon-label`.
+- Use `wb-user-menu` for authenticated account actions and choose `--full`, `--compact`, or `--avatar`; add `--responsive` when it should collapse on narrow screens.
+- Render `wb-auth-entry` and `wb-user-menu` as mutually exclusive auth states; the host decides which state applies.
+- Reuse the shipped `wb-dropdown` runtime. Do not add project-local language/user dropdown JavaScript when the canonical composition fits.
+- Hosts own locale URLs and labels, current-language state, guest/authenticated state, login URLs, user identity, authorization, conditional items, CSRF, and POST logout behavior.
+- Language code casing is content-defined; do not generate it with CSS text transformation.
 
 ## Forbidden Patterns
 

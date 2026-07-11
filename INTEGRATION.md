@@ -46,6 +46,7 @@ Always start from:
 * `wb-settings-shell`
 * `wb-slider` for media/content carousel sections
 * `wb-cookie-consent` for reusable public-site consent UI
+* `wb-language-switcher`, `wb-auth-entry`, and `wb-user-menu` for canonical dashboard topbar controls
 
 ---
 
@@ -142,6 +143,15 @@ Slider rule:
 * keep media and content separate with `wb-slide-media` and `wb-slide-content`
 * use real `img` or `picture` media with `object-fit: cover` before falling back to CSS background images
 * do not write project-local slider JavaScript when `WBSlider` fits the behavior
+
+Topbar menu rule:
+
+* use `wb-language-switcher` with one explicit `--icon`, `--code`, or `--icon-code` variant
+* use `wb-auth-entry` with one explicit `--icon`, `--label`, or `--icon-label` variant for guests
+* use `wb-user-menu` with one explicit `--full`, `--compact`, or `--avatar` variant for authenticated users; add `--responsive` when narrow screens should collapse it
+* reuse `wb-dropdown`; do not create a second language/user dropdown runtime
+* hosts own locale URLs and labels, guest/authenticated state, login URLs, user identity and authorization, CSRF, and POST logout behavior
+* language codes are content-defined and must not depend on CSS casing transforms
 
 ❌ Do NOT invent wrappers
 

@@ -139,6 +139,47 @@ Canonical structure:
 - Prefer shipped layout helpers such as `wb-stack`, `wb-cluster`, `wb-grid`, `wb-grid-auto`, `wb-row`, and `wb-col-*` before adding custom classes.
 - If a dashboard example needs local CSS, keep it limited to page-specific internal arrangement, not shell redefinition.
 
+#### Topbar language and user menus
+
+Use the additive `wb-language-switcher`, `wb-auth-entry`, and `wb-user-menu` compositions inside `wb-topbar-actions`. They reuse the existing dropdown, topbar action, avatar, icon, and danger-item contracts; they do not introduce a second dropdown runtime.
+
+Canonical utility order when every control is present:
+
+1. search
+2. notifications
+3. mode or theme
+4. language
+5. auth entry or user menu
+
+Language switcher variants:
+
+- `wb-language-switcher--icon` shows the language icon
+- `wb-language-switcher--code` shows the host-provided current-language code such as `EN`, `TR`, or `DE`
+- `wb-language-switcher--icon-code` shows both
+
+User menu variants:
+
+- `wb-user-menu--full` shows avatar, name, context, and chevron
+- `wb-user-menu--compact` hides context and keeps avatar plus name
+- `wb-user-menu--avatar` shows only the avatar trigger
+- `wb-user-menu--responsive` collapses to the avatar trigger below 640px
+
+Guest auth entry variants:
+
+- `wb-auth-entry--icon` shows only the login icon
+- `wb-auth-entry--label` shows only the host-provided login label
+- `wb-auth-entry--icon-label` shows both
+- render `wb-auth-entry` only for guests; authenticated users receive `wb-user-menu` instead
+
+Host responsibility rules:
+
+- language codes and names are content; do not derive or uppercase them with CSS
+- language URLs should point to the equivalent localized route when the host can resolve it
+- current language uses `is-active` and `aria-current="page"`
+- user identity, avatar, role/context, authorization, and conditional items come from the host
+- login URLs, guest/authenticated state, and login labels come from the host
+- logout remains a host-owned, CSRF-protected `POST` form; never turn it into a GET link
+
 #### Sidebar anatomy
 
 Canonical dashboard sidebar anatomy is:

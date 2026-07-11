@@ -94,6 +94,9 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 - `wb-gallery` is the canonical inline media pattern; viewer behavior stays inside one shared `wb-modal`
 - `wb-rich-text` is the canonical primitive for sanitized editorial body copy; keep headings, media, tables, buttons, and page layout outside it
 - `wb-cookie-consent` is the reusable public-site consent pattern; entry UI can be a bottom banner or floating card, and preferences stay inside one shared `wb-modal`
+- `wb-language-switcher` provides icon, code, and icon-code topbar variants without replacing the existing dropdown runtime
+- `wb-auth-entry` provides icon, label, and icon-label guest login entry variants; the host owns auth state and the login URL
+- `wb-user-menu` provides full, compact, avatar, and responsive topbar variants while the host owns identity, authorization, CSRF, and POST logout behavior
 - `wb-overlay-root` is shared runtime infrastructure for enhanced overlays; `wb-modal` remains the canonical public top-layer primitive
 - nested overlays should follow the overlay stack contract and must not stay clipped inside parent containers or overlay bodies
 - `wb:overlay:close-request` is the canonical overlay-level hook for unsaved-change guards; host apps own dirty-state policy and should use programmatic close after save or confirmed discard

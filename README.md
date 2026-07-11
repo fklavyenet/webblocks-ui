@@ -50,6 +50,7 @@ Start from patterns, not primitives.
 - gallery pattern: `docs/pattern-gallery.html`
 - slider pattern: `docs/pattern-slider.html`
 - cookie consent pattern: `docs/pattern-cookie-consent.html`
+- topbar language and user menu examples: `docs/patterns.html#topbar-menus`
 - playground: `playground/`
 
 ## Audience Guides
@@ -73,6 +74,7 @@ Start from patterns, not primitives.
 - `wb-gallery` is the canonical inline media pattern; immersive viewing stays inside one shared `wb-modal` instead of a separate lightbox primitive
 - `wb-slider` is the canonical track-based media/content carousel pattern for hero sliders, split sections, and contained sliders
 - `wb-cookie-consent` is the reusable public-site consent pattern; it supports bottom-banner and floating-card entry variants plus one shared `wb-modal` preference center and a required reopen hook
+- `wb-language-switcher`, `wb-auth-entry`, and `wb-user-menu` are additive topbar compositions over existing dropdown, action, avatar, and user primitives; hosts keep ownership of routes, auth state, identity, authorization, CSRF, and logout behavior
 - transient success/info feedback should use `wb-toast` outside normal layout flow, preferably under `#wb-overlay-root`; success/info toasts auto-dismiss by default, while validation errors, user-correctable failures, persistent warnings, and blocking failures should stay inline with contextual feedback such as `wb-alert`
 - toasts are not modals: no backdrop, focus trap, body scroll lock, or page interaction blocking
 - the admin standards page documents the canonical admin page header, admin index/list, detail-list, action-column, and danger-zone rules while preferring existing `wb-card`, `wb-field`, `wb-filter-bar`, `wb-action-group`, and breadcrumb primitives wherever they already cover the job

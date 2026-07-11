@@ -245,6 +245,14 @@ Canonical pattern families:
 - `wb-slider`
 - `wb-page-intro`
 - marketing families such as `wb-hero` and footer structures
+- topbar compositions such as `wb-language-switcher`, `wb-auth-entry`, and `wb-user-menu`
+
+Topbar menu boundary:
+
+- `wb-dropdown`, `wb-topbar-action`, `wb-topbar-user`, and `wb-avatar` remain the underlying primitives
+- `wb-language-switcher`, `wb-auth-entry`, and `wb-user-menu` only standardize their composition inside application topbars
+- WebBlocks UI owns layout, variants, responsive presentation, and dropdown interaction
+- host applications own locale URLs, current-language copy, user data, authorization, menu visibility, CSRF, and logout behavior
 
 Patterns are what users should usually start from for real pages.
 

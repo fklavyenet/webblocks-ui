@@ -12,6 +12,16 @@ No unreleased changes.
 
 ---
 
+## [2.7.18] — 2026-07-11
+
+### Added
+- Add canonical additive `wb-language-switcher` topbar composition with icon, code, and icon-code trigger variants over the existing dropdown runtime.
+- Add canonical additive `wb-user-menu` composition with full, compact, avatar, and responsive variants while preserving host ownership of authentication, authorization, CSRF, and logout behavior.
+- Add canonical additive `wb-auth-entry` guest login composition with icon, label, and icon-label variants, explicitly paired with authenticated `wb-user-menu` as mutually exclusive host-rendered states.
+- Document topbar menu boundaries, canonical markup, accessibility, responsive behavior, and host responsibilities across the pattern catalog, integration guide, docs site, and downstream AI contract.
+
+---
+
 ## [2.7.17] — 2026-07-05
 
 ### Added

@@ -303,6 +303,7 @@ cat \
   "$ROOT/src/css/patterns/dashboard-shell.css" \
   "$ROOT/src/css/patterns/settings-shell.css" \
   "$ROOT/src/css/patterns/section-nav.css" \
+  "$ROOT/src/css/patterns/topbar-menus.css" \
   "$ROOT/src/css/patterns/gallery.css" \
   "$ROOT/src/css/patterns/slider.css" \
   "$ROOT/src/css/patterns/cookie-consent.css" \
