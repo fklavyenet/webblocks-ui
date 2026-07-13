@@ -296,6 +296,7 @@ cat \
   "$ROOT/src/css/primitives/tooltip.css" \
   "$ROOT/src/css/primitives/toolbar.css" \
   "$ROOT/src/css/primitives/radio-card.css" \
+  "$ROOT/src/css/primitives/rating.css" \
   "$ROOT/src/css/primitives/collapse.css" \
   "$ROOT/src/css/patterns/page-intro.css" \
   "$ROOT/src/css/patterns/breadcrumb.css" \

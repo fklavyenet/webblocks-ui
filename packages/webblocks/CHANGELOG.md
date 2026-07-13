@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.8.0] — 2026-07-13
+
+### Added
+- Add `wb-rating` star rating primitive: a read-only average display with partial fill via `--wb-rating-value`, and a no-JS interactive `wb-rating-input` where each star is its own submit control that fills on hover up to the pointed star. Colors and size are overridable with `--wb-rating-color`, `--wb-rating-empty`, and `--wb-rating-size`.
+
+---
+
 ## [2.7.18] — 2026-07-11
 
 ### Added

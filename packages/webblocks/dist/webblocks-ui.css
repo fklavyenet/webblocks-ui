@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.7.18 (https://webblocksui.com/)
+ * WebBlocks UI v2.8.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -7235,6 +7235,107 @@ html.wb-js .wb-popover-panel {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+}
+/* ============================================================
+   WebBlocks UI — Rating (wb-rating)
+   Star-based rating: a read-only average display with partial
+   fill, and a no-JS interactive input where each star is its
+   own submit control (hover fills up to the pointed star).
+
+   Read-only average:
+   <span class="wb-rating-stars" style="--wb-rating-value: 86%"
+         role="img" aria-label="Average 4.3 of 5"></span>
+
+   Interactive input (each button submits its own value):
+   <form class="wb-rating-input" method="post" action="...">
+     <button type="submit" name="rating_value" value="1" aria-label="1 star">★</button>
+     ...
+     <button type="submit" name="rating_value" value="5" aria-label="5 stars">★</button>
+   </form>
+
+   Override colors/size per instance with the custom properties
+   --wb-rating-color, --wb-rating-empty, and --wb-rating-size.
+   ============================================================ */
+
+.wb-rating {
+  --wb-rating-color: #f59e0b;
+  --wb-rating-empty: var(--wb-border);
+  --wb-rating-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wb-s2);
+}
+
+/* ── Read-only average ────────────────────────────────────── */
+.wb-rating-stars {
+  --wb-rating-color: #f59e0b;
+  --wb-rating-empty: var(--wb-border);
+  --wb-rating-size: 1.5rem;
+  --wb-rating-value: 0%;
+  position: relative;
+  display: inline-block;
+  font-size: var(--wb-rating-size);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.wb-rating-stars::before,
+.wb-rating-stars::after {
+  content: "★★★★★";
+}
+
+.wb-rating-stars::before {
+  color: var(--wb-rating-empty);
+}
+
+.wb-rating-stars::after {
+  position: absolute;
+  inset: 0;
+  width: var(--wb-rating-value);
+  overflow: hidden;
+  color: var(--wb-rating-color);
+}
+
+/* ── Interactive input ────────────────────────────────────── */
+.wb-rating-input {
+  display: inline-flex;
+  gap: var(--wb-s1);
+  align-items: center;
+}
+
+.wb-rating-input button {
+  appearance: none;
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0 2px;
+  cursor: pointer;
+  font-size: var(--wb-rating-size, 1.5rem);
+  line-height: 1;
+  color: var(--wb-rating-empty, var(--wb-border));
+  transition: color 0.08s ease, transform 0.08s ease;
+}
+
+.wb-rating-input button:hover,
+.wb-rating-input button:has(~ button:hover) {
+  color: var(--wb-rating-color, #f59e0b);
+}
+
+.wb-rating-input button:hover {
+  transform: scale(1.08);
+}
+
+.wb-rating-input button:focus-visible {
+  outline: 2px solid var(--wb-rating-color, #f59e0b);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Marks the already-submitted value when re-rendered: fills the
+   pressed star and every star before it. Hover still takes over. */
+.wb-rating-input button[aria-pressed="true"],
+.wb-rating-input button:has(~ button[aria-pressed="true"]) {
+  color: var(--wb-rating-color, #f59e0b);
 }
 /* ============================================================
    WebBlocks UI — Collapse (wb-collapse)
