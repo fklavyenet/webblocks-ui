@@ -170,6 +170,25 @@ Compact single-message toast:
 </div>
 ```
 
+Link list leading visual standard:
+
+- `wb-link-list-item` is a two-column row: `wb-link-list-main` beside `wb-link-list-desc`
+- a row with a leading thumbnail or icon must also carry `wb-link-list-item--media`, which adds the leading column; without it the visual consumes the main column
+- `wb-link-list-thumb` is the square image slot, `wb-link-list-icon` the icon slot; use one or the other, not both
+- the host owns the `<img>`, its `src`, and its alt text
+- below 960px the row keeps the leading column and the description spans the full width
+
+```html
+<a class="wb-link-list-item wb-link-list-item--media" href="/games/blockfall">
+  <img class="wb-link-list-thumb" src="/media/blockfall.jpg" alt="">
+  <div class="wb-link-list-main">
+    <span class="wb-link-list-title">Blockfall</span>
+    <span class="wb-link-list-meta">Arcade puzzle</span>
+  </div>
+  <div class="wb-link-list-desc">Turn, stack, and clear glowing rows.</div>
+</a>
+```
+
 Promo split standard:
 
 - `wb-promo` is the promo/hero panel: copy on one side, actions on the other

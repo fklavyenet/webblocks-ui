@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.9.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.10.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -6626,6 +6626,44 @@ html.wb-js .wb-popover-panel {
 @media (max-width: 960px) {
   .wb-link-list-item {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ── Leading visual: thumbnail or icon ────────────────────
+   Rows with a leading thumbnail or icon gain a dedicated
+   first column, so the visual sits beside the copy instead
+   of consuming the main column. Host markup:
+   .wb-link-list-item.wb-link-list-item--media
+     > img.wb-link-list-thumb | i.wb-link-list-icon
+     > .wb-link-list-main
+     > .wb-link-list-desc
+   Declared after the base media query so it wins on source order.
+   ------------------------------------------------------- */
+.wb-link-list-item--media {
+  grid-template-columns: auto minmax(0, 220px) minmax(0, 1fr);
+}
+
+.wb-link-list-thumb {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: var(--wb-r-md);
+  border: 1px solid var(--wb-border);
+}
+
+.wb-link-list-icon {
+  line-height: 1;
+  color: var(--wb-muted);
+}
+
+@media (max-width: 960px) {
+  .wb-link-list-item--media {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .wb-link-list-item--media .wb-link-list-desc {
+    grid-column: 1 / -1;
   }
 }
 /* ============================================================

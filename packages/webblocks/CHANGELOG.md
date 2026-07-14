@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.10.0] — 2026-07-14
+
+### Added
+- Add a leading-visual slot to `wb-link-list`: `wb-link-list-item--media` gives the row a dedicated first column, `wb-link-list-thumb` styles a square thumbnail, and `wb-link-list-icon` styles a leading icon. Without the modifier a leading element consumed the main column, so icon rows pushed the description onto its own line.
+
+---
+
 ## [2.9.0] — 2026-07-14
 
 ### Added
