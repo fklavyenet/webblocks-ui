@@ -105,3 +105,55 @@
     grid-column: 1 / -1;
   }
 }
+
+/* ── Stacked rows ─────────────────────────────────────────
+   The default row is an index/directory layout: the title
+   column sits beside a wide description column. `--stacked`
+   turns each row into a compact card-like entry instead, with
+   the description under the title and any leading visual
+   beside the whole text block. Host markup is unchanged:
+   .wb-link-list.wb-link-list--stacked
+     > .wb-link-list-item[.wb-link-list-item--media]
+   Wins over the base rules on specificity, in every viewport.
+   ------------------------------------------------------- */
+.wb-link-list--stacked .wb-link-list-item {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--wb-s1) var(--wb-s4);
+  align-items: center;
+}
+
+.wb-link-list--stacked .wb-link-list-item--media {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.wb-link-list--stacked .wb-link-list-item--media > .wb-link-list-main,
+.wb-link-list--stacked .wb-link-list-item--media > .wb-link-list-desc {
+  grid-column: 2;
+}
+
+/* A leading visual must span the title and description rows, otherwise it sizes
+   the title row to its own height and the description drops below it. */
+.wb-link-list--stacked .wb-link-list-item--media:has(.wb-link-list-desc) > .wb-link-list-thumb,
+.wb-link-list--stacked .wb-link-list-item--media:has(.wb-link-list-desc) > .wb-link-list-icon {
+  grid-row: 1 / span 2;
+}
+
+/* ── Card rows ────────────────────────────────────────────
+   The default list is a joined block: hairline separators
+   inside one shared frame. `--cards` detaches each row into
+   its own card instead, matching `wb-card` framing so a list
+   of links can sit beside real cards. Combine with
+   `--stacked` for a compact card list. Host markup is
+   unchanged: .wb-link-list.wb-link-list--cards
+   ------------------------------------------------------- */
+.wb-link-list--cards {
+  gap: var(--wb-s3);
+  background: transparent;
+  border: 0;
+}
+
+.wb-link-list--cards .wb-link-list-item {
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-lg);
+  box-shadow: var(--wb-shadow-sm);
+}

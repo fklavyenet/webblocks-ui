@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.10.1] — 2026-07-14
+
+### Added
+- Add two composable `wb-link-list` layout modifiers, so a link list can render as a compact card list instead of only as a directory index. `wb-link-list--stacked` puts the description under the title and keeps a leading thumbnail or icon beside the whole text block, replacing the default wide description column. `wb-link-list--cards` detaches each row into its own `wb-card`-framed entry with spacing, instead of hairline separators inside one shared frame. Both are additive: host markup is unchanged and the default list keeps its current look. Under `--stacked` a leading visual spans the title and description rows, because otherwise it sizes the title row to its own height and the description drops below it.
+
+---
+
 ## [2.10.0] — 2026-07-14
 
 ### Added
