@@ -170,6 +170,27 @@ Compact single-message toast:
 </div>
 ```
 
+Promo split standard:
+
+- `wb-promo` is the promo/hero panel: copy on one side, actions on the other
+- `wb-promo--split` switches it to copy beside a foreground image and left-aligns the actions
+- the image column is `wb-promo-media`; the host owns the `<img>`, its `src`, and its alt text
+- use `wb-promo--split` for a foreground image; keep the plain `wb-promo` when the image is a background
+- the split grid collapses to one column at 900px
+
+```html
+<section class="wb-card wb-promo wb-promo--split">
+  <div class="wb-card-body wb-promo-copy wb-stack wb-gap-3">
+    <h1 class="wb-promo-title">Ship faster</h1>
+    <p class="wb-promo-text">Composable content operations.</p>
+    <div class="wb-promo-actions wb-cluster wb-cluster-2">
+      <a class="wb-btn wb-btn-primary" href="/signup">Get started</a>
+    </div>
+  </div>
+  <figure class="wb-promo-media"><img src="/media/hero.jpg" alt=""></figure>
+</section>
+```
+
 Rating standard:
 
 - `wb-rating` is the canonical star rating primitive, split into a read-only average display and an interactive input

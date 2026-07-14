@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.9.0] — 2026-07-14
+
+### Added
+- Add a `wb-promo--split` layout modifier and a `wb-promo-media` element so a promo/hero panel can place copy beside a foreground image instead of a background image. The split grid collapses to a single column at 900px and left-aligns `wb-promo-actions`.
+
+---
+
 ## [2.8.1] — 2026-07-13
 
 ### Documentation

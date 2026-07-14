@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.8.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.9.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -6800,6 +6800,40 @@ html.wb-js .wb-popover-panel {
 @media (max-width: 600px) {
   .wb-promo {
     padding: var(--wb-s6);
+  }
+}
+
+/* ── Split layout ─────────────────────────────────────────
+   Copy beside a foreground image instead of a background.
+   Host markup: .wb-promo.wb-promo--split > .wb-promo-copy + .wb-promo-media
+   Declared after the base media queries so it wins on source order.
+   ------------------------------------------------------- */
+.wb-promo--split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: center;
+}
+
+.wb-promo--split .wb-promo-actions {
+  justify-content: flex-start;
+}
+
+.wb-promo-media {
+  margin: 0;
+  min-width: 0;
+}
+
+.wb-promo-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 26rem;
+  object-fit: cover;
+  border-radius: var(--wb-r-lg);
+}
+
+@media (max-width: 900px) {
+  .wb-promo--split {
+    grid-template-columns: 1fr;
   }
 }
 /* ============================================================
