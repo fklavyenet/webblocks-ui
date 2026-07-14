@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.8.1] — 2026-07-13
+
+### Documentation
+- Document the `wb-rating` primitive in `PRIMITIVES.md` (canonical vocabulary, boundary rules, and read-only/interactive markup) and add a Rating section to the AI examples so downstream tools get the star markup contract. No CSS or JS changes; `webblocks-ui.css` is unchanged from 2.8.0.
+
+---
+
 ## [2.8.0] — 2026-07-13
 
 ### Added

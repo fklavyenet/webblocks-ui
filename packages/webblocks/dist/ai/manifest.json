@@ -1,8 +1,8 @@
 {
   "schema": "webblocks-ui-dist-ai-v1",
-  "version": "v2.8.0",
+  "version": "v2.8.1",
   "contract": "contract.md",
-  "cdn_base": "https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.8.0/packages/webblocks/dist/ai",
+  "cdn_base": "https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.8.1/packages/webblocks/dist/ai",
   "source_priority": [
     "packages/webblocks/src/",
     "packages/webblocks/dist/",
@@ -14,10 +14,10 @@
     "ai/"
   ],
   "files": [
-    {"path": "contract.md", "sha256": "2752568f83ff35271360082346e5d6d2d22db0892e1bd175d2f6c5dab35c97a0"},
+    {"path": "contract.md", "sha256": "07130aa3de814e51f568bc1546e20abf7daa588b6318af2e0feebf4a5a418bb9"},
     {"path": "review-checklist.md", "sha256": "06db260251fd7cb8ff06b9067448dda6fd111ed718089d8458cfbe33f5bf4ea3"},
     {"path": "forbidden-patterns.md", "sha256": "3f19bdabb84ee52d97ec8b78911982483a5b46b270208f34d480a0f889767997"},
-    {"path": "examples.md", "sha256": "a7e8b5c582bc7430ae100ab350c19ca6aa8f11661a7f046e5ef91cfe89cbecc6"},
+    {"path": "examples.md", "sha256": "04995688b672fbf7cc3977c7988ef1e270c905ef2944fe6187d61a18f1ae50a0"},
     {"path": "downstream-agent-block.md", "sha256": "326c82b8f162d267b29f4dbd8f6cd35cc482ca8a55c06cf7b4bb1e30178c2ccb"}
   ]
 }

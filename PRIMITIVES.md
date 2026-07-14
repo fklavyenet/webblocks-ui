@@ -77,6 +77,7 @@ Canonical primitive families include:
 - popover
 - drawer
 - radio-card
+- rating
 - action controls
 - local editorial body copy
 - icons
@@ -167,6 +168,35 @@ Compact single-message toast:
   </div>
   <button type="button" class="wb-toast-close" aria-label="Dismiss">×</button>
 </div>
+```
+
+Rating standard:
+
+- `wb-rating` is the canonical star rating primitive, split into a read-only average display and an interactive input
+- `wb-rating-stars` is the read-only average: five stars with a partial gold fill driven by `--wb-rating-value` (a percentage), plus `role="img"` and an `aria-label` carrying the numeric average
+- `wb-rating-input` is a no-JavaScript input where each star is its own submit control; hover fills the pointed star and every star before it, and `aria-pressed="true"` on a star persists a chosen value on re-render
+- the input degrades safely without JavaScript because each star is a real submit button; enhanced JS is optional, not required
+- colors and size are host-overridable per instance with `--wb-rating-color` (filled), `--wb-rating-empty` (unfilled, defaults to `--wb-border`), and `--wb-rating-size`
+- `wb-rating` carries no form logic, endpoints, storage, or CSRF; the host owns the form action, hidden fields, submission, aggregation, and any per-visitor rules
+- it is a primitive, not a pattern: it does not own a visible heading, card chrome, or summary copy — compose those with neighboring primitives and surfaces
+
+Canonical read-only average:
+
+```html
+<span class="wb-rating-stars" style="--wb-rating-value: 86%"
+      role="img" aria-label="Average 4.3 out of 5"></span>
+```
+
+Canonical interactive input:
+
+```html
+<form class="wb-rating-input" method="post" action="/ratings">
+  <button type="submit" name="rating_value" value="1" aria-label="1 star">★</button>
+  <button type="submit" name="rating_value" value="2" aria-label="2 stars">★</button>
+  <button type="submit" name="rating_value" value="3" aria-label="3 stars">★</button>
+  <button type="submit" name="rating_value" value="4" aria-label="4 stars">★</button>
+  <button type="submit" name="rating_value" value="5" aria-label="5 stars">★</button>
+</form>
 ```
 
 ## Surfaces
