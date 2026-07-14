@@ -157,3 +157,35 @@
   border-radius: var(--wb-r-lg);
   box-shadow: var(--wb-shadow-sm);
 }
+
+/* ── Wide thumbnails ──────────────────────────────────────
+   The default thumbnail is a fixed 4rem square, which crops
+   landscape artwork and leaves wide rows looking sparse.
+   `--thumb-wide` trades it for a 4:3 thumbnail that scales
+   with the row: the leading track takes a share of the row
+   width instead of a fixed size, and the image fills it.
+   Host markup is unchanged:
+   .wb-link-list.wb-link-list--thumb-wide
+   Combines with `--stacked` and `--cards`.
+   ------------------------------------------------------- */
+.wb-link-list--thumb-wide .wb-link-list-thumb {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+
+/* Scoped to rows that actually carry a thumbnail: an icon row shares the same
+   leading track, and a wide track would leave it stranded in empty space. */
+.wb-link-list--thumb-wide .wb-link-list-item--media:has(> .wb-link-list-thumb) {
+  grid-template-columns: clamp(5rem, 20%, 10rem) minmax(0, 220px) minmax(0, 1fr);
+}
+
+.wb-link-list--stacked.wb-link-list--thumb-wide .wb-link-list-item--media:has(> .wb-link-list-thumb) {
+  grid-template-columns: clamp(5rem, 20%, 10rem) minmax(0, 1fr);
+}
+
+@media (max-width: 960px) {
+  .wb-link-list--thumb-wide .wb-link-list-item--media:has(> .wb-link-list-thumb) {
+    grid-template-columns: clamp(4.5rem, 28%, 8rem) minmax(0, 1fr);
+  }
+}

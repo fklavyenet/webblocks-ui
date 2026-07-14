@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.10.2] — 2026-07-14
+
+### Added
+- Add a `wb-link-list--thumb-wide` modifier, so a link list can show landscape artwork instead of only a small square. The default `wb-link-list-thumb` is a fixed 4rem square, which crops 4:3 artwork and leaves wide rows looking sparse; the modifier gives the leading track a share of the row width (`clamp(5rem, 20%, 10rem)`, and a larger share below 960px) and lets the thumbnail fill it at a 4:3 ratio. It is additive and composes with `--stacked` and `--cards`; host markup is unchanged. The wide track is scoped to rows that actually carry a thumbnail, because an icon row shares the same leading track and would otherwise be stranded in empty space.
+
+---
+
 ## [2.10.1] — 2026-07-14
 
 ### Added
