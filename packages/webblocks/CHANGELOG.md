@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.10.3] — 2026-07-14
+
+### Changed
+- Strengthen titles inside `wb-link-list--cards` with card-heading typography while preserving the existing `span` markup and the lighter typography of standard link lists.
+
+---
+
 ## [2.10.2] — 2026-07-14
 
 ### Added

@@ -158,6 +158,12 @@
   box-shadow: var(--wb-shadow-sm);
 }
 
+.wb-link-list--cards .wb-link-list-title {
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
 /* ── Wide thumbnails ──────────────────────────────────────
    The default thumbnail is a fixed 4rem square, which crops
    landscape artwork and leaves wide rows looking sparse.

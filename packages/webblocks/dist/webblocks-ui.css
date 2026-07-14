@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.10.2 (https://webblocksui.com/)
+ * WebBlocks UI v2.10.3 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -6717,6 +6717,12 @@ html.wb-js .wb-popover-panel {
   border: 1px solid var(--wb-border);
   border-radius: var(--wb-r-lg);
   box-shadow: var(--wb-shadow-sm);
+}
+
+.wb-link-list--cards .wb-link-list-title {
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.1;
 }
 
 /* ── Wide thumbnails ──────────────────────────────────────
