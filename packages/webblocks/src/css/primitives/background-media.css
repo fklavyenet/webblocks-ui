@@ -1,0 +1,32 @@
+/* ============================================================
+   WebBlocks UI — Background Media Primitive
+   ============================================================ */
+
+.wb-background-media {
+  --wb-background-media-overlay: linear-gradient(
+    color-mix(in srgb, var(--wb-surface) 48%, transparent),
+    color-mix(in srgb, var(--wb-surface) 48%, transparent)
+  );
+  background-image: var(--wb-background-media-overlay), var(--wb-background-media-image);
+  background-position: center, var(--wb-background-media-position, center);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wb-background-media--overlay-none {
+  --wb-background-media-overlay: linear-gradient(transparent, transparent);
+}
+
+.wb-background-media--overlay-medium {
+  --wb-background-media-overlay: linear-gradient(
+    color-mix(in srgb, var(--wb-surface) 64%, transparent),
+    color-mix(in srgb, var(--wb-surface) 64%, transparent)
+  );
+}
+
+.wb-background-media--overlay-strong {
+  --wb-background-media-overlay: linear-gradient(
+    color-mix(in srgb, var(--wb-surface) 78%, transparent),
+    color-mix(in srgb, var(--wb-surface) 78%, transparent)
+  );
+}

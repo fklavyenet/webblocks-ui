@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.11.0] — 2026-07-17
+
+### Added
+- Add the opt-in `wb-background-media` primitive for Media Library and other host-owned background images. Hosts provide the safe image URL and position through `--wb-background-media-image` and `--wb-background-media-position`; WebBlocks UI owns cover rendering and the `--overlay-none`, `--overlay-medium`, and `--overlay-strong` modifiers. The base `wb-section` layout helper remains unchanged.
+
+---
+
 ## [2.10.3] — 2026-07-14
 
 ### Changed

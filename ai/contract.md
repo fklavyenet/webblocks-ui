@@ -84,6 +84,7 @@ Do not introduce these in new downstream work:
 
 ## Public Media Patterns
 
+- Use the opt-in `wb-background-media` primitive when an existing semantic root needs host-owned background media. Supply the safe image URL and position through `--wb-background-media-image` and `--wb-background-media-position`, then choose no modifier for the soft default overlay or add `wb-background-media--overlay-none`, `wb-background-media--overlay-medium`, or `wb-background-media--overlay-strong`. The host owns media selection, URL safety, and accessible content; the background image remains decorative.
 - Use `wb-gallery` for equal-tile inline image collections and shared modal viewing.
 - Use `wb-slider` for track-based media/content carousel sections.
 - Keep slider anatomy explicit: `.wb-slider > .wb-slider-viewport > .wb-slider-track > .wb-slide`, with optional `.wb-slide-media`, `.wb-slide-content`, `.wb-slider-controls`, and `.wb-slider-dots`.

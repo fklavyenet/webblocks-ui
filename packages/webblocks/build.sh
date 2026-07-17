@@ -264,6 +264,7 @@ cat \
   "$ROOT/src/css/primitives/button.css" \
   "$ROOT/src/css/primitives/badge.css" \
   "$ROOT/src/css/primitives/card.css" \
+  "$ROOT/src/css/primitives/background-media.css" \
   "$ROOT/src/css/primitives/alert.css" \
   "$ROOT/src/css/primitives/callout.css" \
   "$ROOT/src/css/primitives/section-heading.css" \

@@ -83,6 +83,7 @@ Use these nouns first in examples, reviews, and generated markup:
 
 - shells: `wb-auth-shell`, `wb-dashboard-shell`, `wb-settings-shell`, `wb-content-shell`
 - layout helpers: `wb-container`, `wb-section`, `wb-stack`, `wb-cluster`, `wb-split`, `wb-grid`, `wb-grid-auto`, `wb-row`, `wb-col-*`
+- background media: opt-in `wb-background-media` with host-owned image and position custom properties plus allowlisted overlay modifiers
 - global surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-callout`, `wb-empty`, `wb-list`
 - shell-local surfaces: `wb-page-header`, `wb-settings-section`
 - controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-media`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
@@ -277,6 +278,26 @@ Also shipped:
 <span class="wb-badge wb-badge-danger">Failed</span>
 <span class="wb-badge wb-badge-info wb-badge-lg">Info</span>
 ```
+
+### Background Media
+
+Use `wb-background-media` as an opt-in primitive on an existing semantic root when a host-owned image should render decoratively behind its content:
+
+```html
+<section
+  class="wb-section wb-background-media wb-background-media--overlay-medium"
+  style="--wb-background-media-image: url('/media/section.webp'); --wb-background-media-position: center;"
+>
+  <div class="wb-container">...</div>
+</section>
+```
+
+- the host validates and supplies `--wb-background-media-image`
+- `--wb-background-media-position` defaults to `center`
+- no overlay modifier uses the soft default
+- available modifiers are `wb-background-media--overlay-none`, `wb-background-media--overlay-medium`, and `wb-background-media--overlay-strong`
+- the background stays decorative; use `img` or `picture` when the image carries content
+- the primitive does not change `wb-section`, `wb-card`, or another host root unless the class is explicitly added
 
 ### Cards and Stats
 

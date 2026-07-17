@@ -61,6 +61,7 @@ Canonical primitive families include:
 
 - button
 - badge
+- background media
 - media
 - form controls and field system
 - table
@@ -99,6 +100,26 @@ Primitives are controls and local UI contracts.
 They are not framed content regions.
 
 `wb-rich-text` is a CSS-only scoped typography primitive for sanitized editorial body copy.
+
+`wb-background-media` is an opt-in visual primitive for an existing semantic root. It does not create a surface, change the root's layout, or make `wb-section` background-aware by default.
+
+```html
+<section
+  class="wb-section wb-background-media wb-background-media--overlay-medium"
+  style="--wb-background-media-image: url('/media/section.webp'); --wb-background-media-position: center;"
+>
+  ...
+</section>
+```
+
+Boundary rules for `wb-background-media`:
+
+- the host owns media selection, URL safety, and the semantic root
+- the image is decorative; accessible content remains real child markup
+- no overlay modifier means the soft default
+- supported modifiers are `wb-background-media--overlay-none`, `wb-background-media--overlay-medium`, and `wb-background-media--overlay-strong`
+- `--wb-background-media-position` defaults to `center`; hosts should allowlist accepted CSS positions
+- do not add it when no background image custom property is present
 
 Boundary rules for `wb-rich-text`:
 
