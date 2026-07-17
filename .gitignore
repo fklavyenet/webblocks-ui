@@ -22,3 +22,6 @@ playwright-report/
 
 # Generated AI knowledge export
 /build/ai-knowledge/
+
+# Local AI agent contract — never tracked or pushed
+AGENTS.md
