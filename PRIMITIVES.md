@@ -370,6 +370,9 @@ Examples:
 - `data-wb-cookie-consent-accept`
 - `data-wb-cookie-consent-reject`
 - `data-wb-cookie-consent-save`
+- `data-wb-update-indicator`
+- `data-wb-update-indicator-url`
+- `data-wb-update-indicator-label`
 
 These are not UI primitives.
 They are interaction hooks owned by shipped JS and attribute-driven CSS behavior.
