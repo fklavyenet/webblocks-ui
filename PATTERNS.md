@@ -147,9 +147,28 @@ Canonical utility order when every control is present:
 
 1. search
 2. notifications
-3. mode or theme
-4. language
-5. auth entry or user menu
+3. update indicator
+4. mode or theme
+5. language
+6. auth entry or user menu
+
+#### Navbar utilities (icon actions)
+
+Navbar utilities are the small cluster of controls that sit at the trailing edge of a bar. The same set appears in a public site navbar and in an application topbar, so the vocabulary is context-neutral: the terms `topbar` and `navbar` do not belong in utility class names.
+
+- Container: `wb-cluster` (a layout helper), not a bar-specific wrapper.
+- Icon action: the universal button primitive `wb-btn wb-btn-ghost wb-btn-icon`. It is the canonical icon-action for utilities in both bars. `wb-topbar-action` remains a shipped alias for existing application-topbar markup, but new work should prefer the button primitive.
+- Status dot: `wb-btn-dot` (add `wb-btn-dot--accent` for the accent tone). It marks unread/available state on any icon action. The dot is decorative — the button's `aria-label` conveys the state, so mark the dot `aria-hidden`.
+
+Per-utility composition:
+
+- search: an icon action that opens the command palette — `<button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="cmd" data-wb-target="#palette">`. The palette owns its own markup and strings; the host supplies results through `WBCommandPalette.onSearch`.
+- notifications: an icon action carrying `wb-btn-dot`, opening a `wb-dropdown` whose `wb-dropdown-menu wb-dropdown-menu--panel` hosts a `wb-list` of rows (`wb-list-item`, plus `wb-list-item--unread` for unread rows). No new runtime — the dropdown handles open/close; the host owns the notification data and unread state.
+- update indicator: an icon action with `data-wb-update-indicator` and a `wb-btn-dot`. `WBUpdateIndicator` reveals it from a JSON status endpoint; see `update-indicator.js`.
+- mode or theme: an icon action with `data-wb-mode-cycle`. Localize its label with `data-wb-mode-label-light|dark|auto`.
+- language: `wb-language-switcher`; user or guest auth: `wb-user-menu` / `wb-auth-entry`. These compound utilities keep their own trigger contracts.
+
+All utility text (labels, notification copy, "see all", palette strings) is host-authored markup, so localization stays with the host.
 
 Language switcher variants:
 

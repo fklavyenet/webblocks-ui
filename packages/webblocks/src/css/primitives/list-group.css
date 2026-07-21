@@ -162,3 +162,11 @@
   font-weight: 700;
   flex-shrink: 0;
 }
+
+/* Unread emphasis for notification/activity rows. */
+.wb-list-item--unread {
+  background: color-mix(in srgb, var(--wb-primary) 7%, var(--wb-surface));
+}
+.wb-list-item--unread .wb-list-item-title {
+  font-weight: 600;
+}

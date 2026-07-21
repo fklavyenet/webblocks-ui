@@ -96,3 +96,12 @@ html.wb-js .wb-dropdown-menu {
 .wb-dropdown-menu[data-wb-overlay-side="top"] {
   transform-origin: bottom left;
 }
+
+/* Wide panel variant for rich dropdown content (notifications,
+   activity, previews). Scrolls when the content is tall. */
+.wb-dropdown-menu--panel {
+  min-width: 320px;
+  max-width: 92vw;
+  max-height: min(70vh, 420px);
+  overflow-y: auto;
+}

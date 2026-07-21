@@ -159,3 +159,26 @@
 .wb-btn-group-join .wb-btn + .wb-btn {
   margin-left: -1px;
 }
+
+/* ── Icon-button indicator dot ────────────────────────────── */
+/* Unread/available marker for icon buttons (notifications, update
+   available, ...). Sits at the top-right corner; the surface-colored
+   ring lifts it clear of the icon strokes. Decorative — the button's
+   aria-label conveys state, so mark the dot aria-hidden. */
+.wb-btn:has(> .wb-btn-dot) {
+  position: relative;
+}
+.wb-btn-dot {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-danger);
+  border: 2px solid var(--wb-surface);
+  pointer-events: none;
+}
+.wb-btn-dot--accent {
+  background: var(--wb-primary);
+}

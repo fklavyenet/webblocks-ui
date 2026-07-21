@@ -4,14 +4,14 @@
    JSON status endpoint. The element starts `hidden`; the badge
    is shown only when the endpoint reports an available update.
 
-   Markup:
-     <a class="wb-navbar-icon-trigger wb-navbar-update-indicator"
+   Markup (a shipped icon action; the dot uses the wb-btn-dot primitive):
+     <a class="wb-btn wb-btn-ghost wb-btn-icon"
         data-wb-update-indicator
         data-wb-update-indicator-url="/path/to/indicator.json"
         data-wb-update-indicator-state="unknown"
         hidden>
        <i class="wb-icon wb-icon-download" aria-hidden="true"></i>
-       <span class="wb-navbar-update-dot" aria-hidden="true"></span>
+       <span class="wb-btn-dot" aria-hidden="true"></span>
        <span class="wb-sr-only" data-wb-update-indicator-label>Update available</span>
      </a>
 

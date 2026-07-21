@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.12.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.13.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -2468,6 +2468,29 @@ textarea::placeholder {
 .wb-btn-group-join .wb-btn + .wb-btn {
   margin-left: -1px;
 }
+
+/* ── Icon-button indicator dot ────────────────────────────── */
+/* Unread/available marker for icon buttons (notifications, update
+   available, ...). Sits at the top-right corner; the surface-colored
+   ring lifts it clear of the icon strokes. Decorative — the button's
+   aria-label conveys state, so mark the dot aria-hidden. */
+.wb-btn:has(> .wb-btn-dot) {
+  position: relative;
+}
+.wb-btn-dot {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-danger);
+  border: 2px solid var(--wb-surface);
+  pointer-events: none;
+}
+.wb-btn-dot--accent {
+  background: var(--wb-primary);
+}
 /* ============================================================
    WebBlocks UI — Badge (wb-badge)
    ============================================================ */
@@ -4044,6 +4067,15 @@ html.wb-js .wb-dropdown-menu {
 .wb-dropdown-menu[data-wb-overlay-side="top"] {
   transform-origin: bottom left;
 }
+
+/* Wide panel variant for rich dropdown content (notifications,
+   activity, previews). Scrolls when the content is tall. */
+.wb-dropdown-menu--panel {
+  min-width: 320px;
+  max-width: 92vw;
+  max-height: min(70vh, 420px);
+  overflow-y: auto;
+}
 /* ============================================================
    WebBlocks UI — Tabs (wb-tabs)
    JS: data-wb-tab="panel-id" on buttons, panels have matching id
@@ -4987,6 +5019,11 @@ button.wb-pagination-link {
 }
 
 /* ── Topbar actions (right-side navbar area) ──────────────── */
+/* DEPRECATED alias. New work uses the neutral utility vocabulary:
+   a wb-cluster container of wb-btn wb-btn-ghost wb-btn-icon actions
+   (with wb-btn-dot for status), which works in both a public navbar
+   and an app topbar. wb-topbar-action(s)/wb-topbar-user remain for
+   backward compatibility. See PATTERNS.md "Navbar utilities". */
 
 .wb-topbar-actions {
   display: flex;
@@ -6621,6 +6658,14 @@ html.wb-js .wb-popover-panel {
   font-size: 0.78rem;
   font-weight: 700;
   flex-shrink: 0;
+}
+
+/* Unread emphasis for notification/activity rows. */
+.wb-list-item--unread {
+  background: color-mix(in srgb, var(--wb-primary) 7%, var(--wb-surface));
+}
+.wb-list-item--unread .wb-list-item-title {
+  font-weight: 600;
 }
 /* ============================================================
    WebBlocks UI — Link List / Index List
@@ -8576,9 +8621,14 @@ html.wb-js .wb-popover-panel {
   }
 }
 /* ============================================================
-   WebBlocks UI — Topbar Menus
-   Additive compositions built on wb-dropdown, wb-topbar-action,
-   wb-topbar-user, and wb-avatar. Host apps own data and routes.
+   WebBlocks UI — Navbar/Topbar Menus
+   Additive compositions built on the wb-btn ghost primitive,
+   wb-dropdown, wb-avatar, and (for the user trigger) an avatar+name
+   button. The same set is used in a public navbar and an app topbar,
+   so triggers sit on the neutral button primitive:
+     wb-btn wb-btn-ghost [wb-btn-icon] + the trigger class.
+   wb-topbar-action / wb-topbar-user remain shipped as backward-compat
+   bases. Host apps own data and routes.
    ============================================================ */
 
 .wb-language-switcher,
@@ -8625,16 +8675,14 @@ html.wb-js .wb-popover-panel {
   display: none;
 }
 
+/* Sits on wb-btn wb-btn-ghost: the base owns centering, radius, ghost
+   color, and hover. The trigger only tightens width/padding/gap and
+   keeps the button font size (height parity with the icon actions);
+   the visible code is sized on wb-language-switcher-code. */
 .wb-language-switcher-trigger {
   width: auto;
-  min-width: 2.2rem;
   padding-inline: var(--wb-s2);
   gap: var(--wb-s1);
-  font: inherit;
-  font-size: 0.78rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
 }
 
 .wb-language-switcher-code {
@@ -8643,6 +8691,9 @@ html.wb-js .wb-popover-panel {
   justify-content: center;
   min-width: 1.5rem;
   white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .wb-language-switcher-icon,
@@ -8658,8 +8709,7 @@ html.wb-js .wb-popover-panel {
 }
 
 .wb-language-switcher--icon .wb-language-switcher-trigger {
-  width: 2.2rem;
-  padding-inline: 0;
+  padding-inline: 0.5em;
 }
 
 .wb-language-switcher-item-code {
@@ -8673,8 +8723,12 @@ html.wb-js .wb-popover-panel {
   color: currentColor;
 }
 
+/* Sits on wb-btn wb-btn-ghost: an avatar + name/context button.
+   Overrides the button padding for the avatar-leading layout. */
 .wb-user-menu-trigger {
+  gap: var(--wb-s2);
   max-width: min(18rem, 45vw);
+  padding: 0.25em 0.5em 0.25em 0.25em;
 }
 
 .wb-user-menu-copy {

@@ -13,7 +13,9 @@
    Storage keys:  wb-mode, wb-preset, wb-accent, wb-radius,
                   wb-density, wb-shadow, wb-font
 
-   Button hooks:  data-wb-mode-set="light|dark|auto"
+   Button hooks:  data-wb-mode-cycle
+                  data-wb-mode-label-light|dark|auto  (optional host-localized labels)
+                  data-wb-mode-set="light|dark|auto"
                   data-wb-preset-set="modern|minimal|..."
                   data-wb-accent-set="ocean|..."
                   data-wb-radius-set="sharp|default|soft"
@@ -225,10 +227,13 @@
         i.className = i.className.replace(/wb-icon-sun(-moon)?|wb-icon-moon/g, '').trim();
         i.classList.add('wb-icon-' + icon);
       }
-      // Update title/aria-label
-      var labels = { light: 'Light mode', dark: 'Dark mode', auto: 'Auto mode' };
-      btn.setAttribute('title', labels[mode]);
-      btn.setAttribute('aria-label', labels[mode]);
+      // Update title/aria-label. Host-provided localized labels
+      // (data-wb-mode-label-light|dark|auto) override the English
+      // defaults, mirroring the data-wb-password-label-* pattern.
+      var defaultLabels = { light: 'Light mode', dark: 'Dark mode', auto: 'Auto mode' };
+      var label = btn.getAttribute('data-wb-mode-label-' + mode) || defaultLabels[mode];
+      btn.setAttribute('title', label);
+      btn.setAttribute('aria-label', label);
     });
   }
 

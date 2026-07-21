@@ -220,6 +220,11 @@
 }
 
 /* ── Topbar actions (right-side navbar area) ──────────────── */
+/* DEPRECATED alias. New work uses the neutral utility vocabulary:
+   a wb-cluster container of wb-btn wb-btn-ghost wb-btn-icon actions
+   (with wb-btn-dot for status), which works in both a public navbar
+   and an app topbar. wb-topbar-action(s)/wb-topbar-user remain for
+   backward compatibility. See PATTERNS.md "Navbar utilities". */
 
 .wb-topbar-actions {
   display: flex;

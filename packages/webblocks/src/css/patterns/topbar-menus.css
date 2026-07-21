@@ -1,7 +1,12 @@
 /* ============================================================
-   WebBlocks UI — Topbar Menus
-   Additive compositions built on wb-dropdown, wb-topbar-action,
-   wb-topbar-user, and wb-avatar. Host apps own data and routes.
+   WebBlocks UI — Navbar/Topbar Menus
+   Additive compositions built on the wb-btn ghost primitive,
+   wb-dropdown, wb-avatar, and (for the user trigger) an avatar+name
+   button. The same set is used in a public navbar and an app topbar,
+   so triggers sit on the neutral button primitive:
+     wb-btn wb-btn-ghost [wb-btn-icon] + the trigger class.
+   wb-topbar-action / wb-topbar-user remain shipped as backward-compat
+   bases. Host apps own data and routes.
    ============================================================ */
 
 .wb-language-switcher,
@@ -48,16 +53,14 @@
   display: none;
 }
 
+/* Sits on wb-btn wb-btn-ghost: the base owns centering, radius, ghost
+   color, and hover. The trigger only tightens width/padding/gap and
+   keeps the button font size (height parity with the icon actions);
+   the visible code is sized on wb-language-switcher-code. */
 .wb-language-switcher-trigger {
   width: auto;
-  min-width: 2.2rem;
   padding-inline: var(--wb-s2);
   gap: var(--wb-s1);
-  font: inherit;
-  font-size: 0.78rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
 }
 
 .wb-language-switcher-code {
@@ -66,6 +69,9 @@
   justify-content: center;
   min-width: 1.5rem;
   white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .wb-language-switcher-icon,
@@ -81,8 +87,7 @@
 }
 
 .wb-language-switcher--icon .wb-language-switcher-trigger {
-  width: 2.2rem;
-  padding-inline: 0;
+  padding-inline: 0.5em;
 }
 
 .wb-language-switcher-item-code {
@@ -96,8 +101,12 @@
   color: currentColor;
 }
 
+/* Sits on wb-btn wb-btn-ghost: an avatar + name/context button.
+   Overrides the button padding for the avatar-leading layout. */
 .wb-user-menu-trigger {
+  gap: var(--wb-s2);
   max-width: min(18rem, 45vw);
+  padding: 0.25em 0.5em 0.25em 0.25em;
 }
 
 .wb-user-menu-copy {
