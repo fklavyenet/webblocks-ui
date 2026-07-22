@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.14.1] — 2026-07-22
+
+### Changed
+- Overlay gallery captions: a `wb-gallery-meta` nested inside an overlay/hover `wb-gallery-caption` now stacks cleanly as a block within the scrim (explicit `display: block` + top margin) instead of relying on inline flow. Clarify in PATTERNS.md that overlay meta nests inside the caption scrim rather than sitting as a sibling.
+
+---
+
 ## [2.14.0] — 2026-07-22
 
 ### Added

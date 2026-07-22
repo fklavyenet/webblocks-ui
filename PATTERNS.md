@@ -520,7 +520,7 @@ Layout modifiers (all optional; the bare `wb-gallery` is a fluid auto-fit grid w
 - media ratio: `wb-gallery--aspect-square` | `--aspect-4-3` | `--aspect-16-9` | `--aspect-portrait`, or `--aspect-auto` to let the intrinsic image ratio drive height.
 - variant: `wb-gallery--masonry` (CSS-columns flow; pair with `--aspect-auto`) or `wb-gallery--collage` (dense grid, every 5th item spans two tracks; needs a `--cols-*`).
 
-Caption placement modifiers — captions sit **below** the media by default (a `figcaption.wb-gallery-caption` as a sibling of the trigger). To overlay them on the media instead, move the `wb-gallery-caption` (and any `wb-gallery-meta`) *inside* the `wb-gallery-trigger` and add one of:
+Caption placement modifiers — captions sit **below** the media by default (a `figcaption.wb-gallery-caption` as a sibling of the trigger, with any `wb-gallery-meta` beside it). To overlay them on the media instead, move a `wb-gallery-caption` *inside* the `wb-gallery-trigger` — it becomes a bottom scrim — and nest any `wb-gallery-meta` **inside that caption** so it rides in the same scrim. Add one of:
 
 - `wb-gallery--captions-overlay` — caption always visible as a bottom scrim.
 - `wb-gallery--captions-hover` — caption revealed on hover/focus only.

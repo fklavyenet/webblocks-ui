@@ -140,6 +140,8 @@
 
 .wb-gallery--captions-overlay .wb-gallery-trigger .wb-gallery-meta,
 .wb-gallery--captions-hover .wb-gallery-trigger .wb-gallery-meta {
+  display: block;
+  margin-block-start: var(--wb-s1);
   color: rgba(255, 255, 255, .82);
 }
 

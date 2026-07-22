@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.14.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.14.1 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -8931,6 +8931,8 @@ html.wb-js .wb-popover-panel {
 
 .wb-gallery--captions-overlay .wb-gallery-trigger .wb-gallery-meta,
 .wb-gallery--captions-hover .wb-gallery-trigger .wb-gallery-meta {
+  display: block;
+  margin-block-start: var(--wb-s1);
   color: rgba(255, 255, 255, .82);
 }
 
