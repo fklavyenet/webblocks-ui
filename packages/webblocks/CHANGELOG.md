@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.16.2] — 2026-07-22
+
+### Added
+- `wb-action-group`: nested method-spoofing `form` elements (delete/logout row actions) now lay out inline within the group (`display: inline-flex; margin: 0`) instead of breaking the row — previously every consumer carried this rule locally.
+
+---
+
 ## [2.16.1] — 2026-07-22
 
 ### Fixed

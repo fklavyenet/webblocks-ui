@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.16.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.16.2 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -5440,6 +5440,13 @@ button.wb-pagination-link {
   align-items: center;
   gap: var(--wb-s1);
   flex-wrap: wrap;
+}
+
+/* Method-spoofing forms (delete/logout rows) participate in the
+   group like any other action instead of forcing a line break. */
+.wb-action-group form {
+  display: inline-flex;
+  margin: 0;
 }
 
 /* ── Action button (icon-only) ────────────────────────────── */

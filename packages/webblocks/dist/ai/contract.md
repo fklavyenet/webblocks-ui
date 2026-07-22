@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.16.1
+Version: v2.16.2
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
