@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.13.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.14.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -8796,6 +8796,9 @@ html.wb-js .wb-popover-panel {
    ============================================================ */
 
 .wb-gallery {
+  --wb-gallery-columns: 3;
+  --wb-gallery-gap: var(--wb-s4);
+  --wb-gallery-aspect: 4 / 3;
   display: grid;
   gap: var(--wb-s4);
 }
@@ -8803,8 +8806,32 @@ html.wb-js .wb-popover-panel {
 .wb-gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-  gap: var(--wb-s4);
+  gap: var(--wb-gallery-gap);
 }
+
+/* ── Column modifiers ─────────────────────────────────────────
+   Without a cols modifier the grid stays fluid (auto-fit). A cols
+   modifier fixes the track count; it clamps to 2 below 992px and
+   to 1 below 641px. Masonry reuses the same column count. */
+
+.wb-gallery--cols-2 { --wb-gallery-columns: 2; }
+.wb-gallery--cols-3 { --wb-gallery-columns: 3; }
+.wb-gallery--cols-4 { --wb-gallery-columns: 4; }
+.wb-gallery--cols-5 { --wb-gallery-columns: 5; }
+
+.wb-gallery--cols-2 .wb-gallery-grid,
+.wb-gallery--cols-3 .wb-gallery-grid,
+.wb-gallery--cols-4 .wb-gallery-grid,
+.wb-gallery--cols-5 .wb-gallery-grid {
+  grid-template-columns: repeat(var(--wb-gallery-columns), minmax(0, 1fr));
+}
+
+/* ── Gap modifiers ──────────────────────────────────────────── */
+
+.wb-gallery--gap-none { --wb-gallery-gap: 0; }
+.wb-gallery--gap-sm { --wb-gallery-gap: var(--wb-s2); }
+.wb-gallery--gap-md { --wb-gallery-gap: var(--wb-s4); }
+.wb-gallery--gap-lg { --wb-gallery-gap: var(--wb-s6); }
 
 .wb-gallery-item {
   display: grid;
@@ -8842,9 +8869,23 @@ html.wb-js .wb-popover-panel {
 .wb-gallery-media {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--wb-gallery-aspect);
   object-fit: cover;
   background: var(--wb-surface-2);
+}
+
+/* ── Aspect-ratio modifiers ───────────────────────────────────
+   Default media ratio is 4/3. `--aspect-auto` lets the intrinsic
+   image ratio drive height (natural for masonry). */
+
+.wb-gallery--aspect-square { --wb-gallery-aspect: 1 / 1; }
+.wb-gallery--aspect-4-3 { --wb-gallery-aspect: 4 / 3; }
+.wb-gallery--aspect-16-9 { --wb-gallery-aspect: 16 / 9; }
+.wb-gallery--aspect-portrait { --wb-gallery-aspect: 3 / 4; }
+
+.wb-gallery--aspect-auto .wb-gallery-media {
+  aspect-ratio: auto;
+  height: auto;
 }
 
 .wb-gallery-caption {
@@ -8860,9 +8901,118 @@ html.wb-js .wb-popover-panel {
   line-height: 1.5;
 }
 
+/* ── Overlay captions ─────────────────────────────────────────
+   By default caption + meta sit below the media (wb-gallery-item
+   is a grid). The overlay modifiers lift a `wb-gallery-caption`
+   that lives *inside* the trigger onto the media, as a scrim.
+   `--captions-hover` reveals the overlay only on hover/focus. */
+
+.wb-gallery--captions-overlay .wb-gallery-trigger,
+.wb-gallery--captions-hover .wb-gallery-trigger {
+  display: block;
+}
+
+.wb-gallery--captions-overlay .wb-gallery-trigger .wb-gallery-caption,
+.wb-gallery--captions-hover .wb-gallery-trigger .wb-gallery-caption {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 1;
+  margin: 0;
+  padding: var(--wb-s4) var(--wb-s3) var(--wb-s3);
+  color: #fff;
+  background: linear-gradient(
+    0deg,
+    rgba(8, 16, 22, .78),
+    rgba(8, 16, 22, .32) 56%,
+    rgba(8, 16, 22, 0)
+  );
+}
+
+.wb-gallery--captions-overlay .wb-gallery-trigger .wb-gallery-meta,
+.wb-gallery--captions-hover .wb-gallery-trigger .wb-gallery-meta {
+  color: rgba(255, 255, 255, .82);
+}
+
+.wb-gallery--overlay-solid .wb-gallery-trigger .wb-gallery-caption {
+  background: rgba(8, 16, 22, .82);
+}
+
+.wb-gallery--overlay-none .wb-gallery-trigger .wb-gallery-caption {
+  background: none;
+  text-shadow: 0 1px 2px rgba(8, 16, 22, .9);
+}
+
+.wb-gallery--captions-hover .wb-gallery-trigger .wb-gallery-caption {
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition:
+    opacity var(--wb-t),
+    transform var(--wb-t);
+}
+
+.wb-gallery--captions-hover .wb-gallery-trigger:hover .wb-gallery-caption,
+.wb-gallery--captions-hover .wb-gallery-trigger:focus-visible .wb-gallery-caption,
+.wb-gallery--captions-hover .wb-gallery-item:focus-within .wb-gallery-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-gallery--captions-hover .wb-gallery-trigger .wb-gallery-caption {
+    transition: none;
+  }
+}
+
+/* ── Masonry variant ──────────────────────────────────────────
+   CSS columns flow; items keep their intrinsic height. Pair with
+   `--aspect-auto` so media is not cropped to a fixed ratio. */
+
+.wb-gallery--masonry .wb-gallery-grid {
+  display: block;
+  column-count: var(--wb-gallery-columns);
+  column-gap: var(--wb-gallery-gap);
+}
+
+.wb-gallery--masonry .wb-gallery-item {
+  break-inside: avoid;
+  margin-block-end: var(--wb-gallery-gap);
+}
+
+.wb-gallery--masonry .wb-gallery-media {
+  aspect-ratio: auto;
+  height: auto;
+}
+
+/* ── Collage variant ──────────────────────────────────────────
+   Dense grid where every 5th item spans two tracks/rows for an
+   editorial rhythm. Requires a fixed column count. */
+
+.wb-gallery--collage .wb-gallery-grid {
+  grid-auto-flow: dense;
+}
+
+.wb-gallery--collage .wb-gallery-item:nth-child(5n + 1) {
+  grid-column: span min(2, var(--wb-gallery-columns));
+  grid-row: span 2;
+}
+
+.wb-gallery--collage .wb-gallery-item:nth-child(5n + 1) .wb-gallery-media {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
 .wb-gallery-viewer {
   display: grid;
   gap: var(--wb-s4);
+}
+
+.wb-gallery-viewer-title {
+  margin: 0;
+  text-align: center;
+  font-size: var(--wb-font-size-lg);
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .wb-gallery-viewer-toolbar {
@@ -8916,9 +9066,46 @@ html.wb-js .wb-popover-panel {
   flex-shrink: 0;
 }
 
+/* ── Responsive column clamps ─────────────────────────────────
+   Fixed column counts step down on narrower viewports so cells
+   never get too cramped; the fluid default keeps its own auto-fit
+   minmax behavior. */
+
+@media (max-width: 991px) {
+  .wb-gallery--cols-3 .wb-gallery-grid,
+  .wb-gallery--cols-4 .wb-gallery-grid,
+  .wb-gallery--cols-5 .wb-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wb-gallery--masonry .wb-gallery-grid {
+    column-count: min(2, var(--wb-gallery-columns));
+  }
+
+  .wb-gallery--collage .wb-gallery-item:nth-child(5n + 1) {
+    grid-column: span 2;
+  }
+}
+
 @media (max-width: 640px) {
   .wb-gallery-grid {
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
+
+  .wb-gallery--cols-2 .wb-gallery-grid,
+  .wb-gallery--cols-3 .wb-gallery-grid,
+  .wb-gallery--cols-4 .wb-gallery-grid,
+  .wb-gallery--cols-5 .wb-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-gallery--masonry .wb-gallery-grid {
+    column-count: 1;
+  }
+
+  .wb-gallery--collage .wb-gallery-item:nth-child(5n + 1) {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .wb-gallery-viewer-toolbar {

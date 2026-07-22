@@ -12,6 +12,19 @@ No unreleased changes.
 
 ---
 
+## [2.14.0] — 2026-07-22
+
+### Added
+- Extend the `wb-gallery` pattern with optional layout modifiers so hosts can drive column count, spacing, media ratio, layout variant, and caption placement declaratively (previously each consumer reimplemented these locally):
+  - columns: `wb-gallery--cols-2` … `--cols-5` (fixed track count, clamps to 2 below 992px and 1 below 641px; the bare gallery stays a fluid auto-fit grid).
+  - gap: `wb-gallery--gap-none` | `--gap-sm` | `--gap-md` | `--gap-lg`.
+  - media ratio: `wb-gallery--aspect-square` | `--aspect-4-3` | `--aspect-16-9` | `--aspect-portrait` | `--aspect-auto`.
+  - variants: `wb-gallery--masonry` (CSS-columns flow) and `wb-gallery--collage` (dense grid, every 5th item spans 2×2).
+  - overlay captions: `wb-gallery--captions-overlay` / `--captions-hover` lift an in-trigger `wb-gallery-caption` onto the media as a scrim, with `--overlay-solid` / `--overlay-none` tone options (gradient is the default).
+- Add `wb-gallery-viewer-title` for an optional heading above the shared modal viewer.
+
+---
+
 ## [2.13.1] — 2026-07-22
 
 ### Changed

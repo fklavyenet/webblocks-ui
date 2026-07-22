@@ -511,6 +511,20 @@ Subparts:
 - `wb-gallery-caption` = visible item title/caption
 - `wb-gallery-meta` = quiet supporting metadata
 - `wb-gallery-viewer*` = viewer subparts rendered inside a shared `wb-modal`
+- `wb-gallery-viewer-title` = optional heading above the shared viewer
+
+Layout modifiers (all optional; the bare `wb-gallery` is a fluid auto-fit grid with 4/3 media and captions below):
+
+- columns: `wb-gallery--cols-2` … `wb-gallery--cols-5` fix the track count (drops to 2 below 992px, 1 below 641px). Omit for the fluid auto-fit default.
+- gap: `wb-gallery--gap-none` | `--gap-sm` | `--gap-md` | `--gap-lg`.
+- media ratio: `wb-gallery--aspect-square` | `--aspect-4-3` | `--aspect-16-9` | `--aspect-portrait`, or `--aspect-auto` to let the intrinsic image ratio drive height.
+- variant: `wb-gallery--masonry` (CSS-columns flow; pair with `--aspect-auto`) or `wb-gallery--collage` (dense grid, every 5th item spans two tracks; needs a `--cols-*`).
+
+Caption placement modifiers — captions sit **below** the media by default (a `figcaption.wb-gallery-caption` as a sibling of the trigger). To overlay them on the media instead, move the `wb-gallery-caption` (and any `wb-gallery-meta`) *inside* the `wb-gallery-trigger` and add one of:
+
+- `wb-gallery--captions-overlay` — caption always visible as a bottom scrim.
+- `wb-gallery--captions-hover` — caption revealed on hover/focus only.
+- overlay tone (with either of the above): default is a gradient scrim; `wb-gallery--overlay-solid` for a solid panel, `wb-gallery--overlay-none` for text-shadow only.
 
 Behavior rule:
 
