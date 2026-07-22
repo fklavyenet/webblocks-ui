@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.13.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.13.1 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -2074,10 +2074,13 @@ textarea::placeholder {
   }
 }
 
-/* ── Update indicator badge ─────────────────────────────────────────────────
-   Navbar "update available" trigger, revealed by the WBUpdateIndicator JS
-   behavior (data-wb-update-indicator). The dot shows only in the
-   update_available state.
+/* ── Update indicator badge (DEPRECATED aliases) ────────────────────────────
+   DEPRECATED since v2.13.0: the canonical update-available badge is the
+   universal button primitive carrying the wb-btn-dot overlay —
+   `wb-btn wb-btn-ghost wb-btn-icon` + `<span class="wb-btn-dot">` — revealed
+   by the same WBUpdateIndicator JS behavior (data-wb-update-indicator).
+   wb-navbar-update-indicator / wb-navbar-update-dot remain shipped only as
+   backward-compat aliases for pre-2.13 markup; do not use them in new work.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .wb-navbar-update-indicator {
@@ -9462,7 +9465,7 @@ html.wb-js .wb-popover-panel {
   min-width: 0;
 }
 
-.wb-docs-topbar .wb-topbar-actions {
+.wb-docs-topbar .wb-cluster {
   flex-shrink: 0;
 }
 

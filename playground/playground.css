@@ -196,7 +196,7 @@ body {
     min-height: 32rem;
   }
 
-  .wb-topbar-actions {
+  .wb-navbar .wb-cluster {
     align-items: flex-start;
     justify-content: flex-start;
   }

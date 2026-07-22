@@ -141,7 +141,7 @@ Canonical structure:
 
 #### Topbar language and user menus
 
-Use the additive `wb-language-switcher`, `wb-auth-entry`, and `wb-user-menu` compositions inside `wb-topbar-actions`. They reuse the existing dropdown, topbar action, avatar, icon, and danger-item contracts; they do not introduce a second dropdown runtime.
+Use the additive `wb-language-switcher`, `wb-auth-entry`, and `wb-user-menu` compositions inside the utilities `wb-cluster`. Their triggers rebase onto the universal button primitive (`wb-btn wb-btn-ghost`); they reuse the existing dropdown, avatar, icon, and danger-item contracts and do not introduce a second dropdown runtime. (`wb-topbar-actions`/`wb-topbar-action` remain shipped only as deprecated aliases for pre-2.13 markup.)
 
 Canonical utility order when every control is present:
 

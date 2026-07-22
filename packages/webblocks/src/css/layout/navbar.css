@@ -413,10 +413,13 @@
   }
 }
 
-/* ── Update indicator badge ─────────────────────────────────────────────────
-   Navbar "update available" trigger, revealed by the WBUpdateIndicator JS
-   behavior (data-wb-update-indicator). The dot shows only in the
-   update_available state.
+/* ── Update indicator badge (DEPRECATED aliases) ────────────────────────────
+   DEPRECATED since v2.13.0: the canonical update-available badge is the
+   universal button primitive carrying the wb-btn-dot overlay —
+   `wb-btn wb-btn-ghost wb-btn-icon` + `<span class="wb-btn-dot">` — revealed
+   by the same WBUpdateIndicator JS behavior (data-wb-update-indicator).
+   wb-navbar-update-indicator / wb-navbar-update-dot remain shipped only as
+   backward-compat aliases for pre-2.13 markup; do not use them in new work.
    ─────────────────────────────────────────────────────────────────────────── */
 
 .wb-navbar-update-indicator {

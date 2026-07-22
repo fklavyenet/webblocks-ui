@@ -12,6 +12,48 @@ No unreleased changes.
 
 ---
 
+## [2.13.1] — 2026-07-22
+
+### Changed
+- Migrate every docs page and the playground header onto the v2.13 neutral navbar-utilities vocabulary: containers move from `wb-topbar-actions` to `wb-cluster`, icon actions to `wb-btn wb-btn-ghost wb-btn-icon`, and the language/user compound trigger demos to the `wb-btn wb-btn-ghost` base — the docs no longer teach the deprecated aliases.
+- Update the PATTERNS.md and docs "Topbar language and user menus" prose to name the neutral vocabulary and mark `wb-topbar-actions`/`wb-topbar-action`/`wb-topbar-user` as deprecated pre-2.13 aliases.
+
+### Deprecated
+- Mark `wb-navbar-update-indicator` / `wb-navbar-update-dot` as deprecated aliases in the stylesheet: the canonical update-available badge is `wb-btn wb-btn-ghost wb-btn-icon` carrying the `wb-btn-dot` overlay (both alias classes remain shipped for pre-2.13 markup).
+
+---
+
+## [2.13.0] — 2026-07-21
+
+### Added
+- Neutral navbar-utilities vocabulary: icon actions standardize on `wb-btn wb-btn-ghost wb-btn-icon` inside a `wb-cluster` container; new `wb-btn-dot` overlay primitive (with `wb-btn-dot--accent`) for unread/available state on any icon button.
+- Notifications composition: `wb-dropdown-menu--panel` and `wb-list-item--unread` for the bell + dropdown + list pattern (host owns data; no new runtime).
+- `theme.js` mode-label i18n: `data-wb-mode-label-light|dark|auto` host overrides for the mode-cycle control.
+- PATTERNS.md "Navbar utilities" contract: canonical utility order (search → notifications → update indicator → mode → language → user) and per-utility composition rules.
+
+### Changed
+- Compound utility triggers (`wb-language-switcher-trigger`, `wb-user-menu-trigger`, `wb-auth-entry`) rebase onto the `wb-btn wb-btn-ghost` button primitive.
+- `update-indicator.js` example markup corrected to the shipped button primitive + `wb-btn-dot`.
+
+### Deprecated
+- `wb-topbar-actions` / `wb-topbar-action` / `wb-topbar-user` remain shipped as backward-compat aliases; new work uses the neutral vocabulary.
+
+---
+
+## [2.12.1] — 2026-07-20
+
+### Added
+- Ship the navbar update-indicator badge CSS (`wb-navbar-update-indicator`, `wb-navbar-update-dot`) consumed by the `data-wb-update-indicator` runtime. (Superseded by `wb-btn-dot` in 2.13.0.)
+
+---
+
+## [2.12.0] — 2026-07-20
+
+### Added
+- `WBUpdateIndicator` runtime (`data-wb-update-indicator`): reveals an update-available badge from a JSON status endpoint (visible/state/label/url contract), fails silently, and exposes `WBUpdateIndicator.refresh()`.
+
+---
+
 ## [2.11.0] — 2026-07-17
 
 ### Added
