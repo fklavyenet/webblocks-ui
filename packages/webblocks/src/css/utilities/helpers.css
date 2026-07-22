@@ -23,10 +23,12 @@
 .wb-items-start   { align-items: flex-start !important; }
 .wb-items-center  { align-items: center !important; }
 .wb-items-end     { align-items: flex-end !important; }
+.wb-items-stretch { align-items: stretch !important; }
 .wb-justify-start   { justify-content: flex-start !important; }
 .wb-justify-center  { justify-content: center !important; }
 .wb-justify-end     { justify-content: flex-end !important; }
 .wb-justify-between { justify-content: space-between !important; }
+.wb-gap-0  { gap: 0; }
 .wb-gap-1  { gap: var(--wb-s1); }
 .wb-gap-2  { gap: var(--wb-s2); }
 .wb-gap-3  { gap: var(--wb-s3); }

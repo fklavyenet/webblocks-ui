@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.14.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.15.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -1182,10 +1182,12 @@ textarea::placeholder {
 .wb-items-start   { align-items: flex-start !important; }
 .wb-items-center  { align-items: center !important; }
 .wb-items-end     { align-items: flex-end !important; }
+.wb-items-stretch { align-items: stretch !important; }
 .wb-justify-start   { justify-content: flex-start !important; }
 .wb-justify-center  { justify-content: center !important; }
 .wb-justify-end     { justify-content: flex-end !important; }
 .wb-justify-between { justify-content: space-between !important; }
+.wb-gap-0  { gap: 0; }
 .wb-gap-1  { gap: var(--wb-s1); }
 .wb-gap-2  { gap: var(--wb-s2); }
 .wb-gap-3  { gap: var(--wb-s3); }
@@ -2675,6 +2677,12 @@ textarea::placeholder {
   justify-content: space-between;
   gap: var(--wb-s2);
   flex-wrap: wrap;
+}
+
+/* A cluster that is the footer's only content spans the full row so
+   its own justification (start/between/end) takes effect. */
+.wb-card-footer > .wb-cluster:only-child {
+  flex: 1 1 100%;
 }
 
 .wb-detail-list {
@@ -10105,6 +10113,44 @@ i.wb-icon {
 .wb-icon-danger  { color: var(--wb-danger);   background-color: var(--wb-danger); }
 .wb-icon-info    { color: var(--wb-info);      background-color: var(--wb-info); }
 .wb-icon-on      { color: var(--wb-accent-on); background-color: var(--wb-accent-on); }
+
+/* ── Tone axis ─────────────────────────────────────────────── */
+
+/* Host-themable editorial tones. Each tone reads a host-supplied
+   `--wb-icon-tone-*` token and falls back to a sensible core token,
+   so the axis works out of the box and hosts (site themes, brand
+   palettes) can re-point every tone without new CSS classes. */
+
+.wb-icon-tone-soft {
+  color: var(--wb-icon-tone-soft, var(--wb-muted));
+  background-color: var(--wb-icon-tone-soft, var(--wb-muted));
+}
+
+.wb-icon-tone-brand {
+  color: var(--wb-icon-tone-brand, var(--wb-accent));
+  background-color: var(--wb-icon-tone-brand, var(--wb-accent));
+}
+
+.wb-icon-tone-accent {
+  color: var(--wb-icon-tone-accent, var(--wb-accent));
+  background-color: var(--wb-icon-tone-accent, var(--wb-accent));
+}
+
+.wb-icon-tone-highlight {
+  color: var(--wb-icon-tone-highlight, var(--wb-warning));
+  background-color: var(--wb-icon-tone-highlight, var(--wb-warning));
+}
+
+.wb-icon-tone-bold {
+  color: var(--wb-icon-tone-bold, var(--wb-text));
+  background-color: var(--wb-icon-tone-bold, var(--wb-text));
+}
+
+.wb-icon-tone-quiet {
+  color: var(--wb-icon-tone-quiet, var(--wb-muted));
+  background-color: var(--wb-icon-tone-quiet, var(--wb-muted));
+  opacity: 0.72;
+}
 
 /* ── Layout helpers ────────────────────────────────────────── */
 

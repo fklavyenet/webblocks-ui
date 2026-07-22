@@ -320,6 +320,15 @@ Navbar active indicators:
 - keep current-page state on the link with `is-active` and `aria-current="page"`
 - prefer these shipped indicator classes over project-local navbar active CSS
 
+Navbar mobile drawer (shipped responsive contract):
+
+- desktop links live in `wb-navbar-links`; below 769px the stylesheet hides them and shows `wb-navbar-toggle`
+- the mobile menu is `wb-navbar-drawer`: a full-width link column rendered directly after the `wb-navbar` element, hidden until `.is-open`
+- wire the toggle with the generic collapse runtime — `<button class="wb-navbar-toggle" data-wb-collapse="site-drawer" aria-expanded="false" aria-controls="site-drawer">` toggling `<div class="wb-navbar-drawer" id="site-drawer">`
+- drawer rows are normal `wb-navbar-link` elements (full-width); group labels are host-authored text rows
+- above 768px the drawer is force-hidden by the stylesheet, so a stale open state cannot leak into desktop
+- prefer this shipped drawer over project-local mobile menus built from dropdown panels
+
 Semantic guidance:
 
 - wrap the pattern in `nav`

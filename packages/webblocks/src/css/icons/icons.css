@@ -83,6 +83,44 @@ i.wb-icon {
 .wb-icon-info    { color: var(--wb-info);      background-color: var(--wb-info); }
 .wb-icon-on      { color: var(--wb-accent-on); background-color: var(--wb-accent-on); }
 
+/* ── Tone axis ─────────────────────────────────────────────── */
+
+/* Host-themable editorial tones. Each tone reads a host-supplied
+   `--wb-icon-tone-*` token and falls back to a sensible core token,
+   so the axis works out of the box and hosts (site themes, brand
+   palettes) can re-point every tone without new CSS classes. */
+
+.wb-icon-tone-soft {
+  color: var(--wb-icon-tone-soft, var(--wb-muted));
+  background-color: var(--wb-icon-tone-soft, var(--wb-muted));
+}
+
+.wb-icon-tone-brand {
+  color: var(--wb-icon-tone-brand, var(--wb-accent));
+  background-color: var(--wb-icon-tone-brand, var(--wb-accent));
+}
+
+.wb-icon-tone-accent {
+  color: var(--wb-icon-tone-accent, var(--wb-accent));
+  background-color: var(--wb-icon-tone-accent, var(--wb-accent));
+}
+
+.wb-icon-tone-highlight {
+  color: var(--wb-icon-tone-highlight, var(--wb-warning));
+  background-color: var(--wb-icon-tone-highlight, var(--wb-warning));
+}
+
+.wb-icon-tone-bold {
+  color: var(--wb-icon-tone-bold, var(--wb-text));
+  background-color: var(--wb-icon-tone-bold, var(--wb-text));
+}
+
+.wb-icon-tone-quiet {
+  color: var(--wb-icon-tone-quiet, var(--wb-muted));
+  background-color: var(--wb-icon-tone-quiet, var(--wb-muted));
+  opacity: 0.72;
+}
+
 /* ── Layout helpers ────────────────────────────────────────── */
 
 /* Inline button/link: icon sits next to text */

@@ -8,6 +8,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+No unreleased changes.
+
+---
+
+## [2.15.0] — 2026-07-22
+
+### Added
+- Icon tone axis: `wb-icon-tone-soft` | `--brand` | `--accent` | `--highlight` | `--bold` | `--quiet` — host-themable editorial icon tones. Each reads a host-supplied `--wb-icon-tone-*` token and falls back to a core token (`--wb-muted`, `--wb-accent`, `--wb-warning`, `--wb-text`), so site themes and brand palettes can re-point every tone without new CSS classes.
+- Utilities: `wb-gap-0` (zero flex/grid gap) and `wb-items-stretch` (completes the `wb-items-*` alignment set).
+- Card: a `wb-cluster` that is a `wb-card-footer`'s only content now spans the full row so its own justification takes effect.
+- PATTERNS.md: document the shipped navbar mobile-drawer contract — `wb-navbar-links` collapse below 769px, `wb-navbar-toggle` wired via the generic `data-wb-collapse` runtime, `wb-navbar-drawer` as the full-width mobile menu — and prefer it over project-local dropdown-panel mobile menus.
+
 ### Changed
 - Docs: rewrite the Gallery pattern page for the 2.14 layout modifiers — modifier reference table, live overlay/hover-caption, masonry, and collage demos, the nested-meta overlay anatomy, the optional `wb-gallery-viewer-title`, and corrected pattern-boundary claims (masonry/collage are now official modifiers; carousel/zoom/mixed-media remain out of scope).
 

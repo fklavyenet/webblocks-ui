@@ -114,6 +114,12 @@
   flex-wrap: wrap;
 }
 
+/* A cluster that is the footer's only content spans the full row so
+   its own justification (start/between/end) takes effect. */
+.wb-card-footer > .wb-cluster:only-child {
+  flex: 1 1 100%;
+}
+
 .wb-detail-list {
   display: grid;
   gap: 0;
