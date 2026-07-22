@@ -346,6 +346,7 @@ cat \
   "$ROOT/src/js/password-toggle.js" \
   "$ROOT/src/js/collapse.js" \
   "$ROOT/src/js/update-indicator.js" \
+  "$ROOT/src/js/busy-submit.js" \
   > "$JS_OUT"
 
 add_js_banner "$JS_OUT"

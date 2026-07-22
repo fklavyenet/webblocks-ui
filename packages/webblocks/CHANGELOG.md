@@ -12,6 +12,14 @@ No unreleased changes.
 
 ---
 
+## [2.16.0] — 2026-07-22
+
+### Added
+- Official `wb-btn` busy state: `.wb-btn.is-busy` shows a leading spinner, progress cursor, and a click shield (respects `prefers-reduced-motion`). New `busy-submit.js` runtime (`WBBusySubmit`): a submit button marked `data-wb-busy` locks itself on the owning form's submit — adds `.is-busy` + `aria-busy` + `disabled`, and swaps its `[data-wb-busy-text]` label to `data-wb-busy-label` when provided.
+- Breadcrumb: `wb-breadcrumb-link` now breaks long segment text (`overflow-wrap: anywhere`), matching the existing `wb-breadcrumb-current` behavior, so breadcrumbs in tight bars never overflow.
+
+---
+
 ## [2.15.0] — 2026-07-22
 
 ### Added

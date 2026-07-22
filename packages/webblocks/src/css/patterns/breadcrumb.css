@@ -58,6 +58,8 @@
 .wb-breadcrumb-link {
   color: var(--wb-breadcrumb-link-color);
   text-decoration: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   transition: color var(--wb-t), text-decoration-color var(--wb-t), box-shadow var(--wb-t);
 }
 
