@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.16.1] — 2026-07-22
+
+### Fixed
+- Closed drawers now leave the accessibility tree and tab order: `wb-drawer` gains `visibility: hidden` when not `.is-open`, flipped after the slide-out transition so the animation is preserved. Previously a closed drawer was only translated off-screen and its content stayed focusable.
+
+---
+
 ## [2.16.0] — 2026-07-22
 
 ### Added

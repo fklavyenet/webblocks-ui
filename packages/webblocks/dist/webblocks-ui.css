@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.16.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.16.1 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -6074,8 +6074,16 @@ html.wb-js .wb-popover-panel {
   display: flex;
   flex-direction: column;
   box-shadow: var(--wb-shadow-xl);
-  transition: transform 0.25s ease;
+  /* Closed drawers leave the accessibility tree and tab order:
+     visibility flips after the slide-out transition completes. */
+  visibility: hidden;
+  transition: transform 0.25s ease, visibility 0s linear 0.25s;
   overflow: hidden;
+}
+
+.wb-drawer.is-open {
+  visibility: visible;
+  transition: transform 0.25s ease;
 }
 
 /* ── Placement: right (default) ───────────────────────────── */
