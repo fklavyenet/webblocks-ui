@@ -8,7 +8,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-No unreleased changes.
+### Changed
+- Docs: rewrite the Gallery pattern page for the 2.14 layout modifiers — modifier reference table, live overlay/hover-caption, masonry, and collage demos, the nested-meta overlay anatomy, the optional `wb-gallery-viewer-title`, and corrected pattern-boundary claims (masonry/collage are now official modifiers; carousel/zoom/mixed-media remain out of scope).
 
 ---
 
