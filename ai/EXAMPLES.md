@@ -48,7 +48,7 @@ Wrong:
 Right:
 
 ```html
-<button type="button" class="wb-btn wb-btn-danger" data-wb-modal-open="delete-item">
+<button type="button" class="wb-btn wb-btn-danger" data-wb-toggle="modal" data-wb-target="#delete-item">
   Delete
 </button>
 
