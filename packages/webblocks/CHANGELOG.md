@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.16.3] — 2026-07-27
+
+### Changed
+- `WBUpdateIndicator` now fails **safe rather than silent**. A bad status, a body that will not parse, or a network error still leaves the badge hidden — the page never breaks over an update check — but the element is marked `data-wb-update-indicator-state="error"` and the reason goes to `console.warn`, naming the endpoint. Previously every failure was swallowed by an empty `catch`, so a `404`, a redirect to a login page (which arrives as `200` HTML and throws on parse) and a correct "no update available" were indistinguishable: the badge simply never appeared, with nothing in the console, the network panel verdict, or the DOM to tell them apart. Diagnosing one such case cost two rounds of guesswork across a fleet install.
+
+---
+
 ## [2.16.2] — 2026-07-22
 
 ### Added

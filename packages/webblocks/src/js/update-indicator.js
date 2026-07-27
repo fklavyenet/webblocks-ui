@@ -24,7 +24,12 @@
                          [data-wb-update-indicator-label] text
    - url     : string  — optional; sets the element href
 
-   Fails silently: a network/parse error leaves the badge hidden.
+   Fails safe, not silent: a bad status, an unparseable body or a network
+   error leaves the badge hidden — the page never breaks over an update
+   check — but the element is marked `data-wb-update-indicator-state="error"`
+   and the reason is reported with console.warn. Silence here is expensive:
+   a badge that never appears looks identical whether the endpoint 404s,
+   redirects to a login page, or correctly reports "no update".
 
    Public API:
      WBUpdateIndicator.refresh()          — re-fetch every indicator
@@ -63,6 +68,15 @@
     }
   }
 
+  function fail(el, url, reason) {
+    el.hidden = true;
+    el.setAttribute('data-wb-update-indicator-state', 'error');
+
+    if (window.console && typeof window.console.warn === 'function') {
+      window.console.warn('[wb-update-indicator] ' + reason + ' — ' + url + '. The update badge stays hidden.');
+    }
+  }
+
   function refreshOne(el) {
     var url = el.getAttribute('data-wb-update-indicator-url');
     if (!url) {
@@ -73,10 +87,26 @@
       headers: { Accept: 'application/json' },
       credentials: 'same-origin'
     }).then(function (response) {
-      return response.ok ? response.json() : null;
+      if (!response.ok) {
+        fail(el, url, 'the status endpoint answered HTTP ' + response.status);
+
+        return null;
+      }
+
+      // An auth redirect lands here as 200 HTML and throws on parse — worth
+      // saying out loud, since it looks exactly like "no update available".
+      return response.json().then(null, function () {
+        fail(el, url, 'the status endpoint did not return JSON');
+
+        return null;
+      });
     }).then(function (data) {
-      apply(el, data);
-    }).catch(function () {});
+      if (data !== null) {
+        apply(el, data);
+      }
+    }).catch(function (error) {
+      fail(el, url, 'the status request failed (' + (error && error.message ? error.message : 'network error') + ')');
+    });
   }
 
   function refresh(target) {
