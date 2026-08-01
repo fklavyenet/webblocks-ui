@@ -1162,6 +1162,28 @@ Legacy-compatible alternate class names also work:
 - canonical names: `wb-tabs-nav`, `wb-tabs-btn`, `wb-tabs-panel`
 - legacy/alternate names: `wb-tab-list`, `wb-tab-item`, `wb-tab-panels`, `wb-tab-panel`
 
+Tabs inside a `<form>` — keep a field in sync with `data-wb-tabs-field`:
+
+```html
+<form method="POST" action="/admin/sites/42">
+  <input type="hidden" name="_active_tab" value="settings" data-tab-field>
+
+  <div class="wb-tabs" data-wb-tabs data-wb-tabs-field="[data-tab-field]">
+    <div class="wb-tabs-nav" role="tablist">
+      <button class="wb-tabs-btn" data-wb-tab="panel-overview" aria-selected="false" tabindex="-1">Overview</button>
+      <button class="wb-tabs-btn is-active" data-wb-tab="panel-settings" aria-selected="true">Settings</button>
+    </div>
+    <div class="wb-tabs-panel" id="panel-overview">Overview content</div>
+    <div class="wb-tabs-panel is-active" id="panel-settings">Settings content</div>
+  </div>
+</form>
+```
+
+- `data-wb-tabs-field` is a selector, resolved with `container.querySelector`, not a field name.
+- On every tab change `WBTabs` writes the active tab's id into that field's `value`. The host does not need its own `wb:tabs:change` listener just to keep a hidden input in sync.
+- The field's starting `value` is the host's responsibility — set it to match whichever panel renders `.is-active` — the same way the host is already responsible for which panel starts active.
+- This exists specifically for the "tabs inside a form" case: without it, a validation error redisplays the form on the first tab regardless of which tab the error is actually on, because nothing told the server which tab was active when the user submitted.
+
 ### Accordion
 
 Full attribute-based pattern:
@@ -2247,6 +2269,11 @@ Supported shipped behavior:
 <!-- tabs / accordion / collapse -->
 <button data-wb-tab="panel-billing">Billing</button>
 
+<div class="wb-tabs" data-wb-tabs data-wb-tabs-field="[data-tab-field]">
+  <!-- ...tab buttons and panels... -->
+  <input type="hidden" name="_active_tab" value="panel-billing" data-tab-field>
+</div>
+
 <div data-wb-accordion data-wb-accordion-single="true">...</div>
 <button data-wb-accordion-trigger aria-controls="acc-one">Toggle</button>
 
@@ -2290,6 +2317,7 @@ Important:
 - `ajax-toggle` uses `data-wb-url`, `data-wb-field`, `data-wb-id`
 - it does not use `data-url` or `data-csrf`
 - CSRF is read automatically from `<meta name="csrf-token">`
+- tabs' `data-wb-tabs-field` is a **selector** (resolved with `container.querySelector`), unlike ajax-toggle's `data-wb-field`, which is a **field name string** — same-looking attribute name, different contract, do not conflate the two
 
 ---
 

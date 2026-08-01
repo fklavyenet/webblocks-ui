@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.17.0] — 2026-08-01
+
+### Added
+- `wb-tabs` gains an opt-in `data-wb-tabs-field="<selector>"` attribute on the tabs container. On every tab change, `WBTabs` writes the active tab's id into the matching field's `value`, resolved with `container.querySelector`. This closes the gap that pushed every downstream consumer with tabs inside a `<form>` to hand-roll its own `wb:tabs:change` listener just to keep a hidden input in sync — needed so a server-side validation failure can redisplay the form on the tab the error actually happened on, instead of silently reopening on the first tab. See `packages/webblocks/src/js/tabs.js` and the "Tabs inside a `<form>`" section of `INTEGRATION.md` for the full pattern.
+
+---
+
 ## [2.16.3] — 2026-07-27
 
 ### Changed

@@ -1,5 +1,5 @@
 /*!
- * WebBlocks UI v2.16.3 (https://webblocksui.com/)
+ * WebBlocks UI v2.17.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -2603,6 +2603,34 @@
          <div class="wb-tab-panel" id="panel2">Content 2</div>
        </div>
      </div>
+
+   Optional — sync the active tab into a form field (data-wb-tabs-field):
+
+     A host page whose tabs sit inside a <form> often needs to know, on the
+     server, which tab was active when the form was submitted — for example
+     to redisplay the same tab after a validation error, instead of silently
+     reopening on the first one. Point the container at a field with
+     data-wb-tabs-field (a selector resolved with container.querySelector);
+     WBTabs writes the active tab id into it on every change, so the host
+     never has to listen for wb:tabs:change itself just to keep a hidden
+     input in sync.
+
+     <div class="wb-tabs" data-wb-tabs data-wb-tabs-field="[data-tab-field]">
+       <div class="wb-tabs-nav" role="tablist">
+         <button class="wb-tabs-btn is-active" data-wb-tab="panel1">Tab 1</button>
+         <button class="wb-tabs-btn" data-wb-tab="panel2">Tab 2</button>
+       </div>
+       <div class="wb-tabs-panels">
+         <div class="wb-tabs-panel is-active" id="panel1">Content 1</div>
+         <div class="wb-tabs-panel" id="panel2">Content 2</div>
+       </div>
+       <input type="hidden" name="active_tab" value="panel1" data-tab-field>
+     </div>
+
+     The field's initial value is the host's responsibility (it should match
+     whichever panel is rendered .is-active on load); WBTabs only keeps it in
+     sync from that point on, the same way the rest of the widget never
+     initializes state that the server already rendered correctly.
    ============================================================ */
 
 (function () {
@@ -2634,6 +2662,13 @@
     }
     if (targetPanel) {
       targetPanel.classList.add('is-active');
+    }
+
+    // Mirror into a host-declared form field, if any (data-wb-tabs-field).
+    var fieldSelector = container.getAttribute('data-wb-tabs-field');
+    if (fieldSelector) {
+      var field = container.querySelector(fieldSelector);
+      if (field) field.value = targetId;
     }
 
     // Emit event
