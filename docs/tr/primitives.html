@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Primitives</title>
+  <meta name="description" content="Yalnızca pakette gelen WebBlocks UI sınıfları ve etkileşimleriyle kurulmuş, kaynağa sadık bir primitive referansı.">
+  <link rel="alternate" hreflang="en" href="../primitives.html">
+  <link rel="alternate" hreflang="de" href="../de/primitives.html">
+  <link rel="alternate" hreflang="tr" href="primitives.html">
+  <link rel="alternate" hreflang="x-default" href="../primitives.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Primitives</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#primitivesThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="primitivesThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#primitivesLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="primitivesLangMenu"><a class="wb-dropdown-item" href="../primitives.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/primitives.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="primitives.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Bu sayfadaki bölümler">
+            <div class="wb-section-nav-title">Bu sayfada</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#primitive-boundaries">Primitive sınırları</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#actions-and-signals">Aksiyonlar ve sinyaller</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#forms">Formlar</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#surfaces-and-display">Surface'ler ve görünüm</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#editorial-body-copy">Editoryal gövde metni</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pagination-and-context">Sayfalama ve bağlam</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#interaction-shells">Interaction shell'ler</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Primitives</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Bu örnekler pakette gelen sınıfların içinde kalır. Üzerine demo amaçlı bir yardımcı katman eklenmez.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-wide" id="primitive-boundaries">
+                <div class="wb-callout wb-callout-accent">
+                  <strong class="wb-callout-title">İkon sınırı</strong>
+                  İkonlar bu kontrolleri ve surface'leri destekler, ancak yine de bir varlık katmanıdır. Bu rehber bilinçli olarak <code>&lt;i class="wb-icon wb-icon-..."&gt;</code> ile pakette gelen mask-image yolunu kullanır ve <code>webblocks-icons.css</code>'i ekli tutar.
+                </div>
+                <div class="wb-callout wb-callout-info">
+                  <strong class="wb-callout-title">Primitive'leri Playground'da dene</strong>
+                  Ham HTML parçalarını hızlıca test etmek istediğinde, aynı CSS, ikon ve JavaScript'i izole ve yalnızca HTML içeren bir yüzeyde önizlemek için <a href="../../playground/">Playground</a>'u aç.
+                </div>
+                <p>Tablolar tek yüzey olarak kalır: kenarlık ve yarıçap <code>wb-table-wrap</code>'e aittir, içindeki herhangi bir toolbar bir kontrol satırı olarak kalır ve tablo başlığı ikinci bir card değil bir bant olmayı sürdürür. Sistem genelinde büyük/küçük harf kullanımı içeriğe bağlıdır; hiyerarşi otomatik büyük harfe çevirmeden değil kalınlık, boşluk ve renkten gelir, böylece meta veriler sessiz ama net kalır.</p>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-sm">
+                    <thead><tr><th>İhtiyaç</th><th>Şuna uzan</th><th>Neden</th></tr></thead>
+                    <tbody>
+                      <tr><td>Birincil aksiyonlar ve durum</td><td><code>wb-btn</code>, <code>wb-badge</code>, <code>wb-status-pill</code>, <code>wb-action-group</code></td><td>Sayfa net aksiyonlar, kompakt sinyaller ve satır düzeyinde kontroller gerektirdiğinde bunları kullan.</td></tr>
+                      <tr><td>Gruplanmış bilgi ve veri gösterimi</td><td><code>wb-card</code>, <code>wb-stat</code>, <code>wb-list</code>, <code>wb-callout</code>, <code>wb-table</code></td><td>Card'lar, stat'ler, listeler ve callout'lar surface'tir. Tablolar primitive olarak kalır. Klasör konumuna göre değil arayüzdeki role göre seç.</td></tr>
+                      <tr><td>Yön bulma ve bölüm değiştirme</td><td><code>wb-tabs</code>, <code>wb-pagination</code>, pattern <code>wb-breadcrumb</code></td><td>Sayfa bağlam veya bölüm değişikliği gerektirdiğinde bunları kullan, ancak breadcrumb'ı sayfa başlığına göre ikincil tut.</td></tr>
+                      <tr><td>Geçici veya katmanlı etkileşim</td><td><code>wb-modal</code>, <code>wb-dropdown</code>, <code>wb-drawer</code>, <code>wb-accordion</code>, <code>wb-toast</code></td><td>Sayfa gizli yardımcı mantık yerine geçici yüzeyler ve açık davranış hook'ları gerektirdiğinde bunları kullan. Yapılandırılmış diyaloglar, içerik öncelikli görüntüleyici işleri ve çerez onayı tercih merkezleri için <code>wb-modal</code> kullan.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="actions-and-signals">
+                <h2>Aksiyonlar ve sinyaller</h2>
+                <div class="wb-card">
+                  <div class="wb-card-body wb-stack-4">
+                    <div class="wb-cluster">
+                      <button class="wb-btn wb-btn-primary">Primary</button>
+                      <button class="wb-btn wb-btn-secondary">Secondary</button>
+                      <button class="wb-btn wb-btn-outline">Outline</button>
+                      <button class="wb-btn wb-btn-ghost">Ghost</button>
+                    </div>
+                    <div class="wb-cluster">
+                      <span class="wb-badge wb-badge-success">Success</span>
+                      <span class="wb-badge wb-badge-warning">Warning</span>
+                      <span class="wb-badge wb-badge-danger">Danger</span>
+                      <span class="wb-status-pill wb-status-active">Aktif</span>
+                      <span class="wb-status-pill wb-status-pending">Beklemede</span>
+                    </div>
+                    <div class="wb-action-group">
+                      <button class="wb-action-btn wb-action-btn-edit" data-wb-tooltip="Edit row"><i class="wb-icon wb-icon-pencil"></i></button>
+                      <button class="wb-action-btn wb-action-btn-view" data-wb-tooltip="View details"><i class="wb-icon wb-icon-info"></i></button>
+                      <button class="wb-action-btn wb-action-btn-delete" data-wb-tooltip="Delete item"><i class="wb-icon wb-icon-x"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="forms">
+                <h2>Formlar</h2>
+                <p>Alanlar üç yuvalı bir sözleşme kullanır: etiket, kontrol ve <code>wb-field-meta</code>. İpuçlarını ve hataları ortak meta alanında tut; böylece komşu alanlar farklı yardımcı içerik taşısa bile çok sütunlu <code>wb-form-row</code> yerleşimleri hizalı kalır. <code>wb-field-hint</code> veya <code>wb-field-error</code>'ı doğrudan <code>wb-field</code> altına koyma. Üst üste dizilen formlarda boş meta satırları genellikle gereksizdir.</p>
+                <div class="wb-card">
+                  <div class="wb-card-body wb-stack-4">
+                    <div class="wb-form-row">
+                      <div class="wb-field">
+                        <label class="wb-label" for="nameField">Proje adı</label>
+                        <input class="wb-input" id="nameField" type="text" placeholder="Atlas Admin">
+                        <div class="wb-field-meta">
+                          <div class="wb-field-hint">Kısa bir dahili ad kullan.</div>
+                        </div>
+                      </div>
+                      <div class="wb-field">
+                        <label class="wb-label" for="envField">Ortam</label>
+                        <select class="wb-select" id="envField"><option>Üretim</option><option>Staging</option><option>Yerel</option></select>
+                        <div class="wb-field-meta"></div>
+                      </div>
+                    </div>
+                    <div class="wb-form-row">
+                      <div class="wb-field">
+                        <label class="wb-label" for="ownerEmail">Sahip e-postası</label>
+                        <input class="wb-input wb-input-error" id="ownerEmail" type="email" placeholder="sahip@ornek.com" value="atlas-admin">
+                        <div class="wb-field-meta">
+                          <div class="wb-field-error">Geçerli bir e-posta adresi gir.</div>
+                        </div>
+                      </div>
+                      <div class="wb-field">
+                        <label class="wb-label" for="regionField">Bölge</label>
+                        <select class="wb-select" id="regionField"><option>Frankfurt</option><option>London</option><option>Virginia</option></select>
+                        <div class="wb-field-meta">
+                          <div class="wb-field-hint">Faturalandırma ve veri konumu için kullanılır.</div>
+                          <div class="wb-field-error">Bu bölge mevcut planda kullanılamıyor.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wb-field">
+                      <label class="wb-label" for="descField">Açıklama</label>
+                      <textarea class="wb-textarea" id="descField" placeholder="Kısa özet"></textarea>
+                    </div>
+                    <div class="wb-input-group">
+                      <span class="wb-input-addon">https://</span>
+                      <input class="wb-input" type="text" placeholder="proje.ornek.com">
+                    </div>
+                    <div class="wb-field">
+                      <label class="wb-label" for="projectPassword">Yönetici parolası</label>
+                      <div class="wb-input-group">
+                        <input class="wb-input" id="projectPassword" type="password" placeholder="Bir parola gir" autocomplete="current-password">
+                        <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-toggle data-wb-target="#projectPassword" aria-label="Parolayı göster" aria-pressed="false"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button>
+                      </div>
+                      <div class="wb-field-meta">
+                        <div class="wb-field-hint">Sayfaya özel parola JS'i eklemek yerine pakette gelen input-group anahtarını kullan.</div>
+                      </div>
+                    </div>
+                    <div class="wb-cluster">
+                      <label class="wb-check"><input type="checkbox" checked> Analitiği etkinleştir</label>
+                      <label class="wb-radio"><input type="radio" name="visibility" checked> Özel</label>
+                      <label class="wb-radio"><input type="radio" name="visibility"> Herkese açık</label>
+                      <label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span> Bakım modu</label>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="surfaces-and-display">
+                <h2>Surface ve görünüm sözleşmeleri</h2>
+                <p><code>wb-card-media</code>, card gövdelerine öngörülebilir bir medya çerçevesi verir; böylece karışık logolar, ekran görüntüleri ve servis görselleri bir card ızgarası boyunca yazı taban çizgisini tutarlı tutar. Varsayılan fit değeri <code>contain</code>'dir, yani görsel varsayılan olarak kırpılmak yerine tamamen görünür kalır.</p>
+                <p class="wb-text-sm wb-text-muted">Bir <code>wb-card</code>, <code>wb-grid-2</code> veya <code>wb-grid-auto</code> gibi bir WebBlocks grid primitive'inin doğrudan çocuğuysa satır yüksekliğine uzar ve <code>wb-card-footer</code>'ı otomatik olarak altta sabit tutar.</p>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">İstatistikler</h3></div>
+                    <div class="wb-card-body">
+                      <div class="wb-grid-2">
+                        <div class="wb-stat"><div class="wb-stat-label">MRR</div><div class="wb-stat-value">$12.4k</div><div class="wb-stat-delta wb-stat-delta-up">+8.2%</div></div>
+                        <div class="wb-stat"><div class="wb-stat-label">Deneme sürümleri</div><div class="wb-stat-value">214</div><div class="wb-stat-delta wb-stat-delta-down">-2.1%</div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Uyarılar</h3></div>
+                    <div class="wb-card-body wb-stack-3">
+                      <h4>Önerilen markup</h4>
+                      <pre><code>&lt;div class="wb-alert wb-alert-info"&gt;
+  &lt;h3 class="wb-alert-title"&gt;Title&lt;/h3&gt;
+  &lt;p&gt;Content...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="wb-alert wb-alert-info"&gt;
+  &lt;p&gt;Content only...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                      <p class="wb-text-sm wb-text-muted wb-m-0">Eski sarmalayıcı markup hâlâ render edilir, ancak artık önerilen pattern doğrudan anlamsal başlıklar ve paragraflardır.</p>
+                      <div class="wb-alert wb-alert-info"><h3 class="wb-alert-title">Info</h3><p>Bağlamsal sistem geri bildirimi için alert kullan.</p></div>
+                      <div class="wb-alert wb-alert-success"><h3 class="wb-alert-title">Success</h3><p>Ayarlar başarıyla kaydedildi.</p></div>
+                      <div class="wb-alert wb-alert-warning"><h3 class="wb-alert-title">Warning</h3><p>Yıkıcı aksiyonları onaylamadan önce gözden geçir.</p></div>
+                      <div class="wb-alert wb-alert-info"><p>Yalnızca içerikten oluşan alert'ler ek bir sarmalayıcı veya başlık elementi olmadan çalışır.</p></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wb-card wb-mt-4">
+                  <div class="wb-card-header"><h3 class="wb-card-title">Geri Bildirim ve Toast Standardı</h3></div>
+                  <div class="wb-card-body wb-stack-3">
+                    <p>Geçici başarı ve bilgi geri bildirimi, normal yerleşim akışının dışında bir toast kullanmalıdır; böylece topbar, sayfa başlığı, ana içerik, card'lar ve formlar kaymaz. Başarı ve bilgi toast'ları, sunucuda render edilen markup dahil olmak üzere varsayılan olarak yaklaşık 6 saniye sonra kendiliğinden kapanır. Doğrulama hataları, kullanıcının düzeltebileceği başarısızlıklar, kalıcı uyarılar ve engelleyici hatalar ise ilgili formun, card'ın ya da bölümün yanında <code>wb-alert</code> gibi bağlamsal geri bildirimle satır içi kalır. Sayfa genelindeki alert'ler gerçekten genel veya sistem düzeyindeki durumlara ayrılmıştır.</p>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">Toast'lar modal değildir: arka plan perdesi, odak tuzağı, gövde kaydırma kilidi veya sayfa etkileşimi engeli yoktur. Kapatma kontrolleri için erişilebilir etiketli gerçek bir buton kullan.</p>
+                    <h4>Kendiliğinden kapanan başarı toast'ı</h4>
+                    <pre><code>&lt;div id="wb-overlay-root" class="wb-overlay-root"&gt;
+  &lt;div class="wb-toast-container wb-toast-container-top-right" aria-live="polite" aria-atomic="true"&gt;
+    &lt;div class="wb-toast wb-toast-success" role="status"&gt;
+      &lt;div class="wb-toast-body"&gt;
+        &lt;strong class="wb-toast-title"&gt;Message sent&lt;/strong&gt;
+        &lt;span&gt;Thanks for your message.&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;button type="button" class="wb-toast-close" aria-label="Kapat"&gt;×&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <h4>Özel zaman aşımıyla kendiliğinden kapanan bilgi toast'ı</h4>
+                    <pre><code>&lt;div class="wb-toast wb-toast-info" role="status" data-wb-toast-timeout="7000"&gt;
+  &lt;div class="wb-toast-body"&gt;
+    &lt;strong class="wb-toast-title"&gt;Draft saved&lt;/strong&gt;
+    &lt;span&gt;Your changes were saved automatically.&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;button type="button" class="wb-toast-close" aria-label="Kapat"&gt;×&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                    <h4>Kalıcı uyarı/hata toast'ı</h4>
+                    <pre><code>&lt;div class="wb-toast wb-toast-danger" role="alert" data-wb-auto-dismiss="false"&gt;
+  &lt;div class="wb-toast-body"&gt;
+    &lt;strong class="wb-toast-title"&gt;Delivery failed&lt;/strong&gt;
+    &lt;span&gt;Review the error and try again.&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;button type="button" class="wb-toast-close" aria-label="Kapat"&gt;×&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">Milisaniye cinsinden zaman aşımı vermek için <code>data-wb-toast-timeout="7000"</code> kullan. <code>data-wb-toast-timeout="0"</code> veya <code>data-wb-auto-dismiss="false"</code> değerlerini yalnızca bilinçli olarak kalıcı toast'lar için kullan.</p>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">Bir uygulama zaten overlay katmanlarını yönetiyorsa <code>.wb-overlay-layer.wb-overlay-layer--toast</code> toast container'ını sarabilir, ancak basit uygulama markup'ı bunu gerektirmez.</p>
+                  </div>
+                </div>
+
+                <div class="wb-grid-2 wb-mt-4">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Medyasız card gövdesi</h3></div>
+                    <div class="wb-card-body wb-stack-3">
+                      <strong>Faturalandırma özeti</strong>
+                      <p class="wb-m-0">Medya çerçevesi yokken mevcut card içeriği aynı iç boşluğu ve ritmi korur.</p>
+                      <div class="wb-cluster">
+                        <span class="wb-badge wb-badge-success">Sağlıklı</span>
+                        <span class="wb-text-sm wb-text-muted">card-media markup'ı gerekmez.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Medyalı card gövdesi</h3></div>
+                    <div class="wb-card-body wb-stack-3">
+                      <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-auto">
+                        <img src="../../assets/branding/logo-hd.png" alt="WebBlocks UI logo bloğu">
+                      </figure>
+                      <strong>Ortak medya ritmi</strong>
+                      <p class="wb-m-0">Görsel yükseklikleri değişkenken metnin başlangıç çizgisinin card'lar arasında hizalı kalması gerekiyorsa medya çerçevesini <code>wb-card-body</code> içinde kullan.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wb-card wb-mt-4">
+                  <div class="wb-card-header"><h3 class="wb-card-title">Card medya hizalaması</h3></div>
+                  <div class="wb-card-body wb-stack-3">
+                    <p class="wb-m-0">Card gövdesinin boşluk sözleşmesini değiştirmeden daha küçük medyayı ayrılmış çerçeveye yerleştirmek için hizalama modifier'larını kullan. <code>wb-card-media--stretch</code>, görselin <code>contain</code> ile güvenle sığmayı sürdürürken tam genişliği kullanmasını sağlar.</p>
+                    <div class="wb-grid-2">
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--start</code></p>
+                          <figure class="wb-card-media wb-card-media--start wb-card-media--aspect-auto">
+                            <img src="../../assets/branding/brand-logo-64.png" alt="Başa hizalanmış marka simgesi">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--center</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-auto">
+                            <img src="../../assets/branding/brand-logo-64.png" alt="Ortaya hizalanmış marka simgesi">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--end</code></p>
+                          <figure class="wb-card-media wb-card-media--end wb-card-media--aspect-auto">
+                            <img src="../../assets/branding/brand-logo-64.png" alt="Sona hizalanmış marka simgesi">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--stretch</code></p>
+                          <figure class="wb-card-media wb-card-media--stretch wb-card-media--aspect-auto">
+                            <img src="../../assets/branding/logo-hd.png" alt="Kırpılmadan çerçeve genişliğine yayılmış logo">
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wb-card wb-mt-4">
+                  <div class="wb-card-header"><h3 class="wb-card-title">Card medya en-boy oranları</h3></div>
+                  <div class="wb-card-body wb-stack-3">
+                    <p class="wb-m-0">Temel minimum yükseklik yeterliyse <code>wb-card-media--aspect-auto</code> kullan; ızgaranın daha katı bir görsel alan ayırması gerekiyorsa sabit bir en-boy oranına geç. Tüm sabit oran varyantları <code>object-fit: contain</code>'i korur, böylece logolar ve ekran görüntüleri tamamen görünür kalır.</p>
+                    <div class="wb-grid-2">
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--aspect-auto</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-auto">
+                            <img src="../../assets/branding/logo-hd.png" alt="Otomatik yükseklikli card medya çerçevesi içinde geniş logo">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--aspect-square</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-square">
+                            <img src="../../assets/branding/brand-logo-64.png" alt="Kare card medya çerçevesi içinde kare marka simgesi">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--aspect-wide</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-wide">
+                            <img src="../../assets/branding/logo-hd.png" alt="16'ya 9 card medya çerçevesi içinde geniş logo">
+                          </figure>
+                        </div>
+                      </div>
+                      <div class="wb-card wb-card-flat wb-card-muted">
+                        <div class="wb-card-body wb-stack-2">
+                          <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-card-media--aspect-portrait</code></p>
+                          <figure class="wb-card-media wb-card-media--center wb-card-media--aspect-portrait">
+                            <img src="../../assets/branding/brand-logo-64.png" alt="Dikey card medya çerçevesi içinde marka simgesi">
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wb-table-wrap">
+                  <div class="wb-toolbar wb-toolbar-inset">
+                    <div class="wb-toolbar-start"><h3 class="wb-toolbar-title">Kullanıcılar</h3></div>
+                    <div class="wb-toolbar-end"><button class="wb-btn wb-btn-primary wb-btn-sm">Davet et</button></div>
+                  </div>
+                  <table class="wb-table wb-table-hover">
+                    <thead><tr><th>Ad</th><th>Rol</th><th>Durum</th><th>Aksiyonlar</th></tr></thead>
+                    <tbody>
+                      <tr><td>Alice Brown</td><td>Sahip</td><td><span class="wb-status-pill wb-status-active">Aktif</span></td><td class="wb-table-actions"><a href="#" class="wb-action-link">Aç</a></td></tr>
+                      <tr><td>Marco Chen</td><td>Editör</td><td><span class="wb-status-pill wb-status-pending">Beklemede</span></td><td class="wb-table-actions"><a href="#" class="wb-action-link">Aç</a></td></tr>
+                      <tr><td>Sam Rivera</td><td>Bakımcı</td><td><span class="wb-status-pill wb-status-active">Hazır</span></td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Kullanıcıyı aç" title="Kullanıcıyı aç"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Kullanıcı dışa aktarımını indir" title="Kullanıcı dışa aktarımını indir"><i class="wb-icon wb-icon-download"></i></a><button class="wb-action-btn" type="button" aria-label="Kullanıcıyı yedekle" title="Kullanıcıyı yedekle"><i class="wb-icon wb-icon-database-backup"></i></button></div></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="wb-text-sm wb-text-muted wb-m-0"><a href="../../playground/">Playground'da aç</a> — bu primitive'leri tam bir sayfaya bağlamadan önce gerçek bir parçada birleştirmek istediğinde. Hem tek bir aksiyon bağlantısı/butonu hem de gruplanmış satır aksiyonları için <code>td.wb-table-actions</code> kullan, her iki deseni de varsayılan olarak sola hizalı tut ve farklı bir yerleşimi açıkça seçmedikçe tablo hücresi içindeki gruplanmış aksiyonların tek satırda kalmasını bekle. <code>wb-text-end</code>'i aksiyon hücreleri için değil, toplamlar, fiyatlar veya metrikler gibi bilinçli olarak sağa hizalanmış veriler için sakla.</p>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="editorial-body-copy">
+                <h2>Editoryal gövde metni</h2>
+                <p><code>wb-rich-text</code>; güvenli, Markdown benzeri içerik HTML'e dönüştürüldükten sonra temizlenmiş editoryal gövde metni için yalnızca CSS'ten oluşan primitive'dir. Başlıkları, butonları, medyayı, tabloları, yerleşim kompozisyonunu ve ham HTML işlemeyi bu primitive'in dışında tut.</p>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Okunabilir gövde metni</h3></div>
+                    <div class="wb-card-body">
+                      <div class="wb-rich-text wb-rich-text-readable">
+                        <p>Paragrafların, <strong>güçlü vurgunun</strong>, <em>ton değişimlerinin</em>, <code>satır içi kodun</code> ve <a href="#">bağlantıların</a> tipografi kurallarını genel sayfaya sızdırmadan okunabilir kalması gereken uzun editoryal metinler için bu primitive'i kullan.</p>
+                        <p>readable modifier'ı gövde metni sözleşmesini açık tutar, ancak genişlik artık primitive'in kendisinden değil üst card'dan, shell'den ya da içerik sütunundan gelir.</p>
+                        <ul>
+                          <li>Güvenli sırasız listeleri destekler.</li>
+                          <li>Boşlukları tek ve kapsamı belli bir primitive içinde öngörülebilir tutar.</li>
+                        </ul>
+                        <ol>
+                          <li>Önce temizlenmiş içeriği render et.</li>
+                          <li>Çıktı sarmalayıcısına <code>wb-rich-text</code> uygula.</li>
+                        </ol>
+                        <blockquote>
+                          <p>Rich text bir gövde metni sözleşmesidir, sayfa kurucusu değil. Başlıkları, medya bloklarını, tabloları ve aksiyonları kendi primitive ve pattern'leriyle kur.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Ritim varyantları</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <div>
+                        <p class="wb-text-sm wb-text-muted wb-mb-2"><code>wb-rich-text wb-rich-text-compact</code></p>
+                        <div class="wb-rich-text wb-rich-text-compact">
+                          <p>Kompakt ritim; daha yoğun paneller, yan notlar ve kısa editoryal özetler için uygundur.</p>
+                          <p>Paragraf boşluğu daralırken liste ve alıntı davranışı aynı primitive'in kapsamında kalır.</p>
+                        </div>
+                      </div>
+                      <div>
+                        <p class="wb-text-sm wb-text-muted wb-mb-2"><code>wb-rich-text wb-rich-text-loose</code></p>
+                        <div class="wb-rich-text wb-rich-text-loose">
+                          <p>Gevşek ritim, uzun okuma yüzeylerine daha fazla nefes alanı verir.</p>
+                          <blockquote>
+                            <p>Bunu, sayfa daha sakin bir editoryal tempo istediğinde kullan; yeni bir yerleşim sarmalayıcısına ya da genişlik kuralına ihtiyacın olduğunda değil.</p>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="pagination-and-context">
+                <h2>Sayfalama ve bağlam gezinmesi</h2>
+                <p>Sayfa tabanlı sonuç kümeleri için <code>wb-pagination</code> kullan. Anlamsal tut: bir <code>nav</code> landmark'ı, sıralı bir liste, <code>aria-current="page"</code> ile pasif bir geçerli sayfa işareti ve gezinme mümkün değilken pasif bir devre dışı önceki/sonraki durumu. Bunu breadcrumb hiyerarşisi veya içerik footer'ındaki önceki-sonraki bağlantıları için yeniden kullanma.</p>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Varsayılan ritim</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <nav class="wb-pagination" aria-label="Proje sonuç sayfaları">
+                        <ol class="wb-pagination-list">
+                          <li class="wb-pagination-item is-disabled"><span class="wb-pagination-link" aria-disabled="true"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i><span>Önceki</span></span></li>
+                          <li class="wb-pagination-item is-active"><span class="wb-pagination-link" aria-current="page">1</span></li>
+                          <li class="wb-pagination-item"><a href="#" class="wb-pagination-link">2</a></li>
+                          <li class="wb-pagination-item"><a href="#" class="wb-pagination-link">3</a></li>
+                          <li class="wb-pagination-item"><span class="wb-pagination-ellipsis" aria-hidden="true">...</span></li>
+                          <li class="wb-pagination-item"><a href="#" class="wb-pagination-link">12</a></li>
+                          <li class="wb-pagination-item"><a href="#" class="wb-pagination-link" rel="next"><span>Sonraki</span><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></a></li>
+                        </ol>
+                        <div class="wb-pagination-info">Sayfa 1 / 12</div>
+                      </nav>
+                      <p class="wb-text-sm wb-text-muted wb-m-0">Geçerli ve devre dışı durumlar sahte devre dışı bağlantılar değil, pasif span'lerdir.</p>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Kompakt tablo footer'ı</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <nav class="wb-pagination wb-pagination-compact" aria-label="Fatura sayfaları">
+                        <ol class="wb-pagination-list">
+                          <li class="wb-pagination-item"><a href="#" class="wb-pagination-link" rel="prev">Önceki</a></li>
+                          <li class="wb-pagination-item"><a href="#" class="wb-pagination-link">9</a></li>
+                          <li class="wb-pagination-item is-active"><span class="wb-pagination-link" aria-current="page">10</span></li>
+                          <li class="wb-pagination-item"><a href="#" class="wb-pagination-link">11</a></li>
+                          <li class="wb-pagination-item"><a href="#" class="wb-pagination-link" rel="next">Sonraki</a></li>
+                        </ol>
+                      </nav>
+                      <p class="wb-text-sm wb-text-muted wb-m-0">Kompakt varyantı yalnızca standart ritim yoğun bir tablo veya dar bir kontrol satırı için fazla büyük geldiğinde kullan.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="interaction-shells">
+                <h2>Interaction shell'ler</h2>
+                <p>Hafif açılıp genişleyen pattern'leri sayfaya yakın tut ve <code>wb-modal</code>'ı gerçek üst katman diyalog, görüntüleyici ya da çerez tercihi işleri için sakla.</p>
+                <div class="wb-callout wb-callout-info wb-mb-4"><strong class="wb-callout-title">Çerez onayı sınırı</strong> Cookie Consent bir primitive değildir. <code>wb-card</code>, switch'ler, butonlar ve ortak tek bir <code>wb-modal</code> tercih merkezini bir araya getiren bir pattern ile etkileşimli hook'lardır.</div>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Dropdown, popover ve tab'ler</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <div class="wb-dropdown">
+                        <button class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" data-wb-target="#primitiveActionsMenu" aria-expanded="false">Aksiyonlar</button>
+                        <div class="wb-dropdown-menu" id="primitiveActionsMenu">
+                          <div class="wb-dropdown-label">Proje</div>
+                          <a href="#" class="wb-dropdown-item">Aç</a>
+                          <a href="#" class="wb-dropdown-item">Çoğalt</a>
+                          <hr class="wb-dropdown-divider">
+                          <a href="#" class="wb-dropdown-item wb-dropdown-item-danger">Arşivle</a>
+                        </div>
+                      </div>
+
+                      <div class="wb-popover wb-popover-end" data-wb-popover>
+                        <button class="wb-btn wb-btn-outline" data-wb-toggle="popover" data-wb-target="#primitiveInfoPopover">Info</button>
+                        <div class="wb-popover-panel" id="primitiveInfoPopover">
+                          <div class="wb-popover-header"><span class="wb-popover-title">Popover notu</span><button class="wb-popover-close" data-wb-dismiss="popover" aria-label="Kapat"><i class="wb-icon wb-icon-x"></i></button></div>
+                          <div class="wb-popover-body">Tam bir dropdown menüye ya da modala dönüşmemesi gereken küçük bağlamsal paneller için popover kullan.</div>
+                        </div>
+                      </div>
+
+                      <div class="wb-tabs wb-tabs-pills">
+                        <div class="wb-tabs-nav" role="tablist">
+                          <button class="wb-tabs-btn is-active" data-wb-tab="primitive-tab-a" aria-selected="true">Genel Bakış</button>
+                          <button class="wb-tabs-btn" data-wb-tab="primitive-tab-b" aria-selected="false">Markup</button>
+                        </div>
+                        <div>
+                          <div class="wb-tabs-panel is-active" id="primitive-tab-a"><p class="wb-m-0">Tab'ler eşleşen paneller arasında <code>data-wb-tab</code> ve panel <code>id</code>'si ile geçiş yapar.</p></div>
+                          <div class="wb-tabs-panel" id="primitive-tab-b"><pre><code>&lt;button class="wb-tabs-btn" data-wb-tab="panel-id"&gt;Tab&lt;/button&gt;
+&lt;div class="wb-tabs-panel" id="panel-id"&gt;...&lt;/div&gt;</code></pre></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Accordion ve drawer akışları</h3></div>
+                        <div class="wb-card-body wb-stack-4">
+                          <div class="wb-accordion">
+                            <div class="wb-accordion-item is-open">
+                              <button class="wb-accordion-trigger"><span>Ne primitive sayılır?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
+                              <div class="wb-accordion-body">Primitive; buton, input, tablo, modal, dropdown veya tab gibi atomik bir kontrol ya da yerel bir arayüz sözleşmesidir. Card'lar, stat'ler, callout'lar, listeler, toolbar'lar, filtre çubukları ve empty state'ler surface'tir.</div>
+                            </div>
+                            <div class="wb-accordion-item">
+                              <button class="wb-accordion-trigger"><span>Ne sayılmaz?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
+                              <div class="wb-accordion-body">Tema token'ları foundation'a aittir. Ekran kompozisyonları patterns'e aittir. Küçük dokunuşlar utilities'e aittir.</div>
+                            </div>
+                          </div>
+
+                          <div class="wb-cluster">
+                            <button class="wb-btn wb-btn-secondary" data-wb-toggle="drawer" data-wb-target="#primitiveDrawer">Drawer'ı aç</button>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="wb-card">
+                  <div class="wb-card-header"><h3 class="wb-card-title">Modal: diyalog, yığın ve korumalı kapatma akışları</h3></div>
+                  <div class="wb-card-body wb-stack-5">
+                    <p class="wb-m-0">Açık kararlar, içerik öncelikli görüntüleme ve ortak tek bir üst katman sözleşmesi içinde kalan korumalı kapatma akışları için <code>wb-modal</code> kullan.</p>
+
+                    <section class="wb-stack-3" aria-labelledby="primitiveModalDialogHeading">
+                      <div>
+                        <h4 class="wb-m-0" id="primitiveModalDialogHeading">Varsayılan kapatılabilir modal</h4>
+                        <p class="wb-text-sm wb-text-muted wb-m-0">Diyalog kaydedilmemiş değişiklik politikasına ihtiyaç duymuyorsa pakette gelen kapatma kontrollerini, dışarı tıklamayı ve Escape davranışını kullan.</p>
+                      </div>
+                      <div class="wb-cluster">
+                        <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveModal">Modalı aç</button>
+                      </div>
+                    </section>
+
+                    <hr class="wb-divider">
+
+                    <section class="wb-stack-3" aria-labelledby="primitiveModalStackHeading">
+                      <div>
+                        <h4 class="wb-m-0" id="primitiveModalStackHeading">İç içe modal yığını</h4>
+                        <p class="wb-text-sm wb-text-muted wb-m-0">İkinci adım daha dar bir onay veya ikincil bir karar olduğunda bir modalı diğerinden aç. Kapatma ve odak önceliği en üstteki modala aittir.</p>
+                      </div>
+                      <div class="wb-cluster">
+                        <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveStackParent">Yığılmış akışı aç</button>
+                      </div>
+                    </section>
+
+                    <hr class="wb-divider">
+
+                    <section class="wb-stack-3" aria-labelledby="primitiveModalGuardHeading">
+                      <div>
+                        <h4 class="wb-m-0" id="primitiveModalGuardHeading">Kaydedilmemiş değişiklikleri <code>wb:overlay:close-request</code> ile koru</h4>
+                        <p class="wb-text-sm wb-text-muted wb-m-0"><code>escape</code>, <code>outside</code>, <code>close-control</code> ve <code>dismiss-control</code> üzerinden gelen kapatma denemeleri, overlay düzeyinde iptal edilebilir tek bir olay yayar. Engelleme, onaylama, kaydetme ya da kapatmaya izin verme kararını host uygulama verir.</p>
+                      </div>
+                      <div class="wb-cluster">
+                        <button class="wb-btn wb-btn-outline" data-wb-toggle="modal" data-wb-target="#primitiveGuardedModal">Korumalı editörü aç</button>
+                        <a class="wb-btn wb-btn-ghost" href="javascript.html">JavaScript referansı</a>
+                      </div>
+                      <pre><code>editor.addEventListener('wb:overlay:close-request', function (event) {
+  if (!hasUnsavedChanges) return
+  event.preventDefault()
+  WBModal.open(confirmDiscardDialog)
+})</code></pre>
+                    </section>
+
+                    <hr class="wb-divider">
+
+                    <section class="wb-stack-3" aria-labelledby="primitiveModalViewerHeading">
+                      <div>
+                        <h4 class="wb-m-0" id="primitiveModalViewerHeading">Medya görüntüleyici modalı</h4>
+                        <p class="wb-text-sm wb-text-muted wb-m-0">Görseller ve içerik önizlemeleri için aynı modal primitive'ini kullan. Aşağıdaki her iki küçük görsel de ortak tek bir görüntüleyici modalı açar.</p>
+                      </div>
+                      <div class="wb-gallery" aria-label="Primitive galeri örneği">
+                        <div class="wb-gallery-grid">
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#primitiveGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Grafikler ve analitik card'larıyla çalışma alanı paneli">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Dashboard görseli ortak görüntüleyici modalını açar</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#primitiveGalleryViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Dizüstü bilgisayarlar ve notlarla ortak bir masa etrafında ürün planlama oturumu">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Planlama görseli aynı ortak görüntüleyici modalını açar</figcaption>
+                          </figure>
+                        </div>
+                      </div>
+                    </section>
+
+                    <div class="wb-callout wb-callout-info wb-mt-4">
+                      <strong class="wb-callout-title">Kanonik kural</strong>
+                      <code>wb-modal</code>, tek kanonik üst katman primitive'idir. <code>wb-overlay-root</code> gibi runtime altyapısı dahili kalır ve galeri görüntüleyici davranışı ayrı bir genel bileşen olmak yerine modal sözleşmesinin içinde kalır.
+                    </div>
+                  </div>
+                </div>
+              </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="layout.html" class="wb-content-prev"><span class="wb-content-prev-label">Önceki</span><span class="wb-content-prev-title">Layout</span></a>
+                <a href="icons.html" class="wb-content-next"><span class="wb-content-next-label">Sonraki</span><span class="wb-content-next-title">Icons</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-sm" id="primitiveModal" role="dialog" aria-modal="true" aria-labelledby="primitiveModalTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveModalTitle">Varsayılan kapatılabilir modal</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body wb-stack-3"><p class="wb-m-0">Etkileşim; açık bir yapıya, kararlara ya da footer aksiyonlarına sahip gerçek bir diyalogsa <code>wb-modal</code> kullan.</p><p class="wb-text-sm wb-text-muted wb-m-0">Bu örnek pakette gelen varsayılan kapatma davranışını korur: kapatma butonu, footer'daki kapatma butonu, dışarı tıklama ve Escape.</p></div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">İptal</button><button class="wb-btn wb-btn-primary">Onayla</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-md" id="primitiveStackParent" role="dialog" aria-modal="true" aria-labelledby="primitiveStackParentTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveStackParentTitle">Birincil akış</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body wb-stack-3">
+        <p class="wb-m-0">İkinci bir modalı yalnızca takip eden adım mevcut görevden daha dar olduğunda kullan.</p>
+        <p class="wb-text-sm wb-text-muted wb-m-0">Aktif yığının en üstteki diyaloğa geçtiğini görmek için alt onayı aç.</p>
+      </div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Kapat</button><button class="wb-btn wb-btn-primary" data-wb-toggle="modal" data-wb-target="#primitiveStackChild">İç içe onayı başlat</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-sm" id="primitiveStackChild" role="dialog" aria-modal="true" aria-labelledby="primitiveStackChildTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveStackChildTitle">İç içe onay</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body"><p class="wb-m-0">İç içe modal, kapanana kadar aktif üst katman olur.</p></div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Geri</button><button class="wb-btn wb-btn-primary" data-wb-dismiss="modal">Tamam</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-md" id="primitiveGuardedModal" role="dialog" aria-modal="true" aria-labelledby="primitiveGuardedModalTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveGuardedModalTitle">Korumalı editör</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body wb-stack-4">
+        <p class="wb-m-0">Kaydedilmemiş değişiklikler etkinken kapatma butonunu, footer'daki kapatma butonunu, dışarı tıklamayı veya Escape'i dene.</p>
+        <div class="wb-field">
+          <label class="wb-label" for="primitiveGuardedName">Koleksiyon adı</label>
+          <input class="wb-input" id="primitiveGuardedName" type="text" value="Spring campaign assets">
+        </div>
+        <label class="wb-switch"><input type="checkbox" id="primitiveGuardDirty" checked><span class="wb-switch-track"></span> Kaydedilmemiş değişiklikler var</label>
+        <p class="wb-text-sm wb-text-muted wb-m-0">Son engellenen kapatma nedeni: <strong id="primitiveGuardReason">henüz yok</strong></p>
+      </div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">İptal</button><button class="wb-btn wb-btn-primary" type="button" id="primitiveGuardSaveClose">Kaydet ve kapat</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-sm" id="primitiveGuardConfirm" role="dialog" aria-modal="true" aria-labelledby="primitiveGuardConfirmTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-header"><h2 class="wb-modal-title" id="primitiveGuardConfirmTitle">Değişiklikler atılsın mı?</h2><button class="wb-modal-close" data-wb-dismiss="modal" aria-label="Kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button></div>
+      <div class="wb-modal-body wb-stack-3"><p class="wb-m-0">Kaydedilmemiş değişiklikler hâlâ etkin olduğu için kapatma isteği engellendi.</p><p class="wb-text-sm wb-text-muted wb-m-0">Atmayı seçmek önce bu onayı, ardından <code>WBModal.close(...)</code> ile editörü programatik olarak kapatır.</p></div>
+      <div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="modal">Düzenlemeye devam et</button><button class="wb-btn wb-btn-primary" type="button" id="primitiveGuardDiscard">At ve kapat</button></div>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-modal-xl" id="primitiveGalleryViewer" role="dialog" aria-modal="true" aria-labelledby="primitiveGalleryViewerTitle">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-body">
+        <div class="wb-gallery-viewer">
+          <div class="wb-gallery-viewer-toolbar">
+            <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Önceki görsel"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+            <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 2</div>
+            <div class="wb-cluster wb-cluster-2">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Sonraki görsel"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Görüntüleyiciyi kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <figure class="wb-gallery-viewer-media">
+            <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Grafikler ve analitik card'larıyla çalışma alanı paneli">
+            <figcaption class="wb-gallery-viewer-caption" id="primitiveGalleryViewerTitle">Genel bakış paneli</figcaption>
+          </figure>
+          <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Galeri görüntüleme için ayrı bir genel overlay veya lightbox primitive'i uydurmak yerine <code>wb-modal</code>'ı içerik öncelikli modda kullan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wb-drawer" id="primitiveDrawer" role="dialog" aria-modal="true" aria-labelledby="primitiveDrawerTitle">
+    <div class="wb-drawer-header"><h2 class="wb-drawer-title" id="primitiveDrawerTitle">Primitive kontrol listesi</h2><button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Kapat"><i class="wb-icon wb-icon-x"></i></button></div>
+    <div class="wb-drawer-body">
+      <div class="wb-list wb-list-sm">
+        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Pakette gelen sınıfları kullan</span><span class="wb-list-item-sub">Yalnızca sunuma yönelik adlar uydurma.</span></div></div>
+        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Token'ları dolaylı kullan</span><span class="wb-list-item-sub">Mümkün olduğunca paketin primitive ve pattern'leri içinde kal.</span></div></div>
+        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Davranış için veri hook'larını kullan</span><span class="wb-list-item-sub">Overlay'leri ve etkileşim durumunu pakette gelen JavaScript yönetsin.</span></div></div>
+      </div>
+    </div>
+    <div class="wb-drawer-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Kapat</button></div>
+  </div>
+
+  <script>
+    (function () {
+      var guardedModal = document.getElementById('primitiveGuardedModal')
+      var confirmModal = document.getElementById('primitiveGuardConfirm')
+      var dirtyToggle = document.getElementById('primitiveGuardDirty')
+      var reasonValue = document.getElementById('primitiveGuardReason')
+      var saveButton = document.getElementById('primitiveGuardSaveClose')
+      var discardButton = document.getElementById('primitiveGuardDiscard')
+
+      if (!guardedModal || !confirmModal || !dirtyToggle || !reasonValue || !saveButton || !discardButton || !window.WBModal) {
+        return
+      }
+
+      guardedModal.addEventListener('wb:overlay:close-request', function (event) {
+        if (!dirtyToggle.checked) {
+          return
+        }
+
+        event.preventDefault()
+        reasonValue.textContent = event.detail && event.detail.reason ? event.detail.reason : 'close-control'
+        window.WBModal.open(confirmModal)
+      })
+
+      saveButton.addEventListener('click', function () {
+        dirtyToggle.checked = false
+        reasonValue.textContent = 'saved with programmatic close'
+        window.WBModal.close(guardedModal)
+      })
+
+      discardButton.addEventListener('click', function () {
+        dirtyToggle.checked = false
+        reasonValue.textContent = 'discard confirmed with programmatic close'
+        window.WBModal.close(confirmModal)
+        window.WBModal.close(guardedModal)
+      })
+    })()
+  </script>
+</body>
+</html>

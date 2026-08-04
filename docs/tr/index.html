@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Ana Sayfa</title>
+  <meta name="description" content="WebBlocks UI projesini, mimarisini, primitive'lerini, pattern'lerini, JavaScript modüllerini ve kullanım akışını anlatan, saf WebBlocks UI ile kurulmuş çok sayfalı bir site.">
+  <link rel="alternate" hreflang="en" href="../index.html">
+  <link rel="alternate" hreflang="de" href="../de/index.html">
+  <link rel="alternate" hreflang="tr" href="index.html">
+  <link rel="alternate" hreflang="x-default" href="../index.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand">
+        <img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo">
+        <span class="wb-sidebar-brand-copy">
+          <span>WebBlocks UI</span>
+          <span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span>
+        </span>
+      </a>
+
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link is-active">
+            <i class="wb-icon wb-icon-home wb-sidebar-icon"></i>
+            <span>Ana Sayfa</span>
+          </a>
+          <a href="getting-started.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i>
+            <span>Başlangıç</span>
+          </a>
+          <a href="architecture.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-layers wb-sidebar-icon"></i>
+            <span>Mimari</span>
+          </a>
+          <a href="foundation.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-palette wb-sidebar-icon"></i>
+            <span>Foundation</span>
+          </a>
+          <a href="layout.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-layout wb-sidebar-icon"></i>
+            <span>Layout</span>
+          </a>
+          <a href="primitives.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-box wb-sidebar-icon"></i>
+            <span>Primitives</span>
+          </a>
+          <a href="icons.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-star wb-sidebar-icon"></i>
+            <span>Icons</span>
+          </a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false">
+              <span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span>
+              <span class="wb-nav-group-label">Patterns</span>
+              <span class="wb-nav-group-arrow"></span>
+            </button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i>
+            <span>Utilities</span>
+          </a>
+          <a href="javascript.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-code wb-sidebar-icon"></i>
+            <span>JavaScript</span>
+          </a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+
+      </nav>
+
+      <div class="wb-sidebar-footer">
+        <div class="wb-callout wb-callout-info">
+          <strong class="wb-callout-title">Saf WebBlocks kuralı</strong>
+          Bu site yalnızca pakette gelen WebBlocks UI sınıflarını, pattern'lerini ve yerleşik JavaScript hook'larını kullanır.
+        </div>
+        <p class="wb-text-xs wb-text-muted wb-mt-3 wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar">
+          <i class="wb-icon wb-icon-menu"></i>
+          Menü
+        </button>
+
+        <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Breadcrumb">
+          <ol class="wb-breadcrumb-list">
+            <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li>
+            <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Ana Sayfa</span></li>
+          </ol>
+        </nav>
+
+        <div class="wb-navbar-spacer"></div>
+
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#indexThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="indexThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#indexLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="indexLangMenu"><a class="wb-dropdown-item" href="../index.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/index.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="index.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <h1 class="wb-content-title">WebBlocks UI hakkında, saf WebBlocks UI ile kurulmuş bir site</h1>
+            <p class="wb-content-subtitle">Bu demo; projeyi, katman modelini, pakette gelen primitive'leri, pattern'leri ve JavaScript davranışını yalnızca paket varlıkları ve pakette gelen <code>wb-*</code> sınıflarıyla anlatır.</p>
+            <div class="wb-content-meta">
+              <span>Yalnızca paket</span>
+              <span class="wb-content-meta-divider"></span>
+              <span>Özel CSS yok</span>
+              <span class="wb-content-meta-divider"></span>
+              <span>Özel JS yok</span>
+            </div>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <div class="wb-promo">
+                  <div class="wb-promo-copy">
+                    <p class="wb-eyebrow">Kaynağı görünür UI sistemi</p>
+                    <h2 class="wb-promo-title">WebBlocks UI - İnsanlar ve yapay zeka için UI yapı taşları.</h2>
+                    <p class="wb-promo-text">WebBlocks UI; yönetim panelleri, SaaS ekranları, CMS yüzeyleri ve dokümantasyon sayfaları için primitive odaklı, pattern yönelimli bir UI kütüphanesidir. Güncel mimari açıktır: foundation, utilities, layout, primitives, patterns ve icons.</p>
+                  </div>
+                  <div class="wb-promo-actions">
+                    <a href="getting-started.html" class="wb-btn wb-btn-primary">Buradan başla</a>
+                    <a href="primitives.html" class="wb-btn wb-btn-outline">Primitive'leri gör</a>
+                  </div>
+                </div>
+
+                <div class="wb-alert wb-alert-info">
+                  <h3 class="wb-alert-title">Bu sayfa neyi kanıtlıyor</h3>
+                  <p>WebBlocks UI, ayrı bir sunum katmanı olmadan kendini belgeleyebilir. Bu rehber yardımcı CSS, utility betiği veya uydurma sınıf eklemez.</p>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Pakette neler geliyor</h2>
+                <div class="wb-grid-4">
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Mimari katmanlar</div>
+                    <div class="wb-stat-value">6</div>
+                    <div class="wb-stat-delta">Foundation, utilities, layout, primitives, patterns, icons</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Bağımlılıklar</div>
+                    <div class="wb-stat-value">0</div>
+                    <div class="wb-stat-delta">Paketin kendisi için framework gerekmez</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">JavaScript</div>
+                    <div class="wb-stat-value">14+</div>
+                    <div class="wb-stat-delta">Tema, overlay, gezinme, geri bildirim ve disclosure modülleri</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Icons</div>
+                    <div class="wb-stat-value">173</div>
+                    <div class="wb-stat-delta">Sınıf tabanlı mask-image ikon kullanımı</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <div class="wb-promo">
+                  <div class="wb-promo-copy">
+                    <p class="wb-eyebrow">Canlı HTML akışı</p>
+                    <h2 class="wb-promo-title">WebBlocks HTML'ini canlı test etmek istediğinde Playground'u aç.</h2>
+                    <p class="wb-promo-text">Düz HTML yaz, gerçek WebBlocks CSS'i, ikonları ve JavaScript'iyle önizle; yapay zeka üretimi ya da elle yazılmış parçaları dokümantasyondan çıkmadan hızlıca doğrula.</p>
+                  </div>
+                  <div class="wb-promo-actions">
+                    <a href="../../playground/" class="wb-btn wb-btn-primary">Playground'u aç</a>
+                    <a href="pattern-marketing.html" class="wb-btn wb-btn-outline">Herkese açık sayfa örneğini gör</a>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Sistemi doğru sırayla oku</h2>
+                <div class="wb-link-list">
+                  <a href="getting-started.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Getting Started</span>
+                      <span class="wb-link-list-meta">Dosya ekleme, kök öznitelikleri, ilk akış</span>
+                    </div>
+                    <div class="wb-link-list-desc">Gerçek bir proje için en kısa doğru kurulum yolunu arıyorsan önce bu sayfayı kullan.</div>
+                  </a>
+                  <a href="architecture.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Mimari</span>
+                      <span class="wb-link-list-meta">Altı katmanlı model</span>
+                    </div>
+                    <div class="wb-link-list-desc">Token'ların, layout'un, primitive'lerin, pattern'lerin ve ikonların nereye ait olduğunu anlaman gerektiğinde bu sayfayı kullan.</div>
+                  </a>
+                  <a href="foundation.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Foundation</span>
+                      <span class="wb-link-list-meta">Token'lar, başlıklar, tema eksenleri</span>
+                    </div>
+                    <div class="wb-link-list-desc">Kök tema öznitelikleri, koyu mod, preset'ler, varsayılan tipografi, boşluk token'ları ve ham element stilleri için bu sayfayı kullan.</div>
+                  </a>
+                  <a href="layout.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Layout</span>
+                      <span class="wb-link-list-meta">Container'lar, grid'ler, shell'ler</span>
+                    </div>
+                    <div class="wb-link-list-desc"><code>wb-container</code>, <code>wb-grid</code>, <code>wb-row</code>, navbar, sidebar ve page-shell yapısı için bu sayfayı kullan.</div>
+                  </a>
+                  <a href="primitives.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Primitives</span>
+                      <span class="wb-link-list-meta">Pakette gelen yapı taşları</span>
+                    </div>
+                    <div class="wb-link-list-desc">Pakette gerçekten gelen kontrolleri, surface'leri, formları ve interaction shell'leri incelemek için bu sayfayı kullan.</div>
+                  </a>
+                  <a href="icons.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Icons</span>
+                      <span class="wb-link-list-meta">mask-image sınıf referansı</span>
+                    </div>
+                    <div class="wb-link-list-desc">Pakette gelen ikon sınıf adlarına, alias davranışına ve sınıf tabanlı <code>&lt;i&gt;</code> ikon yoluna ihtiyacın olduğunda bu sayfayı kullan.</div>
+                  </a>
+                  <a href="patterns.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Patterns</span>
+                      <span class="wb-link-list-meta">Ekran düzeyinde kompozisyonlar</span>
+                    </div>
+                    <div class="wb-link-list-desc">Soru tek bir primitive değil de sayfa türü, hiyerarşi veya kompozisyonla ilgiliyse bu sayfayı kullan.</div>
+                  </a>
+                  <a href="../admin-product-brand.md" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin Product Brand</span>
+                      <span class="wb-link-list-meta">Auth, sidebar, favicon'lar</span>
+                    </div>
+                    <div class="wb-link-list-desc">CMS, QuizTem, Herne Panel, Publisher/Plugins veya gelecekteki bir ürün, yönetim shell'lerinde moda duyarlı tutarlı marka işaretlerine ihtiyaç duyduğunda bu standardı kullan. (Yalnızca İngilizce.)</div>
+                  </a>
+                  <a href="../../playground/" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Playground</span>
+                      <span class="wb-link-list-meta">Yalnızca HTML ile canlı önizleme aracı</span>
+                    </div>
+                    <div class="wb-link-list-desc">Düz HTML yapıştırmak, gerçek WebBlocks UI varlıklarıyla render etmek ve yapay zeka üretimi ya da elle yazılmış parçaları hızlıca doğrulamak için bu aracı kullan.</div>
+                  </a>
+                  <a href="utilities.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Utilities</span>
+                      <span class="wb-link-list-meta">Boşluk, yazı ve hizalama yardımcıları</span>
+                    </div>
+                    <div class="wb-link-list-desc">Boşluk yardımcıları, yazı boyutu, renk utility'leri, görünürlük yardımcıları ve son kompozisyon düzeltmeleri için bu sayfayı kullan.</div>
+                  </a>
+                  <a href="javascript.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">JavaScript</span>
+                      <span class="wb-link-list-meta">Veri hook'ları ve genel API'ler</span>
+                    </div>
+                    <div class="wb-link-list-desc">Etkileşim modeli önem kazandığında ve doğru tetikleyici pattern'ine ya da genel modül adına ihtiyacın olduğunda bu sayfayı kullan.</div>
+                  </a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Pakette gelen gerçek bir örnekten başla</h2>
+                <p>Sayfanın işi zaten netse, bu rehberdeki en yakın pattern örneğini kopyalamak ekranı hafızadan yeniden kurmaktan daha güvenlidir. Tüm yapıyla başla, içeriği değiştir, sonra cömertçe buda.</p>
+                <div class="wb-link-list">
+                  <a href="pattern-dashboard-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Yönetim paneli</span>
+                      <span class="wb-link-list-meta">Sidebar, topbar, istatistikler, tablolar</span>
+                    </div>
+                    <div class="wb-link-list-desc">Sayfa uygulama yoğunsa ve gezinme, metrikler, satır aksiyonları ile hızlı taranabilir veri gerekiyorsa bunu kullan.</div>
+                  </a>
+                  <a href="pattern-settings-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Yönetim ayarları</span>
+                      <span class="wb-link-list-meta">Daha uzun formlar ve bölümlenmiş aksiyonlar</span>
+                    </div>
+                    <div class="wb-link-list-desc">Sayfayı gruplanmış ayarlar, yıkıcı aksiyonlar ve daha yavaş form akışları yönlendiriyorsa bunu kullan.</div>
+                  </a>
+                  <a href="pattern-admin-standards.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin Standards</span>
+                      <span class="wb-link-list-meta">Başlıklar, form card'ları, detay listeleri</span>
+                    </div>
+                    <div class="wb-link-list-desc">Sayfa hiyerarşisi, submit footer'ları, tablo aksiyon sütunları ve danger zone'lar için kanonik yönetim markup kurallarına ihtiyacın olduğunda bunu kullan.</div>
+                  </a>
+                  <a href="../admin-product-brand.md" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin Product Brand</span>
+                      <span class="wb-link-list-meta">Inline SVG shell işaretleri</span>
+                    </div>
+                    <div class="wb-link-list-desc">Ürünün admin/auth/sidebar logolarının aynı inline SVG'yi, token'a duyarlı rengi, boyutlandırmayı, favicon'u ve temizlik sözleşmesini paylaşması gerektiğinde bunu kullan. (Yalnızca İngilizce.)</div>
+                  </a>
+                  <a href="pattern-auth-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Auth girişi</span>
+                      <span class="wb-link-list-meta">Odaklanmış giriş akışı</span>
+                    </div>
+                    <div class="wb-link-list-desc">Ekranın dar, sakin ve tek bir form görevi etrafında merkezlenmiş kalması gerekiyorsa bunu kullan.</div>
+                  </a>
+                  <a href="pattern-marketing.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Herkese açık ana sayfa</span>
+                      <span class="wb-link-list-meta">Hero ritmi ve tanıtım yüzeyleri</span>
+                    </div>
+                    <div class="wb-link-list-desc">Sayfa pazarlama odaklıysa ve yönetim yoğunluğu yerine daha sakin bir içerik akışı gerekiyorsa bunu kullan.</div>
+                  </a>
+                  <a href="pattern-content-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Content Shell</span>
+                      <span class="wb-link-list-meta">Dokümantasyon, onboarding ve metin öncelikli akışlar</span>
+                    </div>
+                    <div class="wb-link-list-desc">Sayfa ürün arayüzünden çok yapı, referans ve okunabilir bir ilerleme gerektiriyorsa bunu kullan.</div>
+                  </a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Geliştirirken işine yarayacak araçlar</h2>
+                <div class="wb-link-list">
+                  <a href="../../playground/" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Playground</span>
+                      <span class="wb-link-list-meta">Gerçek varlıklarla canlı HTML testi</span>
+                    </div>
+                    <div class="wb-link-list-desc">Düz HTML yapıştırmak, <code>wb-*</code> sınıflarını hızlıca test etmek ve yapay zeka üretimi parçaları izole bir önizlemede görsel olarak doğrulamak istediğinde bunu kullan.</div>
+                  </a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Temel ilkeler</h2>
+                <div class="wb-grid-3">
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>HTML, HTML olarak kalır</strong>
+                      <p class="wb-m-0">WebBlocks'un işe yaraması için framework sarmalayıcılarına ihtiyacı yoktur. Açık markup yazar, pakette gelen sınıfları eklersin.</p>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>Önce pattern akışı</strong>
+                      <p class="wb-m-0">Sayfanın işinden başla, sonra o pattern'in kullandığı surface ve primitive'leri incele, en son utilities ile inceltme yap.</p>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>Küçük ve doğru katmanlar</strong>
+                      <p class="wb-m-0">Token'lar foundation'da, yapı layout'ta, kontroller primitives'te, çerçeveli içerik alanları surface'lerde ve tam ekranlar patterns içinde kalır.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <span></span>
+            <a href="getting-started.html" class="wb-content-next">
+              <span class="wb-content-next-label">Sonraki</span>
+              <span class="wb-content-next-title">Başlangıç</span>
+            </a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

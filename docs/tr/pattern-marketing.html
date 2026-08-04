@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="editorial" data-font="editorial">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Marketing</title>
+  <meta name="description" content="Yalnızca pakette gelen WebBlocks UI sınıflarıyla kurulmuş kanonik herkese açık açılış sayfası örneği ve hero kompozisyon rehberi.">
+  <link rel="alternate" hreflang="en" href="../pattern-marketing.html">
+  <link rel="alternate" hreflang="de" href="../de/pattern-marketing.html">
+  <link rel="alternate" hreflang="tr" href="pattern-marketing.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-marketing.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Marketing</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="../../playground/?example=marketing-hero" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Playground'u aç" title="Playground'u aç"><i class="wb-icon wb-icon-code"></i></a><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Pattern'lere dön"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-marketingThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-marketingThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-marketingLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-marketingLangMenu"><a class="wb-dropdown-item" href="../pattern-marketing.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/pattern-marketing.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="pattern-marketing.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <h1 class="wb-content-title">Pazarlama açılış sayfası örneği</h1>
+            <p class="wb-content-subtitle">Bu sayfa, WebBlocks UI'ın yalnızca pakette gelen sınıflar, pattern'ler ve utility'lerle sakin ve herkese açık bir ana sayfayı taşıyıp taşıyamayacağının kanonik cevabıdır.</p>
+            <div class="wb-content-meta"><span>Herkese açık sayfa</span><span class="wb-content-meta-divider"></span><span>Hero kompozisyonu dahil</span><span class="wb-content-meta-divider"></span><span>No custom CSS</span></div>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Kanonik kullanım</strong> Basit ve herkese açık bir ana sayfaya ihtiyacın olduğunda, kopyalanıp yapıştırılabilir bir hero yapısı istediğinde ya da WebBlocks UI'ın yeni sınıflar uydurmadan daha sakin bir tanıtım kompozisyonunu taşıdığını göstermen gerektiğinde bu örneği kullan.</div>
+                <div class="wb-cluster wb-cluster-2"><a href="../../playground/?example=marketing-hero" class="wb-btn wb-btn-primary">Playground'da aç</a><a href="#hero-composition" class="wb-btn wb-btn-outline">Hero rehberini oku</a></div>
+              </section>
+
+              <section class="wb-card">
+                <div class="wb-card-body wb-stack-8">
+                  <header class="wb-navbar wb-navbar-filled">
+                    <div class="wb-navbar-brand">Acorn Cloud</div>
+                    <div class="wb-navbar-spacer"></div>
+                    <nav class="wb-navbar-nav" aria-label="Pazarlama gezinmesi">
+                      <a href="#why" class="wb-navbar-link">Neden</a>
+                      <a href="#features" class="wb-navbar-link">Özellikler</a>
+                      <a href="#proof" class="wb-navbar-link">Kanıt</a>
+                    </nav>
+                    <div class="wb-navbar-end wb-cluster wb-cluster-2">
+                      <a href="#" class="wb-btn wb-btn-ghost wb-btn-sm">Giriş yap</a>
+                      <a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Ücretsiz başla</a>
+                    </div>
+                  </header>
+
+                  <section class="wb-page-intro wb-section-sm">
+                    <div class="wb-page-intro-grid">
+                      <div class="wb-page-intro-copy">
+                        <p class="wb-page-eyebrow">Kanonik hero kompozisyonu</p>
+                        <h2 class="wb-page-intro-title">Herkese açık sayfaları gizli pazarlama sarmalayıcılarıyla değil, açık HTML ile kur.</h2>
+                        <p class="wb-page-lead">WebBlocks UI temiz bir açılış sayfası için yeterli hazır yapıyı verir: bir section sarmalayıcısı, sınırlandırılmış bir container, güçlü bir başlık, destekleyici metin, bir aksiyon cluster'ı ve isteğe bağlı kanıt veya yan içerik.</p>
+                        <div class="wb-cluster wb-cluster-2">
+                          <a href="#" class="wb-btn wb-btn-primary wb-btn-lg">Ücretsiz başla</a>
+                          <a href="#features" class="wb-btn wb-btn-outline wb-btn-lg">Özellikleri gör</a>
+                        </div>
+                        <ul class="wb-inline-list" id="proof">
+                          <li class="wb-inline-list-item">HTML-first</li>
+                          <li class="wb-inline-list-item">Sıfır framework bağımlılığı</li>
+                          <li class="wb-inline-list-item">Yapay zeka dostu parçalar</li>
+                        </ul>
+                      </div>
+                      <aside class="wb-page-intro-aside wb-stack-3">
+                        <h3 class="wb-m-0">Bu hero neden kanonik kalıyor</h3>
+                        <p>Yalnızca pakette gelen layout ve pattern sınıflarından kurulmuştur. Başlık, giriş metni, aksiyonlar ve destek satırı markup içinde açık kalır; böylece ekipler yapıyı güvenle kopyalayıp budayabilir.</p>
+                        <div class="wb-grid-2">
+                          <div class="wb-stat"><div class="wb-stat-label">Derleme kurulumu</div><div class="wb-stat-value">0</div><div class="wb-stat-delta">Ek araç gerekmez</div></div>
+                          <div class="wb-stat"><div class="wb-stat-label">İlk sayfaya kadar geçen süre</div><div class="wb-stat-value">Hızlı</div><div class="wb-stat-delta">Gerçek örneklerden başla</div></div>
+                        </div>
+                      </aside>
+                    </div>
+                  </section>
+
+                  <section class="wb-grid-3" id="why">
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-info"><i class="wb-icon wb-icon-code"></i></span><h3 class="wb-m-0">Okunabilir yapı</h3><p class="wb-m-0">Kompozisyon açık ve pakette gelen layout ile surface sınıflarını kullandığı için açılış sayfası doğrudan HTML'den anlaşılır kalır.</p></div></div>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-success"><i class="wb-icon wb-icon-layers"></i></span><h3 class="wb-m-0">Gerçek, pakette gelen surface'ler</h3><p class="wb-m-0">Card'lar, tanıtım blokları, callout'lar, butonlar ve gezinme; ayrı bir sunum katmanı yerine aynı paketten gelir.</p></div></div>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-warning"><i class="wb-icon wb-icon-sparkles"></i></span><h3 class="wb-m-0">Yapay zeka dostu doğrulama</h3><p class="wb-m-0">Üretilen parçalar, gerçek bir siteye ya da doküman sayfasına kopyalanmadan önce Playground'da hızlıca test edilebilir.</p></div></div>
+                  </section>
+
+                  <section class="wb-stack-4" id="features">
+                    <div class="wb-split">
+                      <div>
+                        <p class="wb-eyebrow">Destekleyici değer</p>
+                        <h3 class="wb-m-0">Bu açılış sayfası neyi kanıtlıyor</h3>
+                      </div>
+                      <a href="../../playground/?example=marketing-hero" class="wb-action-link">Bu blokları Playground'da dene</a>
+                    </div>
+                    <div class="wb-grid-2">
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Sakin hiyerarşi</strong><p class="wb-m-0">Bir yönetim ürünü shell'inde kullanacağından daha geniş bir ritim, daha güçlü başlık kontrastı ve daha sessiz bir destek metni kullan.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>CTA yapısı</strong><p class="wb-m-0">Birbiriyle yarışan çok sayıda kontrolü üst üste yığmak yerine bir birincil aksiyon, bir ikincil aksiyon ve kısa bir destek satırı tut.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Kanıt blokları</strong><p class="wb-m-0">İstatistikler, satır içi kanıt chip'leri veya kompakt destekleyici card'lar, sahte bir dashboard yaratmadan iddiayı güçlendirebilir.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Kopyalanabilir markup</strong><p class="wb-m-0">Yardımcı katman veya özel sınıf sözlüğü gerekmediği için her bölge düz HTML olarak kopyalanıp hızlıca uyarlanabilir.</p></div></div>
+                    </div>
+                  </section>
+
+                  <section class="wb-promo">
+                    <div class="wb-promo-copy">
+                      <p class="wb-eyebrow">Harekete geçirici mesaj</p>
+                      <h3 class="wb-promo-title">Sırada kendi herkese açık sayfa HTML'ini test etmek mi var?</h3>
+                      <p class="wb-promo-text">Hero'yu yapıştırmak, metinleri değiştirmek, aksiyonları düzenlemek ve sonucu bu dokümanların kullandığı WebBlocks varlıklarıyla önizlemek için Playground'u aç.</p>
+                    </div>
+                    <div class="wb-promo-actions">
+                      <a href="../../playground/?example=marketing-hero" class="wb-btn wb-btn-primary">Playground'u aç</a>
+                      <a href="getting-started.html" class="wb-btn wb-btn-outline">Kurulum rehberini oku</a>
+                    </div>
+                  </section>
+
+                  <footer class="wb-split wb-section-sm">
+                    <div class="wb-stack-2">
+                      <strong>Acorn Cloud</strong>
+                      <p class="wb-m-0 wb-text-muted">Ürün ekipleri ve yapay zeka destekli akışlar için HTML öncelikli UI yapı taşları.</p>
+                    </div>
+                    <div class="wb-cluster wb-cluster-2">
+                      <a href="#" class="wb-action-link">Pricing</a>
+                      <a href="#" class="wb-action-link">Dokümanlar</a>
+                      <a href="#" class="wb-action-link">İletişim</a>
+                    </div>
+                  </footer>
+                </div>
+              </section>
+
+              <section class="wb-stack-4" id="hero-composition">
+                <h2>Kanonik hero kompozisyonu</h2>
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Varsayılan sözleşme</strong> Bir section sarmalayıcısı, sınırlandırılmış bir iç grid, eyebrow-başlık-giriş metni-aksiyon cluster'ından oluşan bir metin yığını ve isteğe bağlı bir destek satırı ile kanıt veya ürün bağlamı için isteğe bağlı bir yan card kullan.</div>
+                <div class="wb-list wb-list-sm">
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Ne zaman kullanmalı</span><span class="wb-list-item-sub">Bunu; mesaj netliğinin yoğun kontrollerden daha önemli olduğu herkese açık ana sayfalar, ürün tanıtımları ve sakin tanıtım bölümleri için kullan.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Pakette gelen şu sınıfları kullan</span><span class="wb-list-item-sub"><code>wb-section</code> veya <code>wb-section-sm</code>, <code>wb-page-intro</code>, <code>wb-page-intro-grid</code>, <code>wb-page-intro-copy</code>, <code>wb-page-eyebrow</code>, <code>wb-page-intro-title</code>, <code>wb-page-lead</code>, <code>wb-cluster</code>, <code>wb-inline-list</code> ve isteğe bağlı olarak <code>wb-page-intro-aside</code>.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Bunu yapma</span><span class="wb-list-item-sub">Sahte bir <code>wb-hero</code> sarmalayıcısı uydurma, eşit ağırlıkta çok sayıda CTA'yı üst üste yığma ve hero'yu bir metrik paneline dönüştürme.</span></div></div>
+                </div>
+                <div class="wb-card">
+                  <div class="wb-card-body">
+<pre><code>&lt;section class="wb-page-intro wb-section-sm"&gt;
+  &lt;div class="wb-page-intro-grid"&gt;
+    &lt;div class="wb-page-intro-copy"&gt;
+      &lt;p class="wb-page-eyebrow"&gt;Canonical hero composition&lt;/p&gt;
+      &lt;h1 class="wb-page-intro-title"&gt;Build public pages with explicit HTML.&lt;/h1&gt;
+      &lt;p class="wb-page-lead"&gt;Use shipped layout, title, copy, and CTA rhythm instead of inventing a new hero class.&lt;/p&gt;
+      &lt;div class="wb-cluster wb-cluster-2"&gt;
+        &lt;a href="#" class="wb-btn wb-btn-primary wb-btn-lg"&gt;Start free&lt;/a&gt;
+        &lt;a href="#" class="wb-btn wb-btn-outline wb-btn-lg"&gt;See features&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;ul class="wb-inline-list"&gt;
+        &lt;li class="wb-inline-list-item"&gt;HTML-first&lt;/li&gt;
+        &lt;li class="wb-inline-list-item"&gt;AI-friendly&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;aside class="wb-page-intro-aside"&gt;
+      Optional proof, context, or media-adjacent support block.
+    &lt;/aside&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                  </div>
+                </div>
+                <p class="wb-text-sm wb-text-muted wb-m-0"><a href="../../playground/?example=marketing-hero">Playground'da aç</a> — bu hero yapısını doğrudan yapıştırmak, metni değiştirmek ve sonucu gerçek WebBlocks varlıklarıyla test etmek istersen.</p>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <a href="pattern-cookie-consent.html" class="wb-content-prev"><span class="wb-content-prev-label">Önceki</span><span class="wb-content-prev-title">Cookie Consent</span></a>
+            <a href="utilities.html" class="wb-content-next"><span class="wb-content-next-label">Sonraki</span><span class="wb-content-next-title">Utilities</span></a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

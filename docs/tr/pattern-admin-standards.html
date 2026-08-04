@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Admin Standards</title>
+  <meta name="description" content="WebBlocks UI için yönetim sayfası, breadcrumb, form, detay, tablo aksiyonu, danger zone ve durum sunumuna dair kanonik standartlar.">
+  <link rel="alternate" hreflang="en" href="../pattern-admin-standards.html">
+  <link rel="alternate" hreflang="de" href="../de/pattern-admin-standards.html">
+  <link rel="alternate" hreflang="tr" href="pattern-admin-standards.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-admin-standards.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item is-active">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Admin Standards</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Pattern'lere dön"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-admin-standardsThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-admin-standardsThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-admin-standardsLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-admin-standardsLangMenu"><a class="wb-dropdown-item" href="../pattern-admin-standards.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/pattern-admin-standards.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="pattern-admin-standards.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Bu sayfadaki bölümler">
+            <div class="wb-section-nav-title">Bu sayfada</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#overview" class="wb-section-nav-link">Genel Bakış</a></li>
+              <li class="wb-section-nav-item"><a href="#page-header" class="wb-section-nav-link">Sayfa başlığı</a></li>
+              <li class="wb-section-nav-item"><a href="#admin-index-list" class="wb-section-nav-link">Yönetim index/liste</a></li>
+              <li class="wb-section-nav-item"><a href="#admin-filter-bar-actions" class="wb-section-nav-link">Filtre aksiyonları</a></li>
+              <li class="wb-section-nav-item"><a href="#dense-table-content" class="wb-section-nav-link">Yoğun tablo içeriği</a></li>
+              <li class="wb-section-nav-item"><a href="#form-cards" class="wb-section-nav-link">Form card'ları</a></li>
+              <li class="wb-section-nav-item"><a href="#detail-page" class="wb-section-nav-link">Detay sayfası</a></li>
+              <li class="wb-section-nav-item"><a href="#table-actions" class="wb-section-nav-link">Tablo aksiyonları</a></li>
+              <li class="wb-section-nav-item"><a href="#status-guidance" class="wb-section-nav-link">Durum rehberi</a></li>
+              <li class="wb-section-nav-item"><a href="#copy-rules" class="wb-section-nav-link">Metin kuralları</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Admin Standards</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Bu pattern'leri yönetim tarafındaki oluşturma, düzenleme, detay ve index/liste ekranları için kullan. Standart; hiyerarşiyi card'ların dışında tutar, filtre ve liste card'larını ürünler arasında tutarlı kılar, form submit aksiyonlarını form footer'larında tutar ve yıkıcı işleri sayfanın sonundaki net bir danger zone'da ayırır.</p>
+                <div class="wb-content-meta"><span>Pattern rehberi</span><span class="wb-content-meta-divider"></span><span>CSS-first</span><span class="wb-content-meta-divider"></span><span>Kopyalanabilir markup</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="overview">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Standardın amacı</strong> Sayfa başlığı ve breadcrumb kullanıcının nerede olduğunu anlatır. Card'lar ve bölümler ise sırada ne yapabileceğini anlatır. Submit aksiyonları genel sayfa başlığına değil, gönderdikleri forma aittir.</div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>İş</th><th>Tercih edilen yapı</th><th>Kural</th></tr></thead><tbody><tr><td>Yönetim oluşturma veya düzenleme sayfası</td><td><code>wb-page-header</code> + <code>wb-card</code> + <code>wb-form-section</code></td><td>Sayfanın <code>h1</code>'ini card'ların dışında tut ve alanları amaca göre grupla.</td></tr><tr><td>Detay sayfası</td><td><code>wb-detail-list</code> + destekleyici card'lar</td><td>Dağınık paragraflar yerine etiket/değer satırları kullan.</td></tr><tr><td>Index tablosu</td><td><code>wb-table</code> + <code>wb-table-actions</code></td><td>Son sütunu her zaman <code>Actions</code> olarak etiketle ve başlık ile butonların o hücrenin sol kenarından başlamasına izin ver.</td></tr><tr><td>Yıkıcı aksiyon</td><td><code>wb-danger-zone</code></td><td>Sonucu net anlatan bir etiketle son card'da tut.</td></tr></tbody></table></div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Tercih edilen sınıflar</th><th>Amaç</th><th>Notlar</th></tr></thead><tbody><tr><td><code>wb-page-header</code>, <code>wb-page-breadcrumb</code>, <code>wb-page-title</code>, <code>wb-page-description</code>, <code>wb-page-actions</code></td><td>Sayfa düzeyinde yönetim hiyerarşisi</td><td>Card'ların dışında tek bir sayfa <code>h1</code>'i kullan ve burada yalnızca bağlam aksiyonlarını tut. <code>wb-page-breadcrumbs</code> uyumluluk alias'ı olarak kalır.</td></tr><tr><td><code>wb-breadcrumb</code>, <code>wb-breadcrumb-item</code>, <code>wb-breadcrumb-link</code>, <code>wb-breadcrumb-current</code></td><td>İkincil hiyerarşi bağlamı</td><td>Ayırıcılar varsayılan olarak CSS'e aittir. <code>wb-breadcrumb-separator</code> yalnızca elle kullanılacak bir kaçış yolu olarak kalır.</td></tr><tr><td><code>wb-card</code>, <code>wb-card-footer</code>, <code>wb-field</code>, <code>wb-field-hint</code>, <code>wb-field-error</code>, <code>wb-action-group</code>, <code>wb-grid-2</code>, <code>wb-stack-4</code></td><td>Mevcut card, alan, aksiyon ve yerleşim yapısı</td><td>Önce mevcut primitive'leri kullan. v2.6.0 form alias'ları uyumluluk için kullanılabilir kalır.</td></tr><tr><td><code>wb-form-section</code>, <code>wb-form-section-header</code>, <code>wb-form-section-title</code>, <code>wb-form-section-description</code>, <code>wb-form-error-summary</code>, <code>wb-input-mono</code></td><td>Yönetime özgü form anlamları</td><td>Markup açık bölümleme, form geneli doğrulama özeti veya kod benzeri input davranışı gerektirdiğinde bunları kullan.</td></tr><tr><td><code>wb-detail-list</code>, <code>wb-detail-row</code>, <code>wb-detail-label</code>, <code>wb-detail-value</code>, <code>wb-detail-value-mono</code></td><td>Detay sayfası etiket/değer satırları</td><td>Yollar, token'lar, komutlar ve URL'ler için monospace değerler kullan.</td></tr><tr><td><code>td.wb-table-actions</code></td><td>Açık son satır aksiyon hücresi</td><td>Bunu normal, sola hizalı bir <code>Actions</code> tablo başlığı ve sola hizalı aksiyon butonlarıyla birlikte kullan. <code>wb-action-group</code>'u tablo hücrelerinin dışında genel amaçlı tut.</td></tr><tr><td><code>wb-danger-zone</code>, <code>wb-danger-zone-title</code>, <code>wb-danger-zone-description</code>, <code>wb-danger-zone-actions</code></td><td>Son yıkıcı bölüm</td><td><code>CMS Kurulumunu Sil</code> gibi net yıkıcı etiketler kullan.</td></tr></tbody></table></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="page-header">
+                    <h2>Yönetim sayfa başlığı ve form card'ları</h2>
+                    <div class="wb-card wb-card-flat">
+                      <div class="wb-card-body wb-stack-6">
+                        <div class="wb-page-header">
+                          <div class="wb-page-header-main">
+                            <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb örneği">
+                              <ol class="wb-breadcrumb-list">
+                                <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+                                <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">CMS Kurulumları</a></li>
+                                <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">CMS Kurulumu Ekle</span></li>
+                              </ol>
+                            </nav>
+                            <div>
+                              <h1 class="wb-page-title">CMS Kurulumu Ekle</h1>
+                              <p class="wb-page-description">Sayfa başlığını yalnızca bağlam ve gezinme aksiyonları için kullan. Oluştur ve kaydet butonlarını ait oldukları form footer'ında tut.</p>
+                            </div>
+                          </div>
+                          <div class="wb-page-actions">
+                            <a href="#" class="wb-btn wb-btn-outline wb-btn-sm">Listeye dön</a>
+                            <a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Herkese açık dokümanları görüntüle</a>
+                          </div>
+                        </div>
+
+                        <div class="wb-form-error-summary" role="alert">
+                          <strong>Lütfen işaretlenen alanları düzelt.</strong>
+                          <ul>
+                            <li>Alan adı zorunludur.</li>
+                            <li>Document root mutlak bir yol olmalıdır.</li>
+                          </ul>
+                        </div>
+
+                        <section class="wb-card">
+                          <div class="wb-card-header">
+                            <div>
+                              <h2 class="wb-card-title">Kurulum kimliği</h2>
+                              <p class="wb-card-description">Kısa kimlik alanları masaüstünde iki sütunlu bir ızgarayı paylaşabilir, küçük ekranlarda ise doğal olarak alt alta dizilir.</p>
+                            </div>
+                          </div>
+                          <div class="wb-card-body wb-stack-5">
+                            <section class="wb-form-section">
+                              <div class="wb-grid-2">
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardDomain">Alan adı</label>
+                                  <input class="wb-input wb-input-error" id="adminStandardDomain" type="text" placeholder="ornek.com">
+                                  <div class="wb-field-meta"><div class="wb-field-error">Üretim alan adını gir.</div></div>
+                                </div>
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardLabel">Etiket</label>
+                                  <input class="wb-input" id="adminStandardLabel" type="text" value="WebBlocks CMS Üretim">
+                                  <div class="wb-field-meta"><div class="wb-field-hint">Yönetim listelerinde kullanılan isteğe bağlı dahili etiket.</div></div>
+                                </div>
+                              </div>
+                            </section>
+                            <section class="wb-form-section">
+                              <div class="wb-form-section-header">
+                                <h3 class="wb-form-section-title">Yollar ve entegrasyon değerleri</h3>
+                                <p class="wb-form-section-description">Yollar, token'lar, URL'ler ve komutlar gibi uzun değerler tam genişlikte kalır ve monospace ile gösterilir.</p>
+                              </div>
+                              <div class="wb-stack-4">
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardAppPath">CMS uygulama yolu</label>
+                                  <input class="wb-input wb-input-mono" id="adminStandardAppPath" type="text" value="/var/www/webblockscms.com/web_root">
+                                  <div class="wb-field-meta"><div class="wb-field-hint">CMS uygulama köküne giden mutlak yol.</div></div>
+                                </div>
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardPublicPath">Document root</label>
+                                  <input class="wb-input wb-input-mono wb-input-error" id="adminStandardPublicPath" type="text" value="web_root/public">
+                                  <div class="wb-field-meta"><div class="wb-field-error"><code>/var/www/webblockscms.com/web_root/public</code> gibi mutlak bir yol kullan.</div></div>
+                                </div>
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardHealthEndpoint">Sağlık kontrolü URL'si</label>
+                                  <input class="wb-input wb-input-mono" id="adminStandardHealthEndpoint" type="url" value="https://status.webblockscms.com/healthz">
+                                  <div class="wb-field-meta"><div class="wb-field-hint">Kod benzeri ve altyapı değerlerini normal metinden görsel olarak ayrı tut.</div></div>
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                          <div class="wb-card-footer">
+                            <span class="wb-text-sm wb-text-muted">Önce birincil aksiyon. Sonra iptal.</span>
+                            <div class="wb-action-group">
+                              <button class="wb-btn wb-btn-primary" type="button">CMS Kurulumu Oluştur</button>
+                              <button class="wb-btn wb-btn-secondary" type="button">İptal</button>
+                            </div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
+                    <pre><code>&lt;div class="wb-page-header"&gt;
+  &lt;div class="wb-page-header-main"&gt;
+    &lt;nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
+    &lt;h1 class="wb-page-title"&gt;Edit CMS Installation&lt;/h1&gt;
+    &lt;p class="wb-page-description"&gt;Short page description.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-page-actions"&gt;
+    &lt;a class="wb-btn wb-btn-outline wb-btn-sm" href="#"&gt;Back to list&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;section class="wb-card"&gt;
+  &lt;div class="wb-card-header"&gt;
+    &lt;h2 class="wb-card-title"&gt;Installation identity&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body wb-stack-5"&gt;...&lt;/div&gt;
+  &lt;div class="wb-card-footer"&gt;
+    &lt;div class="wb-action-group"&gt;
+      &lt;button class="wb-btn wb-btn-primary"&gt;Save Changes&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-secondary"&gt;Cancel&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="admin-index-list">
+                    <h2>Yönetim index/liste standardı</h2>
+                    <div class="wb-stack-5">
+                      <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Kanonik sözleşme</strong> CMS, Publisher, QuizTem, Herne ve gelecekteki projelerdeki yönetim index/liste ekranları bu DOM yapısını paylaşmalıdır; böylece tablo boşlukları, filtre yerleşimi, satır aksiyonları ve sayfalama aynı şekilde davranır.</div>
+
+                      <div class="wb-table-wrap">
+                        <table class="wb-table wb-table-sm">
+                          <thead><tr><th>Alan</th><th>Kural</th></tr></thead>
+                          <tbody>
+                            <tr><td>Sayfa başlığı</td><td><code>wb-page-header</code>'ı sayfa düzeyinde tut. Sayfa başlığı, breadcrumb, açıklama ve yalnızca sayfa bağlamındaki aksiyonlar ona aittir.</td></tr>
+                            <tr><td>Filtreler</td><td>Filtreleri liste card'ından önce ayrı ve kompakt bir <code>wb-filter-bar</code> ya da filtre card'ı olarak render et. Filtreleri tablo card'ının gövdesine koyma.</td></tr>
+                            <tr><td>Liste card'ı</td><td>Listeyi <code>section.wb-card</code> içinde render et. Liste başlığı, açıklama ve sağdaki oluştur/içe aktar/dışa aktar aksiyonları card başlığına aittir.</td></tr>
+                            <tr><td>Card boşlukları</td><td><code>wb-card-body</code> doğrudan <code>wb-table-wrap</code> içermelidir. Tablonun etrafında projeye özel ek sarmalayıcılardan kaçın.</td></tr>
+                            <tr><td>Tablo</td><td><code>wb-table wb-table-hover</code> kullan. <code>wb-table-striped</code>'ı yalnızca şeritli görünüm bilinçli olarak gerektiğinde ekle.</td></tr>
+                            <tr><td>Aksiyon sütunu</td><td>Son başlık hücresini asla boş bırakma. Onu <code>Actions</code> olarak etiketle ve satır kontrollerini <code>td.wb-table-actions</code> içine koy.</td></tr>
+                            <tr><td>Satır aksiyonları</td><td>İkon öncelikli, sessiz satır kontrolleri kullan. Aksiyon ikonlarını <code>wb-action-group</code> içine al, her aksiyonu <code>wb-action-btn</code> olarak render et ve en az bir <code>aria-label</code> ver; eşleşen bir <code>title</code> önerilir.</td></tr>
+                            <tr><td>Yoğun teknik değerler</td><td>Ürün anahtarlarını, slug'ları, kaynak yollarını, sağlama toplamlarını, sürümleri, rota adlarını ve benzeri makine değerlerini kompakt monospace/kod değerleri olarak render et; örneğin <code>&lt;code class="wb-nowrap"&gt;webblocks-ui&lt;/code&gt;</code>. Böylece değer taranabilir kalır ve tablo, agresif karakter kırılması yerine <code>wb-table-wrap</code> içinde kayabilir.</td></tr>
+                            <tr><td>Uzun durum özetleri</td><td>İnsan tarafından okunabilir durum ve son çalıştırma özetlerinin normal metin gibi satır kaydırmasına izin ver. Tabloda kısa tut; teşhis detayı kimlik, durum ve aksiyonlarla yarışmaya başladığında onu bir detay sayfasına ya da ikincil meta veri bloğuna taşı.</td></tr>
+                            <tr><td>Sayfalama</td><td>Sayfalamayı veya sonuç özetini tablonun üstüne ya da <code>wb-table-wrap</code> içine değil, <code>wb-card-footer</code> içine koy.</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Eski sınıflara dair rehber</strong> Yeni kanonik örneklerde <code>wb-admin-table-card</code>, <code>wb-admin-table-card-body</code> veya <code>wb-admin-pages-table-wrap</code> gibi projeye özel sarmalayıcılar kullanma. Eski projelerin uyumluluğa ihtiyacı varsa, bu adları kanonik <code>wb-card</code>, <code>wb-card-body</code> ve <code>wb-table-wrap</code> davranışına eşleyen CSS alias'larını koruyabilirler.</div>
+
+                      <div class="wb-page-header">
+                        <div class="wb-page-header-main">
+                          <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Yönetim index breadcrumb örneği">
+                            <ol class="wb-breadcrumb-list">
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Admin</a></li>
+                              <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Sayfalar</span></li>
+                            </ol>
+                          </nav>
+                          <div>
+                            <h1 class="wb-page-title">Sayfalar</h1>
+                            <p class="wb-page-description">Yayımlanmış, taslak ve arşivlenmiş CMS sayfalarını tek bir kanonik yönetim index'inden yönet.</p>
+                          </div>
+                        </div>
+                        <div class="wb-page-actions">
+                          <a href="#" class="wb-btn wb-btn-outline wb-btn-sm">Panele dön</a>
+                        </div>
+                      </div>
+
+                      <div class="wb-filter-bar" role="search" aria-label="Sayfaları filtrele">
+                        <div class="wb-filter-bar-start">
+                          <div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Sayfalarda ara"></div>
+                          <select class="wb-filter-select" aria-label="Duruma göre filtrele"><option>Tüm durumlar</option><option>Yayında</option><option>Taslak</option><option>Arşivlendi</option></select>
+                          <button class="wb-filter-chip is-active" type="button">Yayında</button>
+                          <button class="wb-filter-chip" type="button">İnceleme gerekiyor</button>
+                        </div>
+                        <div class="wb-filter-bar-end"><span class="wb-filter-results">24 sayfa</span></div>
+                      </div>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header">
+                          <div><h2 class="wb-card-title">Sayfa listesi</h2><p class="wb-card-description">Tablo başlığı ve kaynak düzeyindeki aksiyonlar liste card'ına aittir.</p></div>
+                          <div class="wb-action-group"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Sayfa Oluştur</a><button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">İçe aktar</button></div>
+                        </div>
+                        <div class="wb-card-body">
+                          <div class="wb-table-wrap">
+                            <table class="wb-table wb-table-hover">
+                              <thead><tr><th>Başlık</th><th>Durum</th><th>Güncellendi</th><th>Sahip</th><th>Aksiyonlar</th></tr></thead>
+                              <tbody>
+                                <tr><td>Açılış Sayfası</td><td><span class="wb-status-pill wb-status-active">Yayında</span></td><td>2026-05-30</td><td>CMS Team</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Sayfayı görüntüle" title="Sayfayı görüntüle"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Sayfayı düzenle" title="Sayfayı düzenle"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Sayfayı arşivle" title="Sayfayı arşivle"><i class="wb-icon wb-icon-archive"></i></button></div></td></tr>
+                                <tr><td>Release Notes</td><td><span class="wb-status-pill wb-status-pending">Taslak</span></td><td>2026-05-28</td><td>Publisher Team</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Sayfayı görüntüle" title="Sayfayı görüntüle"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Sayfayı düzenle" title="Sayfayı düzenle"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Sayfayı arşivle" title="Sayfayı arşivle"><i class="wb-icon wb-icon-archive"></i></button></div></td></tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="wb-card-footer"><span class="wb-filter-results">24 sayfadan 1-2 arası gösteriliyor</span><nav class="wb-pagination wb-pagination-compact" aria-label="Sayfa sayfalaması"><ul class="wb-pagination-list"><li class="wb-pagination-item is-disabled"><span class="wb-pagination-link" aria-disabled="true">Önceki</span></li><li class="wb-pagination-item is-active"><span class="wb-pagination-link" aria-current="page">1</span></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">2</a></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">Sonraki</a></li></ul></nav></div>
+                      </section>
+
+                      <pre><code>&lt;div class="wb-page-header"&gt;
+  &lt;div class="wb-page-header-main"&gt;
+    &lt;nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
+    &lt;div&gt;
+      &lt;h1 class="wb-page-title"&gt;Pages&lt;/h1&gt;
+      &lt;p class="wb-page-description"&gt;Manage published, draft, and archived pages.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-page-actions"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="wb-filter-bar" role="search" aria-label="Sayfaları filtrele"&gt;
+  &lt;div class="wb-filter-bar-start"&gt;
+    &lt;div class="wb-search-bar wb-search-bar-full"&gt;
+      &lt;span class="wb-search-bar-icon"&gt;&lt;i class="wb-icon wb-icon-search"&gt;&lt;/i&gt;&lt;/span&gt;
+      &lt;input class="wb-search-bar-input" type="search" placeholder="Sayfalarda ara"&gt;
+    &lt;/div&gt;
+    &lt;select class="wb-filter-select" aria-label="Duruma göre filtrele"&gt;
+      &lt;option&gt;All statuses&lt;/option&gt;
+      &lt;option&gt;Published&lt;/option&gt;
+      &lt;option&gt;Draft&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-filter-bar-end"&gt;&lt;span class="wb-filter-results"&gt;24 pages&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;section class="wb-card"&gt;
+  &lt;div class="wb-card-header"&gt;
+    &lt;div&gt;
+      &lt;h2 class="wb-card-title"&gt;Page list&lt;/h2&gt;
+      &lt;p class="wb-card-description"&gt;All pages matching the current filters.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-action-group"&gt;
+      &lt;a class="wb-btn wb-btn-primary wb-btn-sm" href="#"&gt;Create Page&lt;/a&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button"&gt;Import&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body"&gt;
+    &lt;div class="wb-table-wrap"&gt;
+      &lt;table class="wb-table wb-table-hover"&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;&lt;th&gt;Title&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Updated&lt;/th&gt;&lt;th&gt;Owner&lt;/th&gt;&lt;th&gt;Actions&lt;/th&gt;&lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;
+            &lt;td&gt;Landing Page&lt;/td&gt;
+            &lt;td&gt;&lt;span class="wb-status-pill wb-status-active"&gt;Published&lt;/span&gt;&lt;/td&gt;
+            &lt;td&gt;2026-05-30&lt;/td&gt;
+            &lt;td&gt;CMS Team&lt;/td&gt;
+            &lt;td class="wb-table-actions"&gt;
+              &lt;div class="wb-action-group"&gt;
+                &lt;a class="wb-action-btn wb-action-btn-view" href="#" aria-label="Sayfayı görüntüle" title="Sayfayı görüntüle"&gt;&lt;i class="wb-icon wb-icon-eye"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Sayfayı düzenle" title="Sayfayı düzenle"&gt;&lt;i class="wb-icon wb-icon-pencil"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-footer"&gt;
+    &lt;span class="wb-filter-results"&gt;Showing 1-20 of 24 pages&lt;/span&gt;
+    &lt;nav class="wb-pagination wb-pagination-compact" aria-label="Sayfa sayfalaması"&gt;...&lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="admin-filter-bar-actions">
+                    <h2>Yönetim Filtre Çubuğu Aksiyonları</h2>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-4">
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Filtre aksiyonu standardı</strong> Yönetim filtre formları birincil submit aksiyonu için <code>Filter</code>, aktif filtreleri temizlemek için <code>Clear</code> kullanır. <code>Clear</code>'ı yalnızca en az bir filtre aktifken render et.</div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Alan</th><th>Kural</th></tr></thead>
+                            <tbody>
+                              <tr><td>Form yapısı</td><td><code>wb-filter-bar</code> ile gerçek bir form kullan. Alanları <code>wb-filter-bar-start</code>, aksiyon butonlarını <code>wb-filter-bar-end</code> içine koy.</td></tr>
+                              <tr><td>Alan ve aksiyon hizalaması</td><td><code>wb-items-end</code>, <code>wb-field</code>, <code>wb-flex-1</code> ve <code>wb-min-w-0</code> gibi mevcut kompozisyonu kullan; böylece etiketler, kontroller ve aksiyon butonları aynı taban çizgisini ve alan ritmini paylaşır.</td></tr>
+                              <tr><td>Etiketler</td><td>Kanonik İngilizce etiketler <code>Filter</code> ve <code>Clear</code>'dır. Yeni WebBlocks yönetim filtre yüzeylerinde <code>Apply</code>, <code>Apply Filters</code>, <code>Reset</code> veya <code>Clear filters</code> kullanma.</td></tr>
+                              <tr><td>Clear'ın görünürlüğü</td><td><code>Clear</code>'ı yalnızca filtreler aktifken render et. Filtresiz varsayılan durumda devre dışı bırakmak yerine tamamen çıkar.</td></tr>
+                              <tr><td>Buton boyutu</td><td>Filtre aksiyonlarının input ve select yüksekliğine uyması için normal <code>wb-btn</code> butonları kullan. Filtre çubuğu aksiyon butonları için <code>wb-btn-sm</code> kullanma.</td></tr>
+                              <tr><td>Clear varyantı</td><td><code>wb-btn-ghost</code> gibi mevcut ikincil/silik bir WebBlocks buton stilini kullan; yeni bir clear-buton varyantı uydurma.</td></tr>
+                              <tr><td>Kapsam</td><td>Bu kural filtre çubuğu aksiyonları içindir. Satır aksiyonları ve kompakt toolbar ikon butonları kendi ikon-buton ve kompakt aksiyon standartlarını korur.</td></tr>
+                              <tr><td>CSS</td><td>Projeye özel filtre hizalama CSS'i yazma. Özel bir hizalama sınıfı eklemek yerine mevcut WebBlocks primitive ve utility'lerini birleştir.</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <form class="wb-filter-bar wb-items-end" role="search" aria-label="Sayfa filtreleme örneği">
+                          <div class="wb-filter-bar-start">
+                            <div class="wb-field wb-flex-1 wb-min-w-0">
+                              <label class="wb-label" for="adminFilterSearch">Ara</label>
+                              <input id="adminFilterSearch" class="wb-input" type="search">
+                            </div>
+                            <div class="wb-field">
+                              <label class="wb-label" for="adminFilterStatus">Durum</label>
+                              <select id="adminFilterStatus" class="wb-select">
+                                <option>Tümü</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="wb-filter-bar-end wb-items-end">
+                            <button type="submit" class="wb-btn wb-btn-primary">Filter</button>
+                            <a href="/current-route" class="wb-btn wb-btn-ghost">Clear</a>
+                          </div>
+                        </form>
+                        <pre><code>&lt;form class="wb-filter-bar wb-items-end"&gt;
+  &lt;div class="wb-filter-bar-start"&gt;
+    &lt;div class="wb-field wb-flex-1 wb-min-w-0"&gt;
+      &lt;label class="wb-label" for="search"&gt;Search&lt;/label&gt;
+      &lt;input id="search" class="wb-input" type="search"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="wb-field"&gt;
+      &lt;label class="wb-label" for="status"&gt;Status&lt;/label&gt;
+      &lt;select id="status" class="wb-select"&gt;
+        &lt;option&gt;All&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="wb-filter-bar-end wb-items-end"&gt;
+    &lt;button type="submit" class="wb-btn wb-btn-primary"&gt;Filter&lt;/button&gt;
+
+    &lt;!-- Render only when filters are active. --&gt;
+    &lt;a href="/current-route" class="wb-btn wb-btn-ghost"&gt;Clear&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="dense-table-content">
+                    <h2>Yoğun tablo içeriği ve teknik değerler</h2>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-4">
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Teknik değer kuralı</strong> Yönetim tablolarındaki uzun makine okunabilir değerler, normal metinden görsel olarak ayrı kalmalıdır. Ürün anahtarları, slug'lar, kaynak yolları, sağlama toplamları, sürümler, rota adları, kuyruk adları, komut adları ve benzeri tanımlayıcılar için kompakt monospace/kod sunumu kullan. <code>code</code>, <code>wb-mono</code>, <code>wb-text-sm</code> ve <code>wb-nowrap</code> gibi mevcut WebBlocks UI primitive ve utility'lerini tercih et; ortak satır kaydırma davranışını atlatmak için projeye özel tablo CSS'i ekleme.</div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Ürün anahtarı</th><th>Kaynak yolu</th><th>Son durum/özet</th><th>Aksiyonlar</th></tr></thead>
+                            <tbody>
+                              <tr><td><code class="wb-nowrap">webblocks-ui</code></td><td><code class="wb-nowrap">build/ai-knowledge</code></td><td>İçe aktarma tamamlandı: 124 parça aktarıldı, 0 atlandı, 0 başarısız. Doğrulama: 0 boş gövde, 0 yinelenen sha256 değeri.</td><td class="wb-table-actions"><div class="wb-action-group"><button class="wb-action-btn wb-action-btn-view" type="button" aria-label="İçe aktarımı görüntüle" title="İçe aktarımı görüntüle"><i class="wb-icon wb-icon-eye"></i></button></div></td></tr>
+                              <tr><td><code class="wb-nowrap">webblocks-advisor</code></td><td><code class="wb-nowrap">resources/knowledge/webblocks-project-standards</code></td><td>Doğrulama başarılı. Yerleşik kaynak izin listesindedir ve yönetim ekranından yeniden içe aktarılabilir.</td><td class="wb-table-actions"><div class="wb-action-group"><button class="wb-action-btn wb-action-btn-edit" type="button" aria-label="Kaynağı yeniden içe aktar" title="Kaynağı yeniden içe aktar"><i class="wb-icon wb-icon-refresh-cw"></i></button></div></td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>İçerik türü</th><th>Tablodaki davranış</th><th>Ne zaman dışarı taşımalı</th></tr></thead>
+                            <tbody>
+                              <tr><td>Ürün anahtarı, slug, kaynak yolu, sağlama toplamı, sürüm, rota</td><td>Kompakt monospace/kod stili kullan. Tam token'ı korumak karakter düzeyinde kırmaktan daha okunabilirse ve tablo zaten <code>wb-table-wrap</code> içindeyse <code>wb-nowrap</code> ekle.</td><td>Birden fazla uzun teknik değer satırı taranamaz hâle getiriyorsa tam değerleri bir detay sayfasına ya da ikincil meta veri bloğuna taşı.</td></tr>
+                              <tr><td>Son durum veya son çalıştırma özeti</td><td>Normal metin kaydırması kullan. Satırın kimlik ve aksiyonların yanında okunabilir kalması için yeterince kısa tut.</td><td>Log'ları, doğrulama listelerini, stack trace'leri veya çok adımlı teşhisleri bir detay sayfasına, modala ya da ikincil meta veri bloğuna taşı.</td></tr>
+                              <tr><td>Aksiyonlar</td><td>Son başlığı <code>Actions</code> olarak tut. Sütunun dar, kararlı ve hizalı kalması için <code>td.wb-table-actions</code> ile tek bir <code>wb-action-group</code> kullan.</td><td>Bir satır çok sayıda işlem veya açıklayıcı aksiyon metni gerektiriyorsa detay sayfası kullan.</td></tr>
+                              <tr><td>Onay akışları</td><td>Silme, içe aktarma, yayımlama, dağıtım veya yeniden çalıştırma onayları için <code>wb-modal</code> ve ortak overlay kökünü kullan.</td><td>Tarayıcının <code>confirm()</code>'ünü kullanma; akış daha fazla bağlam gerektiriyorsa bağlamı modal gövdesine koy.</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <pre><code>&lt;td&gt;&lt;code class="wb-nowrap"&gt;webblocks-ui&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code class="wb-nowrap"&gt;resources/knowledge/webblocks-project-standards&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Import complete: 10 chunks imported, 0 skipped, 0 failed.&lt;/td&gt;
+&lt;td class="wb-table-actions"&gt;
+  &lt;div class="wb-action-group"&gt;...&lt;/div&gt;
+&lt;/td&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="form-cards">
+                    <h2>Birden fazla card ve danger zone içeren düzenleme sayfası</h2>
+                    <div class="wb-stack-5">
+                      <div class="wb-page-header">
+                        <div class="wb-page-header-main">
+                          <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb örneği">
+                            <ol class="wb-breadcrumb-list">
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">CMS Kurulumları</a></li>
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">WebBlocks CMS Üretim</a></li>
+                              <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">CMS Kurulumunu Düzenle</span></li>
+                            </ol>
+                          </nav>
+                          <div>
+                            <h1 class="wb-page-title">CMS Kurulumunu Düzenle</h1>
+                            <p class="wb-page-description">Yoğun yönetim formlarının taranabilir kalması için kimlik, çalışma zamanı detayları ve ilişkili kayıtlar için ayrı card'lar kullan.</p>
+                          </div>
+                        </div>
+                        <div class="wb-page-actions">
+                          <a href="#" class="wb-btn wb-btn-outline wb-btn-sm">Listeye dön</a>
+                          <a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Herkese açık sayfayı görüntüle</a>
+                        </div>
+                      </div>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Birincil ayarlar</h2><p class="wb-card-description">Form card'ları ilgisiz kontrolleri karıştırmak yerine amaca göre odaklı kalır.</p></div></div>
+                        <div class="wb-card-body wb-stack-5">
+                          <section class="wb-form-section">
+                            <div class="wb-grid-2">
+                              <div class="wb-field"><label class="wb-label" for="editDomain">Alan adı</label><input class="wb-input" id="editDomain" type="text" value="webblockscms.com"><div class="wb-field-meta"><div class="wb-field-hint">Kurulumun kullandığı herkese açık ana bilgisayar adı.</div></div></div>
+                              <div class="wb-field"><label class="wb-label" for="editEnvironment">Ortam</label><select class="wb-select" id="editEnvironment"><option selected>Üretim</option><option>Staging</option><option>Yerel</option></select><div class="wb-field-meta"><div class="wb-field-hint">Kısa kategorik değerler için kompakt bir alan kullan.</div></div></div>
+                            </div>
+                          </section>
+                        </div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><button class="wb-btn wb-btn-primary" type="button">Değişiklikleri Kaydet</button><button class="wb-btn wb-btn-secondary" type="button">İptal</button></div></div>
+                      </section>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Aliases</h2><p class="wb-card-description">İlişkili kayıtlar, açık footer aksiyonlarıyla kendi yönetim card'ında yaşayabilir.</p></div></div>
+                        <div class="wb-card-body">
+                          <div class="wb-table-wrap">
+                            <table class="wb-table wb-table-sm">
+                              <thead><tr><th>Alias</th><th>Özet</th><th>Aksiyonlar</th></tr></thead>
+                              <tbody>
+                                <tr><td>www.webblockscms.com</td><td>Kanonik üretim alan adına yönlendirir.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-link">Düzenle</a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="CMS alias'ını sil" title="CMS alias'ını sil"><i class="wb-icon wb-icon-trash"></i></button></div></td></tr>
+                                <tr><td>cms.webblockscms.com</td><td>Önizleme trafiği ve editör onboarding'i için dahili personel ana bilgisayar adı.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-link">Düzenle</a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="CMS alias'ını sil" title="CMS alias'ını sil"><i class="wb-icon wb-icon-trash"></i></button></div></td></tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><button class="wb-btn wb-btn-primary wb-btn-sm" type="button">CMS Alias'ı Oluştur</button></div></div>
+                      </section>
+
+                      <section class="wb-card wb-danger-zone">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title wb-danger-zone-title">Danger Zone</h2><p class="wb-danger-zone-description">Yıkıcı aksiyonlar, net etiketler ve kısa sonuç metniyle sayfanın en altında kalır.</p></div></div>
+                        <div class="wb-card-body wb-stack-3"><p class="wb-m-0">Bu kurulumu silmek alias'ları, sağlık geçmişini ve kayıtlı dağıtım referanslarını kaldırır. Bu işlem geri alınamaz.</p></div>
+                        <div class="wb-card-footer"><div class="wb-danger-zone-actions"><button class="wb-btn wb-btn-danger" type="button">CMS Kurulumunu Sil</button></div></div>
+                      </section>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="detail-page">
+                    <h2>Sağlık card'lı detay sayfası</h2>
+                    <div class="wb-grid-2">
+                      <section class="wb-card">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Kurulum detayları</h2><p class="wb-card-description">Detay sayfaları ham paragraflar yerine etiket/değer çiftleri göstermelidir.</p></div></div>
+                        <div class="wb-card-body">
+                          <div class="wb-detail-list">
+                            <div class="wb-detail-row"><div class="wb-detail-label">Alan adı</div><div class="wb-detail-value">webblocksui.com</div></div>
+                            <div class="wb-detail-row"><div class="wb-detail-label">CMS uygulama yolu</div><div class="wb-detail-value wb-detail-value-mono">/var/www/webblocksui.com/web_root</div></div>
+                            <div class="wb-detail-row"><div class="wb-detail-label">CMS public yolu</div><div class="wb-detail-value wb-detail-value-mono">/var/www/webblocksui.com/web_root/public</div></div>
+                            <div class="wb-detail-row"><div class="wb-detail-label">Deploy hook'u</div><div class="wb-detail-value wb-detail-value-mono">https://deploy.example.com/hooks/webblocks-ui-production</div></div>
+                          </div>
+                        </div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">CMS Kurulumunu Düzenle</a><a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Listeye dön</a></div></div>
+                      </section>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Sağlık ve uyarılar</h2><p class="wb-card-description">İsteğe bağlı uyarılar otomatik olarak altyapı arızası gibi okunmamalıdır.</p></div></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <div class="wb-status-pill wb-status-active">Sağlıklı, uyarılar var</div>
+                          <p class="wb-m-0">Temel kontroller geçti. Bu kurulum için isteğe bağlı bir entegrasyon yapılandırılmamış.</p>
+                          <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">İsteğe bağlı entegrasyon</strong> Arama indeksleme etkin değil. Küçük siteler için bu bilinçli olabilir ve sağlıklı temel durumu değiştirmez.</div>
+                        </div>
+                      </section>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="table-actions">
+                    <h2>Tablo aksiyonları</h2>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-4">
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-hover">
+                            <thead><tr><th>Site</th><th>Durum</th><th>Özet</th><th>Aksiyonlar</th></tr></thead>
+                            <tbody>
+                              <tr><td>WebBlocks UI</td><td><span class="wb-status-pill wb-status-active">Sağlıklı</span></td><td>Birincil üretim sitesi. Kuyruk işçileri, önbellek ve depolama izinlerinin tamamı beklenen temel değerlerle uyumlu.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Siteyi görüntüle" title="Siteyi görüntüle"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Siteyi düzenle" title="Siteyi düzenle"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                              <tr><td>Publisher</td><td><span class="wb-status-pill wb-status-pending">Sağlıklı, uyarılar var</span></td><td>Temel altyapı sağlıklı. Yerine geçecek uç nokta onaylanana kadar isteğe bağlı giden webhook teslimatı duraklatıldı.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Siteyi görüntüle" title="Siteyi görüntüle"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Siteyi düzenle" title="Siteyi düzenle"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Siteyi sil" title="Siteyi sil"><i class="wb-icon wb-icon-trash"></i></button></div></td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Aksiyon sütunu kuralı</strong> Yalnızca aksiyon içeren başlık hücresini asla boş bırakma. Açık <code>Actions</code> etiketini kullan, başlığı tablonun geri kalanı gibi sola hizalı tut ve satır kontrollerini <code>td.wb-table-actions</code> içine koy. Genel <code>wb-action-group</code> tablo hücrelerinin dışında satır kaydırabilir; tablo aksiyon hücresi içindeki gruplanmış aksiyonlar ise tek satırda kalır.</div>
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">İkon öncelikli, sessiz satır aksiyonları</strong> Yönetim/uygulama listelerindeki satır aksiyonları, sayfa düzeyindeki birincil aksiyonlarla yarışmamaları için varsayılan olarak ikon öncelikli, sessiz ve nötr kalmalıdır. Metin butonları; sayfa düzeyindeki birincil/bağlam aksiyonlarına, filtre çubuklarına, card footer'larına, modal footer'larına ya da ek netlik gerektiren satır dışı tekil aksiyonlara aittir.</div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Satır aksiyon alanı</th><th>Standart</th></tr></thead>
+                            <tbody>
+                              <tr><td>Hücre ve başlık</td><td>Son <code>td.wb-table-actions</code> hücresini açık bir <code>Actions</code> başlığıyla kullan. Başlığı boş bırakma.</td></tr>
+                              <tr><td>Gruplama</td><td>Satır kontrollerini tek bir <code>wb-action-group</code> içinde grupla. Yalnızca ikon içeren her kontrol <code>wb-action-btn</code> ritmini kullanır.</td></tr>
+                              <tr><td>Erişilebilirlik</td><td>Yalnızca ikon içeren satır kontrolleri için <code>aria-label</code> zorunludur. <code>title</code> önerilir ve standardın parçası olarak kabul edilir.</td></tr>
+                              <tr><td>Yıkıcı aksiyonlar</td><td>Yıkıcı satır aksiyonlarını varsayılan olarak kırmızı veya dolgulu yapma. Tehlikeyi; net onay modal metniyle, aksiyon etiketiyle, <code>aria-label</code> ile, <code>title</code> ile, ölçülü bir hover/odak tehlike durumuyla ve WebBlocks modal onay akışıyla taşı. Tarayıcının <code>confirm()</code>'ünü kullanma.</td></tr>
+                              <tr><td>Görsel öncelik</td><td>Satır meta ve durum ikonları, aksiyon ikonlarıyla görsel olarak yarışmamalıdır. Bir satır çok sayıda aksiyon gerektiriyorsa daha fazla görünür satır kontrolü eklemek yerine bir detay sayfasını, taşma menüsünü ya da ikincil bir yüzeyi tercih et.</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <pre><code>&lt;td class="wb-table-actions"&gt;
+  &lt;div class="wb-action-group"&gt;
+    &lt;a class="wb-action-btn wb-action-btn-view" href="#" aria-label="Siteyi görüntüle" title="Siteyi görüntüle"&gt;
+      &lt;i class="wb-icon wb-icon-eye"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Siteyi düzenle" title="Siteyi düzenle"&gt;
+      &lt;i class="wb-icon wb-icon-pencil"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Siteyi sil" title="Siteyi sil"&gt;
+      &lt;i class="wb-icon wb-icon-trash"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/td&gt;</code></pre>
+                        <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-action-btn-delete</code>, ikon aksiyon ritmi için yıkıcı niyeti işaretler; satır silme aksiyonlarının varsayılan olarak dolgulu kırmızı butonlara dönüşmesi gerektiği anlamına gelmez.</p>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="status-guidance">
+                    <h2>Sağlık ve uyarı durumu rehberi</h2>
+                    <div class="wb-grid-2">
+                      <div class="wb-card"><div class="wb-card-header"><div><h3 class="wb-card-title">Yap</h3><p class="wb-card-description">Önce birincil sistem durumunu açıkça belirt, ardından ikincil uyarıları net biçimde anlat.</p></div></div><div class="wb-card-body wb-stack-3"><p class="wb-m-0">Zorunlu kontroller geçtiğinde <strong>Sağlıklı, uyarılar var</strong> gibi etiketler kullan.</p><p class="wb-m-0">Aksiyon yoğun satırları kırpmak yerine uzun sağlık özetlerinin satır kaydırmasına izin ver.</p><p class="wb-m-0">İsteğe bağlı entegrasyonları, zorunlu altyapı durumuna göre görsel olarak ikincil tut.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-header"><div><h3 class="wb-card-title">Kaçın</h3><p class="wb-card-description">Her uyarıyı genel bir hata durumuna indirgeme.</p></div></div><div class="wb-card-body wb-stack-3"><p class="wb-m-0">Yalnızca isteğe bağlı bir entegrasyon devre dışıyken tüm sistemi bozuk olarak işaretleme.</p><p class="wb-m-0">Teşhis önemliyken uzun özetleri kırpılmış tek satırlık hücrelerin arkasına saklama.</p><p class="wb-m-0">Yalnızca <code>Sil</code> gibi belirsiz yıkıcı etiketler kullanma.</p></div></div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="copy-rules">
+                    <h2>Metin ve hiyerarşi kuralları</h2>
+                    <div class="wb-list wb-list-sm">
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Sayfa başlığı</span><span class="wb-list-item-sub">Card'ların dışında tek bir sayfa <code>h1</code>'i kullan. Card başlıkları onun yerini almamalıdır.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Card başlıkları</span><span class="wb-list-item-sub">Card başlıklarında <code>h2</code> kullan. <code>h3</code>'ü yalnızca bir card içindeki iç bölümler için kullan.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Birincil submit etiketleri</span><span class="wb-list-item-sub">Oluşturma ekranları için <code>{Kaynak} Oluştur</code>, düzenleme ekranları için <code>Değişiklikleri Kaydet</code> kullan.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">İptal sıralaması</span><span class="wb-list-item-sub">Aynı footer grubunda birincil aksiyonu önde, ikincil veya iptal aksiyonunu arkada tut.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Tehlike etiketleri</span><span class="wb-list-item-sub"><code>CMS Alias'ını Sil</code>, <code>Siteyi Sil</code> veya <code>Kullanıcıyı Sil</code> gibi net etiketler kullan.</span></div></div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-settings-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Önceki</span><span class="wb-content-prev-title">Settings Shell</span></a>
+                <a href="pattern-auth-shell.html" class="wb-content-next"><span class="wb-content-next-label">Sonraki</span><span class="wb-content-next-title">Auth Shell</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

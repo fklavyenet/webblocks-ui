@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Breadcrumb</title>
+  <meta name="description" content="WebBlocks UI'da anlamsal hiyerarşi yolları için kanonik wb-breadcrumb pattern rehberi ve örnekleri.">
+  <link rel="alternate" hreflang="en" href="../pattern-breadcrumb.html">
+  <link rel="alternate" hreflang="de" href="../de/pattern-breadcrumb.html">
+  <link rel="alternate" hreflang="tr" href="pattern-breadcrumb.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-breadcrumb.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/?example=breadcrumb" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Breadcrumb</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="../../playground/?example=breadcrumb" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Playground'u aç" title="Playground'u aç"><i class="wb-icon wb-icon-code"></i></a><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Pattern'lere dön"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-breadcrumbThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-breadcrumbThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-breadcrumbLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-breadcrumbLangMenu"><a class="wb-dropdown-item" href="../pattern-breadcrumb.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/pattern-breadcrumb.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="pattern-breadcrumb.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Bu sayfadaki bölümler">
+            <div class="wb-section-nav-title">Bu sayfada</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#overview" class="wb-section-nav-link">Genel Bakış</a></li>
+              <li class="wb-section-nav-item"><a href="#use-when" class="wb-section-nav-link">Ne zaman kullanmalı</a></li>
+              <li class="wb-section-nav-item"><a href="#anatomy" class="wb-section-nav-link">Anatomi</a></li>
+              <li class="wb-section-nav-item"><a href="#canonical-html" class="wb-section-nav-link">Kanonik HTML</a></li>
+              <li class="wb-section-nav-item"><a href="#default-example" class="wb-section-nav-link">Varsayılan</a></li>
+              <li class="wb-section-nav-item"><a href="#compact-example" class="wb-section-nav-link">Kompakt</a></li>
+              <li class="wb-section-nav-item"><a href="#cms-example" class="wb-section-nav-link">CMS hiyerarşisi</a></li>
+              <li class="wb-section-nav-item"><a href="#public-example" class="wb-section-nav-link">Herkese açık site</a></li>
+              <li class="wb-section-nav-item"><a href="#long-path-example" class="wb-section-nav-link">Uzun yol</a></li>
+              <li class="wb-section-nav-item"><a href="#accessibility" class="wb-section-nav-link">Erişilebilirlik</a></li>
+              <li class="wb-section-nav-item"><a href="#do-dont" class="wb-section-nav-link">Yap / Yapma</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Breadcrumb</h1>
+                <p class="wb-content-subtitle wb-docs-prose"><code>wb-breadcrumb</code>, kullanıcının sayfa veya bölüm hiyerarşisi içindeki güncel konumunu gösterir. Yönetim başlıkları, dokümantasyon yüzeyleri, CMS akışları ve daha sakin herkese açık sayfa bağlamı için anlamsal ve JavaScript'siz bir pattern'dir.</p>
+                <div class="wb-content-meta"><span>Pattern</span><span class="wb-content-meta-divider"></span><span>JavaScript'siz</span><span class="wb-content-meta-divider"></span><span>CSS ayırıcı</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="overview">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Genel Bakış</strong> Breadcrumb'ı, sayfa dekoratif bir alt başlık değil gerçek bir hiyerarşi bağlamı gerektirdiğinde kullan. Ana sayfa başlığına göre ikincil kalsın.</div>
+                    <p>Breadcrumb sözleşmesi bilinçli olarak küçük kalır: anlamsal <code>nav</code>, sıralı liste yapısı, CSS ile üretilen ayırıcılar, soluk ve etkileşimli üst düzey bağlantılar ve <code>aria-current="page"</code> ile sessiz bir geçerli sayfa işareti.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="use-when">
+                    <h2>Ne zaman kullanmalı</h2>
+                    <div class="wb-grid-2"><div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Ne zaman kullanmalı</h3></div><div class="wb-card-body wb-stack-3"><p class="wb-m-0">Yönetim sayfası hiyerarşisi</p><p class="wb-m-0">CMS düzenleme akışları</p><p class="wb-m-0">Ayar ve detay sayfaları</p><p class="wb-m-0">İç içe içerik alanları veya herkese açık dokümanlar</p></div></div><div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Şu durumlarda kaçın</h3></div><div class="wb-card-body wb-stack-3"><p class="wb-m-0">Gerçek bir hiyerarşi yoksa</p><p class="wb-m-0">Yol tamamen dekoratifse</p><p class="wb-m-0">Yol o kadar derinse ki netlik azalıyorsa</p></div></div></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="anatomy">
+                    <h2>Anatomi</h2>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Sınıf</th><th>Rol</th><th>Notlar</th></tr></thead><tbody><tr><td><code>wb-breadcrumb</code></td><td>Pattern sarmalayıcısı</td><td>Anlamsal <code>nav</code> üzerine uygula.</td></tr><tr><td><code>wb-breadcrumb-list</code></td><td>Sıralı liste</td><td>Yol anlamı için <code>ol</code> kullan.</td></tr><tr><td><code>wb-breadcrumb-item</code></td><td>Liste öğesi hook'u</td><td>İlki dışındaki her öğeden önce bir ayırıcı üretilir.</td></tr><tr><td><code>wb-breadcrumb-link</code></td><td>Üst düzey bağlantı</td><td>Varsayılan olarak soluk, hover/odakta etkileşimli.</td></tr><tr><td><code>wb-breadcrumb-current</code></td><td>Geçerli sayfa metni</td><td><code>aria-current="page"</code> ile birlikte kullan.</td></tr><tr><td><code>wb-breadcrumb-compact</code></td><td>Yoğun varyant</td><td>Topbar'lar, drawer'lar ve daha sıkı başlıklar için kullan.</td></tr></tbody></table></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="canonical-html">
+                    <h2>Kanonik HTML yapısı</h2>
+                    <div class="wb-card"><div class="wb-card-body"><pre><code>&lt;nav class="wb-breadcrumb" aria-label="Breadcrumb"&gt;
+  &lt;ol class="wb-breadcrumb-list"&gt;
+    &lt;li class="wb-breadcrumb-item"&gt;
+      &lt;a class="wb-breadcrumb-link" href="/admin"&gt;Dashboard&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="wb-breadcrumb-item"&gt;
+      &lt;a class="wb-breadcrumb-link" href="/admin/pages"&gt;Pages&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="wb-breadcrumb-item"&gt;
+      &lt;a class="wb-breadcrumb-link" href="/admin/pages/home"&gt;Home&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="wb-breadcrumb-item"&gt;
+      &lt;span class="wb-breadcrumb-current" aria-current="page"&gt;Blocks&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre></div></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="default-example">
+                    <h2>Varsayılan örnek</h2>
+                    <div class="wb-card"><div class="wb-card-body"><nav class="wb-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Sayfalar</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Ana Sayfa</span></li></ol></nav></div></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="compact-example">
+                    <h2>Kompakt örnek</h2>
+                    <div class="wb-card"><div class="wb-card-body"><nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Sayfalar</a></li><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Ana Sayfa</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Bloklar</span></li></ol></nav></div></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="cms-example">
+                    <h2>CMS hiyerarşisi</h2>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><nav class="wb-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Content</a></li><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Sayfalar</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Hakkında</span></li></ol></nav><p class="wb-m-0 wb-text-sm wb-text-muted">Düzenleme ve detay sayfalarını bir üst içerik alanına bağlı tutmak için breadcrumb kullan.</p></div></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="public-example">
+                    <h2>Herkese açık site örneği</h2>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><nav class="wb-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dokümanlar</a></li><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Rehberler</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Daha sakin yönetim başlıkları tasarlamak</span></li></ol></nav><p class="wb-m-0 wb-text-sm wb-text-muted">Hiyerarşi başlıkla yarışmak yerine yön bulmayı iyileştiriyorsa herkese açık sayfalar da aynı pattern'i kullanabilir.</p></div></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="long-path-example">
+                    <h2>Uzun, satır kaydıran yol</h2>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><nav class="wb-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Bilgi bankası</a></li><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Editoryal operasyonlar ve uzun yönetişim rehberleri</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Çok dilli ana sayfa hero içerik değişiklikleri için inceleme akışı tasarlamak</span></li></ol></nav><p class="wb-m-0 wb-text-sm wb-text-muted">Satır kaydırmaya izin verilir. Pattern, JS ile kısaltma veya elle ayırıcı olmadan okunabilir kalmalıdır.</p></div></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="accessibility">
+                    <h2>Erişilebilirlik notları</h2>
+                    <div class="wb-list wb-list-sm"><div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Landmark</span><span class="wb-list-item-sub">Breadcrumb'ı <code>nav</code> içine al ve <code>aria-label="Breadcrumb"</code> ver.</span></div></div><div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Sıralı yol</span><span class="wb-list-item-sub">Breadcrumb sıralı bir hiyerarşi yolunu ifade ettiği için <code>ol</code> kullan.</span></div></div><div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Geçerli sayfa</span><span class="wb-list-item-sub"><code>wb-breadcrumb-current</code> kullan ve <code>aria-current="page"</code> ver. Ürünsel bir gerekçe olmadıkça geçerli sayfayı bağlantı yapma.</span></div></div><div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Ayırıcılar</span><span class="wb-list-item-sub">Ayırıcıları markup içine elle yazma. Bunlar sunuma aittir ve CSS'in sorumluluğundadır.</span></div></div></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="do-dont">
+                    <h2>Yap / Yapma</h2>
+                    <div class="wb-grid-2"><div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Yap</h3></div><div class="wb-card-body wb-stack-3"><p class="wb-m-0">Breadcrumb'ı gerçek hiyerarşik gezinme için kullan.</p><p class="wb-m-0">Etiketleri kısa tut.</p><p class="wb-m-0">Geçerli sayfayı erişilebilir biçimde işaretle.</p><p class="wb-m-0">Yoğun toolbar ve başlıklarda kompakt varyantı kullan.</p></div></div><div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Yapma</h3></div><div class="wb-card-body wb-stack-3"><p class="wb-m-0">Ayırıcıları elle yazma.</p><p class="wb-m-0">Breadcrumb'ı dekoratif alt başlık metni olarak kullanma.</p><p class="wb-m-0">Yol gürültülü hâle geldiğinde her derin iç sistem parçasını gösterme.</p><p class="wb-m-0">Geçerli öğeyi varsayılan olarak bağlantıya dönüştürme.</p></div></div></div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Playground başlangıcı</strong> Aynı kanonik markup'ı gerçek paket CSS'iyle test etmek için <a href="../../playground/?example=breadcrumb">Playground'daki breadcrumb başlangıcını</a> aç.</div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-content-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Önceki</span><span class="wb-content-prev-title">Content Shell</span></a>
+                <a href="pattern-gallery.html" class="wb-content-next"><span class="wb-content-next-label">Sonraki</span><span class="wb-content-next-title">Gallery</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

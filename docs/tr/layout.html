@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Layout</title>
+  <meta name="description" content="WebBlocks UI'da container'lar, grid'ler, row'lar, shell'ler, navbar, sidebar ve sayfa yapısı yardımcıları.">
+  <link rel="alternate" hreflang="en" href="../layout.html">
+  <link rel="alternate" hreflang="de" href="../de/layout.html">
+  <link rel="alternate" hreflang="tr" href="layout.html">
+  <link rel="alternate" hreflang="x-default" href="../layout.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Layout</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#layoutThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="layoutThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#layoutLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="layoutLangMenu"><a class="wb-dropdown-item" href="../layout.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/layout.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="layout.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Bu sayfadaki bölümler">
+            <div class="wb-section-nav-title">Bu sayfada</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#base-composition-primitives">Temel kompozisyon primitive'leri</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#simple-grid-and-flow">Basit grid ve akış</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#row-system">12 sütunlu row sistemi</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#navigation-structure">Gezinme yapısı</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#shell-selection">Shell seçimi</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#header-hierarchy">Başlık hiyerarşisi</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Layout</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Sayfa genişliği, yapısal akış, gezinme çerçevesi ve shell seçimi Layout'ta yaşar. <code>wb-container</code>, <code>wb-grid-*</code>, <code>wb-row</code>, navbar, sidebar ya da dashboard/content/auth shell'leri aklındaysa buradan başla.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-wide" id="base-composition-primitives">
+                <h2>Temel kompozisyon primitive'leri</h2>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-sm">
+                    <thead><tr><th>Sınıf</th><th>Ne için</th><th>Neden önemli</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>wb-container*</code></td><td>Sayfa genişliği ve yatay iç boşluk</td><td>İçerik ölçüsünü tutarlı tutar.</td></tr>
+                      <tr><td><code>wb-section*</code></td><td>Büyük dikey bantlar</td><td>Dış sayfa ritmini tanımlar.</td></tr>
+                      <tr><td><code>wb-stack*</code></td><td>Dikey akış</td><td>Tekrar eden boşlukları tek seferlik margin'ler olmadan yönetir.</td></tr>
+                      <tr><td><code>wb-cluster*</code></td><td>Satır sonu veren inline gruplar</td><td>Aksiyonlar, chip'ler ve kompakt kontroller için uygundur.</td></tr>
+                      <tr><td><code>wb-split</code></td><td>İki taraflı yerleşimler</td><td>İlk çocuğun büyümesine, son çocuğun sabit kalmasına izin verir.</td></tr>
+                      <tr><td><code>wb-grid*</code></td><td>Basit tekrarlı sütunlar</td><td>Hızlı 2/3/4 sütunlu ve auto-fill yerleşim.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="simple-grid-and-flow">
+                <h2>Basit grid ve akış örnekleri</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Stack + cluster + split</h3></div><div class="wb-card-body wb-stack-4"><div class="wb-stack-2"><strong>Stack</strong><p class="wb-m-0">Dikey ritimli üç blok.</p><p class="wb-m-0">Düz metin ve form bölümleri için kullan.</p></div><div class="wb-cluster"><span class="wb-badge">Cluster</span><span class="wb-badge wb-badge-success">Satır kaydırır</span><span class="wb-badge wb-badge-warning">Satır içi öğeler</span></div><div class="wb-split"><strong>Split solda büyür</strong><button class="wb-btn wb-btn-sm wb-btn-primary">Aksiyon</button></div></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Grid yardımcıları</h3></div><div class="wb-card-body wb-stack-4"><div class="wb-grid-2"><div class="wb-card wb-card-muted"><div class="wb-card-body">wb-grid-2</div></div><div class="wb-card wb-card-muted"><div class="wb-card-body">wb-grid-2</div></div></div><div class="wb-grid-3"><div class="wb-card wb-card-muted"><div class="wb-card-body">1</div></div><div class="wb-card wb-card-muted"><div class="wb-card-body">2</div></div><div class="wb-card wb-card-muted"><div class="wb-card-body">3</div></div></div></div></div>
+                </div>
+                <pre><code>&lt;div class="wb-grid-2"&gt;...&lt;/div&gt;
+&lt;div class="wb-grid-auto"&gt;...&lt;/div&gt;
+&lt;div class="wb-split"&gt;
+  &lt;div&gt;grows&lt;/div&gt;
+  &lt;button class="wb-btn wb-btn-sm"&gt;fixed side&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                <p class="wb-text-sm wb-text-muted">WebBlocks grid primitive'leri içindeki doğrudan <code>wb-card</code> çocukları satır yüksekliğine otomatik olarak uzar ve <code>wb-card-footer</code> alanları altta hizalı kalır.</p>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="row-system">
+                <h2>12 sütunlu row sistemi</h2>
+                <p>WebBlocks ayrıca <code>layout/grid.css</code> içinde Bootstrap benzeri bir row/column grid'i de sunar.</p>
+                <pre><code>&lt;div class="wb-row"&gt;
+  &lt;div class="wb-col-md-8"&gt;main&lt;/div&gt;
+  &lt;div class="wb-col-md-4"&gt;sidebar&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <div class="wb-row">
+                  <div class="wb-col-md-8"><div class="wb-card"><div class="wb-card-body">wb-col-md-8</div></div></div>
+                  <div class="wb-col-md-4"><div class="wb-card"><div class="wb-card-body">wb-col-md-4</div></div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="navigation-structure">
+                <h2>Gezinme yapısı</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Navbar</h3></div><div class="wb-card-body wb-stack-3"><header class="wb-navbar wb-navbar--static"><a href="#" class="wb-navbar-brand">Atlas</a><span class="wb-navbar-spacer"></span><div class="wb-navbar-links"><nav aria-label="Örnek navbar"><ul class="wb-navbar-nav wb-navbar-nav--active-underline"><li class="wb-navbar-nav-item"><a href="#" class="wb-navbar-link is-active" aria-current="page">Genel Bakış</a></li><li class="wb-navbar-nav-item"><a href="#" class="wb-navbar-link">Faturalandırma</a></li></ul></nav></div></header><p class="wb-m-0">Üst düzey gezinme ve aksiyonlar için navbar kullan. Geçerli bağlantılar <code>aria-current="page"</code> ile birlikte <code>is-active</code> kullanır; nav listeleri ise <code>wb-navbar-nav--active-underline</code> veya <code>wb-navbar-nav--active-pill</code> gibi aktif gösterge sınıfları seçebilir.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Sidebar</h3></div><div class="wb-card-body"><aside class="wb-sidebar wb-block wb-relative wb-inset-0 wb-w-full" aria-label="Sidebar örneği"><div class="wb-sidebar-nav"><div class="wb-sidebar-section"><span class="wb-sidebar-label">Workspace</span><a class="wb-sidebar-link is-active" href="#"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Genel Bakış</span></a><a class="wb-sidebar-link" href="#"><i class="wb-icon wb-icon-users wb-sidebar-icon"></i><span>Üyeler</span></a><a class="wb-sidebar-link" href="#"><i class="wb-icon wb-icon-settings wb-sidebar-icon"></i><span>Ayarlar</span></a></div></div></aside></div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="shell-selection">
+                <h2>Shell seçimi</h2>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-sm">
+                    <thead><tr><th>Shell</th><th>Sınıf</th><th>Ne zaman buradan başlanmalı</th></tr></thead>
+                    <tbody>
+                      <tr><td>Dashboard</td><td><code>wb-dashboard-shell</code></td><td>Kalıcı gezinme ve kaydırılabilir ana alanı olan yönetim ürünleri.</td></tr>
+                      <tr><td>Auth</td><td><code>wb-auth-shell</code></td><td>Giriş, kayıt ve sakin giriş akışları.</td></tr>
+                      <tr><td>Ayarlar</td><td><code>wb-settings-shell</code></td><td>Yerel gezinme ve bölümlenmiş formlar içeren, tercih yoğun sayfalar.</td></tr>
+                      <tr><td>Content</td><td><code>wb-content-shell</code></td><td>Dokümanlar, makaleler, hukuki sayfalar ve metin öncelikli içerik.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Shell kuralı</strong> Primitive'leri incelemeden önce sayfa shell'ini seç. Çerçeve belirlenmeden bir dashboard gelişigüzel card'lardan kurulmamalı.</div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-split" id="header-hierarchy">
+                <h2>Başlık hiyerarşisi</h2>
+                <div class="wb-card"><div class="wb-card-body"><div class="wb-page-header"><div class="wb-page-header-main"><nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb örneği"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Workspace</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Üyeler</span></li></ol></nav><div><h2 class="wb-page-header-title">Üyeler</h2><p class="wb-page-subtitle">Kişileri, rolleri ve davetleri yönet.</p></div></div><div class="wb-page-actions"><button class="wb-btn wb-btn-primary wb-btn-sm">Davet et</button></div></div></div></div>
+                <p>Breadcrumb isteğe bağlıdır. Başlık birincildir. Alt başlık destekleyicidir. Aksiyonlar ayrı kalır.</p>
+              </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="foundation.html" class="wb-content-prev"><span class="wb-content-prev-label">Önceki</span><span class="wb-content-prev-title">Foundation</span></a>
+                <a href="primitives.html" class="wb-content-next"><span class="wb-content-next-label">Sonraki</span><span class="wb-content-next-title">Primitives</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebBlocks UI - Cookie Consent</title>
-  <meta name="description" content="Anleitung zum wiederverwendbaren Cookie-Consent-Pattern von WebBlocks UI für untere Banner, schwebende Cards und wb-modal-Präferenzzentren.">
+  <meta name="description" content="Alt banner'lar, yüzen kartlar ve wb-modal tercih merkezleri için yeniden kullanılabilir WebBlocks UI çerez onayı pattern rehberi.">
   <link rel="alternate" hreflang="en" href="../pattern-cookie-consent.html">
-  <link rel="alternate" hreflang="de" href="pattern-cookie-consent.html">
-  <link rel="alternate" hreflang="tr" href="../tr/pattern-cookie-consent.html">
+  <link rel="alternate" hreflang="de" href="../de/pattern-cookie-consent.html">
+  <link rel="alternate" hreflang="tr" href="pattern-cookie-consent.html">
   <link rel="alternate" hreflang="x-default" href="../pattern-cookie-consent.html">
   <script src="../version.js"></script>
   <script src="../webblocks-assets.js"></script>
@@ -16,12 +16,12 @@
   <div class="wb-dashboard-shell">
     <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
     <aside class="wb-sidebar" id="docsSidebar">
-      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
-      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
         <div class="wb-sidebar-section">
-          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
-          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
-          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
           <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
           <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
           <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
@@ -29,7 +29,7 @@
           <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
             <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
             <div class="wb-nav-group-items">
-              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
               <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
               <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
               <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
@@ -53,26 +53,26 @@
 
     <div class="wb-dashboard-body">
       <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
-        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
         <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Cookie Consent</span></li></ol></nav>
         <div class="wb-navbar-spacer"></div>
-        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Zurück zu den Patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-cookie-consentThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-cookie-consentThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-cookie-consentLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-cookie-consentLangMenu"><a class="wb-dropdown-item" href="../pattern-cookie-consent.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="pattern-cookie-consent.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item" href="../tr/pattern-cookie-consent.html" lang="tr"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Pattern'lere dön"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-cookie-consentThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-cookie-consentThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-cookie-consentLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-cookie-consentLangMenu"><a class="wb-dropdown-item" href="../pattern-cookie-consent.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/pattern-cookie-consent.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="pattern-cookie-consent.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
       </header>
 
       <main class="wb-dashboard-main">
         <div class="wb-settings-shell wb-docs-layout">
-          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
-            <div class="wb-section-nav-title">Auf dieser Seite</div>
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Bu sayfadaki bölümler">
+            <div class="wb-section-nav-title">Bu sayfada</div>
             <ul class="wb-section-nav-list">
               <li class="wb-section-nav-item"><a href="#intro" class="wb-section-nav-link">Intro</a></li>
-              <li class="wb-section-nav-item"><a href="#when-to-use" class="wb-section-nav-link">Wann verwenden</a></li>
-              <li class="wb-section-nav-item"><a href="#live-previews" class="wb-section-nav-link">Statische Vorschauen</a></li>
-              <li class="wb-section-nav-item"><a href="#bottom-banner-modal" class="wb-section-nav-link">Unteres Banner + Modal</a></li>
-              <li class="wb-section-nav-item"><a href="#floating-card-modal" class="wb-section-nav-link">Schwebende Card + Modal</a></li>
-              <li class="wb-section-nav-item"><a href="#footer-reopen" class="wb-section-nav-link">Erneut öffnen im Footer</a></li>
-              <li class="wb-section-nav-item"><a href="#storage-event" class="wb-section-nav-link">Speicherung + Event</a></li>
-              <li class="wb-section-nav-item"><a href="#api" class="wb-section-nav-link">Öffentliche API</a></li>
-              <li class="wb-section-nav-item"><a href="#integration-guidance" class="wb-section-nav-link">Hinweise zur Integration</a></li>
+              <li class="wb-section-nav-item"><a href="#when-to-use" class="wb-section-nav-link">Ne zaman kullanmalı</a></li>
+              <li class="wb-section-nav-item"><a href="#live-previews" class="wb-section-nav-link">Statik önizlemeler</a></li>
+              <li class="wb-section-nav-item"><a href="#bottom-banner-modal" class="wb-section-nav-link">Alt banner + modal</a></li>
+              <li class="wb-section-nav-item"><a href="#floating-card-modal" class="wb-section-nav-link">Yüzen card + modal</a></li>
+              <li class="wb-section-nav-item"><a href="#footer-reopen" class="wb-section-nav-link">Footer'dan yeniden açma</a></li>
+              <li class="wb-section-nav-item"><a href="#storage-event" class="wb-section-nav-link">Saklama + olay</a></li>
+              <li class="wb-section-nav-item"><a href="#api" class="wb-section-nav-link">Genel API</a></li>
+              <li class="wb-section-nav-item"><a href="#integration-guidance" class="wb-section-nav-link">Entegrasyon rehberi</a></li>
             </ul>
           </nav>
 
@@ -80,25 +80,25 @@
             <div class="wb-content-shell wb-docs-main">
               <header class="wb-content-header">
                 <h1 class="wb-content-title">Cookie Consent</h1>
-                <p class="wb-content-subtitle wb-docs-prose"><code>wb-cookie-consent</code> ist das wiederverwendbare Consent-Pattern für öffentliche Websites: untere Banner, schwebende Cards und ein gemeinsames <code>wb-modal</code>-Präferenzzentrum. Es speichert ausschließlich den Einwilligungsstatus; wann Analyse- oder Marketing-Skripte tatsächlich laden, entscheidet weiterhin das Host-Projekt.</p>
-                <div class="wb-content-meta"><span>Pattern für öffentliche Websites</span><span class="wb-content-meta-divider"></span><span>Gemeinsames Modal-Präferenzzentrum</span><span class="wb-content-meta-divider"></span><span>Erforderlicher Hook zum erneuten Öffnen</span></div>
+                <p class="wb-content-subtitle wb-docs-prose"><code>wb-cookie-consent</code>; alt banner'lar, yüzen kartlar ve ortak tek bir <code>wb-modal</code> tercih merkezi için yeniden kullanılabilir, herkese açık site onay pattern'idir. Yalnızca onay durumunu saklar; analitik veya pazarlama betiklerinin ne zaman yükleneceğine yine host proje karar verir.</p>
+                <div class="wb-content-meta"><span>Herkese açık site pattern'i</span><span class="wb-content-meta-divider"></span><span>Ortak modal tercih merkezi</span><span class="wb-content-meta-divider"></span><span>Zorunlu yeniden açma hook'u</span></div>
               </header>
 
               <div class="wb-content-body">
                 <div class="wb-docs-flow">
                   <section class="wb-docs-section wb-docs-prose" id="intro">
-                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Pattern-Grenze</strong> Cookie Consent ist kein Primitive und kein eigenes Overlay-System. Es ist ein wiederverwendbares Pattern aus <code>wb-card</code>, Layout-Primitives, Buttons, Formular-Controls und einem ausgelieferten <code>wb-modal</code>.</div>
-                    <p>Nutze dieses Pattern, wenn eine öffentliche Website, eine CMS-Oberfläche oder eine Produkt-Landingpage einen einheitlichen Consent-Flow braucht, der sich später über einen Footer- oder Einstellungslink erneut öffnen lässt. Halte das Markup explizit, die Texte juristisch prüfbar und die Entscheidung über das Laden von Skripten im Host-Projekt.</p>
-                    <p class="wb-text-sm wb-text-muted wb-m-0">Schließen speichert keine Einwilligung. Erst Akzeptieren, Ablehnen oder Präferenzen speichern sichert die Auswahl.</p>
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Pattern sınırı</strong> Cookie Consent bir primitive değildir ve ayrı bir overlay sistemi de değildir. <code>wb-card</code>, layout primitive'leri, butonlar, form kontrolleri ve pakette gelen tek bir <code>wb-modal</code>'dan oluşan yeniden kullanılabilir bir pattern'dir.</div>
+                    <p>Herkese açık bir site, CMS yüzeyi veya ürün açılış sayfası, sonradan footer ya da ayarlar bağlantısından yeniden açılabilen tutarlı tek bir onay akışına ihtiyaç duyduğunda bu pattern'i kullan. Markup'ı açık, metni hukuken incelenebilir tut ve betik yükleme kararlarını host projede bırak.</p>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">Kapatmak onayı kaydetmez. Kullanıcının seçimini yalnızca kabul, ret ya da tercihleri kaydetme işlemi saklar.</p>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="live-demo">
-                    <h2>Live-Demo</h2>
+                    <h2>Canlı demo</h2>
                     <div class="wb-card">
                       <div class="wb-card-body wb-stack-3">
-                        <p class="wb-m-0">Diese Seite enthält eine Live-Consent-Demo: das untere Banner plus ein gemeinsames Präferenz-Modal. Nutze den Footer-Button unten, nachdem du die Einwilligung gespeichert hast.</p>
+                        <p class="wb-m-0">Bu sayfada tek bir canlı onay demosu vardır: alt banner artı ortak bir tercih modalı. Onayı kaydettikten sonra aşağıdaki footer tarzı butonu kullan.</p>
                         <div class="wb-cluster wb-cluster-2">
-                          <button class="wb-btn wb-btn-ghost wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#docsCookiePreferences">Cookie-Einstellungen</button>
+                          <button class="wb-btn wb-btn-ghost wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#docsCookiePreferences">Çerez ayarları</button>
                         </div>
                       </div>
                     </div>
@@ -106,77 +106,77 @@
 
                   <section class="wb-docs-section wb-docs-split" id="when-to-use">
                     <div>
-                      <h2>Wann verwenden</h2>
+                      <h2>Ne zaman kullanmalı</h2>
                       <ul>
-                        <li>Öffentliche Websites, die ein wiederverwendbares Consent-Banner brauchen</li>
-                        <li>Produkte, die ein gemeinsames Präferenzzentrum als Modal brauchen</li>
-                        <li>Projekte, die Cookie-Einstellungen aus dem Footer erneut öffnen müssen</li>
-                        <li>Teams, die den Einwilligungsstatus einheitlich im localStorage speichern wollen</li>
+                        <li>Yeniden kullanılabilir bir onay banner'ına ihtiyaç duyan herkese açık siteler</li>
+                        <li>Ortak tek bir tercih merkezi modalına ihtiyaç duyan ürünler</li>
+                        <li>Çerez ayarlarını footer'dan yeniden açması gereken projeler</li>
+                        <li>Onay durumunun localStorage'da tutarlı biçimde saklanmasını isteyen ekipler</li>
                       </ul>
                     </div>
-                    <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Was es nicht tut</strong> Diese Runtime entscheidet nicht, ob Google Analytics, Meta Pixel oder anderer Drittanbieter-Code ausgeführt wird. Sie speichert und veröffentlicht lediglich den Einwilligungsstatus, damit das Host-Projekt diese Integrationen korrekt steuern kann.</div>
+                    <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Neleri yapmaz</strong> Bu runtime; Google Analytics, Meta Pixel veya diğer üçüncü taraf kodların çalışıp çalışmayacağına karar vermez. Yalnızca onay durumunu saklar ve dışa açar; böylece host proje bu entegrasyonları doğru şekilde denetleyebilir.</div>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="live-previews">
-                    <h2>Statische Vorschauen</h2>
-                    <p>Statische Vorschauen sind inaktiv; nur der Abschnitt mit der Live-Demo enthält aktive Consent-Hooks. Kopiere die Markup-Beispiele unten, wenn du die echten Hooks brauchst.</p>
+                    <h2>Statik önizlemeler</h2>
+                    <p>Statik önizlemeler etkisizdir; yalnızca canlı demo bölümü aktif onay hook'ları içerir. Gerçek hook'lara ihtiyacın olduğunda aşağıdaki markup örneklerini kopyala.</p>
                     <div class="wb-grid-2">
                       <div class="wb-card">
-                        <div class="wb-card-header"><h3 class="wb-card-title">Vorschau des unteren Banners</h3></div>
+                        <div class="wb-card-header"><h3 class="wb-card-title">Alt banner önizlemesi</h3></div>
                         <div class="wb-card-body wb-stack-4">
                           <div class="wb-cookie-consent wb-cookie-consent-banner" data-wb-cookie-consent-preview>
-                            <section class="wb-card wb-cookie-consent-card" aria-label="Vorschau des Cookie-Consent">
+                            <section class="wb-card wb-cookie-consent-card" aria-label="Çerez onayı önizlemesi">
                               <div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start">
                                 <div class="wb-stack-1">
-                                  <strong>Wir verwenden Cookies</strong>
+                                  <strong>Çerez kullanıyoruz</strong>
                                 </div>
-                                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" aria-label="Cookie-Einstellungen schließen" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+                                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" aria-label="Çerez ayarlarını kapat" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
                               </div>
                               <div class="wb-card-body">
                                 <div class="wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
-                                  <p class="wb-text-sm wb-text-muted wb-m-0">Notwendige Cookies halten die Website am Laufen. Optionale Cookies helfen dabei, Präferenzen zu merken und die Nutzung zu verstehen.</p>
+                                  <p class="wb-text-sm wb-text-muted wb-m-0">Zorunlu çerezler sitenin çalışmasını sağlar. İsteğe bağlı çerezler tercihleri hatırlamamıza ve kullanımı anlamamıza yardımcı olur.</p>
                                   <div class="wb-cluster wb-cluster-2">
-                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Ablehnen</button>
-                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Anpassen</button>
-                                    <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Alle akzeptieren</button>
+                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Reddet</button>
+                                    <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Özelleştir</button>
+                                    <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Tümünü kabul et</button>
                                   </div>
                                 </div>
                               </div>
                             </section>
                           </div>
-                          <p class="wb-text-sm wb-text-muted wb-m-0">Empfohlener Standard für die meisten öffentlichen Seiten.</p>
+                          <p class="wb-text-sm wb-text-muted wb-m-0">Herkese açık sayfaların çoğu için önerilen varsayılan.</p>
                         </div>
                       </div>
                       <div class="wb-card">
-                        <div class="wb-card-header"><h3 class="wb-card-title">Vorschau der schwebenden Card</h3></div>
+                        <div class="wb-card-header"><h3 class="wb-card-title">Yüzen card önizlemesi</h3></div>
                         <div class="wb-card-body wb-stack-4">
                           <div class="wb-cookie-consent wb-cookie-consent-floating" data-wb-cookie-consent-preview>
-                            <section class="wb-card wb-cookie-consent-card" aria-label="Vorschau der Cookie-Einstellungen">
+                            <section class="wb-card wb-cookie-consent-card" aria-label="Çerez ayarları önizlemesi">
                               <div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start">
                                 <div class="wb-stack-1">
-                                  <strong>Cookie-Einstellungen</strong>
-                                  <p class="wb-text-sm wb-text-muted wb-m-0">Nutze die kompakte Card, wenn die Seite einen leichteren Auftritt haben soll.</p>
+                                  <strong>Çerez ayarları</strong>
+                                  <p class="wb-text-sm wb-text-muted wb-m-0">Sayfa daha hafif bir görünürlük istediğinde kompakt card'ı kullan.</p>
                                 </div>
-                                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" aria-label="Cookie-Einstellungen schließen" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+                                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" aria-label="Çerez ayarlarını kapat" aria-disabled="true" disabled><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
                               </div>
                               <div class="wb-card-body wb-stack-3">
                                 <div class="wb-cluster wb-cluster-2">
-                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Ablehnen</button>
-                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Anpassen</button>
-                                  <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Alle akzeptieren</button>
+                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Reddet</button>
+                                  <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" aria-disabled="true" disabled>Özelleştir</button>
+                                  <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" aria-disabled="true" disabled>Tümünü kabul et</button>
                                 </div>
                               </div>
                             </section>
                           </div>
-                          <p class="wb-text-sm wb-text-muted wb-m-0">Kompakte Alternative für ruhigere Marketing-Seiten.</p>
+                          <p class="wb-text-sm wb-text-muted wb-m-0">Daha sakin pazarlama sayfaları için kompakt alternatif.</p>
                         </div>
                       </div>
                     </div>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="bottom-banner-modal" data-wb-demo-static>
-                    <h2>1. Unteres Banner + Präferenz-Modal</h2>
-                    <p>Das ist der empfohlene Standard. Das Banner verantwortet die erste Entscheidung, während ein gemeinsames Modal die Präferenzen auf Kategorieebene übernimmt.</p>
+                    <h2>1. Alt banner + tercih modalı</h2>
+                    <p>Önerilen varsayılan budur. İlk kararı banner üstlenir; kategori düzeyindeki tercihleri ise ortak tek bir modal yönetir.</p>
                     <div class="wb-card">
                       <div class="wb-card-body">
 <pre><code class="language-html">&lt;div class="wb-cookie-consent wb-cookie-consent-banner"
@@ -187,7 +187,7 @@
       &lt;div class="wb-stack-1"&gt;
         &lt;strong&gt;We use cookies&lt;/strong&gt;
       &lt;/div&gt;
-      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Cookie-Einstellungen schließen"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Çerez ayarlarını kapat"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class="wb-card-body"&gt;
       &lt;div class="wb-cluster wb-cluster-between wb-cluster-3 wb-items-center"&gt;
@@ -208,7 +208,7 @@
   &lt;div class="wb-modal-dialog"&gt;
     &lt;div class="wb-modal-header"&gt;
       &lt;h2 class="wb-modal-title" id="siteCookiePreferencesTitle"&gt;Cookie preferences&lt;/h2&gt;
-      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Cookie-Einstellungen schließen"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Çerez ayarlarını kapat"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class="wb-modal-body"&gt;
       &lt;div class="wb-stack-1"&gt;
@@ -285,14 +285,14 @@
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="floating-card-modal" data-wb-demo-static>
-                    <h2>2. Schwebende Card + Präferenz-Modal</h2>
-                    <p>Nutze dieselben Modal- und Verhaltens-Hooks, tausche aber die Einstiegsfläche gegen eine kleinere schwebende Card für werbliche oder redaktionelle Seiten.</p>
+                    <h2>2. Yüzen card + tercih modalı</h2>
+                    <p>Aynı modal ve davranış hook'larını kullan, ancak tanıtım veya editoryal sayfalarda giriş yüzeyini daha küçük bir yüzen card ile değiştir.</p>
                     <div class="wb-card">
                       <div class="wb-card-body">
 <pre><code class="language-html">&lt;div class="wb-cookie-consent wb-cookie-consent-floating"
      data-wb-cookie-consent
      hidden&gt;
-  &lt;section class="wb-card wb-cookie-consent-card" aria-label="Cookie-Einstellungen"&gt;
+  &lt;section class="wb-card wb-cookie-consent-card" aria-label="Çerez ayarları"&gt;
     &lt;div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start"&gt;
       &lt;div class="wb-stack-1"&gt;
           &lt;strong&gt;Cookie settings&lt;/strong&gt;
@@ -300,7 +300,7 @@
             Necessary cookies keep the site working. Optional cookies help personalize and measure the experience.
           &lt;/p&gt;
       &lt;/div&gt;
-      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Cookie-Einstellungen schließen"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Çerez ayarlarını kapat"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class="wb-card-body wb-stack-3"&gt;
       &lt;div class="wb-cluster wb-cluster-2"&gt;
@@ -316,19 +316,19 @@
   &lt;div class="wb-modal-dialog"&gt;
     &lt;div class="wb-modal-header"&gt;
       &lt;h2 class="wb-modal-title" id="marketingCookiePreferencesTitle"&gt;Cookie preferences&lt;/h2&gt;
-      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Cookie-Einstellungen schließen"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Çerez ayarlarını kapat"&gt;&lt;i class="wb-icon wb-icon-x" aria-hidden="true"&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
     &lt;div class="wb-modal-body"&gt;...same category rows...&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                       </div>
                     </div>
-                    <p class="wb-text-sm wb-text-muted wb-m-0">Schließen blendet Card oder Modal nur für die aktuelle Ansicht aus, solange noch keine Einwilligung gespeichert ist.</p>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">Kapatma, yalnızca henüz bir onay kaydedilmemişken card'ı veya modalı geçerli görünüm için gizler.</p>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="footer-reopen" data-wb-demo-static>
-                    <h2>3. Hook zum erneuten Öffnen im Footer</h2>
-                    <p>Jedes Host-Projekt sollte einen stabilen Weg anbieten, das Präferenzzentrum nach gespeicherter Einwilligung erneut zu öffnen.</p>
+                    <h2>3. Footer'dan yeniden açma hook'u</h2>
+                    <p>Her host proje, onay kaydedildikten sonra tercih merkezini yeniden açmanın kararlı bir yolunu sunmalıdır.</p>
                     <div class="wb-card">
                       <div class="wb-card-body">
 <pre><code class="language-html">&lt;button class="wb-btn wb-btn-ghost wb-btn-sm"
@@ -339,23 +339,23 @@
 &lt;/button&gt;</code></pre>
                       </div>
                     </div>
-                    <p class="wb-text-sm wb-text-muted wb-m-0">Der Button zum erneuten Öffnen sollte normalerweise auf das Präferenz-Modal zeigen, nicht auf das Einstiegsbanner.</p>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">Yeniden açma butonu normalde ilk giriş banner'ını değil tercih modalını hedeflemelidir.</p>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="storage-event">
-                    <h2>Speicherschlüssel und ausgelöstes Event</h2>
+                    <h2>Saklama anahtarları ve yayılan olay</h2>
                     <div class="wb-grid-2">
                       <div class="wb-card">
-                        <div class="wb-card-header"><h3 class="wb-card-title">Gespeicherte Schlüssel</h3></div>
+                        <div class="wb-card-header"><h3 class="wb-card-title">Saklanan anahtarlar</h3></div>
                         <div class="wb-card-body wb-stack-3">
-                          <div><strong><code>wb-cookie-consent</code></strong><p class="wb-text-sm wb-text-muted wb-m-0">Speichert <code>accepted</code>, <code>rejected</code> oder <code>custom</code>.</p></div>
-                          <div><strong><code>wb-cookie-consent-preferences</code></strong><p class="wb-text-sm wb-text-muted wb-m-0">Speichert ein JSON-Objekt mit <code>necessary</code>, <code>preferences</code>, <code>analytics</code> und <code>marketing</code>.</p></div>
+                          <div><strong><code>wb-cookie-consent</code></strong><p class="wb-text-sm wb-text-muted wb-m-0"><code>accepted</code>, <code>rejected</code> veya <code>custom</code> saklar.</p></div>
+                          <div><strong><code>wb-cookie-consent-preferences</code></strong><p class="wb-text-sm wb-text-muted wb-m-0"><code>necessary</code>, <code>preferences</code>, <code>analytics</code> ve <code>marketing</code> içeren bir JSON nesnesi saklar.</p></div>
                         </div>
                       </div>
                       <div class="wb-card">
-                        <div class="wb-card-header"><h3 class="wb-card-title">Änderungs-Event</h3></div>
+                        <div class="wb-card-header"><h3 class="wb-card-title">Değişiklik olayı</h3></div>
                         <div class="wb-card-body wb-stack-3">
-                          <p class="wb-m-0">Bei jeder Änderung der Einwilligung löst WebBlocks <code>wb:cookie-consent:change</code> auf <code>document.documentElement</code> aus.</p>
+                          <p class="wb-m-0">Onay her değiştiğinde WebBlocks, <code>document.documentElement</code> üzerinde <code>wb:cookie-consent:change</code> olayını yayar.</p>
 <pre><code>document.documentElement.addEventListener('wb:cookie-consent:change', function (event) {
   var state = event.detail;
 
@@ -369,7 +369,7 @@
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="api">
-                    <h2>Öffentliche API</h2>
+                    <h2>Genel API</h2>
                     <div class="wb-card">
                       <div class="wb-card-body">
 <pre><code>WBCookieConsent.open()
@@ -389,22 +389,22 @@ WBCookieConsent.hasConsent()</code></pre>
 
                   <section class="wb-docs-section wb-docs-split" id="integration-guidance">
                     <div>
-                      <h2>Hinweise zur Integration</h2>
+                      <h2>Entegrasyon rehberi</h2>
                       <ul>
-                        <li>Notwendige Cookies lassen sich nicht deaktivieren</li>
-                        <li>Website-Betreiber müssen die rechtlichen Texte an ihre Rechtsordnung und ihre Richtlinien anpassen</li>
-                        <li>Nutze innerhalb des Patterns Layout-Primitives wie <code>wb-stack</code>, <code>wb-cluster</code>, <code>wb-grid</code> und <code>wb-split</code></li>
-                        <li>Nutze für das Präferenzzentrum das ausgelieferte Modal-Primitive, statt eine zweite Overlay-Familie zu schaffen</li>
+                        <li>Zorunlu çerezler devre dışı bırakılamaz</li>
+                        <li>Site sahipleri hukuki metni kendi yargı bölgelerine ve politika metinlerine göre uyarlamalıdır</li>
+                        <li>Pattern içinde <code>wb-stack</code>, <code>wb-cluster</code>, <code>wb-grid</code> ve <code>wb-split</code> gibi layout primitive'lerini kullan</li>
+                        <li>Tercih merkezi için ikinci bir overlay ailesi oluşturmak yerine pakette gelen modal primitive'ini kullan</li>
                       </ul>
                     </div>
-                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Hinweis zum Testen</strong> Rufe während der Entwicklung <code>WBCookieConsent.clear()</code> in der Konsole auf, um die gespeicherten Schlüssel zu entfernen und die Einstiegs-Consent-Oberfläche erneut zu erzwingen.</div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Test ipucu</strong> Geliştirme sırasında saklanan anahtarları silmek ve ilk giriş onay arayüzünü yeniden getirmek için konsoldan <code>WBCookieConsent.clear()</code> çağır.</div>
                   </section>
                 </div>
               </div>
 
               <footer class="wb-content-footer">
-                <a href="pattern-gallery.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Gallery</span></a>
-                <a href="pattern-marketing.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Marketing</span></a>
+                <a href="pattern-gallery.html" class="wb-content-prev"><span class="wb-content-prev-label">Önceki</span><span class="wb-content-prev-title">Gallery</span></a>
+                <a href="pattern-marketing.html" class="wb-content-next"><span class="wb-content-next-label">Sonraki</span><span class="wb-content-next-title">Marketing</span></a>
               </footer>
             </div>
           </div>
@@ -417,17 +417,17 @@ WBCookieConsent.hasConsent()</code></pre>
     <section class="wb-card wb-cookie-consent-card" aria-label="Cookie consent">
       <div class="wb-card-header wb-cluster wb-cluster-between wb-cluster-2 wb-items-start">
         <div class="wb-stack-1">
-          <strong>Wir verwenden Cookies</strong>
+          <strong>Çerez kullanıyoruz</strong>
         </div>
-        <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Cookie-Einstellungen schließen"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+        <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Çerez ayarlarını kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
       </div>
       <div class="wb-card-body">
         <div class="wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
-          <p class="wb-text-sm wb-text-muted wb-m-0">Wir verwenden notwendige Cookies, damit diese Doku-Seite funktioniert, und optionale Cookies, um die Nutzung zu verstehen und Präferenzen zu merken.</p>
+          <p class="wb-text-sm wb-text-muted wb-m-0">Bu doküman sayfasının çalışması için zorunlu çerezleri, kullanımı anlamak ve tercihleri hatırlamak için isteğe bağlı çerezleri kullanıyoruz.</p>
           <div class="wb-cluster wb-cluster-2">
-            <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject>Ablehnen</button>
-            <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#docsCookiePreferences">Anpassen</button>
-            <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept>Alle akzeptieren</button>
+            <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-reject>Reddet</button>
+            <button class="wb-btn wb-btn-secondary wb-btn-sm" type="button" data-wb-cookie-consent-open data-wb-target="#docsCookiePreferences">Özelleştir</button>
+            <button class="wb-btn wb-btn-primary wb-btn-sm" type="button" data-wb-cookie-consent-accept>Tümünü kabul et</button>
           </div>
         </div>
       </div>
@@ -437,50 +437,50 @@ WBCookieConsent.hasConsent()</code></pre>
   <div class="wb-modal wb-cookie-consent-modal" id="docsCookiePreferences" data-wb-cookie-consent role="dialog" aria-modal="true" aria-labelledby="docsCookiePreferencesTitle" hidden aria-hidden="true">
     <div class="wb-modal-dialog">
       <div class="wb-modal-header">
-        <h2 class="wb-modal-title" id="docsCookiePreferencesTitle">Cookie-Präferenzen</h2>
-        <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Cookie-Einstellungen schließen"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+        <h2 class="wb-modal-title" id="docsCookiePreferencesTitle">Çerez tercihleri</h2>
+        <button class="wb-btn wb-btn-secondary wb-btn-icon wb-btn-sm" type="button" data-wb-cookie-consent-close aria-label="Çerez ayarlarını kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
       </div>
       <div class="wb-modal-body">
         <div class="wb-stack-1">
-          <p class="wb-text-sm wb-text-muted wb-m-0">Notwendige Cookies sind immer aktiv. Akzeptieren, Ablehnen oder Präferenzen speichern sichert die Auswahl. Schließen speichert keine Einwilligung.</p>
+          <p class="wb-text-sm wb-text-muted wb-m-0">Zorunlu çerezler her zaman açıktır. Kullanıcının seçimini kabul, ret ya da tercihleri kaydetme işlemi saklar. Kapatmak onayı kaydetmez.</p>
         </div>
         <div class="wb-stack-3">
           <div class="wb-card wb-card-muted">
             <div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
               <div class="wb-stack-1">
-                <strong>Notwendig</strong>
-                <p class="wb-text-sm wb-text-muted wb-m-0">Erforderlich für Doku-Navigation, Overlays und gespeichertes UI-Verhalten.</p>
+                <strong>Zorunlu</strong>
+                <p class="wb-text-sm wb-text-muted wb-m-0">Dokümantasyon gezinmesi, overlay'ler ve kaydedilen arayüz davranışı için gereklidir.</p>
               </div>
               <label class="wb-switch">
                 <input type="checkbox" data-wb-cookie-category="necessary" data-wb-cookie-required="true" checked disabled>
                 <span class="wb-switch-track"></span>
-                <span>Immer aktiv</span>
+                <span>Her zaman açık</span>
               </label>
             </div>
           </div>
           <div class="wb-card wb-card-muted">
             <div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
               <div class="wb-stack-1">
-                <strong>Präferenzen</strong>
-                <p class="wb-text-sm wb-text-muted wb-m-0">Merkt sich lokale Doku- und Anzeigepräferenzen.</p>
+                <strong>Tercihler</strong>
+                <p class="wb-text-sm wb-text-muted wb-m-0">Yerel dokümantasyon ve görüntüleme tercihlerini hatırlar.</p>
               </div>
               <label class="wb-switch">
                 <input type="checkbox" data-wb-cookie-category="preferences">
                 <span class="wb-switch-track"></span>
-                <span>Erlauben</span>
+                <span>İzin ver</span>
               </label>
             </div>
           </div>
           <div class="wb-card wb-card-muted">
             <div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
               <div class="wb-stack-1">
-                <strong>Analyse</strong>
-                <p class="wb-text-sm wb-text-muted wb-m-0">Misst die Seitennutzung und die Performance der Dokumentation.</p>
+                <strong>Analitik</strong>
+                <p class="wb-text-sm wb-text-muted wb-m-0">Sayfa kullanımını ve dokümantasyon performansını ölçer.</p>
               </div>
               <label class="wb-switch">
                 <input type="checkbox" data-wb-cookie-category="analytics">
                 <span class="wb-switch-track"></span>
-                <span>Erlauben</span>
+                <span>İzin ver</span>
               </label>
             </div>
           </div>
@@ -488,22 +488,22 @@ WBCookieConsent.hasConsent()</code></pre>
             <div class="wb-card-body wb-cluster wb-cluster-between wb-cluster-3 wb-items-center">
               <div class="wb-stack-1">
                 <strong>Marketing</strong>
-                <p class="wb-text-sm wb-text-muted wb-m-0">Unterstützt Kampagnen-Attribution und zugehörige Messung auf der öffentlichen Website.</p>
+                <p class="wb-text-sm wb-text-muted wb-m-0">Support campaign attribution and related public-site measurement.</p>
               </div>
               <label class="wb-switch">
                 <input type="checkbox" data-wb-cookie-category="marketing">
                 <span class="wb-switch-track"></span>
-                <span>Erlauben</span>
+                <span>İzin ver</span>
               </label>
             </div>
           </div>
         </div>
       </div>
       <div class="wb-modal-footer">
-        <button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-reject>Alle ablehnen</button>
+        <button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-reject>Tümünü reddet</button>
         <div class="wb-cluster wb-cluster-2">
-          <button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-save>Präferenzen speichern</button>
-          <button class="wb-btn wb-btn-primary" type="button" data-wb-cookie-consent-accept>Alle akzeptieren</button>
+          <button class="wb-btn wb-btn-secondary" type="button" data-wb-cookie-consent-save>Tercihleri kaydet</button>
+          <button class="wb-btn wb-btn-primary" type="button" data-wb-cookie-consent-accept>Tümünü kabul et</button>
         </div>
       </div>
     </div>

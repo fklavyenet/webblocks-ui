@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Gallery</title>
+  <meta name="description" content="Yalnızca güncel WebBlocks UI galeri sözleşmesinden kurulmuş kanonik wb-gallery pattern rehberi ve örnekleri.">
+  <link rel="alternate" hreflang="en" href="../pattern-gallery.html">
+  <link rel="alternate" hreflang="de" href="../de/pattern-gallery.html">
+  <link rel="alternate" hreflang="tr" href="pattern-gallery.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-gallery.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Gallery</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Pattern'lere dön"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-galleryThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-galleryThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-galleryLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-galleryLangMenu"><a class="wb-dropdown-item" href="../pattern-gallery.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/pattern-gallery.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="pattern-gallery.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Bu sayfadaki bölümler">
+            <div class="wb-section-nav-title">Bu sayfada</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#intro" class="wb-section-nav-link">Intro</a></li>
+              <li class="wb-section-nav-item"><a href="#when-to-use" class="wb-section-nav-link">Ne zaman kullanmalı</a></li>
+              <li class="wb-section-nav-item"><a href="#core-contract" class="wb-section-nav-link">Temel sözleşme</a></li>
+              <li class="wb-section-nav-item"><a href="#layout-modifiers" class="wb-section-nav-link">Layout modifier'ları</a></li>
+              <li class="wb-section-nav-item"><a href="#official-examples" class="wb-section-nav-link">Resmî örnekler</a></li>
+              <li class="wb-section-nav-item"><a href="#inline-captioned" class="wb-section-nav-link">Satır içi başlıklı</a></li>
+              <li class="wb-section-nav-item"><a href="#gallery-with-metadata" class="wb-section-nav-link">Meta verili</a></li>
+              <li class="wb-section-nav-item"><a href="#shared-modal-viewer" class="wb-section-nav-link">Ortak modal görüntüleyici</a></li>
+              <li class="wb-section-nav-item"><a href="#editorial-content-gallery" class="wb-section-nav-link">Editoryal blok</a></li>
+              <li class="wb-section-nav-item"><a href="#card-contained-gallery" class="wb-section-nav-link">Card-contained</a></li>
+              <li class="wb-section-nav-item"><a href="#product-screenshot-gallery" class="wb-section-nav-link">Ürün ekran görüntüleri</a></li>
+              <li class="wb-section-nav-item"><a href="#composition-guidance" class="wb-section-nav-link">Kompozisyon rehberi</a></li>
+              <li class="wb-section-nav-item"><a href="#do-do-not" class="wb-section-nav-link">Yap / Yapma</a></li>
+              <li class="wb-section-nav-item"><a href="#accessibility-behavior" class="wb-section-nav-link">Erişilebilirlik</a></li>
+              <li class="wb-section-nav-item"><a href="#related-primitives" class="wb-section-nav-link">İlgili primitive'ler</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Gallery</h1>
+                <p class="wb-content-subtitle wb-docs-prose"><code>wb-gallery</code>, eşit karolu görsel ızgaraları için kanonik satır içi medya pattern'idir. İş sürükleyici bir görüntüleme gerektirdiğinde aynı galeri, ayrı bir lightbox sistemine dönüşmek yerine ortak tek bir <code>wb-modal</code> görüntüleyicisini doldurabilir.</p>
+                <div class="wb-content-meta"><span>Akışkan veya sabit sütunlu medya ızgarası</span><span class="wb-content-meta-divider"></span><span>Ortak modal görüntüleyici</span><span class="wb-content-meta-divider"></span><span>Masonry, kolaj ve overlay başlık modifier'ları</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="intro">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Pattern sınırı</strong> <code>wb-gallery</code>; akışkan veya sabit sütunlu ızgaralar, masonry akışı, kolaj ritmi gibi responsive görsel koleksiyonlarında iyidir — altta ya da overlay şeklinde başlıklar ve ortak tek bir modal görüntüleyiciyle. Yine de bir karusel, bir zoom aracı ya da karışık medya görüntüleyicisi değildir.</div>
+                    <p>İş; bir görsel kümesini sayfa akışında temiz biçimde, isteğe bağlı olarak başlıklar ve ortak bir görüntüleyici modalıyla sunmaksa bu sayfayı kullan. Yerleşim ihtiyaçlarını (sütun sayısı, boşluk, medya oranı, masonry veya kolaj ritmi, overlay başlıklar) aşağıdaki resmî modifier'lar karşılar — asla projeye özel CSS değil. Slider davranışı, zoom veya video gerekiyorsa pakette gelen sözleşme uygun değildir.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="when-to-use">
+                    <div>
+                      <h2>Ne zaman kullanmalı</h2>
+                      <ul>
+                        <li>Görsel koleksiyonları</li>
+                        <li>Ekran görüntüsü setleri</li>
+                        <li>Editoryal görseller</li>
+                        <li>Satır içi içerik galerileri</li>
+                      </ul>
+                    </div>
+                    <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Şunlar için kullanma</strong> Slider'lar, karuseller, zoom araçları veya karışık medya görüntüleyicileri — bunlar <code>wb-slider</code>'a aittir ya da pakette hiç yoktur. Masonry ve kolaj pakette VARDIR, ancak yalnızca resmî <code>wb-gallery--masonry</code> / <code>wb-gallery--collage</code> modifier'ları olarak.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="core-contract">
+                    <h2>Temel sözleşme</h2>
+                    <p>Temel markup'ı küçük tut. Gallery pattern'i; bir satır içi ızgara sarmalayıcısı, bir öğe sarmalayıcısı, bir etkileşimli tetikleyici, bir görsel ve isteğe bağlı başlık ya da meta metinden oluşur.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-gallery" aria-label="Sürüm galerisi"&gt;
+  &lt;div class="wb-gallery-grid"&gt;
+    &lt;figure class="wb-gallery-item"&gt;
+      &lt;button class="wb-gallery-trigger"
+              type="button"
+              data-wb-gallery-target="#releaseViewer"
+              data-wb-gallery-full="/images/release-full.jpg"&gt;
+        &lt;img class="wb-gallery-media"
+             src="/images/release-thumb.jpg"
+             alt="Sürüm panelinin ekran görüntüsü"&gt;
+      &lt;/button&gt;
+      &lt;figcaption class="wb-gallery-caption"&gt;Release dashboard&lt;/figcaption&gt;
+      &lt;div class="wb-gallery-meta"&gt;Shared viewer modal&lt;/div&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+                    <div class="wb-table-wrap">
+                      <table class="wb-table wb-table-sm">
+                        <thead><tr><th>Hook</th><th>Gerçek destek</th><th>Notlar</th></tr></thead>
+                        <tbody>
+                          <tr><td><code>data-wb-gallery-target</code></td><td>Evet</td><td>Galeriyi modala bağlamak için tercih edilen hook.</td></tr>
+                          <tr><td><code>data-wb-target</code></td><td>Evet</td><td>Yedek modal seçici kaynağı olarak kabul edilir.</td></tr>
+                          <tr><td><code>data-wb-gallery-full</code></td><td>Evet</td><td>Görüntüleyici için tam boy görsel kaynağı.</td></tr>
+                          <tr><td><code>data-wb-gallery-alt</code></td><td>Evet</td><td>Görüntüleyici alt metnini geçersiz kılar.</td></tr>
+                          <tr><td><code>data-wb-gallery-caption</code></td><td>Evet</td><td>Görüntüleyici başlığını geçersiz kılar.</td></tr>
+                          <tr><td><code>data-wb-gallery-meta</code></td><td>Evet</td><td>Görüntüleyici meta metnini geçersiz kılar.</td></tr>
+                          <tr><td><code>data-wb-gallery-width</code></td><td>Evet</td><td>Görüntüleyici görseli için isteğe bağlı width özniteliği.</td></tr>
+                          <tr><td><code>data-wb-gallery-height</code></td><td>Evet</td><td>Görüntüleyici görseli için isteğe bağlı height özniteliği.</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-modal wb-modal-xl" id="releaseViewer" role="dialog" aria-modal="true" aria-labelledby="releaseViewerTitle"&gt;
+  &lt;div class="wb-modal-dialog"&gt;
+    &lt;div class="wb-modal-body"&gt;
+      &lt;div class="wb-gallery-viewer"&gt;
+        &lt;!-- optional heading above the viewer: --&gt;
+        &lt;h2 class="wb-gallery-viewer-title" id="releaseViewerHeading"&gt;Release tour&lt;/h2&gt;
+        &lt;div class="wb-gallery-viewer-toolbar"&gt;
+          &lt;button class="wb-gallery-viewer-prev" type="button" aria-label="Önceki görsel"&gt;...&lt;/button&gt;
+          &lt;div class="wb-gallery-viewer-counter" aria-live="polite"&gt;1 / 3&lt;/div&gt;
+          &lt;button class="wb-gallery-viewer-next" type="button" aria-label="Sonraki görsel"&gt;...&lt;/button&gt;
+          &lt;button class="wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Görüntüleyiciyi kapat"&gt;...&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;figure class="wb-gallery-viewer-media"&gt;
+          &lt;img class="wb-gallery-viewer-image" src="..." alt="..."&gt;
+          &lt;figcaption class="wb-gallery-viewer-caption" id="releaseViewerTitle"&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p class="wb-gallery-viewer-meta"&gt;&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="layout-modifiers">
+                    <h2>Layout modifier'ları</h2>
+                    <p>Yalın <code>wb-gallery</code>; 4/3 medya ve altta başlıklarla akışkan bir auto-fit ızgarasıdır. Bunun ötesindeki her yerleşim kararı, pattern sarmalayıcısı üzerinde isteğe bağlı bir modifier'dır — asla projeye özel CSS değil.</p>
+                    <div class="wb-table-wrap">
+                      <table class="wb-table wb-table-sm">
+                        <thead><tr><th>Eksen</th><th>Modifier'lar</th><th>Notlar</th></tr></thead>
+                        <tbody>
+                          <tr><td>Sütunlar</td><td><code>wb-gallery--cols-2</code> … <code>--cols-5</code></td><td>Sütun sayısını sabitler. 992px altında 2'ye, 641px altında 1'e iner. Akışkan auto-fit varsayılanı için hiç kullanma.</td></tr>
+                          <tr><td>Boşluk</td><td><code>--gap-none</code> | <code>--gap-sm</code> | <code>--gap-md</code> | <code>--gap-lg</code></td><td><code>--gap-md</code> varsayılan boşluğa eşittir.</td></tr>
+                          <tr><td>Medya oranı</td><td><code>--aspect-square</code> | <code>--aspect-4-3</code> | <code>--aspect-16-9</code> | <code>--aspect-portrait</code> | <code>--aspect-auto</code></td><td>Varsayılan 4/3'tür. <code>--aspect-auto</code>, yüksekliği görselin kendi oranına bırakır.</td></tr>
+                          <tr><td>Varyant</td><td><code>--masonry</code> | <code>--collage</code></td><td>Masonry, CSS sütun akışıdır (<code>--aspect-auto</code> ile birlikte kullan). Kolaj ise her 5. öğenin 2×2 kapladığı ve bir <code>--cols-*</code> gerektiren yoğun bir ızgaradır.</td></tr>
+                          <tr><td>Başlıklar</td><td><code>--captions-overlay</code> | <code>--captions-hover</code></td><td>Tetikleyici içindeki bir başlığı medyanın üzerine alt perde olarak taşır; <code>--captions-hover</code> ise onu yalnızca hover/odakta gösterir.</td></tr>
+                          <tr><td>Overlay tonu</td><td><code>--overlay-solid</code> | <code>--overlay-none</code></td><td>İki başlık modifier'ından biriyle birlikte. Varsayılan bir degrade perdedir; <code>--overlay-none</code> ise yalnızca yazı gölgesidir.</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p>Overlay başlıklar öğe anatomisini değiştirir: <code>wb-gallery-caption</code> tetikleyicinin <em>içine</em> geçip perdeye dönüşür ve varsa <code>wb-gallery-meta</code> <em>o başlığın içinde</em> yuvalanır, böylece aynı perdede yer alır.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-gallery wb-gallery--cols-3 wb-gallery--aspect-16-9 wb-gallery--captions-overlay" aria-label="…"&gt;
+  &lt;div class="wb-gallery-grid"&gt;
+    &lt;figure class="wb-gallery-item"&gt;
+      &lt;button class="wb-gallery-trigger" type="button"
+              data-wb-gallery-target="#viewer" data-wb-gallery-full="…"&gt;
+        &lt;img class="wb-gallery-media" src="…" alt="…"&gt;
+        &lt;span class="wb-gallery-caption"&gt;Overview dashboard
+          &lt;span class="wb-gallery-meta"&gt;Week 14 snapshot&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+
+                    <h3>Overlay başlıklar (her zaman görünür)</h3>
+                    <div class="wb-gallery wb-gallery--cols-3 wb-gallery--aspect-16-9 wb-gallery--captions-overlay" aria-label="Overlay başlıklı galeri örneği">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Masalar ve gün ışığı olan çalışma alanı dinlenme bölümü" data-wb-gallery-caption="Çalışma alanı dinlenme bölümü" data-wb-gallery-meta="Zemin kat">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Masalar ve gün ışığı olan çalışma alanı dinlenme bölümü">
+                            <span class="wb-gallery-caption">Çalışma alanı dinlenme bölümü<span class="wb-gallery-meta">Zemin kat</span></span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Uzun masa ve duvar ekranı olan toplantı odası" data-wb-gallery-caption="Ekip odası" data-wb-gallery-meta="İkinci kat">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Uzun masa ve duvar ekranı olan toplantı odası">
+                            <span class="wb-gallery-caption">Ekip odası<span class="wb-gallery-meta">İkinci kat</span></span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Büyük pencereli, ortak kullanımlı açık ofis alanı" data-wb-gallery-caption="Açık ofis" data-wb-gallery-meta="Atrium kanadı">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Büyük pencereli, ortak kullanımlı açık ofis alanı">
+                            <span class="wb-gallery-caption">Açık ofis<span class="wb-gallery-meta">Atrium kanadı</span></span>
+                          </button>
+                        </figure>
+                      </div>
+                    </div>
+
+                    <h3>Düz panelli hover başlıkları</h3>
+                    <div class="wb-gallery wb-gallery--cols-3 wb-gallery--aspect-4-3 wb-gallery--captions-hover wb-gallery--overlay-solid" aria-label="Hover başlıklı galeri örneği">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Dizüstü ekranında gösterilen analitik paneli" data-wb-gallery-caption="Analitik paneli">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Dizüstü ekranında gösterilen analitik paneli">
+                            <span class="wb-gallery-caption">Analitik paneli</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Yapışkan notlar ve dizüstü bilgisayarlarla planlama atölyesi" data-wb-gallery-caption="Planlama atölyesi">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Yapışkan notlar ve dizüstü bilgisayarlarla planlama atölyesi">
+                            <span class="wb-gallery-caption">Planlama atölyesi</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Ekranda pazarlama grafiği ve dönüşüm dağılımı" data-wb-gallery-caption="Attribution detayı">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Ekranda pazarlama grafiği ve dönüşüm dağılımı">
+                            <span class="wb-gallery-caption">Attribution detayı</span>
+                          </button>
+                        </figure>
+                      </div>
+                    </div>
+
+                    <h3>Masonry akışı</h3>
+                    <p>Masonry görsellerin kendi yüksekliklerini korur, bu yüzden <code>--aspect-auto</code> ile birlikte kullan.</p>
+                    <div class="wb-gallery wb-gallery--masonry wb-gallery--cols-3 wb-gallery--aspect-auto" aria-label="Masonry galeri örneği">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Masalar ve gün ışığı olan çalışma alanı dinlenme bölümü" data-wb-gallery-caption="Çalışma alanı dinlenme bölümü">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&h=800&q=80" alt="Masalar ve gün ışığı olan çalışma alanı dinlenme bölümü">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Çalışma alanı dinlenme bölümü</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Uzun masa ve duvar ekranı olan toplantı odası" data-wb-gallery-caption="Ekip odası">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&h=420&q=80" alt="Uzun masa ve duvar ekranı olan toplantı odası">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Ekip odası</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Monitör, klavye ve defterden oluşan masa düzeni" data-wb-gallery-caption="Masa düzeni">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=600&h=600&q=80" alt="Monitör, klavye ve defterden oluşan masa düzeni">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Masa düzeni</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Büyük pencereli, ortak kullanımlı açık ofis alanı" data-wb-gallery-caption="Açık ofis">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&h=450&q=80" alt="Büyük pencereli, ortak kullanımlı açık ofis alanı">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Açık ofis</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Yapışkan notlar ve dizüstü bilgisayarlarla planlama atölyesi" data-wb-gallery-caption="Planlama atölyesi">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&h=700&q=80" alt="Yapışkan notlar ve dizüstü bilgisayarlarla planlama atölyesi">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Planlama atölyesi</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Ekranda pazarlama grafiği ve dönüşüm dağılımı" data-wb-gallery-caption="Attribution detayı">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&h=380&q=80" alt="Ekranda pazarlama grafiği ve dönüşüm dağılımı">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Attribution detayı</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+
+                    <h3>Kolaj ritmi</h3>
+                    <p>Kolaj sabit bir sütun sayısı gerektirir; her 5. öğe iki sütun ve iki satır kaplar.</p>
+                    <div class="wb-gallery wb-gallery--collage wb-gallery--cols-3 wb-gallery--captions-hover" aria-label="Kolaj galeri örneği">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Masalar ve gün ışığı olan çalışma alanı dinlenme bölümü" data-wb-gallery-caption="Çalışma alanı dinlenme bölümü">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Masalar ve gün ışığı olan çalışma alanı dinlenme bölümü">
+                            <span class="wb-gallery-caption">Çalışma alanı dinlenme bölümü</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Uzun masa ve duvar ekranı olan toplantı odası" data-wb-gallery-caption="Ekip odası">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Uzun masa ve duvar ekranı olan toplantı odası">
+                            <span class="wb-gallery-caption">Ekip odası</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Monitör, klavye ve defterden oluşan masa düzeni" data-wb-gallery-caption="Masa düzeni">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Monitör, klavye ve defterden oluşan masa düzeni">
+                            <span class="wb-gallery-caption">Masa düzeni</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Büyük pencereli, ortak kullanımlı açık ofis alanı" data-wb-gallery-caption="Açık ofis">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Büyük pencereli, ortak kullanımlı açık ofis alanı">
+                            <span class="wb-gallery-caption">Açık ofis</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Yapışkan notlar ve dizüstü bilgisayarlarla planlama atölyesi" data-wb-gallery-caption="Planlama atölyesi">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Yapışkan notlar ve dizüstü bilgisayarlarla planlama atölyesi">
+                            <span class="wb-gallery-caption">Planlama atölyesi</span>
+                          </button>
+                        </figure>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="official-examples">
+                    <h2>Resmî örnekler</h2>
+                    <p>Bu altı örnek, <code>wb-gallery</code>'nin şu anki en güçlü kullanımlarıdır. Her biri farklı bir işi gösterir; yerleşimdeki sapmalar (sütunlar, masonry, kolaj, overlay başlıklar) her zaman yukarıdaki resmî modifier'lardan gelir, asla özel CSS'ten değil.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="inline-captioned">
+                    <h2>1. Satır içi başlıklı galeri</h2>
+                    <p>Temel pattern: her görsel için bir görünür başlıkla eşit karolar. Bu örnek, tutarlı bir dokümantasyon deneyimi için aynı ortak görüntüleyici pattern'ini kullanır.</p>
+                    <div class="wb-gallery" aria-label="Satır içi başlıklı çalışma alanı galerisi">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Masalar ve gün ışığı olan çalışma alanı dinlenme bölümü" data-wb-gallery-caption="Çalışma alanı dinlenme bölümü">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Masalar ve gün ışığı olan çalışma alanı dinlenme bölümü">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Çalışma alanı dinlenme bölümü</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Uzun masa ve duvar ekranı olan toplantı odası" data-wb-gallery-caption="Ekip odası">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Uzun masa ve duvar ekranı olan toplantı odası">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Ekip odası</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Monitör, klavye ve defterden oluşan masa düzeni" data-wb-gallery-caption="Masa düzeni">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Monitör, klavye ve defterden oluşan masa düzeni">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Masa düzeni</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Büyük pencereli, ortak kullanımlı açık ofis alanı" data-wb-gallery-caption="Açık ofis">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Büyük pencereli, ortak kullanımlı açık ofis alanı">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Açık ofis</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="gallery-with-metadata">
+                    <h2>2. Meta verili galeri</h2>
+                    <p>İkinci metin katmanı: galeri aynı eşit karo yapısını korur, ancak her başlığın altına soluk bir destek metni ekler. Meta veriyi yeni bir galeri türüne dönüştürmeden aynı ortak görüntüleyiciyi kullanır.</p>
+                    <div class="wb-gallery" aria-label="Meta verili sürüm varlığı galerisi">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Dizüstü ekranında gösterilen analitik paneli" data-wb-gallery-caption="Analitik paneli" data-wb-gallery-meta="Sürüm incelemesi / KPI özeti">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Dizüstü ekranında gösterilen analitik paneli">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Analitik paneli</figcaption>
+                          <div class="wb-gallery-meta">Sürüm incelemesi / KPI özeti</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Yapışkan notlar ve dizüstü bilgisayarlarla planlama atölyesi" data-wb-gallery-caption="Planlama atölyesi" data-wb-gallery-meta="Sprint çerçevesi / ürün kararları">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Yapışkan notlar ve dizüstü bilgisayarlarla planlama atölyesi">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Planlama atölyesi</figcaption>
+                          <div class="wb-gallery-meta">Sprint çerçevesi / ürün kararları</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Ekranda pazarlama grafiği ve dönüşüm dağılımı" data-wb-gallery-caption="Attribution detayı" data-wb-gallery-meta="Kampanya incelemesi / kanal dağılımı">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Ekranda pazarlama grafiği ve dönüşüm dağılımı">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Attribution detayı</figcaption>
+                          <div class="wb-gallery-meta">Kampanya incelemesi / kanal dağılımı</div>
+                        </figure>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="shared-modal-viewer">
+                    <h2>3. Ortak modal görüntüleyicili galeri</h2>
+                    <p>Davranış örneği: tek bir galeri seti, tek bir modal, önceki/sonraki kontrolleri, görüntüleyici sayacı ve gerçek tetikleyici özniteliklerinden doldurulan başlık/meta.</p>
+                    <div class="wb-gallery" aria-label="Sürüm görüntüleyici galeri örneği">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="KPI card'ları ve trend grafiklerini gösteren sürüm paneli" data-wb-gallery-caption="Sürüm paneli" data-wb-gallery-meta="Sayaç, başlık ve meta ortak tek bir görüntüleyici modalından doldurulur.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Sürüm panelinin küçük görseli">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Sürüm panelini aç</figcaption>
+                          <div class="wb-gallery-meta">Veri özniteliği geçersiz kılmalarını kullanır</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Duvar notları ve dizüstü bilgisayarlarla sprint planlama oturumu" data-wb-gallery-caption="Sprint planning wall" data-wb-gallery-meta="Prev and next move only inside this gallery and this modal target.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planlama duvarının küçük görseli">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Planlama duvarını aç</figcaption>
+                          <div class="wb-gallery-meta">Aynı modal, ikinci öğe</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Dizüstü bilgisayarda kanal metrikleriyle performans grafiği" data-wb-gallery-caption="Performance breakdown" data-wb-gallery-meta="Keyboard left and right arrows step through the active viewer items.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Performans grafiğinin küçük görseli">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Performans dağılımını aç</figcaption>
+                          <div class="wb-gallery-meta">Ortak görüntüleyici modalı</div>
+                        </figure>
+                      </div>
+                    </div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Tek modal kuralı</strong> Görüntüleyici ortak tek bir <code>wb-modal</code> içinde kalır. Galeri runtime'ı ikinci bir overlay sistemi ya da ayrı bir lightbox primitive'i uydurmaz.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="editorial-content-gallery">
+                    <h2>4. Editoryal/içerik galeri bloğu</h2>
+                    <p>İçerik entegrasyonu: galeri, bağımsız bir yerleşim motoruymuş gibi davranmak yerine okunabilir bir makale akışının içinde durur. Aynı ortak görüntüleyici, editoryal bağlamı bozmadan kullanılabilir kalır.</p>
+                    <div class="wb-content-shell wb-content-shell-narrow">
+                      <header class="wb-content-header">
+                        <h3 class="wb-content-title">Vaka çalışması görsel bloğu</h3>
+                        <p class="wb-content-subtitle">Bir makale veya vaka çalışması sakin bir satır içi medya grubuna ihtiyaç duyduğunda <code>wb-gallery</code>'yi bir content shell içinde kullan.</p>
+                      </header>
+                      <div class="wb-content-body wb-stack-6">
+                        <p>Bu görseller hikâyeyi destekler; sayfa hiyerarşisinin yerini almaz. Galeri eşit karolu, okunabilir ve uzun içeriğe kolayca eklenebilir kalır.</p>
+                        <div class="wb-gallery" aria-label="Editoryal içerik galerisi">
+                          <div class="wb-gallery-grid">
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Birden fazla bölgesi olan açık stüdyo çalışma alanı" data-wb-gallery-caption="Yayına almadan önceki çalışma alanı">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Birden fazla bölgesi olan açık stüdyo çalışma alanı">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Yayına almadan önceki çalışma alanı</figcaption>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Yenilemeden sonraki aydınlık ofis düzeni" data-wb-gallery-caption="Yenilemeden sonraki aynı alan">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Yenilemeden sonraki aydınlık ofis düzeni">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Yenilemeden sonraki aynı alan</figcaption>
+                            </figure>
+                          </div>
+                        </div>
+                        <div class="wb-callout wb-callout-muted"><strong class="wb-callout-title">Kompozisyon notu</strong> Bu bir content shell kompozisyonudur. Galeri, farklı bir sayfa bağlamı içinde pakette gelen aynı eşit karo pattern'i olarak kalır.</div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="card-contained-gallery">
+                    <h2>5. Card içinde medya galerisi</h2>
+                    <p>Uygulama/panel kullanımı: galeri, başlık ve gövde ritmine sahip çerçeveli bir yüzeyin içinde yaşar. Kullanıcıları ham görsel sekmelerine atmak yerine yine aynı ortak görüntüleyici pattern'ini kullanır.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-header"><h3 class="wb-card-title">Son lansman varlıkları</h3><a href="primitives.html#interaction-shells" class="wb-action-link">Görüntüleyici sınırı</a></div>
+                      <div class="wb-card-body wb-stack-4">
+                        <p class="wb-m-0">Bu kompozisyonu; sürüm özetleri, ilan/görsel modülleri ya da tek bir card içinde kompakt bir görsel seti gerektiren detay yüzeyleri için kullan.</p>
+                        <div class="wb-gallery" aria-label="Card içinde lansman varlığı galerisi">
+                          <div class="wb-gallery-grid">
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Toplantı odasında lansman sunumu sahnesi" data-wb-gallery-caption="Lansman incelemesi" data-wb-gallery-meta="Paydaş bilgilendirmesi">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Toplantı odasında lansman sunumu sahnesi">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Lansman incelemesi</figcaption>
+                              <div class="wb-gallery-meta">Paydaş bilgilendirmesi</div>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Sürüm kontrol listesi ve dizüstü bilgisayar bulunan masa" data-wb-gallery-caption="Kontrol listesi çalışma alanı" data-wb-gallery-meta="Yayın günü koordinasyonu">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Sürüm kontrol listesi ve dizüstü bilgisayar bulunan masa">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Kontrol listesi çalışma alanı</figcaption>
+                              <div class="wb-gallery-meta">Yayın günü koordinasyonu</div>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Lansman metriklerini gösteren performans ekranı" data-wb-gallery-caption="Lansman metrikleri" data-wb-gallery-meta="Benimsenme anlık görünümü">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Lansman metriklerini gösteren performans ekranı">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Lansman metrikleri</figcaption>
+                              <div class="wb-gallery-meta">Benimsenme anlık görünümü</div>
+                            </figure>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="product-screenshot-gallery">
+                    <h2>6. Ürün ekran görüntüsü galerisi</h2>
+                    <p>Gerçekçi ürün kullanımı: her karenin benzer öneme sahip olduğu ve sayfanın öne çıkan hero artı küçük görsel ilişkisine ihtiyaç duymadığı durumlarda ekran görüntüsü setleri iyi çalışır. Bu örnek de tutarlılık için aynı ortak görüntüleyici pattern'iyle açılır.</p>
+                    <div class="wb-stack-4">
+                      <div class="wb-split">
+                        <div>
+                          <h3 class="wb-m-0">Atlas ürün turu</h3>
+                          <p class="wb-m-0">Özellik tanıtımları, sürüm notları ve doküman sayfaları için temiz ve eşit karolu bir ekran görüntüsü seti çoğu zaman yeterlidir.</p>
+                        </div>
+                        <a href="javascript.html#common-modules" class="wb-action-link">Görüntüleyici runtime referansı</a>
+                      </div>
+                      <div class="wb-gallery" aria-label="Ürün ekran görüntüsü galerisi">
+                        <div class="wb-gallery-grid">
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Panel genel görünümünün ekran görüntüsü" data-wb-gallery-caption="Genel Bakış">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Panel genel görünümünün ekran görüntüsü">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Genel Bakış</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Planlama ve iş birliği ekran görüntüsü" data-wb-gallery-caption="Planlama">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planlama ve iş birliği ekran görüntüsü">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Planlama</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Performans detayının ekran görüntüsü" data-wb-gallery-caption="Raporlama">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Performans detayının ekran görüntüsü">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Raporlama</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Ayarlar çalışma alanının ekran görüntüsü" data-wb-gallery-caption="Ayarlar">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Ayarlar çalışma alanının ekran görüntüsü">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Ayarlar</figcaption>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="composition-guidance">
+                    <div>
+                      <h2>Kompozisyon rehberi</h2>
+                      <p><code>wb-gallery</code>; <code>wb-card</code>, <code>wb-content-shell</code>, <code>wb-stack</code>, <code>wb-split</code> ve <code>wb-grid-*</code> yardımcılarıyla temiz biçimde birleşir. Bunlar galeri varyantları değil, kompozisyon pattern'leridir.</p>
+                    </div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Sözlüğü dürüst tut</strong> Galeri sözleşmesi aynı kalır. Çevredeki shell'i, card'ı ya da stack'i değiştirmek yeni bir galeri primitive'i veya yeni bir galeri yerleşim sistemi oluşturmaz.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="do-do-not">
+                    <h2>Yap / Yapma</h2>
+                    <div class="wb-grid-2">
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Yap</h3></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <p class="wb-m-0">Eşit önemde görsel setleri kullan.</p>
+                          <p class="wb-m-0">Her örnek için ayrı görüntüleyici çoğaltmak yerine galeri bağlamı için ortak tek bir görüntüleyici modalı tut.</p>
+                          <p class="wb-m-0">Gerçek başlıkları ve isteğe bağlı meta'yı yalnızca bağlam kattıklarında kullan.</p>
+                          <p class="wb-m-0">Sayfanın işi gerektirdiğinde content shell'ler, card'lar ve yerleşim yardımcılarıyla birleştir.</p>
+                        </div>
+                      </div>
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Yapma</h3></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <p class="wb-m-0">Masonry'yi, kolaj yayılımlarını ya da overlay başlıkları elle yazma — resmî modifier'ları kullan.</p>
+                          <p class="wb-m-0">Karusel, zoom ya da karışık medya desteği varmış izlenimi verme.</p>
+                          <p class="wb-m-0">Desteklenmeyen galeri davranışını taklit etmek için yalnızca dokümantasyona özel yardımcı sınıflar ekleme.</p>
+                          <p class="wb-m-0">Overlay meta'yı başlığın kardeşi olarak yerleştirme — başlık perdesinin içine yuvala.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="accessibility-behavior">
+                    <h2>Erişilebilirlik / davranış notları</h2>
+                    <div class="wb-list wb-list-sm">
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Alt metin</span><span class="wb-list-item-sub">Görüntüleyici önce <code>data-wb-gallery-alt</code>'ı kullanır, ardından satır içi görselin <code>alt</code>'una geri düşer.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Başlık ve meta</span><span class="wb-list-item-sub">Görüntüleyici önce <code>data-wb-gallery-caption</code> ve <code>data-wb-gallery-meta</code>'yı okur, ardından <code>wb-gallery-caption</code> ve <code>wb-gallery-meta</code> metnine geri düşer.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Modal etiketleme</span><span class="wb-list-item-sub">Bir görüntüleyici başlığı varsa ve <code>id</code>'si bulunuyorsa modal <code>aria-labelledby</code> kullanır. Aksi hâlde başlıktan, alt metinden ya da "Gallery viewer" metninden bir <code>aria-label</code>'a geri düşer.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Klavye ile gezinme</span><span class="wb-list-item-sub">Ortak görüntüleyici modalı aktifken, odak bir input, textarea veya düzenlenebilir alanın içinde olmadığı sürece sol ve sağ ok tuşları öğeler arasında ilerler.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Kapsamlı ilerleme</span><span class="wb-list-item-sub">Önceki ve sonraki yalnızca aynı modal seçicisini hedefleyen, aynı <code>.wb-gallery</code> içindeki tetikleyiciler arasında ilerler.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Sınır davranışı</span><span class="wb-list-item-sub">Önceki ve sonraki kontrolleri, aktif öğe listesinin başında ve sonunda devre dışı kalır.</span></div></div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="related-primitives">
+                    <h2>İlgili primitive'ler</h2>
+                    <div class="wb-link-list">
+                      <a href="primitives.html#interaction-shells" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-modal</span><span class="wb-link-list-meta">Görüntüleyici sınırı</span></div><div class="wb-link-list-desc">Galeri görüntüleme, ayrı bir overlay ailesi olmak yerine pakette gelen modal primitive'inin içinde kalır.</div></a>
+                      <a href="primitives.html#surfaces-and-display" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-card</span><span class="wb-link-list-meta">Çerçeveli yüzey</span></div><div class="wb-link-list-desc">Galeri bir panele, detay paneline ya da kapsanmış bir modüle aitse card kullan.</div></a>
+                      <a href="pattern-content-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-content-shell</span><span class="wb-link-list-meta">Editoryal bağlam</span></div><div class="wb-link-list-desc">Galeri uzun bir makaleyi, rehberi ya da vaka çalışması akışını destekliyorsa content shell kullan.</div></a>
+                      <a href="layout.html#base-composition-primitives" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Layout primitive'leri</span><span class="wb-link-list-meta">Kompozisyon yardımcıları</span></div><div class="wb-link-list-desc">Galeri sözleşmesini değiştirmeden çevredeki sayfayı çerçevelemek için <code>wb-stack</code>, <code>wb-split</code> ve <code>wb-grid-*</code> kullan.</div></a>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-breadcrumb.html" class="wb-content-prev"><span class="wb-content-prev-label">Önceki</span><span class="wb-content-prev-title">Breadcrumb</span></a>
+                <a href="pattern-cookie-consent.html" class="wb-content-next"><span class="wb-content-next-label">Sonraki</span><span class="wb-content-next-title">Cookie Consent</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="wb-overlay-root" class="wb-overlay-root">
+    <div class="wb-modal wb-modal-xl" id="galleryPatternViewer" role="dialog" aria-modal="true" aria-labelledby="galleryPatternViewerTitle">
+      <div class="wb-modal-dialog">
+        <div class="wb-modal-body">
+          <div class="wb-gallery-viewer">
+            <div class="wb-gallery-viewer-toolbar">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Önceki görsel"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+              <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 3</div>
+              <div class="wb-cluster wb-cluster-2">
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Sonraki görsel"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Görüntüleyiciyi kapat"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <figure class="wb-gallery-viewer-media">
+              <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="KPI card'ları ve trend grafiklerini gösteren sürüm paneli">
+              <figcaption class="wb-gallery-viewer-caption" id="galleryPatternViewerTitle">Sürüm paneli</figcaption>
+            </figure>
+            <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Sayaç, başlık ve meta ortak tek bir görüntüleyici modalından doldurulur.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

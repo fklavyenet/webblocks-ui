@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Foundation</title>
+  <meta name="description" content="WebBlocks UI'da token'lar, tema eksenleri, koyu mod, preset'ler ve temel element stilleri.">
+  <link rel="alternate" hreflang="en" href="../foundation.html">
+  <link rel="alternate" hreflang="de" href="../de/foundation.html">
+  <link rel="alternate" hreflang="tr" href="foundation.html">
+  <link rel="alternate" hreflang="x-default" href="../foundation.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
+          <a href="foundation.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Foundation</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#foundationThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="foundationThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#foundationLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="foundationLangMenu"><a class="wb-dropdown-item" href="../foundation.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/foundation.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="foundation.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Bu sayfadaki bölümler">
+            <div class="wb-section-nav-title">Bu sayfada</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#theme-axes">Tema eksenleri</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#token-groups">Token grupları</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#spacing-scale">Boşluk ölçeği</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#base-element-styling">Temel element stilleri</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#theme-controls">Tema kontrolleri</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Foundation</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Token'lar, koyu mod, preset'ler, tema eksenleri, reset kuralları ve ham element stilleri Foundation'da yaşar. <code>h1-h6</code>, kod blokları, kök tema öznitelikleri veya boşluk ölçeği aklındaysa buradan başla.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-wide" id="theme-axes">
+                <h2><code>&lt;html&gt;</code> üzerindeki tema eksenleri</h2>
+                <p>Pakette gelen tema sistemi durumu kök elementte saklar. `WBTheme`; mode, preset, accent, radius, density, shadow ve font'u destekler. Border gerçek bir CSS ekseni olsa da pakette gelen `WBTheme` JS API'sinin parçası değildir.</p>
+                <pre><code>&lt;html
+  data-mode="auto"
+  data-preset="corporate"
+  data-accent="royal"
+  data-radius="soft"
+  data-density="compact"
+  data-shadow="soft"
+  data-font="editorial"
+  data-border="subtle"&gt;</code></pre>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-sm">
+                    <thead><tr><th>Eksen</th><th>Değerler</th><th>Neyi değiştirir</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>data-mode</code></td><td><code>light</code>, <code>dark</code>, <code>auto</code></td><td>Açık/koyu token seti ve color-scheme.</td></tr>
+                      <tr><td><code>data-preset</code></td><td><code>modern</code>, <code>minimal</code>, <code>editorial</code>, <code>playful</code>, <code>corporate</code></td><td>accent, radius, density, shadow ve font varsayılanlarından oluşan demet.</td></tr>
+                      <tr><td><code>data-accent</code></td><td><code>ocean</code>, <code>forest</code>, <code>sunset</code>, <code>royal</code>, <code>mint</code>, <code>amber</code>, <code>rose</code>, <code>slate-fire</code></td><td>Accent token ailesi.</td></tr>
+                      <tr><td><code>data-radius</code></td><td><code>sharp</code>, <code>soft</code></td><td>Köşe yarıçapı token'ları.</td></tr>
+                      <tr><td><code>data-density</code></td><td><code>compact</code>, <code>comfortable</code></td><td>Boşluk ölçeği.</td></tr>
+                      <tr><td><code>data-shadow</code></td><td><code>flat</code>, <code>soft</code></td><td>Gölge derinliği.</td></tr>
+                      <tr><td><code>data-font</code></td><td><code>system</code>, <code>modern</code>, <code>editorial</code></td><td>Gövde ve başlık font yığınları.</td></tr>
+                      <tr><td><code>data-border</code></td><td><code>none</code>, <code>subtle</code>, <code>medium</code>, <code>strong</code>, <code>accent</code>, <code>dashed</code></td><td>Genel kenarlık görünümü.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="token-groups">
+                <h2>Token grupları</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Yüzey ve yazı</strong><p class="wb-m-0"><code>--wb-bg</code>, <code>--wb-surface</code>, <code>--wb-surface-2</code>, <code>--wb-text</code>, <code>--wb-muted</code>, <code>--wb-border</code></p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Accent ve anlamsal renkler</strong><p class="wb-m-0"><code>--wb-accent*</code>, <code>--wb-success*</code>, <code>--wb-warning*</code>, <code>--wb-danger*</code>, <code>--wb-info*</code></p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Tipografi</strong><p class="wb-m-0"><code>--wb-font</code>, <code>--wb-font-heading</code>, <code>--wb-font-mono</code>, <code>--wb-font-size-*</code></p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Boşluk ve biçim</strong><p class="wb-m-0"><code>--wb-s1</code> ile <code>--wb-s20</code> arası, ayrıca <code>--wb-r-sm</code> ile <code>--wb-r-full</code> arası</p></div></div>
+                </div>
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Token kuralı</strong> Yeni paket kodu sabit renk, yarıçap veya boşluk değerleri yerine token kullanmalıdır.</div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="spacing-scale">
+                <h2>Boşluk ölçeği</h2>
+                <p>Temel token ölçeği <code>tokens.css</code> içinde başlar ve density ekseniyle daraltılıp genişletilebilir.</p>
+                <div class="wb-grid-4">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong><code>--wb-s1</code></strong><p class="wb-m-0">varsayılan 4px</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong><code>--wb-s4</code></strong><p class="wb-m-0">varsayılan 16px</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong><code>--wb-s8</code></strong><p class="wb-m-0">varsayılan 32px</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong><code>--wb-s20</code></strong><p class="wb-m-0">varsayılan 80px</p></div></div>
+                </div>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Compact</h3></div><div class="wb-card-body"><p class="wb-m-0">Daha sıkı yönetim ve veri yoğun arayüzler için <code>data-density="compact"</code> kullan.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Comfortable</h3></div><div class="wb-card-body"><p class="wb-m-0">Daha sakin editoryal veya pazarlama akışları için <code>data-density="comfortable"</code> kullan.</p></div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-prose" id="base-element-styling">
+                <h2>Temel element stilleri</h2>
+                <p>Herhangi bir primitive eklemeden önce ham HTML zaten paket stillerini taşır. <code>h1-h6</code>, paragraflar, bağlantılar, kod, blockquote'lar, tablolar ve odak halkaları burada tanımlanır.</p>
+                <p>Paragraf genişliği artık genel olarak sınırlanmıyor. Bir içerik bloğu daha sakin bir okuma ölçüsüne ihtiyaç duyduğunda <code>.wb-prose</code> ya da dokümantasyon alias'ı <code>.wb-docs-prose</code> kullan.</p>
+                <div class="wb-card">
+                  <div class="wb-card-body wb-stack-4">
+                    <h1>Başlık Düzeyi 1</h1>
+                    <h2>Başlık Düzeyi 2</h2>
+                    <h3>Başlık Düzeyi 3</h3>
+                    <div class="wb-prose">
+                      <p>Bir paragraf temel gövde fontunu ve satır yüksekliğini kullanır. Dokümanlar, politikalar ve diğer metin öncelikli yüzeyler için okunabilir bir maksimum genişlik istediğinde <code>.wb-prose</code> uygula. Satır içi <code>code</code> ve <a href="#">bağlantılar</a> element katmanında zaten biçimlendirilmiştir.</p>
+                    </div>
+                    <blockquote>Foundation, sayfa düzeyinde herhangi bir primitive devreye girmeden önce varsayılan okuma hissini belirler.</blockquote>
+                    <pre><code>&lt;h1&gt;Heading Level 1&lt;/h1&gt;
+&lt;div class="wb-prose"&gt;
+  &lt;p&gt;Paragraph copy with &lt;code&gt;inline code&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="theme-controls">
+                <h2>Pakette hazır gelen tema kontrolleri</h2>
+                <pre><code>&lt;button data-wb-mode-set="dark"&gt;Dark&lt;/button&gt;
+&lt;button data-wb-preset-set="minimal"&gt;Minimal&lt;/button&gt;
+&lt;button data-wb-accent-set="forest"&gt;Forest&lt;/button&gt;
+&lt;button data-wb-radius-set="soft"&gt;Soft radius&lt;/button&gt;
+&lt;button data-wb-density-set="compact"&gt;Compact&lt;/button&gt;
+&lt;button data-wb-shadow-set="soft"&gt;Soft shadow&lt;/button&gt;
+&lt;button data-wb-font-set="editorial"&gt;Editorial font&lt;/button&gt;</code></pre>
+              </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="architecture.html" class="wb-content-prev"><span class="wb-content-prev-label">Önceki</span><span class="wb-content-prev-title">Mimari</span></a>
+                <a href="layout.html" class="wb-content-next"><span class="wb-content-next-label">Sonraki</span><span class="wb-content-next-title">Layout</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

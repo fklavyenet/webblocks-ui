@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Dashboard Shell</title>
+  <meta name="description" content="Ana dokümantasyon yüzeyine gömülü dashboard shell pattern örneği.">
+  <link rel="alternate" hreflang="en" href="../pattern-dashboard-shell.html">
+  <link rel="alternate" hreflang="de" href="../de/pattern-dashboard-shell.html">
+  <link rel="alternate" hreflang="tr" href="pattern-dashboard-shell.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-dashboard-shell.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">İnsanlar ve yapay zeka için UI yapı taşları</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokümantasyon gezinmesi">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Ana Sayfa</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Başlangıç</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Mimari</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Genel Bakış</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menüyü aç"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Dashboard shell</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Pattern'lere dön"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modu değiştir" title="Modu değiştir"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-dashboard-shellThemeMenu" aria-expanded="false" aria-label="Tema ayarları" title="Tema ayarları"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-dashboard-shellThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Vurgu</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-dashboard-shellLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-dashboard-shellLangMenu"><a class="wb-dropdown-item" href="../pattern-dashboard-shell.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="../de/pattern-dashboard-shell.html" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item is-active" href="pattern-dashboard-shell.html" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+          <div class="wb-stack-6">
+            <div class="wb-page-header">
+              <div class="wb-page-header-main">
+                <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Dashboard hiyerarşisi">
+                  <ol class="wb-breadcrumb-list">
+                    <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+                    <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Operasyon genel görünümü</span></li>
+                  </ol>
+                </nav>
+                <div>
+                  <h1 class="wb-page-title">Operasyon genel görünümü</h1>
+                  <p class="wb-page-description">Çalışma alanlarını, üyeleri, faturalandırmayı ve kuyruk sağlığını tek bir uygulama çerçevesinden izle. Başlık aksiyonları bağlamsal kalır; satır ve form aksiyonları etkiledikleri içeriğe daha yakın durur.</p>
+                </div>
+              </div>
+              <div class="wb-page-actions"><a href="pattern-admin-standards.html" class="wb-btn wb-btn-outline wb-btn-sm">Yönetim standardı</a><a href="pattern-settings-shell.html" class="wb-btn wb-btn-secondary wb-btn-sm">Settings shell'i aç</a></div>
+            </div>
+
+          <div class="wb-stat-row">
+            <div class="wb-stat"><span class="wb-stat-label">Aktif çalışma alanları</span><strong class="wb-stat-value">124</strong><span class="wb-stat-delta wb-stat-delta-up">bu hafta +8</span></div>
+            <div class="wb-stat"><span class="wb-stat-label">Bekleyen davetler</span><strong class="wb-stat-value">19</strong><span class="wb-stat-delta wb-stat-delta-down">3'ü onay bekliyor</span></div>
+            <div class="wb-stat"><span class="wb-stat-label">MRR</span><strong class="wb-stat-value">$48.2k</strong><span class="wb-stat-delta wb-stat-delta-up">+6.4%</span></div>
+            <div class="wb-stat"><span class="wb-stat-label">Olay kuyruğu</span><strong class="wb-stat-value">4</strong><span class="wb-stat-delta wb-stat-delta-down">2 acil</span></div>
+          </div>
+
+            <div class="wb-filter-bar" role="search" aria-label="Çalışma alanlarını filtrele">
+              <div class="wb-filter-bar-start"><div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Çalışma alanlarında ara"></div><select class="wb-filter-select" aria-label="Plana göre filtrele"><option>Tüm planlar</option><option>Starter</option><option>Growth</option><option>Enterprise</option></select><button class="wb-filter-chip is-active" type="button">Live</button><button class="wb-filter-chip" type="button">İnceleme gerekiyor</button></div>
+              <div class="wb-filter-bar-end"><span class="wb-filter-results">12 çalışma alanı</span></div>
+            </div>
+
+            <section class="wb-card wb-card-flat">
+              <div class="wb-card-header"><div><h2 class="wb-card-title">Çalışma alanı etkinliği</h2><p class="wb-card-description">Index tabloları yönetim listesi standardını izler: card'dan önce filtreler, <code>wb-card-body</code> içinde tablo, açık bir <code>Actions</code> sütunu ve footer'da sayfalama.</p></div><div class="wb-action-group"><a href="pattern-content-shell.html" class="wb-btn wb-btn-secondary wb-btn-sm">Content shell'i aç</a><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Çalışma alanı oluştur</a></div></div>
+              <div class="wb-card-body">
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-hover">
+                    <thead><tr><th>Workspace</th><th>Sahip</th><th>Durum</th><th>Özet</th><th>Plan</th><th>Aksiyonlar</th></tr></thead>
+                    <tbody>
+                      <tr><td>Atlas EU</td><td>Mina Ray</td><td><span class="wb-status-pill wb-status-active">Sağlıklı</span></td><td>Faturalandırma, davetler ve kuyruk işçilerinin tamamı beklenen temel değerlerle uyumlu olan birincil üretim çalışma alanı.</td><td>Enterprise</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Çalışma alanını görüntüle" title="Çalışma alanını görüntüle"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Çalışma alanını düzenle" title="Çalışma alanını düzenle"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                      <tr><td>Studio North</td><td>Emre Aksoy</td><td><span class="wb-status-pill wb-status-pending">Sağlıklı, uyarılar var</span></td><td>Temel altyapı sağlıklı. Hedef değiştirilirken isteğe bağlı giden webhook teslimatı duraklatıldı.</td><td>Growth</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Çalışma alanını görüntüle" title="Çalışma alanını görüntüle"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Çalışma alanını düzenle" title="Çalışma alanını düzenle"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                      <tr><td>Docs Lab</td><td>Alice Brown</td><td><span class="wb-status-pill wb-status-info">Kuyrukta</span></td><td>Hazırlama hâlâ sürüyor, bu yüzden sağlık kontrolleri henüz başlamadı.</td><td>Starter</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Çalışma alanını görüntüle" title="Çalışma alanını görüntüle"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-delete" aria-label="Çalışma alanını arşivle" title="Çalışma alanını arşivle"><i class="wb-icon wb-icon-x"></i></a></div></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <div class="wb-card-footer"><span class="wb-filter-results">12 çalışma alanından 1-3 arası gösteriliyor</span><nav class="wb-pagination wb-pagination-compact" aria-label="Çalışma alanı sayfalaması"><ul class="wb-pagination-list"><li class="wb-pagination-item is-disabled"><span class="wb-pagination-link" aria-disabled="true">Önceki</span></li><li class="wb-pagination-item is-active"><span class="wb-pagination-link" aria-current="page">1</span></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">2</a></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">Sonraki</a></li></ul></nav></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
