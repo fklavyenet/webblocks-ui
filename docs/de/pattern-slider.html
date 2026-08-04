@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="forest" data-preset="editorial" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Slider</title>
+  <meta name="description" content="Kanonische Anleitung und Beispiele zum wb-slider-Pattern auf Basis des ausgelieferten Slider-Vertrags von WebBlocks UI.">
+  <link rel="alternate" hreflang="en" href="../pattern-slider.html">
+  <link rel="alternate" hreflang="de" href="pattern-slider.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-slider.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-slider.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-sliders-horizontal"></i><span>Slider</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Slider</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Zurück zu den Patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-sliderThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-sliderThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-sliderLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-sliderLangMenu"><a class="wb-dropdown-item" href="../pattern-slider.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="pattern-slider.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#intro" class="wb-section-nav-link">Intro</a></li>
+              <li class="wb-section-nav-item"><a href="#core-contract" class="wb-section-nav-link">Kern-Vertrag</a></li>
+              <li class="wb-section-nav-item"><a href="#examples" class="wb-section-nav-link">Beispiele</a></li>
+              <li class="wb-section-nav-item"><a href="#behavior" class="wb-section-nav-link">Verhalten</a></li>
+              <li class="wb-section-nav-item"><a href="#composition" class="wb-section-nav-link">Komposition</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Slider</h1>
+                <p class="wb-content-subtitle wb-docs-prose"><code>wb-slider</code> ist das kanonische, track-basierte Karussell-Pattern für Medien und Inhalte. Es füllt die Box, in der es platziert wird, hält Medien und Inhalt als getrennte Ebenen und unterstützt über das ausgelieferte JavaScript Pfeile, Dots, Tastatur, Swipe, Loop und optionales Autoplay.</p>
+                <div class="wb-content-meta"><span>Track-basierte Bewegung</span><span class="wb-content-meta-divider"></span><span>Medien-/Inhaltsebenen</span><span class="wb-content-meta-divider"></span><span><code>WBSlider</code> runtime</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="intro">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Pattern-Grenze</strong> Nutze <code>wb-slider</code> für Hero-Slider, geteilte Medien-/Inhaltsabschnitte und eingefasste Karussells. Nutze <code>wb-gallery</code> für Bildsammlungen mit gleich großen Kacheln und die Modal-Ansicht.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="core-contract">
+                    <h2>Kern-Vertrag</h2>
+                    <p>Der geschriebene Vertrag ist explizit: ein Slider-Root, ein Viewport, ein Track, eine oder mehrere Slides, optionale Medien, ein Inhalts-Slot und optionale Controls. Das JavaScript erzeugt die Dot-Buttons automatisch, wenn der Dots-Container leer ist.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-slider wb-slider-height-lg" data-wb-slider&gt;
+  &lt;div class="wb-slider-viewport"&gt;
+    &lt;div class="wb-slider-track"&gt;
+      &lt;article class="wb-slide"&gt;
+        &lt;img class="wb-slide-media" src="..." alt=""&gt;
+        &lt;div class="wb-slide-content"&gt;...&lt;/div&gt;
+      &lt;/article&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-slider-controls"&gt;
+    &lt;button class="wb-btn wb-btn-icon wb-slider-arrow wb-slider-prev" data-wb-slider-prev aria-label="Vorherige Folie"&gt;...&lt;/button&gt;
+    &lt;div class="wb-slider-dots" data-wb-slider-dots&gt;&lt;/div&gt;
+    &lt;button class="wb-btn wb-btn-icon wb-slider-arrow wb-slider-next" data-wb-slider-next aria-label="Nächste Folie"&gt;...&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="examples">
+                    <h2>Hero-Slider</h2>
+                    <div class="wb-slider wb-slider-height-lg wb-slider-content-start wb-slider-content-lg wb-slider-overlay-strong wb-slider-text-light" data-wb-slider data-wb-slider-loop="true">
+                      <div class="wb-slider-viewport">
+                        <div class="wb-slider-track">
+                          <article class="wb-slide is-active">
+                            <img class="wb-slide-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" alt="Offener Studio-Arbeitsplatz mit Tageslicht">
+                            <div class="wb-slide-content">
+                              <p class="wb-eyebrow wb-m-0">Studio</p>
+                              <h3 class="wb-m-0 wb-text-4xl">Geschichtete Seiten, ruhige Bewegung</h3>
+                              <p class="wb-m-0">Das Bild bedeckt die gesamte Slide, während der Inhalts-Slot seine eigene lesbare Breite behält.</p>
+                              <div class="wb-cluster wb-cluster-2"><a class="wb-btn wb-btn-primary" href="#composition">Kompositionsregeln lesen</a><a class="wb-btn wb-btn-secondary" href="#behavior">Runtime-Hooks</a></div>
+                            </div>
+                          </article>
+                          <article class="wb-slide">
+                            <img class="wb-slide-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" alt="Kreativ-Workshop-Wand mit Notizen und Laptops">
+                            <div class="wb-slide-content">
+                              <p class="wb-eyebrow wb-m-0">Workshop</p>
+                              <h3 class="wb-m-0 wb-text-4xl">Ein echter Inhalts-Slot</h3>
+                              <p class="wb-m-0">Überschriften, Rich Text, Buttons, Cards und CMS-Kindblöcke können in der Inhaltsebene der Slide liegen.</p>
+                            </div>
+                          </article>
+                          <article class="wb-slide">
+                            <img class="wb-slide-media" src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80" alt="Architektonischer Innenraum mit geometrischer Farb- und Lichtführung">
+                            <div class="wb-slide-content">
+                              <p class="wb-eyebrow wb-m-0">Bewegung</p>
+                              <h3 class="wb-m-0 wb-text-4xl">Standardmäßig track-basiert</h3>
+                              <p class="wb-m-0">Der Track verantwortet die Bewegung, sodass Pfeile, Dots, Swipe und künftiges Drag-Verhalten ein gemeinsames, klares Ziel haben.</p>
+                            </div>
+                          </article>
+                        </div>
+                      </div>
+                      <div class="wb-slider-controls">
+                        <button class="wb-btn wb-btn-icon wb-slider-arrow wb-slider-prev" type="button" data-wb-slider-prev aria-label="Vorherige Folie"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+                        <div class="wb-slider-dots" data-wb-slider-dots aria-label="Folien-Navigation"></div>
+                        <button class="wb-btn wb-btn-icon wb-slider-arrow wb-slider-next" type="button" data-wb-slider-next aria-label="Nächste Folie"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="behavior">
+                    <h2>Verhaltens-Hooks</h2>
+                    <div class="wb-table-wrap">
+                      <table class="wb-table wb-table-sm">
+                        <thead><tr><th>Hook</th><th>Unterstützung</th><th>Hinweise</th></tr></thead>
+                        <tbody>
+                          <tr><td><code>data-wb-slider</code></td><td>Ja</td><td>Meldet das Root-Element bei der ausgelieferten Runtime an.</td></tr>
+                          <tr><td><code>data-wb-slider-prev</code> / <code>data-wb-slider-next</code></td><td>Ja</td><td>Pfeil-Controls sind auf den nächstgelegenen Slider begrenzt.</td></tr>
+                          <tr><td><code>data-wb-slider-dots</code></td><td>Ja</td><td>Die Runtime erzeugt Dot-Buttons, wenn der Container leer ist.</td></tr>
+                          <tr><td><code>data-wb-slider-autoplay</code></td><td>Ja</td><td>Standardmäßig deaktiviert. Zusammen mit <code>data-wb-slider-interval</code> verwenden.</td></tr>
+                          <tr><td><code>data-wb-slider-loop</code></td><td>Ja</td><td>Standardmäßig aktiviert.</td></tr>
+                          <tr><td><code>data-wb-slider-keyboard</code></td><td>Ja</td><td>Die Pfeiltasten funktionieren, wenn der Fokus im Slider liegt.</td></tr>
+                          <tr><td><code>data-wb-slider-swipe</code></td><td>Ja</td><td>Zeiger-Swipe ist standardmäßig aktiviert.</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="composition">
+                    <div>
+                      <h2>Hinweise zur Komposition</h2>
+                      <p>Überlasse es dem umgebenden Container, ob der Slider den ganzen Viewport einnimmt, einen geteilten Abschnitt füllt oder in einer Card sitzt. Der Slider füllt seine eigene Box; er sollte kein randloses Seitenlayout erzwingen, sofern kein Höhen- oder Verhältnis-Modifier das verlangt.</p>
+                    </div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Medien-Regel</strong> Bevorzuge echte <code>img</code>- oder <code>picture</code>-Elemente mit <code>wb-slide-media</code>. <code>object-fit: cover</code> liefert eine hintergrundartige Abdeckung und erhält dabei Alt-Text, Ladeverhalten und Unterstützung für responsive Bilder.</div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

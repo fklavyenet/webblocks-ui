@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Layout</title>
+  <meta name="description" content="Container, Grids, Rows, Shells, Navbar, Sidebar und Helfer für die Seitenstruktur in WebBlocks UI.">
+  <link rel="alternate" hreflang="en" href="../layout.html">
+  <link rel="alternate" hreflang="de" href="layout.html">
+  <link rel="alternate" hreflang="x-default" href="../layout.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Layout</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#layoutThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="layoutThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#layoutLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="layoutLangMenu"><a class="wb-dropdown-item" href="../layout.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="layout.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#base-composition-primitives">Basis-Kompositions-Primitives</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#simple-grid-and-flow">Einfaches Grid und Fluss</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#row-system">12-Spalten-Row-System</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#navigation-structure">Navigationsstruktur</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#shell-selection">Shell-Auswahl</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#header-hierarchy">Header-Hierarchie</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Layout</h1>
+                <p class="wb-content-subtitle wb-docs-prose">In Layout liegen Seitenbreite, struktureller Fluss, Navigationsrahmen und die Shell-Wahl. Wenn es um <code>wb-container</code>, <code>wb-grid-*</code>, <code>wb-row</code>, Navbar, Sidebar oder Dashboard-, Content- und Auth-Shells geht, beginne hier.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-wide" id="base-composition-primitives">
+                <h2>Basis-Kompositions-Primitives</h2>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-sm">
+                    <thead><tr><th>Klasse</th><th>Wofür</th><th>Warum es zählt</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>wb-container*</code></td><td>Seitenbreite und horizontales Padding</td><td>Hält das Inhaltsmaß einheitlich.</td></tr>
+                      <tr><td><code>wb-section*</code></td><td>Große vertikale Bänder</td><td>Definiert den äußeren Seitenrhythmus.</td></tr>
+                      <tr><td><code>wb-stack*</code></td><td>Vertikaler Fluss</td><td>Regelt wiederkehrende Abstände ohne Einzelfall-Margins.</td></tr>
+                      <tr><td><code>wb-cluster*</code></td><td>Umbrechende Inline-Gruppen</td><td>Gut für Aktionen, Chips und kompakte Controls.</td></tr>
+                      <tr><td><code>wb-split</code></td><td>Zweiseitige Layouts</td><td>Lässt das erste Kind wachsen und das letzte fest bleiben.</td></tr>
+                      <tr><td><code>wb-grid*</code></td><td>Einfache wiederholte Spalten</td><td>Schnelles 2/3/4-Spalten- und Auto-Fill-Layout.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="simple-grid-and-flow">
+                <h2>Beispiele für einfaches Grid und Fluss</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Stack + Cluster + Split</h3></div><div class="wb-card-body wb-stack-4"><div class="wb-stack-2"><strong>Stack</strong><p class="wb-m-0">Drei Blöcke mit vertikalem Rhythmus.</p><p class="wb-m-0">Nutze ihn für Fließtext- und Formularabschnitte.</p></div><div class="wb-cluster"><span class="wb-badge">Cluster</span><span class="wb-badge wb-badge-success">Bricht um</span><span class="wb-badge wb-badge-warning">Inline-Elemente</span></div><div class="wb-split"><strong>Split wächst links</strong><button class="wb-btn wb-btn-sm wb-btn-primary">Aktion</button></div></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Grid-Helfer</h3></div><div class="wb-card-body wb-stack-4"><div class="wb-grid-2"><div class="wb-card wb-card-muted"><div class="wb-card-body">wb-grid-2</div></div><div class="wb-card wb-card-muted"><div class="wb-card-body">wb-grid-2</div></div></div><div class="wb-grid-3"><div class="wb-card wb-card-muted"><div class="wb-card-body">1</div></div><div class="wb-card wb-card-muted"><div class="wb-card-body">2</div></div><div class="wb-card wb-card-muted"><div class="wb-card-body">3</div></div></div></div></div>
+                </div>
+                <pre><code>&lt;div class="wb-grid-2"&gt;...&lt;/div&gt;
+&lt;div class="wb-grid-auto"&gt;...&lt;/div&gt;
+&lt;div class="wb-split"&gt;
+  &lt;div&gt;wächst&lt;/div&gt;
+  &lt;button class="wb-btn wb-btn-sm"&gt;feste Seite&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                <p class="wb-text-sm wb-text-muted">Direkte <code>wb-card</code>-Kinder innerhalb der WebBlocks-Grid-Primitives strecken sich automatisch auf die Zeilenhöhe, und ihre <code>wb-card-footer</code>-Bereiche bleiben unten ausgerichtet.</p>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="row-system">
+                <h2>12-Spalten-Row-System</h2>
+                <p>WebBlocks liefert außerdem ein Bootstrap-ähnliches Row/Column-Grid in <code>layout/grid.css</code>.</p>
+                <pre><code>&lt;div class="wb-row"&gt;
+  &lt;div class="wb-col-md-8"&gt;Hauptbereich&lt;/div&gt;
+  &lt;div class="wb-col-md-4"&gt;Sidebar&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <div class="wb-row">
+                  <div class="wb-col-md-8"><div class="wb-card"><div class="wb-card-body">wb-col-md-8</div></div></div>
+                  <div class="wb-col-md-4"><div class="wb-card"><div class="wb-card-body">wb-col-md-4</div></div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="navigation-structure">
+                <h2>Navigationsstruktur</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Navbar</h3></div><div class="wb-card-body wb-stack-3"><header class="wb-navbar wb-navbar--static"><a href="#" class="wb-navbar-brand">Atlas</a><span class="wb-navbar-spacer"></span><div class="wb-navbar-links"><nav aria-label="Beispiel-Navbar"><ul class="wb-navbar-nav wb-navbar-nav--active-underline"><li class="wb-navbar-nav-item"><a href="#" class="wb-navbar-link is-active" aria-current="page">Übersicht</a></li><li class="wb-navbar-nav-item"><a href="#" class="wb-navbar-link">Abrechnung</a></li></ul></nav></div></header><p class="wb-m-0">Nutze die Navbar für Navigation und Aktionen auf oberster Ebene. Aktuelle Links verwenden <code>is-active</code> zusammen mit <code>aria-current="page"</code>, und Nav-Listen können Indikator-Klassen wie <code>wb-navbar-nav--active-underline</code> oder <code>wb-navbar-nav--active-pill</code> wählen.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Sidebar</h3></div><div class="wb-card-body"><aside class="wb-sidebar wb-block wb-relative wb-inset-0 wb-w-full" aria-label="Beispiel-Sidebar"><div class="wb-sidebar-nav"><div class="wb-sidebar-section"><span class="wb-sidebar-label">Workspace</span><a class="wb-sidebar-link is-active" href="#"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Übersicht</span></a><a class="wb-sidebar-link" href="#"><i class="wb-icon wb-icon-users wb-sidebar-icon"></i><span>Mitglieder</span></a><a class="wb-sidebar-link" href="#"><i class="wb-icon wb-icon-settings wb-sidebar-icon"></i><span>Einstellungen</span></a></div></div></aside></div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="shell-selection">
+                <h2>Shell-Auswahl</h2>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-sm">
+                    <thead><tr><th>Shell</th><th>Klasse</th><th>Wann hier beginnen</th></tr></thead>
+                    <tbody>
+                      <tr><td>Dashboard</td><td><code>wb-dashboard-shell</code></td><td>Admin-Produkte mit dauerhafter Navigation und scrollbarem Hauptbereich.</td></tr>
+                      <tr><td>Auth</td><td><code>wb-auth-shell</code></td><td>Login, Registrierung und ruhige Einstiegs-Flows.</td></tr>
+                      <tr><td>Settings</td><td><code>wb-settings-shell</code></td><td>Einstellungslastige Seiten mit lokaler Navigation und abschnittsweisen Formularen.</td></tr>
+                      <tr><td>Content</td><td><code>wb-content-shell</code></td><td>Doku, Artikel, Rechtstexte und textzentrierte Inhalte.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Shell-Regel</strong> Wähle die Page-Shell, bevor du Primitives verfeinerst. Ein Dashboard sollte nicht aus beliebigen Cards zusammengesetzt werden, bevor der Rahmen feststeht.</div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-split" id="header-hierarchy">
+                <h2>Header-Hierarchie</h2>
+                <div class="wb-card"><div class="wb-card-body"><div class="wb-page-header"><div class="wb-page-header-main"><nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Beispiel-Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Workspace</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Mitglieder</span></li></ol></nav><div><h2 class="wb-page-header-title">Mitglieder</h2><p class="wb-page-subtitle">Personen, Rollen und Einladungen verwalten.</p></div></div><div class="wb-page-actions"><button class="wb-btn wb-btn-primary wb-btn-sm">Einladen</button></div></div></div></div>
+                <p>Der Breadcrumb ist optional. Der Titel ist primär. Der Untertitel ist unterstützend. Aktionen bleiben getrennt.</p>
+              </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="foundation.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Foundation</span></a>
+                <a href="primitives.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Primitives</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

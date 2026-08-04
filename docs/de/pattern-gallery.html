@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Gallery</title>
+  <meta name="description" content="Kanonische Anleitung und Beispiele zum wb-gallery-Pattern, ausschließlich auf Basis des aktuell ausgelieferten Gallery-Vertrags von WebBlocks UI.">
+  <link rel="alternate" hreflang="en" href="../pattern-gallery.html">
+  <link rel="alternate" hreflang="de" href="pattern-gallery.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-gallery.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Gallery</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Zurück zu den Patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-galleryThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-galleryThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-galleryLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-galleryLangMenu"><a class="wb-dropdown-item" href="../pattern-gallery.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="pattern-gallery.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#intro" class="wb-section-nav-link">Intro</a></li>
+              <li class="wb-section-nav-item"><a href="#when-to-use" class="wb-section-nav-link">Wann verwenden</a></li>
+              <li class="wb-section-nav-item"><a href="#core-contract" class="wb-section-nav-link">Kern-Vertrag</a></li>
+              <li class="wb-section-nav-item"><a href="#layout-modifiers" class="wb-section-nav-link">Layout-Modifier</a></li>
+              <li class="wb-section-nav-item"><a href="#official-examples" class="wb-section-nav-link">Offizielle Beispiele</a></li>
+              <li class="wb-section-nav-item"><a href="#inline-captioned" class="wb-section-nav-link">Inline mit Beschriftung</a></li>
+              <li class="wb-section-nav-item"><a href="#gallery-with-metadata" class="wb-section-nav-link">Mit Metadaten</a></li>
+              <li class="wb-section-nav-item"><a href="#shared-modal-viewer" class="wb-section-nav-link">Gemeinsamer Modal-Viewer</a></li>
+              <li class="wb-section-nav-item"><a href="#editorial-content-gallery" class="wb-section-nav-link">Redaktioneller Block</a></li>
+              <li class="wb-section-nav-item"><a href="#card-contained-gallery" class="wb-section-nav-link">Card-contained</a></li>
+              <li class="wb-section-nav-item"><a href="#product-screenshot-gallery" class="wb-section-nav-link">Produkt-Screenshots</a></li>
+              <li class="wb-section-nav-item"><a href="#composition-guidance" class="wb-section-nav-link">Hinweise zur Komposition</a></li>
+              <li class="wb-section-nav-item"><a href="#do-do-not" class="wb-section-nav-link">Tun / Nicht tun</a></li>
+              <li class="wb-section-nav-item"><a href="#accessibility-behavior" class="wb-section-nav-link">Barrierefreiheit</a></li>
+              <li class="wb-section-nav-item"><a href="#related-primitives" class="wb-section-nav-link">Verwandte Primitives</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Gallery</h1>
+                <p class="wb-content-subtitle wb-docs-prose"><code>wb-gallery</code> ist das kanonische Inline-Medien-Pattern für Bildraster mit gleich großen Kacheln. Braucht die Aufgabe eine immersive Ansicht, kann dieselbe Galerie einen gemeinsamen <code>wb-modal</code>-Viewer befüllen, statt zu einem eigenen Lightbox-System zu werden.</p>
+                <div class="wb-content-meta"><span>Fließendes oder spaltenfestes Medienraster</span><span class="wb-content-meta-divider"></span><span>Gemeinsamer Modal-Viewer</span><span class="wb-content-meta-divider"></span><span>Modifier für Masonry, Collage und Overlay-Beschriftungen</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="intro">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Pattern-Grenze</strong> <code>wb-gallery</code> eignet sich für responsive Bildsammlungen - fließende oder spaltenfeste Raster, Masonry-Fluss, Collage-Rhythmus - mit Beschriftungen darunter oder als Overlay und einem gemeinsamen Modal-Viewer. Es ist weiterhin kein Karussell, kein Zoom-Werkzeug und kein Viewer für gemischte Medien.</div>
+                    <p>Nutze diese Seite, wenn es darum geht, eine Bildmenge sauber im Seitenfluss zu präsentieren - optional mit Beschriftungen und einem gemeinsamen Viewer-Modal. Layout-Anforderungen (Spaltenzahl, Abstand, Medienverhältnis, Masonry- oder Collage-Rhythmus, Overlay-Beschriftungen) decken die offiziellen Modifier unten ab - niemals projekteigenes CSS. Brauchst du Slider-Verhalten, Zoom oder Video, ist der ausgelieferte Vertrag der falsche Ansatz.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="when-to-use">
+                    <div>
+                      <h2>Wann verwenden</h2>
+                      <ul>
+                        <li>Bildsammlungen</li>
+                        <li>Screenshot-Sets</li>
+                        <li>Redaktionelle Bilder</li>
+                        <li>Inline-Inhaltsgalerien</li>
+                      </ul>
+                    </div>
+                    <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Nicht verwenden für</strong> Slider, Karussells, Zoom-Werkzeuge oder Viewer für gemischte Medien - die gehören zu <code>wb-slider</code> oder existieren im ausgelieferten Quellcode nicht. Masonry und Collage WERDEN ausgeliefert, aber nur als offizielle Modifier <code>wb-gallery--masonry</code> / <code>wb-gallery--collage</code>.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="core-contract">
+                    <h2>Kern-Vertrag</h2>
+                    <p>Halte das Basis-Markup klein. Das Gallery-Pattern besteht aus einem Inline-Grid-Wrapper, einem Element-Wrapper, einem interaktiven Trigger, einem Bild und optionalem Beschriftungs- oder Metatext.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-gallery" aria-label="Release-Galerie"&gt;
+  &lt;div class="wb-gallery-grid"&gt;
+    &lt;figure class="wb-gallery-item"&gt;
+      &lt;button class="wb-gallery-trigger"
+              type="button"
+              data-wb-gallery-target="#releaseViewer"
+              data-wb-gallery-full="/images/release-full.jpg"&gt;
+        &lt;img class="wb-gallery-media"
+             src="/images/release-thumb.jpg"
+             alt="Screenshot des Release-Dashboards"&gt;
+      &lt;/button&gt;
+      &lt;figcaption class="wb-gallery-caption"&gt;Release dashboard&lt;/figcaption&gt;
+      &lt;div class="wb-gallery-meta"&gt;Shared viewer modal&lt;/div&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+                    <div class="wb-table-wrap">
+                      <table class="wb-table wb-table-sm">
+                        <thead><tr><th>Hook</th><th>Tatsächliche Unterstützung</th><th>Hinweise</th></tr></thead>
+                        <tbody>
+                          <tr><td><code>data-wb-gallery-target</code></td><td>Ja</td><td>Bevorzugter Hook zur Verbindung von Galerie und Modal.</td></tr>
+                          <tr><td><code>data-wb-target</code></td><td>Ja</td><td>Wird als Ersatzquelle für den Modal-Selektor akzeptiert.</td></tr>
+                          <tr><td><code>data-wb-gallery-full</code></td><td>Ja</td><td>Bildquelle in voller Größe für den Viewer.</td></tr>
+                          <tr><td><code>data-wb-gallery-alt</code></td><td>Ja</td><td>Überschreibt den Alt-Text im Viewer.</td></tr>
+                          <tr><td><code>data-wb-gallery-caption</code></td><td>Ja</td><td>Überschreibt die Beschriftung im Viewer.</td></tr>
+                          <tr><td><code>data-wb-gallery-meta</code></td><td>Ja</td><td>Überschreibt die Metadaten im Viewer.</td></tr>
+                          <tr><td><code>data-wb-gallery-width</code></td><td>Ja</td><td>Optionales width-Attribut für das Viewer-Bild.</td></tr>
+                          <tr><td><code>data-wb-gallery-height</code></td><td>Ja</td><td>Optionales height-Attribut für das Viewer-Bild.</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-modal wb-modal-xl" id="releaseViewer" role="dialog" aria-modal="true" aria-labelledby="releaseViewerTitle"&gt;
+  &lt;div class="wb-modal-dialog"&gt;
+    &lt;div class="wb-modal-body"&gt;
+      &lt;div class="wb-gallery-viewer"&gt;
+        &lt;!-- optional heading above the viewer: --&gt;
+        &lt;h2 class="wb-gallery-viewer-title" id="releaseViewerHeading"&gt;Release tour&lt;/h2&gt;
+        &lt;div class="wb-gallery-viewer-toolbar"&gt;
+          &lt;button class="wb-gallery-viewer-prev" type="button" aria-label="Vorheriges Bild"&gt;...&lt;/button&gt;
+          &lt;div class="wb-gallery-viewer-counter" aria-live="polite"&gt;1 / 3&lt;/div&gt;
+          &lt;button class="wb-gallery-viewer-next" type="button" aria-label="Nächstes Bild"&gt;...&lt;/button&gt;
+          &lt;button class="wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Viewer schließen"&gt;...&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;figure class="wb-gallery-viewer-media"&gt;
+          &lt;img class="wb-gallery-viewer-image" src="..." alt="..."&gt;
+          &lt;figcaption class="wb-gallery-viewer-caption" id="releaseViewerTitle"&gt;&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p class="wb-gallery-viewer-meta"&gt;&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="layout-modifiers">
+                    <h2>Layout-Modifier</h2>
+                    <p>Das blanke <code>wb-gallery</code> ist ein fließendes Auto-Fit-Raster mit 4:3-Medien und Beschriftungen darunter. Jede darüber hinausgehende Layout-Entscheidung ist ein optionaler Modifier am Pattern-Wrapper - niemals projekteigenes CSS.</p>
+                    <div class="wb-table-wrap">
+                      <table class="wb-table wb-table-sm">
+                        <thead><tr><th>Achse</th><th>Modifier</th><th>Hinweise</th></tr></thead>
+                        <tbody>
+                          <tr><td>Spalten</td><td><code>wb-gallery--cols-2</code> … <code>--cols-5</code></td><td>Legt die Spaltenzahl fest. Begrenzt auf 2 unter 992px und 1 unter 641px. Weglassen für den fließenden Auto-Fit-Standard.</td></tr>
+                          <tr><td>Abstand</td><td><code>--gap-none</code> | <code>--gap-sm</code> | <code>--gap-md</code> | <code>--gap-lg</code></td><td><code>--gap-md</code> entspricht dem Standardabstand.</td></tr>
+                          <tr><td>Medienverhältnis</td><td><code>--aspect-square</code> | <code>--aspect-4-3</code> | <code>--aspect-16-9</code> | <code>--aspect-portrait</code> | <code>--aspect-auto</code></td><td>Standard ist 4/3. <code>--aspect-auto</code> lässt das native Bildverhältnis die Höhe bestimmen.</td></tr>
+                          <tr><td>Variante</td><td><code>--masonry</code> | <code>--collage</code></td><td>Masonry ist ein Fluss über CSS-Spalten (zusammen mit <code>--aspect-auto</code> nutzen). Collage ist ein dichtes Raster, in dem jedes 5. Element 2×2 überspannt und ein <code>--cols-*</code> benötigt.</td></tr>
+                          <tr><td>Beschriftungen</td><td><code>--captions-overlay</code> | <code>--captions-hover</code></td><td>Hebt eine Beschriftung im Trigger als unteren Farbverlauf auf das Medium; <code>--captions-hover</code> zeigt sie nur bei Hover/Fokus.</td></tr>
+                          <tr><td>Overlay-Tonwert</td><td><code>--overlay-solid</code> | <code>--overlay-none</code></td><td>Mit einem der beiden Beschriftungs-Modifier. Standard ist ein Farbverlauf; <code>--overlay-none</code> nutzt nur einen Textschatten.</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p>Overlay-Beschriftungen verändern den Aufbau des Elements: Die <code>wb-gallery-caption</code> wandert <em>in</em> den Trigger und wird zum Farbverlauf, und jedes <code>wb-gallery-meta</code> liegt <em>innerhalb dieser Beschriftung</em>, damit es im selben Verlauf mitläuft.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-body">
+<pre><code>&lt;div class="wb-gallery wb-gallery--cols-3 wb-gallery--aspect-16-9 wb-gallery--captions-overlay" aria-label="…"&gt;
+  &lt;div class="wb-gallery-grid"&gt;
+    &lt;figure class="wb-gallery-item"&gt;
+      &lt;button class="wb-gallery-trigger" type="button"
+              data-wb-gallery-target="#viewer" data-wb-gallery-full="…"&gt;
+        &lt;img class="wb-gallery-media" src="…" alt="…"&gt;
+        &lt;span class="wb-gallery-caption"&gt;Overview dashboard
+          &lt;span class="wb-gallery-meta"&gt;Week 14 snapshot&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                      </div>
+                    </div>
+
+                    <h3>Overlay-Beschriftungen (immer sichtbar)</h3>
+                    <div class="wb-gallery wb-gallery--cols-3 wb-gallery--aspect-16-9 wb-gallery--captions-overlay" aria-label="Beispielgalerie mit Overlay-Beschriftung">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Workspace-Lounge mit Tischen und Tageslicht" data-wb-gallery-caption="Workspace-Lounge" data-wb-gallery-meta="Erdgeschoss">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Workspace-Lounge mit Tischen und Tageslicht">
+                            <span class="wb-gallery-caption">Workspace-Lounge<span class="wb-gallery-meta">Erdgeschoss</span></span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Besprechungsraum mit langem Tisch und Wandbildschirm" data-wb-gallery-caption="Teamraum" data-wb-gallery-meta="Zweite Etage">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Besprechungsraum mit langem Tisch und Wandbildschirm">
+                            <span class="wb-gallery-caption">Teamraum<span class="wb-gallery-meta">Zweite Etage</span></span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Offener Gemeinschaftsbereich mit großen Fenstern" data-wb-gallery-caption="Großraumbüro" data-wb-gallery-meta="Atrium-Flügel">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Offener Gemeinschaftsbereich mit großen Fenstern">
+                            <span class="wb-gallery-caption">Großraumbüro<span class="wb-gallery-meta">Atrium-Flügel</span></span>
+                          </button>
+                        </figure>
+                      </div>
+                    </div>
+
+                    <h3>Hover-Beschriftungen mit einer deckenden Fläche</h3>
+                    <div class="wb-gallery wb-gallery--cols-3 wb-gallery--aspect-4-3 wb-gallery--captions-hover wb-gallery--overlay-solid" aria-label="Beispielgalerie mit Hover-Beschriftung">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Analyse-Dashboard auf einem Laptop-Bildschirm" data-wb-gallery-caption="Analyse-Dashboard">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Analyse-Dashboard auf einem Laptop-Bildschirm">
+                            <span class="wb-gallery-caption">Analyse-Dashboard</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Planungs-Workshop mit Haftnotizen und Laptops" data-wb-gallery-caption="Planungs-Workshop">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planungs-Workshop mit Haftnotizen und Laptops">
+                            <span class="wb-gallery-caption">Planungs-Workshop</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Marketing-Diagramm und Conversion-Aufschlüsselung auf einem Bildschirm" data-wb-gallery-caption="Attributions-Detail">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Marketing-Diagramm und Conversion-Aufschlüsselung auf einem Bildschirm">
+                            <span class="wb-gallery-caption">Attributions-Detail</span>
+                          </button>
+                        </figure>
+                      </div>
+                    </div>
+
+                    <h3>Masonry-Fluss</h3>
+                    <p>Masonry behält die nativen Bildhöhen, nutze es daher zusammen mit <code>--aspect-auto</code>.</p>
+                    <div class="wb-gallery wb-gallery--masonry wb-gallery--cols-3 wb-gallery--aspect-auto" aria-label="Masonry-Beispielgalerie">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Workspace-Lounge mit Tischen und Tageslicht" data-wb-gallery-caption="Workspace-Lounge">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&h=800&q=80" alt="Workspace-Lounge mit Tischen und Tageslicht">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Workspace-Lounge</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Besprechungsraum mit langem Tisch und Wandbildschirm" data-wb-gallery-caption="Teamraum">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&h=420&q=80" alt="Besprechungsraum mit langem Tisch und Wandbildschirm">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Teamraum</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Schreibtisch mit Monitor, Tastatur und Notizbuch" data-wb-gallery-caption="Schreibtisch-Setup">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=600&h=600&q=80" alt="Schreibtisch mit Monitor, Tastatur und Notizbuch">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Schreibtisch-Setup</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Offener Gemeinschaftsbereich mit großen Fenstern" data-wb-gallery-caption="Großraumbüro">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&h=450&q=80" alt="Offener Gemeinschaftsbereich mit großen Fenstern">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Großraumbüro</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Planungs-Workshop mit Haftnotizen und Laptops" data-wb-gallery-caption="Planungs-Workshop">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&h=700&q=80" alt="Planungs-Workshop mit Haftnotizen und Laptops">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Planungs-Workshop</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Marketing-Diagramm und Conversion-Aufschlüsselung auf einem Bildschirm" data-wb-gallery-caption="Attributions-Detail">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&h=380&q=80" alt="Marketing-Diagramm und Conversion-Aufschlüsselung auf einem Bildschirm">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Attributions-Detail</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+
+                    <h3>Collage-Rhythmus</h3>
+                    <p>Collage benötigt eine feste Spaltenzahl; jedes 5. Element überspannt zwei Spalten und zwei Zeilen.</p>
+                    <div class="wb-gallery wb-gallery--collage wb-gallery--cols-3 wb-gallery--captions-hover" aria-label="Collage-Beispielgalerie">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Workspace-Lounge mit Tischen und Tageslicht" data-wb-gallery-caption="Workspace-Lounge">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Workspace-Lounge mit Tischen und Tageslicht">
+                            <span class="wb-gallery-caption">Workspace-Lounge</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Besprechungsraum mit langem Tisch und Wandbildschirm" data-wb-gallery-caption="Teamraum">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Besprechungsraum mit langem Tisch und Wandbildschirm">
+                            <span class="wb-gallery-caption">Teamraum</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Schreibtisch mit Monitor, Tastatur und Notizbuch" data-wb-gallery-caption="Schreibtisch-Setup">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Schreibtisch mit Monitor, Tastatur und Notizbuch">
+                            <span class="wb-gallery-caption">Schreibtisch-Setup</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Offener Gemeinschaftsbereich mit großen Fenstern" data-wb-gallery-caption="Großraumbüro">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Offener Gemeinschaftsbereich mit großen Fenstern">
+                            <span class="wb-gallery-caption">Großraumbüro</span>
+                          </button>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Planungs-Workshop mit Haftnotizen und Laptops" data-wb-gallery-caption="Planungs-Workshop">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planungs-Workshop mit Haftnotizen und Laptops">
+                            <span class="wb-gallery-caption">Planungs-Workshop</span>
+                          </button>
+                        </figure>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="official-examples">
+                    <h2>Offizielle Beispiele</h2>
+                    <p>Diese sechs Beispiele sind die derzeit stärksten Einsätze von <code>wb-gallery</code>. Jedes zeigt eine andere Aufgabe; Abweichungen im Layout (Spalten, Masonry, Collage, Overlay-Beschriftungen) stammen immer aus den offiziellen Modifiern oben, nie aus eigenem CSS.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="inline-captioned">
+                    <h2>1. Inline-Galerie mit Beschriftung</h2>
+                    <p>Basis-Pattern: gleich große Kacheln mit einer sichtbaren Beschriftung pro Bild. Dieses Beispiel nutzt dasselbe gemeinsame Viewer-Pattern für ein einheitliches Doku-Erlebnis.</p>
+                    <div class="wb-gallery" aria-label="Inline-Workspace-Galerie mit Beschriftungen">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Workspace-Lounge mit Tischen und Tageslicht" data-wb-gallery-caption="Workspace-Lounge">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Workspace-Lounge mit Tischen und Tageslicht">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Workspace-Lounge</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Besprechungsraum mit langem Tisch und Wandbildschirm" data-wb-gallery-caption="Teamraum">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Besprechungsraum mit langem Tisch und Wandbildschirm">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Teamraum</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Schreibtisch mit Monitor, Tastatur und Notizbuch" data-wb-gallery-caption="Schreibtisch-Setup">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Schreibtisch mit Monitor, Tastatur und Notizbuch">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Schreibtisch-Setup</figcaption>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Offener Gemeinschaftsbereich mit großen Fenstern" data-wb-gallery-caption="Großraumbüro">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Offener Gemeinschaftsbereich mit großen Fenstern">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Großraumbüro</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="gallery-with-metadata">
+                    <h2>2. Galerie mit Metadaten</h2>
+                    <p>Zweite Textebene: Die Galerie behält dieselbe Struktur aus gleich großen Kacheln, ergänzt aber unter jeder Beschriftung einen gedämpften Zusatztext. Sie nutzt denselben gemeinsamen Viewer, ohne Metadaten zu einem neuen Galerietyp zu machen.</p>
+                    <div class="wb-gallery" aria-label="Release-Asset-Galerie mit Metadaten">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Analyse-Dashboard auf einem Laptop-Bildschirm" data-wb-gallery-caption="Analyse-Dashboard" data-wb-gallery-meta="Release-Review / KPI-Zusammenfassung">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Analyse-Dashboard auf einem Laptop-Bildschirm">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Analyse-Dashboard</figcaption>
+                          <div class="wb-gallery-meta">Release-Review / KPI-Zusammenfassung</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Planungs-Workshop mit Haftnotizen und Laptops" data-wb-gallery-caption="Planungs-Workshop" data-wb-gallery-meta="Sprint-Rahmen / Produktentscheidungen">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Planungs-Workshop mit Haftnotizen und Laptops">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Planungs-Workshop</figcaption>
+                          <div class="wb-gallery-meta">Sprint-Rahmen / Produktentscheidungen</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Marketing-Diagramm und Conversion-Aufschlüsselung auf einem Bildschirm" data-wb-gallery-caption="Attributions-Detail" data-wb-gallery-meta="Kampagnen-Review / Kanal-Mix">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Marketing-Diagramm und Conversion-Aufschlüsselung auf einem Bildschirm">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Attributions-Detail</figcaption>
+                          <div class="wb-gallery-meta">Kampagnen-Review / Kanal-Mix</div>
+                        </figure>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="shared-modal-viewer">
+                    <h2>3. Galerie mit gemeinsamem Modal-Viewer</h2>
+                    <p>Verhaltensbeispiel: ein Galerie-Set, ein Modal, Zurück-/Weiter-Controls, ein Zähler im Viewer und die Befüllung von Beschriftung und Metadaten aus echten Trigger-Attributen.</p>
+                    <div class="wb-gallery" aria-label="Beispielgalerie für den Release-Viewer">
+                      <div class="wb-gallery-grid">
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Release-Dashboard mit KPI-Cards und Trenddiagrammen" data-wb-gallery-caption="Release-Dashboard" data-wb-gallery-meta="Zähler, Beschriftung und Metadaten werden aus einem gemeinsamen Viewer-Modal befüllt.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Vorschaubild des Release-Dashboards">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Release-Dashboard öffnen</figcaption>
+                          <div class="wb-gallery-meta">Nutzt Überschreibungen per Daten-Attribut</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Sprint-Planung mit Wandnotizen und Laptops" data-wb-gallery-caption="Sprint planning wall" data-wb-gallery-meta="Prev and next move only inside this gallery and this modal target.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Vorschaubild der Planungswand">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Planungswand öffnen</figcaption>
+                          <div class="wb-gallery-meta">Dasselbe Modal, zweites Element</div>
+                        </figure>
+                        <figure class="wb-gallery-item">
+                          <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Performance-Diagramm auf einem Laptop mit Kanal-Kennzahlen" data-wb-gallery-caption="Performance breakdown" data-wb-gallery-meta="Keyboard left and right arrows step through the active viewer items.">
+                            <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Vorschaubild des Performance-Diagramms">
+                          </button>
+                          <figcaption class="wb-gallery-caption">Performance-Aufschlüsselung öffnen</figcaption>
+                          <div class="wb-gallery-meta">Gemeinsames Viewer-Modal</div>
+                        </figure>
+                      </div>
+                    </div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Ein-Modal-Regel</strong> Der Viewer bleibt in einem gemeinsamen <code>wb-modal</code>. Die Gallery-Runtime erfindet weder ein zweites Overlay-System noch ein eigenes Lightbox-Primitive.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="editorial-content-gallery">
+                    <h2>4. Redaktioneller Galerie-Block</h2>
+                    <p>Inhaltliche Einbindung: Die Galerie sitzt in einem lesbaren Artikelfluss, statt sich als eigenständige Layout-Engine auszugeben. Derselbe gemeinsame Viewer bleibt verfügbar, ohne den redaktionellen Kontext zu sprengen.</p>
+                    <div class="wb-content-shell wb-content-shell-narrow">
+                      <header class="wb-content-header">
+                        <h3 class="wb-content-title">Bildblock für Fallstudien</h3>
+                        <p class="wb-content-subtitle">Nutze <code>wb-gallery</code> innerhalb einer Content Shell, wenn ein Artikel oder eine Fallstudie eine ruhige Inline-Mediengruppe braucht.</p>
+                      </header>
+                      <div class="wb-content-body wb-stack-6">
+                        <p>Diese Bilder stützen die Geschichte; sie ersetzen die Seitenhierarchie nicht. Die Galerie bleibt gleichkachelig, lesbar und leicht in längere Texte einzufügen.</p>
+                        <div class="wb-gallery" aria-label="Redaktionelle Inhaltsgalerie">
+                          <div class="wb-gallery-grid">
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Offener Studio-Arbeitsbereich mit mehreren Zonen" data-wb-gallery-caption="Der Arbeitsbereich vor dem Rollout">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Offener Studio-Arbeitsbereich mit mehreren Zonen">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Der Arbeitsbereich vor dem Rollout</figcaption>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Helles Büro nach der Erneuerung" data-wb-gallery-caption="Derselbe Bereich nach der Erneuerung">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="Helles Büro nach der Erneuerung">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Derselbe Bereich nach der Erneuerung</figcaption>
+                            </figure>
+                          </div>
+                        </div>
+                        <div class="wb-callout wb-callout-muted"><strong class="wb-callout-title">Hinweis zur Komposition</strong> Dies ist eine Content-Shell-Komposition. Die Galerie bleibt dasselbe ausgelieferte Gleichkachel-Pattern in einem anderen Seitenkontext.</div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="card-contained-gallery">
+                    <h2>5. Mediengalerie in einer Card</h2>
+                    <p>Einsatz in App/Dashboard: Die Galerie liegt in einer gerahmten Fläche mit Header- und Body-Rhythmus. Sie nutzt weiterhin dasselbe gemeinsame Viewer-Pattern, statt Nutzer in rohe Bild-Tabs zu werfen.</p>
+                    <div class="wb-card">
+                      <div class="wb-card-header"><h3 class="wb-card-title">Aktuelle Launch-Assets</h3><a href="primitives.html#interaction-shells" class="wb-action-link">Grenze des Viewers</a></div>
+                      <div class="wb-card-body wb-stack-4">
+                        <p class="wb-m-0">Nutze diese Komposition für Release-Rückblicke, Objekt-/Bildmodule oder Detailflächen, die ein kompaktes Bildset in einer Card brauchen.</p>
+                        <div class="wb-gallery" aria-label="Galerie mit Launch-Assets in einer Card">
+                          <div class="wb-gallery-grid">
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Launch-Präsentation im Sitzungssaal" data-wb-gallery-caption="Launch-Review" data-wb-gallery-meta="Stakeholder-Bericht">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Launch-Präsentation im Sitzungssaal">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Launch-Review</figcaption>
+                              <div class="wb-gallery-meta">Stakeholder-Bericht</div>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Schreibtisch mit Release-Checkliste und Laptop" data-wb-gallery-caption="Checklisten-Arbeitsbereich" data-wb-gallery-meta="Koordination am Release-Tag">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Schreibtisch mit Release-Checkliste und Laptop">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Checklisten-Arbeitsbereich</figcaption>
+                              <div class="wb-gallery-meta">Koordination am Release-Tag</div>
+                            </figure>
+                            <figure class="wb-gallery-item">
+                              <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Performance-Ansicht mit Launch-Kennzahlen" data-wb-gallery-caption="Launch-Kennzahlen" data-wb-gallery-meta="Momentaufnahme der Nutzung">
+                                <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Performance-Ansicht mit Launch-Kennzahlen">
+                              </button>
+                              <figcaption class="wb-gallery-caption">Launch-Kennzahlen</figcaption>
+                              <div class="wb-gallery-meta">Momentaufnahme der Nutzung</div>
+                            </figure>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="product-screenshot-gallery">
+                    <h2>6. Galerie mit Produkt-Screenshots</h2>
+                    <p>Realistischer Produkteinsatz: Screenshot-Sets funktionieren gut, wenn alle Aufnahmen ähnlich wichtig sind und die Seite kein Hero-plus-Thumbnail-Verhältnis braucht. Auch dieses Beispiel öffnet der Einheitlichkeit halber über dasselbe gemeinsame Viewer-Pattern.</p>
+                    <div class="wb-stack-4">
+                      <div class="wb-split">
+                        <div>
+                          <h3 class="wb-m-0">Atlas-Produkttour</h3>
+                          <p class="wb-m-0">Ein sauberes Screenshot-Set mit gleich großen Kacheln reicht oft für Feature-Übersichten, Release Notes und Doku-Seiten.</p>
+                        </div>
+                        <a href="javascript.html#common-modules" class="wb-action-link">Referenz der Viewer-Runtime</a>
+                      </div>
+                      <div class="wb-gallery" aria-label="Galerie mit Produkt-Screenshots">
+                        <div class="wb-gallery-grid">
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Screenshot der Dashboard-Übersicht" data-wb-gallery-caption="Übersicht">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Screenshot der Dashboard-Übersicht">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Übersicht</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Screenshot zu Planung und Zusammenarbeit" data-wb-gallery-caption="Planung">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Screenshot zu Planung und Zusammenarbeit">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Planung</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Screenshot des Performance-Details" data-wb-gallery-caption="Reporting">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Screenshot des Performance-Details">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Reporting</figcaption>
+                          </figure>
+                          <figure class="wb-gallery-item">
+                            <button class="wb-gallery-trigger" type="button" data-wb-gallery-target="#galleryPatternViewer" data-wb-gallery-full="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1600&q=80" data-wb-gallery-alt="Screenshot des Einstellungs-Workspace" data-wb-gallery-caption="Einstellungen">
+                              <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=900&q=80" alt="Screenshot des Einstellungs-Workspace">
+                            </button>
+                            <figcaption class="wb-gallery-caption">Einstellungen</figcaption>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="composition-guidance">
+                    <div>
+                      <h2>Hinweise zur Komposition</h2>
+                      <p><code>wb-gallery</code> lässt sich sauber mit <code>wb-card</code>, <code>wb-content-shell</code>, <code>wb-stack</code>, <code>wb-split</code> und den <code>wb-grid-*</code>-Helfern kombinieren. Das sind Kompositions-Patterns, keine Galerie-Varianten.</p>
+                    </div>
+                    <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Das Vokabular ehrlich halten</strong> Der Gallery-Vertrag bleibt derselbe. Ein Wechsel der umgebenden Shell, Card oder des Stacks schafft weder ein neues Gallery-Primitive noch ein neues Gallery-Layoutsystem.</div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="do-do-not">
+                    <h2>Tun / Nicht tun</h2>
+                    <div class="wb-grid-2">
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Tun</h3></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <p class="wb-m-0">Nutze Bildsets mit gleichwertigen Motiven.</p>
+                          <p class="wb-m-0">Behalte ein gemeinsames Viewer-Modal je Galerie-Kontext, statt pro Beispiel einen eigenen Viewer zu duplizieren.</p>
+                          <p class="wb-m-0">Nutze echte Beschriftungen und optionale Metadaten nur dann, wenn sie Kontext liefern.</p>
+                          <p class="wb-m-0">Kombiniere mit Content Shells, Cards und Layout-Helfern, wenn die Seitenaufgabe es erfordert.</p>
+                        </div>
+                      </div>
+                      <div class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Nicht tun</h3></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <p class="wb-m-0">Baue Masonry, Collage-Spannweiten oder Overlay-Beschriftungen nicht von Hand nach - nutze die offiziellen Modifier.</p>
+                          <p class="wb-m-0">Suggeriere keine Unterstützung für Karussell, Zoom oder gemischte Medien.</p>
+                          <p class="wb-m-0">Ergänze keine nur für die Doku gedachten Hilfsklassen, um nicht unterstütztes Gallery-Verhalten vorzutäuschen.</p>
+                          <p class="wb-m-0">Platziere Overlay-Metadaten nicht als Geschwisterelement der Beschriftung - verschachtele sie im Beschriftungs-Verlauf.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="accessibility-behavior">
+                    <h2>Hinweise zu Barrierefreiheit und Verhalten</h2>
+                    <div class="wb-list wb-list-sm">
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Alt-Text</span><span class="wb-list-item-sub">Der Viewer nutzt zuerst <code>data-wb-gallery-alt</code> und fällt dann auf das <code>alt</code> des Inline-Bildes zurück.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Beschriftung und Metadaten</span><span class="wb-list-item-sub">Der Viewer liest zuerst <code>data-wb-gallery-caption</code> und <code>data-wb-gallery-meta</code> und fällt dann auf den Text von <code>wb-gallery-caption</code> und <code>wb-gallery-meta</code> zurück.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Beschriftung des Modals</span><span class="wb-list-item-sub">Ist eine Viewer-Beschriftung vorhanden und hat sie eine <code>id</code>, nutzt das Modal <code>aria-labelledby</code>. Andernfalls fällt es auf ein <code>aria-label</code> aus Beschriftung, Alt-Text oder den Text „Gallery viewer“ zurück.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Tastaturnavigation</span><span class="wb-list-item-sub">Solange das gemeinsame Viewer-Modal aktiv ist, blättern die Pfeiltasten links und rechts durch die Elemente - außer der Fokus liegt in einem Input, einer Textarea oder einem bearbeitbaren Feld.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Begrenztes Weiterblättern</span><span class="wb-list-item-sub">Zurück und Weiter blättern nur durch Trigger innerhalb derselben <code>.wb-gallery</code>, die auf denselben Modal-Selektor zeigen.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Verhalten an den Rändern</span><span class="wb-list-item-sub">Die Zurück- und Weiter-Controls sind am Anfang und Ende der aktiven Elementliste deaktiviert.</span></div></div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="related-primitives">
+                    <h2>Verwandte Primitives</h2>
+                    <div class="wb-link-list">
+                      <a href="primitives.html#interaction-shells" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-modal</span><span class="wb-link-list-meta">Grenze des Viewers</span></div><div class="wb-link-list-desc">Die Galerie-Ansicht bleibt im ausgelieferten Modal-Primitive, statt eine eigene Overlay-Familie zu werden.</div></a>
+                      <a href="primitives.html#surfaces-and-display" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-card</span><span class="wb-link-list-meta">Gerahmte Fläche</span></div><div class="wb-link-list-desc">Nutze Cards, wenn die Galerie in ein Dashboard, ein Detail-Panel oder ein eingefasstes Modul gehört.</div></a>
+                      <a href="pattern-content-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-content-shell</span><span class="wb-link-list-meta">Redaktioneller Kontext</span></div><div class="wb-link-list-desc">Nutze Content Shells, wenn die Galerie einen längeren Artikel, Guide oder eine Fallstudie begleitet.</div></a>
+                      <a href="layout.html#base-composition-primitives" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Layout-Primitives</span><span class="wb-link-list-meta">Kompositions-Helfer</span></div><div class="wb-link-list-desc">Nutze <code>wb-stack</code>, <code>wb-split</code> und <code>wb-grid-*</code>, um die umgebende Seite zu rahmen, ohne den Gallery-Vertrag zu ändern.</div></a>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-breadcrumb.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Breadcrumb</span></a>
+                <a href="pattern-cookie-consent.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Cookie Consent</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="wb-overlay-root" class="wb-overlay-root">
+    <div class="wb-modal wb-modal-xl" id="galleryPatternViewer" role="dialog" aria-modal="true" aria-labelledby="galleryPatternViewerTitle">
+      <div class="wb-modal-dialog">
+        <div class="wb-modal-body">
+          <div class="wb-gallery-viewer">
+            <div class="wb-gallery-viewer-toolbar">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Vorheriges Bild"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+              <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 3</div>
+              <div class="wb-cluster wb-cluster-2">
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Nächstes Bild"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Viewer schließen"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <figure class="wb-gallery-viewer-media">
+              <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Release-Dashboard mit KPI-Cards und Trenddiagrammen">
+              <figcaption class="wb-gallery-viewer-caption" id="galleryPatternViewerTitle">Release-Dashboard</figcaption>
+            </figure>
+            <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Zähler, Beschriftung und Metadaten werden aus einem gemeinsamen Viewer-Modal befüllt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

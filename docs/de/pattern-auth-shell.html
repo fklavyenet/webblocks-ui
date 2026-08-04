@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Auth Shell</title>
+  <meta name="description" content="Integriertes Beispiel für das Auth-Shell-Pattern innerhalb der Hauptdokumentation.">
+  <link rel="alternate" hreflang="en" href="../pattern-auth-shell.html">
+  <link rel="alternate" hreflang="de" href="pattern-auth-shell.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-auth-shell.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Auth shell</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Zurück zu den Patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-auth-shellThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-auth-shellThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-auth-shellLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-auth-shellLangMenu"><a class="wb-dropdown-item" href="../pattern-auth-shell.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="pattern-auth-shell.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-stack-6">
+          <div class="wb-auth-shell wb-auth-split">
+            <div class="wb-auth-panel"><div class="wb-auth-brand"><svg class="wb-auth-brand-mark wb-auth-brand-mark-on-accent wb-auth-brand-mark-lg" viewBox="0 0 64 64" role="img" aria-label="Produkt"><path fill="currentColor" d="M32 6 56 18v28L32 58 8 46V18l24-12Zm0 10L18 23v17l14 7 14-7V23l-14-7Z" /></svg></div><h1 class="wb-auth-panel-title">Anmelden, ohne eine eigene Auth-UI-Schicht zu erfinden.</h1><p class="wb-auth-panel-text">Die Auth Shell hält die Seite ruhig, zentriert die Formulararbeit und gibt Onboarding- oder Login-Screens sofort eine klare Aufgabe.</p></div>
+            <div class="wb-auth-form-area"><div class="wb-auth-card"><div class="wb-auth-header"><h1 class="wb-auth-header-title"><svg class="wb-auth-brand-mark wb-auth-brand-mark-sm" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M32 6 56 18v28L32 58 8 46V18l24-12Zm0 10L18 23v17l14 7 14-7V23l-14-7Z" /></svg><span>Willkommen zurück</span></h1><p class="wb-auth-header-subtitle">Nutze die Auth Shell für fokussierte Einstiegs-Flows mit einer einzigen ruhigen Card um die gesamte Anmeldeaufgabe.</p></div><div class="wb-auth-body wb-stack-4"><form class="wb-stack-4"><div class="wb-field"><label class="wb-label" for="emailField">E-Mail-Adresse</label><input class="wb-input" id="emailField" type="email" placeholder="du@beispiel.de"></div><div class="wb-field"><label class="wb-label" for="passwordField">Passwort</label><div class="wb-input-group"><input class="wb-input wb-input-error" id="passwordField" type="password" placeholder="Gib dein Passwort ein" autocomplete="current-password"><button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-toggle data-wb-target="#passwordField" aria-label="Passwort anzeigen" aria-pressed="false"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></div><div class="wb-field-meta"><div class="wb-field-error">Passwort ist erforderlich.</div></div></div><div class="wb-split"><label class="wb-check"><input type="checkbox" checked><span>Dieses Gerät merken</span></label><a href="#" class="wb-action-link">Passwort vergessen</a></div><button class="wb-btn wb-btn-primary wb-w-full" type="submit">Weiter</button></form><div class="wb-auth-divider">oder weiter mit</div><div class="wb-grid-2"><button class="wb-btn wb-btn-outline wb-w-full" type="button"><i class="wb-icon wb-icon-github"></i><span>GitHub</span></button><button class="wb-btn wb-btn-outline wb-w-full" type="button"><i class="wb-icon wb-icon-mail"></i><span>E-Mail-Link</span></button></div></div><div class="wb-auth-footer"><p>Nutze den Footer als ruhigen Abschluss für alternative Hilfe oder Wegweiser, nicht als losgelöstes Hilfs-Panel.</p></div></div></div>
+          </div>
+
+          <section class="wb-card">
+            <div class="wb-card-header">
+              <h2 class="wb-card-title">Vertrag für Marken-Assets</h2>
+            </div>
+            <div class="wb-card-body wb-stack-4">
+              <p class="wb-m-0">WebBlocks UI stellt Auth-Layout, Ausrichtung und Slots für Markenzeichen bereit. Die Produkte liefern die eigentliche Inline-SVG-Markenkomponente und halten die sichtbare Farbe des Zeichens auf <code>currentColor</code>.</p>
+              <div class="wb-grid-3">
+                <div class="wb-callout"><strong class="wb-callout-title">Normale Fläche</strong> Nutze <code>wb-auth-brand-mark</code> und setze die Farbe auf <code>var(--wb-accent)</code> oder das freigegebene <code>var(--wb-text)</code>.</div>
+                <div class="wb-callout"><strong class="wb-callout-title">Inline-SVG</strong> Rendere Produkt-Markenzeichen für Auth und Sidebar standardmäßig als Inline-<code>svg</code>, ohne <code>width</code>- oder <code>height</code>-Attribute.</div>
+                <div class="wb-callout"><strong class="wb-callout-title">Accent-Fläche</strong> Nutze <code>var(--wb-accent-on)</code> für Markenzeichen auf Accent-Flächen.</div>
+              </div>
+              <div class="wb-alert wb-alert-info"><strong>Markenhinweis:</strong> Siehe <a href="../admin-product-brand.md">Admin Product Brand Standard</a> für die ökosystemweite Regel zu Auth, Sidebar, Favicon, Asset-Bereinigung und Implementierungs-Leitplanken. (Nur auf Englisch verfügbar.)</div>
+              <pre><code>&lt;div class="wb-auth-header"&gt;
+  &lt;h1 class="wb-auth-header-title"&gt;
+    &lt;svg class="wb-auth-brand-mark wb-auth-brand-mark-sm" viewBox="0 0 64 64" aria-hidden="true"&gt;
+      &lt;path fill="currentColor" d="..." /&gt;
+    &lt;/svg&gt;
+    &lt;span&gt;Welcome back&lt;/span&gt;
+  &lt;/h1&gt;
+  &lt;p class="wb-auth-header-subtitle"&gt;Use your workspace email to continue.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="wb-auth-panel"&gt;
+  &lt;div class="wb-auth-brand"&gt;
+    &lt;svg class="wb-auth-brand-mark wb-auth-brand-mark-on-accent" viewBox="0 0 64 64" role="img" aria-label="Produkt"&gt;
+      &lt;path fill="currentColor" d="..." /&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;h1 class="wb-auth-panel-title"&gt;Sign in to your workspace&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

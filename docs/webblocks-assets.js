@@ -2,8 +2,15 @@
   'use strict';
 
   var assetMode = 'local';
-  var base = '../packages/webblocks/dist/';
-  var brandingBase = '../assets/branding/';
+
+  // Resolve paths against this script's own location, not the document's, so
+  // that localized pages one level deeper (docs/de/*.html) can load the same
+  // file via ../webblocks-assets.js instead of keeping a forked copy.
+  var self = document.currentScript;
+  var docsRoot = self ? self.src.replace(/[^/]*$/, '') : '';
+
+  var base = docsRoot + '../packages/webblocks/dist/';
+  var brandingBase = docsRoot + '../assets/branding/';
   var version = window.WebBlocksVersion || 'dev';
 
   function withVersion(path) {

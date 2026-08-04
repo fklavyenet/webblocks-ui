@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Patterns</title>
+  <meta name="description" content="Ein Überblick aus reinem WebBlocks UI über die ausgelieferten Patterns auf Screen-Ebene und ihre Abgrenzung zu Primitives.">
+  <link rel="alternate" hreflang="en" href="../patterns.html">
+  <link rel="alternate" hreflang="de" href="patterns.html">
+  <link rel="alternate" hreflang="x-default" href="../patterns.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-slider.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-sliders-horizontal"></i><span>Slider</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Patterns</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#patternsThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="patternsThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#patternsLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="patternsLangMenu"><a class="wb-dropdown-item" href="../patterns.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="patterns.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#shipped-pattern-families">Ausgelieferte Pattern-Familien</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#topbar-menus">Topbar-Menüs</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-first">Pattern zuerst</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-flow">Pattern-Ablauf</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#reusable-section-nav">Wiederverwendbare Section-Nav</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#admin-standards">Admin Standards</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#page-header-stack">Page-Header-Stack</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#breadcrumb-pattern">Breadcrumb-Pattern</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#gallery-pattern">Gallery-Pattern</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#cookie-consent-pattern">Cookie Consent</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#overlay-boundary">Overlay-Grenze</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pattern-boundaries">Pattern-Grenzen</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Patterns</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Patterns beschreiben echte Aufgaben auf Screen-Ebene. Sie sind der schnellste Einstieg, wenn du weißt, welchen Seitentyp du bauen musst.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-wide" id="shipped-pattern-families">
+                <h2>Ausgelieferte Pattern-Familien</h2>
+                <div class="wb-grid-2">
+                  <a href="pattern-dashboard-shell.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Dashboard Shell</strong><p class="wb-m-0">Sidebar, Topbar und ein klarer Arbeitsbereich für Admin-Produkte.</p></div></a>
+                  <a href="pattern-admin-standards.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Admin Standards</strong><p class="wb-m-0">Kanonische Page-Header, Form-Cards, Detaillisten, Aktionsspalten und Danger Zones für Admin-Screens zum Anlegen, Bearbeiten, Anzeigen und Auflisten.</p></div></a>
+                  <a href="pattern-auth-shell.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Auth Shell</strong><p class="wb-m-0">Fokussierte Einstiegs-Screens für Login, Registrierung und leichtgewichtiges Onboarding.</p></div></a>
+                  <a href="pattern-settings-shell.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Settings Shell</strong><p class="wb-m-0">Strukturierte Einstellungsnavigation mit eigenem Inhaltsbereich.</p></div></a>
+                  <a href="pattern-content-shell.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Content Shell</strong><p class="wb-m-0">Lesbare Breiten und klare Hierarchie für Doku, Guides und redaktionelle Seiten.</p></div></a>
+                  <a href="pattern-breadcrumb.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Breadcrumb</strong><p class="wb-m-0">Semantische Hierarchiepfade für Page-Header, Doku-Flächen und ruhigeren Kontext auf öffentlichen Websites.</p></div></a>
+                  <a href="pattern-gallery.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Gallery</strong><p class="wb-m-0">Inline-Mediensammlungen mit gleich großen Kacheln und optionalem gemeinsamem Modal-Viewer.</p></div></a>
+                  <a href="pattern-slider.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Slider</strong><p class="wb-m-0">Track-basierte Medien- und Inhalts-Karussells mit Pfeilen, Dots, Tastatur, Swipe, Loop und optionalem Autoplay.</p></div></a>
+                  <a href="pattern-cookie-consent.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Cookie Consent</strong><p class="wb-m-0">Wiederverwendbares Pattern aus Consent-Banner, schwebender Card und gemeinsamem Modal-Präferenzzentrum für öffentliche Websites.</p></div></a>
+                  <a href="pattern-marketing.html" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Marketing</strong><p class="wb-m-0">Öffentliche Landingpages, Hero-Komposition, Proof-Abschnitte und ruhigerer werblicher Rhythmus.</p></div></a>
+                  <a href="#topbar-menus" class="wb-card wb-block wb-no-decoration"><div class="wb-card-body wb-stack-2"><strong>Topbar-Menüs</strong><p class="wb-m-0">Kanonische Kompositionen für Sprache, Gast-Login und angemeldete Nutzer, aufgebaut auf bestehenden Primitives.</p></div></a>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-prose">
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Markup testen, bevor du integrierst</strong> Nutze das <a href="../../playground/">Playground</a>, wenn du reine HTML-Pattern-Fragmente mit dem echten WebBlocks-CSS, den Icons und dem JavaScript testen willst, bevor sie in ein echtes Projekt wandern.</div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="topbar-menus">
+                <h2>Topbar: Sprache, Auth-Einstieg und Benutzermenüs</h2>
+                <p>Diese Kompositionen vereinheitlichen wiederkehrende Bar-Utilities, ohne <code>wb-dropdown</code>, <code>wb-btn</code> oder <code>wb-avatar</code> zu ersetzen. Die Trigger setzen auf dem universellen Button-Primitive auf (<code>wb-btn wb-btn-ghost</code>); der Container ist ein schlichter <code>wb-cluster</code>. Sprach- und Benutzermenüs nutzen die bestehende Dropdown-Runtime; der Gast-Auth-Einstieg ist ein direkter Link. (<code>wb-topbar-action</code>/<code>wb-topbar-user</code> werden nur noch als veraltete Aliase für Markup vor 2.13 ausgeliefert.)</p>
+
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Zuständigkeitsgrenze</strong> WebBlocks UI verantwortet Darstellung, Varianten, responsives Einklappen und die Dropdown-Interaktion. Das Host-Projekt verantwortet Sprach- und Login-Routen, lokalisierte Labels, den Auth-Zustand, die Benutzeridentität, Autorisierung, CSRF und das POST-Logout-Verhalten.</div>
+
+                <div class="wb-stack-4">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><div><h3 class="wb-card-title">Varianten des Sprach-Triggers</h3><p class="wb-card-subtitle">Nutze genau eine explizite Variante. Für kompakte Produkt-Topbars ist die Code-Variante der empfohlene Standard.</p></div></div>
+                    <div class="wb-card-body">
+                      <div class="wb-cluster">
+                        <div class="wb-language-switcher wb-language-switcher--icon wb-dropdown wb-dropdown-end">
+                          <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#docs-language-icon" aria-label="Aktuelle Sprache: Englisch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="en" aria-hidden="true">EN</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button>
+                          <div class="wb-dropdown-menu" id="docs-language-icon"><a class="wb-dropdown-item is-active" href="#topbar-menus" lang="en" aria-current="page"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="#topbar-menus" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item" href="#topbar-menus" lang="tr"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div>
+                        </div>
+
+                        <div class="wb-language-switcher wb-language-switcher--code wb-dropdown wb-dropdown-end">
+                          <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#docs-language-code" aria-label="Aktuelle Sprache: Englisch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="en" aria-hidden="true">EN</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button>
+                          <div class="wb-dropdown-menu" id="docs-language-code"><a class="wb-dropdown-item is-active" href="#topbar-menus" lang="en" aria-current="page"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="#topbar-menus" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item" href="#topbar-menus" lang="tr"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div>
+                        </div>
+
+                        <div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end">
+                          <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#docs-language-icon-code" aria-label="Aktuelle Sprache: Englisch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="en" aria-hidden="true">EN</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button>
+                          <div class="wb-dropdown-menu" id="docs-language-icon-code"><a class="wb-dropdown-item is-active" href="#topbar-menus" lang="en" aria-current="page"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item" href="#topbar-menus" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a><a class="wb-dropdown-item" href="#topbar-menus" lang="tr"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="wb-card">
+                    <div class="wb-card-header"><div><h3 class="wb-card-title">Varianten des Gast-Auth-Einstiegs</h3><p class="wb-card-subtitle">Nutze genau eine explizite Variante für den Login-Link. Icon-Label ist der empfohlene Standard, wenn der Platz reicht.</p></div></div>
+                    <div class="wb-card-body">
+                      <div class="wb-cluster">
+                        <a class="wb-auth-entry wb-auth-entry--icon" href="#topbar-menus" aria-label="Anmelden"><i class="wb-icon wb-icon-log-in wb-auth-entry-icon" aria-hidden="true"></i><span class="wb-auth-entry-label">Anmelden</span></a>
+                        <a class="wb-auth-entry wb-auth-entry--label" href="#topbar-menus"><i class="wb-icon wb-icon-log-in wb-auth-entry-icon" aria-hidden="true"></i><span class="wb-auth-entry-label">Anmelden</span></a>
+                        <a class="wb-auth-entry wb-auth-entry--icon-label" href="#topbar-menus"><i class="wb-icon wb-icon-log-in wb-auth-entry-icon" aria-hidden="true"></i><span class="wb-auth-entry-label">Anmelden</span></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="wb-card">
+                    <div class="wb-card-header"><div><h3 class="wb-card-title">Varianten des Benutzermenüs</h3><p class="wb-card-subtitle">Die Varianten full und compact erhalten die Identität; die Modi avatar und responsive schonen schmale Topbars.</p></div></div>
+                    <div class="wb-card-body">
+                      <div class="wb-cluster">
+                        <div class="wb-user-menu wb-user-menu--full wb-user-menu--responsive wb-dropdown wb-dropdown-end">
+                          <button class="wb-btn wb-btn-ghost wb-user-menu-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#docs-user-full" aria-label="Benutzermenü öffnen" aria-expanded="false"><span class="wb-avatar wb-avatar-sm" aria-hidden="true">OS</span><span class="wb-user-menu-copy"><span class="wb-user-menu-name">Osman</span><span class="wb-user-menu-context">Administrator</span></span><i class="wb-icon wb-icon-chevron-down wb-user-menu-chevron" aria-hidden="true"></i></button>
+                          <div class="wb-dropdown-menu" id="docs-user-full"><a class="wb-dropdown-item" href="#topbar-menus"><i class="wb-icon wb-icon-user" aria-hidden="true"></i>Profil</a><a class="wb-dropdown-item" href="#topbar-menus"><i class="wb-icon wb-icon-settings" aria-hidden="true"></i>Einstellungen</a><hr class="wb-dropdown-divider"><form class="wb-user-menu-form"><button class="wb-dropdown-item wb-dropdown-item-danger" type="button"><i class="wb-icon wb-icon-log-out" aria-hidden="true"></i>Abmelden</button></form></div>
+                        </div>
+
+                        <div class="wb-user-menu wb-user-menu--compact wb-dropdown wb-dropdown-end">
+                          <button class="wb-btn wb-btn-ghost wb-user-menu-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#docs-user-compact" aria-label="Benutzermenü öffnen" aria-expanded="false"><span class="wb-avatar wb-avatar-sm" aria-hidden="true">OS</span><span class="wb-user-menu-copy"><span class="wb-user-menu-name">Osman</span><span class="wb-user-menu-context">Administrator</span></span><i class="wb-icon wb-icon-chevron-down wb-user-menu-chevron" aria-hidden="true"></i></button>
+                          <div class="wb-dropdown-menu" id="docs-user-compact"><a class="wb-dropdown-item" href="#topbar-menus">Profil</a><a class="wb-dropdown-item" href="#topbar-menus">Einstellungen</a></div>
+                        </div>
+
+                        <div class="wb-user-menu wb-user-menu--avatar wb-dropdown wb-dropdown-end">
+                          <button class="wb-btn wb-btn-ghost wb-user-menu-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#docs-user-avatar" aria-label="Benutzermenü öffnen" aria-expanded="false"><span class="wb-avatar wb-avatar-sm" aria-hidden="true">OS</span><span class="wb-user-menu-copy"><span class="wb-user-menu-name">Osman</span><span class="wb-user-menu-context">Administrator</span></span><i class="wb-icon wb-icon-chevron-down wb-user-menu-chevron" aria-hidden="true"></i></button>
+                          <div class="wb-dropdown-menu" id="docs-user-avatar"><a class="wb-dropdown-item" href="#topbar-menus">Profil</a><a class="wb-dropdown-item" href="#topbar-menus">Einstellungen</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Kanonische Reihenfolge</strong> Suche, Benachrichtigungen, Modus/Theme, Sprache, dann Auth-Einstieg oder Benutzermenü. Rendere <code>wb-auth-entry</code> für Gäste und <code>wb-user-menu</code> für angemeldete Nutzer - niemals beides für denselben Auth-Zustand.</div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="pattern-first">
+                <h2>Pattern zuerst heißt: beim Zweck der Seite beginnen</h2>
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Bei der Aufgabe der Seite beginnen</strong> Lautet die Frage „Ich brauche ein Admin-Dashboard“ oder „Ich brauche eine Doku-Fläche“, sollte die Antwort mit einem Pattern beginnen. Die Wahl der Primitives kommt danach.</div>
+                <div class="wb-link-list">
+                  <div class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Hierarchie nötig?</span><span class="wb-link-list-meta">Nutze einen Page-Header-Stack</span></div><div class="wb-link-list-desc">Die Seitenstruktur sollte optionalen Breadcrumb, erforderlichen Titel, optionalen Untertitel und optionale Aktionszeile ausdrücken.</div></div>
+                  <div class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Anwendungs-Shell nötig?</span><span class="wb-link-list-meta">Nutze die Dashboard Shell</span></div><div class="wb-link-list-desc">Setze nicht jede Anwendungsseite aus rohen Cards zusammen, bevor der Rahmen feststeht.</div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="pattern-flow">
+                <h2>Der Pattern-Ablauf bleibt kurz</h2>
+                <div class="wb-list wb-list-sm">
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Pattern-Familie wählen</span><span class="wb-list-item-sub">Wähle die nächstliegende echte Seitenaufgabe, bevor du über einzelne Controls nachdenkst.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Sichtbare Struktur kopieren</span><span class="wb-list-item-sub">Übernimm Shell, Header-Rhythmus, Inhaltsblöcke und Aktionen im Ganzen, statt den Rahmen von Hand nachzubauen.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Inhalt ersetzen, dann konsequent kürzen</span><span class="wb-list-item-sub">Behalte nur die Abschnitte und Primitives, die die echte Seite wirklich braucht.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Primitives und Regeln bestätigen</span><span class="wb-list-item-sub">Ziehe die Primitives- und JavaScript-Referenz erst heran, wenn die Pattern-Richtung bereits klar ist.</span></div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-split" id="reusable-section-nav">
+                <h2>Wiederverwendbare Section-Nav</h2>
+                <p>`wb-section-nav` ist das kanonische Pattern für lokale Navigation: Einstellungs-Rails, seitliche Doku-Navigation und Abschnittsverzeichnisse einer Seite. Zeigen die Links auf echte Anker innerhalb der Seite, sollte die Runtime den aktiven Zustand verwalten.</p>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-3">
+                      <nav class="wb-section-nav" aria-label="Beispiel-Abschnittsnavigation">
+                        <div class="wb-section-nav-title">Abschnitte</div>
+                        <ul class="wb-section-nav-list">
+                          <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#section-nav-overview">Übersicht</a></li>
+                          <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#section-nav-installation">Installation</a></li>
+                          <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#section-nav-patterns">Patterns</a></li>
+                        </ul>
+                      </nav>
+                      <div class="wb-stack-2 wb-text-sm wb-text-muted">
+                        <div id="section-nav-overview">Die Übersicht hält den lokalen Kontext beim Lesen sichtbar.</div>
+                        <div id="section-nav-installation">Installation kann über Hash-Navigation oder Scrollposition aktiv werden.</div>
+                        <div id="section-nav-patterns">Patterns bleibt inaktiv, bis es zum aktuell gelesenen Abschnitt wird.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Pattern-Grenze</strong> Nutze `wb-section-nav` für den lokalen Abschnittswechsel innerhalb einer Seite oder Shell. Es ist weder die globale Sidebar noch ein Breadcrumb noch ein Ersatz für die primäre Anwendungsnavigation.</div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="admin-standards">
+                <h2>Admin Standards</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-3"><strong>Was er abdeckt</strong><p class="wb-m-0">Nutze den Standard für Header auf Seitenebene, Breadcrumb-Hierarchie, gruppierte Formularabschnitte, Feldhilfen und -fehler, Detailseiten, Zeilenaktionen und Danger Zones am Seitenende.</p><p class="wb-m-0">Das bevorzugte Markup stützt sich auf die bestehenden Primitives <code>wb-card</code>, <code>wb-field</code>, <code>wb-action-group</code> und Breadcrumb und ergänzt nur die kleineren admin-spezifischen Verträge, die es noch nicht gibt.</p></div></div>
+                  <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Kernregel</strong> Navigations- und Kontextaktionen gehören in den Page-Header. Aktionen zum Anlegen und Speichern gehören in den Footer der Card oder des Formulars, zu dem die abgesendeten Felder gehören.</div>
+                </div>
+                <div class="wb-cluster wb-cluster-2"><a href="pattern-admin-standards.html" class="wb-btn wb-btn-outline wb-btn-sm">Seite „Admin Standards“ öffnen</a><a href="pattern-dashboard-shell.html" class="wb-btn wb-btn-ghost wb-btn-sm">Dashboard-Beispiel ansehen</a></div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="page-header-stack">
+                <h2>Beispiel: Page-Header-Stack</h2>
+                <div class="wb-card">
+                  <div class="wb-card-body">
+                    <div class="wb-page-header">
+                      <div class="wb-page-header-main">
+                        <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Beispiel-Breadcrumb">
+                          <ol class="wb-breadcrumb-list">
+                            <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Workspace</a></li>
+                            <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Mitglieder</span></li>
+                          </ol>
+                        </nav>
+                        <div>
+                          <h2 class="wb-page-header-title">Mitglieder</h2>
+                          <p class="wb-page-subtitle">Personen, Rollen und Einladungen verwalten.</p>
+                        </div>
+                      </div>
+                      <div class="wb-page-actions">
+                        <button class="wb-btn wb-btn-primary wb-btn-sm">Einladen</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Hierarchie-Regel</strong> Die Produktidentität steht zuerst in der Topbar. Der Kontext folgt an zweiter Stelle. Im Page-Header ist der Breadcrumb optional, der Titel primär, der Untertitel unterstützend, und Aktionen bleiben getrennt.</div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="breadcrumb-pattern">
+                <h2>Breadcrumb-Pattern</h2>
+                <p><code>wb-breadcrumb</code> ist das kanonische semantische Pfad-Pattern für Hierarchie-Kontext. Es hält die Trennzeichen in CSS, nutzt die Semantik einer geordneten Liste und bleibt zurückhaltend genug für Admin- wie öffentliche Seiten.</p>
+                <div class="wb-card">
+                  <div class="wb-card-body wb-stack-4">
+                    <nav class="wb-breadcrumb" aria-label="Beispiel-Breadcrumb">
+                      <ol class="wb-breadcrumb-list">
+                        <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+                        <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Seiten</a></li>
+                        <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Startseite</span></li>
+                      </ol>
+                    </nav>
+                    <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Beispiel für kompakten Breadcrumb">
+                      <ol class="wb-breadcrumb-list">
+                        <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Doku</a></li>
+                        <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Patterns</a></li>
+                        <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Breadcrumb</span></li>
+                      </ol>
+                    </nav>
+                    <div class="wb-cluster wb-cluster-2"><a href="pattern-breadcrumb.html" class="wb-btn wb-btn-outline wb-btn-sm">Breadcrumb-Pattern-Seite öffnen</a><a href="../../playground/?example=breadcrumb" class="wb-btn wb-btn-ghost wb-btn-sm">Playground-Vorlage öffnen</a></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="gallery-pattern">
+                <h2>Gallery-Pattern</h2>
+                <p><code>wb-gallery</code> ist das kanonische Inline-Medien-Pattern. Braucht der Inhalt eine immersive Ansicht, öffnet sich dieselbe Galerie in einem gemeinsamen <code>wb-modal</code> im inhaltszentrierten Modus, statt ein zweites Top-Layer-Primitive zu erfinden.</p>
+                <div class="wb-cluster wb-cluster-2"><a href="pattern-gallery.html" class="wb-btn wb-btn-outline wb-btn-sm">Gallery-Pattern-Seite öffnen</a></div>
+                <div class="wb-gallery" aria-label="Beispiel einer Dashboard-Galerie">
+                  <div class="wb-gallery-grid">
+                    <figure class="wb-gallery-item">
+                      <button class="wb-gallery-trigger"
+                              type="button"
+                              data-wb-gallery-target="#patternsGalleryViewer"
+                              data-wb-gallery-full="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80">
+                        <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Workspace-Dashboard mit KPI-Cards und Analyse-Diagrammen">
+                      </button>
+                      <figcaption class="wb-gallery-caption">Übersichts-Dashboard</figcaption>
+                      <div class="wb-gallery-meta">Gemeinsame Reporting-Startseite</div>
+                    </figure>
+                    <figure class="wb-gallery-item">
+                      <button class="wb-gallery-trigger"
+                              type="button"
+                              data-wb-gallery-target="#patternsGalleryViewer"
+                              data-wb-gallery-full="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80">
+                        <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Team-Session zur Zusammenarbeit an einem Produktplanungstisch">
+                      </button>
+                      <figcaption class="wb-gallery-caption">Teamplanung</figcaption>
+                      <div class="wb-gallery-meta">Bereichsübergreifende Abstimmung</div>
+                    </figure>
+                    <figure class="wb-gallery-item">
+                      <button class="wb-gallery-trigger"
+                              type="button"
+                              data-wb-gallery-target="#patternsGalleryViewer"
+                              data-wb-gallery-full="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80">
+                        <img class="wb-gallery-media" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Marketing-Analysediagramm mit Leistungsaufschlüsselung auf einem Laptop-Bildschirm">
+                      </button>
+                      <figcaption class="wb-gallery-caption">Performance-Detail</figcaption>
+                      <div class="wb-gallery-meta">Attributions-Aufschlüsselung</div>
+                    </figure>
+                  </div>
+                </div>
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Ein-Modal-Regel</strong> Eine Galerie kann viele Inline-Elemente haben, der Viewer sollte aber ein einziges gemeinsames Modal nutzen, damit der Zustand des aktiven Elements, die Tastaturnavigation und die Fokusrückgabe stimmig bleiben.</div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="cookie-consent-pattern">
+                <h2>Cookie-Consent-Pattern</h2>
+                <p><code>wb-cookie-consent</code> ist das wiederverwendbare Consent-Pattern für Banner oder schwebende Cards auf öffentlichen Websites, kombiniert mit einem gemeinsamen <code>wb-modal</code>-Präferenzzentrum. Es bleibt HTML-zuerst, speichert ausschließlich die Einwilligung und benötigt einen Hook zum erneuten Öffnen, etwa einen <code>Cookie-Einstellungen</code>-Button im Footer.</p>
+                <div class="wb-card">
+                  <div class="wb-card-body wb-stack-4">
+                    <div class="wb-cookie-consent wb-cookie-consent-banner">
+                      <div class="wb-cookie-consent-body wb-card">
+                        <div class="wb-card-body wb-stack-3">
+                          <div class="wb-split">
+                            <div class="wb-cookie-consent-copy"><strong>Wir verwenden Cookies</strong><p class="wb-text-sm wb-text-muted">Notwendige Cookies halten die Website am Laufen. Optionale Kategorien verbessern Präferenzen, Analyse und Marketing-Messung.</p></div>
+                            <div class="wb-cookie-consent-actions"><button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Ablehnen</button><button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Anpassen</button><button class="wb-btn wb-btn-primary wb-btn-sm" type="button">Alle akzeptieren</button></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wb-cluster wb-cluster-2"><a href="pattern-cookie-consent.html" class="wb-btn wb-btn-outline wb-btn-sm">Cookie-Consent-Pattern-Seite öffnen</a></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-split" id="overlay-boundary">
+                <h2>Overlay-Grenze</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-3">
+                      <strong>Was zu den Patterns gehört</strong>
+                      <p class="wb-m-0">Patterns entscheiden, wo ein Overlay-Trigger im Seitenfluss sitzt: Header-Aktionen, Tabellenzeilen, Galerie-Elemente, Hilfe-Links in Einstellungen oder redaktionelle Medienblöcke.</p>
+                      <strong>Was nicht dazugehört</strong>
+                      <p class="wb-m-0">Die Shell, die den Fokus über die Seite legt, ist selbst kein Seiten-Pattern. Nutze das ausgelieferte <code>wb-modal</code>-Primitive, statt Shell-eigene Wrapper zu bauen - egal ob es um einen Entscheidungsdialog, ein Formular-Modal oder einen Gallery-Viewer geht.</p>
+                    </div>
+                  </div>
+                  <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Infrastruktur vs. öffentliche Patterns</strong> <code>wb-overlay-root</code> ist die gemeinsame Top-Layer-Infrastruktur. Öffentliche Top-Layer-Arbeit gehört zu <code>wb-modal</code>; Gallery-Viewer und Lightbox-Verhalten sind Nutzungsmodi des Modals, keine eigenen Primitives.</div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="pattern-boundaries">
+                <h2>Pattern-Grenzen</h2>
+                <div class="wb-grid-3">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Patterns sind keine Utilities</strong><p class="wb-m-0">Ein Pattern ist kein Abstands-Trick und keine einmalige Hilfsklasse.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Patterns sind keine einzelnen Controls</strong><p class="wb-m-0">Ein Button, ein Input oder ein Modal ist ein Primitive, kein Pattern.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Patterns bleiben lesbar</strong><p class="wb-m-0">Ziel ist, Seitentyp und Hierarchie offensichtlich zu machen, bevor der Feinschliff beginnt.</p></div></div>
+                </div>
+              </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="icons.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Icons</span></a>
+                <a href="utilities.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Utilities</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="wb-overlay-root" class="wb-overlay-root">
+    <div class="wb-modal wb-modal-xl" id="patternsGalleryViewer" role="dialog" aria-modal="true" aria-labelledby="patternsGalleryViewerTitle">
+      <div class="wb-modal-dialog">
+        <div class="wb-modal-body">
+          <div class="wb-gallery-viewer">
+            <div class="wb-gallery-viewer-toolbar">
+              <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-prev" type="button" aria-label="Vorheriges Bild"><i class="wb-icon wb-icon-chevron-left" aria-hidden="true"></i></button>
+              <div class="wb-gallery-viewer-counter" aria-live="polite">1 / 3</div>
+              <div class="wb-cluster wb-cluster-2">
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-next" type="button" aria-label="Nächstes Bild"><i class="wb-icon wb-icon-chevron-right" aria-hidden="true"></i></button>
+                <button class="wb-btn wb-btn-secondary wb-btn-icon wb-gallery-viewer-close" type="button" data-wb-dismiss="modal" aria-label="Viewer schließen"><i class="wb-icon wb-icon-x" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <figure class="wb-gallery-viewer-media">
+              <img class="wb-gallery-viewer-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Workspace-Dashboard mit KPI-Cards und Analyse-Diagrammen">
+              <figcaption class="wb-gallery-viewer-caption" id="patternsGalleryViewerTitle">Übersichts-Dashboard</figcaption>
+            </figure>
+            <p class="wb-gallery-viewer-meta wb-text-sm wb-text-muted wb-m-0">Gemeinsame Reporting-Startseite</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

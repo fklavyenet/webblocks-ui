@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - JavaScript</title>
+  <meta name="description" content="Die ausgelieferten JavaScript-Module von WebBlocks UI, die Daten-Hooks und die richtige Grenze zwischen CSS- und JS-getriebenem Verhalten.">
+  <link rel="alternate" hreflang="en" href="../javascript.html">
+  <link rel="alternate" hreflang="de" href="javascript.html">
+  <link rel="alternate" hreflang="x-default" href="../javascript.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">JavaScript</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#javascriptThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="javascriptThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#javascriptLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="javascriptLangMenu"><a class="wb-dropdown-item" href="../javascript.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="javascript.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#responsibility-split">Aufteilung der Zuständigkeiten</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#behavior-conventions">Konventionen für Verhalten</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#common-modules">Gängige Module</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#trigger-model">Trigger-Modell</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#live-demos">Live-Demos</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#api-shape">Aufbau der API</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">JavaScript</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Nutze das JavaScript des Pakets für Interaktion. Nutze CSS für Layout und passive Darstellung. Diese Grenze ist wichtig.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-prose" id="responsibility-split">
+                <div class="wb-callout wb-callout-warning">
+                  <strong class="wb-callout-title">Richtige Aufteilung der Zuständigkeiten</strong>
+                  Layout wird über Layout- und Pattern-Klassen von CSS bestimmt. Overlays, Tooltips, Tabs, Drawers, Theme-Controls, Passwort-Sichtbarkeit, Command Palette und Dismiss-Abläufe werden über ausgelieferte Hooks und öffentliche APIs von JavaScript bestimmt.
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="behavior-conventions">
+                <h2>Konventionen für Verhalten</h2>
+                <div class="wb-grid-3">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Kleine Module</strong><p class="wb-m-0">Das Bundle bleibt lesbar, weil Verhalten in benannte Module aufgeteilt ist statt in eine große anonyme Runtime.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Benannte APIs auf <code>window</code></strong><p class="wb-m-0"><code>WBTheme</code>, <code>WBModal</code>, <code>WBGallery</code>, <code>WBDrawer</code>, <code>WBToast</code> und verwandte Module bleiben aus der Konsole heraus einsehbar.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Daten-Hooks im Markup</strong><p class="wb-m-0">Die meisten Interaktionen starten über <code>data-wb-*</code>-Attribute, damit das HTML weiterhin verrät, was sich öffnen, schließen oder ändern kann.</p></div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="common-modules">
+                <h2>Gängige Module</h2>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-hover wb-table-sm">
+                    <thead><tr><th>Modul</th><th>Trigger-Pattern</th><th>Zweck</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>WBTheme</code></td><td><code>data-wb-mode-set</code>, <code>data-wb-accent-set</code>, <code>data-wb-preset-set</code></td><td>Steuerung von Theme und Achsen</td></tr>
+                      <tr><td><code>WBModal</code></td><td><code>data-wb-toggle="modal"</code></td><td>Kanonisches Top-Layer-Pattern für Bestätigungen, Formulare und inhaltszentrierte Viewer- oder Gallery-Viewer-Nutzung</td></tr>
+                      <tr><td><code>WBGallery</code></td><td><code>data-wb-gallery-target</code></td><td>Runtime des Inline-Gallery-Patterns, die einen gemeinsamen <code>wb-modal</code>-Viewer befüllt</td></tr>
+                      <tr><td><code>WBCookieConsent</code></td><td><code>data-wb-cookie-consent-*</code></td><td>Wiederverwendbare Speicherung der Einwilligung, erneutes Öffnen und Präferenzzentrum für öffentliche Websites</td></tr>
+                      <tr><td><code>WBDrawer</code></td><td><code>data-wb-toggle="drawer"</code></td><td>Off-Canvas-Panels</td></tr>
+                      <tr><td><code>WBDropdown</code></td><td><code>data-wb-toggle="dropdown"</code></td><td>Dropdown-Menüs</td></tr>
+                      <tr><td><code>WBCommandPalette</code></td><td><code>data-wb-toggle="cmd"</code> oder <code>Cmd/Ctrl + K</code></td><td>Such- und Befehlsfläche</td></tr>
+                      <tr><td><code>WBTabs</code></td><td><code>data-wb-tab</code>, optional <code>data-wb-tabs-field</code></td><td>Panel-Wechsel, optionale Synchronisierung der aktiven Tab-ID in ein Formularfeld</td></tr>
+                      <tr><td><code>WBPasswordToggle</code></td><td><code>data-wb-password-toggle</code></td><td>Umschalter für die Passwort-Sichtbarkeit in Input-Gruppen</td></tr>
+                      <tr><td><code>WBAccordion</code></td><td><code>.wb-accordion-trigger</code></td><td>Disclosure-Blöcke</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="trigger-model">
+                <h2>Trigger-Modell</h2>
+                <pre><code>&lt;button data-wb-toggle="modal" data-wb-target="#confirm-dialog"&gt;
+  Löschen
+&lt;/button&gt;
+
+&lt;button class="wb-gallery-trigger"
+        data-wb-gallery-target="#media-viewer"
+        data-wb-gallery-full="/images/demo-full.jpg"&gt;
+  Galerie-Element öffnen
+&lt;/button&gt;
+
+&lt;button data-wb-cookie-consent-open data-wb-target="#siteCookiePreferences"&gt;
+  Cookie-Einstellungen
+&lt;/button&gt;
+
+&lt;button data-wb-mode-set="dark"&gt;Dunkel&lt;/button&gt;
+&lt;button data-wb-dismiss="modal"&gt;Schließen&lt;/button&gt;</code></pre>
+                <p>Das meiste Verhalten beginnt mit einem kleinen Attribut-Vertrag. Nutze <code>data-wb-toggle="modal"</code> für direkte Modal-Trigger, lass <code>data-wb-gallery-target</code> Inline-Galerie-Elemente zu einem gemeinsamen, inhaltszentrierten Modal-Viewer aufwerten, und verwende die Cookie-Consent-Hooks, wenn ein Projekt einen wiederverwendbaren Einwilligungs- und Wiederöffnungs-Flow braucht.</p>
+              </section>
+
+              <section class="wb-docs-section wb-docs-split" id="live-demos">
+                <h2>Live-Demos ausschließlich mit Paket-Mitteln</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Theme und Dropdown</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <div class="wb-dropdown">
+                        <button class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" data-wb-target="#jsThemeMenu" aria-expanded="false">Theme-Optionen</button>
+                        <div class="wb-dropdown-menu" id="jsThemeMenu">
+                          <button class="wb-dropdown-item" data-wb-mode-set="light">Hell</button>
+                          <button class="wb-dropdown-item" data-wb-mode-set="dark">Dunkel</button>
+                          <button class="wb-dropdown-item" data-wb-mode-set="auto">Automatisch</button>
+                          <hr class="wb-dropdown-divider">
+                          <button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button>
+                          <button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button>
+                        </div>
+                      </div>
+                      <button class="wb-btn wb-btn-outline" data-wb-mode-cycle>Modus wechseln</button>
+                        <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-overlay-root</code> ist gemeinsame Top-Layer-Infrastruktur. Verankerte Overlays rendern dort im JS-Modus, um Abschneiden zu vermeiden, Gallery-Viewer laufen über die gemeinsame <code>wb-modal</code>-Basis, und Toast-Container können dort liegen, ohne in den normalen Layoutfluss einzutreten.</p>
+                      </div>
+                    </div>
+
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Tabs und Accordion</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <div class="wb-tabs" data-wb-tabs-field="[data-js-tab-field]">
+                        <div class="wb-tabs-nav" role="tablist">
+                          <button class="wb-tabs-btn is-active" data-wb-tab="js-tab-hooks" aria-selected="true">Hooks</button>
+                          <button class="wb-tabs-btn" data-wb-tab="js-tab-api" aria-selected="false">APIs</button>
+                        </div>
+                        <div>
+                          <div class="wb-tabs-panel is-active" id="js-tab-hooks"><p class="wb-m-0">Bevorzuge Daten-Attribute, wenn der ausgelieferte Markup-Vertrag bereits existiert.</p></div>
+                          <div class="wb-tabs-panel" id="js-tab-api"><p class="wb-m-0">Nutze die öffentlichen APIs, wenn Verhalten programmatisch ausgelöst werden muss.</p></div>
+                        </div>
+                        <p class="wb-text-sm wb-text-muted wb-m-0"><code>data-wb-tabs-field</code> synchronisiert nach: <output data-js-tab-field>js-tab-hooks</output></p>
+                      </div>
+
+                      <div class="wb-accordion">
+                        <div class="wb-accordion-item is-open">
+                          <button class="wb-accordion-trigger"><span>Warum auf eigene Hilfsskripte verzichten?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
+                          <div class="wb-accordion-body">Weil das Paket für die ausgelieferten Interaktionen bereits klare Daten-Hooks und <code>window.WB*</code>-Einstiegspunkte bereitstellt.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="api-shape">
+                <h2>Aufbau der API</h2>
+                <pre><code>WBTheme.setMode('dark')
+WBTheme.setAccent('forest')
+WBTheme.setRadius('soft')
+WBTheme.setDensity('compact')
+WBModal.open(document.getElementById('my-modal'))
+WBGallery.open(document.querySelector('.wb-gallery-trigger'))
+WBDrawer.open(document.getElementById('my-drawer'))
+WBPasswordToggle.toggle(document.querySelector('[data-wb-password-toggle]'))
+WBToast.show('Gespeichert', { type: 'success' })
+WBToast.show('Entwurf gespeichert', { type: 'info', duration: 7000 })
+WBToast.show('Zustellung fehlgeschlagen', { type: 'danger', duration: 0 })
+WBCookieConsent.open()
+WBCookieConsent.clear()</code></pre>
+                <p>Nutze die öffentliche API, wenn du wirklich imperative Kontrolle brauchst. Existiert bereits ein deklarativer <code>data-wb-*</code>-Trigger, gib zuerst diesem Markup-Weg den Vorzug.</p>
+                <div class="wb-callout wb-callout-info">
+                  <strong class="wb-callout-title">Toast-Feedback</strong>
+                  <code>WBToast</code> ist für kurzlebiges, nicht blockierendes Erfolgs- und Info-Feedback gedacht. Success- und Info-Toasts verschwinden standardmäßig von selbst; Warn- und Fehler-Toasts bleiben bestehen, sofern kein Timeout ausdrücklich gesetzt wird. Validierungsfehler, vom Nutzer korrigierbare Fehlschläge, dauerhafte Warnungen und blockierende Fehler sollten inline nahe am zugehörigen Formular, an der Card oder am Abschnitt erscheinen - mit kontextbezogenem Feedback wie <code>wb-alert</code>.
+                </div>
+              </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="utilities.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Utilities</span></a>
+                <span></span>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

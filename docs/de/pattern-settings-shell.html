@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Settings Shell</title>
+  <meta name="description" content="Integriertes Beispiel für das Settings-Shell-Pattern innerhalb der Hauptdokumentation.">
+  <link rel="alternate" hreflang="en" href="../pattern-settings-shell.html">
+  <link rel="alternate" hreflang="de" href="pattern-settings-shell.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-settings-shell.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Settings Shell</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Zurück zu den Patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-settings-shellThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-settings-shellThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-settings-shellLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-settings-shellLangMenu"><a class="wb-dropdown-item" href="../pattern-settings-shell.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="pattern-settings-shell.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#when-to-use-it" class="wb-section-nav-link"><i class="wb-icon wb-icon-settings"></i><span>Wann du sie einsetzt</span></a></li>
+              <li class="wb-section-nav-item"><a href="#workspace-rail" class="wb-section-nav-link"><i class="wb-icon wb-icon-columns2"></i><span>Workspace-Rail</span></a></li>
+              <li class="wb-section-nav-item"><a href="#embedded-demo" class="wb-section-nav-link"><i class="wb-icon wb-icon-settings"></i><span>Eingebettete Demo</span></a></li>
+              <li class="wb-section-nav-item"><a href="#detail-and-status" class="wb-section-nav-link"><i class="wb-icon wb-icon-file-text"></i><span>Detail und Status</span></a></li>
+              <li class="wb-section-nav-item"><a href="#danger-zone" class="wb-section-nav-link"><i class="wb-icon wb-icon-octagon-alert"></i><span>Danger Zone</span></a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Settings Shell</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Nutze die Settings Shell, wenn die Seite langsamere Formulararbeit, gruppierte Entscheidungen und eine lokale Abschnitts-Rail braucht, die nah an der aktuellen Aufgabe bleibt.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="when-to-use-it">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Warum es diese Shell gibt</strong> Einstellungsseiten brauchen meist eine ruhigere Navigations-Rail, eine klarere Abschnittsgruppierung und genug Breite für Formulare, ohne zu einem vollwertigen Anwendungs-Dashboard zu werden.</div>
+                    <p>Wähle diese Shell für Profileinstellungen, Abrechnungspräferenzen, Benachrichtigungsregeln, Workspace-Optionen und andere Seiten, auf denen Nutzer sich durch gruppierte Controls bewegen, statt zwischen dichten Anwendungsansichten zu springen.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="workspace-rail">
+                    <div>
+                      <h2>Lokale Workspace-Rail</h2>
+                      <p>Die lokale Rail ist eine echte <code>wb-section-nav</code>, keine eigene, nur für Einstellungen gebaute Komponente. Sie hält benachbarte Einstellungsbereiche sichtbar, ohne mit der globalen Doku- oder App-Navigation zu konkurrieren.</p>
+                    </div>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-3">
+                        <strong>Gut geeignet</strong>
+                        <ul>
+                          <li>Gruppierte Formularabschnitte mit kurzen Beschreibungen</li>
+                          <li>Präferenzen, die von lokaler Navigation profitieren</li>
+                          <li>Destruktive Aktionen, isoliert am Seitenende</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="embedded-demo">
+                    <h2>Eingebettete Einstellungs-Demo</h2>
+                    <p class="wb-mb-4">Dieses Beispiel nutzt den gemeinsamen Admin-Standard: Seitenkontext im Header, abschnittsweise Cards für gruppierte Arbeit, Monospace-Felder in voller Breite für lange Werte und Submit-Aktionen im Footer.</p>
+                    <div class="wb-settings-shell">
+                      <nav class="wb-section-nav wb-settings-nav" aria-label="Beispiel-Workspace für Einstellungen">
+                        <div class="wb-section-nav-title">Workspace</div>
+                        <ul class="wb-section-nav-list">
+                          <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link is-active" aria-current="page"><i class="wb-icon wb-icon-contact"></i><span>Profil</span></a></li>
+                          <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-shield"></i><span>Sicherheit</span></a></li>
+                          <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-bell"></i><span>Benachrichtigungen</span></a></li>
+                          <li class="wb-section-nav-item"><a href="#" class="wb-section-nav-link"><i class="wb-icon wb-icon-credit-card"></i><span>Abrechnung</span></a></li>
+                        </ul>
+                      </nav>
+
+                      <div class="wb-settings-body">
+                        <div class="wb-page-header">
+                          <div class="wb-page-header-main">
+                            <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Einstellungs-Hierarchie"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Workspace-Einstellungen</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Kontoeinstellungen</span></li></ol></nav>
+                            <div><h1 class="wb-page-title">Kontoeinstellungen</h1><p class="wb-page-description">Nutze die Settings Shell für langsamere Formulararbeit, gruppierte Entscheidungen und eine lokale <code>wb-section-nav</code>-Rail, die nah am Inhalt bleibt.</p></div>
+                          </div>
+                          <div class="wb-page-actions"><a href="pattern-admin-standards.html" class="wb-btn wb-btn-outline wb-btn-sm">Admin-Standard</a></div>
+                        </div>
+                        <section class="wb-settings-section">
+                          <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Öffentliches Profil</h2><p class="wb-settings-section-desc">Lege fest, wie Teammitglieder die Identität deines Workspace sehen.</p></div></div>
+                          <div class="wb-settings-section-body wb-stack-4"><div class="wb-form-row"><div class="wb-field"><label class="wb-label" for="workspaceName">Workspace-Name</label><input class="wb-input" id="workspaceName" type="text" value="Atlas Cloud"><div class="wb-field-meta"><div class="wb-field-hint">Wird in Navigation, Einladungen und Workspace-Umschaltern verwendet.</div></div></div><div class="wb-field"><label class="wb-label" for="workspaceSlug">Slug</label><input class="wb-input" id="workspaceSlug" type="text" value="atlas-cloud"><div class="wb-field-meta"><div class="wb-field-hint">Halte kurze Bezeichner in der gemeinsamen zweispaltigen Zeile.</div></div></div></div><div class="wb-field"><label class="wb-label" for="workspaceDesc">Beschreibung</label><textarea class="wb-textarea" id="workspaceDesc">Pattern-orientierte Admin-Werkzeuge für interne Teams.</textarea><div class="wb-field-meta"><div class="wb-field-hint">Optionaler Kontext, der im öffentlichen Workspace-Profil angezeigt wird.</div></div></div><div class="wb-field"><label class="wb-label" for="workspaceRoot">Document-Root</label><input class="wb-input wb-input-mono" id="workspaceRoot" type="text" value="/var/www/atlas-cloud/web_root/public"><div class="wb-field-meta"><div class="wb-field-hint">Pfade, Befehle, URLs und Tokens sollten in Monospace gesetzt werden.</div></div></div></div>
+                          <div class="wb-settings-section-footer"><div class="wb-action-group"><button class="wb-btn wb-btn-primary wb-btn-sm">Änderungen speichern</button><button class="wb-btn wb-btn-secondary wb-btn-sm">Abbrechen</button></div></div>
+                        </section>
+                        <section class="wb-settings-section">
+                          <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Präferenzen</h2><p class="wb-settings-section-desc">Zeilenbasierte Einstellungen funktionieren gut, wenn jede Präferenz eine kurze Erklärung und ein klares Control braucht.</p></div></div>
+                          <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Standard-Dichte</strong><span>Wähle die Basis-Abstandsskala für die Workspace-Oberfläche.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Comfortable</option><option>Compact</option></select></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Sicherheitswarnungen</strong><span>Benachrichtigt Inhaber, wenn sich ein neues Gerät anmeldet oder eine Rolle wechselt.</span></div><div class="wb-settings-row-control"><label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span><span>Aktiviert</span></label></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Standard-Startseite</strong><span>Lege fest, wo Mitglieder nach der Anmeldung landen.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Dashboard</option><option>Projekte</option><option>Mitglieder</option></select></div></div></div>
+                        </section>
+                        <section class="wb-settings-section" id="detail-and-status">
+                          <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Beispiel für Detail und Status</h2><p class="wb-settings-section-desc">Detailseiten sollten strukturierte Label-/Wert-Zeilen und Statuszusammenfassungen nutzen, die Fehler von optionalen Hinweisen unterscheiden.</p></div></div>
+                          <div class="wb-settings-section-body wb-stack-5">
+                            <div class="wb-detail-list">
+                              <div class="wb-detail-row"><div class="wb-detail-label">Primäre Domain</div><div class="wb-detail-value">atlas-cloud.beispiel</div></div>
+                              <div class="wb-detail-row"><div class="wb-detail-label">CMS-App-Pfad</div><div class="wb-detail-value wb-detail-value-mono">/var/www/atlas-cloud/web_root</div></div>
+                              <div class="wb-detail-row"><div class="wb-detail-label">CMS-Public-Pfad</div><div class="wb-detail-value wb-detail-value-mono">/var/www/atlas-cloud/web_root/public</div></div>
+                            </div>
+                            <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Funktionsfähig mit Hinweisen</strong> Die Kernprüfungen sind bestanden. Eine optionale Integration ist für diesen Workspace nicht konfiguriert, die Basisinfrastruktur ist aber in Ordnung.</div>
+                          </div>
+                        </section>
+                        <section class="wb-settings-section wb-settings-danger" id="danger-zone">
+                          <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Danger Zone</h2><p class="wb-settings-section-desc">Reserviere den letzten Abschnitt für destruktive Aktionen, die von den alltäglichen Einstellungen getrennt bleiben sollen.</p></div></div>
+                          <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Workspace löschen</strong><span>Entfernt dauerhaft alle Mitglieder, Projekte und den Abrechnungsverlauf aus diesem Workspace.</span></div><div class="wb-settings-row-control"><button class="wb-btn wb-btn-danger wb-btn-sm" data-wb-toggle="modal" data-wb-target="#deleteWorkspace">Workspace löschen</button></div></div></div>
+                        </section>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-dashboard-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Dashboard Shell</span></a>
+                <a href="pattern-admin-standards.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Admin Standards</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="wb-modal wb-confirm" id="deleteWorkspace" role="alertdialog" aria-modal="true" aria-labelledby="deleteWorkspaceTitle">
+    <div class="wb-modal-dialog"><div class="wb-modal-body"><div class="wb-confirm-icon wb-confirm-icon-danger"><i class="wb-icon wb-icon-octagon-alert"></i></div><h2 class="wb-confirm-title" id="deleteWorkspaceTitle">Diesen Workspace löschen?</h2><p class="wb-confirm-message">Diese Aktion entfernt Mitglieder, Projekte und Einstellungen dauerhaft. Halte destruktive Bestätigungen in einer ausgelieferten Modal-Fläche, statt eine eigene Alert-Schicht zu erfinden.</p></div><div class="wb-modal-footer"><button class="wb-btn wb-btn-secondary wb-btn-sm" data-wb-dismiss="modal">Abbrechen</button><button class="wb-btn wb-btn-danger wb-btn-sm">Workspace löschen</button></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="editorial" data-font="editorial">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Marketing</title>
+  <meta name="description" content="Kanonisches Beispiel einer öffentlichen Landingpage und Anleitung zur Hero-Komposition, gebaut ausschließlich mit ausgelieferten WebBlocks-UI-Klassen.">
+  <link rel="alternate" hreflang="en" href="../pattern-marketing.html">
+  <link rel="alternate" hreflang="de" href="pattern-marketing.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-marketing.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Marketing</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="../../playground/?example=marketing-hero" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Playground öffnen" title="Playground öffnen"><i class="wb-icon wb-icon-code"></i></a><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Zurück zu den Patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-marketingThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-marketingThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-marketingLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-marketingLangMenu"><a class="wb-dropdown-item" href="../pattern-marketing.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="pattern-marketing.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <h1 class="wb-content-title">Beispiel für eine Marketing-Landingpage</h1>
+            <p class="wb-content-subtitle">Diese Seite ist die kanonische Antwort auf die Frage, ob WebBlocks UI eine ruhige, öffentliche Startseite allein mit ausgelieferten Klassen, Patterns und Utilities tragen kann.</p>
+            <div class="wb-content-meta"><span>Öffentliche Seite</span><span class="wb-content-meta-divider"></span><span>Hero-Komposition enthalten</span><span class="wb-content-meta-divider"></span><span>Kein eigenes CSS</span></div>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Kanonischer Einsatz</strong> Nutze dieses Beispiel, wenn du eine einfache öffentliche Startseite brauchst, eine kopierbare Hero-Struktur willst oder zeigen musst, dass WebBlocks UI eine ruhigere werbliche Komposition ohne neue Klassen tragen kann.</div>
+                <div class="wb-cluster wb-cluster-2"><a href="../../playground/?example=marketing-hero" class="wb-btn wb-btn-primary">Im Playground öffnen</a><a href="#hero-composition" class="wb-btn wb-btn-outline">Hero-Leitfaden lesen</a></div>
+              </section>
+
+              <section class="wb-card">
+                <div class="wb-card-body wb-stack-8">
+                  <header class="wb-navbar wb-navbar-filled">
+                    <div class="wb-navbar-brand">Acorn Cloud</div>
+                    <div class="wb-navbar-spacer"></div>
+                    <nav class="wb-navbar-nav" aria-label="Marketing-Navigation">
+                      <a href="#why" class="wb-navbar-link">Warum</a>
+                      <a href="#features" class="wb-navbar-link">Funktionen</a>
+                      <a href="#proof" class="wb-navbar-link">Belege</a>
+                    </nav>
+                    <div class="wb-navbar-end wb-cluster wb-cluster-2">
+                      <a href="#" class="wb-btn wb-btn-ghost wb-btn-sm">Anmelden</a>
+                      <a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Kostenlos starten</a>
+                    </div>
+                  </header>
+
+                  <section class="wb-page-intro wb-section-sm">
+                    <div class="wb-page-intro-grid">
+                      <div class="wb-page-intro-copy">
+                        <p class="wb-page-eyebrow">Kanonische Hero-Komposition</p>
+                        <h2 class="wb-page-intro-title">Baue öffentliche Seiten mit explizitem HTML, nicht mit versteckten Marketing-Wrappern.</h2>
+                        <p class="wb-page-lead">WebBlocks UI liefert genug ausgelieferte Struktur für eine saubere Landingpage: einen Section-Wrapper, einen begrenzten Container, eine starke Überschrift, begleitenden Text, einen Aktions-Cluster und optionale Belege oder Nebeninhalte.</p>
+                        <div class="wb-cluster wb-cluster-2">
+                          <a href="#" class="wb-btn wb-btn-primary wb-btn-lg">Kostenlos starten</a>
+                          <a href="#features" class="wb-btn wb-btn-outline wb-btn-lg">Funktionen ansehen</a>
+                        </div>
+                        <ul class="wb-inline-list" id="proof">
+                          <li class="wb-inline-list-item">HTML zuerst</li>
+                          <li class="wb-inline-list-item">Keine Framework-Bindung</li>
+                          <li class="wb-inline-list-item">KI-freundliche Snippets</li>
+                        </ul>
+                      </div>
+                      <aside class="wb-page-intro-aside wb-stack-3">
+                        <h3 class="wb-m-0">Warum dieser Hero kanonisch bleibt</h3>
+                        <p>Sie besteht ausschließlich aus ausgelieferten Layout- und Pattern-Klassen. Überschrift, Lead, Aktionen und Zusatzzeile bleiben explizit im Markup, damit Teams die Struktur sicher kopieren und kürzen können.</p>
+                        <div class="wb-grid-2">
+                          <div class="wb-stat"><div class="wb-stat-label">Build-Setup</div><div class="wb-stat-value">0</div><div class="wb-stat-delta">Kein zusätzliches Tooling nötig</div></div>
+                          <div class="wb-stat"><div class="wb-stat-label">Zeit bis zur ersten Seite</div><div class="wb-stat-value">Schnell</div><div class="wb-stat-delta">Von echten Beispielen ausgehen</div></div>
+                        </div>
+                      </aside>
+                    </div>
+                  </section>
+
+                  <section class="wb-grid-3" id="why">
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-info"><i class="wb-icon wb-icon-code"></i></span><h3 class="wb-m-0">Lesbare Struktur</h3><p class="wb-m-0">Die Landingpage bleibt allein aus dem HTML verständlich, weil die Komposition explizite ausgelieferte Layout- und Surface-Klassen nutzt.</p></div></div>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-success"><i class="wb-icon wb-icon-layers"></i></span><h3 class="wb-m-0">Echte ausgelieferte Surfaces</h3><p class="wb-m-0">Cards, Promo-Blöcke, Callouts, Buttons und Navigation stammen alle aus demselben Paket statt aus einer separaten Präsentationsschicht.</p></div></div>
+                    <div class="wb-card"><div class="wb-card-body wb-stack-3"><span class="wb-icon-wrap wb-icon-wrap-warning"><i class="wb-icon wb-icon-sparkles"></i></span><h3 class="wb-m-0">KI-freundliche Prüfung</h3><p class="wb-m-0">Generierte Snippets lassen sich schnell im Playground testen, bevor sie in eine echte Website oder Doku-Seite kopiert werden.</p></div></div>
+                  </section>
+
+                  <section class="wb-stack-4" id="features">
+                    <div class="wb-split">
+                      <div>
+                        <p class="wb-eyebrow">Unterstützender Wert</p>
+                        <h3 class="wb-m-0">Was diese Landingpage belegt</h3>
+                      </div>
+                      <a href="../../playground/?example=marketing-hero" class="wb-action-link">Diese Blöcke im Playground ausprobieren</a>
+                    </div>
+                    <div class="wb-grid-2">
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Ruhige Hierarchie</strong><p class="wb-m-0">Nutze einen größeren Rhythmus, stärkeren Kontrast in der Überschrift und zurückhaltenderen Zusatztext als in einer Admin-Produkt-Shell.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>CTA-Struktur</strong><p class="wb-m-0">Halte eine primäre Aktion, eine sekundäre Aktion und eine kurze Zusatzzeile bereit, statt zu viele konkurrierende Controls zu stapeln.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Beleg-Blöcke</strong><p class="wb-m-0">Kennzahlen, Inline-Proof-Chips oder kompakte Zusatz-Cards können die Aussage stützen, ohne ein Pseudo-Dashboard zu erzeugen.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Kopierbares Markup</strong><p class="wb-m-0">Jeder Bereich lässt sich als einfaches HTML kopieren und schnell anpassen, weil weder eine Hilfsschicht noch ein eigenes Klassenvokabular nötig ist.</p></div></div>
+                    </div>
+                  </section>
+
+                  <section class="wb-promo">
+                    <div class="wb-promo-copy">
+                      <p class="wb-eyebrow">Handlungsaufruf</p>
+                      <h3 class="wb-promo-title">Willst du als Nächstes dein eigenes HTML für öffentliche Seiten testen?</h3>
+                      <p class="wb-promo-text">Öffne das Playground, um den Hero einzufügen, Texte auszutauschen, Aktionen zu ändern und das Ergebnis mit denselben ausgelieferten WebBlocks-Assets zu betrachten, die auch diese Doku nutzt.</p>
+                    </div>
+                    <div class="wb-promo-actions">
+                      <a href="../../playground/?example=marketing-hero" class="wb-btn wb-btn-primary">Playground öffnen</a>
+                      <a href="getting-started.html" class="wb-btn wb-btn-outline">Setup-Leitfaden lesen</a>
+                    </div>
+                  </section>
+
+                  <footer class="wb-split wb-section-sm">
+                    <div class="wb-stack-2">
+                      <strong>Acorn Cloud</strong>
+                      <p class="wb-m-0 wb-text-muted">HTML-zuerst gedachte UI-Bausteine für Produktteams und KI-gestützte Workflows.</p>
+                    </div>
+                    <div class="wb-cluster wb-cluster-2">
+                      <a href="#" class="wb-action-link">Preise</a>
+                      <a href="#" class="wb-action-link">Doku</a>
+                      <a href="#" class="wb-action-link">Kontakt</a>
+                    </div>
+                  </footer>
+                </div>
+              </section>
+
+              <section class="wb-stack-4" id="hero-composition">
+                <h2>Kanonische Hero-Komposition</h2>
+                <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Standard-Vertrag</strong> Nutze einen Section-Wrapper, ein begrenztes inneres Grid, einen Textstapel aus Eyebrow, Titel, Lead und Aktions-Cluster sowie eine optionale Zusatzzeile und eine optionale Neben-Card für Belege oder Produktkontext.</div>
+                <div class="wb-list wb-list-sm">
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Wann du es einsetzt</span><span class="wb-list-item-sub">Nutze das für öffentliche Startseiten, Produkt-Intros und ruhige werbliche Abschnitte, bei denen die Klarheit der Botschaft wichtiger ist als dichte Controls.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Nutze diese ausgelieferten Klassen</span><span class="wb-list-item-sub"><code>wb-section</code> oder <code>wb-section-sm</code>, <code>wb-page-intro</code>, <code>wb-page-intro-grid</code>, <code>wb-page-intro-copy</code>, <code>wb-page-eyebrow</code>, <code>wb-page-intro-title</code>, <code>wb-page-lead</code>, <code>wb-cluster</code>, <code>wb-inline-list</code> und optional <code>wb-page-intro-aside</code>.</span></div></div>
+                  <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Das solltest du nicht tun</span><span class="wb-list-item-sub">Erfinde keinen Pseudo-<code>wb-hero</code>-Wrapper, staple nicht zu viele gleichrangige CTAs und mach aus dem Hero kein Kennzahlen-Dashboard.</span></div></div>
+                </div>
+                <div class="wb-card">
+                  <div class="wb-card-body">
+<pre><code>&lt;section class="wb-page-intro wb-section-sm"&gt;
+  &lt;div class="wb-page-intro-grid"&gt;
+    &lt;div class="wb-page-intro-copy"&gt;
+      &lt;p class="wb-page-eyebrow"&gt;Canonical hero composition&lt;/p&gt;
+      &lt;h1 class="wb-page-intro-title"&gt;Build public pages with explicit HTML.&lt;/h1&gt;
+      &lt;p class="wb-page-lead"&gt;Use shipped layout, title, copy, and CTA rhythm instead of inventing a new hero class.&lt;/p&gt;
+      &lt;div class="wb-cluster wb-cluster-2"&gt;
+        &lt;a href="#" class="wb-btn wb-btn-primary wb-btn-lg"&gt;Start free&lt;/a&gt;
+        &lt;a href="#" class="wb-btn wb-btn-outline wb-btn-lg"&gt;See features&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;ul class="wb-inline-list"&gt;
+        &lt;li class="wb-inline-list-item"&gt;HTML-first&lt;/li&gt;
+        &lt;li class="wb-inline-list-item"&gt;AI-friendly&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;aside class="wb-page-intro-aside"&gt;
+      Optional proof, context, or media-adjacent support block.
+    &lt;/aside&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                  </div>
+                </div>
+                <p class="wb-text-sm wb-text-muted wb-m-0"><a href="../../playground/?example=marketing-hero">Im Playground öffnen</a>, wenn du diese Hero-Struktur direkt einfügen, die Texte ändern und das Ergebnis mit den echten WebBlocks-Assets testen willst.</p>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <a href="pattern-cookie-consent.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Cookie Consent</span></a>
+            <a href="utilities.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Utilities</span></a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

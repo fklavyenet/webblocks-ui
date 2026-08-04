@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Admin Standards</title>
+  <meta name="description" content="Kanonische Standards für Admin-Seiten, Breadcrumbs, Formulare, Detailansichten, Tabellenaktionen, Danger Zones und Statusdarstellung in WebBlocks UI.">
+  <link rel="alternate" hreflang="en" href="../pattern-admin-standards.html">
+  <link rel="alternate" hreflang="de" href="pattern-admin-standards.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-admin-standards.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item is-active">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Admin Standards</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Zurück zu den Patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-admin-standardsThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-admin-standardsThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-admin-standardsLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-admin-standardsLangMenu"><a class="wb-dropdown-item" href="../pattern-admin-standards.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="pattern-admin-standards.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#overview" class="wb-section-nav-link">Übersicht</a></li>
+              <li class="wb-section-nav-item"><a href="#page-header" class="wb-section-nav-link">Page-Header</a></li>
+              <li class="wb-section-nav-item"><a href="#admin-index-list" class="wb-section-nav-link">Admin-Index/-Liste</a></li>
+              <li class="wb-section-nav-item"><a href="#admin-filter-bar-actions" class="wb-section-nav-link">Filter-Aktionen</a></li>
+              <li class="wb-section-nav-item"><a href="#dense-table-content" class="wb-section-nav-link">Dichte Tabelleninhalte</a></li>
+              <li class="wb-section-nav-item"><a href="#form-cards" class="wb-section-nav-link">Form-Cards</a></li>
+              <li class="wb-section-nav-item"><a href="#detail-page" class="wb-section-nav-link">Detailseite</a></li>
+              <li class="wb-section-nav-item"><a href="#table-actions" class="wb-section-nav-link">Tabellenaktionen</a></li>
+              <li class="wb-section-nav-item"><a href="#status-guidance" class="wb-section-nav-link">Hinweise zum Status</a></li>
+              <li class="wb-section-nav-item"><a href="#copy-rules" class="wb-section-nav-link">Text-Regeln</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Admin Standards</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Nutze diese Patterns für Admin-Screens zum Anlegen, Bearbeiten, Anzeigen und Auflisten. Der Standard hält die Hierarchie außerhalb der Cards, sorgt für einheitliche Filter- und Listen-Cards über Produkte hinweg, hält Submit-Aktionen im Formular-Footer und isoliert destruktive Arbeit in einer klaren abschließenden Danger Zone.</p>
+                <div class="wb-content-meta"><span>Hinweise zum Pattern</span><span class="wb-content-meta-divider"></span><span>CSS zuerst</span><span class="wb-content-meta-divider"></span><span>Kopierbares Markup</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="overview">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Ziel des Standards</strong> Seitentitel und Breadcrumb erklären, wo man sich befindet. Cards und Abschnitte erklären, was als Nächstes möglich ist. Submit-Aktionen gehören zu dem Formular, das sie absenden - nicht in den globalen Page-Header.</div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Aufgabe</th><th>Bevorzugte Struktur</th><th>Regel</th></tr></thead><tbody><tr><td>Admin-Seite zum Anlegen oder Bearbeiten</td><td><code>wb-page-header</code> + <code>wb-card</code> + <code>wb-form-section</code></td><td>Halte das <code>h1</code> der Seite außerhalb der Cards und gruppiere Felder nach Zweck.</td></tr><tr><td>Detailseite</td><td><code>wb-detail-list</code> + ergänzende Cards</td><td>Nutze Label-/Wert-Zeilen statt loser Absätze.</td></tr><tr><td>Index-Tabelle</td><td><code>wb-table</code> + <code>wb-table-actions</code></td><td>Beschrifte die letzte Spalte immer mit <code>Aktionen</code> und lass Kopfzeile und Buttons am linken Rand dieser Zelle beginnen.</td></tr><tr><td>Destruktive Aktion</td><td><code>wb-danger-zone</code></td><td>Halte sie in der letzten Card mit einer konkreten Beschriftung zur Konsequenz.</td></tr></tbody></table></div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Bevorzugte Klassen</th><th>Zweck</th><th>Hinweise</th></tr></thead><tbody><tr><td><code>wb-page-header</code>, <code>wb-page-breadcrumb</code>, <code>wb-page-title</code>, <code>wb-page-description</code>, <code>wb-page-actions</code></td><td>Admin-Hierarchie auf Seitenebene</td><td>Nutze ein einziges <code>h1</code> außerhalb der Cards und behalte hier nur Kontextaktionen. <code>wb-page-breadcrumbs</code> bleibt ein Kompatibilitäts-Alias.</td></tr><tr><td><code>wb-breadcrumb</code>, <code>wb-breadcrumb-item</code>, <code>wb-breadcrumb-link</code>, <code>wb-breadcrumb-current</code></td><td>Sekundärer Hierarchie-Kontext</td><td>Trennzeichen werden standardmäßig von CSS erzeugt. <code>wb-breadcrumb-separator</code> bleibt nur als manuelle Ausweichlösung.</td></tr><tr><td><code>wb-card</code>, <code>wb-card-footer</code>, <code>wb-field</code>, <code>wb-field-hint</code>, <code>wb-field-error</code>, <code>wb-action-group</code>, <code>wb-grid-2</code>, <code>wb-stack-4</code></td><td>Bestehende Struktur für Card, Feld, Aktion und Layout</td><td>Nutze zuerst die bestehenden Primitives. Die Formular-Aliase aus v2.6.0 bleiben aus Kompatibilitätsgründen verfügbar.</td></tr><tr><td><code>wb-form-section</code>, <code>wb-form-section-header</code>, <code>wb-form-section-title</code>, <code>wb-form-section-description</code>, <code>wb-form-error-summary</code>, <code>wb-input-mono</code></td><td>Admin-spezifische Formular-Semantik</td><td>Behalte diese, wenn das Markup eine explizite Abschnittsbildung, eine Validierungsübersicht für das ganze Formular oder eine code-artige Feldbehandlung braucht.</td></tr><tr><td><code>wb-detail-list</code>, <code>wb-detail-row</code>, <code>wb-detail-label</code>, <code>wb-detail-value</code>, <code>wb-detail-value-mono</code></td><td>Label-/Wert-Zeilen der Detailseite</td><td>Nutze Monospace-Werte für Pfade, Tokens, Befehle und URLs.</td></tr><tr><td><code>td.wb-table-actions</code></td><td>Explizite letzte Aktionszelle einer Zeile</td><td>Kombiniere sie mit einer normalen linksbündigen <code>Aktionen</code>-Tabellenüberschrift und linksbündigen Aktions-Buttons. Halte <code>wb-action-group</code> außerhalb von Tabellenzellen generisch.</td></tr><tr><td><code>wb-danger-zone</code>, <code>wb-danger-zone-title</code>, <code>wb-danger-zone-description</code>, <code>wb-danger-zone-actions</code></td><td>Letzter destruktiver Abschnitt</td><td>Nutze konkrete destruktive Beschriftungen wie <code>CMS-Installation löschen</code>.</td></tr></tbody></table></div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="page-header">
+                    <h2>Admin-Page-Header und Form-Cards</h2>
+                    <div class="wb-card wb-card-flat">
+                      <div class="wb-card-body wb-stack-6">
+                        <div class="wb-page-header">
+                          <div class="wb-page-header-main">
+                            <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Beispiel-Breadcrumb">
+                              <ol class="wb-breadcrumb-list">
+                                <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+                                <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">CMS-Installationen</a></li>
+                                <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">CMS-Installation hinzufügen</span></li>
+                              </ol>
+                            </nav>
+                            <div>
+                              <h1 class="wb-page-title">CMS-Installation hinzufügen</h1>
+                              <p class="wb-page-description">Nutze den Page-Header nur für Kontext- und Navigationsaktionen. Halte Anlegen- und Speichern-Buttons im Footer des zugehörigen Formulars.</p>
+                            </div>
+                          </div>
+                          <div class="wb-page-actions">
+                            <a href="#" class="wb-btn wb-btn-outline wb-btn-sm">Zurück zur Liste</a>
+                            <a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Öffentliche Doku ansehen</a>
+                          </div>
+                        </div>
+
+                        <div class="wb-form-error-summary" role="alert">
+                          <strong>Bitte korrigiere die markierten Felder.</strong>
+                          <ul>
+                            <li>Domain ist erforderlich.</li>
+                            <li>Das Document-Root muss ein absoluter Pfad sein.</li>
+                          </ul>
+                        </div>
+
+                        <section class="wb-card">
+                          <div class="wb-card-header">
+                            <div>
+                              <h2 class="wb-card-title">Identität der Installation</h2>
+                              <p class="wb-card-description">Kurze Identitätsfelder können sich auf dem Desktop ein zweispaltiges Raster teilen und stapeln sich auf kleineren Bildschirmen von selbst.</p>
+                            </div>
+                          </div>
+                          <div class="wb-card-body wb-stack-5">
+                            <section class="wb-form-section">
+                              <div class="wb-grid-2">
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardDomain">Domain</label>
+                                  <input class="wb-input wb-input-error" id="adminStandardDomain" type="text" placeholder="beispiel.de">
+                                  <div class="wb-field-meta"><div class="wb-field-error">Gib die Produktions-Domain ein.</div></div>
+                                </div>
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardLabel">Label</label>
+                                  <input class="wb-input" id="adminStandardLabel" type="text" value="WebBlocks CMS Produktion">
+                                  <div class="wb-field-meta"><div class="wb-field-hint">Optionales internes Label für Admin-Listen.</div></div>
+                                </div>
+                              </div>
+                            </section>
+                            <section class="wb-form-section">
+                              <div class="wb-form-section-header">
+                                <h3 class="wb-form-section-title">Pfade und Integrationswerte</h3>
+                                <p class="wb-form-section-description">Lange Werte wie Pfade, Tokens, URLs und Befehle bleiben in voller Breite und werden in Monospace gesetzt.</p>
+                              </div>
+                              <div class="wb-stack-4">
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardAppPath">CMS-App-Pfad</label>
+                                  <input class="wb-input wb-input-mono" id="adminStandardAppPath" type="text" value="/var/www/webblockscms.com/web_root">
+                                  <div class="wb-field-meta"><div class="wb-field-hint">Absoluter Pfad zum Anwendungs-Root des CMS.</div></div>
+                                </div>
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardPublicPath">Document-Root</label>
+                                  <input class="wb-input wb-input-mono wb-input-error" id="adminStandardPublicPath" type="text" value="web_root/public">
+                                  <div class="wb-field-meta"><div class="wb-field-error">Nutze einen absoluten Pfad wie <code>/var/www/webblockscms.com/web_root/public</code>.</div></div>
+                                </div>
+                                <div class="wb-field">
+                                  <label class="wb-label" for="adminStandardHealthEndpoint">URL für den Health-Check</label>
+                                  <input class="wb-input wb-input-mono" id="adminStandardHealthEndpoint" type="url" value="https://status.webblockscms.com/healthz">
+                                  <div class="wb-field-meta"><div class="wb-field-hint">Halte code-artige und Infrastrukturwerte visuell von normalem Text getrennt.</div></div>
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                          <div class="wb-card-footer">
+                            <span class="wb-text-sm wb-text-muted">Primäraktion zuerst. Abbrechen an zweiter Stelle.</span>
+                            <div class="wb-action-group">
+                              <button class="wb-btn wb-btn-primary" type="button">CMS-Installation anlegen</button>
+                              <button class="wb-btn wb-btn-secondary" type="button">Abbrechen</button>
+                            </div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
+                    <pre><code>&lt;div class="wb-page-header"&gt;
+  &lt;div class="wb-page-header-main"&gt;
+    &lt;nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
+    &lt;h1 class="wb-page-title"&gt;Edit CMS Installation&lt;/h1&gt;
+    &lt;p class="wb-page-description"&gt;Short page description.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-page-actions"&gt;
+    &lt;a class="wb-btn wb-btn-outline wb-btn-sm" href="#"&gt;Back to list&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;section class="wb-card"&gt;
+  &lt;div class="wb-card-header"&gt;
+    &lt;h2 class="wb-card-title"&gt;Installation identity&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body wb-stack-5"&gt;...&lt;/div&gt;
+  &lt;div class="wb-card-footer"&gt;
+    &lt;div class="wb-action-group"&gt;
+      &lt;button class="wb-btn wb-btn-primary"&gt;Save Changes&lt;/button&gt;
+      &lt;button class="wb-btn wb-btn-secondary"&gt;Cancel&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="admin-index-list">
+                    <h2>Standard für Admin-Index und -Listen</h2>
+                    <div class="wb-stack-5">
+                      <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Kanonischer Vertrag</strong> Admin-Index- und Listen-Screens in CMS, Publisher, QuizTem, Herne und künftigen Projekten sollten dieselbe DOM-Struktur teilen, damit Tabellenabstände, Filterplatzierung, Zeilenaktionen und Pagination sich gleich verhalten.</div>
+
+                      <div class="wb-table-wrap">
+                        <table class="wb-table wb-table-sm">
+                          <thead><tr><th>Bereich</th><th>Regel</th></tr></thead>
+                          <tbody>
+                            <tr><td>Page-Header</td><td>Halte <code>wb-page-header</code> auf Seitenebene. Er verantwortet Seitentitel, Breadcrumb, Beschreibung und ausschließlich seitenbezogene Aktionen.</td></tr>
+                            <tr><td>Filter</td><td>Rendere Filter vor der Listen-Card als separate kompakte <code>wb-filter-bar</code> oder Filter-Card. Platziere Filter nicht im Body der Tabellen-Card.</td></tr>
+                            <tr><td>Listen-Card</td><td>Rendere die Liste in <code>section.wb-card</code>. Der Card-Header verantwortet Listentitel, Beschreibung und die rechtsseitigen Aktionen zum Anlegen, Importieren und Exportieren.</td></tr>
+                            <tr><td>Card-Abstände</td><td><code>wb-card-body</code> sollte <code>wb-table-wrap</code> direkt enthalten. Vermeide zusätzliche projektspezifische Wrapper um die Tabelle.</td></tr>
+                            <tr><td>Tabelle</td><td>Nutze <code>wb-table wb-table-hover</code>. Ergänze <code>wb-table-striped</code> nur, wenn eine Streifung bewusst gewünscht ist.</td></tr>
+                            <tr><td>Aktionsspalte</td><td>Lass die letzte Kopfzelle nie leer. Beschrifte sie mit <code>Actions</code> und platziere die Zeilen-Controls in <code>td.wb-table-actions</code>.</td></tr>
+                            <tr><td>Zeilenaktionen</td><td>Nutze zurückhaltende, icon-basierte Zeilen-Controls. Fasse Aktions-Icons in <code>wb-action-group</code> zusammen, rendere jede Aktion als <code>wb-action-btn</code> und vergib mindestens ein <code>aria-label</code>; ein passendes <code>title</code> wird empfohlen.</td></tr>
+                            <tr><td>Dichte technische Werte</td><td>Rendere Produktschlüssel, Slugs, Quellpfade, Prüfsummen, Versionen, Routennamen und ähnliche Maschinenwerte als kompakte Monospace-/Code-Werte, zum Beispiel <code>&lt;code class="wb-nowrap"&gt;webblocks-ui&lt;/code&gt;</code>, damit der Wert überfliegbar bleibt und die Tabelle innerhalb von <code>wb-table-wrap</code> scrollen kann, statt aggressive Zeichenumbrüche zu erzwingen.</td></tr>
+                            <tr><td>Lange Statuszusammenfassungen</td><td>Lass menschenlesbare Status- und Laufzusammenfassungen wie normalen Text umbrechen. Halte sie in der Tabelle knapp; verlagere Diagnosedetails auf eine Detailseite oder in einen sekundären Metadatenblock, sobald sie mit Identität, Status und Aktionen konkurrieren.</td></tr>
+                            <tr><td>Pagination</td><td>Platziere Pagination oder Ergebniszusammenfassung in <code>wb-card-footer</code>, nicht über der Tabelle und nicht in <code>wb-table-wrap</code>.</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Hinweise zu Altklassen</strong> Nutze in neuen kanonischen Beispielen keine projektspezifischen Wrapper wie <code>wb-admin-table-card</code>, <code>wb-admin-table-card-body</code> oder <code>wb-admin-pages-table-wrap</code>. Brauchen ältere Projekte Kompatibilität, können sie CSS-Aliase behalten, die diese Namen auf das kanonische Verhalten von <code>wb-card</code>, <code>wb-card-body</code> und <code>wb-table-wrap</code> abbilden.</div>
+
+                      <div class="wb-page-header">
+                        <div class="wb-page-header-main">
+                          <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Beispiel-Breadcrumb für den Admin-Index">
+                            <ol class="wb-breadcrumb-list">
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Admin</a></li>
+                              <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Seiten</span></li>
+                            </ol>
+                          </nav>
+                          <div>
+                            <h1 class="wb-page-title">Seiten</h1>
+                            <p class="wb-page-description">Verwalte veröffentlichte, entworfene und archivierte CMS-Seiten aus einem kanonischen Admin-Index.</p>
+                          </div>
+                        </div>
+                        <div class="wb-page-actions">
+                          <a href="#" class="wb-btn wb-btn-outline wb-btn-sm">Zurück zum Dashboard</a>
+                        </div>
+                      </div>
+
+                      <div class="wb-filter-bar" role="search" aria-label="Seiten filtern">
+                        <div class="wb-filter-bar-start">
+                          <div class="wb-search-bar wb-search-bar-full"><span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search"></i></span><input class="wb-search-bar-input" type="search" placeholder="Seiten suchen"></div>
+                          <select class="wb-filter-select" aria-label="Nach Status filtern"><option>Alle Status</option><option>Veröffentlicht</option><option>Entwurf</option><option>Archiviert</option></select>
+                          <button class="wb-filter-chip is-active" type="button">Veröffentlicht</button>
+                          <button class="wb-filter-chip" type="button">Prüfung erforderlich</button>
+                        </div>
+                        <div class="wb-filter-bar-end"><span class="wb-filter-results">24 Seiten</span></div>
+                      </div>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header">
+                          <div><h2 class="wb-card-title">Seitenliste</h2><p class="wb-card-description">Die Listen-Card verantwortet den Tabellentitel und die Aktionen auf Ressourcenebene.</p></div>
+                          <div class="wb-action-group"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">Seite anlegen</a><button class="wb-btn wb-btn-secondary wb-btn-sm" type="button">Import</button></div>
+                        </div>
+                        <div class="wb-card-body">
+                          <div class="wb-table-wrap">
+                            <table class="wb-table wb-table-hover">
+                              <thead><tr><th>Titel</th><th>Status</th><th>Aktualisiert</th><th>Inhaber</th><th>Actions</th></tr></thead>
+                              <tbody>
+                                <tr><td>Landingpage</td><td><span class="wb-status-pill wb-status-active">Veröffentlicht</span></td><td>2026-05-30</td><td>CMS Team</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Seite ansehen" title="Seite ansehen"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Seite bearbeiten" title="Seite bearbeiten"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Seite archivieren" title="Seite archivieren"><i class="wb-icon wb-icon-archive"></i></button></div></td></tr>
+                                <tr><td>Release Notes</td><td><span class="wb-status-pill wb-status-pending">Entwurf</span></td><td>2026-05-28</td><td>Publisher Team</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Seite ansehen" title="Seite ansehen"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Seite bearbeiten" title="Seite bearbeiten"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Seite archivieren" title="Seite archivieren"><i class="wb-icon wb-icon-archive"></i></button></div></td></tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="wb-card-footer"><span class="wb-filter-results">1-2 von 24 Seiten werden angezeigt</span><nav class="wb-pagination wb-pagination-compact" aria-label="Seiten-Pagination"><ul class="wb-pagination-list"><li class="wb-pagination-item is-disabled"><span class="wb-pagination-link" aria-disabled="true">Zurück</span></li><li class="wb-pagination-item is-active"><span class="wb-pagination-link" aria-current="page">1</span></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">2</a></li><li class="wb-pagination-item"><a class="wb-pagination-link" href="#">Weiter</a></li></ul></nav></div>
+                      </section>
+
+                      <pre><code>&lt;div class="wb-page-header"&gt;
+  &lt;div class="wb-page-header-main"&gt;
+    &lt;nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Breadcrumb"&gt;...&lt;/nav&gt;
+    &lt;div&gt;
+      &lt;h1 class="wb-page-title"&gt;Pages&lt;/h1&gt;
+      &lt;p class="wb-page-description"&gt;Manage published, draft, and archived pages.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-page-actions"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="wb-filter-bar" role="search" aria-label="Seiten filtern"&gt;
+  &lt;div class="wb-filter-bar-start"&gt;
+    &lt;div class="wb-search-bar wb-search-bar-full"&gt;
+      &lt;span class="wb-search-bar-icon"&gt;&lt;i class="wb-icon wb-icon-search"&gt;&lt;/i&gt;&lt;/span&gt;
+      &lt;input class="wb-search-bar-input" type="search" placeholder="Seiten suchen"&gt;
+    &lt;/div&gt;
+    &lt;select class="wb-filter-select" aria-label="Nach Status filtern"&gt;
+      &lt;option&gt;All statuses&lt;/option&gt;
+      &lt;option&gt;Published&lt;/option&gt;
+      &lt;option&gt;Draft&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-filter-bar-end"&gt;&lt;span class="wb-filter-results"&gt;24 pages&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;section class="wb-card"&gt;
+  &lt;div class="wb-card-header"&gt;
+    &lt;div&gt;
+      &lt;h2 class="wb-card-title"&gt;Page list&lt;/h2&gt;
+      &lt;p class="wb-card-description"&gt;All pages matching the current filters.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="wb-action-group"&gt;
+      &lt;a class="wb-btn wb-btn-primary wb-btn-sm" href="#"&gt;Create Page&lt;/a&gt;
+      &lt;button class="wb-btn wb-btn-secondary wb-btn-sm" type="button"&gt;Import&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body"&gt;
+    &lt;div class="wb-table-wrap"&gt;
+      &lt;table class="wb-table wb-table-hover"&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;&lt;th&gt;Title&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Updated&lt;/th&gt;&lt;th&gt;Owner&lt;/th&gt;&lt;th&gt;Actions&lt;/th&gt;&lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;
+            &lt;td&gt;Landing Page&lt;/td&gt;
+            &lt;td&gt;&lt;span class="wb-status-pill wb-status-active"&gt;Published&lt;/span&gt;&lt;/td&gt;
+            &lt;td&gt;2026-05-30&lt;/td&gt;
+            &lt;td&gt;CMS Team&lt;/td&gt;
+            &lt;td class="wb-table-actions"&gt;
+              &lt;div class="wb-action-group"&gt;
+                &lt;a class="wb-action-btn wb-action-btn-view" href="#" aria-label="Seite ansehen" title="Seite ansehen"&gt;&lt;i class="wb-icon wb-icon-eye"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Seite bearbeiten" title="Seite bearbeiten"&gt;&lt;i class="wb-icon wb-icon-pencil"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-footer"&gt;
+    &lt;span class="wb-filter-results"&gt;Showing 1-20 of 24 pages&lt;/span&gt;
+    &lt;nav class="wb-pagination wb-pagination-compact" aria-label="Seiten-Pagination"&gt;...&lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="admin-filter-bar-actions">
+                    <h2>Aktionen der Admin-Filterleiste</h2>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-4">
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Standard für Filter-Aktionen</strong> Admin-Filterformulare nutzen <code>Filter</code> als primäre Submit-Aktion und <code>Clear</code> zum Zurücksetzen aktiver Filter. Rendere <code>Clear</code> nur, wenn mindestens ein Filter aktiv ist.</div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Bereich</th><th>Regel</th></tr></thead>
+                            <tbody>
+                              <tr><td>Formularaufbau</td><td>Nutze ein echtes Formular mit <code>wb-filter-bar</code>. Platziere Felder in <code>wb-filter-bar-start</code> und Aktions-Buttons in <code>wb-filter-bar-end</code>.</td></tr>
+                              <tr><td>Ausrichtung von Feldern und Aktionen</td><td>Nutze bestehende Komposition wie <code>wb-items-end</code>, <code>wb-field</code>, <code>wb-flex-1</code> und <code>wb-min-w-0</code>, damit Labels, Controls und Aktions-Buttons dieselbe Grundlinie und denselben Feldrhythmus teilen.</td></tr>
+                              <tr><td>Beschriftungen</td><td>Die kanonischen englischen Beschriftungen sind <code>Filter</code> und <code>Clear</code>. Nutze auf neuen WebBlocks-Admin-Filterflächen nicht <code>Apply</code>, <code>Apply Filters</code>, <code>Reset</code> oder <code>Clear filters</code>.</td></tr>
+                              <tr><td>Sichtbarkeit von Clear</td><td>Rendere <code>Clear</code> nur bei aktiven Filtern. Lass es im ungefilterten Standardzustand ganz weg, statt es zu deaktivieren.</td></tr>
+                              <tr><td>Buttongröße</td><td>Nutze normale <code>wb-btn</code>-Buttons, damit Filteraktionen zur Höhe von Input- und Select-Feldern passen. Verwende für Aktions-Buttons der Filterleiste kein <code>wb-btn-sm</code>.</td></tr>
+                              <tr><td>Clear-Variante</td><td>Nutze einen bestehenden sekundären bzw. zurückhaltenden WebBlocks-Buttonstil wie <code>wb-btn-ghost</code>; erfinde keine neue Clear-Button-Variante.</td></tr>
+                              <tr><td>Geltungsbereich</td><td>Diese Regel gilt für Aktionen der Filterleiste. Zeilenaktionen und kompakte Toolbar-Icon-Buttons behalten ihre eigenen Standards für Icon-Buttons und kompakte Aktionen.</td></tr>
+                              <tr><td>CSS</td><td>Schreibe kein projektspezifisches CSS für die Filterausrichtung. Setze bestehende WebBlocks-Primitives und -Utilities zusammen, statt eine eigene Ausrichtungsklasse zu ergänzen.</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <form class="wb-filter-bar wb-items-end" role="search" aria-label="Beispiel zum Filtern von Seiten">
+                          <div class="wb-filter-bar-start">
+                            <div class="wb-field wb-flex-1 wb-min-w-0">
+                              <label class="wb-label" for="adminFilterSearch">Suchen</label>
+                              <input id="adminFilterSearch" class="wb-input" type="search">
+                            </div>
+                            <div class="wb-field">
+                              <label class="wb-label" for="adminFilterStatus">Status</label>
+                              <select id="adminFilterStatus" class="wb-select">
+                                <option>Alle</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="wb-filter-bar-end wb-items-end">
+                            <button type="submit" class="wb-btn wb-btn-primary">Filter</button>
+                            <a href="/current-route" class="wb-btn wb-btn-ghost">Clear</a>
+                          </div>
+                        </form>
+                        <pre><code>&lt;form class="wb-filter-bar wb-items-end"&gt;
+  &lt;div class="wb-filter-bar-start"&gt;
+    &lt;div class="wb-field wb-flex-1 wb-min-w-0"&gt;
+      &lt;label class="wb-label" for="search"&gt;Search&lt;/label&gt;
+      &lt;input id="search" class="wb-input" type="search"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="wb-field"&gt;
+      &lt;label class="wb-label" for="status"&gt;Status&lt;/label&gt;
+      &lt;select id="status" class="wb-select"&gt;
+        &lt;option&gt;All&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="wb-filter-bar-end wb-items-end"&gt;
+    &lt;button type="submit" class="wb-btn wb-btn-primary"&gt;Filter&lt;/button&gt;
+
+    &lt;!-- Render only when filters are active. --&gt;
+    &lt;a href="/current-route" class="wb-btn wb-btn-ghost"&gt;Clear&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="dense-table-content">
+                    <h2>Dichte Tabelleninhalte und technische Werte</h2>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-4">
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Regel für technische Werte</strong> Lange maschinenlesbare Werte in Admin-Tabellen sollten sich visuell von normalem Text abheben. Nutze eine kompakte Monospace-/Code-Darstellung für Produktschlüssel, Slugs, Quellpfade, Prüfsummen, Versionen, Routennamen, Queue-Namen, Befehlsnamen und ähnliche Bezeichner. Bevorzuge bestehende WebBlocks-UI-Primitives und -Utilities wie <code>code</code>, <code>wb-mono</code>, <code>wb-text-sm</code> und <code>wb-nowrap</code>; ergänze kein projekteigenes Tabellen-CSS, nur um das gemeinsame Umbruchverhalten zu umgehen.</div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Produktschlüssel</th><th>Quellpfad</th><th>Letzter Status/Zusammenfassung</th><th>Actions</th></tr></thead>
+                            <tbody>
+                              <tr><td><code class="wb-nowrap">webblocks-ui</code></td><td><code class="wb-nowrap">build/ai-knowledge</code></td><td>Import abgeschlossen: 124 Chunks importiert, 0 übersprungen, 0 fehlgeschlagen. Validierung: 0 leere Inhalte, 0 doppelte sha256-Werte.</td><td class="wb-table-actions"><div class="wb-action-group"><button class="wb-action-btn wb-action-btn-view" type="button" aria-label="Import ansehen" title="Import ansehen"><i class="wb-icon wb-icon-eye"></i></button></div></td></tr>
+                              <tr><td><code class="wb-nowrap">webblocks-advisor</code></td><td><code class="wb-nowrap">resources/knowledge/webblocks-project-standards</code></td><td>Validierung bestanden. Die integrierte Quelle steht auf der Allowlist und kann über den Admin-Screen erneut importiert werden.</td><td class="wb-table-actions"><div class="wb-action-group"><button class="wb-action-btn wb-action-btn-edit" type="button" aria-label="Quelle erneut importieren" title="Quelle erneut importieren"><i class="wb-icon wb-icon-refresh-cw"></i></button></div></td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Inhaltstyp</th><th>Behandlung in der Tabelle</th><th>Wann auslagern</th></tr></thead>
+                            <tbody>
+                              <tr><td>Produktschlüssel, Slug, Quellpfad, Prüfsumme, Version, Route</td><td>Nutze kompaktes Monospace-/Code-Styling. Ergänze <code>wb-nowrap</code>, wenn der vollständige Token lesbarer ist als ein zeichenweiser Umbruch und die Tabelle bereits in <code>wb-table-wrap</code> liegt.</td><td>Verlagere vollständige Werte auf eine Detailseite oder in einen sekundären Metadatenblock, wenn mehrere lange technische Werte die Zeile schwer überfliegbar machen.</td></tr>
+                              <tr><td>Letzter Status oder Zusammenfassung des letzten Laufs</td><td>Nutze normalen Textumbruch. Halte ihn kurz genug, damit die Zeile neben Identität und Aktionen lesbar bleibt.</td><td>Verlagere Logs, Validierungslisten, Stacktraces oder mehrstufige Diagnosen auf eine Detailseite, in ein Modal oder in einen sekundären Metadatenblock.</td></tr>
+                              <tr><td>Actions</td><td>Behalte als letzte Überschrift <code>Aktionen</code>. Nutze <code>td.wb-table-actions</code> und eine einzige <code>wb-action-group</code>, damit die Spalte schmal, stabil und ausgerichtet bleibt.</td><td>Nutze eine Detailseite, wenn eine Zeile viele Operationen oder erklärenden Aktionstext braucht.</td></tr>
+                              <tr><td>Bestätigungsabläufe</td><td>Nutze <code>wb-modal</code> und den gemeinsamen Overlay-Root für Bestätigungen zu Löschen, Import, Veröffentlichung, Deployment oder erneutem Ausführen.</td><td>Nutze nicht das Browser-<code>confirm()</code>; braucht der Ablauf mehr Kontext, gehört dieser in den Modal-Body.</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <pre><code>&lt;td&gt;&lt;code class="wb-nowrap"&gt;webblocks-ui&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code class="wb-nowrap"&gt;resources/knowledge/webblocks-project-standards&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Import complete: 10 chunks imported, 0 skipped, 0 failed.&lt;/td&gt;
+&lt;td class="wb-table-actions"&gt;
+  &lt;div class="wb-action-group"&gt;...&lt;/div&gt;
+&lt;/td&gt;</code></pre>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="form-cards">
+                    <h2>Bearbeitungsseite mit mehreren Cards und Danger Zone</h2>
+                    <div class="wb-stack-5">
+                      <div class="wb-page-header">
+                        <div class="wb-page-header-main">
+                          <nav class="wb-page-breadcrumb wb-breadcrumb" aria-label="Beispiel-Breadcrumb">
+                            <ol class="wb-breadcrumb-list">
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">Dashboard</a></li>
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">CMS-Installationen</a></li>
+                              <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="#">WebBlocks CMS Produktion</a></li>
+                              <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">CMS-Installation bearbeiten</span></li>
+                            </ol>
+                          </nav>
+                          <div>
+                            <h1 class="wb-page-title">CMS-Installation bearbeiten</h1>
+                            <p class="wb-page-description">Nutze getrennte Cards für Identität, Laufzeitdetails und verknüpfte Datensätze, damit dichte Admin-Formulare überfliegbar bleiben.</p>
+                          </div>
+                        </div>
+                        <div class="wb-page-actions">
+                          <a href="#" class="wb-btn wb-btn-outline wb-btn-sm">Zurück zur Liste</a>
+                          <a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Öffentliche Seite ansehen</a>
+                        </div>
+                      </div>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Primäre Einstellungen</h2><p class="wb-card-description">Form-Cards bleiben nach Zweck fokussiert, statt unzusammenhängende Controls zu vermischen.</p></div></div>
+                        <div class="wb-card-body wb-stack-5">
+                          <section class="wb-form-section">
+                            <div class="wb-grid-2">
+                              <div class="wb-field"><label class="wb-label" for="editDomain">Domain</label><input class="wb-input" id="editDomain" type="text" value="webblockscms.com"><div class="wb-field-meta"><div class="wb-field-hint">Öffentlicher Hostname, den die Installation nutzt.</div></div></div>
+                              <div class="wb-field"><label class="wb-label" for="editEnvironment">Umgebung</label><select class="wb-select" id="editEnvironment"><option selected>Produktion</option><option>Staging</option><option>Lokal</option></select><div class="wb-field-meta"><div class="wb-field-hint">Nutze ein kompaktes Feld für kurze kategoriale Werte.</div></div></div>
+                            </div>
+                          </section>
+                        </div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><button class="wb-btn wb-btn-primary" type="button">Änderungen speichern</button><button class="wb-btn wb-btn-secondary" type="button">Abbrechen</button></div></div>
+                      </section>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Aliases</h2><p class="wb-card-description">Verknüpfte Datensätze können in einer eigenen Verwaltungs-Card mit expliziten Footer-Aktionen liegen.</p></div></div>
+                        <div class="wb-card-body">
+                          <div class="wb-table-wrap">
+                            <table class="wb-table wb-table-sm">
+                              <thead><tr><th>Alias</th><th>Zusammenfassung</th><th>Actions</th></tr></thead>
+                              <tbody>
+                                <tr><td>www.webblockscms.com</td><td>Leitet auf die kanonische Produktions-Domain weiter.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-link">Bearbeiten</a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="CMS-Alias löschen" title="CMS-Alias löschen"><i class="wb-icon wb-icon-trash"></i></button></div></td></tr>
+                                <tr><td>cms.webblockscms.com</td><td>Interner Hostname für Vorschau-Traffic und das Onboarding von Redakteuren.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-link">Bearbeiten</a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="CMS-Alias löschen" title="CMS-Alias löschen"><i class="wb-icon wb-icon-trash"></i></button></div></td></tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><button class="wb-btn wb-btn-primary wb-btn-sm" type="button">CMS-Alias anlegen</button></div></div>
+                      </section>
+
+                      <section class="wb-card wb-danger-zone">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title wb-danger-zone-title">Danger Zone</h2><p class="wb-danger-zone-description">Destruktive Aktionen bleiben am Seitenende, mit konkreten Beschriftungen und kurzem Konsequenztext.</p></div></div>
+                        <div class="wb-card-body wb-stack-3"><p class="wb-m-0">Das Löschen dieser Installation entfernt Aliase, den Zustandsverlauf und gespeicherte Deployment-Referenzen. Die Aktion lässt sich nicht rückgängig machen.</p></div>
+                        <div class="wb-card-footer"><div class="wb-danger-zone-actions"><button class="wb-btn wb-btn-danger" type="button">CMS-Installation löschen</button></div></div>
+                      </section>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="detail-page">
+                    <h2>Detailseite mit Zustands-Card</h2>
+                    <div class="wb-grid-2">
+                      <section class="wb-card">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Details der Installation</h2><p class="wb-card-description">Detailseiten sollten Label-/Wert-Paare zeigen statt reiner Absätze.</p></div></div>
+                        <div class="wb-card-body">
+                          <div class="wb-detail-list">
+                            <div class="wb-detail-row"><div class="wb-detail-label">Domain</div><div class="wb-detail-value">webblocksui.com</div></div>
+                            <div class="wb-detail-row"><div class="wb-detail-label">CMS-App-Pfad</div><div class="wb-detail-value wb-detail-value-mono">/var/www/webblocksui.com/web_root</div></div>
+                            <div class="wb-detail-row"><div class="wb-detail-label">CMS-Public-Pfad</div><div class="wb-detail-value wb-detail-value-mono">/var/www/webblocksui.com/web_root/public</div></div>
+                            <div class="wb-detail-row"><div class="wb-detail-label">Deploy-Hook</div><div class="wb-detail-value wb-detail-value-mono">https://deploy.example.com/hooks/webblocks-ui-production</div></div>
+                          </div>
+                        </div>
+                        <div class="wb-card-footer"><div class="wb-action-group"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">CMS-Installation bearbeiten</a><a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Zurück zur Liste</a></div></div>
+                      </section>
+
+                      <section class="wb-card">
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Zustand und Hinweise</h2><p class="wb-card-description">Optionale Hinweise sollten nicht automatisch wie Infrastrukturfehler wirken.</p></div></div>
+                        <div class="wb-card-body wb-stack-3">
+                          <div class="wb-status-pill wb-status-active">Funktionsfähig mit Hinweisen</div>
+                          <p class="wb-m-0">Die Kernprüfungen sind bestanden. Eine optionale Integration ist für diese Installation nicht konfiguriert.</p>
+                          <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Optionale Integration</strong> Die Suchindexierung ist nicht aktiviert. Bei kleineren Websites kann das gewollt sein und ändert den funktionsfähigen Grundzustand nicht.</div>
+                        </div>
+                      </section>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="table-actions">
+                    <h2>Tabellenaktionen</h2>
+                    <div class="wb-card">
+                      <div class="wb-card-body wb-stack-4">
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-hover">
+                            <thead><tr><th>Website</th><th>Status</th><th>Zusammenfassung</th><th>Actions</th></tr></thead>
+                            <tbody>
+                              <tr><td>WebBlocks UI</td><td><span class="wb-status-pill wb-status-active">Funktionsfähig</span></td><td>Primäre Produktionsseite. Queue-Worker, Cache und Speicherberechtigungen entsprechen alle dem erwarteten Sollzustand.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Website ansehen" title="Website ansehen"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Website bearbeiten" title="Website bearbeiten"><i class="wb-icon wb-icon-pencil"></i></a></div></td></tr>
+                              <tr><td>Publisher</td><td><span class="wb-status-pill wb-status-pending">Funktionsfähig mit Hinweisen</span></td><td>Die Kerninfrastruktur ist in Ordnung. Die optionale ausgehende Webhook-Zustellung pausiert, bis ein Ersatz-Endpunkt bestätigt ist.</td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Website ansehen" title="Website ansehen"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Website bearbeiten" title="Website bearbeiten"><i class="wb-icon wb-icon-pencil"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Website löschen" title="Website löschen"><i class="wb-icon wb-icon-trash"></i></button></div></td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Regel für die Aktionsspalte</strong> Lass eine reine Aktions-Kopfzelle nie leer. Nutze die explizite Beschriftung <code>Actions</code>, halte die Kopfzelle wie den Rest der Tabelle linksbündig und platziere die Zeilen-Controls in <code>td.wb-table-actions</code>. Das generische <code>wb-action-group</code> darf außerhalb von Tabellenzellen umbrechen, während gruppierte Aktionen innerhalb einer Tabellen-Aktionszelle auf einer Zeile bleiben.</div>
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Zurückhaltende, icon-basierte Zeilenaktionen</strong> Zeilenaktionen in Admin- und App-Listen sollten standardmäßig icon-basiert, zurückhaltend und neutral bleiben, damit sie nicht mit den primären Aktionen auf Seitenebene konkurrieren. Text-Buttons gehören zu primären bzw. Kontextaktionen auf Seitenebene, in Filterleisten, Card-Footer, Modal-Footer oder zu einzelnen Aktionen außerhalb von Zeilen, die zusätzliche Klarheit brauchen.</div>
+                        <div class="wb-table-wrap">
+                          <table class="wb-table wb-table-sm">
+                            <thead><tr><th>Bereich der Zeilenaktionen</th><th>Standard</th></tr></thead>
+                            <tbody>
+                              <tr><td>Zelle und Kopfzeile</td><td>Nutze die letzte <code>td.wb-table-actions</code>-Zelle mit einer expliziten <code>Actions</code>-Kopfzelle. Lass die Kopfzelle nicht leer.</td></tr>
+                              <tr><td>Gruppierung</td><td>Fasse Zeilen-Controls in einer <code>wb-action-group</code> zusammen. Jedes reine Icon-Control folgt dem <code>wb-action-btn</code>-Rhythmus.</td></tr>
+                              <tr><td>Barrierefreiheit</td><td><code>aria-label</code> ist für reine Icon-Controls in Zeilen erforderlich. <code>title</code> wird empfohlen und ist Teil des Standards.</td></tr>
+                              <tr><td>Destruktive Aktionen</td><td>Mache destruktive Zeilenaktionen nicht standardmäßig rot oder gefüllt. Transportiere die Gefahr über konkreten Text im Bestätigungs-Modal, die Aktionsbeschriftung, <code>aria-label</code>, <code>title</code>, einen maßvollen Hover-/Fokus-Gefahrenzustand und den Modal-Bestätigungsablauf von WebBlocks. Nutze nicht das Browser-<code>confirm()</code>.</td></tr>
+                              <tr><td>Visuelle Priorität</td><td>Metadaten- und Status-Icons einer Zeile dürfen nicht mit den Aktions-Icons konkurrieren. Braucht eine Zeile viele Aktionen, bevorzuge eine Detailseite, ein Overflow-Menü oder eine sekundäre Fläche, statt weitere sichtbare Zeilen-Controls zu ergänzen.</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <pre><code>&lt;td class="wb-table-actions"&gt;
+  &lt;div class="wb-action-group"&gt;
+    &lt;a class="wb-action-btn wb-action-btn-view" href="#" aria-label="Website ansehen" title="Website ansehen"&gt;
+      &lt;i class="wb-icon wb-icon-eye"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;a class="wb-action-btn wb-action-btn-edit" href="#" aria-label="Website bearbeiten" title="Website bearbeiten"&gt;
+      &lt;i class="wb-icon wb-icon-pencil"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Website löschen" title="Website löschen"&gt;
+      &lt;i class="wb-icon wb-icon-trash"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/td&gt;</code></pre>
+                        <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-action-btn-delete</code> kennzeichnet destruktive Absicht im Rhythmus der Icon-Aktionen; es bedeutet nicht, dass Löschaktionen in Zeilen standardmäßig gefüllte rote Buttons werden sollen.</p>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="status-guidance">
+                    <h2>Hinweise zur Darstellung von Zustand und Meldungen</h2>
+                    <div class="wb-grid-2">
+                      <div class="wb-card"><div class="wb-card-header"><div><h3 class="wb-card-title">Tun</h3><p class="wb-card-description">Mache den primären Systemzustand explizit und beschreibe sekundäre Hinweise anschließend klar.</p></div></div><div class="wb-card-body wb-stack-3"><p class="wb-m-0">Nutze Beschriftungen wie <strong>Funktionsfähig mit Hinweisen</strong>, wenn die erforderlichen Prüfungen bestehen.</p><p class="wb-m-0">Lass lange Zustandszusammenfassungen umbrechen, statt aktionsreiche Zeilen abzuschneiden.</p><p class="wb-m-0">Halte optionale Integrationen visuell nachrangig gegenüber dem erforderlichen Infrastrukturzustand.</p></div></div>
+                      <div class="wb-card"><div class="wb-card-header"><div><h3 class="wb-card-title">Vermeiden</h3><p class="wb-card-description">Presse nicht jeden Hinweis in einen generischen Fehlerzustand.</p></div></div><div class="wb-card-body wb-stack-3"><p class="wb-m-0">Kennzeichne nicht das ganze System als beeinträchtigt, wenn nur eine optionale Integration deaktiviert ist.</p><p class="wb-m-0">Verstecke lange Zusammenfassungen nicht hinter abgeschnittenen einzeiligen Zellen, wenn die Diagnose zählt.</p><p class="wb-m-0">Nutze keine vagen destruktiven Beschriftungen wie ein bloßes <code>Löschen</code>.</p></div></div>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="copy-rules">
+                    <h2>Regeln für Text und Hierarchie</h2>
+                    <div class="wb-list wb-list-sm">
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Seitentitel</span><span class="wb-list-item-sub">Nutze ein einziges <code>h1</code> außerhalb der Cards. Card-Titel ersetzen es nicht.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Card-Titel</span><span class="wb-list-item-sub">Nutze <code>h2</code> in Card-Headern. Verwende <code>h3</code> nur für verschachtelte Abschnitte innerhalb einer Card.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Beschriftungen primärer Submit-Aktionen</span><span class="wb-list-item-sub">Nutze <code>{Ressource} anlegen</code> für Anlege-Screens und <code>Änderungen speichern</code> für Bearbeitungs-Screens.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Reihenfolge von Abbrechen</span><span class="wb-list-item-sub">Halte die Primäraktion an erster und die sekundäre bzw. Abbrechen-Aktion an zweiter Stelle in derselben Footer-Gruppe.</span></div></div>
+                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Beschriftungen für Gefahren</span><span class="wb-list-item-sub">Nutze konkrete Beschriftungen wie <code>CMS-Alias löschen</code>, <code>Website löschen</code> oder <code>Benutzer löschen</code>.</span></div></div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-settings-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Settings Shell</span></a>
+                <a href="pattern-auth-shell.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Auth Shell</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Start</title>
+  <meta name="description" content="Eine mehrseitige Website aus reinem WebBlocks UI, die das Projekt WebBlocks UI erklärt: Architektur, Primitives, Patterns, JavaScript-Module und den Arbeitsablauf.">
+  <link rel="alternate" hreflang="en" href="../index.html">
+  <link rel="alternate" hreflang="de" href="index.html">
+  <link rel="alternate" hreflang="x-default" href="../index.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand">
+        <img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo">
+        <span class="wb-sidebar-brand-copy">
+          <span>WebBlocks UI</span>
+          <span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span>
+        </span>
+      </a>
+
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link is-active">
+            <i class="wb-icon wb-icon-home wb-sidebar-icon"></i>
+            <span>Start</span>
+          </a>
+          <a href="getting-started.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i>
+            <span>Erste Schritte</span>
+          </a>
+          <a href="architecture.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-layers wb-sidebar-icon"></i>
+            <span>Architektur</span>
+          </a>
+          <a href="foundation.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-palette wb-sidebar-icon"></i>
+            <span>Foundation</span>
+          </a>
+          <a href="layout.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-layout wb-sidebar-icon"></i>
+            <span>Layout</span>
+          </a>
+          <a href="primitives.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-box wb-sidebar-icon"></i>
+            <span>Primitives</span>
+          </a>
+          <a href="icons.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-star wb-sidebar-icon"></i>
+            <span>Icons</span>
+          </a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false">
+              <span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span>
+              <span class="wb-nav-group-label">Patterns</span>
+              <span class="wb-nav-group-arrow"></span>
+            </button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i>
+            <span>Utilities</span>
+          </a>
+          <a href="javascript.html" class="wb-sidebar-link">
+            <i class="wb-icon wb-icon-code wb-sidebar-icon"></i>
+            <span>JavaScript</span>
+          </a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+
+      </nav>
+
+      <div class="wb-sidebar-footer">
+        <div class="wb-callout wb-callout-info">
+          <strong class="wb-callout-title">Reine-WebBlocks-Regel</strong>
+          Diese Website verwendet ausschließlich ausgelieferte WebBlocks-UI-Klassen, Patterns und eingebaute JavaScript-Hooks.
+        </div>
+        <p class="wb-text-xs wb-text-muted wb-mt-3 wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar">
+          <i class="wb-icon wb-icon-menu"></i>
+          Menü
+        </button>
+
+        <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Breadcrumb">
+          <ol class="wb-breadcrumb-list">
+            <li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li>
+            <li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Start</span></li>
+          </ol>
+        </nav>
+
+        <div class="wb-navbar-spacer"></div>
+
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#indexThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="indexThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#indexLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="indexLangMenu"><a class="wb-dropdown-item" href="../index.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="index.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <h1 class="wb-content-title">Eine Website über WebBlocks UI - gebaut mit reinem WebBlocks UI</h1>
+            <p class="wb-content-subtitle">Diese Demo erklärt das Projekt, das Layer-Modell, die ausgelieferten Primitives, Patterns und das JavaScript-Verhalten - ausschließlich mit Paket-Assets und ausgelieferten <code>wb-*</code>-Klassen.</p>
+            <div class="wb-content-meta">
+              <span>Nur Paket-Assets</span>
+              <span class="wb-content-meta-divider"></span>
+              <span>Kein eigenes CSS</span>
+              <span class="wb-content-meta-divider"></span>
+              <span>Kein eigenes JS</span>
+            </div>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <div class="wb-promo">
+                  <div class="wb-promo-copy">
+                    <p class="wb-eyebrow">UI-System mit offenem Quellcode</p>
+                    <h2 class="wb-promo-title">WebBlocks UI - UI-Bausteine für Menschen und KI.</h2>
+                    <p class="wb-promo-text">WebBlocks UI ist eine primitive-getriebene, pattern-orientierte UI-Bibliothek für Admin-Panels, SaaS-Screens, CMS-Oberflächen und Dokumentationsseiten. Die aktuelle Architektur ist explizit: foundation, utilities, layout, primitives, patterns und icons.</p>
+                  </div>
+                  <div class="wb-promo-actions">
+                    <a href="getting-started.html" class="wb-btn wb-btn-primary">Hier starten</a>
+                    <a href="primitives.html" class="wb-btn wb-btn-outline">Primitives ansehen</a>
+                  </div>
+                </div>
+
+                <div class="wb-alert wb-alert-info">
+                  <h3 class="wb-alert-title">Was diese Seite belegt</h3>
+                  <p>WebBlocks UI kann sich selbst dokumentieren, ohne eine separate Präsentationsschicht. Dieser Guide ergänzt weder Hilfs-CSS noch Utility-Skripte oder erfundene Klassen.</p>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Was das Paket mitbringt</h2>
+                <div class="wb-grid-4">
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Architektur-Schichten</div>
+                    <div class="wb-stat-value">6</div>
+                    <div class="wb-stat-delta">Foundation, utilities, layout, primitives, patterns, icons</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Abhängigkeiten</div>
+                    <div class="wb-stat-value">0</div>
+                    <div class="wb-stat-delta">Das Paket selbst setzt kein Framework voraus</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">JavaScript</div>
+                    <div class="wb-stat-value">14+</div>
+                    <div class="wb-stat-delta">Module für Theme, Overlays, Navigation, Feedback und Disclosure</div>
+                  </div>
+                  <div class="wb-stat">
+                    <div class="wb-stat-label">Icons</div>
+                    <div class="wb-stat-value">173</div>
+                    <div class="wb-stat-delta">Klassenbasierte Icon-Nutzung über mask-image</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <div class="wb-promo">
+                  <div class="wb-promo-copy">
+                    <p class="wb-eyebrow">Live-HTML-Workflow</p>
+                    <h2 class="wb-promo-title">Öffne das Playground, wenn du WebBlocks-HTML live testen willst.</h2>
+                    <p class="wb-promo-text">Schreibe einfaches HTML, sieh es mit dem echten WebBlocks-CSS, den Icons und dem JavaScript in der Vorschau und prüfe KI-generierte oder handgeschriebene Snippets schnell, ohne die Doku zu verlassen.</p>
+                  </div>
+                  <div class="wb-promo-actions">
+                    <a href="../../playground/" class="wb-btn wb-btn-primary">Playground öffnen</a>
+                    <a href="pattern-marketing.html" class="wb-btn wb-btn-outline">Beispiel für öffentliche Seite</a>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Das System in der richtigen Reihenfolge lesen</h2>
+                <div class="wb-link-list">
+                  <a href="getting-started.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Erste Schritte</span>
+                      <span class="wb-link-list-meta">Einbindung, Root-Attribute, erster Workflow</span>
+                    </div>
+                    <div class="wb-link-list-desc">Beginne mit dieser Seite, wenn du den kürzesten korrekten Setup-Weg für ein echtes Projekt brauchst.</div>
+                  </a>
+                  <a href="architecture.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Architektur</span>
+                      <span class="wb-link-list-meta">Das Sechs-Schichten-Modell</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diese Seite, wenn du verstehen musst, wo Tokens, Layout, Primitives, Patterns und Icons hingehören.</div>
+                  </a>
+                  <a href="foundation.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Foundation</span>
+                      <span class="wb-link-list-meta">Tokens, Überschriften, Theme-Achsen</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diese Seite für Theme-Attribute am Root-Element, Dark Mode, Presets, Typografie-Standards, Spacing-Tokens und das Styling roher Elemente.</div>
+                  </a>
+                  <a href="layout.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Layout</span>
+                      <span class="wb-link-list-meta">Container, Grids, Shells</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diese Seite für <code>wb-container</code>, <code>wb-grid</code>, <code>wb-row</code>, Navbar, Sidebar und die Struktur von Page-Shells.</div>
+                  </a>
+                  <a href="primitives.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Primitives</span>
+                      <span class="wb-link-list-meta">Ausgelieferte Bausteine</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diese Seite, um die tatsächlich ausgelieferten Controls, Surfaces, Formulare und Interaction Shells zu prüfen.</div>
+                  </a>
+                  <a href="icons.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Icons</span>
+                      <span class="wb-link-list-meta">Klassenreferenz für mask-image</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diese Seite, wenn du die ausgelieferten Icon-Klassennamen, das Alias-Verhalten und den klassenbasierten <code>&lt;i&gt;</code>-Weg brauchst.</div>
+                  </a>
+                  <a href="patterns.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Patterns</span>
+                      <span class="wb-link-list-meta">Kompositionen auf Screen-Ebene</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diese Seite, wenn es um Seitentyp, Hierarchie oder Komposition geht statt um ein einzelnes Primitive.</div>
+                  </a>
+                  <a href="../admin-product-brand.md" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin Product Brand</span>
+                      <span class="wb-link-list-meta">Auth, Sidebar, Favicons</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diesen Standard, wenn CMS, QuizTem, Herne Panel, Publisher/Plugins oder ein künftiges Produkt konsistente, modusabhängige Markenzeichen über alle Admin-Shells hinweg braucht. (Nur auf Englisch verfügbar.)</div>
+                  </a>
+                  <a href="../../playground/" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Playground</span>
+                      <span class="wb-link-list-meta">Live-Vorschau nur mit HTML</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dieses Werkzeug, um einfaches HTML einzufügen, es mit den echten WebBlocks-UI-Assets zu rendern und KI-generierte oder handgeschriebene Snippets schnell zu prüfen.</div>
+                  </a>
+                  <a href="utilities.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Utilities</span>
+                      <span class="wb-link-list-meta">Helfer für Abstand, Text und Ausrichtung</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diese Seite für Abstandshelfer, Textgrößen, Farb-Utilities, Sichtbarkeitshelfer und letzte Anpassungen an der Komposition.</div>
+                  </a>
+                  <a href="javascript.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">JavaScript</span>
+                      <span class="wb-link-list-meta">Daten-Hooks und öffentliche APIs</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze diese Seite, wenn das Interaktionsmodell zählt und du das richtige Trigger-Pattern oder den öffentlichen Modulnamen brauchst.</div>
+                  </a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Von einem echten, ausgelieferten Beispiel ausgehen</h2>
+                <p>Wenn die Aufgabe der Seite bereits klar ist, ist das Kopieren des nächstliegenden Pattern-Beispiels aus diesem Guide sicherer, als den Screen aus dem Gedächtnis neu zu bauen. Beginne mit der gesamten Struktur, ersetze den Inhalt und kürze dann konsequent.</p>
+                <div class="wb-link-list">
+                  <a href="pattern-dashboard-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin-Dashboard</span>
+                      <span class="wb-link-list-meta">Sidebar, Topbar, Stats, Tabellen</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dies, wenn die Seite anwendungslastig ist und Navigation, Kennzahlen, Zeilenaktionen und schnell erfassbare Daten braucht.</div>
+                  </a>
+                  <a href="pattern-settings-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin-Einstellungen</span>
+                      <span class="wb-link-list-meta">Längere Formulare und abschnittsweise Aktionen</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dies, wenn die Seite von gruppierten Einstellungen, destruktiven Aktionen und langsameren Formular-Workflows bestimmt wird.</div>
+                  </a>
+                  <a href="pattern-admin-standards.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin Standards</span>
+                      <span class="wb-link-list-meta">Header, Form-Cards, Detaillisten</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dies, wenn du die kanonischen Admin-Markup-Regeln für Seitenhierarchie, Submit-Footer, Aktionsspalten in Tabellen und Danger Zones brauchst.</div>
+                  </a>
+                  <a href="../admin-product-brand.md" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Admin Product Brand</span>
+                      <span class="wb-link-list-meta">Inline-SVG-Markenzeichen für Shells</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dies, wenn Admin-, Auth- und Sidebar-Logos eines Produkts dasselbe Inline-SVG, dieselbe token-bewusste Farbgebung, Größe, Favicon- und Cleanup-Regel teilen sollen. (Nur auf Englisch verfügbar.)</div>
+                  </a>
+                  <a href="pattern-auth-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Auth-Login</span>
+                      <span class="wb-link-list-meta">Fokussierter Einstiegs-Flow</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dies, wenn der Screen schmal, ruhig und auf eine einzige Formularaufgabe zentriert bleiben soll.</div>
+                  </a>
+                  <a href="pattern-marketing.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Öffentliche Startseite</span>
+                      <span class="wb-link-list-meta">Hero-Rhythmus und Promo-Flächen</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dies, wenn die Seite marketinggetrieben ist und einen ruhigeren Inhaltsfluss statt Admin-Dichte braucht.</div>
+                  </a>
+                  <a href="pattern-content-shell.html" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Content Shell</span>
+                      <span class="wb-link-list-meta">Doku, Onboarding und textzentrierte Abläufe</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dies, wenn die Seite Struktur, Referenzen und lesbaren Fortschritt braucht statt Produkt-Chrome.</div>
+                  </a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Nützliche Werkzeuge beim Bauen</h2>
+                <div class="wb-link-list">
+                  <a href="../../playground/" class="wb-link-list-item">
+                    <div class="wb-link-list-main">
+                      <span class="wb-link-list-title">Playground</span>
+                      <span class="wb-link-list-meta">Live-HTML-Test mit echten Assets</span>
+                    </div>
+                    <div class="wb-link-list-desc">Nutze dies, wenn du einfaches HTML einfügen, <code>wb-*</code>-Klassen schnell testen und KI-generierte Snippets in einer isolierten Vorschau visuell prüfen willst.</div>
+                  </a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Grundprinzipien</h2>
+                <div class="wb-grid-3">
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>HTML bleibt HTML</strong>
+                      <p class="wb-m-0">WebBlocks braucht keine Framework-Wrapper, um nützlich zu sein. Du schreibst explizites Markup und vergibst ausgelieferte Klassen.</p>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>Pattern-First-Workflow</strong>
+                      <p class="wb-m-0">Beginne bei der Aufgabe der Seite, sieh dir dann die Surfaces und Primitives dieses Patterns an und verfeinere zum Schluss mit Utilities.</p>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-body wb-stack-2">
+                      <strong>Kleine, saubere Schichten</strong>
+                      <p class="wb-m-0">Tokens bleiben in foundation, Struktur bleibt in layout, Controls bleiben in primitives, gerahmte Inhaltsbereiche bleiben Surfaces und ganze Screens bleiben in patterns.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <span></span>
+            <a href="getting-started.html" class="wb-content-next">
+              <span class="wb-content-next-label">Weiter</span>
+              <span class="wb-content-next-title">Erste Schritte</span>
+            </a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

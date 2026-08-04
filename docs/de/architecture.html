@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Architektur</title>
+  <meta name="description" content="Das Layer-Modell von WebBlocks UI: foundation, utilities, layout, primitives, patterns und icons.">
+  <link rel="alternate" hreflang="en" href="../architecture.html">
+  <link rel="alternate" hreflang="de" href="architecture.html">
+  <link rel="alternate" hreflang="x-default" href="../architecture.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Architektur</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#architectureThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="architectureThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#architectureLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="architectureLangMenu"><a class="wb-dropdown-item" href="../architecture.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="architecture.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-content-shell wb-content-shell-wide">
+          <header class="wb-content-header">
+            <h1 class="wb-content-title">Architektur</h1>
+            <p class="wb-content-subtitle">WebBlocks UI ist bewusst in Schichten aufgebaut, damit Tokens, Struktur, sichtbare Bausteine und ganzseitige Kompositionen nicht ineinander verschwimmen.</p>
+          </header>
+
+          <div class="wb-content-body">
+            <div class="wb-stack-8">
+              <section class="wb-stack-4">
+                <h2>Das aktuelle Layer-Modell</h2>
+                <div class="wb-link-list">
+                  <a href="foundation.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">foundation</span><span class="wb-link-list-meta">Tokens und Theme-Achsen</span></div><div class="wb-link-list-desc">Diese Schicht definiert Tokens, Dark Mode, Presets, Accent-Sets, Radius, Density, Shadow, Font, Border, Reset, Regeln auf Element-Ebene sowie das Standard-Styling für rohes HTML wie Überschriften und Code.</div></a>
+                  <a href="utilities.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">utilities</span><span class="wb-link-list-meta">kleine Hilfsklassen</span></div><div class="wb-link-list-desc">Nutze Utilities für kleine Anpassungen, wenn die wesentlichen Pattern- und Primitive-Entscheidungen bereits stimmen. Helfer für Abstände, Textgrößen, Ausrichtung, Farbe und Sichtbarkeit liegen hier.</div></a>
+                  <a href="layout.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">layout</span><span class="wb-link-list-meta">Container und struktureller Fluss</span></div><div class="wb-link-list-desc">Diese Schicht enthält Container, Stack, Cluster, Split, Grid, Row/Column, Navbar, Sidebar und Shell-Struktur. Sie löst Rahmen und Fluss, nicht UI auf Button-Ebene.</div></a>
+                  <a href="primitives.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">primitives + surfaces</span><span class="wb-link-list-meta">Controls und gerahmte Inhaltsbereiche</span></div><div class="wb-link-list-desc">Buttons, Formulare, Tabellen, Dropdowns, Drawers, Modals und Tabs sind Primitives. Cards, Stats, Callouts, Listen, Toolbars, Filter-Bars und Empty States sind Surfaces. Die öffentliche Einordnung folgt der UI-Rolle, nicht dem Ordnernamen.</div></a>
+                  <a href="patterns.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">patterns</span><span class="wb-link-list-meta">Kompositionen auf Screen-Ebene</span></div><div class="wb-link-list-desc">Patterns definieren echte Seitenaufgaben wie Dashboard Shell, Auth Shell, Settings Shell, Content Shell und Marketing-Flächen.</div></a>
+                  <a href="icons.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">icons</span><span class="wb-link-list-meta">Asset-Schicht</span></div><div class="wb-link-list-desc">Icons werden in diesem Guide als klassenbasierte Assets und Aliase ausgeliefert. Sie unterstützen Primitives und Patterns, statt eine eigene UI-Schicht zu bilden.</div></a>
+                </div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Die Build-Reihenfolge ist entscheidend</h2>
+                <p>Die Build-Reihenfolge des Pakets ist bewusst gewählt. Spätere Schichten setzen voraus, dass frühere Schichten bereits vorhanden sind.</p>
+                <ol>
+                  <li>foundation</li>
+                  <li>utilities</li>
+                  <li>layout</li>
+                  <li>primitives</li>
+                  <li>patterns</li>
+                  <li>icons</li>
+                </ol>
+                <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Das Layer-Modell nicht verflachen</strong> Wenn eine Klasse in erster Linie Seitenstruktur definiert, gehört sie in layout oder patterns. Ist sie ein atomares Control, gehört sie in primitives. Ist sie ein gerahmter Inhaltsbereich, behandle sie als Surface. Verschiebt sie nur Abstände oder Textausrichtung, gehört sie in utilities.</div>
+              </section>
+
+              <section class="wb-stack-4">
+                <h2>Was diese Website bewusst nicht tut</h2>
+                <div class="wb-grid-3">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Keine eigenen Klassen</strong><p class="wb-m-0">Jede in <code>docs/</code> verwendete Klasse stammt aus dem ausgelieferten Paket-CSS.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Keine Style-Skripte</strong><p class="wb-m-0">Layout, Abstände und Darstellung bleiben CSS überlassen. Es wird kein JavaScript ergänzt, um CSS-Aufgaben nachzubilden.</p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Kein Verhalten in CSS</strong><p class="wb-m-0">Overlays, Tabs, Drawers, Dropdowns und Theme-Umschaltung nutzen ausgelieferte JavaScript-Hooks statt CSS-Hacks.</p></div></div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <footer class="wb-content-footer">
+            <a href="getting-started.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Erste Schritte</span></a>
+            <a href="foundation.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Foundation</span></a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

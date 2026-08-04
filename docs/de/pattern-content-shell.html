@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Content Shell</title>
+  <meta name="description" content="Integriertes Beispiel für das Content-Shell-Pattern innerhalb der Hauptdokumentation.">
+  <link rel="alternate" hreflang="en" href="../pattern-content-shell.html">
+  <link rel="alternate" hreflang="de" href="pattern-content-shell.html">
+  <link rel="alternate" hreflang="x-default" href="../pattern-content-shell.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group is-open" data-wb-nav-group data-wb-nav-group-open>
+            <button class="wb-nav-group-toggle is-active" aria-expanded="true"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item is-active"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="patterns.html">Patterns</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Content Shell</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><a href="patterns.html" class="wb-btn wb-btn-ghost wb-btn-icon" aria-label="Zurück zu den Patterns"><i class="wb-icon wb-icon-arrow-left"></i></a><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#pattern-content-shellThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="pattern-content-shellThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#pattern-content-shellLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="pattern-content-shellLangMenu"><a class="wb-dropdown-item" href="../pattern-content-shell.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="pattern-content-shell.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a href="#when-to-use-it" class="wb-section-nav-link"><i class="wb-icon wb-icon-book"></i><span>Wann du sie einsetzt</span></a></li>
+              <li class="wb-section-nav-item"><a href="#why-reading-width-matters" class="wb-section-nav-link"><i class="wb-icon wb-icon-align-left"></i><span>Lesebreite</span></a></li>
+              <li class="wb-section-nav-item"><a href="#reference-surfaces" class="wb-section-nav-link"><i class="wb-icon wb-icon-package"></i><span>Referenz-Flächen</span></a></li>
+              <li class="wb-section-nav-item"><a href="#embedded-demo" class="wb-section-nav-link"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Eingebettete Demo</span></a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Content Shell</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Nutze die Content Shell, wenn Hierarchie, Lesebreite, Referenzen und ruhiger Fortschritt wichtiger sind als Anwendungs-Chrome.</p>
+                <div class="wb-content-meta"><span>Doku-Fläche</span><span class="wb-content-meta-divider"></span><span>Zentrierte Lesebreite</span><span class="wb-content-meta-divider"></span><span>Pattern zuerst</span></div>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+                  <section class="wb-docs-section wb-docs-prose" id="when-to-use-it">
+                    <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Wann du sie einsetzt</strong> Wähle die Content Shell für Doku, Onboarding, Richtlinien, Changelogs und längere Artikel, bei denen die Seitenhierarchie klar erkennbar bleiben soll.</div>
+                    <p>Die Content Shell ist für textzentrierte Seiten gedacht. Sie hält den Inhalt lesbar, lässt Raum für Referenzblöcke und gibt der Footer-Navigation eine klare Rolle im linearen Lesefluss.</p>
+                    <p>Die Absatzbreite wird hier über Prose-Wrapper begrenzt statt über eine globale Element-Regel, damit Admin-Cards, Alerts und Dashboards die volle Containerbreite nutzen können.</p>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-split" id="why-reading-width-matters">
+                    <div>
+                      <h2>Warum die Lesebreite zählt</h2>
+                      <p>Doku- und Artikelseiten funktionieren am besten, wenn das Layout die Lesebreite stabil hält, Header-Metadaten vom Fließtext trennt und Absätze nicht auf die Breite anwendungsgroßer Demos zieht.</p>
+                    </div>
+                    <div class="wb-link-list">
+                      <a href="pattern-dashboard-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Dauerhafte Navigation nötig?</span><span class="wb-link-list-meta">Nutze die Dashboard Shell</span></div><div class="wb-link-list-desc">Operative Produkte sollten auf den Dashboard-Rahmen wechseln, statt eine Content Shell zu einer App-Shell zu dehnen.</div></a>
+                      <a href="pattern-settings-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Gruppierte Formulararbeit nötig?</span><span class="wb-link-list-meta">Nutze die Settings Shell</span></div><div class="wb-link-list-desc">Einstellungsseiten brauchen lokale Navigation und abschnittsweise Controls, nicht nur einen Artikelfluss.</div></a>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="reference-surfaces">
+                    <h2>Referenzblöcke nutzen weiterhin ausgelieferte Surfaces und Primitives</h2>
+                    <p>Die Content Shell erfindet keine eigenen Bausteine. Callouts und Link-Listen sind Surfaces. Tabellen bleiben Primitives. Die öffentliche Einordnung folgt der UI-Rolle, nicht dem Dateipfad.</p>
+                    <div class="wb-table-wrap">
+                      <table class="wb-table wb-table-sm">
+                        <thead><tr><th>Bedarf</th><th>Klassentyp</th><th>Warum</th></tr></thead>
+                        <tbody>
+                          <tr><td>Inline-Warnung</td><td><code>wb-callout</code> surface</td><td>Hält die Betonung innerhalb des Leseflusses.</td></tr>
+                          <tr><td>Querverweise</td><td><code>wb-link-list</code> surface</td><td>Macht angrenzende Doku oder Beispiele leicht überfliegbar.</td></tr>
+                          <tr><td>Strukturierter Vergleich</td><td><code>wb-table</code> primitive</td><td>Verdeutlicht Unterschiede, ohne einen neuen artikelspezifischen Tabellenstil zu erfinden.</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="wb-docs-section wb-docs-wide" id="embedded-demo">
+                    <h2>Eingebettete Content-Shell-Demo</h2>
+                    <div class="wb-content-shell">
+                      <header class="wb-content-header"><h2 class="wb-content-title">Content-Shell-Beispiel</h2><p class="wb-content-subtitle">Nutze die Content Shell, wenn Hierarchie, Lesebreite, Referenzen und ruhiger Fortschritt wichtiger sind als Anwendungs-Chrome.</p><div class="wb-content-meta"><span>Doku-Fläche</span><span class="wb-content-meta-divider"></span><span>Zentrierte Lesebreite</span><span class="wb-content-meta-divider"></span><span>Pattern zuerst</span></div></header>
+                      <div class="wb-content-body wb-stack-6"><div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Wann du sie einsetzt</strong> Wähle die Content Shell für Doku, Onboarding, Richtlinien, Changelogs und längere Artikel, bei denen die Seitenhierarchie klar erkennbar bleiben soll.</div><h3>Warum Content Shells schmal bleiben</h3><p>Doku- und Artikelseiten funktionieren am besten, wenn das Layout die Lesebreite stabil hält, Header-Metadaten vom Fließtext trennt und die Footer-Navigation für den linearen Fortschritt nutzt.</p><div class="wb-link-list"><a href="pattern-dashboard-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Dauerhafte Navigation nötig?</span><span class="wb-link-list-meta">Nutze die Dashboard Shell</span></div><div class="wb-link-list-desc">Operative Produkte sollten auf den Dashboard-Rahmen wechseln, statt eine Content Shell zu einer App-Shell zu dehnen.</div></a><a href="pattern-settings-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Gruppierte Formulararbeit nötig?</span><span class="wb-link-list-meta">Nutze die Settings Shell</span></div><div class="wb-link-list-desc">Einstellungsseiten brauchen lokale Navigation und abschnittsweise Controls, nicht nur einen Artikelfluss.</div></a></div><div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Bedarf</th><th>Klassentyp</th><th>Warum</th></tr></thead><tbody><tr><td>Inline-Warnung</td><td><code>wb-callout</code> surface</td><td>Hält die Betonung innerhalb des Leseflusses.</td></tr><tr><td>Querverweise</td><td><code>wb-link-list</code> surface</td><td>Macht angrenzende Doku oder Beispiele leicht überfliegbar.</td></tr><tr><td>Strukturierter Vergleich</td><td><code>wb-table</code> primitive</td><td>Verdeutlicht Unterschiede, ohne einen neuen artikelspezifischen Tabellenstil zu erfinden.</td></tr></tbody></table></div></div>
+                      <footer class="wb-content-footer"><a href="patterns.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Patterns</span></a><a href="javascript.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">JavaScript</span></a></footer>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="pattern-auth-shell.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Auth Shell</span></a>
+                <a href="pattern-breadcrumb.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">Breadcrumb</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

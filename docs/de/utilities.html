@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="auto" data-accent="royal" data-preset="corporate" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI - Utilities</title>
+  <meta name="description" content="Hilfsklassen für Abstand, Typografie, Farbe, Display, Ausrichtung und Sichtbarkeit in WebBlocks UI.">
+  <link rel="alternate" hreflang="en" href="../utilities.html">
+  <link rel="alternate" hreflang="de" href="utilities.html">
+  <link rel="alternate" hreflang="x-default" href="../utilities.html">
+  <script src="../version.js"></script>
+  <script src="../webblocks-assets.js"></script>
+</head>
+<body>
+  <div class="wb-dashboard-shell">
+    <div class="wb-sidebar-backdrop" data-wb-sidebar-backdrop></div>
+    <aside class="wb-sidebar" id="docsSidebar">
+      <a href="index.html" class="wb-sidebar-brand"><img src="../../assets/branding/brand-logo-64.png" alt="" class="wb-sidebar-brand-logo"><span class="wb-sidebar-brand-copy"><span>WebBlocks UI</span><span class="wb-sidebar-brand-note">UI-Bausteine für Menschen und KI</span></span></a>
+      <nav class="wb-sidebar-nav" aria-label="Dokumentationsnavigation">
+        <div class="wb-sidebar-section">
+          <a href="index.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-home wb-sidebar-icon"></i><span>Start</span></a>
+          <a href="getting-started.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-rocket wb-sidebar-icon"></i><span>Erste Schritte</span></a>
+          <a href="architecture.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layers wb-sidebar-icon"></i><span>Architektur</span></a>
+          <a href="foundation.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-palette wb-sidebar-icon"></i><span>Foundation</span></a>
+          <a href="layout.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-layout wb-sidebar-icon"></i><span>Layout</span></a>
+          <a href="primitives.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-box wb-sidebar-icon"></i><span>Primitives</span></a>
+          <a href="icons.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-star wb-sidebar-icon"></i><span>Icons</span></a>
+          <div class="wb-nav-group" data-wb-nav-group>
+            <button class="wb-nav-group-toggle" aria-expanded="false"><span class="wb-nav-group-icon"><i class="wb-icon wb-icon-layout-grid"></i></span><span class="wb-nav-group-label">Patterns</span><span class="wb-nav-group-arrow"></span></button>
+            <div class="wb-nav-group-items">
+              <a href="patterns.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-circle-dot"></i><span>Übersicht</span></a>
+              <a href="pattern-dashboard-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-layout-dashboard"></i><span>Dashboard Shell</span></a>
+              <a href="pattern-settings-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-settings"></i><span>Settings Shell</span></a>
+              <a href="pattern-admin-standards.html" class="wb-nav-group-item">Admin Standards</a>
+              <a href="pattern-auth-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-shield-check"></i><span>Auth Shell</span></a>
+              <a href="pattern-content-shell.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-file-text"></i><span>Content Shell</span></a>
+              <a href="pattern-breadcrumb.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-route"></i><span>Breadcrumb</span></a>
+              <a href="pattern-gallery.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-images"></i><span>Gallery</span></a>
+              <a href="pattern-cookie-consent.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-cookie"></i><span>Cookie Consent</span></a>
+              <a href="pattern-marketing.html" class="wb-nav-group-item"><i class="wb-icon wb-icon-megaphone"></i><span>Marketing</span></a>
+            </div>
+          </div>
+          <a href="utilities.html" class="wb-sidebar-link is-active"><i class="wb-icon wb-icon-wrench wb-sidebar-icon"></i><span>Utilities</span></a>
+          <a href="javascript.html" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>JavaScript</span></a>
+          <a href="../../playground/" class="wb-sidebar-link"><i class="wb-icon wb-icon-code wb-sidebar-icon"></i><span>Playground</span></a>
+        </div>
+      </nav>
+      <div class="wb-sidebar-footer">
+        <p class="wb-text-xs wb-text-muted wb-mb-0">WebBlocks UI v<span data-webblocks-version></span></p>
+      </div>
+    </aside>
+
+    <div class="wb-dashboard-body">
+      <header class="wb-navbar wb-navbar-glass wb-docs-topbar">
+        <button class="wb-btn wb-btn-ghost wb-btn-sm wb-visible-mobile" data-wb-toggle="sidebar" data-wb-target="#docsSidebar" aria-expanded="false" aria-controls="docsSidebar" aria-label="Menü öffnen"><i class="wb-icon wb-icon-menu"></i></button>
+        <nav class="wb-breadcrumb wb-breadcrumb-compact wb-docs-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">WebBlocks UI</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Utilities</span></li></ol></nav>
+        <div class="wb-navbar-spacer"></div>
+        <div class="wb-cluster"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle aria-label="Modus wechseln" title="Modus wechseln"><i class="wb-icon wb-icon-sun-moon"></i></button><div class="wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-toggle="dropdown" data-wb-target="#utilitiesThemeMenu" aria-expanded="false" aria-label="Theme-Einstellungen" title="Theme-Einstellungen"><i class="wb-icon wb-icon-palette"></i></button><div class="wb-dropdown-menu" id="utilitiesThemeMenu"><div class="wb-dropdown-label">Preset</div><button class="wb-dropdown-item" data-wb-preset-set="modern">Modern</button><button class="wb-dropdown-item" data-wb-preset-set="corporate">Corporate</button><button class="wb-dropdown-item" data-wb-preset-set="minimal">Minimal</button><button class="wb-dropdown-item" data-wb-preset-set="editorial">Editorial</button><button class="wb-dropdown-item" data-wb-preset-set="playful">Playful</button><hr class="wb-dropdown-divider"><div class="wb-dropdown-label">Akzent</div><button class="wb-dropdown-item" data-wb-accent-set="ocean">Ocean</button><button class="wb-dropdown-item" data-wb-accent-set="royal">Royal</button><button class="wb-dropdown-item" data-wb-accent-set="forest">Forest</button><button class="wb-dropdown-item" data-wb-accent-set="sunset">Sunset</button><button class="wb-dropdown-item" data-wb-accent-set="mint">Mint</button><button class="wb-dropdown-item" data-wb-accent-set="amber">Amber</button><button class="wb-dropdown-item" data-wb-accent-set="rose">Rose</button><button class="wb-dropdown-item" data-wb-accent-set="slate-fire">Slate Fire</button></div></div><div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown wb-dropdown-end"><button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#utilitiesLangMenu" aria-label="Aktuelle Sprache: Deutsch. Sprache wählen" aria-expanded="false"><i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i><span class="wb-language-switcher-code" lang="de" aria-hidden="true">DE</span><i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i></button><div class="wb-dropdown-menu" id="utilitiesLangMenu"><a class="wb-dropdown-item" href="../utilities.html" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a><a class="wb-dropdown-item is-active" href="utilities.html" lang="de" aria-current="page"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a></div></div></div>
+      </header>
+
+      <main class="wb-dashboard-main">
+        <div class="wb-settings-shell wb-docs-layout">
+          <nav class="wb-section-nav wb-settings-nav wb-docs-rail" aria-label="Abschnitte auf dieser Seite">
+            <div class="wb-section-nav-title">Auf dieser Seite</div>
+            <ul class="wb-section-nav-list">
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#utility-families">Utility-Familien</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#common-finishing-helpers">Häufige Feinschliff-Helfer</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#healthy-utility-usage">Gesunder Utility-Einsatz</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#typography-and-spacing">Typografie und Abstand</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#display-position-visibility">Display, Position und Sichtbarkeit</a></li>
+            </ul>
+          </nav>
+
+          <div class="wb-settings-body">
+            <div class="wb-content-shell wb-docs-main">
+              <header class="wb-content-header">
+                <h1 class="wb-content-title">Utilities</h1>
+                <p class="wb-content-subtitle wb-docs-prose">Utilities sind die letzte Anpassungsschicht. Wenn du kleine Abstandskorrekturen, Textgrößen, Ausrichtung, Farbhelfer, Rahmen, Schatten oder responsive Sichtbarkeitshelfer brauchst, findest du sie hier. Wird die Seite zu einer Wand aus Utilities, verlagere die Entscheidung zurück nach layout, primitives oder patterns.</p>
+              </header>
+
+              <div class="wb-content-body">
+                <div class="wb-docs-flow">
+              <section class="wb-docs-section wb-docs-prose" id="utility-families">
+                <h2>Utility-Familien</h2>
+                <div class="wb-cluster">
+                  <span class="wb-badge">display</span>
+                  <span class="wb-badge">flex</span>
+                  <span class="wb-badge">gap</span>
+                  <span class="wb-badge">margin</span>
+                  <span class="wb-badge">padding</span>
+                  <span class="wb-badge">text</span>
+                  <span class="wb-badge">font</span>
+                  <span class="wb-badge">color</span>
+                  <span class="wb-badge">border</span>
+                  <span class="wb-badge">shadow</span>
+                  <span class="wb-badge">position</span>
+                  <span class="wb-badge">visibility</span>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="common-finishing-helpers">
+                <h2>Häufige Feinschliff-Helfer</h2>
+                <div class="wb-table-wrap">
+                  <table class="wb-table wb-table-sm">
+                    <thead><tr><th>Familie</th><th>Beispiele</th><th>Wofür</th></tr></thead>
+                    <tbody>
+                      <tr><td>Abstand</td><td><code>wb-mt-4</code>, <code>wb-mb-2</code>, <code>wb-p-4</code>, <code>wb-px-6</code>, <code>wb-py-4</code></td><td>Kleine lokale Abstandskorrekturen.</td></tr>
+                      <tr><td>Typografie</td><td><code>wb-text-sm</code>, <code>wb-text-xl</code>, <code>wb-text-end</code>, <code>wb-font-semibold</code>, <code>wb-mono</code></td><td>Anpassungen an Textgröße, Ausrichtung und Schriftstärke, die sich gegen Komponenten-Standards durchsetzen sollen.</td></tr>
+                      <tr><td>Flex und Gap</td><td><code>wb-flex</code>, <code>wb-items-center</code>, <code>wb-justify-between</code>, <code>wb-gap-3</code></td><td>Ausrichtung innerhalb eines bestehenden Primitives verfeinern.</td></tr>
+                      <tr><td>Farbe</td><td><code>wb-text-muted</code>, <code>wb-text-danger</code>, <code>wb-bg-surface-2</code></td><td>Kleine Änderungen an der visuellen Gewichtung ohne eigenes CSS.</td></tr>
+                      <tr><td>Sichtbarkeit</td><td><code>wb-hidden</code>, <code>wb-visible-mobile</code>, <code>wb-visible-desktop</code>, <code>wb-sr-only</code></td><td>Ausblenden, einblenden oder Barrierefreiheit verbessern.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="healthy-utility-usage">
+                <h2>Gesunder Utility-Einsatz</h2>
+                <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Logische Ausrichtung bevorzugen</strong> Nutze <code>wb-text-start</code> und <code>wb-text-end</code> für neue Arbeit. <code>wb-text-left</code> und <code>wb-text-right</code> bleiben als Kompatibilitäts-Aliase bestehen. Utility-Klassen sollen im normalen Gebrauch die Komponenten-Standards überschreiben.</div>
+                <pre><code>&lt;div class="wb-card wb-mt-4"&gt;
+  &lt;div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3"&gt;
+    &lt;strong class="wb-text-lg"&gt;Aktivität&lt;/strong&gt;
+    &lt;span class="wb-badge wb-badge-success wb-badge-dot"&gt;Live&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wb-card-body wb-p-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <div class="wb-card wb-mt-4">
+                  <div class="wb-card-header wb-flex wb-items-center wb-justify-between wb-gap-3">
+                    <strong class="wb-text-lg">Aktivität</strong>
+                    <span class="wb-badge wb-badge-success wb-badge-dot">Live</span>
+                  </div>
+                  <div class="wb-card-body wb-p-4">Die eigentliche Arbeit leisten weiterhin Card und Badge. Die Utilities verfeinern nur Abstand und Ausrichtung.</div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="typography-and-spacing">
+                <h2>Helfer für Typografie und Abstand</h2>
+                <div class="wb-grid-2">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Textskala</h3></div><div class="wb-card-body wb-stack-2"><div class="wb-text-xs">wb-text-xs</div><div class="wb-text-sm">wb-text-sm</div><div class="wb-text-base">wb-text-base</div><div class="wb-text-lg">wb-text-lg</div><div class="wb-text-xl">wb-text-xl</div><div class="wb-text-2xl">wb-text-2xl</div></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Schriftstärke, Farbe und Abschneiden</h3></div><div class="wb-card-body wb-stack-3"><div class="wb-font-semibold">wb-font-semibold</div><div class="wb-font-bold wb-text-danger">wb-font-bold + wb-text-danger</div><div class="wb-mono">wb-mono</div><div class="wb-truncate wb-w-full">wb-truncate verhindert, dass eine lange Zeile eine kompakte Layoutfläche sprengt.</div></div></div>
+                </div>
+                <div class="wb-grid-2 wb-mt-4">
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Logische Textausrichtung</h3></div><div class="wb-card-body wb-stack-3"><div class="wb-text-start wb-border wb-rounded wb-p-3">wb-text-start</div><div class="wb-text-center wb-border wb-rounded wb-p-3">wb-text-center</div><div class="wb-text-end wb-border wb-rounded wb-p-3">wb-text-end</div></div></div>
+                  <div class="wb-card"><div class="wb-card-header"><h3 class="wb-card-title">Ausrichtung von Tabellenaktionen</h3></div><div class="wb-card-body wb-p-0"><div class="wb-table-wrap wb-border-0 wb-rounded-0"><table class="wb-table wb-table-sm"><thead><tr><th>Seite</th><th>Status</th><th>Aktionen</th></tr></thead><tbody><tr><td>Über uns</td><td><span class="wb-status-pill wb-status-active">Live</span></td><td class="wb-table-actions"><a href="#" class="wb-action-link">Bearbeiten</a></td></tr><tr><td>Preise</td><td><span class="wb-status-pill wb-status-pending">Entwurf</span></td><td class="wb-table-actions"><div class="wb-action-group"><a href="#" class="wb-action-btn wb-action-btn-view" aria-label="Seite prüfen" title="Seite prüfen"><i class="wb-icon wb-icon-eye"></i></a><a href="#" class="wb-action-btn wb-action-btn-edit" aria-label="Seite herunterladen" title="Seite herunterladen"><i class="wb-icon wb-icon-download"></i></a><button class="wb-action-btn wb-action-btn-delete" type="button" aria-label="Seite archivieren" title="Seite archivieren"><i class="wb-icon wb-icon-archive"></i></button></div></td></tr></tbody></table></div></div></div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="display-position-visibility">
+                <h2>Display, Position und Sichtbarkeit</h2>
+                <div class="wb-grid-3">
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Display</strong><p class="wb-m-0"><code>wb-hidden</code>, <code>wb-block</code>, <code>wb-inline-flex</code>, <code>wb-grid-display</code></p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Position</strong><p class="wb-m-0"><code>wb-relative</code>, <code>wb-absolute</code>, <code>wb-fixed</code>, <code>wb-sticky</code>, <code>wb-inset-0</code></p></div></div>
+                  <div class="wb-card"><div class="wb-card-body wb-stack-2"><strong>Responsive Sichtbarkeit</strong><p class="wb-m-0"><code>wb-visible-mobile</code>, <code>wb-visible-desktop</code>, <code>wb-hidden-sm</code>, <code>wb-hidden-md</code>, <code>wb-hidden-lg</code></p></div></div>
+                </div>
+                <div class="wb-callout wb-callout-warning"><strong class="wb-callout-title">Grenze der Utilities</strong> Wenn du viele Utility-Klassen brauchst, damit ein Primitive richtig aussieht, ist vermutlich die Wahl des Primitives, der Shell oder des Patterns falsch.</div>
+              </section>
+                </div>
+              </div>
+
+              <footer class="wb-content-footer">
+                <a href="patterns.html" class="wb-content-prev"><span class="wb-content-prev-label">Zurück</span><span class="wb-content-prev-title">Patterns</span></a>
+                <a href="javascript.html" class="wb-content-next"><span class="wb-content-next-label">Weiter</span><span class="wb-content-next-title">JavaScript</span></a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>
