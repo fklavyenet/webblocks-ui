@@ -12,6 +12,16 @@ No unreleased changes.
 
 ---
 
+## [2.18.0] — 2026-08-05
+
+### Fixed
+- Slide copy now follows the slider's text colour. `foundation/elements.css` sets `color` on `h1`–`h6` and `p` with element selectors, which beat the colour inherited from `.wb-slider`, so neither the default `color: #fff` nor the `wb-slider-text-light` / `wb-slider-text-dark` modifiers ever reached headings and paragraphs inside a slide — on a Light-mode hero this rendered dark theme text over dark artwork, illegible. `.wb-slider .wb-slide-content` now resets headings, paragraphs, lists, blockquotes, `small`, `strong` and `em` to `color: inherit`. The element list sits inside `:where()` so it adds no specificity, but the rule is deliberately scoped through two classes: a slider placed inside a prose scope such as `.wb-content-body` or `.wb-rich-text` picks up descendant rules like `.wb-content-body h3` (0,1,1), which a single-class rule would have lost to — the docs slider page was one such case. Author overrides go through the `wb-text-*` utilities, which are `!important` and still win. Links are deliberately untouched and keep their own colour.
+
+### Changed
+- **Breaking for layouts that relied on it:** the reset no longer sets `min-height: 100vh` on `body`. On a `display: block` body the declaration filled no height — nothing inside was told to consume it — but it did force the body box to the *large* viewport, so on mobile with browser chrome shown a page with nothing to scroll still scrolled by the height of that chrome. Removing the declaration fixes the phantom scroll for every consumer. If a layout depended on `body` being at least viewport-height (a child with `height: 100%`, or a sticky footer built on top of it), set the height on your own root element — `min-block-size: 100dvh` on a flex-column wrapper is the pattern the shipped shells already use.
+
+---
+
 ## [2.17.0] — 2026-08-01
 
 ### Added

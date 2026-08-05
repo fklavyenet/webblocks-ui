@@ -145,6 +145,17 @@
   transform: translate(var(--wb-slider-content-translate-x), var(--wb-slider-content-translate-y));
 }
 
+/* Slide copy follows the slider's text colour instead of the element defaults,
+   so wb-slider-text-light / -dark actually reach headings and paragraphs.
+   Two class selectors are needed to outrank shipped prose scopes such as
+   .wb-content-body h3 and .wb-rich-text strong (0,1,1) when a slider sits inside
+   one; :where() keeps the listed elements from adding any further specificity,
+   so the !important wb-text-* utilities remain the escape hatch.
+   Links are left alone and keep their own colour. */
+.wb-slider .wb-slide-content :where(h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, small, strong, em) {
+  color: inherit;
+}
+
 .wb-slider-content-start {
   --wb-slider-content-x: clamp(var(--wb-s5), 8vw, var(--wb-s14));
   --wb-slider-content-y: 50%;
