@@ -11,6 +11,9 @@ Thumbs.db
 *.swp
 *.swo
 
+# Local docs preview server config
+.claude/launch.json
+
 # Temp / local
 *.log
 .env
