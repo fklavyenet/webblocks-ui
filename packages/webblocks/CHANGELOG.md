@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.20.1] — 2026-08-07
+
+### Fixed
+- A breakpoint column used on its own no longer collapses to one twelfth between its own breakpoint and the mobile stack. `.wb-col-md-*` was declared only inside `@media (min-width: 768px)`, and the full-width fallback only inside `@media (max-width: 575px)`, so from 576px to 767px the class matched no rule at all: `wb-col-md-8` fell back to grid auto placement and rendered as a single track — 77px inside a 536px row. The documented `wb-col-md-8` + `wb-col-md-4` main-and-sidebar pair was unusable across the whole small-tablet band. Responsive columns now carry a `grid-column: span 12` default below their breakpoint, matching the mobile-first stack. The rule is kept at single-class specificity and declared ahead of the column blocks, so an explicit `.wb-col-*` on the same element still wins by source order: `wb-col-6 wb-col-md-8` is unchanged at every width, as is everything at 575px and below or 768px and above.
+
+---
+
 ## [2.20.0] — 2026-08-07
 
 ### Fixed

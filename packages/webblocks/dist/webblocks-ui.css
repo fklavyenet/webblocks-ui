@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.20.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.20.1 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -1551,6 +1551,22 @@ textarea::placeholder {
 .wb-row-gap-4 { gap: var(--wb-s4); }
 .wb-row-gap-6 { gap: var(--wb-s6); }
 .wb-row-gap-8 { gap: var(--wb-s8); }
+
+/* ── Breakpoint columns — pre-breakpoint default ──────────
+   A breakpoint column only has a rule from its own min-width upward, so
+   `wb-col-md-8` used alone had no rule between 576px and 767px and fell back
+   to auto placement (one of twelve tracks). Below its breakpoint a responsive
+   column is full width, matching the mobile-first stack.
+
+   Kept at single-class specificity and declared before the column blocks, so
+   any explicit `.wb-col-*` on the same element still wins by source order. */
+
+[class*="wb-col-sm-"],
+[class*="wb-col-md-"],
+[class*="wb-col-lg-"],
+[class*="wb-col-xl-"] {
+  grid-column: span 12;
+}
 
 /* ── Columns — default (mobile-first, all breakpoints) ───── */
 
