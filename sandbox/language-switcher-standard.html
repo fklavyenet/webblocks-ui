@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="tr" data-mode="auto" data-accent="ocean" data-preset="modern" data-font="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebBlocks UI Language Switcher Standard Sandbox</title>
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--wb-color-bg);
+      color: var(--wb-color-text);
+    }
+
+    .sandbox-page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 56px);
+    }
+
+    .sandbox-hero {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .sandbox-hero h1 {
+      max-width: 860px;
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .sandbox-hero p {
+      max-width: 780px;
+      margin: 0;
+      color: var(--wb-color-muted);
+      line-height: 1.7;
+    }
+
+    /* Bar mock-up: the utilities cluster sits at the trailing edge, exactly
+       as it does in a real dashboard topbar or a public site navbar. */
+    .sandbox-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--wb-s4);
+      padding: var(--wb-s3) var(--wb-s4);
+      border: 1px solid var(--wb-border);
+      border-radius: var(--wb-r-lg);
+      background: var(--wb-surface);
+    }
+
+    .sandbox-bar-brand {
+      font-weight: 700;
+    }
+
+    /* The menus are shown open so the item anatomy is visible in one look.
+       The runtime pins open menus with position:fixed, so this demo-only
+       override has to out-specify html.wb-js. */
+    html .sandbox-open .wb-dropdown-menu,
+    html.wb-js .sandbox-open .wb-dropdown-menu {
+      display: block;
+      position: static;
+      margin: var(--wb-s2) 0 0;
+      min-width: 13rem;
+      animation: none;
+    }
+
+    .sandbox-drift {
+      display: grid;
+      gap: var(--wb-s3);
+    }
+
+    .sandbox-drift-item {
+      display: grid;
+      gap: var(--wb-s2);
+      justify-items: start;
+    }
+  </style>
+</head>
+<body>
+  <div class="sandbox-page">
+    <header class="sandbox-hero">
+      <h1>Dil değiştirici — önerilen tek görünüm</h1>
+      <p>Aşağıdaki her şey mevcut <code>wb-language-switcher</code> sözleşmesiyle üretildi; yeni CSS yok. Standartlaştırma, üç projenin aynı varyantı ve aynı öğe anatomisini kullanmasından ibaret.</p>
+    </header>
+
+    <div class="wb-stack">
+
+      <section class="wb-card">
+        <div class="wb-card-header">
+          <div>
+            <h2 class="wb-card-title">Önerilen varsayılan — uygulama topbar'ı</h2>
+            <p class="wb-card-subtitle">Kanonik yardımcı sırası: bildirim, güncelleme, mod, dil, kullanıcı. Dil için <code>--code</code>: kod + chevron.</p>
+          </div>
+        </div>
+        <div class="wb-card-body">
+          <div class="sandbox-bar">
+            <span class="sandbox-bar-brand">WebBuch</span>
+            <div class="wb-cluster">
+              <button class="wb-btn wb-btn-ghost wb-btn-icon" type="button" aria-label="Bildirimler">
+                <i class="wb-icon wb-icon-bell" aria-hidden="true"></i>
+                <span class="wb-btn-dot wb-btn-dot--accent" aria-hidden="true"></span>
+              </button>
+              <button class="wb-btn wb-btn-ghost wb-btn-icon" type="button" data-wb-mode-cycle aria-label="Modu değiştir">
+                <i class="wb-icon wb-icon-sun-moon" aria-hidden="true"></i>
+              </button>
+              <div class="wb-language-switcher wb-language-switcher--code wb-dropdown wb-dropdown-end">
+                <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#barLangMenu" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false">
+                  <i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i>
+                  <span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span>
+                  <i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i>
+                </button>
+                <div class="wb-dropdown-menu" id="barLangMenu">
+                  <a class="wb-dropdown-item is-active" href="#" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a>
+                  <a class="wb-dropdown-item" href="#" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a>
+                  <a class="wb-dropdown-item" href="#" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a>
+                  <a class="wb-dropdown-item" href="#" lang="es"><span class="wb-language-switcher-item-code">ES</span>Español</a>
+                  <a class="wb-dropdown-item" href="#" lang="it"><span class="wb-language-switcher-item-code">IT</span>Italiano</a>
+                  <a class="wb-dropdown-item" href="#" lang="fr"><span class="wb-language-switcher-item-code">FR</span>Français</a>
+                </div>
+              </div>
+              <div class="wb-user-menu wb-user-menu--compact wb-user-menu--responsive wb-dropdown wb-dropdown-end">
+                <button class="wb-btn wb-btn-ghost wb-user-menu-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#barUserMenu" aria-label="Kullanıcı menüsünü aç" aria-expanded="false">
+                  <span class="wb-avatar wb-avatar-sm" aria-hidden="true">OB</span>
+                  <span class="wb-user-menu-copy"><span class="wb-user-menu-name">Osman</span><span class="wb-user-menu-context">Yönetici</span></span>
+                  <i class="wb-icon wb-icon-chevron-down wb-user-menu-chevron" aria-hidden="true"></i>
+                </button>
+                <div class="wb-dropdown-menu" id="barUserMenu">
+                  <a class="wb-dropdown-item" href="#"><i class="wb-icon wb-icon-user" aria-hidden="true"></i>Profil</a>
+                  <a class="wb-dropdown-item" href="#"><i class="wb-icon wb-icon-settings" aria-hidden="true"></i>Ayarlar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wb-card">
+        <div class="wb-card-header">
+          <div>
+            <h2 class="wb-card-title">Açık menü — tek öğe anatomisi</h2>
+            <p class="wb-card-subtitle">Her öğe: <code>wb-language-switcher-item-code</code> (kod) + dilin kendi adı. Geçerli dil <code>is-active</code> ve <code>aria-current="page"</code> taşır.</p>
+          </div>
+        </div>
+        <div class="wb-card-body">
+          <div class="wb-cluster sandbox-open">
+            <div class="wb-language-switcher wb-language-switcher--code wb-dropdown">
+              <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="true">
+                <i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i>
+                <span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span>
+                <i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="wb-dropdown-menu">
+                <a class="wb-dropdown-item is-active" href="#" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a>
+                <a class="wb-dropdown-item" href="#" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a>
+                <a class="wb-dropdown-item" href="#" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a>
+                <a class="wb-dropdown-item" href="#" lang="es"><span class="wb-language-switcher-item-code">ES</span>Español</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wb-card">
+        <div class="wb-card-header">
+          <div>
+            <h2 class="wb-card-title">İzinli üç varyant</h2>
+            <p class="wb-card-subtitle">Tetikleyici genişliği değişir, menü anatomisi değişmez. Chevron kod gösteren her varyantta var; yalnızca <code>--icon</code> onu bırakır.</p>
+          </div>
+        </div>
+        <div class="wb-card-body">
+          <div class="wb-cluster">
+            <div class="wb-language-switcher wb-language-switcher--icon wb-dropdown">
+              <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#vIcon" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false">
+                <i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i>
+                <span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span>
+                <i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="wb-dropdown-menu" id="vIcon">
+                <a class="wb-dropdown-item is-active" href="#" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a>
+                <a class="wb-dropdown-item" href="#" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a>
+                <a class="wb-dropdown-item" href="#" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a>
+              </div>
+            </div>
+
+            <div class="wb-language-switcher wb-language-switcher--code wb-dropdown">
+              <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#vCode" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false">
+                <i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i>
+                <span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span>
+                <i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="wb-dropdown-menu" id="vCode">
+                <a class="wb-dropdown-item is-active" href="#" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a>
+                <a class="wb-dropdown-item" href="#" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a>
+                <a class="wb-dropdown-item" href="#" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a>
+              </div>
+            </div>
+
+            <div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown">
+              <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" data-wb-toggle="dropdown" data-wb-target="#vIconCode" aria-label="Geçerli dil: Türkçe. Dil seçin" aria-expanded="false">
+                <i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i>
+                <span class="wb-language-switcher-code" lang="tr" aria-hidden="true">TR</span>
+                <i class="wb-icon wb-icon-chevron-down wb-language-switcher-chevron" aria-hidden="true"></i>
+              </button>
+              <div class="wb-dropdown-menu" id="vIconCode">
+                <a class="wb-dropdown-item is-active" href="#" lang="tr" aria-current="page"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a>
+                <a class="wb-dropdown-item" href="#" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a>
+                <a class="wb-dropdown-item" href="#" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wb-card">
+        <div class="wb-card-header">
+          <div>
+            <h2 class="wb-card-title">Bugünkü sapma — üç proje, üç öğe anatomisi</h2>
+            <p class="wb-card-subtitle">Aynı kütüphane, farklı markup. Standart, bu üç satırı yukarıdaki tek satıra indirir.</p>
+          </div>
+        </div>
+        <div class="wb-card-body">
+          <div class="sandbox-drift sandbox-open">
+            <div class="sandbox-drift-item">
+              <span class="wb-badge wb-badge-warning">DoDone — yalnız kod</span>
+              <div class="wb-language-switcher wb-language-switcher--code wb-dropdown">
+                <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" aria-expanded="true">
+                  <span class="wb-language-switcher-code" lang="en" aria-hidden="true">EN</span>
+                </button>
+                <div class="wb-dropdown-menu">
+                  <a class="wb-dropdown-item is-active" href="#">EN</a>
+                  <a class="wb-dropdown-item" href="#">DE</a>
+                  <a class="wb-dropdown-item" href="#">TR</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="sandbox-drift-item">
+              <span class="wb-badge wb-badge-warning">WebBuch — yalnız ad, kod yok</span>
+              <div class="wb-language-switcher wb-language-switcher--icon-code wb-dropdown">
+                <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger" type="button" aria-expanded="true">
+                  <i class="wb-icon wb-icon-languages wb-language-switcher-icon" aria-hidden="true"></i>
+                  <span class="wb-language-switcher-code" lang="en" aria-hidden="true">EN</span>
+                </button>
+                <div class="wb-dropdown-menu">
+                  <a class="wb-dropdown-item is-active" href="#">English</a>
+                  <a class="wb-dropdown-item" href="#">Deutsch</a>
+                  <a class="wb-dropdown-item" href="#">Türkçe</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="sandbox-drift-item">
+              <span class="wb-badge wb-badge-success">fklavye.net — kod + ad, ama kutulu tetikleyici</span>
+              <div class="wb-language-switcher wb-language-switcher--code wb-dropdown">
+                <button class="wb-btn wb-btn-outline wb-language-switcher-trigger" type="button" aria-expanded="true">
+                  <span class="wb-language-switcher-code" lang="en" aria-hidden="true">EN</span>
+                </button>
+                <div class="wb-dropdown-menu">
+                  <a class="wb-dropdown-item is-active" href="#" lang="en"><span class="wb-language-switcher-item-code">EN</span>English</a>
+                  <a class="wb-dropdown-item" href="#" lang="tr"><span class="wb-language-switcher-item-code">TR</span>Türkçe</a>
+                  <a class="wb-dropdown-item" href="#" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../packages/webblocks/dist/webblocks-ui.js"></script>
+</body>
+</html>

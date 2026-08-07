@@ -1553,11 +1553,11 @@ Topbar identity hierarchy:
 
 Topbar language, guest auth entry, and user menus are additive compositions over existing primitives. Dropdown variants require no additional JavaScript beyond `data-wb-toggle="dropdown"`; `wb-auth-entry` is a direct link and needs no JavaScript.
 
-Language switcher with the recommended code trigger:
+Language switcher with the recommended code trigger — the visible code plus the chevron:
 
 ```html
 <div class="wb-language-switcher wb-language-switcher--code wb-dropdown wb-dropdown-end">
-  <button class="wb-topbar-action wb-language-switcher-trigger"
+  <button class="wb-btn wb-btn-ghost wb-language-switcher-trigger"
           type="button"
           data-wb-toggle="dropdown"
           data-wb-target="#language-menu"
@@ -1575,7 +1575,9 @@ Language switcher with the recommended code trigger:
 </div>
 ```
 
-Use `wb-language-switcher--icon` or `wb-language-switcher--icon-code` for the other trigger styles. The host must provide the visible code and accessible current-language name; CSS intentionally does not transform casing.
+Keep the full trigger markup — icon, code, and chevron — in every variant; the variant class decides what stays visible. `wb-language-switcher--icon` is the icon-only trigger for very tight bars and is the one variant that drops the chevron; `wb-language-switcher--icon-code` shows icon, code, and chevron together.
+
+The menu is identical in all three variants: each item is a `wb-language-switcher-item-code` code span followed by the language's own name (`Deutsch`, not `German`). Do not ship code-only or name-only items. The host must provide the visible code and accessible current-language name; CSS intentionally does not transform casing.
 
 Guest login entry with the recommended icon-label variant:
 

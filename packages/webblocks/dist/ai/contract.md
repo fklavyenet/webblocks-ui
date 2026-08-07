@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.18.0
+Version: v2.19.0
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -62,7 +62,8 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 
 ## Topbar Menus
 
-- Use `wb-language-switcher` for locale selection and choose one explicit trigger variant: `--icon`, `--code`, or `--icon-code`.
+- Use `wb-language-switcher` for locale selection and choose one explicit trigger variant: `--code` (recommended default: code + chevron), `--icon` (icon only, the one variant without a chevron), or `--icon-code`.
+- Give every language menu item the same anatomy in every variant: a `wb-language-switcher-item-code` code span followed by the language's own name. Code-only and name-only items are non-conforming.
 - Use `wb-auth-entry` for guest login entry and choose `--icon`, `--label`, or `--icon-label`.
 - Use `wb-user-menu` for authenticated account actions and choose `--full`, `--compact`, or `--avatar`; add `--responsive` when it should collapse on narrow screens.
 - Render `wb-auth-entry` and `wb-user-menu` as mutually exclusive auth states; the host decides which state applies.

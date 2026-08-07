@@ -172,9 +172,19 @@ All utility text (labels, notification copy, "see all", palette strings) is host
 
 Language switcher variants:
 
-- `wb-language-switcher--icon` shows the language icon
-- `wb-language-switcher--code` shows the host-provided current-language code such as `EN`, `TR`, or `DE`
-- `wb-language-switcher--icon-code` shows both
+- `wb-language-switcher--code` shows the host-provided current-language code such as `EN`, `TR`, or `DE`, plus the chevron. **This is the recommended default** in both a public navbar and an application topbar: the code already names the current language, so the icon is redundant next to it.
+- `wb-language-switcher--icon` shows only the language icon. Reserve it for bars so tight that two characters of text do not fit.
+- `wb-language-switcher--icon-code` shows the icon, the code, and the chevron. Use it when the switcher sits among unlabeled icon actions and needs the icon to read as one of them.
+
+The chevron is the menu affordance and appears in every variant that shows a code (`--code`, `--icon-code`). Only the icon-only trigger drops it.
+
+Language menu items have one anatomy in every variant — the trigger changes, the menu does not:
+
+```html
+<a class="wb-dropdown-item" href="/de" hreflang="de" lang="de"><span class="wb-language-switcher-item-code">DE</span>Deutsch</a>
+```
+
+Every item carries a `wb-language-switcher-item-code` code span followed by the language's own name (`Deutsch`, not `German`). Do not ship code-only items, and do not ship name-only items; a menu that mixes the two anatomies across projects is the drift this pattern exists to prevent.
 
 User menu variants:
 
@@ -193,6 +203,7 @@ Guest auth entry variants:
 Host responsibility rules:
 
 - language codes and names are content; do not derive or uppercase them with CSS
+- language names are autonyms — each item names its language in that language
 - language URLs should point to the equivalent localized route when the host can resolve it
 - current language uses `is-active` and `aria-current="page"`
 - user identity, avatar, role/context, authorization, and conditional items come from the host

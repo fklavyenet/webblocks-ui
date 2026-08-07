@@ -12,6 +12,17 @@ No unreleased changes.
 
 ---
 
+## [2.19.0] — 2026-08-07
+
+### Changed
+- `wb-language-switcher--code` now keeps the chevron instead of hiding it, which makes the recommended trigger *code + chevron*. Previously the chevron survived only in `--icon-code`, so the recommended `--code` trigger rendered as a bare `EN` with no affordance that it opened a menu — three consumer apps each solved that differently (one boxed the trigger, one moved to `--icon-code`, one left it bare), which is precisely the drift this composition exists to prevent. The chevron is now present in every variant that shows a code; `--icon` stays chevron-less on purpose, because there the compact icon square is the point. No markup change is required — the trigger already ships all three children and the variant class decides what stays visible. Consumers pinned to the old look can hide it locally, but the shipped default is the standard.
+
+### Documentation
+- The language menu **item anatomy** is now a stated rule rather than an example: every item is a `wb-language-switcher-item-code` code span followed by the language's own name (`Deutsch`, not `German`), identical across all three trigger variants. Code-only and name-only menus are non-conforming. `PATTERNS.md`, both `INTEGRATION.md` files, and `ai/contract.md` carry the rule; the docs site's own switcher moves to the recommended `--code` variant on all pages.
+- `--code` is documented as the recommended default in every bar, not only in compact product topbars, and the package `INTEGRATION.md` example moves off the deprecated `wb-topbar-action` base onto `wb-btn wb-btn-ghost`.
+
+---
+
 ## [2.18.0] — 2026-08-05
 
 ### Fixed

@@ -79,10 +79,12 @@
   flex: 0 0 auto;
 }
 
+/* The chevron is the menu affordance, so it stays in every trigger that
+   shows a text code. Only the icon-only trigger drops it, because there
+   the compact square is the whole point. */
 .wb-language-switcher--icon .wb-language-switcher-code,
 .wb-language-switcher--icon .wb-language-switcher-chevron,
-.wb-language-switcher--code .wb-language-switcher-icon,
-.wb-language-switcher--code .wb-language-switcher-chevron {
+.wb-language-switcher--code .wb-language-switcher-icon {
   display: none;
 }
 

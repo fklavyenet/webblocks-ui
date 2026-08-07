@@ -146,7 +146,8 @@ Slider rule:
 
 Topbar menu rule:
 
-* use `wb-language-switcher` with one explicit `--icon`, `--code`, or `--icon-code` variant
+* use `wb-language-switcher` with one explicit `--code`, `--icon`, or `--icon-code` variant; `--code` (code + chevron) is the recommended default
+* give every language item the same anatomy: a `wb-language-switcher-item-code` code span followed by the language's own name — never code-only, never name-only
 * use `wb-auth-entry` with one explicit `--icon`, `--label`, or `--icon-label` variant for guests
 * use `wb-user-menu` with one explicit `--full`, `--compact`, or `--avatar` variant for authenticated users; add `--responsive` when narrow screens should collapse it
 * reuse `wb-dropdown`; do not create a second language/user dropdown runtime
