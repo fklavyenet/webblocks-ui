@@ -711,7 +711,7 @@ Text casing rule:
 
 Common related classes:
 
-- table: `wb-table-hover`, `wb-table-striped`, `wb-table-sm`
+- table: `wb-table-hover`, `wb-table-striped`, `wb-table-sm`, `wb-table-break`
 - toolbar: `wb-toolbar-sm`, `wb-toolbar-bulk`, `wb-toolbar-bulk-count`, `wb-toolbar-bulk-clear`
 - filter bar: `wb-filter-count`, `wb-search-bar-sm`, `wb-search-bar-lg`
 - actions: `wb-action-link`, `wb-action-link-danger`, `wb-action-more`, `wb-action-more-btn`, `wb-table-check-cell`

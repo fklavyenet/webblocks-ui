@@ -42,7 +42,22 @@
 .wb-table td {
   vertical-align: top;
   white-space: normal;
+  /*
+    break-word (not anywhere): long unbroken strings still wrap, but normal
+    words stay intact and the cell's min-content width is unaffected, so the
+    table does not collapse columns and hyphen-less mid-word breaks.
+  */
+  overflow-wrap: break-word;
+}
+
+/*
+  Opt-in for cells holding unbroken machine strings (URLs, tokens, hashes)
+  in a narrow column that must not widen the table.
+*/
+.wb-table .wb-table-break,
+.wb-table-break td {
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .wb-table tbody th {

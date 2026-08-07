@@ -12,6 +12,16 @@ No unreleased changes.
 
 ---
 
+## [2.20.0] — 2026-08-07
+
+### Fixed
+- `.wb-table td` no longer breaks ordinary words mid-word. The cell set `overflow-wrap: anywhere`, which does not only wrap an overflowing line — it drops the cell's min-content width to a single character, so `table-layout: auto` was free to squeeze a column far below the width of its longest word. Every admin listing paid for it: a short name column rendered `Os / man`, a date column `2026-08- / 06`. The declaration becomes `overflow-wrap: break-word`, which still wraps a string too long for its line but leaves min-content at word width, so a narrow viewport scrolls `.wb-table-wrap` — its whole purpose — instead of shredding the copy. Word-level wrapping inside a wide-enough column is unchanged.
+
+### Added
+- `wb-table-break` opts a cell (on the `td`) or a whole row (on the `tr`) back into `overflow-wrap: anywhere` plus `word-break: break-word`, for columns holding unbroken machine strings — URLs, tokens, hashes — that must wrap rather than widen the table. This is the deliberate, per-column version of what `.wb-table td` used to do to every cell unconditionally.
+
+---
+
 ## [2.19.0] — 2026-08-07
 
 ### Changed
