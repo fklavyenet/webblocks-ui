@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.22.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.23.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -1086,14 +1086,6 @@ blockquote {
   color: var(--wb-muted);
   background: var(--wb-primary-soft);
   border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
-}
-
-/* ── Lists ────────────────────────────────────────────────── */
-ul.wb-list, ol.wb-list {
-  list-style: revert;
-  padding-left: var(--wb-s6);
-  display: grid;
-  gap: var(--wb-s1);
 }
 
 /* ── Horizontal rule ──────────────────────────────────────── */
@@ -7050,6 +7042,29 @@ html.wb-js .wb-popover-panel {
   border-radius: var(--wb-r-md);
   background: var(--wb-surface-2);
   color: var(--wb-muted);
+}
+/* ============================================================
+   WebBlocks UI — Marker List
+   Hand-authored bullet and numbered lists outside rich text.
+   ============================================================ */
+
+/* The global reset drops markers on every ul/ol so structural lists — nav,
+   breadcrumb, pagination — do not each have to opt out. `.wb-rich-text` opts
+   editor output back in; this primitive is the hand-authored counterpart.
+   `revert` rather than disc/decimal keeps the browser's nesting ladder. */
+.wb-marker-list,
+.wb-marker-list :where(ul, ol) {
+  list-style: revert;
+  margin-block: 0;
+  padding-inline-start: 1.35em;
+}
+
+.wb-marker-list :where(li + li, li > ul, li > ol) {
+  margin-block-start: var(--wb-s1);
+}
+
+.wb-marker-list li {
+  line-height: var(--wb-line-height-relaxed);
 }
 /* ============================================================
    WebBlocks UI — Inline List

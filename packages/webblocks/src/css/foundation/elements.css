@@ -84,14 +84,6 @@ blockquote {
   border-radius: 0 var(--wb-r-md) var(--wb-r-md) 0;
 }
 
-/* ── Lists ────────────────────────────────────────────────── */
-ul.wb-list, ol.wb-list {
-  list-style: revert;
-  padding-left: var(--wb-s6);
-  display: grid;
-  gap: var(--wb-s1);
-}
-
 /* ── Horizontal rule ──────────────────────────────────────── */
 hr {
   border: none;

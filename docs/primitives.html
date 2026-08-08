@@ -69,6 +69,7 @@
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#forms">Forms</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#surfaces-and-display">Surfaces and display</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#editorial-body-copy">Editorial body copy</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#marker-lists">Marker lists</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pagination-and-context">Pagination and context</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#interaction-shells">Interaction shells</a></li>
             </ul>
@@ -435,6 +436,52 @@
                           </blockquote>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="marker-lists">
+                <h2>Marker lists</h2>
+                <p>The reset drops markers on every <code>ul</code> and <code>ol</code> so structural lists — nav, breadcrumb, pagination, tabs, <code>wb-inline-list</code> — do not each have to opt out one by one. Rendered editor output gets its markers back from <code>wb-rich-text</code>. Everything hand-authored opts in with <code>wb-marker-list</code>, placed on the list element itself rather than on a wrapper.</p>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Bulleted and numbered</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <div>
+                        <p class="wb-text-sm wb-text-muted wb-mb-2"><code>ul.wb-marker-list</code></p>
+                        <ul class="wb-marker-list">
+                          <li>Pin an explicit tag, never a moving branch.</li>
+                          <li>Improve shared primitives upstream.
+                            <ul>
+                              <li>Nested lists inherit the class.</li>
+                              <li>Markers step down automatically.
+                                <ul><li>Third level uses a square.</li></ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>Keep commit messages in English.</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p class="wb-text-sm wb-text-muted wb-mb-2"><code>ol.wb-marker-list</code></p>
+                        <ol class="wb-marker-list">
+                          <li>Render the content.</li>
+                          <li>Apply the class to the list element.</li>
+                          <li>Leave nested lists unclassed.</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Not a marker list</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-list</code> is the framed list-group surface built from <code>wb-list-item</code> rows. It shares a word with <code>wb-marker-list</code> and nothing else: it has a frame, a background, and no markers.</p>
+                      <div class="wb-list wb-list-sm">
+                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Profile</span><span class="wb-list-item-sub">Personal details</span></div></div>
+                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Security</span><span class="wb-list-item-sub">Password and sessions</span></div></div>
+                      </div>
+                      <p class="wb-text-sm wb-text-muted wb-m-0">Do not use <code>wb-marker-list</code> on nav, breadcrumb, pagination, tabs, or <code>wb-inline-list</code>; those stay marker-less on purpose. Inside <code>wb-rich-text</code> it is redundant. Do not write project-local <code>list-style</code> rules to bring markers back.</p>
                     </div>
                   </div>
                 </div>

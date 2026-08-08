@@ -69,6 +69,7 @@
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#forms">Formlar</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#surfaces-and-display">Surface'ler ve görünüm</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#editorial-body-copy">Editoryal gövde metni</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#marker-lists">İşaretçili listeler</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pagination-and-context">Sayfalama ve bağlam</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#interaction-shells">Interaction shell'ler</a></li>
             </ul>
@@ -435,6 +436,52 @@
                           </blockquote>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="wb-docs-section wb-docs-wide" id="marker-lists">
+                <h2>İşaretçili listeler</h2>
+                <p>Reset her <code>ul</code> ve <code>ol</code> üzerindeki işaretçiyi kaldırır; böylece yapısal listeler — nav, breadcrumb, pagination, tabs, <code>wb-inline-list</code> — tek tek muafiyet istemek zorunda kalmaz. Editörden gelen içerikte işaretçiyi <code>wb-rich-text</code> geri verir. Elle yazılan her liste ise <code>wb-marker-list</code> ile açıkça katılır; sınıf sarmalayıcıya değil, listenin kendisine yazılır.</p>
+                <div class="wb-grid-2">
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">Maddeli ve numaralı</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <div>
+                        <p class="wb-text-sm wb-text-muted wb-mb-2"><code>ul.wb-marker-list</code></p>
+                        <ul class="wb-marker-list">
+                          <li>Açık bir tag'e pinle, hareketli bir dala asla.</li>
+                          <li>Paylaşılan primitifleri yukarıda iyileştir.
+                            <ul>
+                              <li>İç içe listeler sınıfı devralır.</li>
+                              <li>İşaretçiler kendiliğinden kademelenir.
+                                <ul><li>Üçüncü seviye kare kullanır.</li></ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>Commit mesajlarını İngilizce tut.</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p class="wb-text-sm wb-text-muted wb-mb-2"><code>ol.wb-marker-list</code></p>
+                        <ol class="wb-marker-list">
+                          <li>İçeriği render et.</li>
+                          <li>Sınıfı liste elemanına uygula.</li>
+                          <li>İç içe listeleri sınıfsız bırak.</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wb-card">
+                    <div class="wb-card-header"><h3 class="wb-card-title">İşaretçili liste değildir</h3></div>
+                    <div class="wb-card-body wb-stack-4">
+                      <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-list</code>, <code>wb-list-item</code> satırlarından kurulu çerçeveli list-group surface'idir. <code>wb-marker-list</code> ile tek ortak yanı isimdeki kelimedir: çerçevesi ve arka planı vardır, işaretçisi yoktur.</p>
+                      <div class="wb-list wb-list-sm">
+                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Profil</span><span class="wb-list-item-sub">Kişisel bilgiler</span></div></div>
+                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Güvenlik</span><span class="wb-list-item-sub">Parola ve oturumlar</span></div></div>
+                      </div>
+                      <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-marker-list</code>'i nav, breadcrumb, pagination, tabs veya <code>wb-inline-list</code> üzerinde kullanma; bunlar bilerek işaretçisiz kalır. <code>wb-rich-text</code> içinde gereksizdir. İşaretçiyi geri getirmek için projeye özel <code>list-style</code> kuralı yazma.</p>
                     </div>
                   </div>
                 </div>

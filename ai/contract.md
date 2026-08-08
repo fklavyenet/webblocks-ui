@@ -71,11 +71,20 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 - Hosts own locale URLs and labels, current-language state, guest/authenticated state, login URLs, user identity, authorization, conditional items, CSRF, and POST logout behavior.
 - Language code casing is content-defined; do not generate it with CSS text transformation.
 
+## Lists
+
+- The reset drops markers on every `ul`/`ol` so structural lists — nav, breadcrumb, pagination, tabs, `wb-inline-list` — do not each have to opt out. Marker-bearing lists opt back in explicitly.
+- Use `wb-rich-text` for rendered editor output; its lists already carry markers and need no extra class.
+- Use `wb-marker-list` on the `ul` or `ol` itself for hand-authored bullet or numbered prose lists outside a rich-text wrapper. Nested lists inherit it; do not repeat it on a child list.
+- `wb-list` is the framed list-group surface built from `wb-list-item` rows. It is not a marker list and never restores bullets.
+- Do not write project-local `list-style` rules to bring markers back. That is exactly what `wb-marker-list` exists for.
+
 ## Forbidden Patterns
 
 Do not introduce these in new downstream work:
 
 - `wb-panel` or `wb-box` as generic framed surfaces
+- `ul.wb-list` or `ol.wb-list` used to restore list markers; `wb-list` is the framed list-group surface and `wb-marker-list` is the marker list
 - project-local replacements for `wb-dashboard-shell`, `wb-auth-shell`, or `wb-settings-shell`
 - project-specific admin table wrappers that replace `section.wb-card > .wb-card-body > .wb-table-wrap`
 - duplicated modal roots

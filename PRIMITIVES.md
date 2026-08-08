@@ -94,12 +94,15 @@ Examples:
 - `wb-tabs`
 - `wb-pagination`
 - `wb-rich-text`
+- `wb-marker-list`
 
 Primitives are controls and local UI contracts.
 
 They are not framed content regions.
 
 `wb-rich-text` is a CSS-only scoped typography primitive for sanitized editorial body copy.
+
+`wb-marker-list` is the hand-authored counterpart: a `ul` or `ol` that keeps its bullets or numbers. The global reset drops markers on every list so structural lists — nav, breadcrumb, pagination — do not each have to opt out, and `wb-rich-text` opts editor output back in. Anything hand-written outside a rich-text wrapper opts in through this class.
 
 `wb-background-media` is an opt-in visual primitive for an existing semantic root. It does not create a surface, change the root's layout, or make `wb-section` background-aware by default.
 
@@ -127,6 +130,27 @@ Boundary rules for `wb-rich-text`:
 - it is not a pattern and it is not a WYSIWYG/editor contract
 - it scopes body-copy rules to one wrapper instead of changing global typography
 - headings, media, tables, buttons, figures, and larger composition blocks stay in their own primitives, surfaces, or patterns
+
+```html
+<ul class="wb-marker-list">
+  <li>Pin an explicit tag, never <code>@master</code></li>
+  <li>Improve shared primitives upstream
+    <ul>
+      <li>Never copy design-system CSS down</li>
+    </ul>
+  </li>
+</ul>
+```
+
+Boundary rules for `wb-marker-list`:
+
+- it goes on the `ul` or `ol` itself, never on a wrapper
+- nested lists inherit it; do not repeat the class on a child list
+- markers use `list-style: revert`, so the browser's `disc` → `circle` → `square` ladder is deliberate — do not pin a single marker type in host CSS
+- it is redundant inside `wb-rich-text`, which already restores markers
+- it is not a surface: it has no frame, background, or padding of its own
+- structural lists — nav, breadcrumb, pagination, tabs, `wb-inline-list` — stay marker-less and must not use it
+- do not confuse it with `wb-list`, which is the framed list-group surface built from `wb-list-item` rows
 
 Overlay boundary inside primitives:
 

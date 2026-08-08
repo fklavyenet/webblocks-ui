@@ -1312,6 +1312,8 @@ Feedback rules:
 
 ### Lists, Pagination, Breadcrumbs, Avatars, Empty States
 
+`wb-list` is the framed list-group surface. `wb-marker-list` is the separate, unframed primitive for bullet and numbered prose lists — the two are not interchangeable.
+
 ```html
 <div class="wb-list">
   <a href="#" class="wb-list-item wb-list-item-action is-active">
@@ -1321,6 +1323,15 @@ Feedback rules:
     </span>
   </a>
 </div>
+
+<ul class="wb-marker-list">
+  <li>Pin an explicit tag</li>
+  <li>Improve shared primitives upstream
+    <ul>
+      <li>Nested lists inherit the class</li>
+    </ul>
+  </li>
+</ul>
 
 <nav class="wb-pagination" aria-label="Results pages">
   <ol class="wb-pagination-list">
@@ -1868,6 +1879,7 @@ Also shipped for editorial/marketing surfaces:
 - `wb-section-heading`
 - `wb-link-list`
 - `wb-inline-list`
+- `wb-marker-list`
 - `wb-promo`
 - `wb-hero`, `wb-hero-content`, `wb-hero-title`, `wb-hero-text`, `wb-hero-actions`
 - `wb-content-columns`, `wb-content-stack`, `wb-footer-grid`, `wb-footer-list`, `wb-footer-link`

@@ -12,6 +12,19 @@ No unreleased changes.
 
 ---
 
+## [2.23.0] — 2026-08-08
+
+### Fixed
+- `wb-list` means one thing again. `foundation/elements.css` declared an undocumented `ul.wb-list, ol.wb-list` rule that restored list markers, while `primitives/list-group.css` declared `.wb-list` as the framed list-group surface — the name every document in the repo describes. A `<ul>` or `<ol>` carrying the class got both, and the element rule's extra specificity (0,1,1 against 0,1,0) meant it won the conflicts: `display: grid` instead of `flex`, plus `padding-left: var(--wb-s6)` and a 4px row gap bolted onto a surface that wants flush, full-bleed rows. The repo's own `docs/overlay-layer-regression.html` was rendering that way. The element rule is removed, so `wb-list` is the list-group surface and nothing else.
+
+### Added
+- `wb-marker-list` is the primitive for hand-authored bullet and numbered lists. The global reset drops markers on every `ul`/`ol` so structural lists — nav, breadcrumb, pagination, tabs, `wb-inline-list` — do not each have to opt out, and `wb-rich-text` opts rendered editor output back in; until now nothing covered a list written by hand outside a rich-text wrapper except the colliding rule above. The class goes on the list element itself and covers descendant lists, so nesting needs no repetition. Markers use `list-style: revert` rather than a pinned `disc`/`decimal`, which preserves the browser's disc → circle → square ladder. Documented in `PRIMITIVES.md`, `packages/webblocks/INTEGRATION.md`, `ai/contract.md`, and the primitives docs page in all three locales.
+
+### Migration
+- A downstream `<ul class="wb-list">` or `<ol class="wb-list">` that was relying on the removed rule for markers moves to `<ul class="wb-marker-list">`. One that wanted the framed list-group needs no change and renders correctly for the first time.
+
+---
+
 ## [2.22.0] — 2026-08-08
 
 ### Added
