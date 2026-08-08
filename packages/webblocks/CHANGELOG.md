@@ -12,6 +12,16 @@ No unreleased changes.
 
 ---
 
+## [2.21.0] — 2026-08-08
+
+### Fixed
+- Lists inside `.wb-rich-text` render their markers again. The global reset sets `ul, ol { list-style: none }` so that nav, breadcrumb, pagination, and every other structural list does not have to opt out one by one, but `.wb-rich-text :where(ul, ol)` only ever restored `padding-inline-start`, never the marker. Editor output is unclassed `<ul>`/`<ol>`, so nothing opted back in: every published rich-text list rendered indented and bullet-less, and had done so for the whole life of the primitive. The rule now also declares `list-style: revert`, which hands the list back to the user-agent style and therefore restores the disc → circle → square nesting ladder instead of pinning one marker type. `.wb-rich-text` (0,1,0) already outranks the reset (0,0,2), so no specificity bump or `!important` is involved, and lists outside rich text are untouched.
+
+### Added
+- Brand icons ship through a dedicated channel. Hand-drawn project marks live in `src/css/icons/webblocks-brand-icons.svg`, a source file `scripts/update-icons.js` never rewrites, so refreshing the Lucide set cannot silently delete them. They are emitted into the same `wb-icon-*` mask CSS as everything else and carry `"source": "webblocks-brand"` plus a `brand` category in `dist/webblocks-icons.json`, so consuming pickers can scope or exclude them. The first mark, `wb-icon-brand-cms`, takes the catalog from 183 to 184 glyphs. Because icons render via `mask-image` with `background-color: currentColor`, a brand mark is a single-colour silhouette — logo colours and gradients do not survive, and `packages/webblocks/README.md` documents the authoring steps.
+
+---
+
 ## [2.20.1] — 2026-08-07
 
 ### Fixed

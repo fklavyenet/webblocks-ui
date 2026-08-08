@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.20.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.21.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -7023,9 +7023,14 @@ html.wb-js .wb-popover-panel {
   padding: 0.1em 0.35em;
 }
 
+/* The global reset kills markers on every ul/ol so nav, breadcrumb, and
+   pagination do not have to opt out. Editor output is unclassed, so rich text
+   has to opt back in here. `revert` rather than disc/decimal keeps the browser's
+   disc -> circle -> square nesting ladder. */
 .wb-rich-text :where(ul, ol) {
   margin-block: 0;
   padding-inline-start: 1.35em;
+  list-style: revert;
 }
 
 .wb-rich-text li + li {
