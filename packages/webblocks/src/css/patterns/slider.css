@@ -113,6 +113,12 @@
     linear-gradient(0deg, rgba(8, 16, 22, .22), rgba(8, 16, 22, .02));
 }
 
+.wb-slider-overlay-medium {
+  --wb-slider-overlay:
+    linear-gradient(90deg, rgba(8, 16, 22, .58), rgba(8, 16, 22, .24) 57%, rgba(8, 16, 22, .08)),
+    linear-gradient(0deg, rgba(8, 16, 22, .36), rgba(8, 16, 22, .05));
+}
+
 .wb-slider-overlay-strong {
   --wb-slider-overlay:
     linear-gradient(90deg, rgba(8, 16, 22, .76), rgba(8, 16, 22, .36) 58%, rgba(8, 16, 22, .16)),

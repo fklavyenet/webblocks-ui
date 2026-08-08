@@ -12,6 +12,13 @@ No unreleased changes.
 
 ---
 
+## [2.22.0] — 2026-08-08
+
+### Added
+- `wb-slider-overlay-medium` completes the slider scrim ladder. The pattern shipped `none`, `soft` and `strong` while `wb-background-media--overlay-medium` already established `medium` as a rung of the shared overlay vocabulary, so the slider was the outlier. Downstream hosts that offered a four-step overlay choice had no class to map the third step to and had to collapse it onto `strong`, which oversaturates artwork that only needs a mid scrim. The new modifier interpolates between the existing `soft` and `strong` gradients on both the horizontal and vertical passes, so the four values now read as an even ramp.
+
+---
+
 ## [2.21.0] — 2026-08-08
 
 ### Fixed

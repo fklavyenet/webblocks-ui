@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.21.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.22.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -9328,6 +9328,12 @@ html.wb-js .wb-popover-panel {
   --wb-slider-overlay:
     linear-gradient(90deg, rgba(8, 16, 22, .42), rgba(8, 16, 22, .12) 56%, rgba(8, 16, 22, .02)),
     linear-gradient(0deg, rgba(8, 16, 22, .22), rgba(8, 16, 22, .02));
+}
+
+.wb-slider-overlay-medium {
+  --wb-slider-overlay:
+    linear-gradient(90deg, rgba(8, 16, 22, .58), rgba(8, 16, 22, .24) 57%, rgba(8, 16, 22, .08)),
+    linear-gradient(0deg, rgba(8, 16, 22, .36), rgba(8, 16, 22, .05));
 }
 
 .wb-slider-overlay-strong {

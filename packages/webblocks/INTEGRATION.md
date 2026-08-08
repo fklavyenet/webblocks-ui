@@ -1062,6 +1062,7 @@ Canonical authoring model:
 - optional real media elements as `.wb-slide-media`
 - one `.wb-slide-content` slot per slide
 - optional `.wb-slider-controls` with scoped previous/next buttons and `.wb-slider-dots`
+- optional scrim on the root: `wb-slider-overlay-none`, `wb-slider-overlay-soft`, `wb-slider-overlay-medium`, or `wb-slider-overlay-strong`
 
 Canonical example:
 
