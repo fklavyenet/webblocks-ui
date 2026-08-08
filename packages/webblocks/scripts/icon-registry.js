@@ -103,6 +103,19 @@ const GROUPS = [
   }
 ];
 
+// Hand-drawn project marks living in src/css/icons/webblocks-brand-icons.svg.
+// Kept out of GROUPS on purpose: update-icons.js fetches GROUPS names from the
+// Lucide CDN, and these have no Lucide counterpart.
+const BRAND_ICONS = [
+  {
+    slug: 'brand-cms',
+    label: 'WebBlocks CMS',
+    categories: ['brand'],
+    contexts: ['brand', 'product'],
+    keywords: ['brand', 'logo', 'product', 'webblocks', 'cms', 'content', 'blocks']
+  }
+];
+
 const OVERRIDES = {
   home: {
     contexts: ['navigation', 'dashboard'],
@@ -297,9 +310,24 @@ function buildIconRegistry() {
   return registry;
 }
 
+function buildBrandIconRegistry() {
+  return BRAND_ICONS.map((icon) => ({
+    name: icon.label,
+    slug: icon.slug,
+    label: icon.label,
+    cssClass: `wb-icon-${icon.slug}`,
+    source: 'webblocks-brand',
+    categories: unique(['brand'].concat(icon.categories || [])),
+    contexts: unique(icon.contexts || []),
+    keywords: unique(tokenize(icon.slug).concat(icon.keywords || []))
+  }));
+}
+
 module.exports = {
   GROUPS,
+  BRAND_ICONS,
   ICON_REGISTRY: buildIconRegistry(),
+  BRAND_ICON_REGISTRY: buildBrandIconRegistry(),
   toKebab,
   toLabel
 };

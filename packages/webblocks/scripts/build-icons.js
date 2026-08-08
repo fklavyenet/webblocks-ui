@@ -12,10 +12,11 @@
 const fs   = require('fs');
 const path = require('path');
 
-const { ICON_REGISTRY, toLabel } = require('./icon-registry');
+const { ICON_REGISTRY, BRAND_ICON_REGISTRY, toLabel } = require('./icon-registry');
 
 const ROOT     = path.join(__dirname, '..');
 const SRC_SVG  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.svg');
+const BRAND_SVG = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-brand-icons.svg');
 const SRC_CSS  = path.join(ROOT, 'src', 'css', 'icons', 'webblocks-icons.css');
 const DIST_DIR = path.join(ROOT, 'dist');
 const DIST_CSS = path.join(DIST_DIR, 'webblocks-icons.css');
@@ -44,6 +45,24 @@ if (icons.length === 0) {
   process.exit(1);
 }
 
+// ── Append hand-maintained brand marks ───────────────────────
+// Separate source file so update-icons.js (which rewrites the Lucide SVG
+// wholesale) can never wipe them.
+let brandCount = 0;
+if (fs.existsSync(BRAND_SVG)) {
+  const brandSvg = fs.readFileSync(BRAND_SVG, 'utf8');
+  const brandRe = new RegExp(symbolRe.source, 'g');
+  let b;
+  while ((b = brandRe.exec(brandSvg)) !== null) {
+    if (icons.some((icon) => icon.id === b[1])) {
+      console.error(`Error: brand icon ${b[1]} collides with a Lucide icon id.`);
+      process.exit(1);
+    }
+    icons.push({ id: b[1], inner: b[2].trim() });
+    brandCount++;
+  }
+}
+
 const aliases = {
   'wb-icon-rotate-cw': [
     'wb-icon-refresh-cw',
@@ -54,7 +73,9 @@ const aliases = {
   ]
 };
 
-const registryByCssClass = new Map(ICON_REGISTRY.map((icon) => [icon.cssClass, icon]));
+const registryByCssClass = new Map(
+  ICON_REGISTRY.concat(BRAND_ICON_REGISTRY).map((icon) => [icon.cssClass, icon])
+);
 
 function buildManifestEntry(id) {
   const fallbackSlug = id.replace(/^wb-icon-/, '');
@@ -127,6 +148,7 @@ function toDataUri(inner) {
 let cssRules = `/* ============================================================
    WebBlocks UI — Icon Font-Style CSS
    Auto-generated from src/css/icons/webblocks-icons.svg
+   plus the hand-maintained src/css/icons/webblocks-brand-icons.svg
 
    Canonical usage:
      <i class="wb-icon wb-icon-settings"></i>
@@ -156,7 +178,7 @@ for (const symbol of aliasSymbols) {
 }
 
 fs.writeFileSync(SRC_CSS, cssRules, 'utf8');
-console.log(`Generated src/css/icons/webblocks-icons.css — ${icons.length} glyphs, ${aliasSymbols.length} aliases`);
+console.log(`Generated src/css/icons/webblocks-icons.css — ${icons.length} glyphs (${brandCount} brand), ${aliasSymbols.length} aliases`);
 
 fs.writeFileSync(DIST_CSS, cssRules, 'utf8');
 console.log(`Generated dist/webblocks-icons.css — ${icons.length} glyphs, ${aliasSymbols.length} aliases`);

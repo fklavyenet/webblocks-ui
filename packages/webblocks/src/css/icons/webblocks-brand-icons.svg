@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  WebBlocks Brand Icon Source — hand-maintained.
+
+  Project logos reduced to single-colour, 24x24, 2px-stroke marks so they sit
+  in the same optical system as the Lucide set. Edit this file by hand;
+  scripts/update-icons.js never touches it, so Lucide refreshes cannot wipe it.
+
+  Rules for adding a mark:
+    - id must start with "wb-icon-brand-"
+    - viewBox 0 0 24 24, fill none, stroke currentColor, stroke-width 2
+    - no fills, no gradients, no brand colours — mask-image renders one colour
+    - keep the drawing inside x/y 3..21 and leave >= 3 units between shapes
+
+  Canonical usage (requires dist/webblocks-icons.css):
+    <i class="wb-icon wb-icon-brand-cms"></i>
+-->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="wb-icon-brand-cms" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <rect width="18" height="3" x="3" y="3" rx="1"/>
+    <rect width="3" height="6" x="3" y="9" rx="1"/>
+    <rect width="6" height="6" x="9" y="9" rx="1"/>
+    <rect width="3" height="6" x="18" y="9" rx="1"/>
+    <rect width="18" height="3" x="3" y="18" rx="1"/>
+  </symbol>
+</svg>

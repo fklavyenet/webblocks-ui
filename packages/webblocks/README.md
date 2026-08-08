@@ -165,11 +165,24 @@ Use `INTEGRATION.md` for canonical data attributes, method names, and behavioral
 
 ## Icons
 
-WebBlocks ships 183 curated Lucide icons through `dist/webblocks-icons.css`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
+WebBlocks ships 184 icons through `dist/webblocks-icons.css` — 183 curated Lucide glyphs plus the hand-drawn brand mark `brand-cms`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
 
 For structured picker data, WebBlocks also ships `dist/webblocks-icons.json`. Each manifest entry includes a canonical `slug`, human label, `css_class`, generic `source`, plus `categories`, `contexts`, and `keywords` so consuming projects can build icon pickers without hardcoding icon lists.
 
 Use `contexts` such as `navigation` to scope menus, sidebars, tabs, and page-group icon choices without exposing the entire catalog by default.
+
+### Brand icons
+
+Project logos live in `src/css/icons/webblocks-brand-icons.svg`, a hand-maintained source file that `scripts/update-icons.js` never rewrites, so refreshing the Lucide set cannot wipe them. They are emitted into the same `wb-icon-*` mask CSS and carry `"source": "webblocks-brand"` with a `brand` category in the manifest, so pickers can filter or exclude them.
+
+Because icons render through `mask-image` with `background-color: currentColor`, a brand mark is a single-colour silhouette — logo colours and gradients do not survive. Reduce the logo to its shape before adding it.
+
+To add one:
+
+1. Draw the mark in `src/css/icons/webblocks-brand-icons.svg` as `<symbol id="wb-icon-brand-{name}">` — `viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"`, `stroke-width="2"`, no fills or colours, geometry inside `3..21` with at least 3 units between shapes.
+2. Register it in the `BRAND_ICONS` array in `scripts/icon-registry.js` with its slug, label, contexts, and keywords.
+3. Run `node scripts/build-icons.js`, then `./build.sh`.
+4. Add a card to `docs/icons.html` (and the `tr`/`de` copies), then run `scripts/validate-icons.sh`.
 
 Canonical usage:
 
