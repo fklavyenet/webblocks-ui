@@ -117,6 +117,10 @@ const BRAND_ICONS = [
 ];
 
 const OVERRIDES = {
+  'shopping-cart': {
+    contexts: ['commerce', 'navigation'],
+    keywords: ['shopping', 'cart', 'commerce', 'billing', 'basket', 'checkout']
+  },
   home: {
     contexts: ['navigation', 'dashboard'],
     keywords: ['home', 'start', 'dashboard']

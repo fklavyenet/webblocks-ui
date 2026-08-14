@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  var version = '2.23.0';
-  var versionTag = 'v2.23.0';
+  var version = '2.24.0';
+  var versionTag = 'v2.24.0';
 
   function applyVersion() {
     Array.prototype.forEach.call(document.querySelectorAll('[data-webblocks-version]'), function (element) {

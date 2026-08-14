@@ -6,9 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [Unreleased]
+## [2.24.0] — 2026-08-14
 
-No unreleased changes.
+### Added
+- `wb-btn-badge` adds a canonical numeric overlay for icon actions whose exact count matters, such as a shopping cart. It complements the decorative `wb-btn-dot`; hosts own the count, zero-state visibility, visual capping, and synchronized accessible label.
+- `shopping-cart` is now available in the `navigation` icon context as well as `commerce`, so curated navigation pickers can offer the canonical cart glyph without widening their validation rules.
 
 ---
 

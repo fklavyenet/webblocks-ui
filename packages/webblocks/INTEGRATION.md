@@ -261,6 +261,10 @@ Rules:
 <button class="wb-btn wb-btn-secondary wb-btn-icon" aria-label="Edit">
   <i class="wb-icon wb-icon-pencil" aria-hidden="true"></i>
 </button>
+<a class="wb-btn wb-btn-ghost wb-btn-icon" href="/cart" aria-label="Shopping cart, 3 items">
+  <i class="wb-icon wb-icon-shopping-cart" aria-hidden="true"></i>
+  <span class="wb-btn-badge" aria-hidden="true">3</span>
+</a>
 ```
 
 Also shipped:

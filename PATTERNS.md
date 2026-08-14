@@ -159,6 +159,7 @@ Navbar utilities are the small cluster of controls that sit at the trailing edge
 - Container: `wb-cluster` (a layout helper), not a bar-specific wrapper.
 - Icon action: the universal button primitive `wb-btn wb-btn-ghost wb-btn-icon`. It is the canonical icon-action for utilities in both bars. `wb-topbar-action` remains a shipped alias for existing application-topbar markup, but new work should prefer the button primitive.
 - Status dot: `wb-btn-dot` (add `wb-btn-dot--accent` for the accent tone). It marks unread/available state on any icon action. The dot is decorative — the button's `aria-label` conveys the state, so mark the dot `aria-hidden`.
+- Numeric status: `wb-btn-badge`. Use it when the exact count matters, such as a shopping-cart quantity. The host owns the value, may cap the visible copy at `99+`, and must keep the action's accessible label synchronized with the uncapped value. Omit or hide the badge when the count is zero.
 
 Per-utility composition:
 

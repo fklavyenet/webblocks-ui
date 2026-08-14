@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.23.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.24.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -2486,7 +2486,8 @@ textarea::placeholder {
    available, ...). Sits at the top-right corner; the surface-colored
    ring lifts it clear of the icon strokes. Decorative — the button's
    aria-label conveys state, so mark the dot aria-hidden. */
-.wb-btn:has(> .wb-btn-dot) {
+.wb-btn:has(> .wb-btn-dot),
+.wb-btn:has(> .wb-btn-badge) {
   position: relative;
 }
 .wb-btn-dot {
@@ -2502,6 +2503,30 @@ textarea::placeholder {
 }
 .wb-btn-dot--accent {
   background: var(--wb-primary);
+}
+
+/* Numeric status for icon actions such as a shopping cart. Unlike wb-btn-dot,
+   this carries host-authored text. Keep the action's aria-label in sync with
+   the full value; a host may visually cap the badge copy (for example 99+). */
+.wb-btn-badge {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding-inline: 0.25rem;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-danger);
+  color: #fff;
+  border: 2px solid var(--wb-surface);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
 }
 
 /* ── Busy state ───────────────────────────────────────────────
