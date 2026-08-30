@@ -53,6 +53,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Custom CSS/JS was added only after shipped composition proved insufficient.
 - [ ] Any custom CSS/JS has a narrow role and does not create a parallel UI layer.
 - [ ] Navigation groups use `data-wb-nav-group` on the container and do not duplicate the shipped toggle behavior.
+- [ ] Tabs pair controls and panels by id, and no project JavaScript duplicates panel visibility or accessibility state.
 - [ ] No Tailwind, Vite, React, Vue, Inertia, or Livewire UI layer was introduced for WebBlocks UI surfaces.
 
 ## Tests

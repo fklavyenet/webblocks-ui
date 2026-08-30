@@ -86,6 +86,13 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 - WebBlocks UI owns toggling, `is-open`, `aria-expanded`, accordion behavior, lifecycle events, and the `WBNavGroup` API.
 - Do not invent a project-local toggle attribute or copy nav-group click handlers into downstream JavaScript.
 
+## Tabs
+
+- Pair each `.wb-tabs-btn[data-wb-tab="panel-id"]` with a `.wb-tabs-panel#panel-id` inside the same `.wb-tabs` container.
+- The host owns only the initial active tab. It may render inactive panels with `hidden` and `aria-hidden="true"` for first paint; WebBlocks UI removes and reapplies those states as tabs change.
+- WebBlocks UI owns `is-active`, `hidden`, `aria-hidden`, `aria-selected`, `tabindex`, keyboard navigation, and `wb:tabs:change` after initialization.
+- Do not add project-local panel visibility synchronization. Listen to `wb:tabs:change` only for domain state such as mirroring the active tab into a server field; prefer `data-wb-tabs-field` for that common case.
+
 ## Forbidden Patterns
 
 Do not introduce these in new downstream work:

@@ -6,6 +6,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.24.3] — 2026-08-30
+
+### Documentation
+- The tabs ownership contract now documents the complete server-rendered markup, optional first-paint `hidden` state, accessibility attributes, keyboard state, `data-wb-tabs-field`, and the boundary that forbids downstream panel-visibility listeners.
+
+---
+
 ## [2.24.2] — 2026-08-30
 
 ### Fixed
