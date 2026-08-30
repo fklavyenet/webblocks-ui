@@ -1,5 +1,5 @@
 /*!
- * WebBlocks UI v2.24.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.24.1 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -3318,17 +3318,23 @@
     }
   }
 
+  function normalizeToggle(group, isOpen) {
+    var toggle = group.querySelector('.wb-nav-group-toggle');
+    if (!toggle) return;
+
+    if (!toggle.hasAttribute('type') && toggle.tagName === 'BUTTON') toggle.setAttribute('type', 'button');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
   function openGroup(group) {
     group.classList.add('is-open');
-    var toggle = group.querySelector('.wb-nav-group-toggle');
-    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    normalizeToggle(group, true);
     WBDom.emit(group, 'wb:navgroup:open');
   }
 
   function closeGroup(group) {
     group.classList.remove('is-open');
-    var toggle = group.querySelector('.wb-nav-group-toggle');
-    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    normalizeToggle(group, false);
     WBDom.emit(group, 'wb:navgroup:close');
   }
 
@@ -3346,7 +3352,11 @@
       var items = group.querySelector('.wb-nav-group-items');
       if (items && items.querySelector('.is-active')) {
         openGroup(group);
+        return;
       }
+
+      // Keep the accessibility state in sync for initially closed groups too.
+      normalizeToggle(group, false);
     });
   }
 

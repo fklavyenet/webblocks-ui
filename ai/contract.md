@@ -79,6 +79,13 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 - `wb-list` is the framed list-group surface built from `wb-list-item` rows. It is not a marker list and never restores bullets.
 - Do not write project-local `list-style` rules to bring markers back. That is exactly what `wb-marker-list` exists for.
 
+## Navigation Groups
+
+- Put `data-wb-nav-group` on the `.wb-nav-group` container. The toggle is a `.wb-nav-group-toggle` button and the children live in `.wb-nav-group-items`.
+- Use `data-wb-nav-group-open` for an explicit initial open state; a group containing an `.is-active` item also opens automatically.
+- WebBlocks UI owns toggling, `is-open`, `aria-expanded`, accordion behavior, lifecycle events, and the `WBNavGroup` API.
+- Do not invent a project-local toggle attribute or copy nav-group click handlers into downstream JavaScript.
+
 ## Forbidden Patterns
 
 Do not introduce these in new downstream work:

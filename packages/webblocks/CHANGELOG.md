@@ -6,6 +6,16 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.24.1] — 2026-08-30
+
+### Fixed
+- Nav groups now normalize `type="button"` and `aria-expanded` for both initially open and initially closed groups, keeping the declarative markup and accessibility state aligned from initialization.
+
+### Documentation
+- The nav-group ownership contract now explicitly requires `data-wb-nav-group` on the container and forbids downstream toggle attributes or copied click handlers. WebBlocks UI owns `is-open`, `aria-expanded`, accordion behavior, lifecycle events, and the public API.
+
+---
+
 ## [2.24.0] — 2026-08-14
 
 ### Added

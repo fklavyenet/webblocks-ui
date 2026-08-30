@@ -401,6 +401,14 @@ Examples:
 These are not UI primitives.
 They are interaction hooks owned by shipped JS and attribute-driven CSS behavior.
 
+Nav-group ownership rule:
+
+- put `data-wb-nav-group` on `.wb-nav-group`
+- use `.wb-nav-group-toggle` for the button and `.wb-nav-group-items` for its items
+- use `data-wb-nav-group-open` or an active child for the initial open state
+- WebBlocks UI owns click handling, `is-open`, `aria-expanded`, accordion behavior, and `wb:navgroup:*` events
+- downstream projects must not add a parallel toggle attribute or reimplement nav-group JavaScript
+
 Cookie Consent classification rule:
 
 - Cookie Consent is not a primitive

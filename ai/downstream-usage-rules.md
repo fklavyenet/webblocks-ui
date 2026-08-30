@@ -106,3 +106,5 @@ Admin, auth, and sidebar brand marks should follow the shipped admin product bra
 ## Custom CSS and JS
 
 Custom CSS or JS is allowed only when shipped WebBlocks UI composition cannot cover the need. Before adding it, explain which shipped pattern, primitive, surface, utility, or hook was insufficient.
+
+Navigation groups use `.wb-nav-group[data-wb-nav-group]`, a `.wb-nav-group-toggle` button, and `.wb-nav-group-items`. The shipped WebBlocks UI runtime owns their interaction. Downstream projects must not add their own toggle attributes, click listeners, or `is-open`/`aria-expanded` state manager.
