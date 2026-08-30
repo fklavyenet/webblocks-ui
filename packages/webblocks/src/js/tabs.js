@@ -63,6 +63,12 @@
   var BTN_SEL   = '.wb-tabs-btn[data-wb-tab], .wb-tab-item[data-wb-tab]';
   var PANEL_SEL = '.wb-tabs-panel, .wb-tab-panel';
 
+  function setPanelState(panel, isActive) {
+    panel.classList.toggle('is-active', isActive);
+    panel.hidden = !isActive;
+    panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+  }
+
   function activate(container, targetId) {
     // Deactivate all tabs + panels in this container
     container.querySelectorAll(BTN_SEL).forEach(function (btn) {
@@ -71,7 +77,7 @@
       btn.setAttribute('tabindex', '-1');
     });
     container.querySelectorAll(PANEL_SEL).forEach(function (panel) {
-      panel.classList.remove('is-active');
+      setPanelState(panel, false);
     });
 
     // Activate target
@@ -84,7 +90,7 @@
       targetBtn.removeAttribute('tabindex');
     }
     if (targetPanel) {
-      targetPanel.classList.add('is-active');
+      setPanelState(targetPanel, true);
     }
 
     // Mirror into a host-declared form field, if any (data-wb-tabs-field).

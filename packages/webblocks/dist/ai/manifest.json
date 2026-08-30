@@ -1,8 +1,8 @@
 {
   "schema": "webblocks-ui-dist-ai-v1",
-  "version": "v2.24.1",
+  "version": "v2.24.2",
   "contract": "contract.md",
-  "cdn_base": "https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.24.1/packages/webblocks/dist/ai",
+  "cdn_base": "https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v2.24.2/packages/webblocks/dist/ai",
   "source_priority": [
     "packages/webblocks/src/",
     "packages/webblocks/dist/",
@@ -14,7 +14,7 @@
     "ai/"
   ],
   "files": [
-    {"path": "contract.md", "sha256": "104d411c9866f835657d964482fd5365623bfb41f46b35afa4dcf31fb2e1823b"},
+    {"path": "contract.md", "sha256": "bf92fb67225fc663e286ccf902ce54cc12abbdcb84a19d0b1d489c211ad46154"},
     {"path": "review-checklist.md", "sha256": "4ecd0a23090e8c1745c73efb86c36652635139b7539a3043e73eb79aab4ba399"},
     {"path": "forbidden-patterns.md", "sha256": "3f19bdabb84ee52d97ec8b78911982483a5b46b270208f34d480a0f889767997"},
     {"path": "examples.md", "sha256": "c08cddf63e5cc044b7726e92c4cf2c6e1523ff6775995eadf6197bb0d681bd5e"},

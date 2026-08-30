@@ -409,6 +409,12 @@ Nav-group ownership rule:
 - WebBlocks UI owns click handling, `is-open`, `aria-expanded`, accordion behavior, and `wb:navgroup:*` events
 - downstream projects must not add a parallel toggle attribute or reimplement nav-group JavaScript
 
+Tabs ownership rule:
+
+- pair each `[data-wb-tab="panel-id"]` control with a tabs panel carrying that `id`
+- WebBlocks UI owns `is-active`, `hidden`, `aria-hidden`, `aria-selected`, and keyboard focus state when tabs change
+- hosts may render the initial inactive panels with `hidden` and `aria-hidden="true"`; the shared runtime removes those states when a panel is activated
+
 Cookie Consent classification rule:
 
 - Cookie Consent is not a primitive

@@ -6,6 +6,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.24.2] — 2026-08-30
+
+### Fixed
+- Tabs now synchronize the panel's `hidden` and `aria-hidden` states together with `is-active`. A host can safely render inactive panels hidden for first paint and accessibility; activating a tab now reveals its panel instead of changing only the tab underline.
+
+---
+
 ## [2.24.1] — 2026-08-30
 
 ### Fixed
