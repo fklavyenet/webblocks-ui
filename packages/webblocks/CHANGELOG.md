@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.24.4] — 2026-09-01
+
+### Added
+- `wb-theme-switcher` standardizes preset/accent dropdown triggers as a palette icon plus a chevron. WebBlocks UI now owns the affordance and spacing while hosts retain localized labels and menu choices.
+
 ## [2.24.3] — 2026-08-30
 
 ### Documentation

@@ -9,11 +9,29 @@
    bases. Host apps own data and routes.
    ============================================================ */
 
+.wb-theme-switcher,
 .wb-language-switcher,
 .wb-auth-entry,
 .wb-user-menu {
   display: inline-flex;
   align-items: center;
+}
+
+/* Canonical preset/accent menu trigger. Hosts provide only the menu labels and
+   choices; WebBlocks UI owns the palette + chevron affordance and spacing. */
+.wb-theme-switcher-trigger {
+  width: auto;
+  padding-inline: var(--wb-s2);
+  gap: var(--wb-s1);
+}
+
+.wb-theme-switcher-icon,
+.wb-theme-switcher-chevron {
+  flex: 0 0 auto;
+}
+
+.wb-theme-switcher-chevron {
+  color: var(--wb-muted);
 }
 
 .wb-auth-entry {

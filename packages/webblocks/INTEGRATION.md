@@ -33,9 +33,9 @@ Readable local development usage uses the same files:
 Production CDN usage uses the standard dist files:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-icons.css">
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-icons.css">
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-ui.js" defer></script>
 ```
 
 Minified CDN paths are not part of the canonical package output.
@@ -43,9 +43,9 @@ Minified CDN paths are not part of the canonical package output.
 Readable CDN files for development use the same paths:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-icons.css">
-<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/dist/webblocks-ui.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-icons.css">
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-ui.js" defer></script>
 ```
 
 Notes:
@@ -1568,6 +1568,27 @@ Topbar identity hierarchy:
 - preferred pattern is `QuizTem` as product, with `Teacher Workspace` or `Admin Panel` as the secondary label
 
 Topbar language, guest auth entry, and user menus are additive compositions over existing primitives. Dropdown variants require no additional JavaScript beyond `data-wb-toggle="dropdown"`; `wb-auth-entry` is a direct link and needs no JavaScript.
+
+Theme preset/accent switcher — the palette icon plus the canonical menu chevron:
+
+```html
+<div class="wb-theme-switcher wb-dropdown wb-dropdown-end">
+  <button class="wb-btn wb-btn-ghost wb-theme-switcher-trigger"
+          type="button"
+          data-wb-toggle="dropdown"
+          data-wb-target="#theme-menu"
+          aria-label="Theme settings"
+          aria-expanded="false">
+    <i class="wb-icon wb-icon-palette wb-theme-switcher-icon" aria-hidden="true"></i>
+    <i class="wb-icon wb-icon-chevron-down wb-theme-switcher-chevron" aria-hidden="true"></i>
+  </button>
+  <div class="wb-dropdown-menu" id="theme-menu">
+    <!-- Host-provided, localized preset and accent choices. -->
+  </div>
+</div>
+```
+
+Keep both trigger icons. WebBlocks UI owns their spacing and affordance; the host owns the localized label, target id, and menu choices.
 
 Language switcher with the recommended code trigger — the visible code plus the chevron:
 

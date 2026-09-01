@@ -168,6 +168,7 @@ Per-utility composition:
 - update indicator: an icon action with `data-wb-update-indicator` and a `wb-btn-dot`. `WBUpdateIndicator` reveals it from a JSON status endpoint; see `update-indicator.js`.
 - mode or theme: an icon action with `data-wb-mode-cycle`. Localize its label with `data-wb-mode-label-light|dark|auto`.
 - language: `wb-language-switcher`; user or guest auth: `wb-user-menu` / `wb-auth-entry`. These compound utilities keep their own trigger contracts.
+- preset/accent controls: `wb-theme-switcher`; its canonical trigger shows the palette icon plus a chevron so the menu affordance is consistent across products.
 
 All utility text (labels, notification copy, "see all", palette strings) is host-authored markup, so localization stays with the host.
 

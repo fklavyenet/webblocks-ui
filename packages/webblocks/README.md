@@ -19,6 +19,18 @@ WebBlocks stays HTML-first: use standard markup, shipped classes, and opt-in JS 
 
 Production CDN, production static usage, and local development use the same non-minified dist files:
 
+### Pinned CDN
+
+Replace `<VERSION>` with a released tag such as `2.24.0`:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-icons.css">
+<script src="https://cdn.jsdelivr.net/gh/fklavyenet/webblocks-ui@v<VERSION>/packages/webblocks/dist/webblocks-ui.js" defer></script>
+```
+
+### Copied package files
+
 ```html
 <link rel="stylesheet" href="dist/webblocks-ui.css">
 <link rel="stylesheet" href="dist/webblocks-icons.css">
@@ -94,6 +106,7 @@ Theme buttons use shipped data attributes such as `data-wb-mode-set`, `data-wb-a
 - `wb-gallery` is the canonical inline media pattern; viewer behavior stays inside one shared `wb-modal`
 - `wb-rich-text` is the canonical primitive for sanitized editorial body copy; keep headings, media, tables, buttons, and page layout outside it
 - `wb-cookie-consent` is the reusable public-site consent pattern; entry UI can be a bottom banner or floating card, and preferences stay inside one shared `wb-modal`
+- `wb-theme-switcher` provides the canonical palette-icon + chevron preset/accent trigger without replacing the existing dropdown runtime
 - `wb-language-switcher` provides icon, code, and icon-code topbar variants without replacing the existing dropdown runtime
 - `wb-auth-entry` provides icon, label, and icon-label guest login entry variants; the host owns auth state and the login URL
 - `wb-user-menu` provides full, compact, avatar, and responsive topbar variants while the host owns identity, authorization, CSRF, and POST logout behavior

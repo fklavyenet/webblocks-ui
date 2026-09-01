@@ -50,6 +50,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 
 ## Custom CSS/JS
 
+- [ ] Preset/accent dropdowns use the shipped `wb-theme-switcher` palette-icon + chevron trigger.
 - [ ] Custom CSS/JS was added only after shipped composition proved insufficient.
 - [ ] Any custom CSS/JS has a narrow role and does not create a parallel UI layer.
 - [ ] Navigation groups use `data-wb-nav-group` on the container and do not duplicate the shipped toggle behavior.
