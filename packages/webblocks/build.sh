@@ -270,6 +270,7 @@ cat \
   "$ROOT/src/css/primitives/section-heading.css" \
   "$ROOT/src/css/primitives/form.css" \
   "$ROOT/src/css/primitives/table.css" \
+  "$ROOT/src/css/primitives/chart.css" \
   "$ROOT/src/css/primitives/media.css" \
   "$ROOT/src/css/primitives/overlay.css" \
   "$ROOT/src/css/primitives/modal.css" \
@@ -333,6 +334,7 @@ cat \
   "$ROOT/src/js/gallery.js" \
   "$ROOT/src/js/slider.js" \
   "$ROOT/src/js/tabs.js" \
+  "$ROOT/src/js/chart.js" \
   "$ROOT/src/js/accordion.js" \
   "$ROOT/src/js/sidebar.js" \
   "$ROOT/src/js/section-nav.js" \

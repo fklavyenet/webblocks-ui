@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.25.2
+Version: v2.26.0
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -130,3 +130,12 @@ Before finishing downstream UI work, verify:
 - feedback uses `wb-toast` or `wb-alert` according to persistence and severity
 - custom CSS/JS is narrow and justified
 - no forbidden vocabulary or framework UI layer was introduced
+
+## Charts
+
+- Use `.wb-chart[data-wb-chart="line"]` or `data-wb-chart="bar"` with a semantic source table.
+- UI owns SVG rendering, scales, readouts, keyboard behavior and container resizing.
+- Hosts own data, localized labels, authorization, aggregation and any `wb-modal` containing the value table.
+- An empty `data-wb-chart-value` means missing; zero means measured zero. Never infer or fill missing records in UI.
+- Keep tables accessible, use `WBChart.update` after host changes, and `WBChart.destroy` before unmounting.
+- Do not copy the renderer into a downstream app or introduce a second chart library.

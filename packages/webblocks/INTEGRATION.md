@@ -2569,3 +2569,106 @@ Flexbox, field grids, and container queries; no measurement JavaScript.
 Hosts retain field labels, values, URLs, and active-filter detection. Render
 Clear only when filters are active. Do not add empty labels, spacer elements,
 manual action offsets, or downstream alignment styles.
+
+---
+
+## Chart
+
+`wb-chart` is a dependency-free, table-driven SVG component. It supports line and
+grouped vertical bar charts with one to eight series and up to 500 category rows.
+It does not load libraries, fetch URLs, aggregate records or infer missing values.
+Source: `src/js/chart.js`, `src/css/primitives/chart.css`. Included by `build.sh`.
+
+```html
+<div class="wb-chart" data-wb-chart="line" aria-label="Monthly orders"
+     data-wb-chart-help="Left/right: categories. Up/down: series. Home/end: first/last. Escape: clear."
+     data-wb-chart-empty="No measurements yet."
+     data-wb-chart-error="The chart could not be drawn. Read the table below.">
+  <div class="wb-table-wrap">
+    <table class="wb-table">
+      <caption>Monthly orders</caption>
+      <thead><tr><th scope="col">Month</th><th scope="col">Orders</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">January</th><td data-wb-chart-value="12">12</td></tr>
+        <tr><th scope="row">February</th><td data-wb-chart-value="">Not measured</td></tr>
+        <tr><th scope="row">March</th><td data-wb-chart-value="0">0</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+```
+
+### Contract
+
+- Set `data-wb-chart="line"` or `"bar"` on `.wb-chart`.
+- The default source is the first descendant table. `data-wb-chart-table="id"`
+  instead resolves a document table by ID, useful for a host-owned `wb-modal`.
+  Keep that table reachable through a labelled button. UI never hides, moves or
+  rewrites the source table. Without JavaScript, inline source tables still work.
+- A single header row names the category column followed by the series columns.
+  Every body row must have exactly the same number of cells. Do not use spanning
+  cells or nested charts/tables as a data source.
+- `data-wb-chart-value` contains an unformatted decimal number, including optional
+  exponent notation; an empty attribute means missing. Without the attribute the
+  trimmed cell text must be a number or empty. Localized numbers, currency and
+  missing-data labels require the attribute. Cell text supplies the displayed
+  value in the readout; use server-side escaping for all host-provided content.
+- A missing cell leaves a gap in a line and no bar. Zero is a measured value.
+  Rows are equally spaced categories in their supplied order, not a continuous
+  time scale. Hosts must insert dates and choose any aggregation themselves.
+- Source numbers must be finite, with nonzero absolute values between `1e-100`
+  and `1e100`. Invalid sources emit an error and preserve the accessible table;
+  they are never silently coerced, truncated or sampled.
+- Provide an `aria-label` or table caption. Supply localized `data-wb-chart-help`,
+  `data-wb-chart-empty` and `data-wb-chart-error` text. Axis formatting follows
+  `lang`; source table text controls exact localized readout formatting.
+- The plot is one keyboard stop. Left/right skip missing cells; up/down change
+  series at the same category; Home/End select first/last measured values;
+  Escape clears selection. Mouse and touch select values in the same readout.
+  A semantic source table remains the comprehensive alternative for screen readers.
+- Legend labels and eight CSS color tokens identify series; lines also use dash
+  patterns. Color is not the only source of meaning: series names and exact values
+  appear in the readout and table. No animation is required to understand data.
+- Zero is always included in the scale. Negative values and all-zero series work.
+  Axis ticks use rounded steps; crowded category labels are thinned and shortened,
+  with the complete labels retained in the readout and source table.
+- The SVG uses a local `ResizeObserver` for container changes, including hidden
+  tabs becoming visible. Without ResizeObserver, call `WBChart.update` after a
+  layout change. No global observers, network requests or timers are installed.
+
+### API
+
+```js
+WBChart.init();                     // all charts; automatically called on DOM ready
+WBChart.init(container);            // chart root or subtree; safe to repeat
+WBChart.update(chartElement);       // reread a changed table/type; returns success
+WBChart.destroy(chartElement);      // disconnect observer, remove generated UI
+```
+
+Source elements may change through host code; call `update` afterward. Call
+`destroy` before removing a dynamically mounted chart. `init` can then remount it.
+The component dispatches bubbling `wb:chart:ready` (`type`, `rows`),
+`wb:chart:select` (`index`, `series`, `label`, `value`, for keyboard selection),
+`wb:chart:error` (`code`) and `wb:chart:destroy` events. Error codes are
+`missing-table`, `invalid-config`, `invalid-row` or `invalid-value`.
+
+### Styling and ownership
+
+Use existing `wb-card`, `wb-table`, `wb-modal` and layout components around charts.
+Do not add a second chart engine or copy rendering code into consumers. Customize
+`--wb-chart-height` and `--wb-chart-color-1` through `--wb-chart-color-8` in an
+external stylesheet when needed. Chart defaults follow UI accents, light/dark/auto
+mode, borders and typography. There are no inline scripts or CSS requirements.
+
+CMS report filters, previous-period comparisons, privacy, authorization, retention
+and the decision to show a table in a modal belong to CMS. They never enter WBChart.
+
+A working local example is available at `docs/chart.html`. Browser regression tests
+live at `packages/webblocks/tests/chart.test.cjs`. Tests use a developer-provided
+Playwright installation and Node's built-in test runner; neither is shipped as a
+browser dependency and neither is required to consume or build WebBlocks UI.
+
+Run the browser suite with `node --test packages/webblocks/tests/chart.test.cjs`
+from the repository root. Point `NODE_PATH` to your existing developer tooling if
+Playwright is not on Node's module path. `WB_CHART_BROWSER_CHANNEL=chrome` uses an
+installed Chrome rather than a Playwright-managed browser.

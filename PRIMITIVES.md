@@ -470,3 +470,12 @@ It is:
 - primitive-based for composition
 - utility-supported for small adjustments
 - enforced by shipped source, not by invented examples
+
+## Chart
+
+`wb-chart` is an interactive data-visualization component, not a generic surface.
+Use `wb-card` around it when a framed surface is needed. It enhances semantic
+tables into SVG line or grouped bar charts without external dependencies. Hosts
+keep data collection, authorization, aggregation and table/modal ownership.
+See [Chart examples](docs/chart.html) and the
+[Chart integration contract](packages/webblocks/INTEGRATION.md#chart).

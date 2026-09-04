@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" data-mode="auto" data-accent="royal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chart — WebBlocks UI</title>
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-content-shell wb-content-shell-wide">
+  <header class="wb-content-header">
+    <nav class="wb-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="index.html">Documentation</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Chart</span></li></ol></nav>
+    <h1 class="wb-content-title">Chart</h1>
+    <p class="wb-content-meta">Dependency-free SVG charts from accessible tables.</p>
+    <button class="wb-btn wb-btn-secondary" type="button" data-wb-mode-cycle>Change color mode</button>
+  </header>
+  <div class="wb-content-body wb-stack wb-gap-6">
+    <p>Use line charts for changes and grouped bars for comparisons. The tables below are the source of truth. A blank numeric attribute means missing data, while zero is measured. Focus a plot and use arrow keys to inspect values.</p>
+    <section class="wb-card">
+      <div class="wb-card-header"><h2 class="wb-card-title">Line chart: missing values and two series</h2></div>
+      <div class="wb-card-body">
+        <div class="wb-chart" data-wb-chart="line" aria-label="Monthly orders" data-wb-chart-help="Left/right: month. Up/down: series. Home/end: first/last. Escape: clear." data-wb-chart-empty="No measurements." data-wb-chart-error="Read the table; this chart could not be drawn.">
+          <div class="wb-table-wrap"><table class="wb-table wb-table-striped">
+            <caption>Monthly orders</caption>
+            <thead><tr><th scope="col">Month</th><th scope="col">Online</th><th scope="col">Store</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">January</th><td data-wb-chart-value="12">12</td><td data-wb-chart-value="9">9</td></tr>
+              <tr><th scope="row">February</th><td data-wb-chart-value="18">18</td><td data-wb-chart-value="14">14</td></tr>
+              <tr><th scope="row">March</th><td data-wb-chart-value="">Not measured</td><td data-wb-chart-value="11">11</td></tr>
+              <tr><th scope="row">April</th><td data-wb-chart-value="24">24</td><td data-wb-chart-value="16">16</td></tr>
+              <tr><th scope="row">May</th><td data-wb-chart-value="20">20</td><td data-wb-chart-value="0">0</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+    </section>
+    <section class="wb-card">
+      <div class="wb-card-header"><h2 class="wb-card-title">Grouped bars: positive and negative values</h2></div>
+      <div class="wb-card-body">
+        <div class="wb-chart" data-wb-chart="bar" lang="de" aria-label="Quarterly balance" data-wb-chart-help="Left/right: quarter. Up/down: series. Home/end: first/last. Escape: clear." data-wb-chart-empty="No measurements." data-wb-chart-error="Read the table; this chart could not be drawn.">
+          <div class="wb-table-wrap"><table class="wb-table wb-table-striped">
+            <caption>Quarterly balance</caption>
+            <thead><tr><th scope="col">Quarter</th><th scope="col">Product A</th><th scope="col">Product B</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Q1</th><td data-wb-chart-value="1200.5">1.200,50 €</td><td data-wb-chart-value="-450">−450,00 €</td></tr>
+              <tr><th scope="row">Q2</th><td data-wb-chart-value="-300">−300,00 €</td><td data-wb-chart-value="900">900,00 €</td></tr>
+              <tr><th scope="row">Q3</th><td data-wb-chart-value="0">0,00 €</td><td data-wb-chart-value="600">600,00 €</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+    </section>
+    <section class="wb-card"><div class="wb-card-body">
+      <h2>Integration</h2>
+      <p>Add <code>class="wb-chart" data-wb-chart="line"</code> around a table. Its first column holds category labels; remaining columns are numeric series. Use <code>data-wb-chart-value</code> for unformatted values when cells contain localized text.</p>
+      <p>For a table elsewhere on the page, set <code>data-wb-chart-table="table-id"</code>. The host can put it in a standard modal with a labelled trigger. Call <code>WBChart.update(element)</code> after changing the table and <code>WBChart.destroy(element)</code> before removing the component.</p>
+      <p><a href="../packages/webblocks/INTEGRATION.md#chart">Complete API and limits</a></p>
+    </div></section>
+  </div>
+</main>
+</body>
+</html>

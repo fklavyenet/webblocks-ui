@@ -6,6 +6,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.26.0] — 2026-09-04
+
+### Added
+- Add a dependency-free `wb-chart` component for table-driven SVG line and grouped bar charts, up to eight series and 500 categories.
+- Preserve gaps, zero and negative values; add keyboard, mouse and touch readouts, rounded axes, responsive layouts, theme tokens, lifecycle APIs and accessible source-table fallbacks.
+- Ship a local Chart example, integration contract and browser regression suite covering strict CSP, data validation, themes, resize, keyboard access and lifecycle.
+
 ## [2.25.2] — 2026-09-04
 
 ### Fixed

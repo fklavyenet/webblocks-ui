@@ -391,3 +391,10 @@ Flexbox, field grids, and container queries; no measurement JavaScript.
 Hosts retain field labels, values, URLs, and active-filter detection. Render
 Clear only when filters are active. Do not add empty labels, spacer elements,
 manual action offsets, or downstream alignment styles.
+
+## Chart integration
+
+`wb-chart` provides dependency-free, table-driven SVG line and grouped bar charts.
+Use the [package Chart contract](packages/webblocks/INTEGRATION.md#chart) for
+source-table anatomy, limits, keyboard behavior, lifecycle and ownership rules.
+Live local examples: [Chart](docs/chart.html).
