@@ -6,6 +6,12 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.25.0] — 2026-09-04
+
+### Added
+- Add the opt-in labelled filter layout: `wb-filter-bar--fields`, `wb-filter-bar-fields`, `wb-filter-bar-search`, and `wb-filter-bar-actions`. Shared grid rows align controls and actions even with multiline labels, while separate row and label gaps keep wrapped filters readable.
+- Size selects within their grid tracks so long option text cannot force nested wrapping. Search occupies a full row in compact containers and two columns in wide containers; unlabelled filter bars retain their existing behavior.
+
 ## [2.24.4] — 2026-09-01
 
 ### Added

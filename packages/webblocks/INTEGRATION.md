@@ -2522,3 +2522,45 @@ Use these standard files for downstream production/CDN integrations. The canonic
 If this guide conflicts with the source files, trust the source files and update this guide.
 - utility helpers are override-first; in normal usage they should win over component or base defaults
 - prefer logical alignment utilities (`wb-text-start`, `wb-text-end`) in new markup
+
+
+### Labelled filter forms
+
+Use `wb-filter-bar wb-filter-bar--fields` with one `wb-filter-bar-fields` grid.
+Put every labelled control in a direct `wb-field` child; do not combine fields
+with `wb-stack` or gap utilities. The field gap is `--wb-s1`; the gap between
+wrapped field rows is `--wb-s5`. Long labels share a label row, and actions
+occupy the control row rather than centering across label plus control.
+Search uses `wb-filter-bar-search`: full row below 70rem of container width,
+two columns above it. Other fields and actions use automatically fitting
+columns with a 10rem minimum, bounded by the available width. This supports
+arbitrary field counts, missing search, optional actions, and narrow hosts.
+Native selects stay within their column regardless of option text length.
+This layout uses CSS Grid subgrid and container queries.
+
+```html
+<form class="wb-filter-bar wb-filter-bar--fields" method="get">
+  <div class="wb-filter-bar-fields">
+    <div class="wb-field wb-filter-bar-search">
+      <label class="wb-label" for="filter-search">Search</label>
+      <input class="wb-input" id="filter-search" name="search" type="search">
+    </div>
+    <div class="wb-field">
+      <label class="wb-label" for="filter-status">Status</label>
+      <select class="wb-filter-select" id="filter-status" name="status">
+        <option value="">All statuses</option>
+      </select>
+    </div>
+    <div class="wb-filter-bar-actions">
+      <div class="wb-action-group">
+        <button class="wb-btn wb-btn-primary" type="submit">Filter</button>
+        <a class="wb-btn wb-btn-secondary" href="?">Clear</a>
+      </div>
+    </div>
+  </div>
+</form>
+```
+
+Hosts retain field labels, values, URLs, and active-filter detection. Render
+Clear only when filters are active. Do not add empty labels, spacer elements,
+manual action offsets, or downstream alignment styles.
