@@ -2605,6 +2605,7 @@ Source: `src/js/chart.js`, `src/css/primitives/chart.css`. Included by `build.sh
   instead resolves a document table by ID, useful for a host-owned `wb-modal`.
   Keep that table reachable through a labelled button. UI never hides, moves or
   rewrites the source table. Without JavaScript, inline source tables still work.
+- A category header may set `data-wb-chart-label` to a shorter visual label. The cell text remains the full accessible table and event label; the shorter value is used only on the axis, mark title and visible readout.
 - A single header row names the category column followed by the series columns.
   Every body row must have exactly the same number of cells. Do not use spanning
   cells or nested charts/tables as a data source.
@@ -2626,7 +2627,7 @@ Source: `src/js/chart.js`, `src/css/primitives/chart.css`. Included by `build.sh
   series at the same category; Home/End select first/last measured values;
   Escape clears selection. Mouse and touch select values in the same readout.
   A semantic source table remains the comprehensive alternative for screen readers.
-- Legend labels and eight CSS color tokens identify series; lines also use dash
+- A one-series chart omits its redundant legend and series prefix in the readout. Multi-series legend labels and eight CSS color tokens identify series; lines also use dash
   patterns. Color is not the only source of meaning: series names and exact values
   appear in the readout and table. No animation is required to understand data.
 - Zero is always included in the scale. Negative values and all-zero series work.

@@ -6,6 +6,12 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.26.1] — 2026-09-04
+
+### Changed
+- Let category cells provide concise visual labels with `data-wb-chart-label` while preserving full table labels for accessibility and events.
+- Remove redundant legends and series-name readout prefixes from single-series charts.
+
 ## [2.26.0] — 2026-09-04
 
 ### Added

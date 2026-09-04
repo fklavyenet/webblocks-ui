@@ -102,6 +102,16 @@ test('invalid data fails visibly without changing table and recovers after updat
   await page.locator('td').first().evaluate(el => { el.dataset.wbChartValue = '5'; el.textContent = '5'; window.WBChart.update(document.getElementById('chart')); });
   assert.equal(await page.locator('.is-ready').count(), 1);
 });
+test('short visual labels preserve full accessible table and event labels', async t => {
+  const page = await pageFor(t, '<div class=\"wb-chart\" data-wb-chart=\"line\" aria-label=\"Example\" data-wb-chart-help=\"Use arrows\"><table><caption>Example</caption><thead><tr><th>Date</th><th>Views</th></tr></thead><tbody><tr><th scope=\"row\" data-wb-chart-label=\"4 Sep\">2026-09-04</th><td data-wb-chart-value=\"12\">12</td></tr></tbody></table></div>');
+  assert.equal(await page.locator('.wb-chart-legend').isHidden(), true);
+  assert.equal(await page.locator('.wb-chart-label').filter({ hasText: '4 Sep' }).count(), 1);
+  assert.equal(await page.locator('tbody th').textContent(), '2026-09-04');
+  await page.locator('.wb-chart-viewport').focus();
+  await page.keyboard.press('Home');
+  assert.equal(await page.locator('.wb-chart-readout').textContent(), '4 Sep: 12');
+});
+
 test('localization and hostile labels are rendered as text, not markup', async t => {
   const page = await pageFor(t, chart([[1200.5, 1]], 'line', 'lang="de"'));
   await page.evaluate(() => {
