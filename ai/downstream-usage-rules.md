@@ -72,8 +72,8 @@ Admin filter bar actions:
 * use canonical English labels `Filter` and `Clear`
 * render `Clear` only when filters are active
 * use normal `wb-btn` sizing for filter action buttons; do not use `wb-btn-sm`
-* for labelled filters, use `wb-filter-bar wb-filter-bar--fields` and a single `wb-filter-bar-fields` grid; put each control in `wb-field`, search in `wb-field wb-filter-bar-search`, and an action group in `wb-filter-bar-actions`
-* do not mix `wb-stack` or gap utilities into labelled filter fields; the component owns label spacing, row separation, wrapping, and the full-width, end-aligned action row
+* for labelled filters, use `wb-filter-bar wb-filter-bar--fields` and a single `wb-filter-bar-fields` flow; put each control in `wb-field`, search in `wb-field wb-filter-bar-search`, and an action group in `wb-filter-bar-actions`
+* do not mix `wb-stack` or gap utilities into labelled filter fields; the component owns label spacing, row separation, wrapping, and intrinsic-width, end-aligned actions that stay inline when space permits
 * do not use `Apply`, `Apply Filters`, `Reset`, or `Clear filters` on new WebBlocks admin filter surfaces
 * do not add project-specific filter alignment CSS
 * keep row actions and compact toolbar icon buttons under their separate action standards

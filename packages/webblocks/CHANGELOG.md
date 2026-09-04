@@ -6,6 +6,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.25.2] — 2026-09-04
+
+### Fixed
+- Let labelled filter actions use their intrinsic width in the same wrapping flow as fields: a single Apply button and Apply + Clear Filters stay inline when they fit, and the complete group moves down only when necessary.
+- Align controls and buttons with a shared 2.75rem control size, keeping compact label spacing and distinct wrapped rows without subgrid or JavaScript measurements.
+- Expand browser regression coverage to 54 layouts, including one-button states, real Clear Filters text, longer translated actions, and explicit available-space assertions.
+
 ## [2.25.1] — 2026-09-04
 
 ### Fixed

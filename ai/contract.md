@@ -47,7 +47,7 @@ Admin index and list screens must use the canonical table/action structure:
 
 Row actions should be compact, icon-first where appropriate, and accessible through `aria-label` and preferably `title`.
 
-Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields` grid. Use direct `wb-field` children, optional `wb-filter-bar-search`, and `wb-filter-bar-actions > .wb-action-group`. Do not combine these fields with `wb-stack` or gap utilities; UI owns field alignment, row separation, and the full-width action row.
+Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields` flow. Use direct `wb-field` children, optional `wb-filter-bar-search`, and `wb-filter-bar-actions > .wb-action-group`. Do not combine these fields with `wb-stack` or gap utilities; UI owns field alignment, row separation, and intrinsic-width actions that wrap together only when needed.
 
 ## Overlays And Feedback
 
