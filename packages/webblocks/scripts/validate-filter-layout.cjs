@@ -17,14 +17,14 @@ const assert = require('node:assert/strict');
         const search = variant === 'no-search' ? '' : field('Search', '<input class="wb-input">', true);
         const fields = ['Site', 'Status', 'Sort by', 'Reihenfolge der Ergebnisse'].map(label => field(label, '<select class="wb-filter-select"><option>A very long site title that must not widen the column</option></select>')).join('');
         const date = variant === 'date' ? field('Created after', '<input class="wb-input" type="date">') : '';
-        const actions = variant === 'no-actions' ? '' : '<div class="wb-filter-bar-actions"><div class="wb-action-group"><button class="wb-btn wb-btn-primary">Apply</button><a class="wb-btn wb-btn-secondary">Reset</a></div></div>';
+        const actions = variant === 'no-actions' ? '' : '<div class="wb-filter-bar-actions"><div class="wb-action-group"><button class="wb-btn wb-btn-primary">Apply</button><a class="wb-btn wb-btn-secondary">Clear Filters</a></div></div>';
         await page.setContent(`<style>${css}</style><form class="wb-filter-bar wb-filter-bar--fields"><div class="wb-filter-bar-fields">${search}${fields}${date}${actions}</div></form>`);
         const data = await page.evaluate(() => {
           const rect = element => { const r = element.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, center: r.top + r.height / 2, right: r.right }; };
           return {
             overflow: document.documentElement.scrollWidth > innerWidth,
             fields: [...document.querySelectorAll('.wb-field')].map(e => ({ field: rect(e), label: rect(e.children[0]), control: rect(e.children[1]) })),
-            actions: document.querySelector('.wb-filter-bar-actions') ? { field: rect(document.querySelector('.wb-filter-bar-actions')), control: rect(document.querySelector('.wb-action-group')) } : null,
+            actions: document.querySelector('.wb-filter-bar-actions') ? { field: rect(document.querySelector('.wb-filter-bar-actions')), control: rect(document.querySelector('.wb-action-group')), buttons: [...document.querySelectorAll('.wb-action-group > *')].map(rect) } : null,
             right: rect(document.querySelector('.wb-filter-bar-fields')).right,
           };
         });
@@ -38,6 +38,7 @@ const assert = require('node:assert/strict');
           }
           if (data.actions && Math.abs(a.field.top - data.actions.field.top) < 1) assert.ok(Math.abs(a.control.center - data.actions.control.center) < 1, 'actions center on controls');
         }
+        if (data.actions) assert.ok(Math.abs(data.actions.buttons[0].center - data.actions.buttons[1].center) < 1, `${width}/${variant}: Apply and Clear Filters must share a row`);
         if (data.actions) assert.ok(Math.abs(data.right - data.actions.control.right) < 1, 'actions stay at inline end');
         count++;
       }

@@ -2530,7 +2530,8 @@ Use `wb-filter-bar wb-filter-bar--fields` with one `wb-filter-bar-fields` grid.
 Put every labelled control in a direct `wb-field` child; do not combine fields
 with `wb-stack` or gap utilities. The field gap is `--wb-s1`; the gap between
 wrapped field rows is `--wb-s5`. Long labels share a label row, and actions
-occupy the control row rather than centering across label plus control.
+occupy a separate full-width, end-aligned row. This keeps longer action labels
+together without enlarging the field control rows.
 Search uses `wb-filter-bar-search`: full row below 70rem of container width,
 two columns above it. Other fields and actions use automatically fitting
 columns with a 10rem minimum, bounded by the available width. This supports

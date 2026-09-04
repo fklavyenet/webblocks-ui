@@ -6,6 +6,12 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.25.1] — 2026-09-04
+
+### Fixed
+- Give labelled filter actions a full-width, end-aligned row instead of restricting them to one filter column. Apply and Clear Filters stay together at ordinary mobile and desktop widths, and action wrapping cannot inflate label-to-control spacing.
+- Reproduce and guard the regression with the actual Clear Filters label and an explicit same-row assertion for both buttons.
+
 ## [2.25.0] — 2026-09-04
 
 ### Added

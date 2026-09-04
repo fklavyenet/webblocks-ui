@@ -255,8 +255,7 @@
   min-width: 0;
 }
 
-.wb-filter-bar-fields > .wb-field,
-.wb-filter-bar-actions {
+.wb-filter-bar-fields > .wb-field {
   display: grid;
   grid-row: span 2;
   grid-template-rows: subgrid;
@@ -281,12 +280,12 @@
 }
 
 .wb-filter-bar-actions {
-  grid-column: -2 / -1;
+  grid-column: 1 / -1;
+  min-width: 0;
 }
 
 .wb-filter-bar-actions > .wb-action-group {
-  grid-row: 2;
-  align-self: center;
+
   justify-content: flex-end;
   flex-wrap: wrap;
 }
