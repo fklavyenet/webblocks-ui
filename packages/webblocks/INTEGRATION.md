@@ -2685,12 +2685,8 @@ mode, borders and typography. There are no inline scripts or CSS requirements.
 CMS report filters, previous-period comparisons, privacy, authorization, retention
 and the decision to show a table in a modal belong to CMS. They never enter WBChart.
 
-A working local example is available at `docs/chart.html`. Browser regression tests
-live at `packages/webblocks/tests/chart.test.cjs`. Tests use a developer-provided
-Playwright installation and Node's built-in test runner; neither is shipped as a
-browser dependency and neither is required to consume or build WebBlocks UI.
-
-Run the browser suite with `node --test packages/webblocks/tests/chart.test.cjs`
-from the repository root. Point `NODE_PATH` to your existing developer tooling if
-Playwright is not on Node's module path. `WB_CHART_BROWSER_CHANNEL=chrome` uses an
-installed Chrome rather than a Playwright-managed browser.
+A working local example is available at `docs/chart.html`. Run
+`packages/webblocks/scripts/validate-chart.sh` after building dist to verify the
+source/dist API and the no-module, no-network dependency boundary. Interactive
+browser review uses that self-contained example; canonical validation must not
+require Node, npm, Playwright, or another downloaded test runtime.

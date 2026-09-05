@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.26.4] — 2026-09-05
+
+### Changed
+- Remove Node and Playwright validation files, replace Chart and table contract checks with dependency-free shell validators, and make the no-package-runtime rule explicit. The shipped Chart runtime remains framework-free and has no module, package, or network dependency.
+
 ## [2.26.3] — 2026-09-05
 
 ### Added

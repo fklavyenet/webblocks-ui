@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.26.3
+Version: v2.26.4
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -20,6 +20,8 @@ When a question requires deeper source inspection, use this priority order:
 `INTEGRATION.md` is the implementation-accurate integration reference. This contract is the downstream AI summary of the rules; it does not replace shipped source or integration docs.
 
 ## Required Pattern-First Behavior
+
+- Keep canonical build and validation tooling dependency-free. Do not introduce Node, npm, Playwright, or another package runtime without explicit project-owner approval.
 
 - Start from the shipped pattern that matches the screen before composing primitives.
 - Use `wb-dashboard-shell` for admin and dashboard screens.

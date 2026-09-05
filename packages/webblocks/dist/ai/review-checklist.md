@@ -60,6 +60,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 
 ## Tests
 
+- [ ] Canonical build and validation commands do not require Node, npm, Playwright, or another downloaded runtime.
 - [ ] Existing downstream tests or smoke checks still pass.
 - [ ] UI changes were reviewed for shell, table, overlay, feedback, and responsive behavior.
 - [ ] If no tests exist, the remaining risk is stated clearly in the final response.

@@ -204,6 +204,10 @@ Required structure:
 * CSS → visuals
 * JS → behavior
 
+Canonical build and validation tooling must remain dependency-free: shell and
+standard system tools only. Do not add Node, npm, Playwright, or another package
+runtime without explicit project-owner approval.
+
 For semantic key/value or key/value/context tables, keep `table`, `th`, and `td`
 markup and apply `wb-table-key` to each key `th`. The class keeps the key column
 at its intrinsic content width instead of imposing a fixed percentage. Keys are

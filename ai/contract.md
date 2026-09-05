@@ -21,6 +21,8 @@ When a question requires deeper source inspection, use this priority order:
 
 ## Required Pattern-First Behavior
 
+- Keep canonical build and validation tooling dependency-free. Do not introduce Node, npm, Playwright, or another package runtime without explicit project-owner approval.
+
 - Start from the shipped pattern that matches the screen before composing primitives.
 - Use `wb-dashboard-shell` for admin and dashboard screens.
 - Use `wb-auth-shell` for authentication screens.
