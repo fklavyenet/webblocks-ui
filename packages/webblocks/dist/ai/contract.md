@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.26.4
+Version: v2.27.0
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -88,6 +88,13 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 - Use `wb-marker-list` on the `ul` or `ol` itself for hand-authored bullet or numbered prose lists outside a rich-text wrapper. Nested lists inherit it; do not repeat it on a child list.
 - `wb-list` is the framed list-group surface built from `wb-list-item` rows. It is not a marker list and never restores bullets.
 - Do not write project-local `list-style` rules to bring markers back. That is exactly what `wb-marker-list` exists for.
+
+## Native Form Controls
+
+- Use `wb-file` on `input[type="file"]`, `wb-color` on `input[type="color"]`, and `wb-range` on `input[type="range"]`.
+- These are native controls, not composite widgets. Preserve the matching HTML input type and browser behavior.
+- Use their `-sm`, `-lg`, and `-error` variants where needed; keep labels, hints, and errors in the canonical `wb-field` contract.
+- Hosts own accepted file types, size limits, values, validation, upload handling, and any live range-value output. Do not add project-local replacement styling when these primitives fit.
 
 ## Navigation Groups
 

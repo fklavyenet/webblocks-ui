@@ -322,4 +322,5 @@ packages/webblocks/
 - `scripts/update-icons.js` refreshes the curated icon source from Lucide and is maintainer-only
 - `scripts/validate-icons.sh` verifies shipped manifest and docs icon classes resolve to generated selectors in `dist/webblocks-icons.css`
 - `scripts/validate-toast.sh` verifies the toast source and integration guide keep the documented transient/persistent behavior contract
+- `scripts/validate-native-inputs.sh` verifies the native file, color, and range contracts match source, dist, and integration documentation
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing

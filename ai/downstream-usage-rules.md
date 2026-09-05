@@ -86,6 +86,8 @@ Admin filter bar actions:
 
 Use shipped field, input, select, textarea, checkbox/radio, button, card, and layout primitives. Put page-level submit actions in the owning form or card footer, not in the page header.
 
+Use `wb-file`, `wb-color`, and `wb-range` for native file, color, and range inputs. Preserve the corresponding HTML `type`; do not replace these controls with project-local wrappers or JavaScript merely to restyle them.
+
 ## Overlays
 
 Use `wb-modal` for modal confirmation flows. Do not use browser `confirm()`.

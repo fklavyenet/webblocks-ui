@@ -28,6 +28,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 ## Forms
 
 - [ ] Forms use shipped field and input primitives.
+- [ ] Native file, color, and range inputs use `wb-file`, `wb-color`, and `wb-range` with the matching HTML input type.
 - [ ] Submit actions stay in the owning form or card footer.
 - [ ] Validation feedback appears near the field, form, card, or section it belongs to.
 

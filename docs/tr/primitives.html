@@ -187,6 +187,23 @@
                         <div class="wb-field-hint">Sayfaya özel parola JS'i eklemek yerine pakette gelen input-group anahtarını kullan.</div>
                       </div>
                     </div>
+                    <div class="wb-form-row">
+                      <div class="wb-field">
+                        <label class="wb-label" for="pluginPackage">Plugin ZIP</label>
+                        <input class="wb-file" id="pluginPackage" type="file" accept=".zip,application/zip">
+                        <div class="wb-field-meta"><div class="wb-field-hint">Yerel dosya adı ve seçici davranışı korunur.</div></div>
+                      </div>
+                      <div class="wb-field">
+                        <label class="wb-label" for="accentColor">Vurgu rengi</label>
+                        <input class="wb-color" id="accentColor" type="color" value="#0795bd">
+                        <div class="wb-field-meta"><div class="wb-field-hint">Tarayıcının renk seçicisi kullanılmaya devam eder.</div></div>
+                      </div>
+                    </div>
+                    <div class="wb-field">
+                      <label class="wb-label" for="imageQuality">Görsel kalitesi</label>
+                      <input class="wb-range" id="imageQuality" type="range" min="0" max="100" value="80">
+                      <div class="wb-field-meta"><div class="wb-field-hint">Canlı değer gösterimini ve biçimini host yönetir.</div></div>
+                    </div>
                     <div class="wb-cluster">
                       <label class="wb-check"><input type="checkbox" checked> Analitiği etkinleştir</label>
                       <label class="wb-radio"><input type="radio" name="visibility" checked> Özel</label>

@@ -88,6 +88,9 @@ Examples:
 - `wb-btn`
 - `wb-media`
 - `wb-input`
+- `wb-file`
+- `wb-color`
+- `wb-range`
 - `wb-table`
 - `wb-modal`
 - `wb-dropdown`

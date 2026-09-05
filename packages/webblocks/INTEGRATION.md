@@ -107,7 +107,7 @@ Use these nouns first in examples, reviews, and generated markup:
 - background media: opt-in `wb-background-media` with host-owned image and position custom properties plus allowlisted overlay modifiers
 - global surfaces: `wb-card`, `wb-stat`, `wb-toolbar`, `wb-filter-bar`, `wb-callout`, `wb-empty`, `wb-list`
 - shell-local surfaces: `wb-page-header`, `wb-settings-section`
-- controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-table`, `wb-media`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
+- controls: `wb-btn`, `wb-input`, `wb-select`, `wb-textarea`, `wb-file`, `wb-color`, `wb-range`, `wb-table`, `wb-media`, `wb-dropdown`, `wb-tabs`, `wb-modal`, `wb-drawer`, `wb-popover`, `wb-toast`, `wb-accordion`, `wb-collapse`
 - navigation: `wb-navbar`, `wb-sidebar`, `wb-section-nav`, `wb-nav-group`, `wb-menu`, `wb-breadcrumb`, `wb-pagination`
 - editorial body copy: `wb-rich-text`
 
@@ -583,9 +583,9 @@ In stacked single-column forms, an empty `wb-field-meta` is usually unnecessary.
 Shipped form primitives:
 
 - `wb-field`, `wb-label`, `wb-label-hint`, `wb-field-meta`, `wb-field-hint`, `wb-field-error`
-- `wb-input`, `wb-select`, `wb-textarea`
-- `wb-input-sm`, `wb-input-lg`, `wb-select-sm`, `wb-select-lg`
-- `wb-input-error`, `wb-select-error`, `wb-textarea-error`
+- `wb-input`, `wb-select`, `wb-textarea`, `wb-file`, `wb-color`, `wb-range`
+- `wb-input-sm`, `wb-input-lg`, `wb-select-sm`, `wb-select-lg`, `wb-file-sm`, `wb-file-lg`, `wb-color-sm`, `wb-color-lg`, `wb-range-sm`, `wb-range-lg`
+- `wb-input-error`, `wb-select-error`, `wb-textarea-error`, `wb-file-error`, `wb-color-error`, `wb-range-error`
 - `wb-form-row`, `wb-form-group`
 - `wb-check`, `wb-radio`, `wb-switch`
 - `wb-input-wrap`, `wb-input-icon`, `wb-input-suffix`
@@ -665,11 +665,31 @@ Examples:
   <span>Enable API access</span>
 </label>
 
+<div class="wb-field">
+  <label class="wb-label" for="plugin-package">Plugin ZIP</label>
+  <input class="wb-file" id="plugin-package" name="plugin" type="file" accept=".zip,application/zip">
+  <div class="wb-field-meta">
+    <div class="wb-field-hint">Choose a ZIP package up to 20 MB.</div>
+  </div>
+</div>
+
+<div class="wb-field">
+  <label class="wb-label" for="accent-color">Accent color</label>
+  <input class="wb-color" id="accent-color" name="accent" type="color" value="#0795bd">
+</div>
+
+<div class="wb-field">
+  <label class="wb-label" for="image-quality">Image quality</label>
+  <input class="wb-range" id="image-quality" name="quality" type="range" min="0" max="100" value="80">
+</div>
+
 <div class="wb-input-wrap">
   <span class="wb-input-icon"><i class="wb-icon wb-icon-search" aria-hidden="true"></i></span>
   <input class="wb-input" type="search" placeholder="Search">
 </div>
 ```
+
+`wb-file`, `wb-color`, and `wb-range` are native controls, not composite widgets. Keep the matching `type` on the input so the browser retains its picker, filename, keyboard, and form behavior. WebBlocks owns the frame, native sub-control styling, sizes, focus, disabled, and error appearance; hosts own labels, accepted file types, limits, values, validation, upload handling, and any live range-value output.
 
 ### Tables, Filters, Toolbars, Actions
 

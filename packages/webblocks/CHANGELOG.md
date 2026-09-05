@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.27.0] — 2026-09-05
+
+### Added
+- Add native `wb-file`, `wb-color`, and `wb-range` form primitives with small and large sizes plus focus, disabled, and error states. The controls retain browser file selection, color picker, range semantics, and keyboard behavior without adding JavaScript.
+
 ## [2.26.4] — 2026-09-05
 
 ### Changed
