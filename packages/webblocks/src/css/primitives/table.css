@@ -108,6 +108,12 @@
   padding: var(--wb-s2) var(--wb-s3);
 }
 
+/* ── Intrinsic key column ─────────────────────────────────── */
+.wb-table th.wb-table-key {
+  width: 1%;
+  white-space: nowrap;
+}
+
 /* ── Sortable header ──────────────────────────────────────── */
 .wb-table th[data-wb-sort] {
   cursor: pointer;

@@ -77,6 +77,27 @@ Use [`../../PATTERNS.md`](../../PATTERNS.md) to choose a canonical auth, dashboa
 - build order is strict: foundation -> base -> UI primitive source files -> layouts -> patterns -> utilities
 - if you modify source CSS, JS, or icons in this package, rebuild `dist/` with `./build.sh`
 
+### Intrinsic table key columns
+
+For semantic tables whose row headers act as compact keys, add `wb-table-key` to
+each key `th`. The key column uses its intrinsic content width instead of a fixed
+percentage. Keys remain unbroken; if a key and its values cannot fit, the owning
+`wb-table-wrap` provides horizontal scrolling rather than truncating either cell.
+
+```html
+<div class="wb-table-wrap">
+  <table class="wb-table">
+    <tbody>
+      <tr><th scope="row" class="wb-table-key">Version</th><td>2.26.3</td></tr>
+      <tr><th scope="row" class="wb-table-key">Release channel</th><td>Stable</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+Use `table`, `th`, and `td` when the content is tabular. Do not change tabular
+content to `dl`, `dt`, and `dd` solely to obtain a particular visual layout.
+
 ### Canonical Vocabulary
 
 Use these nouns first in examples, reviews, and generated markup:

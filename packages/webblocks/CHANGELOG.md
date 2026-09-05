@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.26.3] — 2026-09-05
+
+### Added
+- Add `wb-table-key` for intrinsic-width row-header columns in semantic key/value and key/value/context tables. Long keys remain intact, while `wb-table-wrap` owns overflow instead of fixed percentages or truncation.
+
 ## [2.26.2] — 2026-09-04
 
 ### Changed

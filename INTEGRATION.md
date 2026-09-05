@@ -204,6 +204,13 @@ Required structure:
 * CSS → visuals
 * JS → behavior
 
+For semantic key/value or key/value/context tables, keep `table`, `th`, and `td`
+markup and apply `wb-table-key` to each key `th`. The class keeps the key column
+at its intrinsic content width instead of imposing a fixed percentage. Keys are
+not truncated; `wb-table-wrap` owns horizontal overflow when the complete table
+cannot fit. Do not replace a semantic table with `dl`, `dt`, and `dd` solely to
+obtain this visual layout.
+
 ---
 
 # 11. Feedback Standard

@@ -23,6 +23,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Action columns have an explicit `Actions` header.
 - [ ] Row actions use `td.wb-table-actions` and `.wb-action-group`.
 - [ ] Pagination lives in `.wb-card-footer`.
+- [ ] Compact key columns use `th.wb-table-key` without replacing semantic table markup.
 
 ## Forms
 

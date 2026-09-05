@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.26.2
+Version: v2.26.3
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -46,6 +46,11 @@ Admin index and list screens must use the canonical table/action structure:
 - pagination or result summaries in `.wb-card-footer`
 
 Row actions should be compact, icon-first where appropriate, and accessible through `aria-label` and preferably `title`.
+
+For tabular key/value or key/value/context rows, apply `wb-table-key` to the key
+`th`. It sizes that column from its intrinsic label width, keeps the key intact,
+and lets `wb-table-wrap` handle overflow. Do not replace semantic table markup
+with a description list merely to reproduce this column layout.
 
 Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields` flow. Use direct `wb-field` children, optional `wb-filter-bar-search`, and `wb-filter-bar-actions > .wb-action-group`. Do not combine these fields with `wb-stack` or gap utilities; UI owns field alignment, row separation, and intrinsic-width actions that wrap together only when needed.
 

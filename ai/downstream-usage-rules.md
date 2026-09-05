@@ -67,6 +67,10 @@ Required pieces:
 * `.wb-action-group`
 * pagination inside `.wb-card-footer`
 
+For a compact key column in a semantic table, add `wb-table-key` to each key
+`th`. It is content-sized rather than percentage-sized. Keep genuine tabular
+data in `table` markup; do not switch to `dl` only for visual column sizing.
+
 Admin filter bar actions:
 
 * use canonical English labels `Filter` and `Clear`
