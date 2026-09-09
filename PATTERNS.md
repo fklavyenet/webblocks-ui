@@ -339,6 +339,7 @@ Navbar mobile drawer (shipped responsive contract):
 - the mobile menu is `wb-navbar-drawer`: a full-width link column rendered directly after the `wb-navbar` element, hidden until `.is-open`
 - wire the toggle with the generic collapse runtime — `<button class="wb-navbar-toggle" data-wb-collapse="site-drawer" aria-expanded="false" aria-controls="site-drawer">` toggling `<div class="wb-navbar-drawer" id="site-drawer">`
 - drawer rows are normal `wb-navbar-link` elements (full-width); group labels are host-authored text rows
+- when the navbar is sticky or fixed, its open drawer stays attached below it and scrolls internally when taller than the remaining mobile viewport; `wb-navbar--static` keeps the drawer in normal document flow
 - above 768px the drawer is force-hidden by the stylesheet, so a stale open state cannot leak into desktop
 - prefer this shipped drawer over project-local mobile menus built from dropdown panels
 

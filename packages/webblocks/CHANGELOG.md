@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.27.1] — 2026-09-09
+
+### Fixed
+- Keep an open mobile `wb-navbar-drawer` attached below its sticky or fixed navbar while the page scrolls. Tall drawers now scroll within the remaining viewport, while `wb-navbar--static` drawers continue in normal document flow.
+
 ## [2.27.0] — 2026-09-05
 
 ### Added

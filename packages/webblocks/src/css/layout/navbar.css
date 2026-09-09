@@ -326,6 +326,18 @@
   .wb-navbar-toggle {
     display: flex;
   }
+
+  /* Keep an open drawer attached to the viewport-pinned navbar. The drawer is
+     a sibling by contract, so it needs its own positioning and scroll area. */
+  .wb-navbar:not(.wb-navbar--static) + .wb-navbar-drawer.is-open {
+    position: fixed;
+    inset-block-start: var(--wb-navbar-h, 56px);
+    inset-inline: 0;
+    z-index: calc(var(--wb-z-navbar, 100) - 1);
+    max-block-size: calc(100dvh - var(--wb-navbar-h, 56px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 }
 
 @media (min-width: 769px) {

@@ -1601,6 +1601,11 @@ Variants and helpers:
 - `wb-navbar-identity`, `wb-navbar-context`, `wb-navbar-brand-note`
 - `wb-topbar-identity`, `wb-topbar-product`, `wb-topbar-context`, `wb-topbar-actions`, `wb-topbar-action`, `wb-topbar-user`
 
+On mobile, render `wb-navbar-drawer` directly after its owning `wb-navbar`. An
+open drawer attached to the default sticky navbar or a `wb-fixed` navbar stays
+below the navbar and scrolls internally if needed. With `wb-navbar--static`, the
+drawer remains in normal document flow.
+
 Topbar identity hierarchy:
 
 - product name is always primary
