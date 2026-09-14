@@ -2,7 +2,7 @@
    WebBlocks UI — Background Media Primitive
    ============================================================ */
 
-.wb-background-media {
+.wb-background-media.wb-background-media {
   --wb-background-media-overlay: linear-gradient(
     color-mix(in srgb, var(--wb-surface) 48%, transparent),
     color-mix(in srgb, var(--wb-surface) 48%, transparent)

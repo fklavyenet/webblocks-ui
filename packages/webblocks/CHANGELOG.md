@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.27.2] — 2026-09-14
+
+### Fixed
+- Fix `wb-background-media` being erased by later single-class `background` shorthands such as `wb-promo`. The opt-in background-media primitive now has enough specificity to preserve its image, overlay, position, repeat, and size across compatible card, promo, section, and content-header compositions while ordinary promos keep their native gradient.
+
 ## [2.27.1] — 2026-09-09
 
 ### Fixed
