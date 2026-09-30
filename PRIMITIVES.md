@@ -388,6 +388,8 @@ Examples:
 - `data-wb-nav-group`
 - `data-wb-ajax-toggle`
 - `data-wb-password-toggle`
+- `data-wb-password-generate`
+- `data-wb-copy`
 - `data-wb-slider`
 - `data-wb-slider-prev`
 - `data-wb-slider-next`
@@ -403,6 +405,18 @@ Examples:
 
 These are not UI primitives.
 They are interaction hooks owned by shipped JS and attribute-driven CSS behavior.
+
+Password generation ownership rule:
+
+- use `data-wb-password-generate` on a `wb-input-addon-btn` button with `data-wb-target`
+- use `data-wb-password-confirm` when generation should also fill a confirmation input
+- WebBlocks UI owns secure random generation, localized live announcements, and password-toggle synchronization
+
+Clipboard ownership rule:
+
+- use `data-wb-copy` with `data-wb-target` for password fields, API keys, URLs, code, identifiers, and other copyable UI values
+- WebBlocks UI copies form-control values or ordinary element text, owns the empty-target disabled state, Clipboard API failure handling, and localized live announcements
+- downstream projects must not copy either behavior into page JavaScript; use `WBPasswordGenerator.init(root)` or `WBClipboard.init(root)` after inserting modal content when an explicit resync is useful
 
 Nav-group ownership rule:
 

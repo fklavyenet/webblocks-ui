@@ -347,6 +347,8 @@ cat \
   "$ROOT/src/js/dismiss.js" \
   "$ROOT/src/js/ajax-toggle.js" \
   "$ROOT/src/js/password-toggle.js" \
+  "$ROOT/src/js/password-generator.js" \
+  "$ROOT/src/js/clipboard.js" \
   "$ROOT/src/js/collapse.js" \
   "$ROOT/src/js/update-indicator.js" \
   "$ROOT/src/js/busy-submit.js" \

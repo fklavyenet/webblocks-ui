@@ -180,13 +180,18 @@
                     <div class="wb-field">
                       <label class="wb-label" for="projectPassword">Yönetici parolası</label>
                       <div class="wb-input-group">
-                        <input class="wb-input" id="projectPassword" type="password" placeholder="Bir parola gir" autocomplete="current-password">
+                        <input class="wb-input" id="projectPassword" type="password" placeholder="Bir parola gir" autocomplete="new-password">
+                        <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-generate data-wb-target="#projectPassword" data-wb-password-confirm="#projectPasswordConfirmation" data-wb-password-status="#projectPasswordStatus" data-wb-password-generated="Parola üretildi." data-wb-password-generate-error="Parola üretilemedi." aria-label="Parola üret"><i class="wb-icon wb-icon-refresh-cw" aria-hidden="true"></i></button>
+                        <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-copy data-wb-target="#projectPassword" data-wb-copy-status="#projectPasswordStatus" data-wb-copy-success="Parola kopyalandı." data-wb-copy-error="Parola kopyalanamadı." aria-label="Parolayı kopyala"><i class="wb-icon wb-icon-copy" aria-hidden="true"></i></button>
                         <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-toggle data-wb-target="#projectPassword" aria-label="Parolayı göster" aria-pressed="false"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button>
                       </div>
                       <div class="wb-field-meta">
-                        <div class="wb-field-hint">Sayfaya özel parola JS'i eklemek yerine pakette gelen input-group anahtarını kullan.</div>
+                        <div class="wb-field-hint">Sayfaya özel parola JavaScript'i olmadan üretin, kopyalayın ve görünürlüğü değiştirin.</div>
+                        <div class="wb-sr-only" id="projectPasswordStatus" role="status" aria-live="polite" aria-atomic="true"></div>
                       </div>
                     </div>
+                    <div class="wb-field"><label class="wb-label" for="projectPasswordConfirmation">Yönetici parolasını doğrula</label><input class="wb-input" id="projectPasswordConfirmation" type="password" autocomplete="new-password"></div>
+                    <div class="wb-field"><label class="wb-label" for="projectApiKey">API anahtarı</label><div class="wb-input-group"><input class="wb-input" id="projectApiKey" type="text" value="wb_live_ornek" readonly><button class="wb-btn wb-btn-secondary wb-input-addon-btn" type="button" data-wb-copy data-wb-target="#projectApiKey" data-wb-copy-status="#projectApiKeyStatus" data-wb-copy-success="API anahtarı kopyalandı." data-wb-copy-error="API anahtarı kopyalanamadı.">Kopyala</button></div><div class="wb-field-meta"><div class="wb-field-hint">Aynı Clipboard hook'u kopyalanabilir tüm UI değerlerinde çalışır.</div><div class="wb-sr-only" id="projectApiKeyStatus" role="status" aria-live="polite" aria-atomic="true"></div></div></div>
                     <div class="wb-form-row">
                       <div class="wb-field">
                         <label class="wb-label" for="pluginPackage">Plugin ZIP</label>

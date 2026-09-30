@@ -613,6 +613,26 @@ Password visibility rule:
 - visible state becomes `type="text"`, `aria-pressed="true"`, and `wb-icon-eye-off`
 - canonical show/hide icon names are `wb-icon-eye` and `wb-icon-eye-off`
 
+Password generation rule:
+
+- use `data-wb-password-generate` on an ordinary trailing `wb-input-addon-btn` button with `data-wb-target` identifying the password input
+- a generate button may use `data-wb-password-confirm="#confirmation-id"` to write the same value to a confirmation input
+- generation uses `window.crypto.getRandomValues`; the secure default is 20 characters from upper-case, lower-case, numeric, and symbol characters
+- `data-wb-password-length` configures length within the enforced 12–128 range; `data-wb-password-alphabet` configures a deduplicated 2–256 character alphabet
+- point the action at an existing live region with `data-wb-password-status="#status-id"`, or let the runtime append a screen-reader-only status region to the nearest field
+- localize announcements with `data-wb-password-generated` and `data-wb-password-generate-error`
+- generation dispatches bubbling `input` and `change` events and synchronizes any `WBPasswordToggle` controls for the password and confirmation inputs
+- `WBPasswordGenerator.init(root)` is safe to call after inserting modal content; the delegated listener is installed only once by the shipped runtime
+
+Clipboard rule:
+
+- use the general `data-wb-copy` hook with `data-wb-target` for passwords, API keys, URLs, code, identifiers, and other copyable UI values
+- `WBClipboard` copies the `value` of `input`, `textarea`, and `select` targets, or the `textContent` of another target element
+- a copy button is disabled while its target is empty and uses the Clipboard API; WebBlocks UI does not fall back to legacy selection or `execCommand`
+- point the action at an existing live region with `data-wb-copy-status="#status-id"`, or let the runtime append a screen-reader-only status region to the nearest field or input group
+- localize announcements with `data-wb-copy-success` and `data-wb-copy-error`
+- `WBClipboard.init(root)` and `WBClipboard.sync(root)` are safe to call after inserting modal content; delegated listeners are installed only once by the shipped runtime
+
 Examples:
 
 ```html
@@ -652,6 +672,47 @@ Examples:
   <div class="wb-field-meta">
     <div class="wb-field-hint">Use the shipped input-group toggle instead of page-local show/hide scripts.</div>
   </div>
+</div>
+
+<div class="wb-field">
+  <label class="wb-label" for="generated-password">Generated password</label>
+  <div class="wb-input-group">
+    <input class="wb-input" id="generated-password" type="password" autocomplete="new-password">
+    <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon"
+            type="button"
+            data-wb-password-generate
+            data-wb-target="#generated-password"
+            data-wb-password-confirm="#generated-password-confirmation"
+            data-wb-password-status="#generated-password-status"
+            aria-label="Generate password">
+      <i class="wb-icon wb-icon-refresh-cw" aria-hidden="true"></i>
+    </button>
+    <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon"
+            type="button"
+            data-wb-copy
+            data-wb-target="#generated-password"
+            data-wb-copy-status="#generated-password-status"
+            aria-label="Copy password">
+      <i class="wb-icon wb-icon-copy" aria-hidden="true"></i>
+    </button>
+    <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon"
+            type="button"
+            data-wb-password-toggle
+            data-wb-target="#generated-password"
+            aria-label="Show password"
+            aria-pressed="false">
+      <i class="wb-icon wb-icon-eye" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="wb-field-meta">
+    <div class="wb-field-hint">Use the generated password or enter your own.</div>
+    <div class="wb-sr-only" id="generated-password-status" role="status" aria-live="polite" aria-atomic="true"></div>
+  </div>
+</div>
+
+<div class="wb-field">
+  <label class="wb-label" for="generated-password-confirmation">Confirm password</label>
+  <input class="wb-input" id="generated-password-confirmation" type="password" autocomplete="new-password">
 </div>
 
 <label class="wb-check">
@@ -2265,6 +2326,13 @@ WBDropdown.closeAll()
 
 WBTabs.activate(document.querySelector('.wb-tabs'), 'panel-settings')
 WBTabs.activateById('panel-settings')
+
+WBPasswordGenerator.generate(document.querySelector('[data-wb-password-generate]'))
+WBPasswordGenerator.init(document.querySelector('#inserted-modal'))
+
+WBClipboard.copy(document.querySelector('[data-wb-copy]'))
+WBClipboard.sync(document)
+WBClipboard.init(document.querySelector('#inserted-modal'))
 
 WBAccordion.open(document.querySelector('.wb-accordion-trigger'))
 WBAccordion.close(document.querySelector('.wb-accordion-trigger'))

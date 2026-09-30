@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.27.2
+Version: v2.28.0
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -95,6 +95,12 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 - These are native controls, not composite widgets. Preserve the matching HTML input type and browser behavior.
 - Use their `-sm`, `-lg`, and `-error` variants where needed; keep labels, hints, and errors in the canonical `wb-field` contract.
 - Hosts own accepted file types, size limits, values, validation, upload handling, and any live range-value output. Do not add project-local replacement styling when these primitives fit.
+
+## Password Generation And Clipboard
+
+- Use `data-wb-password-generate` with `data-wb-target` inside the standard `wb-input-group` contract. Use `data-wb-password-confirm` when one generated value should fill both password fields.
+- Use the general `data-wb-copy` hook with `data-wb-target` for passwords, API keys, URLs, code, identifiers, and other copyable values. Do not create password-specific or product-specific Clipboard handlers.
+- WebBlocks UI owns cryptographic generation, copy empty-state, Clipboard API feedback, localized live announcements, `WBPasswordToggle` synchronization, and repeat-safe initialization. Hosts still own password policy, validation, authorization, and submitted values.
 
 ## Navigation Groups
 

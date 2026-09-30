@@ -88,6 +88,8 @@ Use shipped field, input, select, textarea, checkbox/radio, button, card, and la
 
 Use `wb-file`, `wb-color`, and `wb-range` for native file, color, and range inputs. Preserve the corresponding HTML `type`; do not replace these controls with project-local wrappers or JavaScript merely to restyle them.
 
+Password generation stays in the standard `wb-input-group` contract. Use `data-wb-password-generate` with `data-wb-target`, and use `data-wb-password-confirm` when generation should fill a confirmation field. For passwords and every other copyable value, use the general `data-wb-copy` hook with `data-wb-target`. Localize the shipped live feedback attributes instead of adding page-local Clipboard or random-password handlers.
+
 ## Overlays
 
 Use `wb-modal` for modal confirmation flows. Do not use browser `confirm()`.

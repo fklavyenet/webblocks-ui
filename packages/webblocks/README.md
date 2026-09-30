@@ -323,4 +323,6 @@ packages/webblocks/
 - `scripts/validate-icons.sh` verifies shipped manifest and docs icon classes resolve to generated selectors in `dist/webblocks-icons.css`
 - `scripts/validate-toast.sh` verifies the toast source and integration guide keep the documented transient/persistent behavior contract
 - `scripts/validate-native-inputs.sh` verifies the native file, color, and range contracts match source, dist, and integration documentation
+- `scripts/validate-password-generator.sh` verifies secure password generation, localized feedback hooks, built runtime inclusion, and documentation coverage
+- `scripts/validate-clipboard.sh` verifies the general Clipboard contract, empty-target state, localized feedback, and source/dist documentation coverage
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing

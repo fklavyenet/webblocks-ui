@@ -182,12 +182,21 @@
                     <div class="wb-field">
                       <label class="wb-label" for="projectPassword">Admin password</label>
                       <div class="wb-input-group">
-                        <input class="wb-input" id="projectPassword" type="password" placeholder="Enter a password" autocomplete="current-password">
+                        <input class="wb-input" id="projectPassword" type="password" placeholder="Enter a password" autocomplete="new-password">
+                        <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-generate data-wb-target="#projectPassword" data-wb-password-confirm="#projectPasswordConfirmation" data-wb-password-status="#projectPasswordStatus" aria-label="Generate password"><i class="wb-icon wb-icon-refresh-cw" aria-hidden="true"></i></button>
+                        <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-copy data-wb-target="#projectPassword" data-wb-copy-status="#projectPasswordStatus" aria-label="Copy password"><i class="wb-icon wb-icon-copy" aria-hidden="true"></i></button>
                         <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-toggle data-wb-target="#projectPassword" aria-label="Show password" aria-pressed="false"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button>
                       </div>
                       <div class="wb-field-meta">
-                        <div class="wb-field-hint">Use the shipped input-group toggle instead of adding page-local password JS.</div>
+                        <div class="wb-field-hint">Generate, copy, and toggle visibility without page-local password JS.</div>
+                        <div class="wb-sr-only" id="projectPasswordStatus" role="status" aria-live="polite" aria-atomic="true"></div>
                       </div>
+                    </div>
+                    <div class="wb-field"><label class="wb-label" for="projectPasswordConfirmation">Confirm admin password</label><input class="wb-input" id="projectPasswordConfirmation" type="password" autocomplete="new-password"></div>
+                    <div class="wb-field">
+                      <label class="wb-label" for="projectApiKey">API key</label>
+                      <div class="wb-input-group"><input class="wb-input" id="projectApiKey" type="text" value="wb_live_example" readonly><button class="wb-btn wb-btn-secondary wb-input-addon-btn" type="button" data-wb-copy data-wb-target="#projectApiKey" data-wb-copy-status="#projectApiKeyStatus">Copy</button></div>
+                      <div class="wb-field-meta"><div class="wb-field-hint">The same Clipboard hook works for any copyable UI value.</div><div class="wb-sr-only" id="projectApiKeyStatus" role="status" aria-live="polite" aria-atomic="true"></div></div>
                     </div>
                     <div class="wb-form-row">
                       <div class="wb-field">

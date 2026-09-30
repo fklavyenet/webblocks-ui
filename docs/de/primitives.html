@@ -180,13 +180,18 @@
                     <div class="wb-field">
                       <label class="wb-label" for="projectPassword">Admin-Passwort</label>
                       <div class="wb-input-group">
-                        <input class="wb-input" id="projectPassword" type="password" placeholder="Passwort eingeben" autocomplete="current-password">
+                        <input class="wb-input" id="projectPassword" type="password" placeholder="Passwort eingeben" autocomplete="new-password">
+                        <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-generate data-wb-target="#projectPassword" data-wb-password-confirm="#projectPasswordConfirmation" data-wb-password-status="#projectPasswordStatus" data-wb-password-generated="Passwort generiert." data-wb-password-generate-error="Das Passwort konnte nicht generiert werden." aria-label="Passwort generieren"><i class="wb-icon wb-icon-refresh-cw" aria-hidden="true"></i></button>
+                        <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-copy data-wb-target="#projectPassword" data-wb-copy-status="#projectPasswordStatus" data-wb-copy-success="Passwort kopiert." data-wb-copy-error="Das Passwort konnte nicht kopiert werden." aria-label="Passwort kopieren"><i class="wb-icon wb-icon-copy" aria-hidden="true"></i></button>
                         <button class="wb-btn wb-btn-secondary wb-input-addon-btn wb-btn-icon" type="button" data-wb-password-toggle data-wb-target="#projectPassword" aria-label="Passwort anzeigen" aria-pressed="false"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button>
                       </div>
                       <div class="wb-field-meta">
-                        <div class="wb-field-hint">Nutze den ausgelieferten Input-Group-Umschalter, statt seitenlokales Passwort-JavaScript zu ergänzen.</div>
+                        <div class="wb-field-hint">Generieren, kopieren und Sichtbarkeit umschalten – ohne seitenspezifisches Passwort-JavaScript.</div>
+                        <div class="wb-sr-only" id="projectPasswordStatus" role="status" aria-live="polite" aria-atomic="true"></div>
                       </div>
                     </div>
+                    <div class="wb-field"><label class="wb-label" for="projectPasswordConfirmation">Admin-Passwort bestätigen</label><input class="wb-input" id="projectPasswordConfirmation" type="password" autocomplete="new-password"></div>
+                    <div class="wb-field"><label class="wb-label" for="projectApiKey">API-Schlüssel</label><div class="wb-input-group"><input class="wb-input" id="projectApiKey" type="text" value="wb_live_beispiel" readonly><button class="wb-btn wb-btn-secondary wb-input-addon-btn" type="button" data-wb-copy data-wb-target="#projectApiKey" data-wb-copy-status="#projectApiKeyStatus" data-wb-copy-success="API-Schlüssel kopiert." data-wb-copy-error="Der API-Schlüssel konnte nicht kopiert werden.">Kopieren</button></div><div class="wb-field-meta"><div class="wb-field-hint">Derselbe Clipboard-Hook funktioniert für jeden kopierbaren UI-Wert.</div><div class="wb-sr-only" id="projectApiKeyStatus" role="status" aria-live="polite" aria-atomic="true"></div></div></div>
                     <div class="wb-form-row">
                       <div class="wb-field">
                         <label class="wb-label" for="pluginPackage">Plugin-ZIP</label>

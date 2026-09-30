@@ -31,6 +31,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Native file, color, and range inputs use `wb-file`, `wb-color`, and `wb-range` with the matching HTML input type.
 - [ ] Submit actions stay in the owning form or card footer.
 - [ ] Validation feedback appears near the field, form, card, or section it belongs to.
+- [ ] Password generation uses `data-wb-password-generate`, copying uses the general `data-wb-copy` hook, feedback is localized, and no page-local random or Clipboard handler exists.
 
 ## Overlays
 

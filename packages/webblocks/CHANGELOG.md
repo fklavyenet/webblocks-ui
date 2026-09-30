@@ -6,6 +6,15 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.28.0] — 2026-09-30
+
+### Added
+- Add `WBPasswordGenerator` with declarative `data-wb-password-generate` for cryptographically strong password generation, optional confirmation-field synchronization, localized accessible feedback, and password-toggle synchronization.
+- Add the general `WBClipboard` runtime and `data-wb-copy` hook for copying form-control values or ordinary element text. It owns empty-target disabled state, localized accessible success/error feedback, Clipboard API failures, multiple independent instances, and repeat-safe page or modal initialization.
+
+### Migration
+- Downstream code using temporary `data-password-generate` / `data-password-copy` page handlers can move those buttons into the standard `wb-input-group`, rename the hooks to `data-wb-password-generate` / `data-wb-copy`, and keep the existing target selector in `data-wb-target`; no page-level JavaScript remains necessary.
+
 ## [2.27.2] — 2026-09-14
 
 ### Fixed
