@@ -101,6 +101,9 @@ Use one shared overlay root:
 ```
 
 Do not duplicate modal roots or create project-local overlay stacks.
+For persistent non-modal support panels, use `wb-popover` with
+`data-wb-popover-persistent`; use `WBPopover.update` after content resizing.
+Do not call the internal `WBDom.overlay` API from downstream applications.
 
 ## Feedback
 

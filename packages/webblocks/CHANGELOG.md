@@ -6,6 +6,12 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.30.0] — 2026-10-06
+
+### Added
+- Add opt-in `data-wb-popover-persistent` for non-modal panels that remain open on outside clicks and alongside other anchored toggles, while retaining Escape, dismiss, shared overlay layering and focus return.
+- Expose `WBPopover.update(wrapper)` for positioning after host content changes and `WBPopover.supportsPersistent` for feature discovery. Ordinary popover defaults remain unchanged.
+
 ## [2.29.0] — 2026-10-06
 
 ### Added

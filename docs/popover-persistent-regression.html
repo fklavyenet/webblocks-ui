@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Persistent popover regression</title>
+<link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+<script src="../packages/webblocks/dist/webblocks-ui.js" defer></script></head>
+<body><main class="wb-container wb-section wb-stack wb-stack-4">
+<h1>Persistent popover regression</h1>
+<button class="wb-btn wb-btn-secondary" id="outside">Outside control</button>
+<div class="wb-popover" data-wb-popover data-wb-popover-persistent id="persistent">
+<button class="wb-btn wb-btn-primary" data-wb-toggle="popover" id="persistent-trigger">Support</button>
+<section class="wb-popover-panel" id="persistent-panel" hidden role="dialog" aria-label="Support" aria-modal="false">
+<div class="wb-popover-body"><textarea class="wb-textarea" id="draft" aria-label="Draft"></textarea></div>
+<button class="wb-btn wb-btn-secondary" data-wb-dismiss="popover" id="dismiss">Close support</button></section></div>
+<div class="wb-popover" data-wb-popover id="ordinary"><button class="wb-btn wb-btn-secondary" data-wb-toggle="popover">Ordinary popover</button><div class="wb-popover-panel" id="ordinary-panel">Ordinary panel</div></div>
+<ul class="wb-marker-list" id="results" aria-live="polite"></ul>
+</main><div id="wb-overlay-root" class="wb-overlay-root"><div class="wb-modal" id="modal" role="dialog" aria-modal="true" aria-label="Modal"><div class="wb-modal-dialog"><div class="wb-modal-body">Modal owns interaction.</div><button class="wb-btn" data-wb-dismiss="modal">Close modal</button></div></div></div>
+<script>
+document.addEventListener('DOMContentLoaded', async function () {
+  var results = document.getElementById('results');
+  function check(value, label) { if (!value) throw new Error(label); var li = document.createElement('li'); li.textContent = 'PASS: ' + label; results.append(li); }
+  var pause = function () { return new Promise(function (resolve) { setTimeout(resolve, 40); }); };
+  try {
+    var persistent = document.getElementById('persistent'), panel = document.getElementById('persistent-panel');
+    var ordinary = document.getElementById('ordinary'), ordinaryPanel = document.getElementById('ordinary-panel');
+    var modal = document.getElementById('modal'), trigger = document.getElementById('persistent-trigger'), draft = document.getElementById('draft');
+    trigger.focus(); WBPopover.open(persistent); await pause();
+    check(document.querySelectorAll('#wb-overlay-root').length === 1 && document.getElementById('wb-overlay-root').contains(panel), 'One root and runtime-owned panel portal');
+    check(!document.body.classList.contains('wb-overlay-lock'), 'Persistent support leaves page scrolling unlocked');
+    document.getElementById('outside').click(); check(panel.classList.contains('is-open'), 'Outside click preserves persistent panel');
+    draft.value = 'Keep this draft'; WBPopover.open(ordinary); await pause();
+    check(panel.classList.contains('is-open') && ordinaryPanel.classList.contains('is-open'), 'Ordinary anchored overlay coexists with support');
+    document.getElementById('outside').click(); await pause();
+    check(!ordinaryPanel.classList.contains('is-open') && panel.classList.contains('is-open'), 'Ordinary outside-close behavior is unchanged');
+    WBModal.open(modal); await pause();
+    check(panel.getAttribute('data-wb-overlay-interactive') === 'false' && getComputedStyle(panel).pointerEvents === 'none', 'Modal temporarily owns pointer interaction');
+    WBModal.close(modal); await pause();
+    check(panel.getAttribute('data-wb-overlay-interactive') === 'true' && !document.body.classList.contains('wb-overlay-lock'), 'Closing modal restores support interaction and body scroll');
+    WBPopover.update(persistent); check(panel.classList.contains('is-open'), 'Content update repositions without closing');
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await pause();
+    check(!panel.classList.contains('is-open') && document.activeElement === trigger, 'Escape closes support and returns focus');
+    WBPopover.open(persistent); document.getElementById('dismiss').click(); await pause();
+    check(!panel.classList.contains('is-open') && draft.value === 'Keep this draft', 'Explicit dismiss preserves the draft');
+    WBPopover.open(persistent); check(draft.value === 'Keep this draft', 'Reopening preserves authored form state'); WBPopover.close(persistent);
+    results.dataset.status = 'passed';
+  } catch (error) { var li = document.createElement('li'); li.textContent = 'FAIL: ' + error.message; results.append(li); results.dataset.status = 'failed'; }
+});
+</script></body></html>

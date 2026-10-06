@@ -1373,6 +1373,19 @@ Tooltip delay:
 
 - `data-wb-tooltip-delay="300"`
 
+Persistent non-modal panels may opt in with `data-wb-popover-persistent` on the
+`.wb-popover` wrapper. Outside clicks and opening another anchored toggle keep
+that panel open. Escape, its own trigger, `data-wb-dismiss="popover"`, and
+`WBPopover.close` still close it. Defaults for ordinary popovers are unchanged.
+The shared overlay stack still owns pointer interaction; a modal or another
+active overlay can temporarily suspend the persistent panel without clearing
+its form or conversation state. This option does not add a backdrop, focus trap,
+or body scroll lock.
+
+Use `WBPopover.update(wrapper)` after host-owned content changes its size. It
+repositions an already open panel without reopening it or changing stack order.
+`WBPopover.supportsPersistent` allows consumers to check for this contract.
+
 Enhanced behavior notes:
 
 - dropdowns, popovers, and tooltips are anchored overlays managed through the shared overlay root/layer
