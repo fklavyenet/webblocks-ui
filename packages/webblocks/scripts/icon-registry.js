@@ -9,7 +9,7 @@ const GROUPS = [
     category: 'actions',
     contexts: ['actions'],
     keywords: ['action', 'command'],
-    names: ['Plus', 'Minus', 'X', 'Check', 'Pencil', 'Trash', 'Trash2', 'Copy', 'Save', 'Download', 'Upload', 'RotateCw', 'RotateCcw', 'Repeat', 'ExternalLink']
+    names: ['Plus', 'Minus', 'X', 'Check', 'Pencil', 'Trash', 'Trash2', 'Copy', 'Save', 'Download', 'Upload', 'RotateCw', 'RotateCcw', 'Repeat', 'ExternalLink', 'Link', 'Unlink']
   },
   {
     category: 'visibility',
@@ -21,13 +21,13 @@ const GROUPS = [
     category: 'editorial',
     contexts: ['editorial'],
     keywords: ['content', 'editorial'],
-    names: ['Star', 'Bookmark', 'Heart', 'Share2', 'Book', 'BookOpen', 'Box']
+    names: ['Star', 'Bookmark', 'Heart', 'Share2', 'Book', 'BookOpen', 'Box', 'GraduationCap']
   },
   {
     category: 'content',
     contexts: ['content'],
     keywords: ['content', 'document'],
-    names: ['FileText', 'Files', 'StickyNote', 'Heading', 'Type', 'List', 'ListOrdered', 'Quote', 'Code', 'PenTool', 'Newspaper']
+    names: ['FileText', 'Files', 'StickyNote', 'Heading', 'Type', 'List', 'ListOrdered', 'Quote', 'Code', 'PenTool', 'Newspaper', 'ClipboardList', 'ListChecks']
   },
   {
     category: 'media',
@@ -39,19 +39,19 @@ const GROUPS = [
     category: 'files',
     contexts: ['files'],
     keywords: ['file', 'folder'],
-    names: ['Folder', 'FolderOpen', 'FolderTree', 'File', 'FilePlus', 'FileCode', 'FileImage', 'FileArchive', 'FileSearch', 'Receipt', 'FolderPlus', 'FileX', 'FileLock']
+    names: ['Folder', 'FolderOpen', 'FolderTree', 'File', 'FilePlus', 'FileCode', 'FileImage', 'FileArchive', 'FileSearch', 'Receipt', 'FolderPlus', 'FileX', 'FileLock', 'ArchiveRestore']
   },
   {
     category: 'commerce',
     contexts: ['commerce'],
     keywords: ['commerce', 'billing'],
-    names: ['ShoppingCart', 'ShoppingBag', 'Store', 'Package', 'CreditCard', 'Wallet', 'BadgePercent', 'Banknote', 'HandCoins', 'ReceiptText', 'Calculator']
+    names: ['ShoppingCart', 'ShoppingBag', 'Store', 'Package', 'CreditCard', 'Wallet', 'BadgePercent', 'Banknote', 'HandCoins', 'ReceiptText', 'Calculator', 'Tag']
   },
   {
     category: 'communication',
     contexts: ['communication'],
     keywords: ['message', 'communication'],
-    names: ['Mail', 'Send', 'Inbox', 'MessageSquare', 'MessagesSquare', 'Phone', 'Bell', 'BellRing', 'AtSign', 'Globe', 'MapPin', 'Languages', 'Megaphone']
+    names: ['Mail', 'Send', 'Inbox', 'MessageSquare', 'MessagesSquare', 'Phone', 'Bell', 'BellRing', 'AtSign', 'Globe', 'MapPin', 'Languages', 'Megaphone', 'MessageCircle', 'MessageCircleMore', 'Headset']
   },
   {
     category: 'brands',
@@ -69,19 +69,19 @@ const GROUPS = [
     category: 'system',
     contexts: ['system'],
     keywords: ['system', 'settings'],
-    names: ['Settings', 'SlidersHorizontal', 'ToggleLeft', 'ToggleRight', 'Wrench', 'Hammer', 'Bug', 'Database', 'Server', 'Plug', 'Cpu', 'Terminal', 'SquareTerminal', 'Layers', 'MemoryStick']
+    names: ['Settings', 'SlidersHorizontal', 'ToggleLeft', 'ToggleRight', 'Wrench', 'Hammer', 'Bug', 'Database', 'Server', 'Plug', 'Cpu', 'Terminal', 'SquareTerminal', 'Layers', 'MemoryStick', 'DatabaseBackup']
   },
   {
     category: 'analytics',
     contexts: ['analytics'],
     keywords: ['analytics', 'reporting'],
-    names: ['LayoutDashboard', 'BarChart', 'BarChart2', 'BarChart3', 'LineChart', 'PieChart', 'AreaChart', 'Activity', 'Gauge', 'Target', 'TrendingUp', 'Calendar', 'History']
+    names: ['LayoutDashboard', 'BarChart', 'BarChart2', 'BarChart3', 'LineChart', 'PieChart', 'AreaChart', 'Activity', 'Gauge', 'Target', 'TrendingUp', 'Calendar', 'History', 'Clock']
   },
   {
     category: 'layout',
     contexts: ['layout'],
     keywords: ['layout', 'structure'],
-    names: ['Home', 'Layout', 'LayoutGrid', 'Columns2', 'Rows2', 'Square', 'RectangleHorizontal', 'GripVertical', 'Maximize2', 'Minimize2', 'MousePointer2', 'Palette', 'Sparkles']
+    names: ['Home', 'Layout', 'LayoutGrid', 'Columns2', 'Rows2', 'Square', 'RectangleHorizontal', 'GripVertical', 'Maximize2', 'Minimize2', 'MousePointer2', 'Palette', 'Sparkles', 'Blocks', 'Component', 'Network', 'MousePointerClick']
   },
   {
     category: 'theme',
@@ -117,6 +117,71 @@ const BRAND_ICONS = [
 ];
 
 const OVERRIDES = {
+  'message-circle': {
+    contexts: ['navigation', 'communication'],
+    keywords: ['chat', 'conversation', 'reply']
+  },
+  'message-circle-more': {
+    contexts: ['navigation', 'communication'],
+    keywords: ['chat', 'conversations', 'inbox']
+  },
+  'clock': {
+    contexts: ['navigation', 'analytics'],
+    keywords: ['time', 'availability', 'waiting']
+  },
+  'tag': {
+    contexts: ['navigation', 'commerce'],
+    keywords: ['tag', 'service', 'category']
+  },
+  'link': {
+    contexts: ['navigation', 'actions'],
+    keywords: ['link', 'url', 'redirect']
+  },
+  'unlink': {
+    contexts: ['navigation', 'actions'],
+    keywords: ['unlink', 'detach', 'url']
+  },
+  'graduation-cap': {
+    contexts: ['navigation', 'editorial'],
+    keywords: ['education', 'quiz', 'learning']
+  },
+  'blocks': {
+    contexts: ['navigation', 'layout'],
+    keywords: ['blocks', 'builder', 'content']
+  },
+  'component': {
+    contexts: ['navigation', 'layout'],
+    keywords: ['component', 'shared', 'reusable']
+  },
+  'network': {
+    contexts: ['navigation', 'layout'],
+    keywords: ['navigation', 'hierarchy', 'tree']
+  },
+  'mouse-pointer-click': {
+    contexts: ['navigation', 'layout'],
+    keywords: ['engagement', 'interaction', 'click']
+  },
+  'database-backup': {
+    contexts: ['navigation', 'system'],
+    keywords: ['database', 'backup', 'storage']
+  },
+  'archive-restore': {
+    contexts: ['navigation', 'files'],
+    keywords: ['archive', 'restore', 'recovery']
+  },
+  'clipboard-list': {
+    contexts: ['navigation', 'content'],
+    keywords: ['form', 'submission', 'answers']
+  },
+  'list-checks': {
+    contexts: ['navigation', 'content'],
+    keywords: ['poll', 'choices', 'checklist']
+  },
+  'headset': {
+    contexts: ['navigation', 'communication'],
+    keywords: ['support', 'operator', 'help']
+  },
+
   'shopping-cart': {
     contexts: ['commerce', 'navigation'],
     keywords: ['shopping', 'cart', 'commerce', 'billing', 'basket', 'checkout']

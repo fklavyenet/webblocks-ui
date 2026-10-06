@@ -6,6 +6,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.29.0] — 2026-10-06
+
+### Added
+- Expand the curated Lucide 0.577.0 set from 184 to 200 icons with `message-circle`, `message-circle-more`, `clock`, `tag`, `link`, `unlink`, `graduation-cap`, `blocks`, `component`, `network`, `mouse-pointer-click`, `database-backup`, `archive-restore`, `clipboard-list`, `list-checks`, and `headset`.
+- Include navigation contexts, searchable metadata, and English, German and Turkish catalog examples for each added icon.
+- Preserve upstream ISC and Feather MIT notices in generated icon CSS and in the source distribution.
+
 ## [2.28.0] — 2026-09-30
 
 ### Added

@@ -42,6 +42,10 @@ extract_docs_classes() {
 
 [ -s "$DIST_CSS" ] || fail "missing or empty dist icon CSS at $DIST_CSS"
 [ -s "$DIST_JSON" ] || fail "missing or empty icon manifest at $DIST_JSON"
+[ -s "$REPO_ROOT/THIRD_PARTY_LICENSES.txt" ] || fail "missing upstream icon license notices"
+grep -q "ISC License" "$DIST_CSS" || fail "icon CSS lost the Lucide license notice"
+grep -q "Cole Bemis" "$DIST_CSS" || fail "icon CSS lost the Feather attribution"
+
 [ -s "$DOCS_ICONS" ] || fail "missing or empty docs icon catalog at $DOCS_ICONS"
 
 manifest_count=$(extract_manifest_classes | wc -l | tr -d '[:space:]')

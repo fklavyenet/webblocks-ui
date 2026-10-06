@@ -145,7 +145,12 @@ function toDataUri(inner) {
   return `url("data:image/svg+xml,${encoded}")`;
 }
 
-let cssRules = `/* ============================================================
+const licenseNotice = fs.readFileSync(path.join(ROOT, '../../THIRD_PARTY_LICENSES.txt'), 'utf8');
+let cssRules = `/*
+${licenseNotice}
+*/
+
+/* ============================================================
    WebBlocks UI — Icon Font-Style CSS
    Auto-generated from src/css/icons/webblocks-icons.svg
    plus the hand-maintained src/css/icons/webblocks-brand-icons.svg

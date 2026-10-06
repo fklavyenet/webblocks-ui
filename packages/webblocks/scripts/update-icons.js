@@ -126,8 +126,10 @@ function parseIconsFromBundle(bundleCode) {
       console.warn('Warning — icons not found in bundle:', missing.join(', '));
     }
 
+    const licenseNotice = fs.readFileSync(path.join(ROOT, '../../THIRD_PARTY_LICENSES.txt'), 'utf8').replace(/^---$/m, 'Feather-derived portions:');
     const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <!--
+${licenseNotice}
   WebBlocks Icon Source — Lucide 0.577.0
   ${ICONS.length} icons in a curated product set.
 

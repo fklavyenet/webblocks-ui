@@ -178,7 +178,7 @@ Use `INTEGRATION.md` for canonical data attributes, method names, and behavioral
 
 ## Icons
 
-WebBlocks ships 184 icons through `dist/webblocks-icons.css` — 183 curated Lucide glyphs plus the hand-drawn brand mark `brand-cms`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
+WebBlocks ships 200 icons through `dist/webblocks-icons.css` — 199 curated Lucide glyphs plus the hand-drawn brand mark `brand-cms`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
 
 For structured picker data, WebBlocks also ships `dist/webblocks-icons.json`. Each manifest entry includes a canonical `slug`, human label, `css_class`, generic `source`, plus `categories`, `contexts`, and `keywords` so consuming projects can build icon pickers without hardcoding icon lists.
 
@@ -326,3 +326,5 @@ packages/webblocks/
 - `scripts/validate-password-generator.sh` verifies secure password generation, localized feedback hooks, built runtime inclusion, and documentation coverage
 - `scripts/validate-clipboard.sh` verifies the general Clipboard contract, empty-target state, localized feedback, and source/dist documentation coverage
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing
+
+The curated Lucide 0.577.0 glyphs retain ISC and Feather MIT notices in `THIRD_PARTY_LICENSES.txt` and in the generated icon CSS.
