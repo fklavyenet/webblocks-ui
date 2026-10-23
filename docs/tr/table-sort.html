@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="tr" data-mode="light" data-accent="royal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tablo sıralama — WebBlocks UI</title>
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-content-shell wb-content-shell-wide">
+  <header class="wb-content-header">
+    <nav class="wb-breadcrumb" aria-label="İçerik yolu"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="primitives.html">Primitives</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Tablo sıralama</span></li></ol></nav>
+    <h1 class="wb-content-title">Tablo sıralama</h1>
+    <p class="wb-content-meta">Tamamen yüklenmiş yerel veriler ve sunucuda sayfalanan sonuçlar için erişilebilir tek sütun sıralaması.</p>
+    <button class="wb-btn wb-btn-secondary" type="button" data-wb-mode-cycle data-wb-mode-label-light="Açık mod" data-wb-mode-label-dark="Koyu mod" data-wb-mode-label-auto="Otomatik mod">Renk modunu değiştir</button>
+  </header>
+  <div class="wb-content-body wb-stack wb-gap-6">
+    <p>Standart tablo yapısını koruyun. İstemci modunu yalnızca tüm kayıtlar yüklüyken, sunucu modunu uzak veya sayfalanmış listelerde kullanın. Actions ve seçim sütunları sıralanmaz.</p>
+    <section class="wb-card" id="client">
+      <div class="wb-card-header"><h2 class="wb-card-title">İstemci sıralamasını deneyin</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>Tab ile başlığa gidip Enter veya Space tuşuna basın. Yeni sütunlar artan sırada başlar; tekrar etkinleştirince azalan sıralanır. Boş değerler iki yönde de sonda kalır.</p>
+        <p class="wb-text-sm wb-text-muted">Başlık göstergeleri, etiketin yanında 16px boyutunda sunulan <code>wb-icon-arrow-up-down</code>, <code>wb-icon-arrow-up</code> ve <code>wb-icon-arrow-down</code> maskelerini kullanır. <code>webblocks-ui.css</code> ile birlikte <code>webblocks-icons.css</code> dosyasını ekleyin; ikon kütüphanesi veya runtime gerekmez.</p>
+        <div class="wb-table-wrap">
+          <table class="wb-table wb-table-hover" data-wb-table-sort="client" lang="tr" data-wb-sort-label-asc="{label}: artan sırala" data-wb-sort-label-desc="{label}: azalan sırala" data-wb-sort-message-asc="{label}: artan sıralandı." data-wb-sort-message-desc="{label}: azalan sıralandı.">
+            <caption>Ürünler. Sıralama yönünü değiştirmek için bir başlığı etkinleştirin.</caption>
+            <thead><tr>
+              <th scope="col" data-wb-sort="name"><button type="button" class="wb-table-sort">Ad</button></th>
+              <th scope="col" data-wb-sort="price" data-wb-sort-type="number"><button type="button" class="wb-table-sort">Fiyat</button></th>
+              <th scope="col" data-wb-sort="updated" data-wb-sort-type="date"><button type="button" class="wb-table-sort">Güncelleme</button></th>
+              <th scope="col">Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>İzmir</td><td data-wb-sort-value="1200.5">1.200,50 ₺</td><td data-wb-sort-value="2026-10-21">2026-10-21</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Görüntüle: İzmir" title="Görüntüle: İzmir"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Çınar</td><td data-wb-sort-value="0">0,00 ₺</td><td data-wb-sort-value="2026-10-23T10:00:00Z">2026-10-23</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Görüntüle: Çınar" title="Görüntüle: Çınar"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Atlas 10</td><td data-wb-sort-value="15.5">15,50 ₺</td><td data-wb-sort-value="2026-10-20">2026-10-20</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Görüntüle: Atlas 10" title="Görüntüle: Atlas 10"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Atlas 2</td><td data-wb-sort-value="15.5">15,50 ₺</td><td data-wb-sort-value="">Kayıt yok</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Görüntüle: Atlas 2" title="Görüntüle: Atlas 2"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Birch</td><td data-wb-sort-value="">Kayıt yok</td><td data-wb-sort-value="2026-10-22">2026-10-22</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Görüntüle: Birch" title="Görüntüle: Birch"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Metin en yakın lang niteliğine göre doğal sayısal sıralamayla karşılaştırılır. Yerelleştirilmiş sayı ve tarihler için biçimlendirilmemiş data-wb-sort-value sağlayın; boş nitelik eksik değeri, sıfır ise gerçek bir değeri belirtir.</p>
+        <pre><code>&lt;table class=&quot;wb-table&quot; data-wb-table-sort=&quot;client&quot; lang=&quot;en&quot;&gt;
+  &lt;caption&gt;Ürünler. Sıralama yönünü değiştirmek için bir başlığı etkinleştirin.&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;name&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-table-sort&quot;&gt;Name&lt;/button&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;price&quot; data-wb-sort-type=&quot;number&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-table-sort&quot;&gt;Price&lt;/button&gt;&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Atlas&lt;/td&gt;&lt;td data-wb-sort-value=&quot;1200.5&quot;&gt;$1,200.50&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Birch&lt;/td&gt;&lt;td data-wb-sort-value=&quot;0&quot;&gt;Free&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <div class="wb-card-footer">5 ürün · yerel veri kümesinin tamamı</div>
+    </section>
+    <section class="wb-card" id="server">
+      <div class="wb-card-header"><h2 class="wb-card-title">Sunucu isteğini önizleyin</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>Bu statik örnek gezinmeyi iptal eder ve istenen URL’yi gösterir. Satırlar ve mevcut sıralama durumu değişmez. Gerçek uygulama, filtrelenmiş veri kümesinin tamamını sayfalamadan önce sıralar ve sonucu gösterir.</p>
+        <div class="wb-table-wrap">
+          <table id="server-demo" class="wb-table" data-wb-table-sort="server" data-wb-sort-url="?role=editor&amp;page=4#server" data-wb-sort-label-asc="{label}: artan sırala" data-wb-sort-label-desc="{label}: azalan sırala" data-wb-sort-message-asc="{label}: artan sıralandı." data-wb-sort-message-desc="{label}: azalan sıralandı.">
+            <caption>Sunucunun oluşturduğu kullanıcılar. Ad sütunu şu anda artan sıralı.</caption>
+            <thead><tr>
+              <th scope="col" data-wb-sort="name" aria-sort="ascending"><a class="wb-table-sort" href="?role=editor&amp;sort=name&amp;direction=desc&amp;page=1#server">Ad</a></th>
+              <th scope="col" data-wb-sort="updated"><button type="button" class="wb-table-sort">Güncelleme</button></th>
+              <th scope="col">Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>Alice Brown</td><td>2026-10-21</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Görüntüle: Alice Brown" title="Görüntüle: Alice Brown"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Marco Chen</td><td>2026-10-23</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Görüntüle: Marco Chen" title="Görüntüle: Marco Chen"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wb-overflow-x-auto" role="status" aria-live="polite" id="server-preview">URL’yi önizlemek için bir sunucu başlığını etkinleştirin.</p>
+        <p>Sunucu bağlantıları sonraki sıralama URL’sini içerir ve JavaScript olmadan çalışır. Sunucu butonları mevcut URL’yi veya data-wb-sort-url değerini kullanır. Filtreler ve hash korunur; sayfa 1’e döner. Backend’de sıralama anahtarlarını ve yönlerini izin listesiyle doğrulayın.</p>
+        <pre><code>&lt;table class=&quot;wb-table&quot; data-wb-table-sort=&quot;server&quot;&gt;
+  &lt;caption&gt;Users&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;name&quot; aria-sort=&quot;ascending&quot;&gt;
+      &lt;a class=&quot;wb-table-sort&quot; href=&quot;/admin/users?role=editor&amp;amp;sort=name&amp;amp;direction=desc&amp;amp;page=1&quot;&gt;Name&lt;/a&gt;
+    &lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;!-- Rows rendered by the server, sorted by name ascending. --&gt;&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <div class="wb-card-footer">2 kullanıcı gösteriliyor · sayfalama sunucuya ait</div>
+    </section>
+    <section class="wb-card" id="ajax">
+      <div class="wb-card-header"><h2 class="wb-card-title">AJAX entegrasyonu</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>Veriyi kendiniz almak için wb:table-sort:request olayını iptal edin. Başarılı yanıtı gösterdikten sonra WBTableSort.update ile aria-sort durumunu güncelleyin. Hataları ilgili alanda gösterin ve eski istekleri iptal edin veya yok sayın. Aşağıdaki örnek, uygulamanın endpoint’ini ve DOM oluşturma yardımcılarını gerektirir.</p>
+        <pre><code>const table = document.querySelector(&#x27;#users&#x27;);
+const error = document.querySelector(&#x27;#users-error&#x27;); // An inline wb-alert, initially hidden.
+const pagination = document.querySelector(&#x27;#users-pagination&#x27;); // Inside wb-card-footer.
+let pending;
+table.addEventListener(&#x27;wb:table-sort:request&#x27;, async (event) =&gt; {
+  if (event.target !== table || event.detail.mode !== &#x27;server&#x27;) return;
+  event.preventDefault();
+  if (pending) pending.abort();
+  const request = new AbortController();
+  pending = request;
+  table.setAttribute(&#x27;aria-busy&#x27;, &#x27;true&#x27;);
+  error.hidden = true;
+  try {
+    const response = await fetch(event.detail.url, {
+      signal: request.signal, headers: { &#x27;Accept&#x27;: &#x27;application/json&#x27; }
+    });
+    if (!response.ok) throw new Error(&#x27;Request failed&#x27;);
+    const result = await response.json();
+    if (pending !== request) return;
+    // Host-defined helpers build DOM from validated data using textContent.
+    // The endpoint returns rows, pagination, sort and direction after allowlisting.
+    const body = renderRows(result.rows);
+    const footer = renderPagination(result.pagination);
+    table.tBodies[0].replaceWith(body);
+    pagination.replaceChildren(footer);
+    WBTableSort.update(table, result.sort, result.direction);
+    history.replaceState(null, &#x27;&#x27;, event.detail.url);
+  } catch (cause) {
+    if (pending === request &amp;&amp; cause.name !== &#x27;AbortError&#x27;) error.hidden = false;
+  } finally {
+    if (pending === request) {
+      table.removeAttribute(&#x27;aria-busy&#x27;);
+      pending = null;
+    }
+  }
+});</code></pre>
+        <p>WBTableSort.init(fragment) tekrar çağrılabilir. Başlıkları değiştirmeden veya tabloyu kaldırmadan önce destroy kullanın. İstemci modu tek başlık satırını, tek tbody öğesini ve birleştirilmemiş hücreleri destekler. Yerel butonlar klavyeyle etkinleştirilir; sunucu bağlantıları Enter kullanır. Yön, şekil ve aria-sort ile belirtilir; tamamlanan sıralama canlı bölgeden duyurulur.</p>
+        <p><a href="../../packages/webblocks/INTEGRATION.md#table-sorting">API, yerelleştirme şablonları ve sınırlar</a> · <a href="../../packages/webblocks/tests/table-sort.html">Tarayıcı davranış testleri</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+  document.getElementById('server-demo').addEventListener('wb:table-sort:request', function (event) {
+    event.preventDefault();
+    document.getElementById('server-preview').textContent = event.detail.url;
+  });
+</script>
+</body>
+</html>

@@ -24,6 +24,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Row actions use `td.wb-table-actions` and `.wb-action-group`.
 - [ ] Pagination lives in `.wb-card-footer`.
 - [ ] Compact key columns use `th.wb-table-key` without replacing semantic table markup.
+- [ ] Sorting uses `WBTableSort` with explicit client/server mode; paginated data is sorted by the server before pagination, and AJAX sort state is committed only after successful data rendering.
 
 ## Forms
 

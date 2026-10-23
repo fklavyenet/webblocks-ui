@@ -415,6 +415,14 @@
                 <p class="wb-text-sm wb-text-muted wb-m-0"><a href="../../playground/">Playground'da aç</a> — bu primitive'leri tam bir sayfaya bağlamadan önce gerçek bir parçada birleştirmek istediğinde. Hem tek bir aksiyon bağlantısı/butonu hem de gruplanmış satır aksiyonları için <code>td.wb-table-actions</code> kullan, her iki deseni de varsayılan olarak sola hizalı tut ve farklı bir yerleşimi açıkça seçmedikçe tablo hücresi içindeki gruplanmış aksiyonların tek satırda kalmasını bekle. <code>wb-text-end</code>'i aksiyon hücreleri için değil, toplamlar, fiyatlar veya metrikler gibi bilinçli olarak sağa hizalanmış veriler için sakla.</p>
               </section>
 
+              <section class="wb-docs-section wb-docs-wide" id="table-sorting">
+                <h2>Tablo sıralama</h2>
+                <p><code>WBTableSort</code>: Erişilebilir istemci/sunucu sıralaması, ham değerler, yerelleştirme ve AJAX örnekleri. <a href="table-sort.html">Tablo sıralama</a>.</p>
+                <pre><code>&lt;table class="wb-table" data-wb-table-sort="client"&gt;
+  &lt;!-- th[data-wb-sort="key"] &gt; button.wb-table-sort --&gt;
+&lt;/table&gt;</code></pre>
+              </section>
+
               <section class="wb-docs-section wb-docs-wide" id="editorial-body-copy">
                 <h2>Editoryal gövde metni</h2>
                 <p><code>wb-rich-text</code>; güvenli, Markdown benzeri içerik HTML'e dönüştürüldükten sonra temizlenmiş editoryal gövde metni için yalnızca CSS'ten oluşan primitive'dir. Başlıkları, butonları, medyayı, tabloları, yerleşim kompozisyonunu ve ham HTML işlemeyi bu primitive'in dışında tut.</p>

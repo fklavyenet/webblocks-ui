@@ -822,6 +822,153 @@ Common related classes:
 - filter bar: `wb-filter-count`, `wb-search-bar-sm`, `wb-search-bar-lg`
 - actions: `wb-action-link`, `wb-action-link-danger`, `wb-action-more`, `wb-action-more-btn`, `wb-table-check-cell`
 
+### Table sorting
+
+Use `table.wb-table[data-wb-table-sort="client"]` for a complete, locally loaded
+dataset, or `data-wb-table-sort="server"` for paginated/remote results. A bare
+`th[data-wb-sort]` retains its legacy hover styling and does not enable sorting.
+Keep the standard admin list composition, including an explicit `Actions`
+header and pagination in `wb-card-footer`. Do not mark action/selection columns
+as sortable. [Runnable examples](../../docs/table-sort.html).
+
+#### Client sorting
+
+```html
+<section class="wb-card">
+  <div class="wb-card-body">
+    <div class="wb-table-wrap">
+      <table class="wb-table wb-table-hover" data-wb-table-sort="client" lang="en">
+        <caption>Products. Activate a column heading to change sort direction.</caption>
+        <thead><tr>
+          <th scope="col" data-wb-sort="name"><button type="button" class="wb-table-sort">Name</button></th>
+          <th scope="col" data-wb-sort="price" data-wb-sort-type="number"><button type="button" class="wb-table-sort">Price</button></th>
+          <th scope="col" data-wb-sort="updated" data-wb-sort-type="date"><button type="button" class="wb-table-sort">Updated</button></th>
+          <th scope="col">Actions</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Atlas</td><td data-wb-sort-value="1200.5">$1,200.50</td><td data-wb-sort-value="2026-10-21">Oct 21, 2026</td><td class="wb-table-actions"><a class="wb-action-link" href="/products/atlas">Open</a></td></tr>
+          <tr><td>Birch</td><td data-wb-sort-value="0">Free</td><td data-wb-sort-value="">Not recorded</td><td class="wb-table-actions"><a class="wb-action-link" href="/products/birch">Open</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="wb-card-footer">2 products</div>
+</section>
+```
+
+- `data-wb-sort` is a unique, nonempty host-owned column key. The direct child
+  `.wb-table-sort` is a native button. UI normalizes its type to `button`.
+- `data-wb-sort-type` is `text` (default), `number`, or `date`. Cell text is the
+  fallback; `data-wb-sort-value` overrides it, including an explicitly empty
+  value. Always supply raw values for formatted numbers, dates, badges or icons.
+- Numbers use finite decimal/exponent notation with a dot decimal separator;
+  dates use `YYYY-MM-DD` or an ISO timestamp with seconds and an explicit `Z` or
+  `±HH:MM` timezone. Localized formats are never guessed. Empty and invalid
+  numeric/date values sort last in both directions; zero is a real value.
+- Text uses `Intl.Collator` with the nearest `lang`, natural numeric ordering,
+  and base sensitivity. Invalid locale tags fall back to English. Equal values
+  retain their current relative order in either direction.
+- Client mode supports one header row, one `tbody`, equal-width rows, and no
+  `colspan`/`rowspan`. Unsupported structures emit `invalid-structure` without
+  moving rows. An empty `tbody` is supported. Do not sort only the visible page
+  of a larger remote dataset; use server mode for that dataset.
+- Optionally render `aria-sort="ascending"` or `"descending"` on one sortable
+  `th` for initial sorting. Client mode applies that order during initialization.
+  Without it, initial DOM order is preserved. A new column starts ascending;
+  subsequent activations alternate ascending/descending. There is no third state.
+
+#### Server sorting and progressive enhancement
+
+```html
+<div class="wb-table-wrap">
+  <table class="wb-table" data-wb-table-sort="server">
+    <caption>Users. Activate Name to change sort direction.</caption>
+    <thead><tr>
+      <th scope="col" data-wb-sort="name" aria-sort="ascending">
+        <a class="wb-table-sort" href="/admin/users?role=editor&amp;sort=name&amp;direction=desc&amp;page=1">Name</a>
+      </th>
+      <th scope="col">Actions</th>
+    </tr></thead>
+    <tbody><!-- The host renders the requested result page here. --></tbody>
+  </table>
+</div>
+```
+
+Render the link's next-sort URL, validated filters, `page=1`, and current
+`aria-sort` on the server. Links still navigate without JS; modified clicks
+retain browser behavior. With JS, UI writes the selected key/direction and page
+1 to the link URL while preserving its other query parameters and hash.
+Use only ordinary same-origin HTTP(S) links without `target` or `download`.
+
+A `.wb-table-sort` button is also supported in server mode. Its URL starts from
+the current location, or an explicit `data-wb-sort-url` on the table. An explicit
+URL must already contain any filters to preserve. Both controls accept these
+optional table attributes for custom query names:
+
+| Attribute | Default |
+| --- | --- |
+| `data-wb-sort-param` | `sort` |
+| `data-wb-sort-direction-param` | `direction` |
+| `data-wb-sort-page-param` | `page` |
+
+Names must be distinct. URLs must be same-origin HTTP(S); unsafe protocols and
+external origins emit `invalid-url`. Hosts must allowlist sort keys and directions
+before building a database query, order the complete filtered dataset before
+pagination, and render the actual resulting state. UI never sorts server rows
+locally or changes `aria-sort` merely because a request was dispatched.
+
+#### Accessibility, lifecycle and AJAX
+
+UI adds a 16px, `aria-hidden` direction icon next to the heading text, a visible
+keyboard focus outline, the next-action accessible name, and a polite live region
+outside the table. Include the shipped `webblocks-icons.css` alongside
+`webblocks-ui.css`: sorting uses the existing `wb-icon-arrow-up-down` (unsorted),
+`wb-icon-arrow-up` (ascending), and `wb-icon-arrow-down` (descending) masks with
+`wb-icon-sm`. No icon runtime or external library is needed. The entire header
+control remains clickable; icon space stays fixed when direction changes.
+Only the active `th` has `aria-sort`. Buttons work with Tab, Enter and
+Space; links retain native link keyboard behavior. Focus and row DOM identity
+are preserved when sorting locally. Keep a descriptive caption or accessible
+table name. For localized controls and live announcements, supply table-level
+templates (the `{label}` placeholder comes from visible control text or
+`data-wb-sort-label` on the header):
+
+```html
+<table class="wb-table" data-wb-table-sort="client" lang="tr"
+       data-wb-sort-label-asc="{label}: artan sırala"
+       data-wb-sort-label-desc="{label}: azalan sırala"
+       data-wb-sort-message-asc="{label}: artan sıralandı."
+       data-wb-sort-message-desc="{label}: azalan sıralandı.">
+  <!-- Standard caption, thead and tbody. -->
+</table>
+```
+
+```js
+WBTableSort.init();                         // automatic on DOM ready; safe to repeat
+WBTableSort.init(fragment);                 // table element or subtree after insertion
+WBTableSort.sort(table, 'price', 'desc');    // client sort or server request
+WBTableSort.update(table, 'name', 'asc');    // commit successful host data; no request
+WBTableSort.destroy(table);                 // before unmounting/replacing the header
+```
+
+`sort` and `update` return success booleans. `destroy` removes handlers, generated
+icons/live region, and restores control labels/types; it retains row order and
+the matching `aria-sort`. If headers/configuration change, destroy and initialize
+again. After replacing only `tbody`, use `update` with the order actually returned.
+
+Events bubble on the table:
+
+- `wb:table-sort:request`: cancelable; `{ key, direction, mode, url }`. `url` is
+  null for client mode. Preventing default stops all default work. AJAX hosts
+  cancel this event, fetch `url`, replace rows and pagination on success, then
+  call `update`. Hosts own loading/busy state, request cancellation/race handling,
+  URL history, and contextual inline errors; a failed request leaves the old
+  rows and sort state intact. [AJAX example](../../docs/table-sort.html#ajax).
+- `wb:table-sort:change`: `{ key, direction, mode }`, after a local sort or `update`.
+  Initialization does not emit a change or live announcement.
+- `wb:table-sort:error`: `{ code }`, where code is `invalid-config`,
+  `invalid-structure`, `invalid-sort`, or `invalid-url`.
+
 ### Dropdowns
 
 ```html

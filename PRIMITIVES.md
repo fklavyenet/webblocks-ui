@@ -488,6 +488,16 @@ It is:
 - utility-supported for small adjustments
 - enforced by shipped source, not by invented examples
 
+## Table sorting
+
+`wb-table-sort` is the native button (or server link) inside a sortable
+`th[data-wb-sort="key"]`. Opt in on the existing `wb-table` with
+`data-wb-table-sort="client"` for complete local datasets or `"server"` for remote
+lists. `WBTableSort` owns accessible direction state and controls; hosts own data,
+filters and pagination. No extra table wrapper or surface is needed. See
+[sorting examples](docs/table-sort.html) and the
+[integration contract](packages/webblocks/INTEGRATION.md#table-sorting).
+
 ## Chart
 
 `wb-chart` is an interactive data-visualization component, not a generic surface.

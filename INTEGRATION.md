@@ -15,6 +15,16 @@ If this file conflicts with shipped source, shipped source wins.
 
 ---
 
+# Table sorting
+
+Use `WBTableSort` on `table.wb-table[data-wb-table-sort="client|server"]` with
+`th[data-wb-sort="key"] > .wb-table-sort`. UI owns controls, direction indicators,
+keyboard focus, `aria-sort`, and local comparisons. Paginated lists use server
+mode; hosts own allowlisted queries, filtered data and pagination. Do not copy
+sorting handlers into consuming apps. See the
+[sorting contract](packages/webblocks/INTEGRATION.md#table-sorting) and
+[runnable examples](docs/table-sort.html).
+
 # 1. Core Principle
 
 **Do not reach for custom CSS first.**

@@ -149,6 +149,7 @@ Shipped interactive modules expose `window.*` APIs:
 - `WBModal`
 - `WBDropdown`
 - `WBTabs`
+- `WBTableSort` — accessible client/server table sorting; [examples](../../docs/table-sort.html)
 - `WBAccordion`
 - `WBSidebar`
 - `WBGallery`
@@ -325,6 +326,7 @@ packages/webblocks/
 - `scripts/validate-native-inputs.sh` verifies the native file, color, and range contracts match source, dist, and integration documentation
 - `scripts/validate-password-generator.sh` verifies secure password generation, localized feedback hooks, built runtime inclusion, and documentation coverage
 - `scripts/validate-clipboard.sh` verifies the general Clipboard contract, empty-target state, localized feedback, and source/dist documentation coverage
+- `scripts/validate-table.sh` verifies table CSS, sorting runtime inclusion and documentation; open `tests/table-sort.html` through a local HTTP server for dependency-free browser behavior tests
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing
 
 The curated Lucide 0.577.0 glyphs retain ISC and Feather MIT notices in `THIRD_PARTY_LICENSES.txt` and in the generated icon CSS.

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="de" data-mode="light" data-accent="royal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tabellensortierung — WebBlocks UI</title>
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-content-shell wb-content-shell-wide">
+  <header class="wb-content-header">
+    <nav class="wb-breadcrumb" aria-label="Brotkrümelnavigation"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="primitives.html">Primitives</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Tabellensortierung</span></li></ol></nav>
+    <h1 class="wb-content-title">Tabellensortierung</h1>
+    <p class="wb-content-meta">Barrierefreie Sortierung nach einer Spalte für vollständige lokale Daten und serverseitig paginierte Ergebnisse.</p>
+    <button class="wb-btn wb-btn-secondary" type="button" data-wb-mode-cycle data-wb-mode-label-light="Heller Modus" data-wb-mode-label-dark="Dunkler Modus" data-wb-mode-label-auto="Automatischer Modus">Farbmodus wechseln</button>
+  </header>
+  <div class="wb-content-body wb-stack wb-gap-6">
+    <p>Behalten Sie die Standard-Tabellenstruktur bei. Verwenden Sie den Client-Modus nur bei vollständig geladenen Daten und den Server-Modus für entfernte oder paginierte Listen. Actions und Auswahlspalten bleiben unsortierbar.</p>
+    <section class="wb-card" id="client">
+      <div class="wb-card-header"><h2 class="wb-card-title">Client-Sortierung ausprobieren</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>Navigieren Sie mit Tab zur Überschrift und drücken Sie Enter oder die Leertaste. Neue Spalten beginnen aufsteigend; erneutes Aktivieren sortiert absteigend. Leere Werte bleiben in beiden Richtungen am Ende.</p>
+        <p class="wb-text-sm wb-text-muted">Die Kopfzeilen verwenden die mitgelieferten Masken <code>wb-icon-arrow-up-down</code>, <code>wb-icon-arrow-up</code> und <code>wb-icon-arrow-down</code> in 16px direkt neben dem Text. Binden Sie <code>webblocks-icons.css</code> zusammen mit <code>webblocks-ui.css</code> ein; eine Icon-Bibliothek oder Runtime ist nicht erforderlich.</p>
+        <div class="wb-table-wrap">
+          <table class="wb-table wb-table-hover" data-wb-table-sort="client" lang="de" data-wb-sort-label-asc="{label} aufsteigend sortieren" data-wb-sort-label-desc="{label} absteigend sortieren" data-wb-sort-message-asc="{label} aufsteigend sortiert." data-wb-sort-message-desc="{label} absteigend sortiert.">
+            <caption>Produkte. Aktivieren Sie eine Überschrift, um die Sortierrichtung zu ändern.</caption>
+            <thead><tr>
+              <th scope="col" data-wb-sort="name"><button type="button" class="wb-table-sort">Name</button></th>
+              <th scope="col" data-wb-sort="price" data-wb-sort-type="number"><button type="button" class="wb-table-sort">Preis</button></th>
+              <th scope="col" data-wb-sort="updated" data-wb-sort-type="date"><button type="button" class="wb-table-sort">Aktualisiert</button></th>
+              <th scope="col">Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>İzmir</td><td data-wb-sort-value="1200.5">1.200,50 €</td><td data-wb-sort-value="2026-10-21">2026-10-21</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Anzeigen: İzmir" title="Anzeigen: İzmir"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Çınar</td><td data-wb-sort-value="0">0,00 €</td><td data-wb-sort-value="2026-10-23T10:00:00Z">2026-10-23</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Anzeigen: Çınar" title="Anzeigen: Çınar"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Atlas 10</td><td data-wb-sort-value="15.5">15,50 €</td><td data-wb-sort-value="2026-10-20">2026-10-20</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Anzeigen: Atlas 10" title="Anzeigen: Atlas 10"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Atlas 2</td><td data-wb-sort-value="15.5">15,50 €</td><td data-wb-sort-value="">Nicht erfasst</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Anzeigen: Atlas 2" title="Anzeigen: Atlas 2"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Birch</td><td data-wb-sort-value="">Nicht erfasst</td><td data-wb-sort-value="2026-10-22">2026-10-22</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Anzeigen: Birch" title="Anzeigen: Birch"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Text folgt dem nächsten lang-Attribut mit natürlicher numerischer Sortierung. Verwenden Sie unformatierte data-wb-sort-value-Werte für lokalisierte Zahlen und Datumswerte; ein leeres Attribut bedeutet fehlend, Null ist ein echter Wert.</p>
+        <pre><code>&lt;table class=&quot;wb-table&quot; data-wb-table-sort=&quot;client&quot; lang=&quot;en&quot;&gt;
+  &lt;caption&gt;Produkte. Aktivieren Sie eine Überschrift, um die Sortierrichtung zu ändern.&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;name&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-table-sort&quot;&gt;Name&lt;/button&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;price&quot; data-wb-sort-type=&quot;number&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-table-sort&quot;&gt;Price&lt;/button&gt;&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Atlas&lt;/td&gt;&lt;td data-wb-sort-value=&quot;1200.5&quot;&gt;$1,200.50&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Birch&lt;/td&gt;&lt;td data-wb-sort-value=&quot;0&quot;&gt;Free&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <div class="wb-card-footer">5 Produkte · vollständiger lokaler Datensatz</div>
+    </section>
+    <section class="wb-card" id="server">
+      <div class="wb-card-header"><h2 class="wb-card-title">Serveranfrage voranzeigen</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>Dieses statische Beispiel unterbindet die Navigation und zeigt die angeforderte URL. Zeilen und Sortierstatus bleiben unverändert. Eine echte Anwendung sortiert den gesamten gefilterten Datensatz vor der Paginierung und stellt den Ergebnisstatus dar.</p>
+        <div class="wb-table-wrap">
+          <table id="server-demo" class="wb-table" data-wb-table-sort="server" data-wb-sort-url="?role=editor&amp;page=4#server" data-wb-sort-label-asc="{label} aufsteigend sortieren" data-wb-sort-label-desc="{label} absteigend sortieren" data-wb-sort-message-asc="{label} aufsteigend sortiert." data-wb-sort-message-desc="{label} absteigend sortiert.">
+            <caption>Serverseitig dargestellte Benutzer. Name ist derzeit aufsteigend sortiert.</caption>
+            <thead><tr>
+              <th scope="col" data-wb-sort="name" aria-sort="ascending"><a class="wb-table-sort" href="?role=editor&amp;sort=name&amp;direction=desc&amp;page=1#server">Name</a></th>
+              <th scope="col" data-wb-sort="updated"><button type="button" class="wb-table-sort">Aktualisiert</button></th>
+              <th scope="col">Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>Alice Brown</td><td>2026-10-21</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Anzeigen: Alice Brown" title="Anzeigen: Alice Brown"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Marco Chen</td><td>2026-10-23</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="Anzeigen: Marco Chen" title="Anzeigen: Marco Chen"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wb-overflow-x-auto" role="status" aria-live="polite" id="server-preview">Aktivieren Sie eine Server-Überschrift, um ihre URL anzuzeigen.</p>
+        <p>Server-Links enthalten die URL für die nächste Sortierung und funktionieren ohne JavaScript. Server-Buttons verwenden die aktuelle URL oder data-wb-sort-url. Filter und Hash bleiben erhalten; die Seite wird auf 1 zurückgesetzt. Validieren Sie Sortierschlüssel und Richtungen im Backend über eine Positivliste.</p>
+        <pre><code>&lt;table class=&quot;wb-table&quot; data-wb-table-sort=&quot;server&quot;&gt;
+  &lt;caption&gt;Users&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;name&quot; aria-sort=&quot;ascending&quot;&gt;
+      &lt;a class=&quot;wb-table-sort&quot; href=&quot;/admin/users?role=editor&amp;amp;sort=name&amp;amp;direction=desc&amp;amp;page=1&quot;&gt;Name&lt;/a&gt;
+    &lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;!-- Rows rendered by the server, sorted by name ascending. --&gt;&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <div class="wb-card-footer">2 Benutzer angezeigt · Server verwaltet Paginierung</div>
+    </section>
+    <section class="wb-card" id="ajax">
+      <div class="wb-card-header"><h2 class="wb-card-title">AJAX-Integration</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>Unterbinden Sie wb:table-sort:request, um Daten selbst abzurufen. Aktualisieren Sie aria-sort erst nach Darstellung einer erfolgreichen Antwort mit WBTableSort.update. Zeigen Sie Fehler im Kontext und brechen Sie veraltete Anfragen ab oder ignorieren Sie sie. Das folgende Beispiel benötigt einen Anwendungs-Endpunkt und eigene DOM-Hilfsfunktionen.</p>
+        <pre><code>const table = document.querySelector(&#x27;#users&#x27;);
+const error = document.querySelector(&#x27;#users-error&#x27;); // An inline wb-alert, initially hidden.
+const pagination = document.querySelector(&#x27;#users-pagination&#x27;); // Inside wb-card-footer.
+let pending;
+table.addEventListener(&#x27;wb:table-sort:request&#x27;, async (event) =&gt; {
+  if (event.target !== table || event.detail.mode !== &#x27;server&#x27;) return;
+  event.preventDefault();
+  if (pending) pending.abort();
+  const request = new AbortController();
+  pending = request;
+  table.setAttribute(&#x27;aria-busy&#x27;, &#x27;true&#x27;);
+  error.hidden = true;
+  try {
+    const response = await fetch(event.detail.url, {
+      signal: request.signal, headers: { &#x27;Accept&#x27;: &#x27;application/json&#x27; }
+    });
+    if (!response.ok) throw new Error(&#x27;Request failed&#x27;);
+    const result = await response.json();
+    if (pending !== request) return;
+    // Host-defined helpers build DOM from validated data using textContent.
+    // The endpoint returns rows, pagination, sort and direction after allowlisting.
+    const body = renderRows(result.rows);
+    const footer = renderPagination(result.pagination);
+    table.tBodies[0].replaceWith(body);
+    pagination.replaceChildren(footer);
+    WBTableSort.update(table, result.sort, result.direction);
+    history.replaceState(null, &#x27;&#x27;, event.detail.url);
+  } catch (cause) {
+    if (pending === request &amp;&amp; cause.name !== &#x27;AbortError&#x27;) error.hidden = false;
+  } finally {
+    if (pending === request) {
+      table.removeAttribute(&#x27;aria-busy&#x27;);
+      pending = null;
+    }
+  }
+});</code></pre>
+        <p>WBTableSort.init(fragment) kann wiederholt werden. Verwenden Sie destroy vor dem Ersetzen von Überschriften oder Entfernen einer Tabelle. Der Client-Modus unterstützt eine Kopfzeile, ein tbody und keine verbundenen Zellen. Native Buttons unterstützen Tastaturaktivierung; Server-Links verwenden Enter. Form und aria-sort vermitteln die Richtung; abgeschlossene Sortierungen werden über eine Live-Region angekündigt.</p>
+        <p><a href="../../packages/webblocks/INTEGRATION.md#table-sorting">API, Lokalisierungsvorlagen und Grenzen</a> · <a href="../../packages/webblocks/tests/table-sort.html">Browser-Verhaltenstests</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+  document.getElementById('server-demo').addEventListener('wb:table-sort:request', function (event) {
+    event.preventDefault();
+    document.getElementById('server-preview').textContent = event.detail.url;
+  });
+</script>
+</body>
+</html>

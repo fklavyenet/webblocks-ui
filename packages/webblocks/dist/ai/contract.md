@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.30.0
+Version: v2.31.0
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -55,6 +55,15 @@ and lets `wb-table-wrap` handle overflow. Do not replace semantic table markup
 with a description list merely to reproduce this column layout.
 
 Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields` flow. Use direct `wb-field` children, optional `wb-filter-bar-search`, and `wb-filter-bar-actions > .wb-action-group`. Do not combine these fields with `wb-stack` or gap utilities; UI owns field alignment, row separation, and intrinsic-width actions that wrap together only when needed.
+
+## Table Sorting
+
+- Opt in with `table.wb-table[data-wb-table-sort="client|server"]`; sortable headers use `th[data-wb-sort="key"] > .wb-table-sort` with a native button, or a server-rendered link in server mode.
+- Use `WBTableSort` for controls, icons, localized announcements, `aria-sort`, and client comparisons. Load the shipped `webblocks-icons.css` for the existing arrow masks; no icon runtime is needed. Do not copy sorting CSS/JS into downstream apps.
+- Client mode requires a complete local dataset with one header row, one body, and no spanning cells. Use explicit `data-wb-sort-type` and raw cell `data-wb-sort-value` for formatted numbers/dates.
+- Paginated/remote lists use server mode. Hosts own allowlisted queries, filters, full-dataset ordering before pagination, and the actual rendered sort state. A request does not change the current rows or `aria-sort`.
+- AJAX hosts cancel `wb:table-sort:request` and call `WBTableSort.update` only after rendering a successful response; hosts own loading, race handling and inline errors. Destroy/reinitialize when replacing headers.
+- Keep `Actions` and selection columns unsortable and retain the standard table/card/footer contract.
 
 ## Overlays And Feedback
 

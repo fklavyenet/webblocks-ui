@@ -6,6 +6,15 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.31.0] — 2026-10-23
+
+### Added
+- Add opt-in `WBTableSort` with client sorting for complete local datasets and server sorting for remote or paginated lists. Server requests preserve filters, reset pagination, support progressive links and cancelable AJAX integration, and commit the rendered sort state only after successful host updates.
+- Support locale-aware natural text ordering, explicit raw numeric and ISO date values, stable ties, and missing or invalid values placed last in both directions.
+- Keep semantic table headings with native keyboard controls, visible focus, single-column `aria-sort`, localized next-action labels and polite completion announcements. Local reordering preserves row identity and focus.
+- Use the existing 16px WebBlocks arrow masks beside heading text, while retaining the full header click target and high-contrast support. No external icon, CSS, JavaScript or package runtime dependency is introduced.
+- Add English, German and Turkish usage examples, an AJAX integration recipe, updated downstream contracts, shell validation and 29 dependency-free browser behavior checks.
+
 ## [2.30.0] — 2026-10-06
 
 ### Added

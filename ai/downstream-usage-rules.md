@@ -71,6 +71,13 @@ For a compact key column in a semantic table, add `wb-table-key` to each key
 `th`. It is content-sized rather than percentage-sized. Keep genuine tabular
 data in `table` markup; do not switch to `dl` only for visual column sizing.
 
+For sorting, opt in with `data-wb-table-sort="client|server"` on `wb-table` and
+use `th[data-wb-sort="key"] > .wb-table-sort`. Use `WBTableSort` instead of local
+header handlers. Server mode is required for paginated/remote datasets; hosts
+allowlist query keys, sort before pagination, and commit AJAX state with `update`
+only after successful rendering. Keep action/selection columns unsortable. See
+the package integration guide for raw values, localization and lifecycle rules.
+
 Admin filter bar actions:
 
 * use canonical English labels `Filter` and `Clear`

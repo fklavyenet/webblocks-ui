@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Table sort browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../dist/webblocks-icons.css">
+  <script src="../dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-container wb-stack-4">
+  <h1>Table sort browser tests</h1>
+  <p>Dependency-free tests against the complete built bundle. Serve the repository over HTTP and open this page; no package installation is required.</p>
+  <p id="summary" role="status">Waiting for tests.</p>
+  <ol id="results" class="wb-marker-list"></ol>
+  <h2>Native keyboard and focus check</h2>
+  <p>Tab to Name. Enter sorts ascending, Space sorts descending. Focus should remain on the heading. Also inspect light/dark mode, narrow screens and forced colors.</p>
+  <button type="button" class="wb-btn" data-wb-mode-cycle>Change color mode</button>
+  <div class="wb-table-wrap">
+    <table class="wb-table wb-table-sm" id="keyboard" data-wb-table-sort="client">
+      <caption>Keyboard check</caption>
+      <thead><tr><th scope="col" data-wb-sort="name"><button type="button" class="wb-table-sort">Name</button></th><th scope="col">Actions</th></tr></thead>
+      <tbody><tr><td>Birch</td><td class="wb-table-actions"><button type="button" class="wb-action-link">Open Birch</button></td></tr><tr><td>Atlas</td><td class="wb-table-actions"><button type="button" class="wb-action-link">Open Atlas</button></td></tr></tbody>
+    </table>
+  </div>
+  <p id="keyboard-result" role="status">No keyboard sort yet.</p>
+  <div id="fixtures" hidden></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var fixtures = document.getElementById('fixtures');
+  var passed = 0;
+  var failed = 0;
+  var data = [
+    ['r1', 'İzmir', '10', '2026-10-21'],
+    ['r2', 'Çınar', '2', '2026-10-23T12:00:00+02:00'],
+    ['r3', 'Atlas 10', '2', '2026-10-23T09:30:00Z'],
+    ['r4', 'Atlas 2', '0', '2026-10-20'],
+    ['r5', 'Birch', '', ''],
+    ['r6', 'Işık', 'invalid', '2026-02-30']
+  ];
+  function assert(condition, label) { if (!condition) throw new Error(label || 'Assertion failed'); }
+  function test(name, run) {
+    var item = document.createElement('li');
+    try { run(); passed++; item.textContent = 'PASS: ' + name; }
+    catch (cause) { failed++; item.textContent = 'FAIL: ' + name + ': ' + cause.message; }
+    document.getElementById('results').appendChild(item);
+    fixtures.querySelectorAll('table').forEach(function (table) { WBTableSort.destroy(table); });
+    fixtures.replaceChildren();
+    fixtures.hidden = true;
+  }
+  function make(mode, initialize) {
+    var wrap = document.createElement('div');
+    wrap.innerHTML = '<table class="wb-table" lang="tr" data-wb-table-sort="' + (mode || 'client') + '"><caption>Fixture</caption><thead><tr>' +
+      '<th scope="col" data-wb-sort="name"><button class="wb-table-sort">Name</button></th>' +
+      '<th scope="col" data-wb-sort="amount" data-wb-sort-type="number"><button type="button" class="wb-table-sort">Amount</button></th>' +
+      '<th scope="col" data-wb-sort="date" data-wb-sort-type="date"><button type="button" class="wb-table-sort">Date</button></th>' +
+      '<th scope="col">Actions</th></tr></thead><tbody></tbody></table>';
+    var table = wrap.querySelector('table');
+    data.forEach(function (entry) {
+      var row = table.tBodies[0].insertRow();
+      row.id = entry[0];
+      entry.slice(1).forEach(function (text, index) {
+        var cell = row.insertCell();
+        cell.textContent = text;
+        if (index > 0) cell.setAttribute('data-wb-sort-value', text);
+      });
+      var action = row.insertCell();
+      action.className = 'wb-table-actions';
+      var button = document.createElement('button');
+      button.type = 'button'; button.textContent = 'Open'; action.appendChild(button);
+    });
+    fixtures.appendChild(wrap);
+    if (initialize !== false) WBTableSort.init(table);
+    return table;
+  }
+  function ids(table) { return Array.from(table.tBodies[0].rows).map(function (row) { return row.id; }).join(','); }
+  function control(table, key) { return table.querySelector('[data-wb-sort="' + key + '"] > .wb-table-sort'); }
+  function active(table, key, direction) {
+    assert(table.querySelectorAll('th[aria-sort]').length === 1, 'only one active header');
+    assert(control(table, key).parentElement.getAttribute('aria-sort') === direction, 'correct aria-sort');
+  }
+  function canceledURL(table, key, direction) {
+    var detail;
+    table.addEventListener('wb:table-sort:request', function (event) { detail = event.detail; event.preventDefault(); }, { once: true });
+    assert(!WBTableSort.sort(table, key, direction), 'canceled request returns false');
+    return detail;
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    test('Turkish collation and natural numbers', function () {
+      var table = make(); WBTableSort.sort(table, 'name', 'asc');
+      assert(ids(table) === 'r4,r3,r5,r2,r6,r1', ids(table)); active(table, 'name', 'ascending');
+    });
+    test('Numeric ordering, stable ties, zero and missing values', function () {
+      var table = make(); WBTableSort.sort(table, 'amount', 'asc');
+      assert(ids(table) === 'r4,r2,r3,r1,r5,r6', ids(table));
+      WBTableSort.sort(table, 'amount', 'desc'); assert(ids(table) === 'r1,r2,r3,r4,r5,r6', ids(table));
+    });
+    test('ISO dates compare timezones and reject impossible dates', function () {
+      var table = make(); WBTableSort.sort(table, 'date', 'asc');
+      assert(ids(table) === 'r4,r1,r3,r2,r5,r6', ids(table));
+      WBTableSort.sort(table, 'date', 'desc'); assert(ids(table) === 'r2,r3,r1,r4,r5,r6', ids(table));
+    });
+    test('Localized display text never replaces explicit numeric values', function () {
+      var table = make(); table.tBodies[0].rows[0].cells[1].textContent = '10,00 €';
+      WBTableSort.sort(table, 'amount', 'asc'); assert(ids(table) === 'r4,r2,r3,r1,r5,r6');
+    });
+    test('Text fallback and invalid localized numeric text', function () {
+      var table = make(); var cell = table.tBodies[0].rows[0].cells[1]; cell.removeAttribute('data-wb-sort-value'); cell.textContent = '1,000';
+      WBTableSort.sort(table, 'amount', 'desc'); assert(ids(table) === 'r2,r3,r4,r1,r5,r6', ids(table));
+    });
+    test('Click toggles direction and a different column starts ascending', function () {
+      var table = make(); var icon = control(table, 'amount').querySelector('.wb-table-sort-icon');
+      var neutralMask = getComputedStyle(icon).maskImage;
+      assert(icon.classList.contains('wb-icon-arrow-up-down') && neutralMask !== 'none', 'unsorted arrow mask');
+      control(table, 'amount').click(); active(table, 'amount', 'ascending');
+      var ascendingMask = getComputedStyle(icon).maskImage;
+      assert(icon.classList.contains('wb-icon-arrow-up') && ascendingMask !== neutralMask, 'ascending arrow mask');
+      control(table, 'amount').click(); active(table, 'amount', 'descending');
+      assert(icon.classList.contains('wb-icon-arrow-down') && getComputedStyle(icon).maskImage !== ascendingMask, 'descending arrow mask');
+      control(table, 'name').click(); active(table, 'name', 'ascending');
+      assert(icon.classList.contains('wb-icon-arrow-up-down') && getComputedStyle(icon).maskImage === neutralMask, 'previous column resets its arrow');
+    });
+    test('Only opted-in headings respond and Actions remains unsortable', function () {
+      var table = make(); table.tHead.rows[0].cells[0].click();
+      table.tBodies[0].rows[0].cells[3].querySelector('button').click();
+      assert(ids(table) === 'r1,r2,r3,r4,r5,r6'); assert(!table.querySelector('th[aria-sort]'));
+    });
+    test('Legacy data-wb-sort without table opt-in remains inert', function () {
+      var table = make('client', false); table.removeAttribute('data-wb-table-sort'); WBTableSort.init(table);
+      control(table, 'name').click(); assert(ids(table) === 'r1,r2,r3,r4,r5,r6'); assert(!table.querySelector('.wb-table-sort-icon'));
+    });
+    test('Repeat initialization adds one listener, icon and live region', function () {
+      var table = make(); var requests = 0;
+      WBTableSort.init(); WBTableSort.init(table); WBTableSort.init(fixtures);
+      table.addEventListener('wb:table-sort:request', function () { requests++; });
+      control(table, 'name').click(); assert(requests === 1); assert(table.querySelectorAll('.wb-table-sort-icon').length === 3);
+      assert(table.parentElement.querySelectorAll('[role="status"]').length === 1);
+    });
+    test('Initial client aria-sort orders data without announcing or change events', function () {
+      var table = make('client', false); var changes = 0;
+      table.tBodies[0].insertBefore(table.tBodies[0].rows[3], table.tBodies[0].rows[0]);
+      control(table, 'amount').parentElement.setAttribute('aria-sort', 'descending');
+      table.addEventListener('wb:table-sort:change', function () { changes++; }); WBTableSort.init(table);
+      assert(ids(table) === 'r1,r2,r3,r4,r5,r6'); assert(changes === 0); assert(table.nextElementSibling.textContent === '');
+    });
+    test('Canceled client request leaves rows and accessibility state untouched', function () {
+      var table = make(); canceledURL(table, 'amount', 'asc');
+      assert(ids(table) === 'r1,r2,r3,r4,r5,r6'); assert(!table.querySelector('th[aria-sort]')); assert(table.nextElementSibling.textContent === '');
+    });
+    test('Announcements and next-action names are localized; icons are decorative', function () {
+      var table = make('client', false);
+      table.setAttribute('data-wb-sort-label-desc', '{label}: azalan sırala');
+      table.setAttribute('data-wb-sort-message-asc', '{label}: artan sıralandı.'); WBTableSort.init(table);
+      WBTableSort.sort(table, 'name', 'asc');
+      assert(control(table, 'name').getAttribute('aria-label') === 'Name: azalan sırala');
+      assert(table.nextElementSibling.textContent === 'Name: artan sıralandı.');
+      assert(table.querySelector('.wb-table-sort-icon').getAttribute('aria-hidden') === 'true');
+      assert(table.nextElementSibling.getAttribute('aria-live') === 'polite');
+    });
+    test('Row nodes, action handlers and focused controls survive reordering', function () {
+      var table = make(); fixtures.hidden = false; var row = table.tBodies[0].rows[0];
+      var button = row.cells[3].querySelector('button'); var clicks = 0; button.addEventListener('click', function () { clicks++; });
+      button.focus(); assert(document.activeElement === button, 'fixture focus'); WBTableSort.sort(table, 'amount', 'asc');
+      assert(table.tBodies[0].rows[3] === row); assert(document.activeElement === button, 'focus restored'); button.click(); assert(clicks === 1);
+    });
+    test('Independent tables do not share sorting state', function () {
+      var first = make(); var second = make(); WBTableSort.sort(first, 'amount', 'asc');
+      assert(ids(second) === 'r1,r2,r3,r4,r5,r6'); assert(!second.querySelector('th[aria-sort]'));
+    });
+    test('Server URLs preserve filters, repeated parameters and hash; reset page', function () {
+      var table = make('server'); table.setAttribute('data-wb-sort-url', '?role=editor&tag=a&tag=b&page=9#users');
+      var detail = canceledURL(table, 'name', 'asc'); var url = new URL(detail.url);
+      assert(detail.mode === 'server'); assert(url.searchParams.get('role') === 'editor'); assert(url.searchParams.getAll('tag').join(',') === 'a,b');
+      assert(url.searchParams.get('sort') === 'name'); assert(url.searchParams.get('direction') === 'asc'); assert(url.searchParams.get('page') === '1'); assert(url.hash === '#users');
+      assert(ids(table) === 'r1,r2,r3,r4,r5,r6'); assert(!table.querySelector('th[aria-sort]'));
+    });
+    test('Server requests preserve rendered direction until a successful update', function () {
+      var table = make('server', false); control(table, 'name').parentElement.setAttribute('aria-sort', 'ascending'); WBTableSort.init(table);
+      canceledURL(table, 'name', 'desc'); active(table, 'name', 'ascending');
+      assert(table.nextElementSibling.textContent === ''); WBTableSort.update(table, 'amount', 'desc'); active(table, 'amount', 'descending');
+      assert(ids(table) === 'r1,r2,r3,r4,r5,r6', 'server update does not move rows');
+    });
+    test('Custom query parameter names', function () {
+      var table = make('server'); table.setAttribute('data-wb-sort-param', 'order');
+      table.setAttribute('data-wb-sort-direction-param', 'dir'); table.setAttribute('data-wb-sort-page-param', 'p');
+      var url = new URL(canceledURL(table, 'date', 'desc').url);
+      assert(url.searchParams.get('order') === 'date'); assert(url.searchParams.get('dir') === 'desc'); assert(url.searchParams.get('p') === '1');
+    });
+    test('Same-origin server links keep progressive URLs in sync after updates', function () {
+      var table = make('server', false); var old = control(table, 'name'); var link = document.createElement('a');
+      link.className = 'wb-table-sort'; link.textContent = 'Name'; link.href = '?role=editor&page=4'; old.replaceWith(link); WBTableSort.init(table);
+      assert(new URL(link.href).searchParams.get('direction') === 'asc'); WBTableSort.update(table, 'name', 'asc');
+      assert(new URL(link.href).searchParams.get('direction') === 'desc');
+      assert(new URL(canceledURL(table, 'name', 'asc').url).searchParams.get('direction') === 'asc');
+    });
+    test('Modified server-link clicks remain native', function () {
+      var table = make('server', false); var old = control(table, 'name'); var link = document.createElement('a');
+      link.className = 'wb-table-sort'; link.textContent = 'Name'; link.href = '?role=editor'; old.replaceWith(link); WBTableSort.init(table);
+      var requests = 0; table.addEventListener('wb:table-sort:request', function () { requests++; });
+      // Prevent actual navigation after inspecting the module's handling.
+      var prevented; table.addEventListener('click', function (event) { prevented = event.defaultPrevented; event.preventDefault(); });
+      link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, ctrlKey: true }));
+      assert(requests === 0); assert(prevented === false);
+    });
+    test('Unsafe protocol and cross-origin URLs never dispatch a request', function () {
+      var table = make('server'); var errors = []; var requests = 0;
+      table.addEventListener('wb:table-sort:error', function (event) { errors.push(event.detail.code); });
+      table.addEventListener('wb:table-sort:request', function (event) { requests++; event.preventDefault(); });
+      ['javascript:void(0)', 'https://example.invalid/list', 'data:text/html,test'].forEach(function (url) {
+        table.setAttribute('data-wb-sort-url', url); assert(!WBTableSort.sort(table, 'name', 'asc'));
+      }); assert(requests === 0); assert(errors.join(',') === 'invalid-url,invalid-url,invalid-url');
+    });
+    test('Duplicate query names reject navigation', function () {
+      var table = make('server'); table.setAttribute('data-wb-sort-page-param', 'sort'); var code;
+      table.addEventListener('wb:table-sort:error', function (event) { code = event.detail.code; });
+      assert(!WBTableSort.sort(table, 'name', 'asc')); assert(code === 'invalid-url');
+    });
+    test('Disabled and aria-disabled controls cannot sort', function () {
+      var table = make(); control(table, 'name').disabled = true; control(table, 'amount').setAttribute('aria-disabled', 'true');
+      assert(!WBTableSort.sort(table, 'name', 'asc')); assert(!WBTableSort.sort(table, 'amount', 'asc')); assert(!table.querySelector('th[aria-sort]'));
+    });
+    test('Invalid API keys/directions leave the table untouched', function () {
+      var table = make(); assert(!WBTableSort.sort(table, 'missing', 'asc')); assert(!WBTableSort.update(table, 'name', 'up'));
+      assert(ids(table) === 'r1,r2,r3,r4,r5,r6'); assert(!table.querySelector('th[aria-sort]'));
+    });
+    test('Spanning or uneven body rows are rejected without partial sorting', function () {
+      var table = make(); table.tBodies[0].rows[0].cells[0].colSpan = 2;
+      var code; table.addEventListener('wb:table-sort:error', function (event) { code = event.detail.code; });
+      assert(!WBTableSort.sort(table, 'name', 'asc')); assert(code === 'invalid-structure'); assert(ids(table) === 'r1,r2,r3,r4,r5,r6');
+    });
+    test('Multiple bodies and complex headers reject client initialization', function () {
+      var table = make('client', false); table.createTBody(); WBTableSort.init(table); assert(!table.querySelector('.wb-table-sort-icon'));
+      var other = make('client', false); other.tHead.rows[0].cells[0].colSpan = 2; WBTableSort.init(other); assert(!other.querySelector('.wb-table-sort-icon'));
+    });
+    test('Duplicate sort keys and ambiguous initial directions reject initialization', function () {
+      var table = make('client', false); control(table, 'amount').parentElement.setAttribute('data-wb-sort', 'name'); WBTableSort.init(table); assert(!table.querySelector('.wb-table-sort-icon'));
+      var other = make('client', false); control(other, 'name').parentElement.setAttribute('aria-sort', 'ascending'); control(other, 'amount').parentElement.setAttribute('aria-sort', 'descending'); WBTableSort.init(other); assert(!other.querySelector('.wb-table-sort-icon'));
+    });
+    test('Empty bodies and dynamically replaced rows work', function () {
+      var table = make(); table.tBodies[0].replaceChildren(); assert(WBTableSort.sort(table, 'amount', 'asc')); active(table, 'amount', 'ascending');
+      var row = table.tBodies[0].insertRow(); for (var i = 0; i < 4; i++) row.insertCell().textContent = i === 1 ? '3' : 'New';
+      assert(WBTableSort.update(table, 'amount', 'desc')); assert(table.tBodies[0].rows.length === 1);
+    });
+    test('Invalid locale falls back without breaking initialization', function () {
+      var table = make('client', false); table.lang = 'invalid_locale!'; WBTableSort.init(table); assert(WBTableSort.sort(table, 'name', 'asc'));
+    });
+    test('Destroy and reinitialize remove generated UI and duplicate handlers', function () {
+      var table = make(); WBTableSort.sort(table, 'amount', 'asc'); WBTableSort.destroy(table);
+      assert(!table.querySelector('.wb-table-sort-icon')); assert(table.parentElement.querySelectorAll('[role="status"]').length === 0);
+      assert(!control(table, 'name').hasAttribute('type')); assert(!control(table, 'name').hasAttribute('aria-label'));
+      control(table, 'name').click(); active(table, 'amount', 'ascending'); WBTableSort.init(table);
+      control(table, 'amount').click(); active(table, 'amount', 'descending'); assert(table.querySelectorAll('.wb-table-sort-icon').length === 3);
+    });
+    document.getElementById('summary').textContent = passed + ' passed, ' + failed + ' failed.';
+    document.documentElement.setAttribute('data-test-result', failed ? 'failed' : 'passed');
+    document.getElementById('keyboard').addEventListener('wb:table-sort:change', function (event) {
+      document.getElementById('keyboard-result').textContent = event.detail.direction + ': ' + Array.from(this.tBodies[0].rows).map(function (row) { return row.cells[0].textContent; }).join(', ');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -75,6 +75,10 @@
         "description": "Admin page, list, detail, action column, and danger-zone standards."
       },
       {
+        "path": "docs/table-sort.html",
+        "description": "Accessible client/server table sorting examples, progressive server links, localization, and AJAX lifecycle."
+      },
+      {
         "path": "docs/pattern-dashboard-shell.html",
         "description": "Dashboard shell pattern reference."
       },

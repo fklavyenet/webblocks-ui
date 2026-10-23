@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" data-mode="light" data-accent="royal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Table sorting — WebBlocks UI</title>
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-content-shell wb-content-shell-wide">
+  <header class="wb-content-header">
+    <nav class="wb-breadcrumb" aria-label="Breadcrumb"><ol class="wb-breadcrumb-list"><li class="wb-breadcrumb-item"><a class="wb-breadcrumb-link" href="primitives.html">Primitives</a></li><li class="wb-breadcrumb-item"><span class="wb-breadcrumb-current" aria-current="page">Table sorting</span></li></ol></nav>
+    <h1 class="wb-content-title">Table sorting</h1>
+    <p class="wb-content-meta">Accessible single-column sorting for complete local data and server-paginated results.</p>
+    <button class="wb-btn wb-btn-secondary" type="button" data-wb-mode-cycle>Change color mode</button>
+  </header>
+  <div class="wb-content-body wb-stack wb-gap-6">
+    <p>Keep the standard table structure. Use client mode only when every record is loaded; use server mode for remote or paginated lists. Actions and selection columns remain unsortable.</p>
+    <section class="wb-card" id="client">
+      <div class="wb-card-header"><h2 class="wb-card-title">Try client sorting</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>Tab to a heading and press Enter or Space. New columns start ascending; activate again for descending. Empty values stay last in both directions.</p>
+        <p class="wb-text-sm wb-text-muted">Heading indicators use the shipped <code>wb-icon-arrow-up-down</code>, <code>wb-icon-arrow-up</code> and <code>wb-icon-arrow-down</code> masks at 16px, next to the label. Include <code>webblocks-icons.css</code> alongside <code>webblocks-ui.css</code>; no icon library or runtime is required.</p>
+        <div class="wb-table-wrap">
+          <table class="wb-table wb-table-hover" data-wb-table-sort="client" lang="en" >
+            <caption>Products. Activate a heading to change sort direction.</caption>
+            <thead><tr>
+              <th scope="col" data-wb-sort="name"><button type="button" class="wb-table-sort">Name</button></th>
+              <th scope="col" data-wb-sort="price" data-wb-sort-type="number"><button type="button" class="wb-table-sort">Price</button></th>
+              <th scope="col" data-wb-sort="updated" data-wb-sort-type="date"><button type="button" class="wb-table-sort">Updated</button></th>
+              <th scope="col">Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>İzmir</td><td data-wb-sort-value="1200.5">$1,200.50</td><td data-wb-sort-value="2026-10-21">2026-10-21</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="View İzmir" title="View İzmir"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Çınar</td><td data-wb-sort-value="0">$0.00</td><td data-wb-sort-value="2026-10-23T10:00:00Z">2026-10-23</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="View Çınar" title="View Çınar"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Atlas 10</td><td data-wb-sort-value="15.5">$15.50</td><td data-wb-sort-value="2026-10-20">2026-10-20</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="View Atlas 10" title="View Atlas 10"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Atlas 2</td><td data-wb-sort-value="15.5">$15.50</td><td data-wb-sort-value="">Not recorded</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="View Atlas 2" title="View Atlas 2"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Birch</td><td data-wb-sort-value="">Not recorded</td><td data-wb-sort-value="2026-10-22">2026-10-22</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="View Birch" title="View Birch"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Text follows the nearest lang attribute with natural numeric ordering. Supply unformatted data-wb-sort-value for localized numbers and dates; an empty attribute means missing, and zero is measured.</p>
+        <pre><code>&lt;table class=&quot;wb-table&quot; data-wb-table-sort=&quot;client&quot; lang=&quot;en&quot;&gt;
+  &lt;caption&gt;Products. Activate a heading to change sort direction.&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;name&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-table-sort&quot;&gt;Name&lt;/button&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;price&quot; data-wb-sort-type=&quot;number&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-table-sort&quot;&gt;Price&lt;/button&gt;&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Atlas&lt;/td&gt;&lt;td data-wb-sort-value=&quot;1200.5&quot;&gt;$1,200.50&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Birch&lt;/td&gt;&lt;td data-wb-sort-value=&quot;0&quot;&gt;Free&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <div class="wb-card-footer">5 products · complete local dataset</div>
+    </section>
+    <section class="wb-card" id="server">
+      <div class="wb-card-header"><h2 class="wb-card-title">Preview a server request</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>This static demo cancels navigation and displays the requested URL. Rows and current sort state stay unchanged. A real host sorts the complete filtered dataset before pagination and renders the resulting state.</p>
+        <div class="wb-table-wrap">
+          <table id="server-demo" class="wb-table" data-wb-table-sort="server" data-wb-sort-url="?role=editor&amp;page=4#server" >
+            <caption>Server-rendered users. Name is currently ascending.</caption>
+            <thead><tr>
+              <th scope="col" data-wb-sort="name" aria-sort="ascending"><a class="wb-table-sort" href="?role=editor&amp;sort=name&amp;direction=desc&amp;page=1#server">Name</a></th>
+              <th scope="col" data-wb-sort="updated"><button type="button" class="wb-table-sort">Updated</button></th>
+              <th scope="col">Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>Alice Brown</td><td>2026-10-21</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="View Alice Brown" title="View Alice Brown"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td>Marco Chen</td><td>2026-10-23</td><td class="wb-table-actions"><button type="button" class="wb-action-btn" aria-label="View Marco Chen" title="View Marco Chen"><i class="wb-icon wb-icon-eye" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wb-overflow-x-auto" role="status" aria-live="polite" id="server-preview">Activate a server heading to preview its URL.</p>
+        <p>Server links contain the next-sort URL and work without JavaScript. Server buttons use the current URL or data-wb-sort-url. Filters and the hash are preserved; page resets to 1. Allowlist sort keys and directions in the backend.</p>
+        <pre><code>&lt;table class=&quot;wb-table&quot; data-wb-table-sort=&quot;server&quot;&gt;
+  &lt;caption&gt;Users&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th scope=&quot;col&quot; data-wb-sort=&quot;name&quot; aria-sort=&quot;ascending&quot;&gt;
+      &lt;a class=&quot;wb-table-sort&quot; href=&quot;/admin/users?role=editor&amp;amp;sort=name&amp;amp;direction=desc&amp;amp;page=1&quot;&gt;Name&lt;/a&gt;
+    &lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;!-- Rows rendered by the server, sorted by name ascending. --&gt;&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <div class="wb-card-footer">2 users shown · server owns pagination</div>
+    </section>
+    <section class="wb-card" id="ajax">
+      <div class="wb-card-header"><h2 class="wb-card-title">AJAX integration</h2></div>
+      <div class="wb-card-body wb-stack-4">
+        <p>Cancel wb:table-sort:request to fetch data yourself. Commit aria-sort only after rendering a successful response with WBTableSort.update. Keep errors inline, and abort or ignore stale responses. The following example requires a host endpoint and host-defined DOM rendering helpers.</p>
+        <pre><code>const table = document.querySelector(&#x27;#users&#x27;);
+const error = document.querySelector(&#x27;#users-error&#x27;); // An inline wb-alert, initially hidden.
+const pagination = document.querySelector(&#x27;#users-pagination&#x27;); // Inside wb-card-footer.
+let pending;
+table.addEventListener(&#x27;wb:table-sort:request&#x27;, async (event) =&gt; {
+  if (event.target !== table || event.detail.mode !== &#x27;server&#x27;) return;
+  event.preventDefault();
+  if (pending) pending.abort();
+  const request = new AbortController();
+  pending = request;
+  table.setAttribute(&#x27;aria-busy&#x27;, &#x27;true&#x27;);
+  error.hidden = true;
+  try {
+    const response = await fetch(event.detail.url, {
+      signal: request.signal, headers: { &#x27;Accept&#x27;: &#x27;application/json&#x27; }
+    });
+    if (!response.ok) throw new Error(&#x27;Request failed&#x27;);
+    const result = await response.json();
+    if (pending !== request) return;
+    // Host-defined helpers build DOM from validated data using textContent.
+    // The endpoint returns rows, pagination, sort and direction after allowlisting.
+    const body = renderRows(result.rows);
+    const footer = renderPagination(result.pagination);
+    table.tBodies[0].replaceWith(body);
+    pagination.replaceChildren(footer);
+    WBTableSort.update(table, result.sort, result.direction);
+    history.replaceState(null, &#x27;&#x27;, event.detail.url);
+  } catch (cause) {
+    if (pending === request &amp;&amp; cause.name !== &#x27;AbortError&#x27;) error.hidden = false;
+  } finally {
+    if (pending === request) {
+      table.removeAttribute(&#x27;aria-busy&#x27;);
+      pending = null;
+    }
+  }
+});</code></pre>
+        <p>WBTableSort.init(fragment) is safe to repeat. Use destroy before replacing headers or removing a table. Client mode supports one header row, one tbody and no spanning cells. Native buttons provide keyboard activation; server links use Enter. Direction is conveyed through shape and aria-sort, with a polite live announcement after completed sorting.</p>
+        <p><a href="../packages/webblocks/INTEGRATION.md#table-sorting">Complete API, localization templates and limits</a> · <a href="../packages/webblocks/tests/table-sort.html">Browser behavior tests</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+  document.getElementById('server-demo').addEventListener('wb:table-sort:request', function (event) {
+    event.preventDefault();
+    document.getElementById('server-preview').textContent = event.detail.url;
+  });
+</script>
+</body>
+</html>

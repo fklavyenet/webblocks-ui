@@ -334,6 +334,7 @@ cat \
   "$ROOT/src/js/gallery.js" \
   "$ROOT/src/js/slider.js" \
   "$ROOT/src/js/tabs.js" \
+  "$ROOT/src/js/table-sort.js" \
   "$ROOT/src/js/chart.js" \
   "$ROOT/src/js/accordion.js" \
   "$ROOT/src/js/sidebar.js" \
