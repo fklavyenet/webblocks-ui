@@ -1445,6 +1445,8 @@ on the sides and below. `wb-accordion-content` is an unpadded visibility
 wrapper. Keep one `wb-accordion-body` in either pattern; do not add downstream
 padding to compensate for nested content wrappers. Cards and tables inside
 the body retain the same inset and separation from the trigger, including hover.
+The runtime measures unconstrained open content before setting its height,
+including body padding, on open/reopen and recalculation after content resizing.
 
 Full attribute-based pattern:
 

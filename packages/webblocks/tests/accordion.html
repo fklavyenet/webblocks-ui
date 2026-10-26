@@ -70,10 +70,26 @@
         check(id + ' single horizontal inset', Math.abs(inset - side) < 1);
         check(id + ' open state', trigger.getAttribute('aria-expanded') === 'true');
         check(id + ' content not clipped', panel.clientHeight + 1 >= panel.scrollHeight);
+        var bottom = parseFloat(bodyStyle.paddingBottom);
+        function bottomGap() { return body.getBoundingClientRect().bottom - inner.getBoundingClientRect().bottom; }
+        check(id + ' bottom separation', bottom > 0 && Math.abs(bottomGap() - bottom) < 1);
+        WBAccordion.close(trigger);
+        WBAccordion.open(trigger);
+        check(id + ' reopened bottom separation', Math.abs(bottomGap() - bottom) < 1);
+        var growth = document.createElement('div');
+        ['Additional synthetic content', 'Another synthetic line', 'Final synthetic line'].forEach(function (text) {
+          var line = document.createElement('p'); line.textContent = text; growth.appendChild(line);
+        });
+        inner.appendChild(growth);
+        WBAccordion.recalc();
+        check(id + ' growing content keeps bottom spacing', Math.abs(bottomGap() - bottom) < 1);
+        growth.remove();
+        WBAccordion.recalc();
+        check(id + ' shrinking content keeps bottom spacing', Math.abs(bottomGap() - bottom) < 1);
         if (panel !== body) {
           check(id + ' unpadded wrapper', parseFloat(getComputedStyle(panel).paddingLeft) === 0 && parseFloat(getComputedStyle(panel).paddingBottom) === 0);
         }
-        measurements.push({ fixture: panel.id, mode: mode, gap: gap, inset: inset, bodyTop: top, bodySide: side });
+        measurements.push({ fixture: panel.id, mode: mode, gap: gap, inset: inset, bottomGap: bottomGap(), bodyTop: top, bodySide: side, bodyBottom: bottom });
       });
     });
     document.documentElement.setAttribute('data-mode', new URLSearchParams(location.search).get('mode') === 'dark' ? 'dark' : 'light');
