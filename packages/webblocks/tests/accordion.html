@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accordion spacing browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../dist/webblocks-icons.css">
+  <script src="../dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-container wb-stack wb-gap-4">
+  <h1>Accordion spacing</h1>
+  <p>Checks both supported structures with cards and tables. Hover an open trigger and compare the gap below its background in light and dark modes.</p>
+  <div class="wb-action-group">
+    <a class="wb-btn wb-btn-secondary" href="?mode=light">Light theme</a>
+    <a class="wb-btn wb-btn-secondary" href="?mode=dark">Dark theme</a>
+  </div>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="results" class="wb-marker-list"></ol>
+  <div class="wb-grid wb-grid-2" id="fixtures"></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var fixtures = document.getElementById('fixtures');
+  var results = [];
+  var measurements = [];
+  ['wrapped', 'direct'].forEach(function (pattern) {
+    ['table', 'card'].forEach(function (kind) {
+      var id = pattern + '-' + kind;
+      var content = kind === 'table'
+        ? '<div class="wb-table-wrap" data-inner><table class="wb-table"><thead><tr><th>Stored value</th><th>Views</th></tr></thead><tbody><tr><td>Synthetic sample</td><td>1</td></tr></tbody></table></div>'
+        : '<section class="wb-card" data-inner><div class="wb-card-header"><h3 class="wb-card-title">Inner card heading</h3></div><div class="wb-card-body">Synthetic content</div></section>';
+      var body = '<div class="wb-accordion-body">' + content + '</div>';
+      if (pattern === 'wrapped') body = '<div class="wb-accordion-content" id="' + id + '">' + body + '</div>';
+      else body = body.replace('class="wb-accordion-body"', 'class="wb-accordion-body" id="' + id + '"');
+      var section = document.createElement('section');
+      section.className = 'wb-card';
+      section.innerHTML = '<div class="wb-card-header"><h2 class="wb-card-title">' + pattern + ' / ' + kind + '</h2></div><div class="wb-card-body"><div class="wb-accordion" data-wb-accordion><div class="wb-accordion-item"><button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="false" aria-controls="' + id + '"><span>Campaign · synthetic views</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>' + body + '</div></div></div>';
+      fixtures.appendChild(section);
+    });
+  });
+  function check(name, valid) {
+    results.push({ name: name, passed: Boolean(valid) });
+  }
+  function run() {
+    results = [];
+    measurements = [];
+    ['light', 'dark'].forEach(function (mode) {
+      document.documentElement.setAttribute('data-mode', mode);
+      fixtures.querySelectorAll('.wb-accordion-trigger').forEach(function (trigger) {
+        var item = trigger.closest('.wb-accordion-item');
+        var panel = document.getElementById(trigger.getAttribute('aria-controls'));
+        var body = item.querySelector('.wb-accordion-body');
+        var inner = item.querySelector('[data-inner]');
+        var id = panel.id + ' / ' + mode;
+        WBAccordion.close(trigger);
+        check(id + ' closed panel', getComputedStyle(panel).display === 'none');
+        WBAccordion.open(trigger);
+        var headerBox = trigger.getBoundingClientRect();
+        var innerBox = inner.getBoundingClientRect();
+        var bodyStyle = getComputedStyle(body);
+        var top = parseFloat(bodyStyle.paddingTop);
+        var side = parseFloat(bodyStyle.paddingLeft);
+        var gap = innerBox.top - headerBox.bottom;
+        var inset = innerBox.left - headerBox.left;
+        check(id + ' positive body spacing', top > 0 && side > 0);
+        check(id + ' trigger separation', Math.abs(gap - top) < 1);
+        check(id + ' single horizontal inset', Math.abs(inset - side) < 1);
+        check(id + ' open state', trigger.getAttribute('aria-expanded') === 'true');
+        check(id + ' content not clipped', panel.clientHeight + 1 >= panel.scrollHeight);
+        if (panel !== body) {
+          check(id + ' unpadded wrapper', parseFloat(getComputedStyle(panel).paddingLeft) === 0 && parseFloat(getComputedStyle(panel).paddingBottom) === 0);
+        }
+        measurements.push({ fixture: panel.id, mode: mode, gap: gap, inset: inset, bodyTop: top, bodySide: side });
+      });
+    });
+    document.documentElement.setAttribute('data-mode', new URLSearchParams(location.search).get('mode') === 'dark' ? 'dark' : 'light');
+    var failed = results.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + results.length + ' checks; ' + failed.length + ' failures.';
+    var list = document.getElementById('results');
+    list.textContent = '';
+    failed.forEach(function (result) { var row = document.createElement('li'); row.textContent = result.name; list.appendChild(row); });
+    window.accordionTestResults = { passed: failed.length === 0, checks: results.length, failures: failed, measurements: measurements };
+  }
+  window.runAccordionSpacingTests = run;
+  window.addEventListener('load', run);
+})();
+</script>
+</body>
+</html>

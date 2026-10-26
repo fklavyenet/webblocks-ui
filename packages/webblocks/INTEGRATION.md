@@ -1440,6 +1440,12 @@ Tabs inside a `<form>` — keep a field in sync with `data-wb-tabs-field`:
 
 ### Accordion
 
+The body owns content spacing: `--wb-s4` above its contents and `--wb-s5`
+on the sides and below. `wb-accordion-content` is an unpadded visibility
+wrapper. Keep one `wb-accordion-body` in either pattern; do not add downstream
+padding to compensate for nested content wrappers. Cards and tables inside
+the body retain the same inset and separation from the trigger, including hover.
+
 Full attribute-based pattern:
 
 ```html

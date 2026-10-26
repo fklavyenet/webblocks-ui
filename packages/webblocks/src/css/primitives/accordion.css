@@ -59,10 +59,14 @@
 .wb-accordion-content,
 .wb-accordion-body {
   display: none;
-  padding: 0 var(--wb-s5) var(--wb-s5);
   font-size: 0.9rem;
   color: var(--wb-muted);
   line-height: 1.7;
+}
+
+/* The visibility wrapper stays unpadded; both supported patterns use one body inset. */
+.wb-accordion-body {
+  padding: var(--wb-s4) var(--wb-s5) var(--wb-s5);
 }
 
 .wb-accordion-item.is-open .wb-accordion-content,
