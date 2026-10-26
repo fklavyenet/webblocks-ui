@@ -72,6 +72,7 @@
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#marker-lists">Marker lists</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#pagination-and-context">Pagination and context</a></li>
               <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#interaction-shells">Interaction shells</a></li>
+              <li class="wb-section-nav-item"><a class="wb-section-nav-link" href="#accordion-examples">Accordion examples</a></li>
             </ul>
           </nav>
 
@@ -624,6 +625,65 @@
                         </div>
                       </div>
                 </div>
+                <section class="wb-card" id="accordion-examples" aria-labelledby="accordionExamplesHeading">
+                  <div class="wb-card-header"><h3 class="wb-card-title" id="accordionExamplesHeading">Accordion content spacing</h3></div>
+                  <div class="wb-card-body wb-stack-5">
+                    <p class="wb-m-0">From WebBlocks UI 2.31.2, open bodies keep space between the trigger and their first content surface, and between the last surface and the bottom border. Close and reopen each example to check the spacing.</p>
+                    <p class="wb-m-0">Both structures use one padded <code>wb-accordion-body</code>. In the wrapped structure, <code>wb-accordion-content</code> is an unpadded visibility wrapper. UI owns the height calculation; do not add extra padding or a fixed height to compensate.</p>
+                    <p class="wb-text-sm wb-text-muted wb-m-0">With the default spacing tokens, the top gap is <code>--wb-s4</code> (16 px), and the side and bottom insets are <code>--wb-s5</code> (20 px).</p>
+                    <div class="wb-grid-2">
+                      <section class="wb-stack-3" aria-labelledby="accordion-wrapped-table-heading">
+                        <h4 class="wb-m-0" id="accordion-wrapped-table-heading"><code>wrapped / table</code></h4>
+                        <div class="wb-accordion" data-wb-accordion>
+                          <div class="wb-accordion-item is-open">
+                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-wrapped-table-body"><span>Campaign details</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>
+                            <div class="wb-accordion-content" id="accordion-wrapped-table-body"><div class="wb-accordion-body"><div class="wb-table-wrap"><table class="wb-table"><thead><tr><th scope="col">Campaign</th><th scope="col">Page views</th></tr></thead><tbody><tr><td>spring-launch</td><td>18</td></tr></tbody></table></div></div></div>
+                          </div>
+                        </div>
+                      </section>
+                      <section class="wb-stack-3" aria-labelledby="accordion-wrapped-card-heading">
+                        <h4 class="wb-m-0" id="accordion-wrapped-card-heading"><code>wrapped / card</code></h4>
+                        <div class="wb-accordion" data-wb-accordion>
+                          <div class="wb-accordion-item is-open">
+                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-wrapped-card-body"><span>Campaign details</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>
+                            <div class="wb-accordion-content" id="accordion-wrapped-card-body"><div class="wb-accordion-body"><section class="wb-card" aria-labelledby="accordion-wrapped-card-card-heading"><div class="wb-card-header"><h5 class="wb-card-title" id="accordion-wrapped-card-card-heading">Campaign overview</h5></div><div class="wb-card-body"><p class="wb-m-0">Synthetic campaign data for this example.</p></div></section></div></div>
+                          </div>
+                        </div>
+                      </section>
+                      <section class="wb-stack-3" aria-labelledby="accordion-direct-table-heading">
+                        <h4 class="wb-m-0" id="accordion-direct-table-heading"><code>direct / table</code></h4>
+                        <div class="wb-accordion" data-wb-accordion>
+                          <div class="wb-accordion-item is-open">
+                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-direct-table-body"><span>Campaign details</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>
+                            <div class="wb-accordion-body" id="accordion-direct-table-body"><div class="wb-table-wrap"><table class="wb-table"><thead><tr><th scope="col">Campaign</th><th scope="col">Page views</th></tr></thead><tbody><tr><td>spring-launch</td><td>18</td></tr></tbody></table></div></div>
+                          </div>
+                        </div>
+                      </section>
+                      <section class="wb-stack-3" aria-labelledby="accordion-direct-card-heading">
+                        <h4 class="wb-m-0" id="accordion-direct-card-heading"><code>direct / card</code></h4>
+                        <div class="wb-accordion" data-wb-accordion>
+                          <div class="wb-accordion-item is-open">
+                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-direct-card-body"><span>Campaign details</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>
+                            <div class="wb-accordion-body" id="accordion-direct-card-body"><section class="wb-card" aria-labelledby="accordion-direct-card-card-heading"><div class="wb-card-header"><h5 class="wb-card-title" id="accordion-direct-card-card-heading">Campaign overview</h5></div><div class="wb-card-body"><p class="wb-m-0">Synthetic campaign data for this example.</p></div></section></div>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                    <div class="wb-stack-3">
+                      <h4 class="wb-m-0">Direct body markup</h4>
+                      <pre><code>&lt;div class=&quot;wb-accordion&quot; data-wb-accordion&gt;
+  &lt;div class=&quot;wb-accordion-item&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;wb-accordion-trigger&quot;
+      data-wb-accordion-trigger aria-expanded=&quot;false&quot;
+      aria-controls=&quot;campaign-body&quot;&gt;Campaign details&lt;/button&gt;
+    &lt;div class=&quot;wb-accordion-body&quot; id=&quot;campaign-body&quot;&gt;
+      &lt;div class=&quot;wb-table-wrap&quot;&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                  </div>
+                </section>
                 <div class="wb-card">
                   <div class="wb-card-header"><h3 class="wb-card-title">Modal: dialog, stack, and guarded close flows</h3></div>
                   <div class="wb-card-body wb-stack-5">
