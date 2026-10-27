@@ -2951,3 +2951,35 @@ A working local example is available at `docs/chart.html`. Run
 source/dist API and the no-module, no-network dependency boundary. Interactive
 browser review uses that self-contained example; canonical validation must not
 require Node, npm, Playwright, or another downloaded test runtime.
+
+## Meter
+
+Use native `<meter class="wb-meter">` for a bounded measurement or a share of a
+known total, such as a poll option's percentage. This is a read-only measurement,
+not a task's progress. Use the existing progress/loading family for work in flight.
+
+```html
+<div class="wb-stack wb-gap-2">
+  <div class="wb-cluster wb-cluster-between">
+    <strong id="photography-label">Photography</strong>
+    <span>60% (12 votes)</span>
+  </div>
+  <meter class="wb-meter" min="0" max="100" value="60"
+         aria-labelledby="photography-label" aria-valuetext="60% (12 votes)">60%</meter>
+</div>
+```
+
+The native `min`, `max` and `value` attributes control the fill without JavaScript,
+inline styles, or an extra data attribute. Supply valid finite values with
+`min <= value <= max` and `max > min`. Supply an accessible name with a label,
+`aria-labelledby`, or `aria-label`, plus visible localized value text. Keep that
+text and `aria-valuetext` synchronized. Do not add `role="progressbar"`, an input
+interaction, or a misleading success/danger color based on vote share.
+
+UI owns the track, accent fill, radius, theme and native-engine styling. Hosts own
+values, labels, formatting, validation, totals, authorization and result visibility.
+For independent poll choices use the same 0–100 scale for every option; multiple
+choice percentages may sum above 100. Zero remains an empty track, 100 fills it.
+Missing measurements should be described as missing rather than silently set to zero.
+Long labels should wrap using ordinary layout; keep values readable on small screens.
+See [native meter examples](../../docs/meter.html). No chart library is required.

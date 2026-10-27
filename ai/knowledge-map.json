@@ -93,6 +93,10 @@
       {
         "path": "docs/admin-product-brand.md",
         "description": "Admin, auth, and sidebar product brand mark rules."
+      },
+      {
+        "path": "docs/meter.html",
+        "description": "Native bounded measurement examples with zero/full values, localized labels and independent poll percentages."
       }
     ],
     "ai_contract": [

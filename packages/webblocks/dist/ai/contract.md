@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.31.2
+Version: v2.32.0
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -168,3 +168,11 @@ Before finishing downstream UI work, verify:
 - An empty `data-wb-chart-value` means missing; zero means measured zero. Never infer or fill missing records in UI.
 - Keep tables accessible, use `WBChart.update` after host changes, and `WBChart.destroy` before unmounting.
 - Do not copy the renderer into a downstream app or introduce a second chart library.
+
+## Bounded measurements
+
+- Use native `meter.wb-meter` for a measurement within a known range, such as a poll share.
+- Supply native `min`, `max` and `value`, an accessible name and visible localized value text.
+- Preserve meter semantics; do not label measurements as task progress or add a progressbar role.
+- UI owns the themed track and fill without JavaScript or inline CSS. Hosts own values, validation, formatting, aggregation and visibility.
+- Keep the same scale for compared values. Multiple-choice poll options remain independent percentages.

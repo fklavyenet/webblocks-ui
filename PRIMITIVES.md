@@ -79,6 +79,7 @@ Canonical primitive families include:
 - drawer
 - radio-card
 - rating
+- meter
 - action controls
 - local editorial body copy
 - icons
@@ -506,3 +507,11 @@ tables into SVG line or grouped bar charts without external dependencies. Hosts
 keep data collection, authorization, aggregation and table/modal ownership.
 See [Chart examples](docs/chart.html) and the
 [Chart integration contract](packages/webblocks/INTEGRATION.md#chart).
+
+## Meter
+
+`wb-meter` styles a native, read-only `<meter>` with a bounded `min`, `max` and
+`value`. Use it for poll percentages and other measurements, with an accessible
+name and visible formatted value. It needs no JavaScript or inline CSS. Hosts own
+measurement data; UI owns its themed track and fill. See
+[the contract](packages/webblocks/INTEGRATION.md#meter).

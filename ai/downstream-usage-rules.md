@@ -131,3 +131,11 @@ Preset/accent dropdowns use `.wb-theme-switcher` and the complete `.wb-theme-swi
 Navigation groups use `.wb-nav-group[data-wb-nav-group]`, a `.wb-nav-group-toggle` button, and `.wb-nav-group-items`. The shipped WebBlocks UI runtime owns their interaction. Downstream projects must not add their own toggle attributes, click listeners, or `is-open`/`aria-expanded` state manager.
 
 Tabs pair `[data-wb-tab]` controls with panels by id. Hosts may render the initial inactive panels with `hidden` and `aria-hidden="true"`, but the shipped runtime owns all panel visibility and accessibility state after a tab change. Do not copy tab visibility listeners into project JavaScript; use `data-wb-tabs-field` when the server needs the active tab value.
+
+## Bounded measurements
+
+- Use native `meter.wb-meter` for a measurement within a known range, such as a poll share.
+- Supply native `min`, `max` and `value`, an accessible name and visible localized value text.
+- Preserve meter semantics; do not label measurements as task progress or add a progressbar role.
+- UI owns the themed track and fill without JavaScript or inline CSS. Hosts own values, validation, formatting, aggregation and visibility.
+- Keep the same scale for compared values. Multiple-choice poll options remain independent percentages.

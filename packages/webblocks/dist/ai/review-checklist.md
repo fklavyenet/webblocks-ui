@@ -67,3 +67,8 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Existing downstream tests or smoke checks still pass.
 - [ ] UI changes were reviewed for shell, table, overlay, feedback, and responsive behavior.
 - [ ] If no tests exist, the remaining risk is stated clearly in the final response.
+
+## Bounded measurements
+
+- [ ] Bounded measurements use native `meter.wb-meter` with valid values, accessible names and visible localized value text.
+- [ ] Zero/full values, long labels, light/dark modes and narrow layouts remain legible without JavaScript.

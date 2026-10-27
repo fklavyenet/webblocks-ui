@@ -1,0 +1,42 @@
+/* WebBlocks UI — native bounded measurement; values and labels are host-owned. */
+meter.wb-meter {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 0;
+  block-size: .625rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--wb-r-full);
+  background: var(--wb-surface-2);
+  color: var(--wb-accent);
+}
+
+meter.wb-meter::-webkit-meter-inner-element { display: block; block-size: 100%; }
+meter.wb-meter::-webkit-meter-bar {
+  block-size: 100%;
+  border: 1px solid var(--wb-border);
+  border-radius: var(--wb-r-full);
+  background: var(--wb-surface-2);
+  box-shadow: none;
+}
+meter.wb-meter::-webkit-meter-optimum-value,
+meter.wb-meter::-webkit-meter-suboptimum-value,
+meter.wb-meter::-webkit-meter-even-less-good-value {
+  border-radius: var(--wb-r-full);
+  background: var(--wb-accent);
+}
+meter.wb-meter::-moz-meter-bar {
+  border-radius: var(--wb-r-full);
+  background: var(--wb-accent);
+}
+
+/* Preserve a visible empty track in Firefox as well as WebKit/Blink. */
+@supports (-moz-appearance: none) {
+  meter.wb-meter { border: 1px solid var(--wb-border); }
+}
+
+@media (forced-colors: active) {
+  meter.wb-meter { appearance: auto; }
+}

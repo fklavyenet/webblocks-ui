@@ -271,6 +271,7 @@ cat \
   "$ROOT/src/css/primitives/form.css" \
   "$ROOT/src/css/primitives/table.css" \
   "$ROOT/src/css/primitives/chart.css" \
+  "$ROOT/src/css/primitives/meter.css" \
   "$ROOT/src/css/primitives/media.css" \
   "$ROOT/src/css/primitives/overlay.css" \
   "$ROOT/src/css/primitives/modal.css" \

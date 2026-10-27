@@ -419,3 +419,10 @@ manual action offsets, or downstream alignment styles.
 Use the [package Chart contract](packages/webblocks/INTEGRATION.md#chart) for
 source-table anatomy, limits, keyboard behavior, lifecycle and ownership rules.
 Live local examples: [Chart](docs/chart.html).
+
+## Bounded measurements
+
+Use native `meter.wb-meter` for bounded values such as poll percentages. See the
+[package meter contract](packages/webblocks/INTEGRATION.md#meter) and
+[examples](docs/meter.html). Hosts own values and accessible localized text; UI
+owns the native track/fill styling. Loading progress keeps its existing contract.
