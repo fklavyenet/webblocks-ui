@@ -145,6 +145,11 @@ function toDataUri(inner) {
   return `url("data:image/svg+xml,${encoded}")`;
 }
 
+function maskRule(selector, uri) {
+  // Keep both mask properties while storing the SVG payload only once per rule.
+  return `${selector} {\n  --wb-icon-mask: ${uri};\n  -webkit-mask-image: var(--wb-icon-mask);\n  mask-image: var(--wb-icon-mask);\n}\n`;
+}
+
 const licenseNotice = fs.readFileSync(path.join(ROOT, '../../THIRD_PARTY_LICENSES.txt'), 'utf8');
 let cssRules = `/*
 ${licenseNotice}
@@ -172,14 +177,14 @@ for (const { id, inner } of icons) {
   const uri = toDataUri(inner);
   const names = [id].concat(aliases[id] || []);
   const selector = names.map((name) => `.${name}`).join(',\n');
-  cssRules += `${selector} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
+  cssRules += maskRule(selector, uri);
 }
 
 for (const symbol of aliasSymbols) {
   const match = symbol.match(/<symbol id="(wb-icon-[^"]+)"[\s\S]*?>([\s\S]*?)<\/symbol>/);
   if (!match) continue;
   const uri = toDataUri(match[2].trim());
-  cssRules += `.${match[1]} {\n  -webkit-mask-image: ${uri};\n  mask-image: ${uri};\n}\n`;
+  cssRules += maskRule(`.${match[1]}`, uri);
 }
 
 fs.writeFileSync(SRC_CSS, cssRules, 'utf8');

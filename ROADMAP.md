@@ -466,7 +466,7 @@ Build a private WebBlocks UI Advisor backed by curated repo knowledge, vector se
 
 ## Minification Hardening (Deferred)
 
-Minified dist artifacts exist in the repository, but downstream production/CDN usage should stay on the standard non-minified dist files until the minification pipeline is hardened.
+Canonical builds publish the standard dist filenames with conservative CSS comment/indentation formatting. Function and declaration-value whitespace is preserved, and JavaScript remains unmodified. Separate `.min.css` / `.min.js` artifacts are not published. More aggressive token/value minification remains deferred; the current formatting checks do not authorize it.
 
 Required coverage before recommending `.min.css` / `.min.js` consumption:
 

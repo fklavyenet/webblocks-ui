@@ -167,6 +167,9 @@
                         </tbody>
                       </table>
                     </div>
+                    <p>Pasif slaytlar <code>inert</code> ile klavye odağından çıkarılır; native destek yoksa <code>tabindex</code> yedek yolu kullanılır. İçeriği hazırlayanın odak öznitelikleri korunur. Geçiş odağı gizleyecekse odak slider köküne taşınır; pasife geçen slaytın dışındaki odak yerinde kalır.</p>
+                    <p>Slaytları veya kontrolleri değiştirdikten sonra <code>WBSlider.update(root)</code>, slider'ı kaldırmadan önce <code>WBSlider.destroy(root)</code> çağır. Mevcut slayta eklenen içerik otomatik yönetilir. Tekrarlanan başlatma güvenlidir; <code>wb:slider:change</code> olayının <code>index</code>, <code>count</code> ve <code>slide</code> alanları korunur.</p>
+                    <p>Odak slider içine girdiğinde autoplay durur ve odak dışarı çıksa da duraklama korunur. Hover duraklaması manuel geçişlerde ve güncellemelerde sürer; <code>prefers-reduced-motion</code> değişiklikleri anında izlenir. Manuel gezinme kullanılabilir. Odak duraklamasından sonra açıkça yeniden başlatmak için <code>data-wb-slider-autoplay</code> değerini <code>false</code> yapıp <code>WBSlider.update(root)</code> çağır, ardından değeri <code>true</code> yapıp odak slider dışındayken tekrar güncelle. Hover ve azaltılmış hareket tercihi önceliğini korur.</p>
                   </section>
 
                   <section class="wb-docs-section wb-docs-split" id="composition">

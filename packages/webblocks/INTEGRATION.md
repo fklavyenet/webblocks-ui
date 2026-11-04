@@ -1357,6 +1357,60 @@ Behavior contract:
 - pointer swipe is enabled by default
 - loop is enabled by default
 - autoplay is disabled by default and can be enabled with `data-wb-slider-autoplay="true"`
+- focus entering the slider stops autoplay until an explicit opt-in; blur, mouseleave, manual navigation and an ordinary `update` do not clear that focus pause
+- hover pauses autoplay by default, including manual arrow/dot/API transitions and updates while still hovered; `data-wb-slider-pause-on-hover="false"` retains its opt-out behavior without disabling focus protection
+- reduced motion prevents autoplay at initialization and stops a running timer immediately when the preference changes; clearing the preference resumes only when no focus/hover pause applies. Media listeners are replaced on update and removed on destroy
+- manual arrows, dots, keyboard, swipe and the existing navigation API remain available during autoplay pauses
+- inactive slides receive `aria-hidden="true"` and runtime-owned `inert`; active slides regain interaction without changing authored `inert`, `tabindex`, or descendant `disabled` values
+- native `inert` covers newly inserted descendants automatically; browsers without native support use a shared, observed `tabindex` fallback and a focus guard, including nested sliders
+- when a transition would hide the focused element, focus moves to the slider root without scrolling; a temporary `tabindex="-1"` is removed on blur or destroy. Focus outside the departing slide stays where it is
+- gallery and modal triggers remain normal controls on the active slide; do not add another focus manager in a host app
+
+Lifecycle API (element or selector, except the existing `goTo` element argument):
+
+```js
+WBSlider.init(root)       // Repeat-safe; returns the existing state when initialized.
+WBSlider.update(root)     // Call after adding/removing/reordering slides or replacing controls.
+WBSlider.destroy(root)    // Call before unmounting; safe to repeat, then init again if needed.
+```
+
+`update` rereads options and parts, preserves the selected slide when it still
+exists, otherwise clamps the previous index, and refreshes runtime-generated
+dots. Adding descendants inside an existing slide needs no update. Hosts still
+own their content and media URLs. `destroy` stops timers, removes instance
+listeners/observers and generated dots, restores saved slide/control state and
+track transform, and releases only this slider's focus locks. A hidden outer
+slider continues to suppress a destroyed inner slider's descendants.
+
+To explicitly resume after a focus pause, opt out and back in through the existing
+option/update lifecycle, with focus outside the slider. A normal update with
+unchanged autoplay leaves the pause intact. Hover and reduced motion still take
+precedence over this explicit opt-in:
+
+```js
+root.setAttribute('data-wb-slider-autoplay', 'false');
+WBSlider.update(root);
+root.setAttribute('data-wb-slider-autoplay', 'true');
+WBSlider.update(root);
+```
+
+Destroy/reinitialize creates fresh instance state and rechecks current focus,
+hover and motion preference. No pause/resume method or rotation control is added
+by this behavior fix.
+
+`wb:slider:change` still bubbles after rendering with `{ index, count, slide }`;
+repeat `init` and unchanged `goTo` do not emit, while `update` emits the refreshed
+state (including `{ index: 0, count: 0, slide: null }` after all slides are removed).
+
+Dependency-free browser checks: [slider fixture](tests/slider.html). Test the
+normal URL and `?fallback=1`; `?source=1` tests the standalone source modules.
+The fallback switch exists only in the fixture and does not change production
+feature detection. Complete the visible Tab/Shift+Tab instructions as well. Also open
+[autoplay checks](tests/slider-autoplay.html) for independent pause reasons,
+explicit opt-in, modern/legacy MediaQueryList changes and lifecycle cleanup.
+Use `?source=1` for standalone slider source and `?legacy=1` for legacy media
+listeners. These deterministic checks simulate media changes; the visible live
+example uses native browser timers and the actual motion preference.
 
 Do:
 
@@ -2422,6 +2476,17 @@ Other:
 
 ## Icons
 
+Generated icon rules share one SVG payload between `-webkit-mask-image` and
+`mask-image` through the internal `--wb-icon-mask` property. This does not change
+the icon catalog, aliases, helper classes, CSS file paths, or consumer markup.
+Keep using the named classes rather than setting this implementation property.
+The canonical shell build formats the stored source icon CSS conservatively
+without a new runtime or token/value minification step.
+
+Open [icon browser checks](tests/icons.html) to compare every computed glyph
+with the source SVGs. Repeat with `?reverse=1` and `?source=1` to cover stylesheet
+order and the stored source CSS.
+
 Canonical icon pattern:
 
 ```html
@@ -2799,7 +2864,7 @@ Build output includes the standard dist files:
 - `dist/webblocks-ui.js`
 - `dist/webblocks-icons.json` maintained as a preserved manifest artifact
 
-Use these standard files for downstream production/CDN integrations. The canonical build does not generate minified outputs or regenerate the icon manifest.
+Use these standard files for downstream production/CDN integrations. The canonical build conservatively formats CSS in these same files; it does not publish separate `.min` artifacts, compact JavaScript, or regenerate the icon manifest. Functions and declaration values retain their original whitespace, and licenses, selectors and rule order are preserved. See [CSS browser checks](tests/css-compaction.html) and run `bash scripts/validate-css-compaction.sh` after building.
 
 If this guide conflicts with the source files, trust the source files and update this guide.
 - utility helpers are override-first; in normal usage they should win over component or base defaults

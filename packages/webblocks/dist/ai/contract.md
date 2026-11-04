@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.32.0
+Version: v2.33.0
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -22,6 +22,7 @@ When a question requires deeper source inspection, use this priority order:
 ## Required Pattern-First Behavior
 
 - Keep canonical build and validation tooling dependency-free. Do not introduce Node, npm, Playwright, or another package runtime without explicit project-owner approval.
+- CSS output formatting must preserve complete function/declaration values (including whitespace), strings, URLs, selectors, rule order and license notices. Do not apply blanket whitespace removal or compact JavaScript through the CSS formatter.
 
 - Start from the shipped pattern that matches the screen before composing primitives.
 - Use `wb-dashboard-shell` for admin and dashboard screens.
@@ -143,6 +144,8 @@ Do not introduce these in new downstream work:
 - Use the opt-in `wb-background-media` primitive when an existing semantic root needs host-owned background media. Supply the safe image URL and position through `--wb-background-media-image` and `--wb-background-media-position`, then choose no modifier for the soft default overlay or add `wb-background-media--overlay-none`, `wb-background-media--overlay-medium`, or `wb-background-media--overlay-strong`. The host owns media selection, URL safety, and accessible content; the background image remains decorative.
 - Use `wb-gallery` for equal-tile inline image collections and shared modal viewing.
 - Use `wb-slider` for track-based media/content carousel sections.
+- `WBSlider` owns inactive-slide `inert`/focus suppression and moves focus to the root only when a transition would hide it. Preserve authored focus attributes; do not add a competing host focus manager. Call `WBSlider.update` after slide/control structure changes and `WBSlider.destroy` before unmounting.
+- Autoplay pauses on focus entry until explicitly re-enabled through the existing autoplay option/update lifecycle. Hover and live reduced-motion pauses also apply to manual navigation and update; keep their timer/listener management in `WBSlider`.
 - Keep slider anatomy explicit: `.wb-slider > .wb-slider-viewport > .wb-slider-track > .wb-slide`, with optional `.wb-slide-media`, `.wb-slide-content`, `.wb-slider-controls`, and `.wb-slider-dots`.
 - Prefer real `img` or `picture` elements with `wb-slide-media`; coverage is handled by shipped `object-fit: cover` CSS.
 - Do not replace `WBSlider` with project-local carousel JavaScript unless the shipped behavior is proven insufficient.

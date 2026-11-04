@@ -54,6 +54,37 @@ manifest_count=$(extract_manifest_classes | wc -l | tr -d '[:space:]')
 mask_rule_count=$(grep -c -- "-webkit-mask-image:" "$DIST_CSS" || true)
 [ "$mask_rule_count" -ge 50 ] || fail "dist icon CSS appears helper-only; expected generated mask selectors, found $mask_rule_count mask rules"
 
+# Validate the stored source as well as dist: every generated glyph must keep
+# both mask properties and exactly one SVG payload. No package runtime is needed.
+for css_file in "$ROOT/src/css/icons/webblocks-icons.css" "$DIST_CSS"; do
+  awk '
+    /^[[:space:]]*--wb-icon-mask:/ {
+      if ($0 !~ /^[[:space:]]*--wb-icon-mask: url\("data:image\/svg\+xml,.*"\);$/) bad = 1
+      payload++
+    }
+    /^[[:space:]]*-webkit-mask-image:/ {
+      if ($0 !~ /^[[:space:]]*-webkit-mask-image: var\(--wb-icon-mask\);$/) bad = 1
+      prefixed++
+    }
+    /^[[:space:]]*mask-image:/ {
+      if ($0 !~ /^[[:space:]]*mask-image: var\(--wb-icon-mask\);$/) bad = 1
+      standard++
+    }
+    /^}/ {
+      if (payload || prefixed || standard) {
+        if (payload != 1 || prefixed != 1 || standard != 1) bad = 1
+        rules++
+        payload = prefixed = standard = 0
+      }
+    }
+    END { exit (bad || rules < 50 || payload || prefixed || standard) ? 1 : 0 }
+  ' "$css_file" || fail "$css_file must share one SVG payload between both mask properties in every glyph rule"
+done
+
+for class_name in wb-icon-refresh wb-icon-refresh-cw wb-icon-sync; do
+  has_selector "$class_name" || fail "compatibility alias .$class_name is missing"
+done
+
 for class_name in $REQUIRED_ICON_CLASSES; do
   has_selector "$class_name" || fail "required selector .$class_name is missing from dist icon CSS"
 done
@@ -82,4 +113,4 @@ EOF
 
 docs_count=$(extract_docs_classes | wc -l | tr -d '[:space:]')
 
-echo "Icon validation passed: $manifest_count manifest classes, $docs_count docs icon classes, and 8 required selectors are present."
+echo "Icon validation passed: $manifest_count manifest classes, $docs_count docs icon classes, 8 required selectors, aliases, and shared SVG mask payloads are present."

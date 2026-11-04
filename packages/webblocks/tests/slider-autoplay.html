@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slider autoplay browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <script>
+    var params = new URLSearchParams(location.search);
+    if (params.has('fallback')) delete HTMLElement.prototype.inert;
+    var runtime = document.createElement('script');
+    runtime.src = params.has('source') ? '../src/js/slider.js' : '../dist/webblocks-ui.js';
+    runtime.async = false; document.head.appendChild(runtime);
+  </script>
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Slider autoplay pause reasons</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <p>Deterministic browser checks use a controlled interval clock and MediaQueryList. No test package is loaded. Repeat with <code>?source=1</code>, <code>?legacy=1</code> or <code>?fallback=1</code>.</p>
+  <p>The live example below uses real timers and the browser's actual motion preference. Tab into it: rotation must stop and keep focus stable. Clicking an arrow or dot must not restart rotation while hovered or focused. The test button outside the slider explicitly re-enables autoplay through the existing update API.</p>
+  <button type="button" class="wb-btn" id="restart">Re-enable autoplay for live example</button>
+  <button type="button" class="wb-btn" id="before">Before live slider</button>
+  <div class="wb-slider wb-slider-height-sm" id="manual" data-wb-slider data-wb-slider-interval="1500">
+    <div class="wb-slider-viewport"><div class="wb-slider-track">
+      <section class="wb-slide"><div class="wb-slide-content"><h2>First synthetic slide</h2><a class="wb-btn" href="#manual" id="live-first">First slide link</a></div></section>
+      <section class="wb-slide"><div class="wb-slide-content"><h2>Second synthetic slide</h2><a class="wb-btn" href="#manual" id="live-second">Second slide link</a></div></section>
+      <section class="wb-slide"><div class="wb-slide-content"><h2>Third synthetic slide</h2><a class="wb-btn" href="#manual" id="live-third">Third slide link</a></div></section>
+    </div></div>
+    <div class="wb-slider-controls"><button type="button" class="wb-btn wb-slider-prev">Previous</button><div class="wb-slider-dots"></div><button type="button" class="wb-btn wb-slider-next">Next</button></div>
+  </div>
+  <button type="button" class="wb-btn" id="outside">After live slider</button>
+  <p id="live-status" role="status">Live example is waiting for checks.</p>
+</main>
+<div id="sandbox" style="position: absolute; left: -10000px; top: 0; width: 640px;"></div>
+<script>
+(function () {
+  'use strict';
+  var checks = [];
+  function check(name, valid) { checks.push({ name: name, passed: Boolean(valid) }); }
+  function focus(element) { element.focus({ preventScroll: true }); }
+  function run() {
+    var nativeSet = window.setInterval, nativeClear = window.clearInterval, nativeMatch = window.matchMedia;
+    var now = 0, sequence = 100000, timers = new Map(), roots = [], queries = [];
+    var legacy = new URLSearchParams(location.search).has('legacy');
+    function motionQuery(reduced) {
+      var listeners = new Set();
+      var query = { matches: reduced, media: '(prefers-reduced-motion: reduce)', listeners: listeners, calls: 0 };
+      function add(name, listener) { if (typeof name === 'function') listeners.add(name); else if (name === 'change') listeners.add(listener); }
+      function remove(name, listener) { if (typeof name === 'function') listeners.delete(name); else if (name === 'change') listeners.delete(listener); }
+      if (legacy) { query.addListener = add; query.removeListener = remove; }
+      else { query.addEventListener = add; query.removeEventListener = remove; }
+      query.change = function (value) {
+        query.matches = value;
+        Array.from(listeners).forEach(function (listener) { query.calls++; listener({ matches: value, media: query.media }); });
+      };
+      queries.push(query); return query;
+    }
+    var query = motionQuery(false);
+    window.matchMedia = function (media) { return media === query.media ? query : nativeMatch.call(window, media); };
+    window.setInterval = function (fn, delay) { var id = sequence++; timers.set(id, { fn: fn, delay: delay, next: now + delay }); return id; };
+    window.clearInterval = function (id) { if (!timers.delete(id)) nativeClear.call(window, id); };
+    function tick(duration) {
+      var until = now + duration, iterations = 0;
+      while (true) {
+        var next = null;
+        timers.forEach(function (timer, id) { if (timer.next <= until && (!next || timer.next < next.timer.next)) next = { id: id, timer: timer }; });
+        if (!next) break;
+        if (++iterations > 100) throw new Error('Unexpected timer loop');
+        now = next.timer.next; next.timer.next += next.timer.delay; next.timer.fn();
+      }
+      now = until;
+    }
+    function make(options) {
+      var root = document.createElement('div'); root.className = 'wb-slider wb-slider-height-sm';
+      root.setAttribute('data-wb-slider', ''); root.setAttribute('data-wb-slider-autoplay', 'true'); root.setAttribute('data-wb-slider-interval', '1000');
+      Object.keys(options || {}).forEach(function (key) { root.setAttribute('data-wb-slider-' + key, options[key]); });
+      root.innerHTML = '<div class="wb-slider-viewport"><div class="wb-slider-track">' + [1, 2, 3].map(function (i) { return '<section class="wb-slide"><div class="wb-slide-content"><a href="#">Synthetic link ' + i + '</a></div></section>'; }).join('') + '</div></div><div class="wb-slider-controls"><button type="button" class="wb-slider-prev">Previous</button><div class="wb-slider-dots"></div><button type="button" class="wb-slider-next">Next</button></div>';
+      var nativeMatches = root.matches;
+      root.pointerInside = false;
+      root.matches = function (selector) { return selector === ':hover' ? root.pointerInside : nativeMatches.call(root, selector); };
+      document.getElementById('sandbox').appendChild(root); roots.push(root); return root;
+    }
+    function hover(root, value) { root.pointerInside = value; root.dispatchEvent(new MouseEvent(value ? 'mouseenter' : 'mouseleave')); }
+    function dispose(root) { WBSlider.destroy(root); root.remove(); }
+    function enable(root) { root.setAttribute('data-wb-slider-autoplay', 'false'); WBSlider.update(root); root.setAttribute('data-wb-slider-autoplay', 'true'); WBSlider.update(root); }
+    try {
+      check('public API keys remain unchanged', Object.keys(WBSlider).sort().join(',') === ['destroy', 'get', 'goTo', 'init', 'initAll', 'next', 'prev', 'update'].join(','));
+      var root = make(), state = WBSlider.init(root), changes = [];
+      root.addEventListener('wb:slider:change', function (event) { changes.push(event.detail); });
+      check('autoplay creates one interval and one motion listener', timers.size === 1 && query.listeners.size === 1);
+      tick(1000);
+      check('unpaused autoplay advances with existing event detail', state.index === 1 && changes.length === 1 && changes[0].index === 1 && changes[0].count === 3 && changes[0].slide === state.slides[1]);
+      check('automatic restart retains one timer', timers.size === 1);
+      var link = state.slides[1].querySelector('a'); focus(link);
+      check('focus entry immediately stops rotation', state.timer === null && timers.size === 0 && document.activeElement === link);
+      tick(3000);
+      check('focused content and focus remain stable', state.index === 1 && document.activeElement === link && changes.length === 1);
+      focus(document.getElementById('outside')); hover(root, true); hover(root, false); tick(1000);
+      check('blur and mouseleave cannot release focus pause', state.index === 1 && state.timer === null);
+      WBSlider.next(root);
+      check('manual navigation still works during focus pause', state.index === 2 && state.timer === null);
+      WBSlider.update(root); WBSlider.init(root);
+      check('ordinary update and repeated init retain focus pause', state.timer === null && query.listeners.size === 1);
+      query.change(true); query.change(false);
+      check('motion changes cannot release focus pause', state.timer === null);
+      enable(root);
+      check('explicit false-to-true option update resumes outside focus', state.timer !== null && timers.size === 1);
+      tick(1000); check('explicit opt-in resumes normal loop behavior', state.index === 0);
+      focus(state.parts.next);
+      check('focus on navigation controls also stops autoplay', state.timer === null);
+      enable(root);
+      check('re-enable while focus stays inside remains paused', state.timer === null);
+      focus(document.getElementById('outside')); enable(root); dispose(root);
+      check('destroy clears focused-slider timer and listener', timers.size === 0 && query.listeners.size === 0);
+
+      root = make(); root.pointerInside = true; state = WBSlider.init(root);
+      check('initially hovered root does not start', state.timer === null);
+      WBSlider.next(root); check('manual API transition respects initial hover', state.index === 1 && state.timer === null);
+      WBSlider.update(root); check('update while hovered remains paused', state.timer === null);
+      enable(root); check('explicit re-enable cannot bypass hover pause', state.timer === null);
+      hover(root, false); check('mouseleave resumes when no other pause applies', state.timer !== null);
+      hover(root, true); var hoveredIndex = state.index; tick(2000);
+      check('mouseenter prevents timed advance', state.index === hoveredIndex && state.timer === null);
+      state.parts.next.click(); check('arrow click cannot restart while hovered', state.timer === null);
+      state.dots[0].click(); check('dot click cannot restart while hovered', state.index === 0 && state.timer === null);
+      var key = new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }); root.dispatchEvent(key);
+      check('keyboard navigation remains manual while hovered', state.index === 1 && key.defaultPrevented && state.timer === null);
+      state.parts.viewport.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, clientX: 200, clientY: 0, button: 0 }));
+      state.parts.viewport.dispatchEvent(new PointerEvent('pointerup', { bubbles: true, clientX: 100, clientY: 0, button: 0 }));
+      check('swipe navigation respects hover pause', state.index === 2 && state.timer === null);
+      WBSlider.prev(root); tick(1000);
+      check('API navigation while hovered does not schedule a timer', state.index === 1 && timers.size === 0);
+      hover(root, false); tick(1000); check('hover-only pause resumes timed rotation on leave', state.index === 2 && state.timer !== null);
+      dispose(root);
+
+      root = make({ 'pause-on-hover': 'false' }); state = WBSlider.init(root); hover(root, true); tick(1000);
+      check('pause-on-hover opt-out remains supported', state.index === 1 && state.timer !== null);
+      focus(state.slides[1].querySelector('a'));
+      check('hover opt-out does not opt out of focus safety', state.timer === null);
+      focus(document.getElementById('outside')); dispose(root);
+
+      root = make(); var firstLink = root.querySelector('a'); focus(firstLink); state = WBSlider.init(root);
+      check('focus already inside at init prevents autoplay', state.timer === null && document.activeElement === firstLink);
+      focus(document.getElementById('outside')); dispose(root);
+
+      root = make(); state = WBSlider.init(root); query.change(true);
+      check('live reduced-motion preference immediately clears existing interval', state.timer === null && timers.size === 0);
+      var reducedIndex = state.index; tick(2000);
+      check('reduced motion prevents automatic advance', state.index === reducedIndex);
+      WBSlider.next(root); check('manual navigation remains available under reduced motion', state.index === 1 && state.timer === null);
+      enable(root); check('explicit re-enable cannot bypass reduced motion', state.timer === null);
+      hover(root, true); hover(root, false); WBSlider.update(root);
+      check('hover leave and update cannot restart under reduced motion', state.timer === null && query.listeners.size === 1);
+      query.change(false); check('clearing reduced motion resumes when otherwise allowed', state.timer !== null);
+      hover(root, true); query.change(true); query.change(false);
+      check('clearing reduced motion cannot release hover pause', state.timer === null);
+      hover(root, false); focus(state.slides[1].querySelector('a')); query.change(true); query.change(false);
+      check('clearing reduced motion cannot release focus pause', state.timer === null);
+      focus(document.getElementById('outside')); dispose(root);
+
+      query.change(true); root = make(); state = WBSlider.init(root);
+      check('reduced motion present at init prevents timer', state.timer === null);
+      WBSlider.update(root); check('update retains initial reduced-motion pause', state.timer === null && query.listeners.size === 1);
+      query.change(false); check('initial reduced-motion preference can be lifted', state.timer !== null);
+      dispose(root);
+
+      root = make({ autoplay: 'false' }); state = WBSlider.init(root);
+      check('disabled autoplay does not register a motion listener', state.timer === null && query.listeners.size === 0);
+      query.change(true); query.change(false); WBSlider.next(root);
+      check('motion and manual navigation do not opt into autoplay', state.index === 1 && state.timer === null);
+      dispose(root);
+
+      var simulatedMatch = window.matchMedia; window.matchMedia = undefined;
+      root = make(); state = WBSlider.init(root);
+      check('missing matchMedia keeps optional autoplay usable', state.timer !== null);
+      focus(root.querySelector('a')); check('missing matchMedia retains focus safety', state.timer === null);
+      focus(document.getElementById('outside')); dispose(root); window.matchMedia = simulatedMatch;
+
+      root = make(); Array.from(root.querySelectorAll('.wb-slide')).slice(1).forEach(function (slide) { slide.remove(); });
+      state = WBSlider.init(root); tick(2000); query.change(true); query.change(false);
+      check('single-slide autoplay stays stopped across motion changes', state.index === 0 && state.timer === null);
+      dispose(root);
+
+      root = make(); state = WBSlider.init(root);
+      for (var i = 0; i < 3; i++) WBSlider.update(root);
+      check('repeated updates retain exactly one timer and listener', timers.size === 1 && query.listeners.size === 1);
+      var calls = query.calls; query.change(true);
+      check('one preference change invokes one current listener', query.calls === calls + 1 && timers.size === 0);
+      var detached = query; query = motionQuery(false); WBSlider.update(root);
+      check('update detaches old MediaQueryList and observes replacement', detached.listeners.size === 0 && query.listeners.size === 1 && state.timer !== null);
+      detached.change(true); check('detached preference cannot stop the current slider', state.timer !== null);
+      var currentIndex = state.index; dispose(root); query.change(true); query.change(false); hover(root, false); focus(root.querySelector('a')); tick(2000);
+      check('destroy removes listeners and prevents timer revival', query.listeners.size === 0 && timers.size === 0 && state.index === currentIndex);
+      document.getElementById('sandbox').appendChild(root); state = WBSlider.init(root);
+      check('destroy then init binds one fresh timer and listener', timers.size === 1 && query.listeners.size === 1);
+      dispose(root);
+
+      var outer = make(), inner = make(); outer.querySelector('.wb-slide-content').appendChild(inner);
+      var outerState = WBSlider.init(outer), innerState = WBSlider.init(inner);
+      focus(inner.querySelector('a'));
+      check('nested focus pauses both rotating boundaries', outerState.timer === null && innerState.timer === null && timers.size === 0);
+      focus(document.getElementById('outside')); WBSlider.update(outer); WBSlider.update(inner);
+      check('nested updates retain each focus pause', outerState.timer === null && innerState.timer === null);
+      dispose(inner); dispose(outer);
+      check('all instance timers and media listeners are cleaned up', timers.size === 0 && queries.every(function (q) { return q.listeners.size === 0; }));
+    } finally {
+      roots.forEach(function (root) { WBSlider.destroy(root); root.remove(); });
+      window.setInterval = nativeSet; window.clearInterval = nativeClear; window.matchMedia = nativeMatch;
+    }
+    var manual = document.getElementById('manual');
+    function restart() { manual.setAttribute('data-wb-slider-autoplay', 'false'); WBSlider.update(manual); manual.setAttribute('data-wb-slider-autoplay', 'true'); WBSlider.update(manual); }
+    function status() { var current = WBSlider.get(manual); document.getElementById('live-status').textContent = 'Slide ' + (current.index + 1) + '; timer ' + (current.timer === null ? 'paused' : 'running') + '; focus pause ' + current.focusPaused + '; hovered ' + manual.matches(':hover'); }
+    document.getElementById('restart').addEventListener('click', function () { restart(); status(); });
+    ['wb:slider:change', 'focusin', 'mouseenter', 'mouseleave'].forEach(function (name) { manual.addEventListener(name, function () { setTimeout(status, 0); }); });
+    restart(); status();
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures (' + (legacy ? 'legacy' : 'modern') + ' MediaQueryList).';
+    failed.forEach(function (result) { var li = document.createElement('li'); li.textContent = result.name; document.getElementById('failures').appendChild(li); });
+    window.sliderAutoplayTestResults = { passed: !failed.length, checks: checks.length, failures: failed };
+  }
+  window.addEventListener('load', function () { try { run(); } catch (error) { document.getElementById('summary').textContent = 'FAIL: ' + error.stack; } });
+})();
+</script>
+</body>
+</html>

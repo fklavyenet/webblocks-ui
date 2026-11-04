@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slider focus browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <script>
+    // Test-only feature detection override; production has no fallback switch.
+    if (new URLSearchParams(location.search).has('fallback')) delete HTMLElement.prototype.inert;
+    var scripts = new URLSearchParams(location.search).has('source')
+      ? ['utils/dom', 'utils/overlay', 'modal', 'gallery', 'slider'].map(function (name) { return '../src/js/' + name + '.js'; })
+      : ['../dist/webblocks-ui.js'];
+    scripts.forEach(function (path) { var script = document.createElement('script'); script.src = path; script.async = false; document.head.appendChild(script); });
+  </script>
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Slider focus and lifecycle</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <p>All content is synthetic. Run with <code>?fallback=1</code> to exercise tabindex restoration, or <code>?source=1</code> for standalone source modules.</p>
+  <p>Manual check: Tab from Before slider through active links and controls to After slider. Shift+Tab must skip inactive links too. Use arrows and dots, then repeat. Open and close both viewers from each active slide.</p>
+  <button type="button" class="wb-btn" id="before">Before slider</button>
+  <div class="wb-slider wb-slider-height-sm wb-gallery" id="manual" data-wb-slider>
+    <div class="wb-slider-viewport"><div class="wb-slider-track">
+      <section class="wb-slide is-active"><div class="wb-slide-content">
+        <h2>First synthetic slide</h2>
+        <a class="wb-btn wb-btn-primary wb-gallery-trigger" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'%3E%3Crect width='120' height='80' fill='teal'/%3E%3C/svg%3E" data-wb-gallery-target="#viewer" data-wb-gallery-alt="Synthetic teal rectangle" id="first-gallery">First gallery</a>
+        <button type="button" class="wb-btn" data-wb-toggle="modal" data-wb-target="#dialog" id="first-modal">First modal</button>
+      </div></section>
+      <section class="wb-slide"><div class="wb-slide-content">
+        <h2>Second synthetic slide</h2>
+        <a class="wb-btn wb-btn-primary wb-gallery-trigger" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'%3E%3Crect width='120' height='80' fill='navy'/%3E%3C/svg%3E" data-wb-gallery-target="#viewer" data-wb-gallery-alt="Synthetic navy rectangle" id="second-gallery">Second gallery</a>
+        <button type="button" class="wb-btn" data-wb-toggle="modal" data-wb-target="#dialog" id="second-modal">Second modal</button>
+      </div></section>
+    </div></div>
+    <div class="wb-slider-controls">
+      <button class="wb-btn wb-slider-prev" type="button" aria-label="Previous slide">Previous</button>
+      <div class="wb-slider-dots" data-wb-slider-dots aria-label="Slide navigation"></div>
+      <button class="wb-btn wb-slider-next" type="button" aria-label="Next slide">Next</button>
+    </div>
+  </div>
+  <button type="button" class="wb-btn" id="after">After slider</button>
+  <p id="focus-status" role="status">Focus has not entered the manual fixture.</p>
+  <div id="sandbox"></div>
+</main>
+<div id="wb-overlay-root" class="wb-overlay-root">
+  <div class="wb-modal" id="viewer" role="dialog" aria-modal="true" aria-label="Synthetic gallery">
+    <div class="wb-modal-dialog"><div class="wb-modal-body"><img class="wb-gallery-viewer-image" alt=""><p class="wb-gallery-viewer-caption"></p><button type="button" class="wb-btn" data-wb-dismiss="modal">Close gallery</button></div></div>
+  </div>
+  <div class="wb-modal" id="dialog" role="dialog" aria-modal="true" aria-label="Synthetic modal">
+    <div class="wb-modal-dialog"><div class="wb-modal-body"><p>Synthetic modal content.</p><button type="button" class="wb-btn" data-wb-dismiss="modal">Close modal</button></div></div>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+  var checks = [];
+  var fallback = new URLSearchParams(location.search).has('fallback');
+  function check(name, valid) { checks.push({ name: name, passed: Boolean(valid) }); }
+  function settle() { return new Promise(function (resolve) { setTimeout(resolve, 40); }); }
+  function make(count) {
+    var root = document.createElement('div');
+    root.className = 'wb-slider wb-slider-height-sm';
+    root.setAttribute('data-wb-slider', '');
+    root.innerHTML = '<div class="wb-slider-viewport"><div class="wb-slider-track"></div></div><div class="wb-slider-controls"><button type="button" class="wb-slider-prev">Previous test slide</button><div class="wb-slider-dots"></div><button type="button" class="wb-slider-next">Next test slide</button></div>';
+    for (var i = 0; i < count; i++) {
+      var slide = document.createElement('section');
+      slide.className = 'wb-slide';
+      slide.innerHTML = '<div class="wb-slide-content"><a href="#">Synthetic link</a><button type="button" tabindex="0">Zero tab stop</button><button type="button" tabindex="-1">Negative tab stop</button><button type="button" tabindex="4">Positive tab stop</button><button type="button" disabled>Disabled</button><div inert="authored"><a href="#">Authored inert link</a></div><div contenteditable="true">Editable</div></div>';
+      root.querySelector('.wb-slider-track').appendChild(slide);
+    }
+    document.getElementById('sandbox').appendChild(root);
+    return root;
+  }
+  function dispose(root) { WBSlider.destroy(root); root.remove(); }
+  function key(element, name, modifiers) {
+    var event = new KeyboardEvent('keydown', Object.assign({ key: name, bubbles: true, cancelable: true }, modifiers || {}));
+    element.dispatchEvent(event);
+    return event;
+  }
+  async function run() {
+    var root = make(3);
+    var slides = Array.from(root.querySelectorAll('.wb-slide'));
+    slides[1].setAttribute('aria-hidden', 'author-value');
+    var authoredTabs = Array.from(slides[1].querySelectorAll('button')).map(function (el) { return el.getAttribute('tabindex'); });
+    var events = [];
+    root.addEventListener('wb:slider:change', function (event) { events.push(event.detail); });
+    var state = WBSlider.init(root);
+    check('init emits unchanged index/count/slide detail', events.length === 1 && events[0].index === 0 && events[0].count === 3 && events[0].slide === slides[0]);
+    check('repeat init returns same state without emitting', WBSlider.init(root) === state && events.length === 1);
+    check('inactive slides are inert and aria-hidden', slides[1].hasAttribute('inert') && slides[2].getAttribute('aria-hidden') === 'true');
+    check('active slide remains available', !slides[0].hasAttribute('inert') && slides[0].getAttribute('aria-hidden') === 'false');
+    document.getElementById('before').focus();
+    slides[1].querySelector('a').focus();
+    check('inactive link cannot retain programmatic focus', document.activeElement !== slides[1].querySelector('a'));
+    if (fallback) {
+      check('fallback suppresses positive, zero, negative and absent tab stops', Array.from(slides[1].querySelectorAll('a, button, [contenteditable]')).every(function (el) { return el.getAttribute('tabindex') === '-1'; }));
+      // Chrome still implements inert internally after the feature override. Remove
+      // the attribute to independently exercise the non-native focus guard.
+      slides[1].removeAttribute('inert');
+      slides[1].querySelector('a').focus();
+      check('fallback focus guard redirects a programmatic hidden focus', document.activeElement === root);
+    } else {
+      check('native path leaves authored tab stops untouched', JSON.stringify(authoredTabs) === JSON.stringify(Array.from(slides[1].querySelectorAll('button')).map(function (el) { return el.getAttribute('tabindex'); })));
+    }
+    document.getElementById('before').focus();
+    WBSlider.next(root);
+    check('external focus is not moved on transition', document.activeElement.id === 'before');
+    check('activation restores all authored tab stops', JSON.stringify(authoredTabs) === JSON.stringify(Array.from(slides[1].querySelectorAll('button')).map(function (el) { return el.getAttribute('tabindex'); })));
+    check('authored disabled and descendant inert remain intact', slides[1].querySelector('[disabled]').disabled && slides[1].querySelector('[inert]').getAttribute('inert') === 'authored');
+    slides[1].querySelector('a').focus();
+    WBSlider.next(root);
+    check('departing focused slide moves focus to stable root', document.activeElement === root && root.getAttribute('tabindex') === '-1');
+    document.getElementById('before').focus();
+    check('focus boundary restores absent tabindex on blur', !root.hasAttribute('tabindex'));
+    check('loop wraps next', WBSlider.next(root) && state.index === 0);
+    check('loop wraps previous', WBSlider.prev(root) && state.index === 2);
+    check('same index does not emit', !WBSlider.goTo(root, 2) && events[events.length - 1].index === 2);
+    var beforeEvents = events.length;
+    WBSlider.goTo(root, 2);
+    check('unchanged selection retains event count', events.length === beforeEvents);
+    root.querySelector('.wb-slider-dots button').click();
+    check('generated dot selects slide and aria-current', state.index === 0 && state.dots[0].getAttribute('aria-current') === 'true');
+    var event = key(root, 'ArrowRight');
+    check('arrow key preserves navigation and cancellation', state.index === 1 && event.defaultPrevented);
+    key(root, 'ArrowRight', { altKey: true });
+    check('modified arrow key remains ignored', state.index === 1);
+    var added = document.createElement('a'); added.href = '#'; added.textContent = 'Late link';
+    slides[2].querySelector('.wb-slide-content').appendChild(added);
+    await settle();
+    document.getElementById('before').focus(); added.focus();
+    check('late inactive content cannot retain focus', document.activeElement !== added);
+    if (fallback) {
+      added.setAttribute('tabindex', '7'); await settle();
+      check('fallback observes host tab-stop edits', added.getAttribute('tabindex') === '-1');
+    }
+    WBSlider.goTo(root, 2);
+    check('late content restores requested tab stop on activation', added.getAttribute('tabindex') === (fallback ? '7' : null));
+    added.focus(); check('late active content can receive focus', document.activeElement === added);
+    root.setAttribute('data-wb-slider-loop', 'false');
+    WBSlider.update(root);
+    check('update retains active slide and non-loop edge state', state.index === 2 && state.parts.next.disabled && !WBSlider.next(root));
+    var removed = slides[0]; removed.remove();
+    WBSlider.update(root);
+    check('update preserves selected slide across reorder/removal', state.slides[state.index] === slides[2] && state.index === 1);
+    check('removed slide loses runtime inert and aria state', !removed.hasAttribute('inert') && !removed.hasAttribute('aria-hidden'));
+    check('update regenerates owned dots for current slide count', state.dots.length === 2);
+    state.parts.track.appendChild(removed);
+    WBSlider.update(root);
+    check('reinserted slide is suppressed', removed.hasAttribute('inert') && state.dots.length === 3);
+    WBSlider.goTo(root, 0);
+    WBSlider.destroy(root);
+    check('destroy restores authored slide ARIA', slides[1].getAttribute('aria-hidden') === 'author-value');
+    check('destroy restores inert/tabindex/disabled and removes owned dots', !slides[2].hasAttribute('inert') && added.getAttribute('tabindex') === (fallback ? '7' : null) && slides[1].querySelector('[disabled]').disabled && !root.querySelector('.wb-slider-dots').children.length);
+    check('destroy removes state and is idempotent', WBSlider.get(root) === null && !WBSlider.destroy(root));
+    WBSlider.init(root); WBSlider.update(root); WBSlider.update(root);
+    var viewport = root.querySelector('.wb-slider-viewport');
+    viewport.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, clientX: 200, clientY: 0, button: 0 }));
+    viewport.dispatchEvent(new PointerEvent('pointerup', { bubbles: true, clientX: 100, clientY: 0, button: 0 }));
+    check('reinit/update do not duplicate swipe listeners', WBSlider.get(root).index === 1);
+    dispose(root);
+
+    var outer = make(2); var inner = make(2);
+    outer.querySelector('.wb-slide-content').appendChild(inner);
+    WBSlider.init(inner); var outerState = WBSlider.init(outer);
+    check('nested parts do not steal parent controls', outerState.parts.prev === outer.querySelector(':scope > .wb-slider-controls > .wb-slider-prev'));
+    inner.querySelector('.wb-slider-next').click();
+    check('inner controls move only inner slider', WBSlider.get(inner).index === 1 && outerState.index === 0);
+    key(inner, 'ArrowLeft');
+    check('nested keyboard navigation stays scoped', WBSlider.get(inner).index === 0 && outerState.index === 0);
+    WBSlider.next(outer); WBSlider.next(inner);
+    var nestedLink = WBSlider.get(inner).slides[1].querySelector('a');
+    nestedLink.focus();
+    check('inner activation cannot unlock hidden outer slide', document.activeElement !== nestedLink && (!fallback || nestedLink.getAttribute('tabindex') === '-1'));
+    WBSlider.destroy(inner);
+    check('inner destroy cannot release parent fallback lock', !fallback || nestedLink.getAttribute('tabindex') === '-1');
+    WBSlider.prev(outer); WBSlider.init(inner);
+    check('nested inactive slide retains its own inert state', WBSlider.get(inner).slides[1].hasAttribute('inert'));
+    dispose(inner); dispose(outer);
+
+    root = make(2);
+    var authoredInactive = root.querySelectorAll('.wb-slide')[1];
+    authoredInactive.setAttribute('inert', 'author-inactive');
+    root.setAttribute('tabindex', '0');
+    root.querySelector('.wb-slider-track').style.setProperty('transform', 'translateX(12px)', 'important');
+    WBSlider.init(root); root.querySelector('a').focus(); WBSlider.next(root);
+    check('departure preserves authored root tab stop', document.activeElement === root && root.getAttribute('tabindex') === '0');
+    check('activation preserves authored inactive inert', authoredInactive.getAttribute('inert') === 'author-inactive');
+    WBSlider.destroy(root);
+    check('destroy restores track transform and priority', root.querySelector('.wb-slider-track').style.getPropertyValue('transform') === 'translateX(12px)' && root.querySelector('.wb-slider-track').style.getPropertyPriority('transform') === 'important');
+    root.remove();
+    root = make(2);
+    root.setAttribute('data-wb-slider-loop', 'false');
+    root.setAttribute('data-wb-slider-keyboard', 'false');
+    WBSlider.init(root);
+    check('non-loop first edge disables previous', WBSlider.get(root).parts.prev.disabled && !WBSlider.prev(root));
+    event = key(root, 'ArrowRight');
+    check('disabled keyboard option preserves default and index', !event.defaultPrevented && WBSlider.get(root).index === 0);
+    var replacement = document.createElement('button'); replacement.type = 'button'; replacement.className = 'wb-slider-next'; replacement.textContent = 'Replacement next';
+    root.querySelector('.wb-slider-next').replaceWith(replacement);
+    WBSlider.update(root); replacement.click();
+    check('update binds replaced controls', WBSlider.get(root).index === 1 && replacement.disabled);
+    dispose(root);
+    root = make(2);
+    root.querySelector('.wb-slider-dots').innerHTML = '<button type="button" class="wb-slider-dot" aria-current="author-dot">Custom dot</button>';
+    WBSlider.init(root); WBSlider.update(root); WBSlider.destroy(root);
+    check('update/destroy preserve authored dots and ARIA', root.querySelector('.wb-slider-dots').children.length === 1 && root.querySelector('.wb-slider-dot').getAttribute('aria-current') === 'author-dot');
+    root.remove();
+
+    root = make(1); var singleSlide = root.querySelector('.wb-slide');
+    singleSlide.setAttribute('inert', 'author-slide'); root.setAttribute('tabindex', '0');
+    WBSlider.init(root); WBSlider.update(root);
+    check('single slide keeps authored inert value', singleSlide.getAttribute('inert') === 'author-slide');
+    check('single slide navigation is harmless', !WBSlider.next(root) && root.getAttribute('data-wb-slider-single') === 'true');
+    WBSlider.destroy(root);
+    check('destroy preserves authored root tabindex and slide inert', root.getAttribute('tabindex') === '0' && singleSlide.getAttribute('inert') === 'author-slide');
+    root.remove();
+    root = make(0);
+    check('empty and missing slider init remain harmless', WBSlider.init(root) === null && WBSlider.init('#missing-slider') === null);
+    dispose(root);
+    root = make(2); WBSlider.init(root);
+    root.querySelector('.wb-slider-track').replaceChildren(); WBSlider.update(root);
+    check('update to empty stops navigation and restores removed slides', WBSlider.get(root).slides.length === 0 && !WBSlider.next(root));
+    dispose(root);
+
+    root = make(2); root.setAttribute('data-wb-slider-autoplay', 'true'); root.setAttribute('data-wb-slider-interval', '1000');
+    var auto = WBSlider.init(root); var oldSlide = auto.slides[0];
+    var runningBeforeFocus = auto.timer !== null;
+    oldSlide.querySelector('a').focus({ preventScroll: true });
+    if (runningBeforeFocus) {
+      check('focus immediately stops autoplay', auto.timer === null);
+      await new Promise(function (resolve) { setTimeout(resolve, 1100); });
+      check('focused slide and its link remain stable', auto.index === 0 && document.activeElement === oldSlide.querySelector('a') && oldSlide.getAttribute('aria-hidden') === 'false');
+      root.dispatchEvent(new MouseEvent('mouseenter'));
+      root.dispatchEvent(new MouseEvent('mouseleave'));
+      check('mouseleave cannot release a focus pause', auto.timer === null);
+      document.getElementById('before').focus();
+      root.setAttribute('data-wb-slider-autoplay', 'false'); WBSlider.update(root);
+      root.setAttribute('data-wb-slider-autoplay', 'true'); WBSlider.update(root);
+      check('explicit autoplay option re-enable resumes outside focus', auto.timer !== null);
+    } else {
+      check('reduced motion still suppresses autoplay', matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+    WBSlider.destroy(root); var finalIndex = auto.index;
+    root.dispatchEvent(new MouseEvent('mouseleave'));
+    await new Promise(function (resolve) { setTimeout(resolve, 1100); });
+    check('destroy clears autoplay timer and hover listeners', auto.timer === null && auto.index === finalIndex);
+    root.remove();
+
+    var manual = document.getElementById('manual');
+    WBSlider.goTo(manual, 1);
+    document.getElementById('second-gallery').click(); await settle();
+    check('newly activated gallery trigger opens shared viewer', WBModal.getActive() === document.getElementById('viewer') && document.querySelector('.wb-gallery-viewer-image').alt === 'Synthetic navy rectangle');
+    WBModal.close(); await new Promise(function (resolve) { setTimeout(resolve, 400); });
+    document.getElementById('second-modal').click(); await settle();
+    check('newly activated modal trigger opens modal', WBModal.getActive() === document.getElementById('dialog'));
+    WBModal.close(); await new Promise(function (resolve) { setTimeout(resolve, 400); });
+    WBSlider.goTo(manual, 0);
+    if (fallback) {
+      // Remove Chrome's native enforcement on this manual fixture so real Tab
+      // tests exercise only the fallback locks and focus guard.
+      var removeNativeInert = function () { Array.from(manual.querySelectorAll('.wb-slide')).forEach(function (slide) { slide.removeAttribute('inert'); }); };
+      manual.addEventListener('wb:slider:change', removeNativeInert);
+      removeNativeInert();
+    }
+    document.getElementById('before').focus();
+    document.addEventListener('focusin', function (event) { document.getElementById('focus-status').textContent = 'Focus: ' + (event.target.id || event.target.textContent.trim() || event.target.className); });
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures (' + (fallback ? 'fallback' : 'native inert') + ').';
+    failed.forEach(function (result) { var li = document.createElement('li'); li.textContent = result.name; document.getElementById('failures').appendChild(li); });
+    window.sliderTestResults = { passed: !failed.length, checks: checks.length, failures: failed };
+  }
+  window.addEventListener('load', function () { run().catch(function (error) { document.getElementById('summary').textContent = 'FAIL: ' + error.stack; }); });
+})();
+</script>
+</body>
+</html>

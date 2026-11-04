@@ -6,6 +6,20 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.33.0] — 2026-11-04
+
+### Added
+- Add repeat-safe `WBSlider.update` and `WBSlider.destroy` lifecycle methods, including dynamic slide/control refresh and restoration of authored state on teardown.
+- Add dependency-free browser regression fixtures for slider focus and autoplay, all icon glyphs and aliases, and parsed/computed CSS source/dist equivalence.
+
+### Fixed
+- Keep inactive slides out of keyboard and programmatic focus with native inert support and an observed fallback. Preserve authored attributes, nested slider ownership, active gallery/modal controls and focus outside the departing slide.
+- Stop autoplay when focus enters the slider until an explicit opt-in through the existing option/update lifecycle. Keep hover pauses effective through manual navigation and updates, and respond immediately to live reduced-motion changes with modern and legacy MediaQueryList cleanup.
+
+### Changed
+- Store each icon SVG once per rule and share it between both mask properties. Preserve all 200 icons, three compatibility aliases, existing classes, SVG geometry and upstream notices.
+- Conservatively format built CSS with the bundled POSIX awk formatter. Remove standalone explanatory comments, blank lines and unprotected indentation while preserving complete declaration/function values, selectors, rule order, strings, URLs and licenses. No dependency or JavaScript minification is added.
+
 ## [2.31.0] — 2026-10-23
 
 ### Added

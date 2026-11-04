@@ -17,7 +17,7 @@ WebBlocks stays HTML-first: use standard markup, shipped classes, and opt-in JS 
 
 ## Install
 
-Production CDN, production static usage, and local development use the same non-minified dist files:
+Production CDN, production static usage, and local development use the same standard dist files:
 
 ### Pinned CDN
 
@@ -51,7 +51,11 @@ The canonical build is `packages/webblocks/build.sh`. It uses only shell and sta
 ./packages/webblocks/build.sh
 ```
 
-The script reads `packages/webblocks/VERSION`, creates `packages/webblocks/dist/`, concatenates source CSS and JS in the shipped order, copies the source icon CSS to `dist/webblocks-icons.css` with the package banner, regenerates `docs/version.js`, and publishes versioned AI contract artifacts under `dist/ai/`. It does not run Node, npm, Python, minifiers, or icon manifest generation.
+The script reads `packages/webblocks/VERSION`, creates `packages/webblocks/dist/`, concatenates source CSS and JS in the shipped order, adds package banners, formats the main and icon CSS with the bundled POSIX awk formatter, regenerates `docs/version.js`, and publishes versioned AI contract artifacts under `dist/ai/`. It does not run Node, npm, Python, external minifiers, or icon manifest generation. JavaScript formatting remains unchanged.
+
+CSS output formatting removes only standalone explanatory comments, blank lines and unprotected leading indentation. Entire declaration values, functions (including `calc()` operator spaces), strings, URLs, attribute selectors, inline comments, license notices and preservation directives are copied verbatim. Selectors and rule order remain intact. The formatter rejects unterminated protected structures before replacing the corresponding dist CSS file. Readable source CSS remains in `src/`; this is not aggressive token minification and does not add `.min.css` files.
+
+Run `bash scripts/validate-css-compaction.sh` for lexical regression fixtures, license preservation, idempotence and failure checks. Open `tests/css-compaction.html` through a local HTTP server for browser-parsed source/dist rule equality, function behavior and layout comparisons.
 
 `dist/webblocks-icons.json` is kept as a maintained dist artifact for consumers that need structured icon data. The shell build preserves it instead of regenerating it.
 
@@ -171,7 +175,7 @@ Shipped interactive modules expose `window.*` APIs:
 
 `WBGallery` upgrades `.wb-gallery-trigger` elements that target one shared modal viewer, updates caption/meta/image state from the active item, and keeps stepping scoped to the current `.wb-gallery` set.
 
-`WBSlider` upgrades `[data-wb-slider]` roots with track-based slide movement, scoped arrows, auto-created dots, keyboard navigation, pointer swipe, loop, and optional autoplay.
+`WBSlider` upgrades `[data-wb-slider]` roots with track-based slide movement, scoped arrows, auto-created dots, keyboard navigation, pointer swipe, loop, and optional autoplay. It keeps inactive slides out of keyboard focus, preserves authored focus attributes, and moves focus to the root only when a transition would hide it. Use `WBSlider.update` after changing slide structure and `WBSlider.destroy` before unmounting. Autoplay honors focus, hover and live reduced-motion changes. Focus pauses persist until autoplay is explicitly re-enabled through the existing option/update lifecycle; manual navigation remains available.
 
 `WBCookieConsent` handles reusable consent storage, accept/reject/custom preference flows, reopen hooks, and the public API around the `wb-cookie-consent` pattern.
 
@@ -180,6 +184,8 @@ Use `INTEGRATION.md` for canonical data attributes, method names, and behavioral
 ## Icons
 
 WebBlocks ships 200 icons through `dist/webblocks-icons.css` — 199 curated Lucide glyphs plus the hand-drawn brand mark `brand-cms`, including docs/admin navigation controls such as `layout-dashboard`, `layout-grid`, `box`, `circle-dot`, `route`, `images`, `cookie`, and `megaphone` alongside builder controls such as `grip-vertical`, `plus`, `minus`, `arrow-up`, `arrow-down`, and `arrow-up-down`.
+
+Each generated icon rule stores its SVG once in the internal `--wb-icon-mask` property and uses it for both `-webkit-mask-image` and `mask-image`. All icon classes, compatibility aliases, and helper classes keep the same markup and behavior; consumers do not need to set this internal property.
 
 For structured picker data, WebBlocks also ships `dist/webblocks-icons.json`. Each manifest entry includes a canonical `slug`, human label, `css_class`, generic `source`, plus `categories`, `contexts`, and `keywords` so consuming projects can build icon pickers without hardcoding icon lists.
 
@@ -289,7 +295,7 @@ This regenerates:
 - `dist/webblocks-ui.js`
 - `dist/webblocks-icons.css`
 
-The build also preserves `dist/webblocks-icons.json` as a maintained manifest artifact. It does not regenerate the manifest and does not publish minified dist files.
+The build also preserves `dist/webblocks-icons.json` as a maintained manifest artifact. It does not regenerate the manifest or publish separate `.min.css` / `.min.js` artifacts. CSS uses conservative output formatting; JavaScript is not compacted.
 
 The build publishes `dist/ai/contract.md`, `dist/ai/review-checklist.md`, `dist/ai/forbidden-patterns.md`, `dist/ai/examples.md`, `dist/ai/downstream-agent-block.md`, and `dist/ai/manifest.json` from the source files in the repository-level `ai/` directory. Downstream projects should point AI agents at the pinned release URL for `dist/ai/contract.md`.
 
@@ -321,12 +327,14 @@ packages/webblocks/
 - icon source lives in `src/css/icons/webblocks-icons.svg`
 - `scripts/build-icons.js` regenerates icon CSS from the source icon set
 - `scripts/update-icons.js` refreshes the curated icon source from Lucide and is maintainer-only
-- `scripts/validate-icons.sh` verifies shipped manifest and docs icon classes resolve to generated selectors in `dist/webblocks-icons.css`
+- `scripts/validate-icons.sh` verifies shipped manifest and docs icon classes resolve to generated selectors in `dist/webblocks-icons.css` and every source/dist glyph rule shares one SVG payload between both mask properties; open `tests/icons.html` for all glyphs, aliases, SVG geometry, class replacement, themes, sizes, fallback and stylesheet-order checks
 - `scripts/validate-toast.sh` verifies the toast source and integration guide keep the documented transient/persistent behavior contract
 - `scripts/validate-native-inputs.sh` verifies the native file, color, and range contracts match source, dist, and integration documentation
 - `scripts/validate-password-generator.sh` verifies secure password generation, localized feedback hooks, built runtime inclusion, and documentation coverage
 - `scripts/validate-clipboard.sh` verifies the general Clipboard contract, empty-target state, localized feedback, and source/dist documentation coverage
 - `scripts/validate-table.sh` verifies table CSS, sorting runtime inclusion and documentation; open `tests/table-sort.html` through a local HTTP server for dependency-free browser behavior tests
+- open `tests/slider-autoplay.html` for focus/hover/motion pause interaction, explicit opt-in and timer/listener cleanup; repeat with `?source=1` and `?legacy=1`, then inspect the native-timer live example
+- open `tests/slider.html` for inactive-slide focus, authored attributes, nested sliders, dynamic content, lifecycle cleanup, autoplay and modal/gallery checks; repeat with `?fallback=1` and follow the manual Tab/Shift+Tab instructions
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing
 
 The curated Lucide 0.577.0 glyphs retain ISC and Feather MIT notices in `THIRD_PARTY_LICENSES.txt` and in the generated icon CSS.

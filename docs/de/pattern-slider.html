@@ -167,6 +167,9 @@
                         </tbody>
                       </table>
                     </div>
+                    <p>Inaktive Slides werden mit <code>inert</code> vom Tastaturfokus ausgeschlossen; ohne native Unterstützung greift ein <code>tabindex</code>-Fallback. Vom Autor gesetzte Fokusattribute bleiben erhalten. Würde ein Wechsel den Fokus verbergen, wird er auf die Slider-Wurzel verschoben; Fokus außerhalb des ausgehenden Slides bleibt unverändert.</p>
+                    <p>Rufe nach Änderungen an Slides oder Steuerelementen <code>WBSlider.update(root)</code> und vor dem Entfernen <code>WBSlider.destroy(root)</code> auf. Neue Inhalte innerhalb eines vorhandenen Slides werden automatisch berücksichtigt. Wiederholte Initialisierung ist sicher; <code>wb:slider:change</code> behält die Detailfelder <code>index</code>, <code>count</code> und <code>slide</code>.</p>
+                    <p>Autoplay stoppt beim Eintritt des Fokus und bleibt nach dem Verlassen pausiert. Die Hover-Pause bleibt auch bei manueller Navigation und Updates erhalten; Änderungen an <code>prefers-reduced-motion</code> werden live berücksichtigt. Manuelle Navigation bleibt verfügbar. Zum ausdrücklichen Fortsetzen nach einer Fokuspause setze <code>data-wb-slider-autoplay</code> auf <code>false</code>, rufe <code>WBSlider.update(root)</code> auf, setze den Wert dann auf <code>true</code> und aktualisiere erneut, während der Fokus außerhalb des Sliders liegt. Hover und reduzierte Bewegung haben weiterhin Vorrang.</p>
                   </section>
 
                   <section class="wb-docs-section wb-docs-split" id="composition">

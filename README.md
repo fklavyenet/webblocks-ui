@@ -65,7 +65,7 @@ Start from patterns, not primitives.
 - docs and playground local asset loaders resolve the built files from `packages/webblocks/dist/`; the playground loader also handles the deeper `playground/` path correctly
 - the single source of truth for the shipped package version is `packages/webblocks/VERSION`
 - update `packages/webblocks/VERSION` before a release or tag so the package banner metadata and docs version label stay in sync
-- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner to non-minified dist files, regenerates `docs/version.js`, and publishes `packages/webblocks/dist/ai/` contract artifacts using only shell and standard command-line utilities
+- `./packages/webblocks/build.sh` reads `packages/webblocks/VERSION`, prepends the official banner, conservatively compacts CSS comments/indentation while preserving function and value whitespace, keeps JavaScript formatting unchanged, regenerates `docs/version.js`, and publishes `packages/webblocks/dist/ai/` contract artifacts using only shell and standard command-line utilities
 - production and CDN integrations use `dist/webblocks-ui.css`, `dist/webblocks-icons.css`, and `dist/webblocks-ui.js`; `.min.css` / `.min.js` artifacts are no longer published by the canonical build
 - downstream AI integrations should reference the pinned release contract at `packages/webblocks/dist/ai/contract.md`; `INTEGRATION.md` remains the implementation-accurate reference that feeds the contract
 - `dist/webblocks-icons.json` is preserved as a maintained dist artifact for icon pickers and catalog sync, but the shell build does not regenerate it

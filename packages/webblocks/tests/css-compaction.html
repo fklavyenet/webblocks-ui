@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS compaction browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+</head>
+<body>
+<main class="wb-container wb-stack wb-gap-4 wb-py-6">
+  <h1>CSS formatting regression checks</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <p>Checks browser-parsed rules and declaration order against all source CSS, then compares computed styles and layout in light/dark modes at 320, 800 and 1280 pixels. No WebBlocks JavaScript or test package is loaded.</p>
+  <div class="wb-grid wb-grid-2 wb-gap-4">
+    <section><h2>Readable source</h2><iframe title="Readable source CSS" id="source" width="540" height="540"></iframe></section>
+    <section><h2>Compact dist</h2><iframe title="Compact distribution CSS" id="dist" width="540" height="540"></iframe></section>
+  </div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var checks = [];
+  function check(name, value) { checks.push({ name: name, passed: Boolean(value) }); }
+  async function read(path) { var response = await fetch(path); if (!response.ok) throw new Error('Missing fixture asset: ' + path); return response.text(); }
+  function sheet(css) { var result = new CSSStyleSheet(); result.replaceSync(css); return result; }
+  function equalRules(name, original, formatted) {
+    var before = Array.from(sheet(original).cssRules);
+    var after = Array.from(sheet(formatted).cssRules);
+    check(name + ' retains parsed rule count', before.length > 0 && before.length === after.length);
+    before.forEach(function (rule, index) { check(name + ' rule ' + index + ' retains selector, declarations, order and values', after[index] && rule.cssText === after[index].cssText); });
+    return before.length;
+  }
+  async function prepare(frame, css, fixtures) {
+    var loaded = new Promise(function (resolve) { frame.onload = resolve; });
+    frame.srcdoc = '<!doctype html><html lang="en" data-mode="light"><head><meta charset="utf-8"></head><body></body></html>';
+    await loaded;
+    var doc = frame.contentDocument;
+    var style = doc.createElement('style'); style.textContent = css + '\n' + fixtures; doc.head.appendChild(style);
+    doc.body.innerHTML = '<main class="wb-stack wb-gap-3 wb-p-4">' +
+      '<article class="wb-card"><div class="wb-card-body wb-stack wb-gap-3"><h3>Synthetic card</h3><p>Identical source and dist layout.</p>' +
+      '<div class="wb-cluster wb-gap-2"><button type="button" class="wb-btn wb-btn-primary">Primary</button><button type="button" class="wb-btn wb-btn-secondary" disabled>Disabled</button><i class="wb-icon wb-icon-settings" aria-hidden="true"></i></div>' +
+      '<label class="wb-field">Name<input class="wb-input" placeholder="Synthetic name"></label>' +
+      '<div class="wb-grid wb-grid-2 wb-gap-2"><span class="wb-badge">First cell</span><span class="wb-badge">Second cell</span></div>' +
+      '<div class="math-probe">CSS math and color probe</div>' +
+      '</div></article><details class="wb-collapse-panel" open><summary class="wb-collapse-trigger">Native panel</summary><div class="wb-collapse-body">Synthetic disclosure content.</div></details></main>';
+    return doc;
+  }
+  function styles(frame, element) {
+    var style = frame.contentWindow.getComputedStyle(element);
+    return Array.from(style).map(function (name) { return [name, style.getPropertyValue(name)]; });
+  }
+  function rect(element) { var r = element.getBoundingClientRect(); return [r.x, r.y, r.width, r.height]; }
+  async function run() {
+    var build = await read('../build.sh');
+    var concatenation = build.match(/cat \\\n([\s\S]*?)> "\$CSS_STAGE"/);
+    if (!concatenation) throw new Error('Missing main CSS concatenation block');
+    var inputs = Array.from(concatenation[1].matchAll(/"\$ROOT\/(src\/css\/[^"\n]+\.css)"/g)).map(function (match) { return match[1]; });
+    check('canonical build exposes all 70 ordered main CSS sources', inputs.length === 70);
+    var source = (await Promise.all(inputs.map(function (path) { return read('../' + path); }))).join('');
+    var other = await Promise.all(['../src/css/icons/webblocks-icons.css', '../dist/webblocks-ui.css', '../dist/webblocks-icons.css', 'css-compaction/input.css', 'css-compaction/expected.css'].map(read));
+    var sourceIcons = other[0], dist = other[1], distIcons = other[2], input = other[3], expected = other[4];
+    var mainCount = equalRules('Main CSS', source, dist);
+    var iconCount = equalRules('Icon CSS', sourceIcons, distIcons);
+    equalRules('Regression fixture', input, expected);
+    var fixtureRules = Array.from(sheet(expected).cssRules);
+    var scenario = fixtureRules.find(function (rule) { return rule.selectorText === '.scenario, .scenario:hover'; });
+    check('math expression retains required operator spaces', scenario && scenario.style.getPropertyValue('width') === 'calc(100% - 2 * var(--space, 4px))');
+    check('custom value retains multiple spaces and line breaks', scenario && scenario.style.getPropertyValue('--sequence').includes('first  second\n          third'));
+    check('quoted font retains its internal double space', scenario && scenario.style.getPropertyValue('font-family').includes('Two  Spaces'));
+    var math = '.math-probe { --space: 7px; width: calc(100px - 2 * var(--space)); min-width: min(80px, 90px); max-width: max(86px, 70px); padding-left: clamp(4px, calc(10px + 2px), 20px); margin-top: var(--missing, calc(10px + 2px)); transform: translate(calc(-50% + 1px), calc(10px - 2px)); color: rgb(10 20 30 / 50%); background-image: linear-gradient(90deg, rgb(255 255 255 / .8), transparent); font-family: "Two  Spaces", system-ui; }';
+    var sourceFrame = document.getElementById('source'); var distFrame = document.getElementById('dist');
+    var docs = await Promise.all([prepare(sourceFrame, source + sourceIcons, input + math), prepare(distFrame, dist + distIcons, expected + math)]);
+    for (var width of [320, 800, 1280]) {
+      sourceFrame.width = width; distFrame.width = width;
+      for (var mode of ['light', 'dark']) {
+        docs.forEach(function (doc) { doc.documentElement.setAttribute('data-mode', mode); });
+        await new Promise(function (resolve) { requestAnimationFrame(function () { requestAnimationFrame(resolve); }); });
+        // Compare settled theme states; independent iframe timelines can be
+        // a few milliseconds apart while the same CSS transition is running.
+        await Promise.all(docs.flatMap(function (doc) { return doc.getAnimations().map(function (animation) { return animation.finished.catch(function () {}); }); }));
+        var a = docs[0].querySelectorAll('main, main *'); var b = docs[1].querySelectorAll('main, main *');
+        a.forEach(function (element, index) {
+          var original = styles(sourceFrame, element); var formatted = styles(distFrame, b[index]);
+          var differences = original.filter(function (entry, propertyIndex) { return JSON.stringify(entry) !== JSON.stringify(formatted[propertyIndex]); });
+          check(width + '/' + mode + ' computed styles ' + index + (differences.length ? ' (' + differences.map(function (entry) { return entry[0]; }).join(', ') + ')' : ''), !differences.length);
+          check(width + '/' + mode + ' layout ' + index, JSON.stringify(rect(element)) === JSON.stringify(rect(b[index])));
+        });
+        var probe = distFrame.contentWindow.getComputedStyle(docs[1].querySelector('.math-probe'));
+        check(width + '/' + mode + ' calc/var width evaluates', probe.width === '86px');
+        check(width + '/' + mode + ' min/max/clamp evaluate', probe.minWidth === '80px' && probe.maxWidth === '86px' && probe.paddingLeft === '12px');
+        check(width + '/' + mode + ' var fallback evaluates', probe.marginTop === '12px');
+        check(width + '/' + mode + ' transform math evaluates', probe.transform === 'matrix(1, 0, 0, 1, -42, 8)');
+        check(width + '/' + mode + ' color and gradient evaluate', probe.color === 'rgba(10, 20, 30, 0.5)' && probe.backgroundImage.indexOf('linear-gradient(') === 0);
+      }
+    }
+    sourceFrame.width = 540; distFrame.width = 540;
+    docs.forEach(function (doc) { doc.documentElement.setAttribute('data-mode', 'light'); });
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures; ' + mainCount + ' main rules and ' + iconCount + ' icon rules.';
+    failed.forEach(function (result) { var item = document.createElement('li'); item.textContent = result.name; document.getElementById('failures').appendChild(item); });
+    window.cssCompactionTestResults = { passed: !failed.length, checks: checks.length, failures: failed };
+  }
+  window.addEventListener('load', function () { run().catch(function (error) { document.getElementById('summary').textContent = 'FAIL: ' + error.stack; }); });
+})();
+</script>
+</body>
+</html>

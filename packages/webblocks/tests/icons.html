@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Icon mask browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css" id="ui-style">
+  <link rel="stylesheet" href="../dist/webblocks-icons.css" id="icon-style">
+  <script>
+    var params = new URLSearchParams(location.search);
+    if (params.has('source')) document.getElementById('icon-style').href = '../src/css/icons/webblocks-icons.css';
+    if (params.has('reverse')) document.head.insertBefore(document.getElementById('icon-style'), document.getElementById('ui-style'));
+  </script>
+</head>
+<body>
+<main class="wb-container wb-stack wb-gap-4 wb-py-6">
+  <h1>Icon masks and aliases</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <p>Each pair compares a generated class (left) with the source SVG applied directly as a mask (right). All content is synthetic. No WebBlocks JavaScript or test package is loaded.</p>
+  <p>Repeat with <code>?reverse=1</code> for reversed stylesheet order, or <code>?source=1</code> for the stored source icon CSS. Change the theme to inspect both modes.</p>
+  <div class="wb-action-group">
+    <button type="button" class="wb-btn" id="light">Light theme</button>
+    <button type="button" class="wb-btn" id="dark">Dark theme</button>
+  </div>
+  <div id="examples" class="wb-grid wb-grid-4 wb-gap-3"></div>
+  <div id="sandbox" hidden></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var checks = [];
+  var sandbox = document.getElementById('sandbox');
+  var aliases = { 'wb-icon-refresh': 'wb-icon-rotate-cw', 'wb-icon-refresh-cw': 'wb-icon-rotate-cw', 'wb-icon-sync': 'wb-icon-repeat' };
+  var samples = ['menu', 'settings', 'search', 'eye', 'eye-off', 'rotate-cw', 'refresh', 'refresh-cw', 'repeat', 'sync', 'sidebar', 'panel-left', 'circle-help', 'help-circle', 'brand-cms', 'arrow-up-down'];
+  function check(name, value) { checks.push({ name: name, passed: Boolean(value) }); }
+  function icon(name, parent) {
+    var el = document.createElement('i'); el.className = 'wb-icon ' + name; el.setAttribute('aria-hidden', 'true');
+    (parent || sandbox).appendChild(el); return el;
+  }
+  function shape(element) {
+    return Array.from(element.children).map(function (child) {
+      return [child.localName, Array.from(child.attributes).map(function (attr) { return [attr.name, attr.value]; }).sort(), shape(child)];
+    });
+  }
+  function sourceURL(symbol) {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    [['viewBox', '0 0 24 24'], ['fill', 'none'], ['stroke', 'currentColor'], ['stroke-width', '2'], ['stroke-linecap', 'round'], ['stroke-linejoin', 'round']].forEach(function (pair) { svg.setAttribute(pair[0], pair[1]); });
+    Array.from(symbol.children).forEach(function (child) { svg.appendChild(child.cloneNode(true)); });
+    return 'data:image/svg+xml,' + encodeURIComponent(new XMLSerializer().serializeToString(svg));
+  }
+  function maskSVG(value) {
+    var match = /^url\(["']?(data:image\/svg\+xml,[\s\S]*?)["']?\)$/.exec(value);
+    return match ? new DOMParser().parseFromString(decodeURIComponent(match[1].split(',').slice(1).join(',')), 'image/svg+xml') : null;
+  }
+  async function run() {
+    var assets = await Promise.all(['../dist/webblocks-icons.json', '../src/css/icons/webblocks-icons.svg', '../src/css/icons/webblocks-brand-icons.svg'].map(async function (url) {
+      var response = await fetch(url); if (!response.ok) throw new Error('Missing fixture asset: ' + url); return response.text();
+    }));
+    var manifest = JSON.parse(assets[0]);
+    var symbols = new Map();
+    assets.slice(1).forEach(function (xml) { new DOMParser().parseFromString(xml, 'image/svg+xml').querySelectorAll('symbol').forEach(function (symbol) { symbols.set(symbol.id, symbol); }); });
+    check('source SVGs and manifest retain all 200 canonical icons', symbols.size === 200 && manifest.length === 200);
+    var names = manifest.map(function (entry) { return entry.css_class; }).concat(Object.keys(aliases));
+    check('canonical and compatibility names remain distinct', new Set(names).size === 203);
+    for (var name of names) {
+      var el = icon(name);
+      var computed = getComputedStyle(el);
+      var actual = maskSVG(computed.maskImage);
+      var expected = symbols.get(aliases[name] || name);
+      check(name + ' resolves an SVG mask', actual && !actual.querySelector('parsererror') && computed.webkitMaskImage === computed.maskImage);
+      check(name + ' keeps source geometry', actual && expected && JSON.stringify(shape(actual.documentElement)) === JSON.stringify(shape(expected)));
+      check(name + ' keeps the SVG viewport and stroke contract', actual && ['viewBox', 'fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin'].map(function (key) { return actual.documentElement.getAttribute(key); }).join('|') === '0 0 24 24|none|currentColor|2|round|round');
+      var image = new Image();
+      image.src = sourceURL(expected);
+      await image.decode();
+      // Decode the actual computed URI as well, so valid XML alone cannot hide
+      // an unusable CSS URL or a missing image resource.
+      var actualImage = new Image();
+      actualImage.src = computed.maskImage.slice(5, -2);
+      try { await actualImage.decode(); check(name + ' actual mask image decodes', true); }
+      catch (_) { check(name + ' actual mask image decodes', false); }
+      if (samples.indexOf(name.replace('wb-icon-', '')) >= 0) {
+        var card = document.createElement('section'); card.className = 'wb-card';
+        var body = document.createElement('div'); body.className = 'wb-card-body wb-stack wb-gap-2';
+        var pair = document.createElement('div'); pair.className = 'wb-cluster wb-gap-3';
+        el.classList.add('wb-icon-2xl'); pair.appendChild(el);
+        var reference = icon('', pair); reference.classList.add('wb-icon-2xl');
+        reference.style.setProperty('-webkit-mask-image', 'url("' + sourceURL(expected) + '")');
+        reference.style.setProperty('mask-image', 'url("' + sourceURL(expected) + '")');
+        var label = document.createElement('code'); label.textContent = name;
+        body.appendChild(pair); body.appendChild(label); card.appendChild(body); document.getElementById('examples').appendChild(card);
+      } else el.remove();
+    }
+    var subject = icon('wb-icon-eye');
+    var eye = getComputedStyle(subject).maskImage;
+    subject.className = 'wb-icon wb-icon-eye-off';
+    check('runtime class replacement changes the mask', getComputedStyle(subject).maskImage !== eye);
+    subject.className = 'wb-icon wb-icon-eye';
+    check('runtime class replacement restores the mask', getComputedStyle(subject).maskImage === eye);
+    subject.style.setProperty('mask-image', 'none');
+    check('direct host mask overrides still win', getComputedStyle(subject).maskImage === 'none');
+    subject.style.removeProperty('mask-image');
+    var unknown = icon('wb-icon-unknown-test');
+    check('unknown class still receives the fallback mask', getComputedStyle(unknown).maskImage !== 'none');
+    var parent = icon('wb-icon-settings'); var nested = icon('wb-icon-unknown-test', parent);
+    check('unknown nested icon keeps its own fallback', getComputedStyle(nested).maskImage === getComputedStyle(unknown).maskImage);
+    for (var mode of ['light', 'dark']) {
+      document.documentElement.setAttribute('data-mode', mode);
+      subject.className = 'wb-icon wb-icon-settings';
+      subject.style.color = 'rgb(17, 34, 51)';
+      check(mode + ' currentColor reaches the mask', getComputedStyle(subject).backgroundColor === 'rgb(17, 34, 51)');
+      subject.style.removeProperty('color');
+      for (var size of [['xs', 14], ['sm', 16], ['lg', 24], ['xl', 32], ['2xl', 40]]) {
+        subject.className = 'wb-icon wb-icon-settings wb-icon-' + size[0];
+        check(mode + ' size ' + size[0] + ' remains intact', getComputedStyle(subject).width === size[1] + 'px' && getComputedStyle(subject).height === size[1] + 'px');
+      }
+      for (var color of ['accent', 'success', 'warning', 'danger', 'info']) {
+        subject.className = 'wb-icon wb-icon-settings wb-icon-' + color;
+        check(mode + ' color ' + color + ' remains intact', getComputedStyle(subject).backgroundColor === getComputedStyle(subject).color);
+      }
+    }
+    document.documentElement.setAttribute('data-mode', 'light');
+    document.getElementById('light').addEventListener('click', function () { document.documentElement.setAttribute('data-mode', 'light'); });
+    document.getElementById('dark').addEventListener('click', function () { document.documentElement.setAttribute('data-mode', 'dark'); });
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures; 200 icons and 3 aliases.';
+    failed.forEach(function (result) { var item = document.createElement('li'); item.textContent = result.name; document.getElementById('failures').appendChild(item); });
+    window.iconTestResults = { passed: !failed.length, checks: checks.length, failures: failed };
+  }
+  window.addEventListener('load', function () { run().catch(function (error) { document.getElementById('summary').textContent = 'FAIL: ' + error.stack; }); });
+})();
+</script>
+</body>
+</html>

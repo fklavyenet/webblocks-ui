@@ -19,6 +19,14 @@ ICONS_SOURCE="$ROOT/src/css/icons/webblocks-icons.css"
 VERSION_FILE="$ROOT/VERSION"
 DOCS_VERSION_OUT="$REPO_ROOT/docs/version.js"
 DIST_AI="$DIST/ai"
+CSS_STAGE=""
+ICONS_STAGE=""
+
+cleanup_css_stages() {
+  if [ -n "$CSS_STAGE" ]; then rm -f "$CSS_STAGE"; fi
+  if [ -n "$ICONS_STAGE" ]; then rm -f "$ICONS_STAGE"; fi
+}
+trap cleanup_css_stages EXIT
 
 if [ ! -f "$VERSION_FILE" ]; then
   echo "Error: missing version file at $VERSION_FILE" >&2
@@ -117,6 +125,20 @@ add_js_banner() {
 
   mv "$output_file" "$file"
   rm -f "$stripped_file"
+}
+
+compact_css() {
+  local file="$1"
+  local formatted_file
+  formatted_file="$(mktemp "$DIST/.css-format.XXXXXX")"
+
+  if ! LC_ALL=C awk -f "$ROOT/scripts/compact-css.awk" "$file" > "$formatted_file"; then
+    rm -f "$formatted_file"
+    return 1
+  fi
+
+  chmod 644 "$formatted_file"
+  mv "$formatted_file" "$file"
 }
 
 assert_icon_css_has_selectors() {
@@ -243,6 +265,7 @@ EOF
 }
 
 echo "Building CSS..."
+CSS_STAGE="$(mktemp "$DIST/.css-build.XXXXXX")"
 
 cat \
   "$ROOT/src/css/foundation/tokens.css" \
@@ -315,9 +338,12 @@ cat \
   "$ROOT/src/css/patterns/content-shell.css" \
   "$ROOT/src/css/patterns/marketing.css" \
   "$ROOT/src/css/icons/icons.css" \
-  > "$CSS_OUT"
+  > "$CSS_STAGE"
 
-add_css_banner "$CSS_OUT"
+add_css_banner "$CSS_STAGE"
+compact_css "$CSS_STAGE"
+mv "$CSS_STAGE" "$CSS_OUT"
+CSS_STAGE=""
 
 CSS_LINES=$(wc -l < "$CSS_OUT")
 echo "  -> dist/webblocks-ui.css  ($CSS_LINES lines)"
@@ -365,14 +391,18 @@ echo "Building icon CSS..."
 
 assert_icon_css_has_selectors "$ICONS_SOURCE" "source icon CSS"
 
-cat "$ICONS_SOURCE" > "$ICONS_OUT"
+ICONS_STAGE="$(mktemp "$DIST/.icons-build.XXXXXX")"
+cat "$ICONS_SOURCE" > "$ICONS_STAGE"
 
-if [ ! -f "$ICONS_OUT" ]; then
-  echo "Error: missing icon output at $ICONS_OUT" >&2
+if [ ! -f "$ICONS_STAGE" ]; then
+  echo "Error: missing icon output at $ICONS_STAGE" >&2
   exit 1
 fi
 
-add_css_banner "$ICONS_OUT"
+add_css_banner "$ICONS_STAGE"
+compact_css "$ICONS_STAGE"
+mv "$ICONS_STAGE" "$ICONS_OUT"
+ICONS_STAGE=""
 assert_icon_css_has_selectors "$ICONS_OUT" "dist icon CSS"
 
 ICONS_LINES=$(wc -l < "$ICONS_OUT")

@@ -167,6 +167,9 @@
                         </tbody>
                       </table>
                     </div>
+                    <p>Inactive slides are excluded from keyboard focus through <code>inert</code>, with a <code>tabindex</code> fallback when native support is absent. Authored focus attributes remain intact. If a transition would hide focus, it moves to the slider root; focus outside the departing slide stays put.</p>
+                    <p>Call <code>WBSlider.update(root)</code> after changing slides or controls and <code>WBSlider.destroy(root)</code> before unmounting. Newly added content inside an existing slide is handled automatically. Repeat initialization is safe; <code>wb:slider:change</code> keeps its <code>index</code>, <code>count</code>, and <code>slide</code> detail.</p>
+                    <p>Autoplay stops when focus enters and remains paused after blur. Hover pauses also survive manual navigation and updates; changes to <code>prefers-reduced-motion</code> are observed live. Manual navigation remains available. To explicitly resume after a focus pause, set <code>data-wb-slider-autoplay</code> to <code>false</code>, call <code>WBSlider.update(root)</code>, then set it to <code>true</code> and update again with focus outside the slider. Hover and reduced motion still take precedence.</p>
                   </section>
 
                   <section class="wb-docs-section wb-docs-split" id="composition">
