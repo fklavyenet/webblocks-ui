@@ -93,3 +93,68 @@
   padding: var(--wb-s4);
   padding-top: var(--wb-s4);
 }
+
+/* Native panel support is additive; legacy div/button and standalone rules
+   above retain their class-based state and transitions. */
+details.wb-collapse-panel > summary.wb-collapse-trigger {
+  list-style: none;
+}
+
+details.wb-collapse-panel > summary.wb-collapse-trigger::-webkit-details-marker {
+  display: none;
+}
+
+details.wb-collapse-panel > summary.wb-collapse-trigger .wb-collapse-icon {
+  transform: none;
+}
+
+details.wb-collapse-panel[open] > summary.wb-collapse-trigger .wb-collapse-icon {
+  transform: rotate(180deg);
+}
+
+/* Direct-child selectors keep nested panels independent of ancestor state.
+   The browser owns disclosure; an open native body uses its natural height. */
+details.wb-collapse-panel:not([open]) > .wb-collapse,
+details.wb-collapse-panel:not([open]) > .wb-collapse-body {
+  display: none;
+}
+
+details.wb-collapse-panel[open] > .wb-collapse,
+details.wb-collapse-panel[open] > .wb-collapse-body {
+  display: block;
+  max-height: none;
+  opacity: 1;
+  border-top: 1px solid var(--wb-border);
+  transition: none;
+}
+
+/* The component owns its disclosure indicator, independent of host artwork. */
+.wb-collapse-panel > .wb-collapse-trigger::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-inline-start: auto;
+  margin-inline-end: 0.15rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  color: var(--wb-muted);
+  transform: rotate(45deg);
+  transition: transform var(--wb-t);
+}
+
+.wb-collapse-panel.is-open:not(details) > .wb-collapse-trigger::after {
+  transform: rotate(225deg);
+}
+
+details.wb-collapse-panel > summary.wb-collapse-trigger::after {
+  transform: rotate(45deg);
+}
+
+details.wb-collapse-panel[open] > summary.wb-collapse-trigger::after {
+  transform: rotate(225deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-collapse-panel > .wb-collapse-trigger::after { transition: none; }
+}

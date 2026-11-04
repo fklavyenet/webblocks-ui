@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Disclosure chevron browser checks — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <script src="../dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Default disclosure chevrons</h1>
+  <p id="summary" role="status">Waiting for checks.</p><ol id="failures" class="wb-marker-list"></ol>
+  <p>No icon stylesheet is loaded. UI owns the disclosure indicator on every heading, independently of content icons.</p>
+  <div id="fixtures" class="wb-stack wb-gap-4"></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var checks = [], fixtures = document.getElementById('fixtures');
+  function check(name, passed) { checks.push({name: name, passed: Boolean(passed)}); }
+  function pseudo(trigger) { return getComputedStyle(trigger, '::after'); }
+  function settle(trigger) {
+    // Read style first so any pseudo-element transition has been created.
+    pseudo(trigger).transform;
+    trigger.getAnimations({subtree: true}).forEach(function (animation) { animation.finish(); });
+  }
+  function points(trigger, open) {
+    settle(trigger);
+    var matrix = new DOMMatrix(pseudo(trigger).transform);
+    return open ? matrix.a < 0 && matrix.b < 0 : matrix.a > 0 && matrix.b > 0;
+  }
+  function make(kind, native, artwork) {
+    var root = document.createElement(native ? 'details' : 'div');
+    root.className = 'wb-' + kind + (kind === 'accordion' ? '-item' : '-panel');
+    root.innerHTML = '<' + (native ? 'summary' : 'button type="button" aria-expanded="false"') + ' class="wb-' + kind + '-trigger"><span>Plain ' + kind + ' heading</span>' + (artwork || '') + '</' + (native ? 'summary' : 'button') + '><div class="wb-' + kind + '-body">Synthetic content</div>';
+    if (kind === 'collapse') {
+      var body = root.lastElementChild, wrapper = document.createElement('div');
+      wrapper.className = 'wb-collapse'; body.replaceWith(wrapper); wrapper.appendChild(body);
+    }
+    fixtures.appendChild(root);
+    return {root: root, trigger: root.firstElementChild};
+  }
+  function show(item, native, open) {
+    if (native) item.root.open = open;
+    else item.trigger.click();
+  }
+  async function run() {
+    for (var kind of ['accordion', 'collapse']) {
+      for (var native of [false, true]) {
+        var name = kind + (native ? ' native' : ' legacy');
+        var item = make(kind, native);
+        for (var mode of ['light', 'dark']) {
+          document.documentElement.setAttribute('data-mode', mode);
+          for (var dir of ['ltr', 'rtl']) {
+            item.root.dir = dir;
+            var style = pseudo(item.trigger);
+            check(name + '/' + mode + '/' + dir + ' has empty decorative content', style.content === '""');
+            check(name + '/' + mode + '/' + dir + ' has a visible border chevron', parseFloat(style.width) > 0 && style.borderRightStyle === 'solid' && style.borderBottomStyle === 'solid');
+            check(name + '/' + mode + '/' + dir + ' flex box follows direction', getComputedStyle(item.trigger).direction === dir && style.flexShrink === '0');
+            check(name + '/' + mode + '/' + dir + ' label stays unchanged', item.trigger.textContent === 'Plain ' + kind + ' heading');
+            check(name + '/' + mode + '/' + dir + ' closed points down', points(item.trigger, false));
+            show(item, native, true);
+            check(name + '/' + mode + '/' + dir + ' open points up', points(item.trigger, true));
+            show(item, native, false);
+            check(name + '/' + mode + '/' + dir + ' reclosed points down', points(item.trigger, false));
+          }
+        }
+        if (native) {
+          item.root.classList.add('is-open');
+          item.trigger.setAttribute('aria-expanded', 'true');
+          check(name + ' native closed overrides stale legacy state', points(item.trigger, false));
+          item.root.classList.remove('is-open'); item.trigger.removeAttribute('aria-expanded');
+        }
+        // An ancestor's open class must not rotate a nested closed default.
+        var parent = make(kind, false);
+        parent.root.classList.add('is-open');
+        parent.root.querySelector('.wb-' + kind + '-body').appendChild(item.root);
+        check(name + ' nested closed indicator remains independent', points(item.trigger, false));
+        fixtures.appendChild(item.root); parent.root.remove();
+        var artwork = [
+          '<span class="wb-' + kind + '-icon" data-artwork>+</span>',
+          '<i class="wb-icon wb-icon-chevron-down" data-artwork></i>',
+          '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" data-artwork><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor"/></svg>',
+          '<img width="16" height="16" alt="" data-artwork src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27/%3E">'
+        ];
+        artwork.forEach(function (html, index) {
+          var custom = make(kind, native, html), icon = custom.trigger.querySelector('[data-artwork]'), original = icon.outerHTML;
+          var content = pseudo(custom.trigger).content;
+          check(name + ' artwork ' + index + ' does not suppress the UI indicator', content === '""');
+          show(custom, native, true); settle(custom.trigger);
+          check(name + ' artwork ' + index + ' remains unchanged', icon.outerHTML === original);
+          icon.remove();
+          check(name + ' artwork ' + index + ' removal restores default', pseudo(custom.trigger).content === '""');
+          custom.trigger.appendChild(icon);
+          check(name + ' artwork ' + index + ' insertion retains UI indicator', pseudo(custom.trigger).content === '""');
+          custom.root.remove();
+        });
+      }
+    }
+    var frame = document.createElement('iframe'); frame.title = 'Script-free default chevrons'; frame.width = 320; frame.height = 240;
+    frame.setAttribute('sandbox', 'allow-same-origin');
+    var loaded = new Promise(function (resolve) { frame.onload = resolve; });
+    frame.srcdoc = '<!doctype html><html lang="en" data-mode="light"><link rel="stylesheet" href="' + new URL('../dist/webblocks-ui.css', location.href).href + '"><details class="wb-accordion-item"><summary class="wb-accordion-trigger">No-JS accordion</summary><div class="wb-accordion-body">Content</div></details><details class="wb-collapse-panel"><summary class="wb-collapse-trigger">No-JS collapse</summary><div class="wb-collapse-body">Content</div></details></html>';
+    fixtures.appendChild(frame); await loaded;
+    check('script-free frame has no runtime', !frame.contentWindow.WBAccordion && !frame.contentWindow.WBCollapse);
+    frame.contentDocument.querySelectorAll('details').forEach(function (root) {
+      var trigger = root.querySelector('summary'), name = trigger.textContent;
+      check(name + ' receives default decoration', frame.contentWindow.getComputedStyle(trigger, '::after').content === '""');
+      trigger.click(); frame.contentWindow.getComputedStyle(trigger, '::after').transform;
+      trigger.getAnimations({subtree: true}).forEach(function (animation) { animation.finish(); });
+      var matrix = new DOMMatrix(frame.contentWindow.getComputedStyle(trigger, '::after').transform);
+      check(name + ' follows browser open without scripts', root.open && matrix.a < 0 && matrix.b < 0);
+    });
+    document.documentElement.setAttribute('data-mode', 'light');
+    fixtures.querySelectorAll('[dir]').forEach(function (root) { root.dir = 'ltr'; });
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures.';
+    failed.forEach(function (result) { var li = document.createElement('li'); li.textContent = result.name; document.getElementById('failures').appendChild(li); });
+    window.disclosureChevronTestResults = {passed: !failed.length, checks: checks.length, failures: failed};
+  }
+  window.addEventListener('load', function () { run().catch(function (error) { document.getElementById('summary').textContent = 'FAIL: ' + error.stack; }); });
+})();
+</script>
+</body></html>

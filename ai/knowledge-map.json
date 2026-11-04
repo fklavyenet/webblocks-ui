@@ -97,6 +97,14 @@
       {
         "path": "docs/meter.html",
         "description": "Native bounded measurement examples with zero/full values, localized labels and independent poll percentages."
+      },
+      {
+        "path": "docs/collapse.html",
+        "description": "Native script-free collapse panels, initial state, direct/wrapped bodies and UI-owned disclosure indicators."
+      },
+      {
+        "path": "docs/progress.html",
+        "description": "Native task progress, zero/full and unknown values, labels, colors and sizes without JavaScript."
       }
     ],
     "ai_contract": [

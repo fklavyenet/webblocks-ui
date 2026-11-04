@@ -208,6 +208,83 @@
 .wb-progress-bar-danger  .wb-progress-bar-fill { background: var(--wb-danger); }
 .wb-progress-bar-warning .wb-progress-bar-fill { background: var(--wb-warning); }
 
+/* ── Native progress (additive; legacy div/fill rules stay intact) ── */
+
+progress.wb-progress-bar {
+  --wb-progress-fill: var(--wb-primary);
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  color: var(--wb-progress-fill);
+}
+
+progress.wb-progress-bar::-webkit-progress-bar {
+  background: var(--wb-surface-2);
+  border-radius: var(--wb-r-full);
+}
+
+/* Keep vendor selectors separate so an unsupported one cannot drop the rule. */
+progress.wb-progress-bar::-webkit-progress-value {
+  background: var(--wb-progress-fill);
+  border-radius: var(--wb-r-full);
+}
+
+progress.wb-progress-bar::-moz-progress-bar {
+  background: var(--wb-progress-fill);
+  border-radius: var(--wb-r-full);
+}
+
+progress.wb-progress-bar-success { --wb-progress-fill: var(--wb-success); }
+progress.wb-progress-bar-danger  { --wb-progress-fill: var(--wb-danger); }
+progress.wb-progress-bar-warning { --wb-progress-fill: var(--wb-warning); }
+
+/* Missing value is the native indeterminate state, including after updates.
+   Paint on the host so no synthetic fill element or JavaScript is required. */
+progress.wb-progress-bar:indeterminate {
+  background-image: linear-gradient(var(--wb-progress-fill), var(--wb-progress-fill));
+  background-size: 40% 100%;
+  background-repeat: no-repeat;
+  animation: wb-progress-native-slide 1.4s ease infinite;
+}
+
+progress.wb-progress-bar:indeterminate::-webkit-progress-bar {
+  background: transparent;
+}
+
+progress.wb-progress-bar:indeterminate::-moz-progress-bar {
+  background: transparent;
+}
+
+@keyframes wb-progress-native-slide {
+  from { background-position: -66.667% 0; }
+  to   { background-position: 166.667% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  progress.wb-progress-bar:indeterminate {
+    animation: none;
+    background-position: center;
+  }
+}
+
+@media (forced-colors: active) {
+  progress.wb-progress-bar,
+  progress.wb-progress-bar:indeterminate {
+    -webkit-appearance: auto;
+    appearance: auto;
+    background: revert;
+    color: revert;
+    animation: none;
+  }
+
+  progress.wb-progress-bar::-webkit-progress-bar { background: revert; }
+  progress.wb-progress-bar::-webkit-progress-value { background: revert; }
+  progress.wb-progress-bar::-moz-progress-bar { background: revert; }
+}
+
 /* ── Page-level top loading bar ───────────────────────────── */
 
 .wb-loading-bar {

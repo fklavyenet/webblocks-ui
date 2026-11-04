@@ -335,6 +335,11 @@ packages/webblocks/
 - `scripts/validate-table.sh` verifies table CSS, sorting runtime inclusion and documentation; open `tests/table-sort.html` through a local HTTP server for dependency-free browser behavior tests
 - open `tests/slider-autoplay.html` for focus/hover/motion pause interaction, explicit opt-in and timer/listener cleanup; repeat with `?source=1` and `?legacy=1`, then inspect the native-timer live example
 - open `tests/slider.html` for inactive-slide focus, authored attributes, nested sliders, dynamic content, lifecycle cleanup, autoplay and modal/gallery checks; repeat with `?fallback=1` and follow the manual Tab/Shift+Tab instructions
+- open `tests/accordion.html` through a local HTTP server for legacy/native spacing, API, events, single-open groups, nesting, and script-free disclosure browser checks
+- open `tests/progress.html` through a local HTTP server for native semantics, state updates, legacy compatibility, themes, colors, and sizes; `scripts/validate-progress.sh` checks the source/dist and script-free docs contract
+- open `tests/collapse.html` through a local HTTP server for native/legacy panels, standalone compatibility, API, external controls, nesting, and script-free disclosure browser checks
+- open `tests/disclosure-chevron.html` for UI-owned indicators, state, RTL, independence from host artwork and script-free behavior without an icon stylesheet
+- open `tests/overlay-focus.html` for modal/drawer focus boundaries, native disclosure, dynamic content, excluded controls and empty-dialog fallback; repeat with `?source=1` and complete the live keyboard checks
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing
 
 The curated Lucide 0.577.0 glyphs retain ISC and Feather MIT notices in `THIRD_PARTY_LICENSES.txt` and in the generated icon CSS.

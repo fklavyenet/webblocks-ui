@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="de" data-mode="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Collapse-Panel — WebBlocks UI</title><link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css"><link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css"></head>
+<body><main class="wb-container wb-container-md wb-stack wb-gap-6 wb-py-6">
+<header><a href="primitives.html">Primitives</a><h1>Collapse-Panel</h1><p>Natives Aufklappen mit den bestehenden Collapse-Klassen. Button/div-Panels und eigenständiges Collapse werden weiterhin unterstützt.</p><p>UI zeigt den Chevron zum Auf- und Zuklappen in jeder Überschrift. Entferne beim Upgrade manuell hinzugefügte Aufklapp-Icons.</p></header>
+<details class="wb-collapse-panel"><summary class="wb-collapse-trigger"><span>Erweiterte Optionen</span></summary><div class="wb-collapse"><div class="wb-collapse-body">Synthetischer Inhalt für erweiterte Einstellungen.</div></div></details>
+<details class="wb-collapse-panel" open><summary class="wb-collapse-trigger"><span>Anfangs geöffnet</span></summary><div class="wb-collapse"><div class="wb-collapse-body">Dieses native Panel ist anfangs geöffnet und passt seine Höhe ohne JavaScript an den Inhalt an.</div></div></details>
+<details class="wb-collapse-panel"><summary class="wb-collapse-trigger"><span>Direkter Inhalt</span></summary><div class="wb-collapse-body">Der Inhalt kann auch ohne einen wb-collapse-Wrapper verwendet werden.</div></details>
+<section class="wb-card"><div class="wb-card-body"><h2>Integration</h2><p>Verwende open für den Anfangszustand. Die bestehende WBCollapse-API akzeptiert bei geladenem JavaScript die id des details-Wurzelelements.</p><pre><code>&lt;details class=&quot;wb-collapse-panel&quot; id=&quot;native-advanced&quot; open&gt;
+  &lt;summary class=&quot;wb-collapse-trigger&quot;&gt;
+    &lt;span&gt;Erweiterte Optionen&lt;/span&gt;
+  &lt;/summary&gt;
+  &lt;div class=&quot;wb-collapse&quot;&gt;
+    &lt;div class=&quot;wb-collapse-body&quot;&gt;Synthetischer Inhalt für erweiterte Einstellungen.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre><a href="../../packages/webblocks/INTEGRATION.md#collapse">API</a></div></section>
+</main></body></html>

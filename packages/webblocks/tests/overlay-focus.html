@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modal and drawer focus regression checks — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <script>
+    var focusParams = new URLSearchParams(location.search);
+    var focusScripts = focusParams.has('source') ? ['utils/dom', 'utils/overlay', 'modal', 'drawer', 'accordion', 'collapse'] : [];
+    var focusPaths = focusScripts.length ? focusScripts.map(function (name) { return '../src/js/' + name + '.js'; }) : ['../dist/webblocks-ui.js'];
+    focusPaths.forEach(function (path) { var script = document.createElement('script'); script.src = path; script.async = false; document.head.appendChild(script); });
+  </script>
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Modal and drawer focus regression checks</h1>
+  <p id="summary" role="status">Waiting for checks.</p><ol id="failures" class="wb-marker-list"></ol>
+  <p>Automatic checks use the real overlay lifecycle and delegated keyboard handler. The live examples below also require real Tab/Shift+Tab, Enter/Space and Escape checks. Repeat with <code>?source=1</code> for source modules.</p>
+  <button id="opener" class="wb-btn">Outside test control</button>
+  <div class="wb-action-group"><button class="wb-btn" data-wb-toggle="modal" data-wb-target="#manual-modal">Open focus modal</button><button class="wb-btn" data-wb-toggle="drawer" data-wb-target="#manual-drawer">Open focus drawer</button></div>
+  <p id="focus-status" role="status">Live example is closed.</p><div id="sandbox"></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var checks = [], sandbox = document.getElementById('sandbox'), opener = document.getElementById('opener');
+  function check(name, value) { checks.push({name: name, passed: Boolean(value)}); }
+  function settle() { return new Promise(function (resolve) { requestAnimationFrame(function () { requestAnimationFrame(resolve); }); }); }
+  function tab(back) {
+    var event = new KeyboardEvent('keydown', {key: 'Tab', shiftKey: Boolean(back), bubbles: true, cancelable: true});
+    document.activeElement.dispatchEvent(event); return event.defaultPrevented;
+  }
+  function overlay(kind, id, body) {
+    var root = document.createElement('div'); root.id = id; root.className = 'wb-' + kind;
+    root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'true'); root.setAttribute('aria-label', id);
+    var content = '<div class="wb-' + kind + '-header"><button hidden>Hidden prefix</button><button tabindex="-1">Negative prefix</button><div inert><button>Inert prefix</button></div><h2 class="wb-' + kind + '-title">' + id + '</h2><button type="button" id="' + id + '-first" class="wb-' + kind + '-close" data-wb-dismiss="' + kind + '" aria-label="Close ' + id + '">×</button></div><div class="wb-' + kind + '-body">' + body + '</div>';
+    root.innerHTML = kind === 'modal' ? '<div class="wb-modal-dialog">' + content + '</div>' : content;
+    sandbox.appendChild(root); return root;
+  }
+  function disclosure(kind, id, styledNested) {
+    // Generic native details remain in automated regression cases. The live
+    // example composes the canonical nested UI panel instead.
+    var nested = styledNested
+      ? '<details class="wb-collapse-panel"><summary class="wb-collapse-trigger">Nested details</summary><div class="wb-collapse-body"><a href="#nested">Nested content link</a></div></details>'
+      : '<details><summary>Nested summary</summary><a href="#nested">Hidden nested link</a></details>';
+    return '<details class="wb-' + kind + (kind === 'accordion' ? '-item' : '-panel') + '" id="' + id + '"><summary class="wb-' + kind + '-trigger" id="' + id + '-summary">' + kind + ' details</summary><div class="wb-' + kind + '-body">' + nested + '<a id="' + id + '-link" href="#inside">Visible only when open</a></div></details>';
+  }
+  async function run() {
+    for (var kind of ['modal', 'drawer']) {
+      var api = kind === 'modal' ? WBModal : WBDrawer;
+      for (var pattern of ['accordion', 'collapse']) {
+        var id = kind + '-' + pattern, nativeId = id + '-details';
+        var root = overlay(kind, id, '<input type="hidden"><button disabled>Disabled</button><button style="display:none">Display none</button><button style="visibility:hidden">Invisible</button><button tabindex="-1">Negative body</button><div hidden><button>Hidden body</button></div><div inert><button>Inert body</button></div>' + disclosure(pattern, nativeId));
+        var panel = root.querySelector('.wb-modal-dialog') || root, first = root.querySelector('#' + id + '-first');
+        var details = root.querySelector('details'), summary = details.querySelector('summary'), link = details.querySelector('#' + nativeId + '-link');
+        opener.focus(); api.open(root, opener); await settle();
+        check(id + ' real overlay is active', api.getActive() === root);
+        check(id + ' initial focus skips hidden negative disabled and inert nodes', document.activeElement === first);
+        summary.focus(); check(id + ' closed final summary wraps forward', tab(false) && document.activeElement === first);
+        check(id + ' reverse wraps to visible summary instead of hidden body', tab(true) && document.activeElement === summary);
+        details.open = true; await settle(); link.focus();
+        check(id + ' opened content becomes final stop', tab(false) && document.activeElement === first);
+        check(id + ' opened content participates in reverse wrap', tab(true) && document.activeElement === link);
+        details.open = false; var late = document.createElement('button'); late.textContent = 'Late hidden button'; details.lastElementChild.appendChild(late);
+        first.focus(); check(id + ' closed dynamic descendants are excluded', tab(true) && document.activeElement === summary);
+        summary.setAttribute('tabindex', '-1'); first.focus();
+        check(id + ' negative summary is excluded', tab(false) && document.activeElement === first);
+        summary.removeAttribute('tabindex');
+        first.tabIndex = 2; summary.tabIndex = 1; WBDom.focusFirst(panel); await settle();
+        check(id + ' positive tabindex order also drives initial focus', document.activeElement === summary);
+        check(id + ' reverse follows positive tabindex order', tab(true) && document.activeElement === first);
+        check(id + ' forward wraps in positive tabindex order', tab(false) && document.activeElement === summary);
+        first.removeAttribute('tabindex'); summary.removeAttribute('tabindex');
+        opener.focus(); check(id + ' escaped focus returns to overlay', tab(false) && document.activeElement === first);
+        api.close(root); await settle(); check(id + ' close restores opener focus', document.activeElement === opener);
+        // The no-tabbable case must remain contained and restore its temporary attribute.
+        first.hidden = true; details.hidden = true; opener.focus(); api.open(root, opener); await settle();
+        check(id + ' empty overlay receives container focus', document.activeElement === panel && panel.getAttribute('tabindex') === '-1');
+        check(id + ' empty overlay traps forward', tab(false) && document.activeElement === panel);
+        check(id + ' empty overlay traps reverse', tab(true) && document.activeElement === panel);
+        api.close(root); await settle(); check(id + ' temporary container tabindex is restored', !panel.hasAttribute('tabindex'));
+        panel.setAttribute('tabindex', '-1'); opener.focus(); api.open(root, opener); await settle(); api.close(root); await settle();
+        check(id + ' authored container tabindex survives', panel.getAttribute('tabindex') === '-1');
+        root.remove();
+      }
+    }
+    var form = document.createElement('div');
+    form.innerHTML = '<fieldset disabled><legend><button id="legend">Legend exception</button></legend><button id="disabled-child">Disabled by fieldset</button></fieldset><details><summary>Visible outer summary</summary><details open><summary>Hidden nested summary</summary><a href="#hidden">Hidden nested link</a></details></details><button id="last-valid">Last visible control</button>';
+    sandbox.appendChild(form); WBDom.focusFirst(form); await settle();
+    check('disabled fieldset retains its first legend exception', document.activeElement.id === 'legend');
+    document.getElementById('last-valid').focus(); var forward = new KeyboardEvent('keydown', {key:'Tab', cancelable:true}); WBDom.trapFocus(forward, form);
+    check('fieldset-disabled and nested closed content do not affect forward boundary', forward.defaultPrevented && document.activeElement.id === 'legend');
+    var reverse = new KeyboardEvent('keydown', {key:'Tab', shiftKey:true, cancelable:true}); WBDom.trapFocus(reverse, form);
+    check('fieldset-disabled and nested closed content do not affect reverse boundary', reverse.defaultPrevented && document.activeElement.id === 'last-valid');
+    form.remove();
+    for (var kind of ['modal', 'drawer']) {
+      var live = overlay(kind, 'manual-' + kind, '<div class="wb-stack wb-gap-4">' + disclosure('accordion', 'live-' + kind + '-accordion', true) + disclosure('collapse', 'live-' + kind + '-collapse', true) + '</div>');
+      live.setAttribute('aria-label', 'Live focus ' + kind);
+      live.querySelector('[tabindex="-1"]').remove();
+      live.querySelector('[inert]').remove();
+      live.querySelector('h2').textContent = 'Focus ' + kind;
+    }
+    document.addEventListener('focusin', function (event) {
+      var active = WBModal.getActive() || WBDrawer.getActive();
+      document.getElementById('focus-status').textContent = 'Focus: ' + (event.target.id || event.target.textContent) + '; inside active overlay: ' + Boolean(active && active.contains(event.target));
+    });
+    opener.focus(); var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures.';
+    failed.forEach(function (result) { var li = document.createElement('li'); li.textContent = result.name; document.getElementById('failures').appendChild(li); });
+    window.overlayFocusTestResults = {passed: !failed.length, checks: checks.length, failures: failed};
+  }
+  window.addEventListener('load', function () { run().catch(function (error) { document.getElementById('summary').textContent = 'FAIL: ' + error.stack; }); });
+})();
+</script>
+</body></html>

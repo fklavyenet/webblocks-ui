@@ -2,6 +2,8 @@
    WebBlocks UI — Accordion (wb-accordion)
    JS: data-wb-accordion-trigger on buttons (Pattern A)
        OR .wb-accordion-trigger class only (Pattern B)
+   Native: details.wb-accordion-item > summary.wb-accordion-trigger (Pattern C)
+           uses [open], with no JavaScript needed for disclosure.
    ============================================================ */
 
 .wb-accordion {
@@ -74,6 +76,35 @@
   display: block;
 }
 
+/* Native details owns visibility and height; ignore legacy state classes.
+   Direct children keep a closed nested disclosure independent of its parent. */
+details.wb-accordion-item > summary.wb-accordion-trigger {
+  list-style: none;
+}
+
+details.wb-accordion-item > summary.wb-accordion-trigger::-webkit-details-marker {
+  display: none;
+}
+
+details.wb-accordion-item > summary.wb-accordion-trigger .wb-accordion-icon {
+  transform: none;
+}
+
+details.wb-accordion-item[open] > summary.wb-accordion-trigger .wb-accordion-icon {
+  transform: rotate(180deg);
+}
+
+details.wb-accordion-item:not([open]) > .wb-accordion-content,
+details.wb-accordion-item:not([open]) > .wb-accordion-body {
+  display: none;
+}
+
+details.wb-accordion-item[open] > .wb-accordion-content,
+details.wb-accordion-item[open] > .wb-accordion-content > .wb-accordion-body,
+details.wb-accordion-item[open] > .wb-accordion-body {
+  display: block;
+}
+
 /* ── Flush (no border, separated items) ──────────────────── */
 .wb-accordion-flush {
   border: none;
@@ -85,4 +116,36 @@
 }
 .wb-accordion-flush .wb-accordion-item:last-child {
   border-bottom: none;
+}
+
+/* The component owns its disclosure indicator, independent of host artwork. */
+.wb-accordion-trigger::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-inline-start: auto;
+  margin-inline-end: 0.15rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  color: var(--wb-muted);
+  transform: rotate(45deg);
+  transition: transform var(--wb-t);
+}
+
+.wb-accordion-item.is-open:not(details) > .wb-accordion-trigger::after,
+.wb-accordion-trigger[aria-expanded="true"]::after {
+  transform: rotate(225deg);
+}
+
+details.wb-accordion-item > summary.wb-accordion-trigger::after {
+  transform: rotate(45deg);
+}
+
+details.wb-accordion-item[open] > summary.wb-accordion-trigger::after {
+  transform: rotate(225deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-accordion-trigger::after { transition: none; }
 }

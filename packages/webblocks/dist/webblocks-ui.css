@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.33.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.34.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -3664,6 +3664,27 @@ padding: var(--wb-s4) var(--wb-s5) var(--wb-s5);
 .wb-accordion-item.is-open .wb-accordion-body {
 display: block;
 }
+details.wb-accordion-item > summary.wb-accordion-trigger {
+list-style: none;
+}
+details.wb-accordion-item > summary.wb-accordion-trigger::-webkit-details-marker {
+display: none;
+}
+details.wb-accordion-item > summary.wb-accordion-trigger .wb-accordion-icon {
+transform: none;
+}
+details.wb-accordion-item[open] > summary.wb-accordion-trigger .wb-accordion-icon {
+transform: rotate(180deg);
+}
+details.wb-accordion-item:not([open]) > .wb-accordion-content,
+details.wb-accordion-item:not([open]) > .wb-accordion-body {
+display: none;
+}
+details.wb-accordion-item[open] > .wb-accordion-content,
+details.wb-accordion-item[open] > .wb-accordion-content > .wb-accordion-body,
+details.wb-accordion-item[open] > .wb-accordion-body {
+display: block;
+}
 .wb-accordion-flush {
 border: none;
 border-radius: 0;
@@ -3674,6 +3695,32 @@ border-radius: 0;
 }
 .wb-accordion-flush .wb-accordion-item:last-child {
 border-bottom: none;
+}
+.wb-accordion-trigger::after {
+content: "";
+flex: 0 0 auto;
+width: 0.5rem;
+height: 0.5rem;
+margin-inline-start: auto;
+margin-inline-end: 0.15rem;
+border-right: 2px solid currentColor;
+border-bottom: 2px solid currentColor;
+color: var(--wb-muted);
+transform: rotate(45deg);
+transition: transform var(--wb-t);
+}
+.wb-accordion-item.is-open:not(details) > .wb-accordion-trigger::after,
+.wb-accordion-trigger[aria-expanded="true"]::after {
+transform: rotate(225deg);
+}
+details.wb-accordion-item > summary.wb-accordion-trigger::after {
+transform: rotate(45deg);
+}
+details.wb-accordion-item[open] > summary.wb-accordion-trigger::after {
+transform: rotate(225deg);
+}
+@media (prefers-reduced-motion: reduce) {
+.wb-accordion-trigger::after { transition: none; }
 }
 .wb-pagination {
 --wb-pagination-gap: var(--wb-s1);
@@ -4935,6 +4982,67 @@ animation: wb-progress-slide 1.4s ease infinite;
 .wb-progress-bar-success .wb-progress-bar-fill { background: var(--wb-success); }
 .wb-progress-bar-danger  .wb-progress-bar-fill { background: var(--wb-danger); }
 .wb-progress-bar-warning .wb-progress-bar-fill { background: var(--wb-warning); }
+progress.wb-progress-bar {
+--wb-progress-fill: var(--wb-primary);
+-webkit-appearance: none;
+appearance: none;
+display: block;
+min-width: 0;
+padding: 0;
+border: 0;
+color: var(--wb-progress-fill);
+}
+progress.wb-progress-bar::-webkit-progress-bar {
+background: var(--wb-surface-2);
+border-radius: var(--wb-r-full);
+}
+progress.wb-progress-bar::-webkit-progress-value {
+background: var(--wb-progress-fill);
+border-radius: var(--wb-r-full);
+}
+progress.wb-progress-bar::-moz-progress-bar {
+background: var(--wb-progress-fill);
+border-radius: var(--wb-r-full);
+}
+progress.wb-progress-bar-success { --wb-progress-fill: var(--wb-success); }
+progress.wb-progress-bar-danger  { --wb-progress-fill: var(--wb-danger); }
+progress.wb-progress-bar-warning { --wb-progress-fill: var(--wb-warning); }
+progress.wb-progress-bar:indeterminate {
+background-image: linear-gradient(var(--wb-progress-fill), var(--wb-progress-fill));
+background-size: 40% 100%;
+background-repeat: no-repeat;
+animation: wb-progress-native-slide 1.4s ease infinite;
+}
+progress.wb-progress-bar:indeterminate::-webkit-progress-bar {
+background: transparent;
+}
+progress.wb-progress-bar:indeterminate::-moz-progress-bar {
+background: transparent;
+}
+@keyframes wb-progress-native-slide {
+from { background-position: -66.667% 0; }
+to   { background-position: 166.667% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+progress.wb-progress-bar:indeterminate {
+    animation: none;
+    background-position: center;
+  }
+}
+@media (forced-colors: active) {
+progress.wb-progress-bar,
+progress.wb-progress-bar:indeterminate {
+    -webkit-appearance: auto;
+    appearance: auto;
+    background: revert;
+    color: revert;
+    animation: none;
+  }
+
+  progress.wb-progress-bar::-webkit-progress-bar { background: revert; }
+  progress.wb-progress-bar::-webkit-progress-value { background: revert; }
+  progress.wb-progress-bar::-moz-progress-bar { background: revert; }
+}
 .wb-loading-bar {
 position: fixed;
 top: 0;
@@ -6327,6 +6435,55 @@ border-top: 1px solid var(--wb-border);
 .wb-collapse-panel .wb-collapse-body {
 padding: var(--wb-s4);
 padding-top: var(--wb-s4);
+}
+details.wb-collapse-panel > summary.wb-collapse-trigger {
+list-style: none;
+}
+details.wb-collapse-panel > summary.wb-collapse-trigger::-webkit-details-marker {
+display: none;
+}
+details.wb-collapse-panel > summary.wb-collapse-trigger .wb-collapse-icon {
+transform: none;
+}
+details.wb-collapse-panel[open] > summary.wb-collapse-trigger .wb-collapse-icon {
+transform: rotate(180deg);
+}
+details.wb-collapse-panel:not([open]) > .wb-collapse,
+details.wb-collapse-panel:not([open]) > .wb-collapse-body {
+display: none;
+}
+details.wb-collapse-panel[open] > .wb-collapse,
+details.wb-collapse-panel[open] > .wb-collapse-body {
+display: block;
+max-height: none;
+opacity: 1;
+border-top: 1px solid var(--wb-border);
+transition: none;
+}
+.wb-collapse-panel > .wb-collapse-trigger::after {
+content: "";
+flex: 0 0 auto;
+width: 0.5rem;
+height: 0.5rem;
+margin-inline-start: auto;
+margin-inline-end: 0.15rem;
+border-right: 2px solid currentColor;
+border-bottom: 2px solid currentColor;
+color: var(--wb-muted);
+transform: rotate(45deg);
+transition: transform var(--wb-t);
+}
+.wb-collapse-panel.is-open:not(details) > .wb-collapse-trigger::after {
+transform: rotate(225deg);
+}
+details.wb-collapse-panel > summary.wb-collapse-trigger::after {
+transform: rotate(45deg);
+}
+details.wb-collapse-panel[open] > summary.wb-collapse-trigger::after {
+transform: rotate(225deg);
+}
+@media (prefers-reduced-motion: reduce) {
+.wb-collapse-panel > .wb-collapse-trigger::after { transition: none; }
 }
 .wb-page-intro {
 padding-block: var(--wb-s20) var(--wb-s16);

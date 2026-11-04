@@ -515,3 +515,40 @@ See [Chart examples](docs/chart.html) and the
 name and visible formatted value. It needs no JavaScript or inline CSS. Hosts own
 measurement data; UI owns its themed track and fill. See
 [the contract](packages/webblocks/INTEGRATION.md#meter).
+
+
+## Native Accordion
+
+`wb-accordion` supports native `details.wb-accordion-item` with a first-child
+`summary.wb-accordion-trigger` and a `wb-accordion-body` (direct or wrapped in
+`wb-accordion-content`). Use `open` for state and a shared, group-unique `name`
+for single-open groups without JavaScript. Existing button/div structures remain
+supported. The runtime API accepts either trigger type; native toggle events are
+asynchronous. See [the accordion contract](packages/webblocks/INTEGRATION.md#accordion).
+
+
+## Native Progress
+
+`progress.wb-progress-bar` represents task completion with native `value` and
+`max`; omit `value` for indeterminate work. Provide an accessible name and visible
+status text. The existing color and thin/thick modifiers also apply to native
+bars, without JavaScript or a child fill. Legacy div/fill progress bars and their
+width-based updates remain supported. See [examples](docs/progress.html) and
+[the contract](packages/webblocks/INTEGRATION.md#progress-bar).
+
+
+## Native Collapse Panel
+
+`details.wb-collapse-panel` with a first-child `summary.wb-collapse-trigger`
+provides native disclosure. Use `open` for state and keep one `wb-collapse-body`,
+optionally inside the existing `wb-collapse` wrapper. Native interaction and
+natural content height need no JavaScript. Existing div/button panels and
+standalone collapse remain supported. `WBCollapse` accepts the details root id;
+optional external `data-wb-collapse` controls use that same id. See
+[examples](docs/collapse.html) and
+[the contract](packages/webblocks/INTEGRATION.md#collapse).
+
+Accordion and collapse panel headings receive a UI-owned inline-end chevron.
+Remove manually supplied disclosure icons when upgrading; content icons do not
+control or replace the built-in indicator. No icon stylesheet or JavaScript is
+required for the native indicator.

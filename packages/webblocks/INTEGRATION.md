@@ -1496,7 +1496,7 @@ Tabs inside a `<form>` — keep a field in sync with `data-wb-tabs-field`:
 
 The body owns content spacing: `--wb-s4` above its contents and `--wb-s5`
 on the sides and below. `wb-accordion-content` is an unpadded visibility
-wrapper. Keep one `wb-accordion-body` in either pattern; do not add downstream
+wrapper. Keep one `wb-accordion-body` in every pattern; do not add downstream
 padding to compensate for nested content wrappers. Cards and tables inside
 the body retain the same inset and separation from the trigger, including hover.
 The runtime measures unconstrained open content before setting its height,
@@ -1528,6 +1528,53 @@ Simpler class-only pattern also works:
 </div>
 ```
 
+Native disclosure pattern (additive; both button/div patterns remain supported):
+
+UI renders one decorative chevron at the inline end of every heading: right in
+LTR, left in RTL, down when closed and up when open. It needs neither JavaScript
+nor the icon stylesheet and does not inspect host-provided artwork. Remove
+manually supplied disclosure icons when upgrading; the component owns this
+indicator. Content icons may remain alongside the label. Reduced motion disables
+the rotation transition.
+
+```html
+<div class="wb-accordion">
+  <details class="wb-accordion-item" name="account-sections" open>
+    <summary class="wb-accordion-trigger">
+      <span>Billing</span>
+
+    </summary>
+    <div class="wb-accordion-body">Billing details</div>
+  </details>
+  <details class="wb-accordion-item" name="account-sections">
+    <summary class="wb-accordion-trigger">API access</summary>
+    <div class="wb-accordion-body">API details</div>
+  </details>
+</div>
+```
+
+- Put `summary.wb-accordion-trigger` first inside `details.wb-accordion-item`.
+  The body may be direct or inside one unpadded `wb-accordion-content` wrapper.
+- The native `open` attribute is the source of truth, including initial state.
+  Do not add `is-open`, `role="button"`, `aria-expanded`, or `tabindex` to recreate
+  semantics the browser already supplies. Keep interactive controls outside the summary.
+- Disclosure, keyboard activation, initial visibility, and content resizing work
+  without WebBlocks JavaScript. Native bodies use their natural height; `recalc`
+  skips them. The existing spacing, icons, and `wb-accordion-flush` apply.
+- Use a shared `name` for native single-open groups; choose a different name for
+  each independent group on the page. Omit `name` to allow multiple open panels.
+- With the runtime loaded, `data-wb-accordion-single="true"` also works for native
+  and mixed native/legacy groups. It closes only peers in the same accordion,
+  preserving nested accordion state. This attribute requires JavaScript; use
+  native `name` when exclusivity must work without it.
+- `WBAccordion.open`, `close`, and `toggle` accept the summary element, just as
+  they accept legacy button triggers. The existing `wb:accordion:toggle` event
+  is emitted from the summary with `{ open: boolean }` via the native `toggle`
+  event, including direct `details.open` changes and named-group closures.
+  Native events are asynchronous and rapid changes may coalesce; initial `open`
+  can also produce a native event. Do not depend on synchronous native events.
+  Existing button/div event timing remains unchanged.
+
 ### Collapse
 
 Standalone collapse uses `data-wb-collapse`, not `data-wb-toggle="collapse"`.
@@ -1548,13 +1595,58 @@ Bordered panel variant:
 <div class="wb-collapse-panel">
   <button class="wb-collapse-trigger" aria-expanded="false">
     Advanced options
-    <span class="wb-collapse-icon">v</span>
+
   </button>
   <div class="wb-collapse">
     <div class="wb-collapse-body">Panel content</div>
   </div>
 </div>
 ```
+
+Native bordered panel (additive; existing button/div and standalone patterns remain supported):
+
+UI renders the same inline-end chevron on every panel heading, independently of
+host-provided artwork. It follows native `open` or legacy state and respects RTL
+and reduced motion without JavaScript or the icon stylesheet. Remove manually
+supplied disclosure icons when upgrading. Standalone external collapse buttons
+keep their existing appearance.
+
+```html
+<details class="wb-collapse-panel" id="native-advanced" open>
+  <summary class="wb-collapse-trigger">
+    <span>Advanced options</span>
+
+  </summary>
+  <div class="wb-collapse">
+    <div class="wb-collapse-body">Panel content</div>
+  </div>
+</details>
+```
+
+- Use a first-child `summary.wb-collapse-trigger` inside `details.wb-collapse-panel`.
+  Keep the existing `wb-collapse > wb-collapse-body` content structure, or use
+  one direct `wb-collapse-body` when a visibility wrapper is unnecessary.
+- Native `open` is the source of truth, including initial state. Do not add
+  `is-open`, `aria-expanded`, `role="button"`, or `tabindex` to the summary to
+  duplicate browser semantics. Keep interactive controls outside the summary.
+- Disclosure, keyboard activation and content resizing work without JavaScript.
+  Native content uses its natural height without the legacy 2000px ceiling or
+  max-height/opacity transition. Nested panels retain independent open states.
+- `WBCollapse.open(id)`, `close(id)`, and `toggle(id)` also accept the native
+  **details root id**, without changing their existing standalone behavior.
+  They set `open` rather than `is-open`; do not target the native panel's inner
+  `wb-collapse` wrapper when controlling the panel.
+- Optional external buttons may use `data-wb-collapse="native-advanced"` with
+  `aria-controls="native-advanced"` and initial `aria-expanded` matching the root.
+  These controls require JavaScript. The runtime synchronizes all external
+  buttons targeting that native panel after API calls and native changes.
+  Direct property/summary changes synchronize through the browser's asynchronous
+  `toggle` event. Summary interaction itself remains browser-owned.
+- Omit `name` for independent disclosures. A shared, group-unique native `name`
+  may be used when only one details panel should remain open.
+
+See [script-free native examples](../../docs/collapse.html) and
+[legacy/native browser checks](tests/collapse.html).
 
 ### Popovers and Tooltips
 
@@ -1808,6 +1900,54 @@ The first palette marked with `data-wb-cmd-default` is used by `Cmd/Ctrl + K`.
   <button class="wb-menu-item wb-menu-item-danger">Delete</button>
 </nav>
 ```
+
+### Progress Bar
+
+For new task-completion indicators, use native `progress.wb-progress-bar`:
+
+```html
+<label for="upload-progress">Upload progress</label>
+<progress id="upload-progress" class="wb-progress-bar" max="100" value="60">60%</progress>
+<p>60% uploaded</p>
+
+<!-- Omit value when the amount of completed work is unknown. -->
+<progress class="wb-progress-bar wb-progress-bar-thick" aria-label="Preparing upload"></progress>
+```
+
+- `value` is completed work; `max` is the positive total (the browser defaults to
+  `1`). Use `value="0"` for measured zero. Omit/remove `value` for indeterminate
+  progress; `value=""` is not the indeterminate state. Do not add `min`.
+- Supply a label with `label[for]`, `aria-labelledby`, or `aria-label`. Fallback
+  text inside `progress` is not its accessible name. Keep localized value/status
+  text visible outside the bar; the bar's native semantics expose its value.
+- `wb-progress-bar-thin`, `wb-progress-bar-thick`, `wb-progress-bar-success`,
+  `wb-progress-bar-danger`, and `wb-progress-bar-warning` work on native and legacy
+  roots. Native indeterminate styling follows `:indeterminate`, not the legacy
+  `wb-progress-bar-indeterminate` class. Reduced motion uses a stationary segment;
+  forced colors restore the browser's native presentation.
+- No WebBlocks JavaScript or synthetic fill is required. Hosts own task state,
+  values and localized status text. To update a native bar, set `progress.value`
+  / `progress.max`; remove the `value` attribute to return to indeterminate.
+  Use `meter.wb-meter` for bounded measurements rather than task completion.
+
+Existing div/fill markup remains supported with the same selectors, width
+updates, colors, heights, and animation:
+
+```html
+<div class="wb-progress-bar" role="progressbar" aria-label="Upload progress"
+     aria-valuemin="0" aria-valuemax="100" aria-valuenow="60">
+  <div class="wb-progress-bar-fill" style="width:60%"></div>
+</div>
+```
+
+This is additive support: no runtime converts markup or redirects an existing
+`.wb-progress-bar-fill` width update. Native-only CSS is scoped to
+`progress.wb-progress-bar` and its browser pseudo-elements; the legacy div rules
+are unchanged. A host choosing native markup updates `value` instead of a child
+fill's width, and lets the browser expose the native progress semantics.
+
+See [script-free examples](../../docs/progress.html) and
+[legacy/native browser checks](tests/progress.html).
 
 ### Loading, Skeleton, Divider
 
@@ -3048,3 +3188,18 @@ choice percentages may sum above 100. Zero remains an empty track, 100 fills it.
 Missing measurements should be described as missing rather than silently set to zero.
 Long labels should wrap using ordinary layout; keep values readable on small screens.
 See [native meter examples](../../docs/meter.html). No chart library is required.
+
+
+### Overlay keyboard focus
+
+Modal and drawer initial focus and Tab boundaries use the same current tabbable
+sequence. Closed disclosure bodies, hidden or inert subtrees, disabled controls
+and negative tabindex values are excluded. Positive tabindex ordering is
+respected, though ordinary document order is preferred. A dialog without a
+tabbable descendant temporarily focuses its container; authored tabindex is
+preserved and the temporary attribute is removed on blur. Native details
+changes and dynamic descendants are read again on each key press.
+
+Open [overlay focus checks](tests/overlay-focus.html) for modal/drawer regressions
+with native accordion and collapse, and repeat with `?source=1`. Complete the live
+Tab/Shift+Tab, Enter/Space and Escape checks in both overlays as well.

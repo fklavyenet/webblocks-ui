@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collapse browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../dist/webblocks-icons.css">
+  <script src="../dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Native and legacy collapse</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <div class="wb-collapse-panel" id="legacy-panel">
+    <button type="button" class="wb-collapse-trigger" aria-expanded="false">Legacy panel</button>
+    <div class="wb-collapse"><div class="wb-collapse-body">Synthetic legacy content</div></div>
+  </div>
+  <button type="button" class="wb-btn" data-wb-collapse="legacy-body" aria-expanded="false">Standalone collapse</button>
+  <div class="wb-collapse" id="legacy-body"><div class="wb-collapse-body">Standalone content</div></div>
+  <div class="wb-action-group">
+    <button type="button" class="wb-btn" data-wb-collapse="native-panel" aria-controls="native-panel" aria-expanded="false">External native toggle</button>
+    <button type="button" class="wb-btn" data-wb-collapse="native-panel" aria-controls="native-panel" aria-expanded="false">Second native toggle</button>
+  </div>
+  <details class="wb-collapse-panel" id="native-panel">
+    <summary class="wb-collapse-trigger"><span>Native wrapped panel</span></summary>
+    <div class="wb-collapse"><div class="wb-collapse-body">Synthetic native content</div></div>
+  </details>
+  <details class="wb-collapse-panel" id="native-direct" open>
+    <summary class="wb-collapse-trigger">Native direct body</summary>
+    <div class="wb-collapse-body">Initially open synthetic content</div>
+  </details>
+  <div id="sandbox"></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var checks = [];
+  function check(name, valid) { checks.push({ name: name, passed: Boolean(valid) }); }
+  function settle() { return new Promise(function (resolve) { setTimeout(resolve, 30); }); }
+  async function run() {
+    var legacy = document.getElementById('legacy-panel');
+    var legacyTrigger = legacy.querySelector('button');
+    legacyTrigger.click();
+    check('legacy panel click opens class and ARIA', legacy.classList.contains('is-open') && legacyTrigger.getAttribute('aria-expanded') === 'true');
+    legacyTrigger.click();
+    check('legacy panel click closes class and ARIA', !legacy.classList.contains('is-open') && legacyTrigger.getAttribute('aria-expanded') === 'false');
+    var standalone = document.getElementById('legacy-body');
+    var standaloneTrigger = document.querySelector('[data-wb-collapse="legacy-body"]');
+    standaloneTrigger.click();
+    check('standalone click opens', standalone.classList.contains('is-open') && standaloneTrigger.getAttribute('aria-expanded') === 'true');
+    WBCollapse.close('legacy-body');
+    check('standalone API close', !standalone.classList.contains('is-open') && standaloneTrigger.getAttribute('aria-expanded') === 'false');
+    WBCollapse.open('legacy-body');
+    check('standalone API open', standalone.classList.contains('is-open') && standaloneTrigger.getAttribute('aria-expanded') === 'true');
+    WBCollapse.toggle('legacy-body');
+    check('standalone API toggle', !standalone.classList.contains('is-open') && standaloneTrigger.getAttribute('aria-expanded') === 'false');
+    ['missing-collapse', ''].forEach(function (id) { WBCollapse.open(id); WBCollapse.close(id); WBCollapse.toggle(id); });
+    check('missing API target remains harmless', !standalone.classList.contains('is-open'));
+    var native = document.getElementById('native-panel');
+    var summary = native.querySelector('summary');
+    var content = native.querySelector('.wb-collapse');
+    var direct = document.getElementById('native-direct');
+    var controls = document.querySelectorAll('[data-wb-collapse="native-panel"]');
+    check('initial native open shows direct body', direct.open && getComputedStyle(direct.querySelector('.wb-collapse-body')).display === 'block');
+    var canceled = false;
+    native.addEventListener('click', function (event) { canceled = event.defaultPrevented; });
+    summary.querySelector('span').click();
+    check('native summary keeps browser default', native.open && !canceled);
+    check('native summary needs no extra state or role', !native.classList.contains('is-open') && !summary.hasAttribute('aria-expanded') && !summary.hasAttribute('role') && !summary.hasAttribute('tabindex'));
+    await settle();
+    check('native click synchronizes all external controls', Array.from(controls).every(function (button) { return button.getAttribute('aria-expanded') === 'true'; }));
+    WBCollapse.close('native-panel');
+    check('native API close is immediate', !native.open && controls[0].getAttribute('aria-expanded') === 'false');
+    WBCollapse.open('native-panel');
+    WBCollapse.open('native-panel');
+    check('native API open is idempotent', native.open && controls[1].getAttribute('aria-expanded') === 'true');
+    WBCollapse.toggle('native-panel');
+    check('native API toggle uses open', !native.open && !native.classList.contains('is-open'));
+    controls[0].click();
+    check('external click opens native root', native.open && controls[1].getAttribute('aria-expanded') === 'true');
+    controls[1].click();
+    check('external click closes native root', !native.open && controls[0].getAttribute('aria-expanded') === 'false');
+    native.open = true;
+    await settle();
+    check('native property change synchronizes external ARIA', controls[0].getAttribute('aria-expanded') === 'true');
+    native.name = 'collapse-test-group';
+    direct.name = 'collapse-test-group';
+    direct.open = false;
+    direct.open = true;
+    await settle();
+    check('named group closure synchronizes external ARIA', !native.open && direct.open && controls[0].getAttribute('aria-expanded') === 'false');
+    native.removeAttribute('name');
+    direct.removeAttribute('name');
+    var nested = document.createElement('details');
+    nested.className = 'wb-collapse-panel';
+    nested.innerHTML = '<summary class="wb-collapse-trigger">Nested native panel</summary><div class="wb-collapse"><div class="wb-collapse-body">Nested content</div></div>';
+    native.querySelector('.wb-collapse-body').appendChild(nested);
+    var growth = document.createElement('div');
+    growth.style.height = '2400px';
+    native.querySelector('.wb-collapse-body').appendChild(growth);
+    ['light', 'dark'].forEach(function (mode) {
+      document.documentElement.setAttribute('data-mode', mode);
+      WBCollapse.open('native-panel');
+      check(mode + ' native wrapper is visible', getComputedStyle(content).display === 'block' && getComputedStyle(content).opacity === '1');
+      check(mode + ' native content exceeds legacy height ceiling', content.clientHeight > 2400 && content.clientHeight >= content.scrollHeight);
+      check(mode + ' native wrapper retains body inset', parseFloat(getComputedStyle(native.querySelector('.wb-collapse-body')).paddingLeft) > 0);
+      check(mode + ' closed nested panel stays hidden', !nested.open && getComputedStyle(nested.querySelector('.wb-collapse')).display === 'none');
+      nested.open = true;
+      WBCollapse.close('native-panel');
+      WBCollapse.open('native-panel');
+      check(mode + ' nested state survives parent close/reopen', nested.open && getComputedStyle(nested.querySelector('.wb-collapse')).display === 'block');
+      nested.open = false;
+      native.classList.add('is-open');
+      WBCollapse.close('native-panel');
+      check(mode + ' native open overrides stale legacy state', getComputedStyle(content).display === 'none');
+      native.classList.remove('is-open');
+    });
+    growth.remove();
+    // A native panel inside an open legacy panel must retain independent state.
+    legacy.querySelector('.wb-collapse-body').appendChild(native);
+    legacy.classList.add('is-open');
+    check('legacy ancestor cannot reveal closed native content', getComputedStyle(content).display === 'none');
+    document.querySelector('main').insertBefore(native, direct);
+    legacy.classList.remove('is-open');
+    var frame = document.createElement('iframe');
+    frame.title = 'Collapse panels without JavaScript';
+    frame.width = '320';
+    frame.height = '260';
+    frame.setAttribute('sandbox', 'allow-same-origin');
+    var loaded = new Promise(function (resolve) { frame.onload = resolve; });
+    frame.srcdoc = '<!doctype html><html lang="en"><link rel="stylesheet" href="' + new URL('../dist/webblocks-ui.css', location.href).href + '"><details class="wb-collapse-panel" id="no-js" open><summary class="wb-collapse-trigger">No-JS wrapped panel</summary><div class="wb-collapse"><div class="wb-collapse-body">Script-free content</div></div></details><details class="wb-collapse-panel" id="no-js-direct"><summary class="wb-collapse-trigger">No-JS direct body</summary><div class="wb-collapse-body">Direct content</div></details></html>';
+    document.getElementById('sandbox').appendChild(frame);
+    await loaded;
+    var noJS = frame.contentDocument.getElementById('no-js');
+    var noJSDirect = frame.contentDocument.getElementById('no-js-direct');
+    check('sandbox has no WebBlocks runtime', !frame.contentWindow.WBCollapse);
+    check('no-JS initial open is visible', noJS.open && frame.contentWindow.getComputedStyle(noJS.querySelector('.wb-collapse')).opacity === '1');
+    noJS.querySelector('summary').click();
+    check('no-JS summary closes wrapper', !noJS.open && frame.contentWindow.getComputedStyle(noJS.querySelector('.wb-collapse')).display === 'none');
+    noJS.querySelector('summary').click();
+    check('no-JS summary reopens wrapper', noJS.open && frame.contentWindow.getComputedStyle(noJS.querySelector('.wb-collapse')).display === 'block');
+    noJSDirect.querySelector('summary').click();
+    check('no-JS direct body opens', noJSDirect.open && frame.contentWindow.getComputedStyle(noJSDirect.querySelector('.wb-collapse-body')).display === 'block');
+    document.documentElement.setAttribute('data-mode', new URLSearchParams(location.search).get('mode') === 'dark' ? 'dark' : 'light');
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures.';
+    failed.forEach(function (result) { var li = document.createElement('li'); li.textContent = result.name; document.getElementById('failures').appendChild(li); });
+    window.collapseTestResults = { passed: !failed.length, checks: checks.length, failures: failed };
+  }
+  window.addEventListener('load', function () { run().catch(function (error) { document.getElementById('summary').textContent = 'FAIL: ' + error.message; }); });
+})();
+</script>
+</body>
+</html>

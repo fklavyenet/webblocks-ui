@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="tr" data-mode="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Collapse panel — WebBlocks UI</title><link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-ui.css"><link rel="stylesheet" href="../../packages/webblocks/dist/webblocks-icons.css"></head>
+<body><main class="wb-container wb-container-md wb-stack wb-gap-6 wb-py-6">
+<header><a href="primitives.html">Primitives</a><h1>Collapse panel</h1><p>Mevcut collapse panel sınıflarıyla native açma/kapatma. Buton/div panelleri ve bağımsız collapse desteklenmeye devam eder.</p><p>UI her başlıkta açma/kapatma chevron’unu üretir. Yükseltirken elle eklenmiş açma/kapatma ikonlarını kaldırın.</p></header>
+<details class="wb-collapse-panel"><summary class="wb-collapse-trigger"><span>Gelişmiş seçenekler</span></summary><div class="wb-collapse"><div class="wb-collapse-body">Gelişmiş ayarlar için sentetik örnek içerik.</div></div></details>
+<details class="wb-collapse-panel" open><summary class="wb-collapse-trigger"><span>Başlangıçta açık</span></summary><div class="wb-collapse"><div class="wb-collapse-body">Bu native panel başlangıçta açıktır; yüksekliği JavaScript olmadan içeriğe göre değişir.</div></div></details>
+<details class="wb-collapse-panel"><summary class="wb-collapse-trigger"><span>Doğrudan gövde</span></summary><div class="wb-collapse-body">Gövde, wb-collapse sarmalayıcısı olmadan da kullanılabilir.</div></details>
+<section class="wb-card"><div class="wb-card-body"><h2>Entegrasyon</h2><p>Başlangıç durumu için open kullan. JavaScript yüklüyken mevcut WBCollapse API’si details kökünün id değerini kabul eder.</p><pre><code>&lt;details class=&quot;wb-collapse-panel&quot; id=&quot;native-advanced&quot; open&gt;
+  &lt;summary class=&quot;wb-collapse-trigger&quot;&gt;
+    &lt;span&gt;Gelişmiş seçenekler&lt;/span&gt;
+  &lt;/summary&gt;
+  &lt;div class=&quot;wb-collapse&quot;&gt;
+    &lt;div class=&quot;wb-collapse-body&quot;&gt;Gelişmiş ayarlar için sentetik örnek içerik.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre><a href="../../packages/webblocks/INTEGRATION.md#collapse">API</a></div></section>
+</main></body></html>

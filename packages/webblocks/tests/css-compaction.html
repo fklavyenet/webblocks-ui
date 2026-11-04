@@ -22,7 +22,7 @@
   'use strict';
   var checks = [];
   function check(name, value) { checks.push({ name: name, passed: Boolean(value) }); }
-  async function read(path) { var response = await fetch(path); if (!response.ok) throw new Error('Missing fixture asset: ' + path); return response.text(); }
+  async function read(path) { var response = await fetch(path, { cache: 'no-store' }); if (!response.ok) throw new Error('Missing fixture asset: ' + path); return response.text(); }
   function sheet(css) { var result = new CSSStyleSheet(); result.replaceSync(css); return result; }
   function equalRules(name, original, formatted) {
     var before = Array.from(sheet(original).cssRules);

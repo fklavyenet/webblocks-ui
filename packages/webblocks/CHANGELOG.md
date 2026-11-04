@@ -6,6 +6,21 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.34.0] — 2026-11-04
+
+### Added
+- Support native details/summary accordion and collapse panels without JavaScript, including initial open state, natural content height, native named groups, runtime APIs, mixed legacy/native accordion groups and independent nested disclosures.
+- Support labelled native progress elements with value/max, indeterminate work, themed colors, thin/thick sizes, reduced motion and forced-color fallbacks. Existing div/fill progress remains supported.
+- Render a UI-owned CSS chevron at the inline end of every accordion and collapse panel heading. It follows native/legacy state, RTL and reduced motion without JavaScript or the icon stylesheet; host-provided artwork does not control its presence.
+- Add localized native examples and dependency-free browser regression checks for disclosures, progress, chevrons and modal/drawer focus.
+
+### Fixed
+- Filter modal/drawer initial focus and Tab boundaries through one current tabbable sequence. Exclude closed disclosure content, hidden/inert subtrees, disabled controls and negative tabindex; respect positive tabindex order and keep empty dialogs contained with temporary container focus.
+- Fetch CSS comparison inputs without cache so repeated development checks compare the current source and distribution.
+
+### Migration
+- Remove manually supplied accordion/collapse disclosure icons when adopting this release. The UI runtime does not remove host markup or suppress its own indicator based on content icons. Downstream upgrades remain separate operations.
+
 ## [2.33.0] — 2026-11-04
 
 ### Added

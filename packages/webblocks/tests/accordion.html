@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accordion spacing browser tests — WebBlocks UI</title>
+  <title>Accordion browser tests — WebBlocks UI</title>
   <link rel="stylesheet" href="../dist/webblocks-ui.css">
   <link rel="stylesheet" href="../dist/webblocks-icons.css">
   <script src="../dist/webblocks-ui.js" defer></script>
 </head>
 <body>
 <main class="wb-container wb-stack wb-gap-4">
-  <h1>Accordion spacing</h1>
-  <p>Checks both supported structures with cards and tables. Hover an open trigger and compare the gap below its background in light and dark modes.</p>
+  <h1>Accordion spacing and native behavior</h1>
+  <p>Checks legacy and native structures with cards and tables, with and without the runtime. Hover an open trigger and compare the gap below its background in light and dark modes.</p>
   <div class="wb-action-group">
     <a class="wb-btn wb-btn-secondary" href="?mode=light">Light theme</a>
     <a class="wb-btn wb-btn-secondary" href="?mode=dark">Dark theme</a>
@@ -26,32 +26,134 @@
   var fixtures = document.getElementById('fixtures');
   var results = [];
   var measurements = [];
-  ['wrapped', 'direct'].forEach(function (pattern) {
+  ['wrapped', 'direct', 'native-wrapped', 'native-direct'].forEach(function (pattern) {
     ['table', 'card'].forEach(function (kind) {
       var id = pattern + '-' + kind;
       var content = kind === 'table'
         ? '<div class="wb-table-wrap" data-inner><table class="wb-table"><thead><tr><th>Stored value</th><th>Views</th></tr></thead><tbody><tr><td>Synthetic sample</td><td>1</td></tr></tbody></table></div>'
         : '<section class="wb-card" data-inner><div class="wb-card-header"><h3 class="wb-card-title">Inner card heading</h3></div><div class="wb-card-body">Synthetic content</div></section>';
       var body = '<div class="wb-accordion-body">' + content + '</div>';
-      if (pattern === 'wrapped') body = '<div class="wb-accordion-content" id="' + id + '">' + body + '</div>';
+      if (pattern.indexOf('wrapped') !== -1) body = '<div class="wb-accordion-content" id="' + id + '">' + body + '</div>';
       else body = body.replace('class="wb-accordion-body"', 'class="wb-accordion-body" id="' + id + '"');
       var section = document.createElement('section');
       section.className = 'wb-card';
-      section.innerHTML = '<div class="wb-card-header"><h2 class="wb-card-title">' + pattern + ' / ' + kind + '</h2></div><div class="wb-card-body"><div class="wb-accordion" data-wb-accordion><div class="wb-accordion-item"><button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="false" aria-controls="' + id + '"><span>Campaign · synthetic views</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>' + body + '</div></div></div>';
+      section.innerHTML = '<div class="wb-card-header"><h2 class="wb-card-title">' + pattern + ' / ' + kind + '</h2></div><div class="wb-card-body"><div class="wb-accordion" data-wb-accordion><div class="wb-accordion-item"><button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="false" aria-controls="' + id + '"><span>Campaign · synthetic views</span></button>' + body + '</div></div></div>';
+      if (pattern.indexOf('native-') === 0) {
+        var item = section.querySelector('.wb-accordion-item');
+        var details = document.createElement('details');
+        details.className = item.className;
+        details.innerHTML = '<summary class="wb-accordion-trigger"><span>Campaign · synthetic views</span></summary>' + body;
+        item.replaceWith(details);
+      }
       fixtures.appendChild(section);
     });
   });
   function check(name, valid) {
     results.push({ name: name, passed: Boolean(valid) });
   }
-  function run() {
+  function settle() { return new Promise(function (resolve) { setTimeout(resolve, 30); }); }
+  async function nativeChecks() {
+    var host = document.createElement('section');
+    host.setAttribute('data-behavior-fixtures', '');
+    fixtures.appendChild(host);
+    function nativeItem(id, extra) {
+      return '<details id="' + id + '" class="wb-accordion-item" ' + (extra || '') + '><summary class="wb-accordion-trigger"><span>' + id + '</span></summary><div class="wb-accordion-body">Synthetic content</div></details>';
+    }
+    host.innerHTML = '<div class="wb-accordion" data-wb-accordion-single="true">' + nativeItem('native-one') + nativeItem('native-two') + '<div class="wb-accordion-item"><button type="button" class="wb-accordion-trigger" aria-expanded="false">Legacy sibling</button><div class="wb-accordion-body">Legacy content</div></div></div>';
+    var one = host.querySelector('#native-one');
+    var two = host.querySelector('#native-two');
+    var summary = one.querySelector('summary');
+    var second = two.querySelector('summary');
+    var legacy = host.querySelector('button');
+    var events = [];
+    one.addEventListener('wb:accordion:toggle', function (event) { events.push({ target: event.target, open: event.detail.open }); });
+    summary.querySelector('span').click();
+    check('native click uses browser default', one.open);
+    check('native state needs no legacy classes or ARIA', !one.classList.contains('is-open') && !summary.hasAttribute('aria-expanded') && !summary.hasAttribute('role'));
+    await settle();
+    check('native click emits once from summary', events.length === 1 && events[0].target === summary && events[0].open);
+    WBAccordion.toggle(summary);
+    await settle();
+    check('native API toggle emits once', !one.open && events.length === 2 && !events[1].open);
+    WBAccordion.open(summary);
+    await settle();
+    check('native API open emits once', one.open && events.length === 3 && events[2].open);
+    WBAccordion.open(summary);
+    await settle();
+    check('native repeated open is idempotent', events.length === 3);
+    WBAccordion.close(summary);
+    await settle();
+    check('native API close emits once', !one.open && events.length === 4 && !events[3].open);
+    one.open = true;
+    await settle();
+    check('native property changes emit once', one.open && events.length === 5 && events[4].open);
+    second.click();
+    await settle();
+    check('native single closes native sibling', two.open && !one.open);
+    legacy.click();
+    await settle();
+    check('legacy single closes native sibling', !two.open && legacy.getAttribute('aria-expanded') === 'true');
+    summary.click();
+    await settle();
+    check('native single closes legacy sibling', one.open && legacy.getAttribute('aria-expanded') === 'false');
+    var nested = document.createElement('div');
+    nested.className = 'wb-accordion';
+    nested.innerHTML = nativeItem('native-nested', 'open');
+    one.querySelector('.wb-accordion-body').appendChild(nested);
+    await settle();
+    var nestedItem = nested.querySelector('details');
+    second.click();
+    await settle();
+    check('single mode preserves nested state', two.open && !one.open && nestedItem.open);
+    nestedItem.open = false;
+    one.open = true;
+    await settle();
+    check('closed nested body stays hidden under open parent', getComputedStyle(nestedItem.querySelector('.wb-accordion-body')).display === 'none');
+    one.classList.add('is-open');
+    one.open = false;
+    await settle();
+    check('native open overrides stale legacy state', getComputedStyle(one.querySelector('.wb-accordion-body')).display === 'none');
+    check('native recalc never sets height', !one.querySelector('.wb-accordion-body').style.maxHeight);
+    // Focus helpers are also used by modal and drawer traps.
+    summary.focus();
+    var backwards = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, cancelable: true });
+    WBDom.trapFocus(backwards, host);
+    check('overlay focus wraps from summary to last control', backwards.defaultPrevented && document.activeElement === legacy);
+    var forwards = new KeyboardEvent('keydown', { key: 'Tab', cancelable: true });
+    WBDom.trapFocus(forwards, host);
+    check('overlay focus wraps from last control to summary', forwards.defaultPrevented && document.activeElement === summary);
+    var frame = document.createElement('iframe');
+    frame.title = 'Native accordion without JavaScript';
+    frame.width = '320';
+    frame.height = '240';
+    frame.setAttribute('sandbox', 'allow-same-origin');
+    var loaded = new Promise(function (resolve) { frame.onload = resolve; });
+    frame.srcdoc = '<!doctype html><html lang="en"><link rel="stylesheet" href="' + new URL('../dist/webblocks-ui.css', location.href).href + '"><div class="wb-accordion wb-accordion-flush">' + nativeItem('no-js-one', 'name="no-js" open') + nativeItem('no-js-two', 'name="no-js"') + '</div></html>';
+    host.appendChild(frame);
+    await loaded;
+    var doc = frame.contentDocument;
+    var first = doc.querySelector('#no-js-one');
+    var last = doc.querySelector('#no-js-two');
+    check('no runtime in sandboxed fixture', !frame.contentWindow.WBAccordion);
+    check('no-JS initial open is visible', first.open && frame.contentWindow.getComputedStyle(first.querySelector('.wb-accordion-body')).display === 'block');
+    last.querySelector('summary').click();
+    check('no-JS named group and click work', last.open && !first.open);
+    check('no-JS opened body is visible', frame.contentWindow.getComputedStyle(last.querySelector('.wb-accordion-body')).display === 'block');
+    last.querySelector('summary').click();
+    check('no-JS click closes body', !last.open && frame.contentWindow.getComputedStyle(last.querySelector('.wb-accordion-body')).display === 'none');
+    // Keep the sandboxed native example available for manual keyboard checks.
+  }
+  async function run() {
+    var previous = fixtures.querySelector('[data-behavior-fixtures]');
+    if (previous) previous.remove();
     results = [];
     measurements = [];
     ['light', 'dark'].forEach(function (mode) {
       document.documentElement.setAttribute('data-mode', mode);
       fixtures.querySelectorAll('.wb-accordion-trigger').forEach(function (trigger) {
         var item = trigger.closest('.wb-accordion-item');
-        var panel = document.getElementById(trigger.getAttribute('aria-controls'));
+        var native = item.tagName === 'DETAILS';
+        var panel = native ? item.querySelector('.wb-accordion-content, .wb-accordion-body') : document.getElementById(trigger.getAttribute('aria-controls'));
         var body = item.querySelector('.wb-accordion-body');
         var inner = item.querySelector('[data-inner]');
         var id = panel.id + ' / ' + mode;
@@ -68,7 +170,7 @@
         check(id + ' positive body spacing', top > 0 && side > 0);
         check(id + ' trigger separation', Math.abs(gap - top) < 1);
         check(id + ' single horizontal inset', Math.abs(inset - side) < 1);
-        check(id + ' open state', trigger.getAttribute('aria-expanded') === 'true');
+        check(id + ' open state', native ? item.open : trigger.getAttribute('aria-expanded') === 'true');
         check(id + ' content not clipped', panel.clientHeight + 1 >= panel.scrollHeight);
         var bottom = parseFloat(bodyStyle.paddingBottom);
         function bottomGap() { return body.getBoundingClientRect().bottom - inner.getBoundingClientRect().bottom; }
@@ -92,6 +194,7 @@
         measurements.push({ fixture: panel.id, mode: mode, gap: gap, inset: inset, bottomGap: bottomGap(), bodyTop: top, bodySide: side, bodyBottom: bottom });
       });
     });
+    await nativeChecks();
     document.documentElement.setAttribute('data-mode', new URLSearchParams(location.search).get('mode') === 'dark' ? 'dark' : 'light');
     var failed = results.filter(function (result) { return !result.passed; });
     document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + results.length + ' checks; ' + failed.length + ' failures.';
@@ -101,7 +204,12 @@
     window.accordionTestResults = { passed: failed.length === 0, checks: results.length, failures: failed, measurements: measurements };
   }
   window.runAccordionSpacingTests = run;
-  window.addEventListener('load', run);
+  window.addEventListener('load', function () {
+    run().catch(function (error) {
+      document.getElementById('summary').textContent = 'FAIL: ' + error.message;
+      window.accordionTestResults = { passed: false, error: error.message };
+    });
+  });
 })();
 </script>
 </body>

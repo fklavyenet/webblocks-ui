@@ -1,5 +1,5 @@
 /*!
- * WebBlocks UI v2.33.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.34.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -60,8 +60,50 @@
     'input:not([disabled])',
     'select:not([disabled])',
     'textarea:not([disabled])',
+    'details > summary:first-of-type',
     '[tabindex]:not([tabindex="-1"])'
   ].join(', ');
+
+  function isTabbable(element) {
+    if (element.tabIndex < 0 || element.matches(':disabled') ||
+        element.closest('[inert], [hidden]')) return false;
+
+    // Closed details can still expose descendant boxes in some engines. Only
+    // its first direct summary (and that summary's contents) remain interactive.
+    for (var parent = element.parentElement; parent; parent = parent.parentElement) {
+      if (parent.tagName !== 'DETAILS' || parent.open) continue;
+      var summary = Array.from(parent.children).find(function (child) {
+        return child.tagName === 'SUMMARY';
+      });
+      if (!summary || !summary.contains(element)) return false;
+    }
+
+    var style = window.getComputedStyle(element);
+    return style.visibility !== 'hidden' && style.visibility !== 'collapse' &&
+      element.getClientRects().length > 0;
+  }
+
+  function getTabbableElements(container) {
+    return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR))
+      .filter(isTabbable)
+      .map(function (element, index) { return { element: element, index: index }; })
+      .sort(function (a, b) {
+        var aOrder = a.element.tabIndex > 0 ? a.element.tabIndex : Infinity;
+        var bOrder = b.element.tabIndex > 0 ? b.element.tabIndex : Infinity;
+        return aOrder === bOrder ? a.index - b.index : aOrder - bOrder;
+      })
+      .map(function (entry) { return entry.element; });
+  }
+
+  function focusContainer(container) {
+    if (!container.hasAttribute('tabindex')) {
+      container.setAttribute('tabindex', '-1');
+      container.addEventListener('blur', function () {
+        if (container.getAttribute('tabindex') === '-1') container.removeAttribute('tabindex');
+      }, { once: true });
+    }
+    container.focus({ preventScroll: true });
+  }
 
   // ── Focus trap ────────────────────────────────────────────
   // Keeps Tab focus cycling within a container element.
@@ -69,13 +111,20 @@
 
   function trapFocus(e, container) {
     if (e.key !== 'Tab') return;
-    var focusable = Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR));
-    if (!focusable.length) return;
+    var focusable = getTabbableElements(container);
+    if (!focusable.length) {
+      e.preventDefault();
+      focusContainer(container);
+      return;
+    }
 
     var first = focusable[0];
     var last  = focusable[focusable.length - 1];
 
-    if (e.shiftKey) {
+    if (focusable.indexOf(document.activeElement) === -1) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+    } else if (e.shiftKey) {
       if (document.activeElement === first) {
         e.preventDefault();
         last.focus();
@@ -92,8 +141,10 @@
 
   function focusFirst(container) {
     requestAnimationFrame(function () {
-      var first = container.querySelector(FOCUSABLE_SELECTOR);
-      if (first) first.focus();
+      if (!container.isConnected || !container.getClientRects().length) return;
+      var first = getTabbableElements(container)[0];
+      if (first) first.focus({ preventScroll: true });
+      else focusContainer(container);
     });
   }
 
@@ -3554,7 +3605,7 @@
 /* ============================================================
    WebBlocks UI — Accordion (accordion.js)
 
-   Usage (two equivalent patterns):
+   Usage (three supported patterns):
 
    Pattern A — attribute-based (full):
      <div class="wb-accordion" data-wb-accordion>
@@ -3562,7 +3613,7 @@
          <button class="wb-accordion-trigger" data-wb-accordion-trigger
                  aria-expanded="false" aria-controls="acc1">
            Section Title
-           <span class="wb-accordion-icon"></span>
+
          </button>
          <div class="wb-accordion-content" id="acc1">
            <div class="wb-accordion-body">Content here</div>
@@ -3578,7 +3629,17 @@
        </div>
      </div>
 
-   Options (on [data-wb-accordion]):
+   Pattern C — native (works without JavaScript):
+     <div class="wb-accordion">
+       <details class="wb-accordion-item" name="billing">
+         <summary class="wb-accordion-trigger">Section Title</summary>
+         <div class="wb-accordion-body">Content here</div>
+       </details>
+     </div>
+     Use open for initial state and a shared, group-unique name for exclusivity.
+     Native toggle events drive wb:accordion:toggle asynchronously.
+
+   Options (on the .wb-accordion container):
      data-wb-accordion-single="true"  — only one panel open at a time
    ============================================================ */
 
@@ -3590,6 +3651,25 @@
 
   function getItem(trigger) {
     return trigger.closest('.wb-accordion-item');
+  }
+
+  function getNativeItem(trigger) {
+    var item = trigger.parentElement;
+    return trigger.tagName === 'SUMMARY' && item && item.matches('details.wb-accordion-item') &&
+      item.querySelector('summary') === trigger ? item : null;
+  }
+
+  function getAccordion(trigger) {
+    return trigger.closest('[data-wb-accordion], .wb-accordion');
+  }
+
+  function closeSiblings(trigger) {
+    var accordion = getAccordion(trigger);
+    if (!accordion || accordion.getAttribute('data-wb-accordion-single') !== 'true') return;
+    accordion.querySelectorAll(TRIGGER_SEL).forEach(function (other) {
+      // Nested accordions keep their own state.
+      if (other !== trigger && getAccordion(other) === accordion && isOpen(other)) close(other);
+    });
   }
 
   function getContent(trigger) {
@@ -3606,6 +3686,8 @@
   }
 
   function isOpen(trigger) {
+    var nativeItem = getNativeItem(trigger);
+    if (nativeItem) return nativeItem.open;
     // Pattern A uses aria-expanded; Pattern B uses is-open on the item
     if (trigger.hasAttribute('aria-expanded')) {
       return trigger.getAttribute('aria-expanded') === 'true';
@@ -3624,6 +3706,11 @@
   }
 
   function open(trigger) {
+    var nativeItem = getNativeItem(trigger);
+    if (nativeItem) {
+      nativeItem.open = true;
+      return;
+    }
     var item = getItem(trigger);
     var content = getContent(trigger);
     if (trigger.hasAttribute('aria-expanded')) trigger.setAttribute('aria-expanded', 'true');
@@ -3639,6 +3726,11 @@
   // ── Close a single trigger ────────────────────────────────
 
   function close(trigger) {
+    var nativeItem = getNativeItem(trigger);
+    if (nativeItem) {
+      nativeItem.open = false;
+      return;
+    }
     var item = getItem(trigger);
     var content = getContent(trigger);
     if (trigger.hasAttribute('aria-expanded')) trigger.setAttribute('aria-expanded', 'false');
@@ -3653,30 +3745,24 @@
   // ── Toggle ────────────────────────────────────────────────
 
   function toggle(trigger) {
-    var accordion = trigger.closest('[data-wb-accordion]') || trigger.closest('.wb-accordion');
-    var single = accordion && accordion.getAttribute('data-wb-accordion-single') === 'true';
-
     if (isOpen(trigger)) {
       close(trigger);
     } else {
       // In single mode, close all siblings first
-      if (single && accordion) {
-        accordion.querySelectorAll(TRIGGER_SEL).forEach(function (t) {
-          if (t !== trigger && isOpen(t)) close(t);
-        });
-      }
+      closeSiblings(trigger);
       open(trigger);
     }
 
     // Emit event
-    WBDom.emit(trigger, 'wb:accordion:toggle', { open: isOpen(trigger) });
+    // Native changes are reported once by the browser's toggle event below.
+    if (!getNativeItem(trigger)) WBDom.emit(trigger, 'wb:accordion:toggle', { open: isOpen(trigger) });
   }
 
   // ── Recalculate open heights (e.g. after resize) ──────────
 
   function recalc() {
     document.querySelectorAll(TRIGGER_SEL).forEach(function (trigger) {
-      if (!isOpen(trigger)) return;
+      if (getNativeItem(trigger) || !isOpen(trigger)) return;
       var content = getContent(trigger);
       if (content) updateHeight(content);
     });
@@ -3686,11 +3772,22 @@
 
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest(TRIGGER_SEL);
-    if (trigger) {
+    if (trigger && !getNativeItem(trigger)) {
       e.preventDefault();
       toggle(trigger);
     }
   });
+
+  // toggle does not bubble; capture also covers dynamically inserted details
+  // and changes made through the native open property or named groups.
+  document.addEventListener('toggle', function (e) {
+    var item = e.target;
+    if (!item.matches('details.wb-accordion-item')) return;
+    var trigger = item.querySelector('summary');
+    if (!trigger || !trigger.matches(TRIGGER_SEL) || getNativeItem(trigger) !== item) return;
+    if (item.open) closeSiblings(trigger);
+    WBDom.emit(trigger, 'wb:accordion:toggle', { open: item.open });
+  }, true);
 
   window.addEventListener('resize', WBDom.debounce(recalc, 150));
 
@@ -6153,6 +6250,13 @@
      data-wb-collapse="target-id"   — toggles a standalone collapse
      .wb-collapse-panel > .wb-collapse-trigger — toggles panel
 
+   Native panel (works without JavaScript):
+     <details class="wb-collapse-panel" id="advanced" open>
+       <summary class="wb-collapse-trigger">Advanced options</summary>
+       <div class="wb-collapse"><div class="wb-collapse-body">Content</div></div>
+     </details>
+   Native state uses open, not is-open. API/external triggers target the details id.
+
    Public API:
      WBCollapse.open(id)
      WBCollapse.close(id)
@@ -6161,12 +6265,25 @@
 (function () {
   'use strict';
 
+  function isNativePanel(el) {
+    return el.matches('details.wb-collapse-panel');
+  }
+
+  function syncNativeTriggers(panel) {
+    if (!panel.id) return;
+    document.querySelectorAll('[data-wb-collapse]').forEach(function (trigger) {
+      if (trigger.getAttribute('data-wb-collapse') === panel.id) {
+        trigger.setAttribute('aria-expanded', panel.open ? 'true' : 'false');
+      }
+    });
+  }
+
   /* ── Panel trigger (button inside .wb-collapse-panel) ──── */
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest('.wb-collapse-trigger');
     if (trigger) {
       var panel = trigger.closest('.wb-collapse-panel');
-      if (panel) {
+      if (panel && !isNativePanel(panel)) {
         panel.classList.toggle('is-open');
         var expanded = panel.classList.contains('is-open');
         trigger.setAttribute('aria-expanded', expanded);
@@ -6180,6 +6297,11 @@
       var targetId = btn.getAttribute('data-wb-collapse');
       var el = document.getElementById(targetId);
       if (el) {
+        if (isNativePanel(el)) {
+          el.open = !el.open;
+          syncNativeTriggers(el);
+          return;
+        }
         el.classList.toggle('is-open');
         var isOpen = el.classList.contains('is-open');
         btn.setAttribute('aria-expanded', isOpen);
@@ -6187,11 +6309,22 @@
     }
   });
 
+  // Native clicks, property changes and named-group closures all use open.
+  // toggle does not bubble, so capture keeps optional external controls in sync.
+  document.addEventListener('toggle', function (e) {
+    if (isNativePanel(e.target)) syncNativeTriggers(e.target);
+  }, true);
+
   /* ── Public API ─────────────────────────────────────────── */
   window.WBCollapse = {
     open: function (id) {
       var el = document.getElementById(id);
       if (el) {
+        if (isNativePanel(el)) {
+          el.open = true;
+          syncNativeTriggers(el);
+          return;
+        }
         el.classList.add('is-open');
         var btn = document.querySelector('[data-wb-collapse="' + id + '"]');
         if (btn) btn.setAttribute('aria-expanded', 'true');
@@ -6200,6 +6333,11 @@
     close: function (id) {
       var el = document.getElementById(id);
       if (el) {
+        if (isNativePanel(el)) {
+          el.open = false;
+          syncNativeTriggers(el);
+          return;
+        }
         el.classList.remove('is-open');
         var btn = document.querySelector('[data-wb-collapse="' + id + '"]');
         if (btn) btn.setAttribute('aria-expanded', 'false');
@@ -6208,7 +6346,7 @@
     toggle: function (id) {
       var el = document.getElementById(id);
       if (el) {
-        if (el.classList.contains('is-open')) {
+        if (isNativePanel(el) ? el.open : el.classList.contains('is-open')) {
           window.WBCollapse.close(id);
         } else {
           window.WBCollapse.open(id);

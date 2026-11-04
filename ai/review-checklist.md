@@ -72,3 +72,9 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 
 - [ ] Bounded measurements use native `meter.wb-meter` with valid values, accessible names and visible localized value text.
 - [ ] Zero/full values, long labels, light/dark modes and narrow layouts remain legible without JavaScript.
+
+## Native disclosure and progress
+
+- [ ] Native accordion/collapse use browser-owned open state and UI-owned chevrons; host markup does not add a second disclosure indicator.
+- [ ] Modal/drawer keyboard tests include closed disclosure bodies and dynamic focus candidates in both Tab directions.
+- [ ] Task progress uses labelled native progress with value/max, or the supported legacy div/fill pattern; unknown work omits the native value.

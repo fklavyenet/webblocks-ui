@@ -74,6 +74,7 @@ Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields
 - Use `wb-toast` for transient success/info feedback.
 - Use inline `wb-alert` for validation, blocking, persistent, and user-correctable errors.
 - Do not create duplicate overlay roots, custom overlay stacks, or project-local modal systems when WebBlocks UI primitives fit.
+- Modal/drawer focus excludes closed disclosure bodies, hidden/inert nodes, disabled controls and negative tabindex. Keep focus containment in the shared runtime; do not add a competing host trap.
 
 ## Branding
 
@@ -118,6 +119,37 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 - Use `data-wb-nav-group-open` for an explicit initial open state; a group containing an `.is-active` item also opens automatically.
 - WebBlocks UI owns toggling, `is-open`, `aria-expanded`, accordion behavior, lifecycle events, and the `WBNavGroup` API.
 - Do not invent a project-local toggle attribute or copy nav-group click handlers into downstream JavaScript.
+
+## Accordion
+
+- UI renders a CSS-only inline-end chevron on every heading, independent of host
+  artwork. Remove manually supplied disclosure icons when upgrading. The
+  indicator follows native/legacy state, RTL and reduced motion.
+- Existing button/div accordion patterns remain supported. For native disclosure,
+  use `details.wb-accordion-item > summary.wb-accordion-trigger` followed by one
+  `wb-accordion-body`, optionally inside `wb-accordion-content`.
+- Native `open` owns state; do not recreate it with `is-open`, `aria-expanded`,
+  a button role, or a tabindex. Use a group-unique shared `name` for single-open
+  behavior without JavaScript; omit it for independent disclosure.
+- `WBAccordion` accepts native summary triggers. Native `wb:accordion:toggle`
+  follows the browser's asynchronous, coalesced `toggle` event. The runtime's
+  `data-wb-accordion-single="true"` also supports mixed groups and preserves
+  nested accordion state. Hosts must not add a competing summary click handler.
+
+## Collapse panels
+
+- UI owns the inline-end chevron on every panel heading, as for accordion.
+  Remove host-provided disclosure icons when upgrading; external buttons are unchanged.
+- Existing div/button panels and standalone collapse remain supported. Native
+  panels use `details.wb-collapse-panel > summary.wb-collapse-trigger` followed
+  by one `wb-collapse-body`, optionally inside `wb-collapse`.
+- Use native `open` for state; do not duplicate summary semantics with `is-open`,
+  `aria-expanded`, a button role or tabindex. Native interaction and natural
+  content height work without JavaScript.
+- `WBCollapse.open/close/toggle(id)` and optional external `data-wb-collapse`
+  controls target the details root id. External controls require the runtime;
+  hosts render their initial ARIA state and UI synchronizes subsequent changes.
+  Hosts must not install a competing summary click handler.
 
 ## Tabs
 
@@ -179,3 +211,16 @@ Before finishing downstream UI work, verify:
 - Preserve meter semantics; do not label measurements as task progress or add a progressbar role.
 - UI owns the themed track and fill without JavaScript or inline CSS. Hosts own values, validation, formatting, aggregation and visibility.
 - Keep the same scale for compared values. Multiple-choice poll options remain independent percentages.
+
+
+## Task progress
+
+- Prefer native `progress.wb-progress-bar` for new task-completion indicators.
+  Use valid `max` and `value`; zero is measured zero, while an omitted `value`
+  means indeterminate. Do not add `min` or a competing ARIA value state.
+- Supply an accessible label and visible localized status text. Native progress
+  needs no WebBlocks JavaScript or child `wb-progress-bar-fill`.
+- Existing div/fill markup and width-based updates remain supported. The same
+  color and thin/thick modifiers work with both structures. Native state follows
+  `value`, not `wb-progress-bar-indeterminate`; hosts update the native value.
+- Use `meter.wb-meter` for bounded measurements, and progress for work in flight.

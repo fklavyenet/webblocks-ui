@@ -84,6 +84,8 @@
               </header>
 
               <div class="wb-content-body">
+<p><a href="collapse.html">Collapse — Native details/summary panels; existing structures remain supported.</a></p>
+<p><a href="progress.html">Progress — Native progress indicators; legacy markup remains supported.</a></p>
 <p><a href="meter.html">Meter — Native bounded measurements, including horizontal poll results. No JavaScript is required.</a></p>
 <p><a href="chart.html">Chart — dependency-free line and grouped bar examples</a></p>
 
@@ -611,11 +613,11 @@
                         <div class="wb-card-body wb-stack-4">
                           <div class="wb-accordion">
                             <div class="wb-accordion-item is-open">
-                              <button class="wb-accordion-trigger"><span>What counts as a primitive?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
+                              <button class="wb-accordion-trigger"><span>What counts as a primitive?</span></button>
                               <div class="wb-accordion-body">A primitive is an atomic control or local UI contract such as a button, input, table, modal, dropdown, or tabs. Cards, stats, callouts, lists, toolbars, filter bars, and empty states are surfaces.</div>
                             </div>
                             <div class="wb-accordion-item">
-                              <button class="wb-accordion-trigger"><span>What does not count?</span><span class="wb-accordion-icon"><i class="wb-icon wb-icon-chevron-down"></i></span></button>
+                              <button class="wb-accordion-trigger"><span>What does not count?</span></button>
                               <div class="wb-accordion-body">Theme tokens belong to foundation. Screen compositions belong to patterns. Small nudges belong to utilities.</div>
                             </div>
                           </div>
@@ -637,7 +639,7 @@
                         <h4 class="wb-m-0" id="accordion-wrapped-table-heading"><code>wrapped / table</code></h4>
                         <div class="wb-accordion" data-wb-accordion>
                           <div class="wb-accordion-item is-open">
-                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-wrapped-table-body"><span>Campaign details</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>
+                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-wrapped-table-body"><span>Campaign details</span></button>
                             <div class="wb-accordion-content" id="accordion-wrapped-table-body"><div class="wb-accordion-body"><div class="wb-table-wrap"><table class="wb-table"><thead><tr><th scope="col">Campaign</th><th scope="col">Page views</th></tr></thead><tbody><tr><td>spring-launch</td><td>18</td></tr></tbody></table></div></div></div>
                           </div>
                         </div>
@@ -646,7 +648,7 @@
                         <h4 class="wb-m-0" id="accordion-wrapped-card-heading"><code>wrapped / card</code></h4>
                         <div class="wb-accordion" data-wb-accordion>
                           <div class="wb-accordion-item is-open">
-                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-wrapped-card-body"><span>Campaign details</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>
+                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-wrapped-card-body"><span>Campaign details</span></button>
                             <div class="wb-accordion-content" id="accordion-wrapped-card-body"><div class="wb-accordion-body"><section class="wb-card" aria-labelledby="accordion-wrapped-card-card-heading"><div class="wb-card-header"><h5 class="wb-card-title" id="accordion-wrapped-card-card-heading">Campaign overview</h5></div><div class="wb-card-body"><p class="wb-m-0">Synthetic campaign data for this example.</p></div></section></div></div>
                           </div>
                         </div>
@@ -655,7 +657,7 @@
                         <h4 class="wb-m-0" id="accordion-direct-table-heading"><code>direct / table</code></h4>
                         <div class="wb-accordion" data-wb-accordion>
                           <div class="wb-accordion-item is-open">
-                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-direct-table-body"><span>Campaign details</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>
+                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-direct-table-body"><span>Campaign details</span></button>
                             <div class="wb-accordion-body" id="accordion-direct-table-body"><div class="wb-table-wrap"><table class="wb-table"><thead><tr><th scope="col">Campaign</th><th scope="col">Page views</th></tr></thead><tbody><tr><td>spring-launch</td><td>18</td></tr></tbody></table></div></div>
                           </div>
                         </div>
@@ -664,7 +666,7 @@
                         <h4 class="wb-m-0" id="accordion-direct-card-heading"><code>direct / card</code></h4>
                         <div class="wb-accordion" data-wb-accordion>
                           <div class="wb-accordion-item is-open">
-                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-direct-card-body"><span>Campaign details</span><i class="wb-icon wb-icon-chevron-down wb-accordion-icon" aria-hidden="true"></i></button>
+                            <button type="button" class="wb-accordion-trigger" data-wb-accordion-trigger aria-expanded="true" aria-controls="accordion-direct-card-body"><span>Campaign details</span></button>
                             <div class="wb-accordion-body" id="accordion-direct-card-body"><section class="wb-card" aria-labelledby="accordion-direct-card-card-heading"><div class="wb-card-header"><h5 class="wb-card-title" id="accordion-direct-card-card-heading">Campaign overview</h5></div><div class="wb-card-body"><p class="wb-m-0">Synthetic campaign data for this example.</p></div></section></div>
                           </div>
                         </div>
@@ -683,6 +685,31 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                     </div>
+                    <section class="wb-stack-3" aria-labelledby="accordion-native-heading">
+                      <h4 class="wb-m-0" id="accordion-native-heading">Native details / summary</h4>
+                      <p class="wb-m-0">UI renders the disclosure chevron on every heading. Remove manually supplied disclosure icons when upgrading.</p>
+                      <p class="wb-m-0">Disclosure and keyboard activation work without JavaScript. Use open for initial state and a shared, group-unique name to keep only one panel open. Existing button/div patterns remain supported.</p>
+                      <div class="wb-accordion">
+  <details class="wb-accordion-item" name="native-account-sections" open>
+    <summary class="wb-accordion-trigger">Billing</summary>
+    <div class="wb-accordion-body">Billing details</div>
+  </details>
+  <details class="wb-accordion-item" name="native-account-sections">
+    <summary class="wb-accordion-trigger">API access</summary>
+    <div class="wb-accordion-body">API details</div>
+  </details>
+</div>
+                      <pre><code>&lt;div class=&quot;wb-accordion&quot;&gt;
+  &lt;details class=&quot;wb-accordion-item&quot; name=&quot;native-account-sections&quot; open&gt;
+    &lt;summary class=&quot;wb-accordion-trigger&quot;&gt;Billing&lt;/summary&gt;
+    &lt;div class=&quot;wb-accordion-body&quot;&gt;Billing details&lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class=&quot;wb-accordion-item&quot; name=&quot;native-account-sections&quot;&gt;
+    &lt;summary class=&quot;wb-accordion-trigger&quot;&gt;API access&lt;/summary&gt;
+    &lt;div class=&quot;wb-accordion-body&quot;&gt;API details&lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+                    </section>
                   </div>
                 </section>
                 <div class="wb-card">

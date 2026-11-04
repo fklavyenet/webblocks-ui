@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progress browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Native and legacy progress</h1>
+  <p>No WebBlocks JavaScript is loaded. Each card compares a native progress element with a legacy div/fill bar.</p>
+  <div class="wb-action-group"><a class="wb-btn" href="?mode=light">Light</a><a class="wb-btn" href="?mode=dark">Dark</a></div>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <div id="fixtures" class="wb-stack wb-gap-4"></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var fixtures = document.getElementById('fixtures');
+  var checks = [];
+  function check(name, passed) { checks.push({ name: name, passed: Boolean(passed) }); }
+  ['', 'success', 'warning', 'danger'].forEach(function (color) {
+    ['', 'thin', 'thick'].forEach(function (size) {
+      var name = (color || 'primary') + ' / ' + (size || 'default');
+      var classes = 'wb-progress-bar' + (color ? ' wb-progress-bar-' + color : '') + (size ? ' wb-progress-bar-' + size : '');
+      var section = document.createElement('section');
+      section.className = 'wb-card';
+      section.setAttribute('data-size', size);
+      section.innerHTML = '<div class="wb-card-body wb-stack wb-gap-4"><h2 class="wb-card-title">' + name + '</h2><span>Native · 60%</span><progress class="' + classes + '" max="100" value="60" aria-label="Native ' + name + '">60%</progress><span>Legacy · 60%</span><div class="' + classes + '" role="progressbar" aria-label="Legacy ' + name + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60"><div class="wb-progress-bar-fill" style="width:60%"></div></div></div>';
+      fixtures.appendChild(section);
+    });
+  });
+  var pending = document.createElement('section');
+  pending.className = 'wb-card';
+  pending.innerHTML = '<div class="wb-card-body wb-stack wb-gap-4"><h2 class="wb-card-title">Indeterminate</h2><span>Native · Preparing upload</span><progress class="wb-progress-bar wb-progress-bar-warning" aria-label="Preparing upload"></progress><span>Legacy · Preparing upload</span><div class="wb-progress-bar wb-progress-bar-indeterminate" role="progressbar" aria-label="Preparing legacy upload"><div class="wb-progress-bar-fill"></div></div></div>';
+  fixtures.appendChild(pending);
+  function run() {
+    checks = [];
+    ['light', 'dark'].forEach(function (mode) {
+      document.documentElement.setAttribute('data-mode', mode);
+      fixtures.querySelectorAll('[data-size]').forEach(function (section) {
+        var native = section.querySelector('progress');
+        var legacy = section.querySelector('div.wb-progress-bar');
+        var fill = legacy.querySelector('.wb-progress-bar-fill');
+        var height = section.getAttribute('data-size') === 'thin' ? 3 : section.getAttribute('data-size') === 'thick' ? 10 : 6;
+        var id = native.getAttribute('aria-label') + ' / ' + mode;
+        check(id + ' same height', native.clientHeight === height && legacy.clientHeight === height);
+        check(id + ' same width', Math.abs(native.getBoundingClientRect().width - legacy.getBoundingClientRect().width) < 1);
+        check(id + ' stays within body', native.getBoundingClientRect().right <= section.getBoundingClientRect().right);
+        check(id + ' same themed fill color', getComputedStyle(native).color === getComputedStyle(fill).backgroundColor);
+        check(id + ' same themed track', getComputedStyle(native).backgroundColor === getComputedStyle(legacy).backgroundColor);
+        check(id + ' no synthetic native fill or inline style', !native.children.length && !native.hasAttribute('style'));
+        [0, 60, 100].forEach(function (value) {
+          native.value = value;
+          fill.style.width = value + '%';
+          // Measure the final geometry after the existing width transition.
+          fill.getAnimations().forEach(function (animation) { animation.finish(); });
+          check(id + ' native ' + value + '%', !native.matches(':indeterminate') && native.position === value / 100);
+          check(id + ' legacy ' + value + '%', Math.abs(fill.getBoundingClientRect().width - legacy.clientWidth * value / 100) < 1);
+        });
+        native.value = 60;
+        fill.style.width = '60%';
+      });
+    });
+    var bar = pending.querySelector('progress');
+    check('missing value means indeterminate', bar.matches(':indeterminate') && bar.position === -1);
+    var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    check('indeterminate motion follows preference', getComputedStyle(bar).animationName === (reduced ? 'none' : 'wb-progress-native-slide'));
+    check('indeterminate has visible segment artwork', getComputedStyle(bar).backgroundImage !== 'none');
+    bar.value = 0;
+    check('zero is determinate, not unknown', !bar.matches(':indeterminate') && bar.position === 0 && getComputedStyle(bar).animationName === 'none');
+    bar.max = 200;
+    bar.value = 50;
+    check('custom maximum updates ratio', bar.position === 0.25);
+    bar.removeAttribute('value');
+    check('removing value restores indeterminate', bar.matches(':indeterminate') && bar.position === -1);
+    var legacyFill = pending.querySelector('.wb-progress-bar-fill');
+    check('legacy indeterminate animation unchanged', getComputedStyle(legacyFill).animationName === 'wb-progress-slide');
+    document.documentElement.setAttribute('data-mode', new URLSearchParams(location.search).get('mode') === 'dark' ? 'dark' : 'light');
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures.';
+    var list = document.getElementById('failures');
+    list.textContent = '';
+    failed.forEach(function (result) { var li = document.createElement('li'); li.textContent = result.name; list.appendChild(li); });
+    window.progressTestResults = { passed: !failed.length, checks: checks.length, failures: failed };
+  }
+  window.runProgressTests = run;
+  window.addEventListener('load', run);
+})();
+</script>
+</body>
+</html>

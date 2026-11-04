@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Progress — WebBlocks UI</title><link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css"></head>
+<body><main class="wb-container wb-container-md wb-stack wb-gap-6 wb-py-6">
+<header><a href="primitives.html">Primitives</a><h1>Progress</h1><p>Native task progress. Existing div/fill progress bars remain supported.</p></header>
+<section class="wb-card"><div class="wb-card-body wb-stack wb-gap-4">
+<label for="upload-progress">Upload progress · 60%</label><progress id="upload-progress" class="wb-progress-bar" max="100" value="60" aria-label="Upload progress">60%</progress>
+<label for="upload-pending">Preparing upload</label><progress id="upload-pending" class="wb-progress-bar"></progress>
+</div></section>
+<section class="wb-card"><div class="wb-card-header"><h2 class="wb-card-title">Zero and completed work</h2></div><div class="wb-card-body wb-stack wb-gap-4">
+<label for="progress-zero">Not started · 0%</label><progress id="progress-zero" class="wb-progress-bar" max="100" value="0">0%</progress>
+<label for="progress-full">Completed · 100%</label><progress id="progress-full" class="wb-progress-bar" max="100" value="100">100%</progress>
+</div></section>
+<section class="wb-card"><div class="wb-card-header"><h2 class="wb-card-title">Colors and sizes</h2></div><div class="wb-card-body wb-stack wb-gap-4">
+<label for="progress-variant-0">success / thin · 75%</label><progress id="progress-variant-0" class="wb-progress-bar wb-progress-bar-success wb-progress-bar-thin" max="100" value="75">75%</progress>
+<label for="progress-variant-1">danger / thick · 30%</label><progress id="progress-variant-1" class="wb-progress-bar wb-progress-bar-danger wb-progress-bar-thick" max="100" value="30">30%</progress>
+<label for="progress-variant-2">warning / default · 45%</label><progress id="progress-variant-2" class="wb-progress-bar wb-progress-bar-warning" max="100" value="45">45%</progress>
+<label for="progress-long">Long task label that wraps on narrow screens while the progress bar stays within its container · 75%</label><progress id="progress-long" class="wb-progress-bar" max="100" value="75">75%</progress>
+</div></section>
+<section class="wb-card"><div class="wb-card-body"><h2>Integration</h2><p>Use value and max for completed work. Omit value for indeterminate progress. Provide a label and visible status text; no JavaScript is needed.</p><pre><code>&lt;progress id=&quot;upload-progress&quot; class=&quot;wb-progress-bar&quot; max=&quot;100&quot; value=&quot;60&quot; aria-label=&quot;Upload progress&quot;&gt;60%&lt;/progress&gt;</code></pre><a href="../packages/webblocks/INTEGRATION.md#progress-bar">API</a></div></section>
+</main></body></html>
