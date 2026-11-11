@@ -340,6 +340,8 @@ packages/webblocks/
 - open `tests/collapse.html` through a local HTTP server for native/legacy panels, standalone compatibility, API, external controls, nesting, and script-free disclosure browser checks
 - open `tests/disclosure-chevron.html` for UI-owned indicators, state, RTL, independence from host artwork and script-free behavior without an icon stylesheet
 - open `tests/overlay-focus.html` for modal/drawer focus boundaries, native disclosure, dynamic content, excluded controls and empty-dialog fallback; repeat with `?source=1` and complete the live keyboard checks
+- open `tests/native-dialog.html` for native/legacy modal and drawer lifecycles, close guards, native forms, nesting, anchored layers and all drawer placements; repeat with `?source=1` and perform the live keyboard checks
+- open `tests/native-popover.html` for native/legacy dropdown/popover APIs, native invokers, canceled opening, raw native methods, guards, persistence, groups, nesting and scrolling; repeat with `?source=1` and `?mode=dark`
 - if you change source CSS, JS, or icons, rebuild `dist/` before committing
 
 The curated Lucide 0.577.0 glyphs retain ISC and Feather MIT notices in `THIRD_PARTY_LICENSES.txt` and in the generated icon CSS.

@@ -45,6 +45,14 @@
   color: var(--wb-primary);
 }
 
+details.wb-nav-group > summary.wb-nav-group-toggle {
+  list-style: none;
+}
+
+details.wb-nav-group > summary.wb-nav-group-toggle::-webkit-details-marker {
+  display: none;
+}
+
 /* ── Toggle icon (chevron) ────────────────────────────────── */
 
 .wb-nav-group-icon {
@@ -74,7 +82,8 @@
 
 /* ── Open state: rotate arrow ─────────────────────────────── */
 
-.wb-nav-group.is-open > .wb-nav-group-toggle .wb-nav-group-arrow {
+.wb-nav-group.is-open:where(:not(details)) > .wb-nav-group-toggle .wb-nav-group-arrow,
+details.wb-nav-group[open] > .wb-nav-group-toggle .wb-nav-group-arrow {
   transform: rotate(180deg);
 }
 
@@ -89,7 +98,8 @@
   padding-bottom: var(--wb-s1);
 }
 
-.wb-nav-group.is-open > .wb-nav-group-items {
+.wb-nav-group.is-open:where(:not(details)) > .wb-nav-group-items,
+details.wb-nav-group[open] > .wb-nav-group-items {
   display: flex;
 }
 

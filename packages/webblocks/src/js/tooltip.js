@@ -48,7 +48,7 @@
     layer: 'anchored',
     element: tooltip,
     panel: tooltip,
-    portal: false,
+    portal: true,
     position: 'anchored',
     placement: 'top-center',
     offset: 8,

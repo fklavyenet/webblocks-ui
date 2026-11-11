@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Command palette browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Native and legacy command palettes</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ul id="failures" class="wb-marker-list"></ul>
+  <div class="wb-action-group" id="openers"></div>
+  <div id="palettes"></div>
+  <div class="wb-modal" id="child-modal" role="dialog" aria-modal="true" aria-label="Child modal">
+    <div class="wb-modal-dialog">
+      <div class="wb-modal-body"><button type="button" class="wb-btn" data-wb-dismiss="modal">Close child</button></div>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var failures = document.getElementById('failures');
+  var checks = 0;
+  var revision = '?test=' + Date.now();
+
+  function check(condition, label) {
+    checks += 1;
+    if (condition) return;
+    var item = document.createElement('li');
+    item.textContent = label;
+    failures.appendChild(item);
+  }
+
+  function load(path) {
+    return new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = path + revision;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
+  function settle(ms) {
+    return new Promise(function (resolve) {
+      setTimeout(function () { requestAnimationFrame(resolve); }, ms || 30);
+    });
+  }
+
+  function key(target, name, options) {
+    return target.dispatchEvent(new KeyboardEvent('keydown',
+      Object.assign({ key: name, bubbles: true, cancelable: true }, options)));
+  }
+
+  function make(native) {
+    var label = native ? 'Native' : 'Legacy';
+    var root = document.createElement(native ? 'dialog' : 'div');
+    root.className = 'wb-cmd-backdrop';
+    root.id = native ? 'native-palette' : 'legacy-palette';
+    root.setAttribute('aria-label', label + ' command palette');
+    if (!native) {
+      root.setAttribute('role', 'dialog');
+      root.setAttribute('aria-modal', 'true');
+    }
+    root.innerHTML = '<div class="wb-cmd-dialog">' +
+      '<div class="wb-cmd-search"><input class="wb-cmd-input" aria-label="Search commands"></div>' +
+      '<div class="wb-cmd-results"><div class="wb-cmd-group">' +
+      '<button type="button" class="wb-cmd-item">Documentation</button>' +
+      '<button type="button" class="wb-cmd-item">Settings</button>' +
+      '<button type="button" class="wb-cmd-item" data-wb-toggle="modal" data-wb-target="#child-modal">Open child</button>' +
+      '</div><div class="wb-cmd-empty" style="display:none">No results</div></div></div>';
+    document.getElementById('palettes').appendChild(root);
+
+    var opener = document.createElement('button');
+    opener.type = 'button';
+    opener.className = 'wb-btn';
+    opener.textContent = 'Open ' + label.toLowerCase() + ' palette';
+    opener.setAttribute('data-wb-toggle', 'cmd');
+    opener.setAttribute('data-wb-target', '#' + root.id);
+    document.getElementById('openers').appendChild(opener);
+    return { root: root, opener: opener, label: label };
+  }
+
+  async function exercise(example) {
+    var root = example.root, opener = example.opener, label = example.label;
+    var input = root.querySelector('input');
+    var settings = root.querySelectorAll('.wb-cmd-item')[1];
+    var opened = 0, closed = 0, selected = 0, query, guard = true, requests = [];
+    root.addEventListener('wb:cmd:open', function () { opened += 1; });
+    root.addEventListener('wb:cmd:close', function () { closed += 1; });
+    root.addEventListener('wb:cmd:search', function (event) { query = event.detail.query; });
+    root.addEventListener('wb:overlay:close-request', function (event) {
+      requests.push(event.detail.reason);
+      if (guard) event.preventDefault();
+    });
+    settings.addEventListener('click', function () { selected += 1; });
+
+    opener.focus();
+    opener.click();
+    await settle();
+    check(opened === 1 && WBCommandPalette.getActive() === root && document.activeElement === input,
+      label + ' trigger opens and focuses search');
+    check(document.body.classList.contains('wb-overlay-lock'), label + ' locks scrolling');
+    if (root.tagName === 'DIALOG') {
+      check(root.matches(':modal') && !document.querySelector('.wb-overlay-backdrop:not([hidden])'),
+        'Native uses browser modality and a single backdrop');
+      var bounds = root.getBoundingClientRect();
+      check(bounds.top === 0 && bounds.left === 0 && bounds.width === document.documentElement.clientWidth,
+        'Native backdrop wrapper covers the viewport');
+      check(document.elementFromPoint(2, 2) === root && getComputedStyle(root, '::backdrop').backgroundColor !== 'rgba(0, 0, 0, 0)',
+        'Native outside area is hit-testable and dimmed');
+      opener.focus();
+      check(document.activeElement === input, 'Native background is inert');
+    }
+
+    root.click();
+    check(requests.join() === 'outside' && WBCommandPalette.getActive() === root,
+      label + ' outside close guard fires once');
+    key(input, 'Escape');
+    check(requests.join() === 'outside,escape' && WBCommandPalette.getActive() === root,
+      label + ' Escape respects the guard');
+
+    input.value = 'SETT';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    check(query === 'sett' && settings.style.display !== 'none' && root.querySelector('.wb-cmd-item').style.display === 'none',
+      label + ' filters and emits the search query');
+    key(input, 'ArrowDown');
+    key(input, 'Enter');
+    await settle(105);
+    check(selected === 1 && closed === 1 && WBCommandPalette.getActive() === null &&
+      document.activeElement === opener && !document.body.classList.contains('wb-overlay-lock'),
+      label + ' keyboard selection closes once and restores focus');
+
+    root.setAttribute('data-wb-cmd-default', '');
+    key(opener, 'k', { ctrlKey: true });
+    await settle();
+    check(opened === 2 && WBCommandPalette.getActive() === root, label + ' shortcut opens default palette');
+    guard = false;
+    root.click();
+    check(closed === 2 && WBCommandPalette.getActive() === null, label + ' outside dismissal');
+    root.removeAttribute('data-wb-cmd-default');
+
+    WBCommandPalette.onSearch(function (value, callback) {
+      callback('<button type="button" class="wb-cmd-item">External result</button>');
+    });
+    WBCommandPalette.open(root, opener);
+    await settle();
+    check(root.querySelector('.wb-cmd-results').textContent === 'External result',
+      label + ' custom search callback renders results');
+    WBCommandPalette.close();
+    WBCommandPalette.onSearch(null);
+    check(closed === 3 && !root.classList.contains('is-open'), label + ' API closes active palette');
+  }
+
+  async function run() {
+    if (new URLSearchParams(location.search).has('source')) {
+      for (var name of ['utils/dom', 'utils/overlay', 'modal', 'command-palette']) {
+        await load('../src/js/' + name + '.js');
+      }
+    } else {
+      await load('../dist/webblocks-ui.js');
+    }
+    var legacy = make(false), native = make(true);
+    // Test nesting before the custom search callback replaces the fixture items.
+    var root = native.root;
+    native.opener.focus();
+    WBCommandPalette.open(root, native.opener);
+    await settle();
+    root.querySelector('[data-wb-toggle="modal"]').click();
+    await settle(105);
+    var child = document.getElementById('child-modal');
+    check(root.open && root.contains(child) && WBModal.getActive() === child,
+      'A selected command can open a child without the delayed close removing it');
+    check(key(child.querySelector('button'), 'Enter'), 'Palette does not intercept Enter in the child');
+    WBModal.close(child);
+    root.close();
+    await settle();
+    check(WBCommandPalette.getActive() === null && !root.classList.contains('is-open') &&
+      !document.body.classList.contains('wb-overlay-lock'), 'Direct native close clears managed state');
+    await exercise(legacy);
+    await exercise(native);
+  }
+
+  run().catch(function (error) {
+    check(false, String(error));
+  }).then(function () {
+    var count = failures.children.length;
+    document.getElementById('summary').textContent =
+      (count ? 'FAIL' : 'PASS') + ': ' + checks + ' checks; ' + count + ' failures.';
+  });
+})();
+</script>
+</body>
+</html>

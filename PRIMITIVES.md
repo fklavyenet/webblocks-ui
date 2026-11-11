@@ -422,9 +422,10 @@ Clipboard ownership rule:
 Nav-group ownership rule:
 
 - put `data-wb-nav-group` on `.wb-nav-group`
-- use `.wb-nav-group-toggle` for the button and `.wb-nav-group-items` for its items
-- use `data-wb-nav-group-open` or an active child for the initial open state
-- WebBlocks UI owns click handling, `is-open`, `aria-expanded`, accordion behavior, and `wb:navgroup:*` events
+- use `.wb-nav-group-toggle` on the existing button or a first-child summary in a native details root
+- keep items in `.wb-nav-group-items` for either form
+- use `open` for native state and `data-wb-nav-group-open` or an active child for runtime initialization
+- WebBlocks UI owns legacy state, sibling accordion behavior, the `WBNavGroup` API, and `wb:navgroup:*` events
 - downstream projects must not add a parallel toggle attribute or reimplement nav-group JavaScript
 
 Tabs ownership rule:
@@ -552,3 +553,25 @@ Accordion and collapse panel headings receive a UI-owned inline-end chevron.
 Remove manually supplied disclosure icons when upgrading; content icons do not
 control or replace the built-in indicator. No icon stylesheet or JavaScript is
 required for the native indicator.
+
+
+## Native Modal and Drawer
+
+Opt in with `dialog.wb-modal` or `dialog.wb-drawer`, keeping the existing inner
+anatomy, modifiers, data hooks, lifecycle events and WBModal/WBDrawer APIs.
+Open via WebBlocks so the shared manager can call `showModal()` and coordinate
+native modality, close guards, nested layers, native forms and focus return.
+Do not author `open`, `is-open`, a root tabindex or a parallel dialog controller.
+Existing div roots remain supported. See [examples](docs/native-dialog.html) and
+[the native integration contract](packages/webblocks/INTEGRATION.md#overlays-modals-and-confirmation-dialogs).
+
+
+## Native Dropdown and Popover
+
+Add `popover="manual"` to the existing `wb-dropdown-menu` or `wb-popover-panel`
+to use the native Popover API. Keep wrappers, hooks, modifiers and public APIs.
+Native panels remain non-modal and normally in source DOM; UI owns positioning, shared
+policies and state reconciliation. Existing markup without the attribute keeps
+its legacy path. Use manual state for persistent/guarded panels. See
+[before/after examples](docs/native-overlays.html) and
+[the contract](packages/webblocks/INTEGRATION.md#native-popover-api-for-dropdown-and-popover).

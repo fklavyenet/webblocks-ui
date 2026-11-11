@@ -105,6 +105,14 @@
       {
         "path": "docs/progress.html",
         "description": "Native task progress, zero/full and unknown values, labels, colors and sizes without JavaScript."
+      },
+      {
+        "path": "docs/native-dialog.html",
+        "description": "Opt-in native modal/drawer roots, existing anatomy and APIs, top-layer child overlays, native forms and close guards."
+      },
+      {
+        "path": "docs/native-overlays.html",
+        "description": "Live before/after HTML and behavior comparisons for legacy/native modal, drawer, popover and dropdown."
       }
     ],
     "ai_contract": [

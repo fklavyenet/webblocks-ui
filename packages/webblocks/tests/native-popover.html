@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Native and legacy anchored overlays — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <script>
+    var anchoredParams = new URLSearchParams(location.search);
+    var anchoredModules = ['utils/dom', 'utils/overlay', 'modal', 'drawer', 'dropdown', 'popover'];
+    var anchoredPaths = anchoredParams.has('source') ? anchoredModules.map(function (name) { return '../src/js/' + name + '.js'; }) : ['../dist/webblocks-ui.js'];
+    var anchoredRevision=Date.now();
+    anchoredPaths.forEach(function (path) { var script=document.createElement('script'); script.src=path+'?test='+anchoredRevision; script.async=false; document.head.appendChild(script); });
+  </script>
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Native and legacy dropdown/popover</h1>
+  <p id="summary" role="status">Waiting for checks.</p><ol id="failures" class="wb-marker-list"></ol>
+  <button type="button" class="wb-btn" id="outside">Outside focus and dismiss target</button>
+  <p>Manual: open native examples, navigate with Tab/Shift+Tab, activate a dropdown item, and dismiss with Escape or an outside click. Repeat with ?source=1 and ?mode=dark.</p>
+  <div id="sandbox" class="wb-stack wb-gap-4"></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var sandbox=document.getElementById('sandbox'), outside=document.getElementById('outside'), checks=[], serial=0;
+  function check(name,valid,detail) { checks.push({name:name,passed:Boolean(valid),detail:detail}); }
+  function state(f) { return 'native='+visible(f)+', class='+f.panel.classList.contains('is-open')+', ARIA='+f.trigger.getAttribute('aria-expanded'); }
+  function settle() { return new Promise(function(resolve){setTimeout(function(){requestAnimationFrame(resolve);},35);}); }
+  function make(kind,native,persistent) {
+    var id='anchored-'+(++serial), wrapper=document.createElement('div'); wrapper.className='wb-'+kind;
+    if(kind==='popover') wrapper.setAttribute('data-wb-popover','');
+    if(persistent) wrapper.setAttribute('data-wb-popover-persistent','');
+    wrapper.innerHTML='<button type="button" class="wb-btn" data-wb-toggle="'+kind+'" data-wb-target="#'+id+'">'+(native?'Native ':'Legacy ')+kind+'</button><div id="'+id+'" class="'+(kind==='dropdown'?'wb-dropdown-menu':'wb-popover-panel')+'"'+(native?' popover="manual"':'')+'><button type="button" class="'+(kind==='dropdown'?'wb-dropdown-item':'wb-btn')+'">First action</button><button type="button" class="'+(kind==='dropdown'?'wb-dropdown-item':'wb-btn')+'">Second action</button><button type="button" data-wb-dismiss="'+kind+'">Dismiss</button></div>';
+    sandbox.appendChild(wrapper);
+    var events={opened:0,closed:0};
+    wrapper.addEventListener('wb:popover:open',function(e){if(e.target===wrapper)events.opened++;});
+    wrapper.addEventListener('wb:popover:close',function(e){if(e.target===wrapper)events.closed++;});
+    return {kind:kind,wrapper:wrapper,trigger:wrapper.querySelector('button'),panel:wrapper.lastElementChild,events:events};
+  }
+  function open(f) { if(f.kind==='dropdown') WBDropdown.open(f.panel); else WBPopover.open(f.wrapper); }
+  function close(f) { if(f.kind==='dropdown') WBDropdown.close(f.panel); else WBPopover.close(f.wrapper); }
+  function visible(f) { return f.panel.hasAttribute('popover') ? f.panel.matches(':popover-open') : f.panel.classList.contains('is-open'); }
+  function escape() { document.activeElement.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true})); }
+  function hit(el) { var r=el.getBoundingClientRect(); return el.contains(document.elementFromPoint(r.left+r.width/2,r.top+r.height/2)); }
+  async function run() {
+    document.documentElement.setAttribute('data-mode',anchoredParams.get('mode')==='dark'?'dark':'light');
+    for(var kind of ['dropdown','popover']) for(var native of [false,true]) {
+      var f=make(kind,native), name=kind+(native?' native':' legacy'), reasons=[], blocked=false;
+      f.panel.addEventListener('wb:overlay:close-request',function(e){reasons.push(e.detail.reason); if(blocked)e.preventDefault();});
+      f.trigger.focus(); open(f); await settle();
+      check(name+' opens with existing API and ARIA',visible(f)&&f.panel.classList.contains('is-open')&&f.trigger.getAttribute('aria-expanded')==='true');
+      check(name+' remains non-modal',!document.body.classList.contains('wb-overlay-lock'));
+      check(name+' actions receive pointer hits',hit(f.panel.querySelector('button')));
+      var box=f.panel.getBoundingClientRect(); check(name+' placement stays within viewport',box.left>=0&&box.top>=0&&box.right<=innerWidth+1&&box.bottom<=innerHeight+1);
+      if(native) {
+        check(name+' native top layer preserves source DOM',f.panel.parentElement===f.wrapper&&f.panel.matches(':popover-open'));
+        open(f); check(name+' repeated open is idempotent',visible(f));
+        if(kind==='popover')check(name+' repeated open emits one lifecycle event',f.events.opened===1);
+        outside.focus(); check(name+' outside page remains focusable',document.activeElement===outside);
+      }
+      blocked=true; outside.click(); check(name+' outside request is guarded',visible(f)&&reasons[reasons.length-1]==='outside');
+      f.panel.querySelector('[data-wb-dismiss]').click(); check(name+' dismiss request is guarded',visible(f)&&reasons[reasons.length-1]==='dismiss-control');
+      escape(); check(name+' Escape request is guarded',visible(f)&&reasons[reasons.length-1]==='escape');
+      blocked=false; escape(); await settle(); check(name+' Escape closes and synchronizes ARIA',!visible(f)&&f.trigger.getAttribute('aria-expanded')==='false');
+      f.trigger.click(); check(name+' trigger opens',visible(f)); f.trigger.click(); check(name+' trigger closes',!visible(f));
+      open(f); await settle();
+      f.panel.querySelector('button').click(); await settle();
+      check(name+' item behavior is preserved',kind==='dropdown'?!visible(f):visible(f)); close(f); await settle();
+      if(native) {
+        f.trigger.setAttribute('popovertarget',f.panel.id); f.trigger.click();
+        check(name+' native invoker does not double-toggle',visible(f),state(f)); f.trigger.click(); check(name+' native invoker closes once',!visible(f),state(f));
+        f.trigger.removeAttribute('popovertarget'); await settle();
+        var openedBefore=f.events.opened,closedBefore=f.events.closed;
+        f.panel.showPopover({source:f.trigger}); await settle(); check(name+' native show reconciles shared state',visible(f)&&f.trigger.getAttribute('aria-expanded')==='true'&&f.panel.classList.contains('is-open'));
+        f.panel.hidePopover(); await settle(); check(name+' native hide reconciles shared state',!visible(f)&&!f.panel.classList.contains('is-open')&&f.trigger.getAttribute('aria-expanded')==='false');
+        if(kind==='popover')check(name+' native methods emit one open and close each',f.events.opened===openedBefore+1&&f.events.closed===closedBefore+1);
+        f.panel.showPopover(); close(f); check(name+' API close handles queued native open',!visible(f)); await settle();
+        f.panel.showPopover(); f.trigger.click(); check(name+' trigger handles queued native open',!visible(f),state(f)); await settle();
+        open(f); close(f); open(f); await settle(); check(name+' rapid reopen ignores stale native hide',visible(f)&&f.trigger.getAttribute('aria-expanded')==='true'); close(f); await settle();
+        function cancelOpening(e) { if(e.newState==='open')e.preventDefault(); }
+        openedBefore=f.events.opened; closedBefore=f.events.closed;
+        f.panel.addEventListener('beforetoggle',cancelOpening); open(f);
+        check(name+' canceled native opening leaves no stale state',!visible(f)&&!f.panel.classList.contains('is-open')&&f.trigger.getAttribute('aria-expanded')==='false'&&(kind!=='popover'||!f.wrapper.classList.contains('is-open')));
+        if(kind==='popover')check(name+' canceled opening emits no false lifecycle',f.events.opened===openedBefore&&f.events.closed===closedBefore);
+        f.panel.removeEventListener('beforetoggle',cancelOpening);
+        f.wrapper.remove(); var rejected=false;
+        try { open(f); } catch(error) { rejected=error.name==='InvalidStateError'; }
+        check(name+' invalid native opening leaves no stale runtime state',rejected&&!visible(f)&&!f.panel.classList.contains('is-open')&&f.trigger.getAttribute('aria-expanded')==='false');
+        sandbox.appendChild(f.wrapper);
+      }
+      close(f); f.panel.remove(); f.wrapper.remove();
+    }
+    for(var native of [false,true]) {
+      var wide=make('dropdown',native); wide.panel.classList.add('wb-dropdown-menu--panel');
+      for(var row=0;row<40;row++){var item=document.createElement('button');item.type='button';item.className='wb-dropdown-item';item.textContent='Synthetic row '+row;wide.panel.appendChild(item);}
+      open(wide);await settle();check('wide '+native+' panel retains bounded scrolling',getComputedStyle(wide.panel).overflowY==='auto'&&wide.panel.scrollHeight>wide.panel.clientHeight);close(wide);wide.panel.remove();wide.wrapper.remove();
+    }
+    for(var nativeChild of [false,true]) {
+      var parent=make('popover',true), child=make('dropdown',nativeChild); parent.panel.appendChild(child.wrapper);
+      open(parent); open(child); await settle();
+      check('nested '+nativeChild+' retains native parent',visible(parent)&&visible(child));
+      check('nested '+nativeChild+' child is visible and interactive',hit(child.panel.querySelector('button')));
+      close(parent); await settle(); check('closing native parent cleans '+nativeChild+' child',!visible(parent)&&!visible(child)&&child.trigger.getAttribute('aria-expanded')==='false');
+      child.panel.remove(); parent.wrapper.remove();
+    }
+    var persistent=make('popover',true,true), independent=make('dropdown',false);
+    open(persistent); outside.click(); check('native persistent panel ignores outside click',visible(persistent));
+    open(independent); await settle();
+    check('native persistent panel survives an independent toggle',visible(persistent)&&visible(independent));
+    check('independent legacy panel is not owned by native popover',!persistent.panel.contains(independent.panel));
+    close(persistent); check('closing persistent panel preserves independent legacy toggle',visible(independent));
+    close(independent); persistent.wrapper.remove(); independent.panel.remove(); independent.wrapper.remove();
+    for(var nativeDialog of [false,true]) for(var kind of ['modal','drawer']) {
+      var root=document.createElement(nativeDialog?'dialog':'div'); root.className='wb-'+kind; root.setAttribute('aria-label','Anchored overlay host');
+      root.innerHTML=kind==='modal'?'<div class="wb-modal-dialog"><div class="wb-modal-body"></div></div>':'<div class="wb-drawer-body"></div>';
+      sandbox.appendChild(root); var f=make('popover',true); root.querySelector('.wb-'+kind+'-body').appendChild(f.wrapper);
+      var controller=kind==='modal'?WBModal:WBDrawer; controller.open(root,outside); await settle(); open(f); await settle();
+      f.panel.querySelector('button').focus();
+      check(kind+' '+nativeDialog+' hosts native popover in original DOM',root.contains(f.panel)&&f.panel.parentElement===f.wrapper&&visible(f));
+      check(kind+' '+nativeDialog+' native popup receives focus and hit',document.activeElement===f.panel.querySelector('button')&&hit(f.panel.querySelector('button')));
+      controller.close(root); await settle(); check(kind+' '+nativeDialog+' parent close cleans native child',!visible(f)&&!document.body.classList.contains('wb-overlay-lock'));
+      root.remove();
+    }
+    for(var nativeDialog of [false,true]) for(var kind of ['modal','drawer']) for(var anchored of ['dropdown','popover']) {
+      var root=document.createElement(nativeDialog?'dialog':'div');root.className='wb-'+kind;root.setAttribute('aria-label','External panel host');
+      root.innerHTML=kind==='modal'?'<div class="wb-modal-dialog"><div class="wb-modal-body"></div></div>':'<div class="wb-drawer-body"></div>';sandbox.appendChild(root);
+      var f=make(anchored,true);sandbox.appendChild(f.panel);root.querySelector('.wb-'+kind+'-body').appendChild(f.wrapper);
+      var controller=kind==='modal'?WBModal:WBDrawer;controller.open(root,outside);await settle();open(f);await settle();f.panel.querySelector('button').focus();
+      check('external '+anchored+' in '+kind+' '+nativeDialog+' joins focus scope',root.contains(f.panel)&&visible(f)&&document.activeElement===f.panel.querySelector('button')&&hit(f.panel.querySelector('button')));
+      close(f);check('external '+anchored+' in '+kind+' '+nativeDialog+' restores source parent',f.panel.parentElement===sandbox&&!visible(f));
+      open(f);controller.close(root);await settle();check('external '+anchored+' in '+kind+' '+nativeDialog+' parent close restores source',f.panel.parentElement===sandbox&&!visible(f)&&!document.body.classList.contains('wb-overlay-lock'));
+      f.panel.remove();root.remove();
+    }
+    var host=make('popover',true), legacyModal=document.createElement('div'); legacyModal.className='wb-modal'; legacyModal.setAttribute('role','dialog'); legacyModal.setAttribute('aria-label','Legacy child'); legacyModal.innerHTML='<div class="wb-modal-dialog"><button type="button">Legacy child action</button></div>'; sandbox.appendChild(legacyModal);
+    open(host); WBModal.open(legacyModal,host.panel.querySelector('button')); await settle();
+    check('legacy modal can appear above a native popover',host.panel.contains(legacyModal)&&hit(legacyModal.querySelector('button'))&&document.body.classList.contains('wb-overlay-lock'));
+    var scoped=make('popover',true);sandbox.appendChild(scoped.panel);legacyModal.querySelector('.wb-modal-dialog').appendChild(scoped.wrapper);open(scoped);await settle();scoped.panel.querySelector('button').focus();
+    var scopeTab=new KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true});scoped.panel.querySelector('button').dispatchEvent(scopeTab);
+    check('external native popup joins the closest legacy dialog focus scope',legacyModal.contains(scoped.panel)&&!scopeTab.defaultPrevented&&hit(scoped.panel.querySelector('button')));
+    close(scoped);scoped.panel.remove();scoped.wrapper.remove();
+    close(host); await settle(); check('native parent close cleans legacy dialog and body lock',!WBModal.getActive()&&!document.body.classList.contains('wb-overlay-lock')); host.wrapper.remove(); legacyModal.remove();
+    for(var nativeDialog of [false,true]) {
+      var menu=make('dropdown',true), dialog=document.createElement(nativeDialog?'dialog':'div');dialog.id='dropdown-dialog-'+nativeDialog;dialog.className='wb-modal';dialog.setAttribute('aria-label','Selected action dialog');dialog.innerHTML='<div class="wb-modal-dialog"><button type="button" data-wb-dismiss="modal">Close selected action</button></div>';sandbox.appendChild(dialog);
+      var action=menu.panel.querySelector('button');action.setAttribute('data-wb-toggle','modal');action.setAttribute('data-wb-target','#'+dialog.id);
+      open(menu);action.click();await settle();
+      check('native dropdown action keeps '+nativeDialog+' dialog open',!visible(menu)&&WBModal.getActive()===dialog&&dialog.classList.contains('is-open'));
+      WBModal.close(dialog);await settle();menu.wrapper.remove();dialog.remove();
+    }
+    var outer=make('popover',true), externalMenu=make('dropdown',true);sandbox.appendChild(externalMenu.panel);outer.panel.appendChild(externalMenu.wrapper);
+    var selected=document.createElement('div');selected.id='nested-selected-dialog';selected.className='wb-modal';selected.setAttribute('aria-label','Nested selected dialog');selected.innerHTML='<div class="wb-modal-dialog"><button type="button">Selected action</button></div>';sandbox.appendChild(selected);
+    var launch=externalMenu.panel.querySelector('button');launch.setAttribute('data-wb-toggle','modal');launch.setAttribute('data-wb-target','#'+selected.id);
+    open(outer);open(externalMenu);launch.click();await settle();check('external nested dropdown action retains its native ancestor scope',visible(outer)&&!visible(externalMenu)&&outer.panel.contains(selected)&&hit(selected.querySelector('button')));
+    close(outer);selected.remove();externalMenu.panel.remove();outer.wrapper.remove();
+    var auto=make('popover',true); auto.panel.popover='auto'; open(auto); await settle();
+    var peer=document.createElement('div'); peer.popover='auto'; peer.textContent='Native auto peer'; sandbox.appendChild(peer); peer.showPopover(); await settle();
+    check('browser auto-hide reconciles runtime and ARIA',!visible(auto)&&!auto.panel.classList.contains('is-open')&&auto.trigger.getAttribute('aria-expanded')==='false'); peer.hidePopover(); peer.remove(); auto.wrapper.remove();
+    for(var kind of ['dropdown','popover']) { make(kind,false); make(kind,true); }
+    outside.focus(); var failed=checks.filter(function(r){return !r.passed;});
+    document.getElementById('summary').textContent=(failed.length?'FAIL':'PASS')+': '+checks.length+' checks; '+failed.length+' failures.';
+    failed.forEach(function(r){var li=document.createElement('li');li.textContent=r.name+(r.detail?' ('+r.detail+')':'');document.getElementById('failures').appendChild(li);});
+    window.nativePopoverTestResults={passed:!failed.length,checks:checks.length,failures:failed};
+  }
+  window.addEventListener('load',function(){run().catch(function(error){document.getElementById('summary').textContent='FAIL: '+error.stack;});});
+})();
+</script>
+</body></html>

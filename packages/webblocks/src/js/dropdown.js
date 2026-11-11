@@ -1,6 +1,9 @@
 /* ============================================================
    WebBlocks UI — Dropdown (dropdown.js)
 
+   Native opt-in: add popover="manual" to the existing wb-dropdown-menu.
+   The shared manager owns native show/hide, placement and policy.
+
    Usage:
      <div class="wb-dropdown">
        <button data-wb-toggle="dropdown" data-wb-target="#myMenu">
@@ -128,7 +131,7 @@
     var menu = getMenu(trigger);
     if (!menu) return;
     var instance = ensureInstance(menu, trigger);
-    if (instance.active) {
+    if (instance.active || (instance.nativePopover && menu.matches(':popover-open'))) {
       close(menu);
     } else {
       open(trigger, menu);
@@ -140,6 +143,10 @@
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest('[data-wb-toggle="dropdown"]');
     if (trigger) {
+      // popovertarget may coexist for native invoker semantics; do not run its
+      // default action after the shared runtime has already toggled the panel.
+      var menu = getMenu(trigger);
+      if (menu && menu.hasAttribute('popover') && typeof menu.showPopover === 'function') e.preventDefault();
       toggle(trigger);
       return;
     }

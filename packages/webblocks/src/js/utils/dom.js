@@ -54,6 +54,11 @@
   }
 
   function focusContainer(container) {
+    // Native dialogs are programmatically focusable without an authored tabindex.
+    if (container.tagName === 'DIALOG') {
+      container.focus({ preventScroll: true });
+      return;
+    }
     if (!container.hasAttribute('tabindex')) {
       container.setAttribute('tabindex', '-1');
       container.addEventListener('blur', function () {

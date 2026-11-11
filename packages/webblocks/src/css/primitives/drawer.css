@@ -103,6 +103,50 @@
 .wb-drawer-lg { width: min(560px, 90vw); }
 .wb-drawer-xl { width: min(720px, 90vw); }
 
+/* Native dialogs keep the same header/body/footer and placement modifiers.
+   The open root has no transform/clipping containing block, so portaled child
+   menus can use viewport coordinates within the native modal subtree. */
+dialog.wb-drawer {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  left: auto;
+  border: 0;
+  border-left: 1px solid var(--wb-border);
+  color: var(--wb-text);
+}
+
+dialog.wb-drawer:not(.wb-drawer-top):not(.wb-drawer-bottom) {
+  height: 100vh;
+  height: 100dvh;
+}
+
+dialog.wb-drawer-left {
+  left: 0;
+  right: auto;
+  border-left: 0;
+  border-right: 1px solid var(--wb-border);
+}
+
+dialog.wb-drawer-top,
+dialog.wb-drawer-bottom {
+  left: 0;
+  right: 0;
+  border-left: 0;
+}
+
+dialog.wb-drawer-top { border-bottom: 1px solid var(--wb-border); }
+dialog.wb-drawer-bottom { border-top: 1px solid var(--wb-border); }
+dialog.wb-drawer:not([open]) { display: none; }
+dialog.wb-drawer[open] {
+  display: flex;
+  visibility: visible;
+  transform: none;
+  transition: none;
+  overflow: visible;
+}
+
 /* ── Inner sections ───────────────────────────────────────── */
 
 .wb-drawer-header {

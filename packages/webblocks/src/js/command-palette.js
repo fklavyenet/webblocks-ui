@@ -36,6 +36,9 @@
    Default keyboard shortcut: Cmd/Ctrl + K
    Note: custom shortcut override is not wired in the shipped implementation.
 
+   Native opt-in: use dialog.wb-cmd-backdrop with the same inner markup.
+   Open it through the existing trigger or API.
+
    Items can be static HTML .wb-cmd-item elements, or provided via a
    custom search function assigned to WBCommandPalette.onSearch(query, callback).
    ============================================================ */
@@ -129,6 +132,7 @@
 
     // Focus the input
     requestAnimationFrame(function () {
+      if (instance.nativeDialog && (!instance.active || !palette.open)) return;
       var input = palette.querySelector('.wb-cmd-input');
       if (input) {
         input.value = '';
@@ -226,17 +230,32 @@
     // Backdrop click to close
     var backdrop = e.target.closest('.wb-cmd-backdrop');
     if (backdrop && e.target === backdrop) {
-      requestUserClose(backdrop, 'outside', e);
+      var instance = instances.get(backdrop);
+      // The shared manager handles native backdrops, including close guards.
+      if (instance && !instance.nativeDialog) requestUserClose(backdrop, 'outside', e);
       return;
     }
 
     // Item click — close after selection
     var item = e.target.closest('.wb-cmd-item');
-    if (item && getActivePalette()) {
+    var itemPalette = item && item.closest('.wb-cmd-backdrop');
+    if (itemPalette && itemPalette === getActivePalette()) {
       // Allow item click to propagate first, then close
-      setTimeout(function () { close(getActivePalette()); }, 80);
+      setTimeout(function () {
+        if (itemPalette !== getActivePalette()) return;
+        // A newly opened child dialog still needs its native parent.
+        if (instances.get(itemPalette).nativeDialog && !isTopInteractive(itemPalette)) return;
+        close(itemPalette);
+      }, 80);
     }
   });
+
+  function isTopInteractive(palette) {
+    var top = WBDom.overlay.getTopmost(function (instance) {
+      return instance.interactive !== false;
+    });
+    return top && top.element === palette;
+  }
 
   document.addEventListener('keydown', function (e) {
     // Global shortcut: Cmd/Ctrl + K (or custom)
@@ -255,7 +274,7 @@
     }
 
     var activePalette = getActivePalette();
-    if (!activePalette) return;
+    if (!activePalette || !isTopInteractive(activePalette)) return;
 
     switch (e.key) {
       case 'ArrowDown':

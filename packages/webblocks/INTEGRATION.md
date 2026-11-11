@@ -754,8 +754,13 @@ Examples:
 
 ### Tables, Filters, Toolbars, Actions
 
+Use `<search class="wb-filter-bar">` for a standalone search or filter region.
+Give it an accessible name when the page has more than one search region.
+For filters that submit, use a `<form class="wb-filter-bar">` with its action,
+method, and named controls.
+
 ```html
-<div class="wb-filter-bar">
+<search class="wb-filter-bar" aria-label="Filter users">
   <div class="wb-filter-bar-start">
     <div class="wb-search-bar wb-search-bar-full">
       <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search" aria-hidden="true"></i></span>
@@ -769,7 +774,7 @@ Examples:
   <div class="wb-filter-bar-end">
     <span class="wb-filter-results">24 results</span>
   </div>
-</div>
+</search>
 
 <div class="wb-table-wrap">
   <div class="wb-toolbar wb-toolbar-inset">
@@ -1000,7 +1005,72 @@ Notes:
 - `wb-dropdown-menu-end` is the older alternative alias on the menu itself
 - if `data-wb-target` is omitted, the JS looks for the first `.wb-dropdown-menu` in the same `.wb-dropdown`
 - right alignment can use `wb-dropdown-end` on the wrapper or `wb-dropdown-menu-end` on the menu
-- with JS enabled, the active visible dropdown menu node is rendered under the shared `#wb-overlay-root` anchored layer so it does not clip inside cards, shells, or other local containers
+- with JS enabled, the active visible dropdown menu node is rendered under the shared runtime’s anchored layer so it does not clip inside cards, shells, or other local containers; native dropdown panels stay in source DOM; legacy panels within a managed native surface use its child layer
+
+### Native Popover API for Dropdown and Popover
+
+Opt in by adding `popover="manual"` to the existing **panel**, keeping its
+wrapper, classes, placement modifiers and data hooks:
+
+```html
+<div class="wb-dropdown">
+  <button type="button" class="wb-btn" data-wb-toggle="dropdown" data-wb-target="#native-actions">Actions</button>
+  <div class="wb-dropdown-menu" id="native-actions" popover="manual">
+    <button type="button" class="wb-dropdown-item">Edit</button>
+  </div>
+</div>
+
+<div class="wb-popover" data-wb-popover>
+  <button type="button" class="wb-btn" data-wb-toggle="popover" data-wb-target="#native-info">Info</button>
+  <div class="wb-popover-panel" id="native-info" popover="manual">
+    <div class="wb-popover-body">Content</div>
+    <button type="button" data-wb-dismiss="popover">Close</button>
+  </div>
+</div>
+```
+
+- Declare the popover attribute before component initialization. Existing markup
+  without `popover` keeps the legacy rendering path. Native
+  panels normally retain their source DOM; `showPopover({ source: trigger })` promotes
+  them to the browser top layer, escaping ancestor clipping. They remain
+  **non-modal**, without a page backdrop, body lock or focus trap.
+- `WBDropdown.open/close/closeAll` and `WBPopover.open/close/closeAll/update`
+  retain their existing signatures. UI still owns placement, flipping, viewport
+  bounds, resize/scroll updates, explicit ARIA state, group policies and lifecycle
+  events. The browser owns native visibility; UI mirrors it into `is-open` and
+  `aria-expanded`. Do not author `is-open` or install a second click handler.
+- `popover="manual"` is the managed default: outside click, Escape, dismiss,
+  group exclusivity and `data-wb-popover-persistent` retain existing behavior and
+  close-request guards. Manual native state does not mean persistent WebBlocks
+  state; opt in to persistence with the existing wrapper attribute.
+- A trigger may also carry a matching `popovertarget`; the runtime prevents its
+  default activation from double-toggling. It is optional with the existing hooks.
+  Continue using explicit button types and suitable links/buttons inside panels;
+  Popover API does not turn content into an ARIA menu widget.
+- Native `showPopover`/`hidePopover`/`togglePopover` changes are reconciled through
+  the asynchronous, potentially coalesced native `toggle` event after the panel
+  has been initialized. Use WB APIs/hooks for initialization and placement.
+  Rapid close/reopen does not let stale events close the current panel. Canceled
+  native opening leaves no false ARIA, class state or lifecycle event.
+- `popover="auto"` is also reconciled when the browser hides it, but browser
+  light-dismiss/auto-hide cannot be canceled with a WebBlocks close-request
+  guard: native closing `beforetoggle` is not cancelable. Use `manual` for
+  guarded or persistent panels. Do not combine persistent policy with auto state.
+- Native panels normally stay in source DOM. An externally targeted panel is
+  temporarily hosted inside its invoker’s active native/focus scope when needed,
+  then restored to its source parent on close, cancellation or failure.
+  Source DOM keeps ordinary native popovers inside their containing modal/drawer. Nested
+  native or legacy child overlays remain above a native panel; closing a parent
+  cleans its managed children. Independent persistent panels retain their own
+  ownership and state.
+- Native panel roots omit the old translate animation to avoid creating a
+  containing block for legacy child layers. Existing legacy animations remain.
+  Dropdown panel sizing/scrolling and popover body/arrow/placement modifiers
+  remain available. Native support requires the browser Popover API.
+
+See [before/after examples](../../docs/native-overlays.html) for dialog, drawer,
+popover and dropdown, and [source/dist browser checks](tests/native-popover.html)
+(`?source=1`, optionally `&mode=dark`).
 
 ### Overlays, Modals, and Confirmation Dialogs
 
@@ -1050,6 +1120,60 @@ Canonical modal example:
   </div>
 </div>
 ```
+
+Native modal root (opt-in; existing div markup remains supported):
+
+```html
+<button type="button" class="wb-btn" data-wb-toggle="modal" data-wb-target="#native-modal">Open modal</button>
+<dialog class="wb-modal" id="native-modal" aria-labelledby="native-modal-title">
+  <div class="wb-modal-dialog">
+    <div class="wb-modal-header">
+      <h2 class="wb-modal-title" id="native-modal-title">Settings</h2>
+      <button type="button" class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close">×</button>
+    </div>
+    <div class="wb-modal-body">Content</div>
+    <div class="wb-modal-footer"><button type="button" class="wb-btn" data-wb-dismiss="modal">Cancel</button></div>
+  </div>
+</dialog>
+```
+
+- Only the root changes to `dialog.wb-modal`; keep `wb-modal-dialog` and the
+  existing header/body/footer, size modifiers, trigger/dismiss hooks and
+  `WBModal.open/close/getActive` API. Native drawers similarly use
+  `dialog.wb-drawer` with the existing direct header/body/footer and placements.
+- Open through the existing WebBlocks hooks/API with WebBlocks JavaScript loaded.
+  The shared manager calls native `showModal()` and `close()`; do not initialize
+  these managed dialogs with `open`, `is-open`, direct `show()`/`showModal()`,
+  `popover`, or a second dialog controller. Native `open` and the browser top
+  layer then follow the managed lifecycle. Browser `showModal` support is required.
+- Supply an accessible name via `aria-labelledby` or `aria-label`. `dialog`
+  already supplies dialog semantics and `showModal()` supplies modality; no
+  duplicate role or `aria-modal` is needed. Do not add tabindex to the dialog
+  root. Native autofocus and inertness are retained, alongside the shared Tab
+  policy for nested native/legacy overlays and dynamic disclosure content.
+- Native `::backdrop` replaces the runtime's separate backdrop for that instance.
+  Native-owned child layers keep menus, popovers, tooltips, feedback and legacy
+  child overlays inside the active dialog subtree, above its backdrop. Hosts
+  continue using shipped primitives and one shared `wb-overlay-root`; they must
+  not create or access these internal native layers.
+- Escape, outside clicks and shipped close/dismiss controls retain the cancelable
+  `wb:overlay:close-request` guard. Native `cancel`/`requestClose()` also use the
+  escape guard. Valid `method="dialog"` or `formmethod="dialog"` submissions use
+  the dismiss guard and retain browser validation and `returnValue`.
+- Native `dialog.close(value)` is a programmatic close and bypasses the guard,
+  just like `WBModal.close` / `WBDrawer.close`. Its native `close` event cleans
+  the shared state asynchronously and emits the existing component close event
+  once. API close remains immediate; stale queued close events do not close a
+  newly reopened dialog. Closing a native parent also closes its managed children.
+- Native drawer roots use immediate visibility without a root slide transform
+  so viewport-positioned child menus remain unclipped. Existing div drawers keep
+  their original slide transitions. The native root otherwise retains the same
+  placement and size classes; body scrolling remains on `wb-drawer-body`.
+
+See [native and legacy examples](../../docs/native-dialog.html),
+[dialog lifecycle checks](tests/native-dialog.html) and the existing
+[focus regression checks](tests/overlay-focus.html). Repeat both browser fixtures
+with `?source=1` for standalone source modules and perform their live keyboard checks.
 
 Sizes go on the `.wb-modal` wrapper:
 
@@ -1879,6 +2003,19 @@ Canonical rules:
 
 The first palette marked with `data-wb-cmd-default` is used by `Cmd/Ctrl + K`.
 
+For native modality, replace the outer div with
+`<dialog class="wb-cmd-backdrop" id="site-cmd" data-wb-cmd-default aria-label="Command palette">`
+and close it with `</dialog>`. Keep the existing trigger, inner markup, and
+`WBCommandPalette.open/close/getActive/onSearch` API. The browser supplies the
+dialog role and modal state.
+
+Open through the existing data hook, shortcut, or API. The shared overlay
+manager calls `showModal()`, keeps the palette's dark backdrop, and restores
+focus when it closes. Escape and backdrop clicks still use
+`wb:overlay:close-request`. The legacy div root remains supported.
+
+See [legacy and native palette checks](tests/command-palette.html).
+
 ### Nav Groups and Menus
 
 ```html
@@ -1900,6 +2037,33 @@ The first palette marked with `data-wb-cmd-default` is used by `Cmd/Ctrl + K`.
   <button class="wb-menu-item wb-menu-item-danger">Delete</button>
 </nav>
 ```
+
+Opt in to native disclosure with `details.wb-nav-group` and a first-child
+`summary.wb-nav-group-toggle`. Keep the item wrapper and links.
+
+```html
+<details class="wb-nav-group" data-wb-nav-group open>
+  <summary class="wb-nav-group-toggle">
+    <span class="wb-nav-group-label">Settings</span>
+    <span class="wb-nav-group-arrow" aria-hidden="true"></span>
+  </summary>
+  <div class="wb-nav-group-items">
+    <a class="wb-nav-group-item" href="/profile">Profile</a>
+    <a class="wb-nav-group-item" href="/security">Security</a>
+  </div>
+</details>
+```
+
+- Use `open` for native state, including the initial state without JavaScript.
+  The summary supplies its own accessibility semantics.
+- With WebBlocks loaded, `data-wb-nav-group-open` and an active child still
+  initialize a group as open. `WBNavGroup.open(group)`, `close(group)`,
+  `toggle(group)`, and `init()` work with both markup forms.
+- `data-wb-nav-group-accordion` works across sibling groups with either markup.
+  For browser-only exclusivity among native groups, use a shared, group-unique
+  `name` on their details elements.
+- Native `wb:navgroup:open` and `wb:navgroup:close` follow the browser's
+  asynchronous, coalesced `toggle` event. The legacy events remain synchronous.
 
 ### Progress Bar
 

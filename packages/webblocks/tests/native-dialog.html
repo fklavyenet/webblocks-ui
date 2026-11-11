@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Native and legacy modal/drawer checks — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <script>
+    var nativeParams = new URLSearchParams(location.search);
+    document.documentElement.setAttribute('data-mode', nativeParams.get('mode') === 'dark' ? 'dark' : 'light');
+    var nativeModules = ['utils/dom', 'utils/overlay', 'modal', 'drawer', 'dropdown', 'popover', 'tooltip', 'toast'];
+    var nativePaths = nativeParams.has('source') ? nativeModules.map(function (name) { return '../src/js/' + name + '.js'; }) : ['../dist/webblocks-ui.js'];
+    var nativeRevision = Date.now();
+    nativePaths.forEach(function (path) { var script = document.createElement('script'); script.src = path + '?test=' + nativeRevision; script.async = false; document.head.appendChild(script); });
+  </script>
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Native and legacy modal/drawer</h1>
+  <p id="summary" role="status">Waiting for checks.</p><ol id="failures" class="wb-marker-list"></ol>
+  <button class="wb-btn" id="opener">Outside focus target</button>
+  <p>Manual checks: open each native example, Tab and Shift+Tab through its controls, open its menu, then press Escape twice. Try a legacy overlay from the native overlay. Focus must return to its opener.</p>
+  <div class="wb-action-group" id="manual-actions"></div><div id="sandbox"></div>
+</main>
+<script>
+(function () {
+  'use strict';
+  var checks = [], sandbox = document.getElementById('sandbox'), opener = document.getElementById('opener');
+  function check(name, valid) { checks.push({ name: name, passed: Boolean(valid) }); }
+  function settle() { return new Promise(function (resolve) { setTimeout(function () { requestAnimationFrame(resolve); }, 35); }); }
+  function api(kind) { return kind === 'modal' ? WBModal : WBDrawer; }
+  function make(kind, native, id, placement) {
+    var root = document.createElement(native ? 'dialog' : 'div');
+    root.className = 'wb-' + kind + (placement ? ' wb-drawer-' + placement : ''); root.id = id;
+    root.setAttribute('aria-label', id);
+    if (!native) { root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'true'); }
+    var content = '<div class="wb-' + kind + '-header"><h2 class="wb-' + kind + '-title">' + id + '</h2><button type="button" class="wb-' + kind + '-close" data-wb-dismiss="' + kind + '" aria-label="Close ' + id + '">×</button></div><div class="wb-' + kind + '-body wb-stack wb-gap-4"><details class="wb-collapse-panel"><summary class="wb-collapse-trigger">Native disclosure</summary><div class="wb-collapse-body"><a href="#content">Disclosed link</a></div></details><div class="wb-dropdown"><button type="button" class="wb-btn" data-wb-toggle="dropdown">Open menu</button><div class="wb-dropdown-menu"><button class="wb-dropdown-item" type="button">Menu action</button><button class="wb-dropdown-item" type="button">Second menu action</button></div></div><div class="wb-popover"><button type="button" class="wb-btn" data-wb-toggle="popover">Open popover</button><div class="wb-popover-panel"><button type="button">Popover action</button><button type="button">Second popover action</button></div></div><form method="dialog"><button type="submit" value="accepted">Native form close</button></form></div><div class="wb-' + kind + '-footer"><button type="button" class="wb-btn" data-wb-dismiss="' + kind + '">Dismiss ' + id + '</button></div>';
+    root.innerHTML = kind === 'modal' ? '<div class="wb-modal-dialog">' + content + '</div>' : content;
+    sandbox.appendChild(root); return root;
+  }
+  function escape() { document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key:'Escape', bubbles:true, cancelable:true })); }
+  function hit(element) { var rect = element.getBoundingClientRect(); return element.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2)); }
+  async function run() {
+    // The dist theme runtime initializes before load; apply the fixture's mode
+    // afterwards so source and dist exercise the same requested appearance.
+    document.documentElement.setAttribute('data-mode', nativeParams.get('mode') === 'dark' ? 'dark' : 'light');
+    var firstNative = make('modal', true, 'native-first-feedback');
+    WBModal.open(firstNative, opener);
+    var firstToast = WBToast.show('First native feedback', {duration:0});
+    WBModal.close(firstNative); firstToast.remove();
+    var outsideToast = WBToast.show('Outside feedback', {duration:0});
+    check('first native toast cache returns to a global layer after close', !firstNative.contains(outsideToast) && outsideToast.closest('.wb-overlay-layer').parentElement.id === 'wb-overlay-root');
+    outsideToast.remove(); firstNative.remove();
+    for (var kind of ['modal', 'drawer']) {
+      for (var native of [false, true]) {
+        var name = kind + (native ? ' native' : ' legacy');
+        var root = make(kind, native, kind + '-' + (native ? 'native' : 'legacy'));
+        var controller = api(kind), opened = 0, closed = 0, requests = [], blocked = false;
+        root.addEventListener('wb:' + kind + ':open', function (event) { if (event.target === root) opened++; });
+        root.addEventListener('wb:' + kind + ':close', function (event) { if (event.target === root) closed++; });
+        root.addEventListener('wb:overlay:close-request', function (event) { requests.push(event.detail.reason); if (blocked) event.preventDefault(); });
+        opener.focus(); controller.open(root, opener); await settle();
+        check(name + ' API and lifecycle active', controller.getActive() === root && opened === 1 && root.classList.contains('is-open'));
+        check(name + ' body lock', document.body.classList.contains('wb-overlay-lock'));
+        check(name + ' initial focus is inside', root.contains(document.activeElement));
+        if (native) {
+          check(name + ' browser top layer is modal', root.open && root.matches(':modal'));
+          check(name + ' no duplicate runtime backdrop', !document.querySelector('.wb-overlay-backdrop:not([hidden])'));
+          opener.focus(); check(name + ' native inertness blocks outside focus', root.contains(document.activeElement));
+          controller.open(root, opener); check(name + ' repeated open is idempotent', opened === 1);
+        }
+        blocked = true; root.querySelector('[data-wb-dismiss]').click();
+        check(name + ' close control can be guarded', root.classList.contains('is-open') && requests[requests.length - 1] === 'close-control');
+        escape(); check(name + ' Escape can be guarded', root.classList.contains('is-open') && requests[requests.length - 1] === 'escape');
+        blocked = false; escape(); await settle();
+        check(name + ' Escape closes once and restores focus', closed === 1 && controller.getActive() !== root && document.activeElement === opener);
+        check(name + ' lock cleared', !document.body.classList.contains('wb-overlay-lock'));
+        if (native) check(name + ' native state cleared', !root.open && !root.matches(':modal'));
+        controller.open(root, opener); await settle();
+        var tooltipTrigger = root.querySelector('[data-wb-toggle="dropdown"]');
+        tooltipTrigger.setAttribute('data-wb-tooltip', 'Synthetic tooltip');
+        WBTooltip.show(tooltipTrigger); await settle();
+        var tooltip = document.querySelector('.wb-tooltip:not([hidden])');
+        check(name + ' tooltip is visible in the correct host', !!tooltip && getComputedStyle(tooltip).visibility !== 'hidden' && (!native || root.contains(tooltip)));
+        WBTooltip.hideAll(); tooltipTrigger.removeAttribute('data-wb-tooltip');
+        var toast = WBToast.show('Synthetic feedback', {type:'info', duration:0});
+        check(name + ' toast reuses the current visible layer', getComputedStyle(toast).display !== 'none' && (!native || root.contains(toast)));
+        toast.remove();
+        root.querySelector('.wb-' + kind + '-footer button').click(); await settle();
+        check(name + ' dismiss control closes', closed === 2 && requests[requests.length - 1] === 'dismiss-control');
+        controller.open(root, opener); await settle();
+        if (native || kind === 'modal') root.dispatchEvent(new MouseEvent('click', {bubbles:true, clientX:-20, clientY:-20}));
+        else document.querySelector('.wb-overlay-backdrop:not([hidden])').click();
+        await settle(); check(name + ' outside close uses guard contract', closed === 3 && requests[requests.length - 1] === 'outside');
+        if (native) {
+          controller.open(root, opener); await settle();
+          root.close('saved'); await settle();
+          check(name + ' native close synchronizes lifecycle', closed === 4 && !root.classList.contains('is-open') && controller.getActive() !== root && root.returnValue === 'saved');
+          controller.open(root, opener); await settle();
+          blocked = true; root.querySelector('form').requestSubmit(root.querySelector('form button')); await settle();
+          check(name + ' method dialog respects close guard', root.open && root.matches(':modal'));
+          blocked = false; root.querySelector('form').requestSubmit(root.querySelector('form button')); await settle();
+          check(name + ' method dialog synchronizes returnValue and lifecycle', !root.open && closed === 5 && root.returnValue === 'accepted');
+          var form = root.querySelector('form'), submitter = form.querySelector('button');
+          form.method = 'get'; submitter.setAttribute('formmethod', 'dialog');
+          controller.open(root, opener); await settle(); form.requestSubmit(submitter); await settle();
+          check(name + ' formmethod override uses native close', !root.open && root.returnValue === 'accepted');
+          form.method = 'dialog'; submitter.removeAttribute('formmethod');
+          if (typeof root.requestClose === 'function') {
+            controller.open(root, opener); blocked = true; root.requestClose('denied'); await settle();
+            check(name + ' native cancel guard keeps dialog modal', root.open && requests[requests.length - 1] === 'escape');
+            blocked = false; root.requestClose('requested'); await settle();
+            check(name + ' native requestClose retains returnValue', !root.open && root.returnValue === 'requested');
+          }
+          controller.open(root, opener); controller.close(root); controller.open(root, opener); await settle();
+          check(name + ' queued native close does not close reopened dialog', root.open && controller.getActive() === root);
+          // Top-layer menus must be visible, focusable and above the native root.
+          for (var anchored of ['dropdown', 'popover']) {
+            var trigger = root.querySelector('[data-wb-toggle="' + anchored + '"]');
+            trigger.click(); await settle();
+            var panel = root.querySelector(anchored === 'dropdown' ? '.wb-dropdown-menu' : '.wb-popover-panel');
+            check(name + ' ' + anchored + ' stays in native subtree', !!panel && panel.classList.contains('is-open') && root.contains(panel));
+            if (panel) {
+              var action = panel.querySelector('button'); action.focus();
+              check(name + ' ' + anchored + ' receives focus and pointer hit', document.activeElement === action && hit(action));
+              var next = new KeyboardEvent('keydown', {key:'Tab', bubbles:true, cancelable:true});
+              action.dispatchEvent(next);
+              check(name + ' Tab can proceed between child menu actions', !next.defaultPrevented);
+            }
+            escape(); await settle();
+            check(name + ' first Escape closes only ' + anchored, root.open && panel && !panel.classList.contains('is-open'));
+          }
+          // A legacy overlay opened inside a native overlay remains interactive.
+          var child = make(kind === 'modal' ? 'drawer' : 'modal', false, name.replace(/ /g, '-') + '-legacy-child');
+          var childApi = kind === 'modal' ? WBDrawer : WBModal;
+          childApi.open(child, root.querySelector('button')); await settle();
+          check(name + ' legacy child is in native modal subtree', root.contains(child) && child.contains(document.activeElement) && hit(child.querySelector('button')));
+          childApi.close(child); await settle(); check(name + ' legacy child close restores native parent', root.open && root.contains(document.activeElement));
+          childApi.open(child, root.querySelector('button')); controller.close(root); await settle();
+          check(name + ' parent close cleans nested legacy state and body lock', childApi.getActive() !== child && !child.classList.contains('is-open') && !document.body.classList.contains('wb-overlay-lock'));
+          child.remove();
+        }
+        root.remove();
+      }
+    }
+    // A native dialog may also be opened above a legacy parent.
+    var parent = make('modal', false, 'legacy-parent'), child = make('drawer', true, 'native-child');
+    WBModal.open(parent, opener); WBDrawer.open(child, parent.querySelector('button')); await settle();
+    check('native child above legacy parent uses top layer', child.matches(':modal') && child.contains(document.activeElement));
+    WBDrawer.close(child); await settle(); check('closing native child reactivates legacy parent', WBModal.getActive() === parent && parent.contains(document.activeElement));
+    WBModal.close(parent); parent.remove(); child.remove();
+    parent = make('modal', true, 'native-parent'); child = make('drawer', true, 'nested-native-child');
+    WBModal.open(parent, opener); await settle(); WBDrawer.open(child, parent.querySelector('button')); await settle();
+    check('nested native dialogs both retain browser modal state', parent.matches(':modal') && child.matches(':modal') && child.contains(document.activeElement));
+    WBModal.close(parent); await settle();
+    check('native parent close cleans nested native dialog and focus', !parent.open && !child.open && !WBDrawer.getActive() && document.activeElement === opener && !document.body.classList.contains('wb-overlay-lock'));
+    parent.remove(); child.remove();
+    var empty = document.createElement('dialog'); empty.className = 'wb-drawer'; sandbox.appendChild(empty);
+    WBDrawer.open(empty, opener); await settle();
+    empty.dispatchEvent(new KeyboardEvent('keydown', {key:'Tab', bubbles:true, cancelable:true}));
+    check('empty native drawer is focusable without tabindex', document.activeElement === empty && !empty.hasAttribute('tabindex'));
+    WBDrawer.close(empty); empty.remove();
+    for (var placement of ['right', 'left', 'top', 'bottom']) {
+      var drawer = make('drawer', true, 'placement-' + placement, placement);
+      WBDrawer.open(drawer, opener); await settle(); var rect = drawer.getBoundingClientRect();
+      check('native ' + placement + ' is inside viewport', rect.left >= -1 && rect.top >= -1 && rect.right <= innerWidth + 1 && rect.bottom <= innerHeight + 1);
+      check('native ' + placement + ' stays at its edge', placement === 'right' ? Math.abs(rect.right - innerWidth) < 1 : placement === 'left' ? Math.abs(rect.left) < 1 : placement === 'top' ? Math.abs(rect.top) < 1 : Math.abs(rect.bottom - innerHeight) < 1);
+      WBDrawer.close(drawer); drawer.remove();
+    }
+    for (var kind of ['modal', 'drawer']) {
+      var live = make(kind, true, 'manual-native-' + kind);
+      var button = document.createElement('button'); button.className = 'wb-btn'; button.textContent = 'Open native ' + kind;
+      button.setAttribute('data-wb-toggle', kind); button.setAttribute('data-wb-target', '#' + live.id); document.getElementById('manual-actions').appendChild(button);
+    }
+    opener.focus();
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (failed.length ? 'FAIL' : 'PASS') + ': ' + checks.length + ' checks; ' + failed.length + ' failures.';
+    failed.forEach(function (result) { var li = document.createElement('li'); li.textContent = result.name; document.getElementById('failures').appendChild(li); });
+    window.nativeDialogTestResults = {passed: !failed.length, checks: checks.length, failures: failed};
+  }
+  window.addEventListener('load', function () { run().catch(function (error) { document.getElementById('summary').textContent = 'FAIL: ' + error.stack; }); });
+})();
+</script>
+</body></html>

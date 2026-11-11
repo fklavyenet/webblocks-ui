@@ -6,6 +6,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.35.0] — 2026-11-11
+
+### Added
+- Support opt-in native dialog roots for the command palette with the existing markup classes, API, shortcut, and guarded dismissal.
+- Support opt-in native details/summary navigation groups with script-free disclosure, mixed sibling groups, and the existing WBNavGroup API.
+- Add opt-in native Popover API rendering for existing dropdown/popover panels, preserving APIs, placement, manual-state policies, persistent panels and nested native/legacy overlays. Reconcile native toggles and canceled opening, prevent native invoker double activation, and add live before/after comparisons.
+- Add opt-in native dialog roots for modal and drawer using the existing anatomy, APIs, data hooks and lifecycle events. Coordinate browser modality, native backdrops, return values, cancel/dialog-form guards and mixed native/legacy child overlays in the shared manager.
+- Add localized native dialog examples and source/dist lifecycle, nesting, placement and interactive-layer regression checks.
+
+### Fixed
+- Keep menus, popovers, tooltips and cached toast containers inside the active native dialog subtree, and restore focus inside an active legacy parent after a native child closes.
+
 ## [2.34.1] — 2026-11-11
 
 ### Fixed

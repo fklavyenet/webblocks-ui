@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Native overlays: before and after — WebBlocks UI</title><link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css"><script src="../packages/webblocks/dist/webblocks-ui.js" defer></script></head>
+<body><main class="wb-container wb-container-lg wb-stack wb-gap-6 wb-py-6"><header><a href="primitives.html">Primitives</a><h1>Native overlays: before and after</h1><p>The visual design and public APIs stay the same. Compare the HTML change and open each live example.</p></header><nav class="wb-cluster" aria-label="Components"><a href="#modal">modal</a><a href="#drawer">drawer</a><a href="#popover">popover</a><a href="#dropdown">dropdown</a></nav><p>Native panels use popover="manual" so WebBlocks retains outside click, Escape, close guards and persistence policies. Positioning still belongs to WebBlocks.</p><section class="wb-card" id="modal"><div class="wb-card-header"><h2 class="wb-card-title">modal</h2></div><div class="wb-card-body wb-grid wb-grid-2 wb-gap-6"><section class="wb-stack wb-gap-3 wb-min-w-0" aria-labelledby="compare-modal-before-heading"><h3 id="compare-modal-before-heading">Before — legacy</h3><p>Shared class-based rendering</p><button type="button" class="wb-btn wb-btn-secondary" data-wb-toggle="modal" data-wb-target="#compare-modal-before">modal · Before — legacy · Open</button><pre><code>&lt;button type=&quot;button&quot; class=&quot;wb-btn wb-btn-secondary&quot;
+    data-wb-toggle=&quot;modal&quot;
+    data-wb-target=&quot;#compare-modal-before&quot;&gt;modal · Before — legacy · Open&lt;/button&gt;
+&lt;div class=&quot;wb-modal&quot; id=&quot;compare-modal-before&quot;
+    aria-labelledby=&quot;compare-modal-before-title&quot;
+    role=&quot;dialog&quot;
+    aria-modal=&quot;true&quot;&gt;
+&lt;div class=&quot;wb-modal-dialog&quot;&gt;
+&lt;div class=&quot;wb-modal-header&quot;&gt;
+  &lt;h2 class=&quot;wb-modal-title&quot; id=&quot;compare-modal-before-title&quot;&gt;modal · Before — legacy&lt;/h2&gt;
+  &lt;button type=&quot;button&quot; class=&quot;wb-modal-close&quot; data-wb-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;×&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;wb-modal-body&quot;&gt;Same content, same WebBlocks classes.&lt;/div&gt;
+&lt;div class=&quot;wb-modal-footer&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-btn&quot; data-wb-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre></section><section class="wb-stack wb-gap-3 wb-min-w-0" aria-labelledby="compare-modal-after-heading"><h3 id="compare-modal-after-heading">After — native</h3><p>Native showModal() and ::backdrop</p><button type="button" class="wb-btn wb-btn-secondary" data-wb-toggle="modal" data-wb-target="#compare-modal-after">modal · After — native · Open</button><pre><code>&lt;button type=&quot;button&quot; class=&quot;wb-btn wb-btn-secondary&quot;
+    data-wb-toggle=&quot;modal&quot;
+    data-wb-target=&quot;#compare-modal-after&quot;&gt;modal · After — native · Open&lt;/button&gt;
+&lt;dialog class=&quot;wb-modal&quot; id=&quot;compare-modal-after&quot;
+    aria-labelledby=&quot;compare-modal-after-title&quot;&gt;
+&lt;div class=&quot;wb-modal-dialog&quot;&gt;
+&lt;div class=&quot;wb-modal-header&quot;&gt;
+  &lt;h2 class=&quot;wb-modal-title&quot; id=&quot;compare-modal-after-title&quot;&gt;modal · After — native&lt;/h2&gt;
+  &lt;button type=&quot;button&quot; class=&quot;wb-modal-close&quot; data-wb-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;×&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;wb-modal-body&quot;&gt;Same content, same WebBlocks classes.&lt;/div&gt;
+&lt;div class=&quot;wb-modal-footer&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-btn&quot; data-wb-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dialog&gt;</code></pre></section></div></section><section class="wb-card" id="drawer"><div class="wb-card-header"><h2 class="wb-card-title">drawer</h2></div><div class="wb-card-body wb-grid wb-grid-2 wb-gap-6"><section class="wb-stack wb-gap-3 wb-min-w-0" aria-labelledby="compare-drawer-before-heading"><h3 id="compare-drawer-before-heading">Before — legacy</h3><p>Shared class-based rendering</p><button type="button" class="wb-btn wb-btn-secondary" data-wb-toggle="drawer" data-wb-target="#compare-drawer-before">drawer · Before — legacy · Open</button><pre><code>&lt;button type=&quot;button&quot; class=&quot;wb-btn wb-btn-secondary&quot;
+    data-wb-toggle=&quot;drawer&quot;
+    data-wb-target=&quot;#compare-drawer-before&quot;&gt;drawer · Before — legacy · Open&lt;/button&gt;
+&lt;div class=&quot;wb-drawer&quot; id=&quot;compare-drawer-before&quot;
+    aria-labelledby=&quot;compare-drawer-before-title&quot;
+    role=&quot;dialog&quot;
+    aria-modal=&quot;true&quot;&gt;
+&lt;div class=&quot;wb-drawer-header&quot;&gt;
+  &lt;h2 class=&quot;wb-drawer-title&quot; id=&quot;compare-drawer-before-title&quot;&gt;drawer · Before — legacy&lt;/h2&gt;
+  &lt;button type=&quot;button&quot; class=&quot;wb-drawer-close&quot; data-wb-dismiss=&quot;drawer&quot; aria-label=&quot;Close&quot;&gt;×&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;wb-drawer-body&quot;&gt;Same content, same WebBlocks classes.&lt;/div&gt;
+&lt;div class=&quot;wb-drawer-footer&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-btn&quot; data-wb-dismiss=&quot;drawer&quot;&gt;Close&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></section><section class="wb-stack wb-gap-3 wb-min-w-0" aria-labelledby="compare-drawer-after-heading"><h3 id="compare-drawer-after-heading">After — native</h3><p>Native showModal() and ::backdrop</p><button type="button" class="wb-btn wb-btn-secondary" data-wb-toggle="drawer" data-wb-target="#compare-drawer-after">drawer · After — native · Open</button><pre><code>&lt;button type=&quot;button&quot; class=&quot;wb-btn wb-btn-secondary&quot;
+    data-wb-toggle=&quot;drawer&quot;
+    data-wb-target=&quot;#compare-drawer-after&quot;&gt;drawer · After — native · Open&lt;/button&gt;
+&lt;dialog class=&quot;wb-drawer&quot; id=&quot;compare-drawer-after&quot;
+    aria-labelledby=&quot;compare-drawer-after-title&quot;&gt;
+&lt;div class=&quot;wb-drawer-header&quot;&gt;
+  &lt;h2 class=&quot;wb-drawer-title&quot; id=&quot;compare-drawer-after-title&quot;&gt;drawer · After — native&lt;/h2&gt;
+  &lt;button type=&quot;button&quot; class=&quot;wb-drawer-close&quot; data-wb-dismiss=&quot;drawer&quot; aria-label=&quot;Close&quot;&gt;×&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;wb-drawer-body&quot;&gt;Same content, same WebBlocks classes.&lt;/div&gt;
+&lt;div class=&quot;wb-drawer-footer&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;wb-btn&quot; data-wb-dismiss=&quot;drawer&quot;&gt;Close&lt;/button&gt;&lt;/div&gt;
+&lt;/dialog&gt;</code></pre></section></div></section><section class="wb-card" id="popover"><div class="wb-card-header"><h2 class="wb-card-title">popover</h2></div><div class="wb-card-body wb-grid wb-grid-2 wb-gap-6"><section class="wb-stack wb-gap-3 wb-min-w-0" aria-labelledby="compare-popover-before-heading"><h3 id="compare-popover-before-heading">Before — legacy</h3><p>Shared class-based rendering</p><div class="wb-popover" data-wb-popover>
+  <button type="button" class="wb-btn wb-btn-secondary" data-wb-toggle="popover" data-wb-target="#compare-popover-before">popover · Before — legacy · Open</button>
+  <div class="wb-popover-panel" id="compare-popover-before">
+    <div class="wb-popover-body">Supporting content</div>
+    <button type="button" class="wb-btn" data-wb-dismiss="popover">Close</button>
+  </div>
+</div><pre><code>&lt;div class=&quot;wb-popover&quot; data-wb-popover&gt;
+  &lt;button type=&quot;button&quot; class=&quot;wb-btn wb-btn-secondary&quot;
+    data-wb-toggle=&quot;popover&quot;
+    data-wb-target=&quot;#compare-popover-before&quot;&gt;popover · Before — legacy · Open&lt;/button&gt;
+  &lt;div class=&quot;wb-popover-panel&quot; id=&quot;compare-popover-before&quot;&gt;
+    &lt;div class=&quot;wb-popover-body&quot;&gt;Supporting content&lt;/div&gt;
+    &lt;button type=&quot;button&quot; class=&quot;wb-btn&quot; data-wb-dismiss=&quot;popover&quot;&gt;Close&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></section><section class="wb-stack wb-gap-3 wb-min-w-0" aria-labelledby="compare-popover-after-heading"><h3 id="compare-popover-after-heading">After — native</h3><p>Native showPopover() in the top layer</p><div class="wb-popover" data-wb-popover>
+  <button type="button" class="wb-btn wb-btn-secondary" data-wb-toggle="popover" data-wb-target="#compare-popover-after">popover · After — native · Open</button>
+  <div class="wb-popover-panel" id="compare-popover-after" popover="manual">
+    <div class="wb-popover-body">Supporting content</div>
+    <button type="button" class="wb-btn" data-wb-dismiss="popover">Close</button>
+  </div>
+</div><pre><code>&lt;div class=&quot;wb-popover&quot; data-wb-popover&gt;
+  &lt;button type=&quot;button&quot; class=&quot;wb-btn wb-btn-secondary&quot;
+    data-wb-toggle=&quot;popover&quot;
+    data-wb-target=&quot;#compare-popover-after&quot;&gt;popover · After — native · Open&lt;/button&gt;
+  &lt;div class=&quot;wb-popover-panel&quot; id=&quot;compare-popover-after&quot;
+    popover=&quot;manual&quot;&gt;
+    &lt;div class=&quot;wb-popover-body&quot;&gt;Supporting content&lt;/div&gt;
+    &lt;button type=&quot;button&quot; class=&quot;wb-btn&quot; data-wb-dismiss=&quot;popover&quot;&gt;Close&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></section></div></section><section class="wb-card" id="dropdown"><div class="wb-card-header"><h2 class="wb-card-title">dropdown</h2></div><div class="wb-card-body wb-grid wb-grid-2 wb-gap-6"><section class="wb-stack wb-gap-3 wb-min-w-0" aria-labelledby="compare-dropdown-before-heading"><h3 id="compare-dropdown-before-heading">Before — legacy</h3><p>Shared class-based rendering</p><div class="wb-dropdown">
+  <button type="button" class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" data-wb-target="#compare-dropdown-before">dropdown · Before — legacy · Open</button>
+  <div class="wb-dropdown-menu" id="compare-dropdown-before">
+    <button type="button" class="wb-dropdown-item">Edit</button>
+  </div>
+</div><pre><code>&lt;div class=&quot;wb-dropdown&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;wb-btn wb-btn-secondary&quot;
+    data-wb-toggle=&quot;dropdown&quot;
+    data-wb-target=&quot;#compare-dropdown-before&quot;&gt;dropdown · Before — legacy · Open&lt;/button&gt;
+  &lt;div class=&quot;wb-dropdown-menu&quot; id=&quot;compare-dropdown-before&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;wb-dropdown-item&quot;&gt;Edit&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></section><section class="wb-stack wb-gap-3 wb-min-w-0" aria-labelledby="compare-dropdown-after-heading"><h3 id="compare-dropdown-after-heading">After — native</h3><p>Native showPopover() in the top layer</p><div class="wb-dropdown">
+  <button type="button" class="wb-btn wb-btn-secondary" data-wb-toggle="dropdown" data-wb-target="#compare-dropdown-after">dropdown · After — native · Open</button>
+  <div class="wb-dropdown-menu" id="compare-dropdown-after" popover="manual">
+    <button type="button" class="wb-dropdown-item">Edit</button>
+  </div>
+</div><pre><code>&lt;div class=&quot;wb-dropdown&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;wb-btn wb-btn-secondary&quot;
+    data-wb-toggle=&quot;dropdown&quot;
+    data-wb-target=&quot;#compare-dropdown-after&quot;&gt;dropdown · After — native · Open&lt;/button&gt;
+  &lt;div class=&quot;wb-dropdown-menu&quot; id=&quot;compare-dropdown-after&quot;
+    popover=&quot;manual&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;wb-dropdown-item&quot;&gt;Edit&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></section></div></section><p><a href="../packages/webblocks/INTEGRATION.md#native-popover-api-for-dropdown-and-popover">API</a></p></main>
+<div class="wb-modal" id="compare-modal-before" aria-labelledby="compare-modal-before-title" role="dialog" aria-modal="true">
+<div class="wb-modal-dialog">
+<div class="wb-modal-header">
+  <h2 class="wb-modal-title" id="compare-modal-before-title">modal · Before — legacy</h2>
+  <button type="button" class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close">×</button>
+</div>
+<div class="wb-modal-body">Same content, same WebBlocks classes.</div>
+<div class="wb-modal-footer"><button type="button" class="wb-btn" data-wb-dismiss="modal">Close</button></div>
+</div>
+</div><dialog class="wb-modal" id="compare-modal-after" aria-labelledby="compare-modal-after-title">
+<div class="wb-modal-dialog">
+<div class="wb-modal-header">
+  <h2 class="wb-modal-title" id="compare-modal-after-title">modal · After — native</h2>
+  <button type="button" class="wb-modal-close" data-wb-dismiss="modal" aria-label="Close">×</button>
+</div>
+<div class="wb-modal-body">Same content, same WebBlocks classes.</div>
+<div class="wb-modal-footer"><button type="button" class="wb-btn" data-wb-dismiss="modal">Close</button></div>
+</div>
+</dialog><div class="wb-drawer" id="compare-drawer-before" aria-labelledby="compare-drawer-before-title" role="dialog" aria-modal="true">
+<div class="wb-drawer-header">
+  <h2 class="wb-drawer-title" id="compare-drawer-before-title">drawer · Before — legacy</h2>
+  <button type="button" class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">×</button>
+</div>
+<div class="wb-drawer-body">Same content, same WebBlocks classes.</div>
+<div class="wb-drawer-footer"><button type="button" class="wb-btn" data-wb-dismiss="drawer">Close</button></div>
+</div><dialog class="wb-drawer" id="compare-drawer-after" aria-labelledby="compare-drawer-after-title">
+<div class="wb-drawer-header">
+  <h2 class="wb-drawer-title" id="compare-drawer-after-title">drawer · After — native</h2>
+  <button type="button" class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close">×</button>
+</div>
+<div class="wb-drawer-body">Same content, same WebBlocks classes.</div>
+<div class="wb-drawer-footer"><button type="button" class="wb-btn" data-wb-dismiss="drawer">Close</button></div>
+</dialog>
+</body></html>

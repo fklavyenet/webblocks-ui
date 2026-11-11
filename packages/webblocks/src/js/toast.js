@@ -46,7 +46,11 @@
 
   function getContainer(position) {
     position = position || 'top-right';
-    if (containers[position]) return containers[position];
+    var layer = WBDom.overlay.ensureLayer('toast');
+    if (containers[position]) {
+      if (containers[position].parentElement !== layer) layer.appendChild(containers[position]);
+      return containers[position];
+    }
 
     var el = document.createElement('div');
     el.className = 'wb-toast-container';
@@ -55,7 +59,7 @@
     if (position !== 'top-right') {
       el.classList.add('wb-toast-container-' + position);
     }
-    WBDom.overlay.ensureLayer('toast').appendChild(el);
+    layer.appendChild(el);
     containers[position] = el;
     return el;
   }

@@ -1,6 +1,9 @@
 /* ============================================================
    WebBlocks UI — Modal (modal.js)
 
+   Native opt-in: use dialog.wb-modal with the same inner anatomy.
+   The shared overlay manager owns showModal/close and the browser top layer.
+
    Usage:
      <!-- Trigger -->
      <button data-wb-toggle="modal" data-wb-target="#myModal">Open</button>
@@ -130,7 +133,7 @@
 
     // Backdrop click — close if click is directly on .wb-modal (backdrop layer)
     var activeModal = getActiveModal();
-    if (activeModal && e.target === activeModal) {
+    if (activeModal && activeModal.tagName !== 'DIALOG' && e.target === activeModal) {
       requestUserClose(activeModal, 'outside', e);
     }
   });

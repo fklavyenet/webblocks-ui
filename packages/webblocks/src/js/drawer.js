@@ -1,6 +1,9 @@
 /* ============================================================
    WebBlocks UI — Drawer (drawer.js)
 
+   Native opt-in: use dialog.wb-drawer with the same inner anatomy.
+   The shared overlay manager owns showModal/close and the browser top layer.
+
    Usage:
      <!-- Trigger -->
      <button data-wb-toggle="drawer" data-wb-target="#myDrawer">Open</button>

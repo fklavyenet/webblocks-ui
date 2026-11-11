@@ -128,7 +128,7 @@ Custom CSS or JS is allowed only when shipped WebBlocks UI composition cannot co
 
 Preset/accent dropdowns use `.wb-theme-switcher` and the complete `.wb-theme-switcher-trigger` palette-icon + chevron anatomy. Do not create a project-local icon-only variant or add product CSS for its affordance.
 
-Navigation groups use `.wb-nav-group[data-wb-nav-group]`, a `.wb-nav-group-toggle` button, and `.wb-nav-group-items`. The shipped WebBlocks UI runtime owns their interaction. Downstream projects must not add their own toggle attributes, click listeners, or `is-open`/`aria-expanded` state manager.
+Navigation groups use `.wb-nav-group[data-wb-nav-group]`, a `.wb-nav-group-toggle` button or native summary, and `.wb-nav-group-items`. Use `open` on a native details root and use `WBNavGroup` for programmatic changes to either form. Do not add a second toggle handler or state manager.
 
 Tabs pair `[data-wb-tab]` controls with panels by id. Hosts may render the initial inactive panels with `hidden` and `aria-hidden="true"`, but the shipped runtime owns all panel visibility and accessibility state after a tab change. Do not copy tab visibility listeners into project JavaScript; use `data-wb-tabs-field` when the server needs the active tab value.
 

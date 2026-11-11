@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navigation group browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+</head>
+<body>
+<main class="wb-container wb-container-md wb-stack wb-gap-4 wb-py-6">
+  <h1>Native and legacy navigation groups</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ul id="failures" class="wb-marker-list"></ul>
+  <nav class="wb-card wb-p-4" aria-label="Mixed navigation">
+    <div id="legacy" class="wb-nav-group" data-wb-nav-group data-wb-nav-group-accordion>
+      <button class="wb-nav-group-toggle">Legacy group <span class="wb-nav-group-arrow" aria-hidden="true"></span></button>
+      <div class="wb-nav-group-items"><a class="wb-nav-group-item" href="#legacy">Legacy item</a></div>
+    </div>
+    <details id="native" class="wb-nav-group" data-wb-nav-group data-wb-nav-group-accordion>
+      <summary class="wb-nav-group-toggle"><span>Native group</span> <span class="wb-nav-group-arrow" aria-hidden="true"></span></summary>
+      <div class="wb-nav-group-items">
+        <a class="wb-nav-group-item" href="#native">Native item</a>
+        <details id="nested" class="wb-nav-group" data-wb-nav-group open>
+          <summary class="wb-nav-group-toggle">Nested group</summary>
+          <div class="wb-nav-group-items"><a class="wb-nav-group-item" href="#nested">Nested item</a></div>
+        </details>
+      </div>
+    </details>
+  </nav>
+  <details id="initial-active" class="wb-nav-group" data-wb-nav-group>
+    <summary class="wb-nav-group-toggle">Group with current page</summary>
+    <div class="wb-nav-group-items"><a class="wb-nav-group-item is-active" aria-current="page" href="#initial-active">Current page</a></div>
+  </details>
+  <details id="initial-flag" class="wb-nav-group" data-wb-nav-group data-wb-nav-group-open>
+    <summary class="wb-nav-group-toggle">Group with open flag</summary>
+    <div class="wb-nav-group-items"><a class="wb-nav-group-item" href="#initial-flag">Flag item</a></div>
+  </details>
+</main>
+<script>
+(function () {
+  'use strict';
+  var source = new URLSearchParams(location.search).has('source');
+  var revision = '?test=' + Date.now();
+  var checks = 0;
+  var failures = document.getElementById('failures');
+
+  function check(condition, label) {
+    checks += 1;
+    if (condition) return;
+    var item = document.createElement('li');
+    item.textContent = label;
+    failures.appendChild(item);
+  }
+
+  function load(path) {
+    return new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = path + revision;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
+  function settle() {
+    return new Promise(function (resolve) { setTimeout(resolve, 30); });
+  }
+
+  async function run() {
+    if (source) {
+      await load('../src/js/utils/dom.js');
+      await load('../src/js/nav-group.js');
+    } else {
+      await load('../dist/webblocks-ui.js');
+    }
+    await settle();
+
+    var legacy = document.getElementById('legacy');
+    var native = document.getElementById('native');
+    var nested = document.getElementById('nested');
+    var button = legacy.querySelector('button');
+    var summary = native.querySelector('summary');
+    var content = native.querySelector('.wb-nav-group-items');
+    var events = [];
+    ['open', 'close'].forEach(function (state) {
+      document.addEventListener('wb:navgroup:' + state, function (event) {
+        events.push(event.target.id + ':' + state);
+      });
+    });
+
+    check(button.type === 'button' && button.getAttribute('aria-expanded') === 'false', 'Legacy initialization');
+    check(document.getElementById('initial-active').open && document.getElementById('initial-flag').open, 'Native initialization honors existing hooks');
+    button.click();
+    check(legacy.classList.contains('is-open') && button.getAttribute('aria-expanded') === 'true', 'Legacy click and ARIA');
+    check(events.join() === 'legacy:open', 'Legacy events are synchronous');
+
+    summary.querySelector('span').click();
+    check(native.open && getComputedStyle(content).display === 'flex', 'Browser activates the native summary');
+    await settle();
+    check(!legacy.classList.contains('is-open') && button.getAttribute('aria-expanded') === 'false', 'Native opening closes the legacy sibling');
+    check(events.join() === 'legacy:open,legacy:close,native:open', 'Mixed group events fire once per change');
+    check(!native.classList.contains('is-open') && !summary.hasAttribute('aria-expanded'), 'Native state is not duplicated');
+
+    button.click();
+    check(!native.open && legacy.classList.contains('is-open'), 'Legacy opening closes the native sibling');
+    await settle();
+    check(events.slice(-2).join() === 'legacy:open,native:close', 'Native close follows the browser event');
+    check(nested.open, 'Parent closing preserves nested state');
+
+    WBNavGroup.open(native);
+    WBNavGroup.open(native);
+    await settle();
+    check(native.open && events.slice(-2).join() === 'legacy:close,native:open', 'Native API open enforces sibling policy once');
+    WBNavGroup.toggle(native);
+    await settle();
+    check(!native.open && events[events.length - 1] === 'native:close', 'Native API toggle');
+    native.open = true;
+    await settle();
+    check(events[events.length - 1] === 'native:open', 'Direct native state changes reach WebBlocks listeners');
+    WBNavGroup.close(native);
+    native.classList.add('is-open');
+    check(!native.open && getComputedStyle(content).display === 'none', 'Native visibility follows open even with a stale class');
+    native.classList.remove('is-open');
+    WBNavGroup.open(legacy);
+    WBNavGroup.close(legacy);
+    check(!legacy.classList.contains('is-open') && button.getAttribute('aria-expanded') === 'false', 'Legacy API open and close');
+    WBNavGroup.toggle(legacy);
+    check(legacy.classList.contains('is-open'), 'Legacy API toggle');
+
+    var frame = document.createElement('iframe');
+    frame.title = 'Navigation group without JavaScript';
+    frame.setAttribute('sandbox', 'allow-same-origin');
+    var ready = new Promise(function (resolve) { frame.onload = resolve; });
+    var scriptFree = native.cloneNode(true);
+    scriptFree.open = true;
+    frame.srcdoc = '<!doctype html><link rel="stylesheet" href="' +
+      new URL('../dist/webblocks-ui.css', location.href).href + '">' + scriptFree.outerHTML;
+    document.querySelector('main').appendChild(frame);
+    await ready;
+    var disclosure = frame.contentDocument.getElementById('native');
+    var items = disclosure.querySelector('.wb-nav-group-items');
+    check(!frame.contentWindow.WBNavGroup && frame.contentWindow.getComputedStyle(items).display === 'flex', 'Script-free initial open');
+    disclosure.querySelector('summary').click();
+    check(!disclosure.open && frame.contentWindow.getComputedStyle(items).display === 'none', 'Script-free summary closes');
+    disclosure.querySelector('summary').click();
+    check(disclosure.open && frame.contentWindow.getComputedStyle(items).display === 'flex', 'Script-free summary reopens');
+  }
+
+  run().catch(function (error) {
+    check(false, String(error));
+  }).then(function () {
+    var count = failures.children.length;
+    document.getElementById('summary').textContent =
+      (count ? 'FAIL' : 'PASS') + ': ' + checks + ' checks; ' + count + ' failures.';
+  });
+})();
+</script>
+</body>
+</html>

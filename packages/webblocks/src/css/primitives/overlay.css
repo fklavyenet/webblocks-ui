@@ -23,6 +23,20 @@ body.wb-overlay-lock {
   overflow: visible;
 }
 
+/* Native layers retain absolute positioning without a new stacking context;
+   their fixed surfaces share the manager's z-order above the inner dialog.
+   Only a legacy child's backdrop needs an explicit viewport-sized fixed box. */
+.wb-overlay-layer[data-wb-native-layer] > .wb-overlay-backdrop {
+  position: fixed;
+}
+
+dialog.wb-modal::backdrop,
+dialog.wb-drawer::backdrop {
+  background: var(--wb-overlay);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
 .wb-overlay-layer > * {
   pointer-events: auto;
 }

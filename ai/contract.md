@@ -57,6 +57,9 @@ with a description list merely to reproduce this column layout.
 
 Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields` flow. Use direct `wb-field` children, optional `wb-filter-bar-search`, and `wb-filter-bar-actions > .wb-action-group`. Do not combine these fields with `wb-stack` or gap utilities; UI owns field alignment, row separation, and intrinsic-width actions that wrap together only when needed.
 
+Use `search.wb-filter-bar` for standalone search and filtering regions. Use
+`form.wb-filter-bar` for filters that submit to a URL.
+
 ## Table Sorting
 
 - Opt in with `table.wb-table[data-wb-table-sort="client|server"]`; sortable headers use `th[data-wb-sort="key"] > .wb-table-sort` with a native button, or a server-rendered link in server mode.
@@ -75,6 +78,42 @@ Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields
 - Use inline `wb-alert` for validation, blocking, persistent, and user-correctable errors.
 - Do not create duplicate overlay roots, custom overlay stacks, or project-local modal systems when WebBlocks UI primitives fit.
 - Modal/drawer focus excludes closed disclosure bodies, hidden/inert nodes, disabled controls and negative tabindex. Keep focus containment in the shared runtime; do not add a competing host trap.
+
+## Native anchored overlays
+
+- Existing dropdown/popover markup stays supported. Add `popover="manual"` to
+  `wb-dropdown-menu` or `wb-popover-panel` to opt into native top-layer rendering.
+  Keep the existing wrapper, hooks, classes, modifiers and public APIs.
+- Native panels normally remain in source DOM, non-modal, with browser visibility mirrored
+  by the shared manager. UI still owns positioning, ARIA, grouping, persistence,
+  close guards and nested overlay cleanup. Do not add a parallel click handler.
+- Prefer manual native state to retain all WebBlocks policies. `popover="auto"`
+  browser hides are reconciled but cannot be canceled by WebBlocks guards; native
+  closing beforetoggle is not cancelable. Persistent panels require manual state.
+- Externally targeted native panels may temporarily join their invoker’s active
+  native/focus scope; the manager restores their source parent after close.
+- Optional matching popovertarget must not double-toggle. Direct native methods
+  reconcile asynchronously after initialization; use existing WB hooks/APIs to
+  initialize and position the panel. Native opening can be canceled cleanly.
+
+## Native modal, drawer, and command palette roots
+
+- Existing div roots remain supported. Native roots are `dialog.wb-modal` with
+  the existing `wb-modal-dialog`, `dialog.wb-drawer` with direct header/body/footer,
+  or `dialog.wb-cmd-backdrop` with the existing `wb-cmd-dialog`.
+- Open through existing WBModal/WBDrawer/WBCommandPalette APIs or data hooks
+  with WebBlocks loaded. The command palette also retains its keyboard shortcut.
+  The shared manager owns `showModal`/`close`, native child layers and runtime
+  state. Do not initialize with open/is-open, popover or a second controller.
+- Give dialogs accessible names; do not add a duplicate dialog role/modality or
+  root tabindex. Native backdrops, inertness and autofocus remain browser-owned.
+- Retain close-request guards for Escape, outside, close/dismiss, native cancel
+  and dialog-form submission. Direct native close is a programmatic bypass;
+  its asynchronous close event reconciles shared state and lifecycle events.
+- Compose menus, popovers, tooltips and feedback with the shipped APIs so they
+  remain in the active native subtree. Do not access internal native layers.
+- Native drawer roots omit the root slide transform to preserve unclipped child
+  layers; legacy div drawers retain their original transitions.
 
 ## Branding
 
@@ -115,9 +154,15 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 
 ## Navigation Groups
 
-- Put `data-wb-nav-group` on the `.wb-nav-group` container. The toggle is a `.wb-nav-group-toggle` button and the children live in `.wb-nav-group-items`.
-- Use `data-wb-nav-group-open` for an explicit initial open state; a group containing an `.is-active` item also opens automatically.
-- WebBlocks UI owns toggling, `is-open`, `aria-expanded`, accordion behavior, lifecycle events, and the `WBNavGroup` API.
+- Put `data-wb-nav-group` on the `.wb-nav-group` container. The existing
+  div/button structure and native `details > summary` use the same
+  `.wb-nav-group-toggle` and `.wb-nav-group-items` classes.
+- Native state follows `open`. Keep the summary as the first child and let
+  the browser expose its expanded state. Legacy groups use `is-open` and
+  `aria-expanded` through the runtime.
+- The runtime honors `data-wb-nav-group-open` and active items on initialization,
+  handles mixed sibling accordion groups, and keeps the `WBNavGroup` API.
+  Native lifecycle events follow the asynchronous, coalesced browser `toggle`.
 - Do not invent a project-local toggle attribute or copy nav-group click handlers into downstream JavaScript.
 
 ## Accordion

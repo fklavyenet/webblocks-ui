@@ -20,6 +20,30 @@
   display: flex;
 }
 
+/* The native root fills the viewport like the existing backdrop wrapper. */
+dialog.wb-cmd-backdrop {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding-bottom: 0;
+  border: 0;
+  background: transparent;
+  color: var(--wb-text);
+  overflow: visible;
+}
+
+dialog.wb-cmd-backdrop:not([open]) { display: none; }
+dialog.wb-cmd-backdrop[open] { display: flex; }
+
+dialog.wb-cmd-backdrop::backdrop {
+  background: var(--wb-overlay-dark);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: wb-overlay-backdrop-in 0.18s ease;
+}
+
 /* ── Dialog ───────────────────────────────────────────────── */
 
 .wb-cmd-dialog {

@@ -1,6 +1,9 @@
 /* ============================================================
    WebBlocks UI — Popover (popover.js)
 
+   Native opt-in: add popover="manual" to the existing wb-popover-panel.
+   The shared manager owns native show/hide, placement and policy.
+
    Usage (HTML):
      <div class="wb-popover" data-wb-popover>
        <button class="wb-btn wb-btn-secondary" data-wb-toggle="popover">
@@ -214,8 +217,9 @@
       var wrapper = getWrapperFromTrigger(trigger);
       if (!wrapper) return;
       var panel = getPanel(wrapper, trigger);
+      if (panel && panel.hasAttribute('popover') && typeof panel.showPopover === 'function') e.preventDefault();
       var instance = panel && ensureInstance(wrapper, trigger, panel);
-      if (instance && instance.active) {
+      if (instance && (instance.active || (instance.nativePopover && panel.matches(':popover-open')))) {
         close(wrapper);
       } else {
         open(wrapper);

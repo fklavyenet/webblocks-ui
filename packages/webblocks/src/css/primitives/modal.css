@@ -18,6 +18,22 @@
   display: flex;
 }
 
+/* Native root: retain the existing inner dialog and use the browser top layer. */
+dialog.wb-modal {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: var(--wb-text);
+  overflow: visible;
+}
+
+dialog.wb-modal:not([open]) { display: none; }
+dialog.wb-modal[open] { display: flex; }
+
 .wb-modal-dialog {
   position: relative;
   z-index: 1;

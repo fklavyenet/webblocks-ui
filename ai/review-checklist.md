@@ -78,3 +78,18 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Native accordion/collapse use browser-owned open state and UI-owned chevrons; host markup does not add a second disclosure indicator.
 - [ ] Modal/drawer keyboard tests include closed disclosure bodies and dynamic focus candidates in both Tab directions.
 - [ ] Task progress uses labelled native progress with value/max, or the supported legacy div/fill pattern; unknown work omits the native value.
+
+
+## Native dialog roots
+
+- [ ] Native modal, drawer, and command palette roots open through the shared manager, use showModal, have accessible names and no authored open/is-open/root tabindex.
+- [ ] Native cancel and dialog-form guards, direct close cleanup, returnValue, reopen races and body-lock/focus restoration work with source and dist.
+- [ ] Native/legacy nesting and anchored menus, tooltips and feedback stay visible and interactive in the native modal subtree.
+
+
+## Native anchored overlays
+
+- [ ] Legacy/native dropdown and popover use the same public APIs, placement and accessible controls.
+- [ ] Manual native panels retain guards, persistence and group policy; auto-state limitations are documented.
+- [ ] Native toggles, canceled opening, invoker default prevention, fast reopen and lifecycle/ARIA reconciliation work in source and dist.
+- [ ] Native/legacy nesting, modal/drawer hosts, viewport bounds and wide dropdown scrolling remain interactive and visible.
