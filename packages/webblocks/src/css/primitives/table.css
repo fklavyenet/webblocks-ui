@@ -88,7 +88,7 @@
   background: var(--wb-surface);
 }
 
-.wb-table tbody tr:last-child td {
+.wb-table > :is(tbody, tfoot):last-child > tr:last-child > :is(th, td) {
   border-bottom: none;
 }
 

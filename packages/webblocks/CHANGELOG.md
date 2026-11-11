@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.34.1] — 2026-11-11
+
+### Fixed
+- Remove the extra bottom border from row headers and data cells in the final table row while retaining dividers between body groups and above totals.
+
 ## [2.34.0] — 2026-11-04
 
 ### Added

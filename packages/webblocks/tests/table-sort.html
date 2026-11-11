@@ -89,6 +89,31 @@
     return detail;
   }
   document.addEventListener('DOMContentLoaded', function () {
+    test('Table borders cover both cell types until the final row', function () {
+      fixtures.innerHTML = '<div class="wb-table-wrap"><table class="wb-table">' +
+        '<tbody><tr><th scope="row">Author</th><td>Operator</td></tr>' +
+        '<tr><th scope="row">Created</th><td>Today</td></tr></tbody></table></div>';
+      fixtures.hidden = false;
+      var table = fixtures.querySelector('table');
+      function border(row, width) {
+        Array.from(row.cells).forEach(function (cell) {
+          assert(getComputedStyle(cell).borderBottomWidth === width, cell.textContent + ' border should be ' + width);
+        });
+      }
+      assert(getComputedStyle(table.parentElement).borderBottomWidth === '1px', 'wrapper supplies the outer border');
+      border(table.rows[0], '1px');
+      border(table.rows[1], '0px');
+
+      var secondBody = table.createTBody();
+      secondBody.innerHTML = '<tr><th scope="row">Status</th><td>Ready</td></tr>';
+      border(table.rows[1], '1px');
+      border(secondBody.rows[0], '0px');
+
+      var footer = table.createTFoot();
+      footer.innerHTML = '<tr><th scope="row">Total</th><td>3</td></tr>';
+      border(secondBody.rows[0], '1px');
+      border(footer.rows[0], '0px');
+    });
     test('Turkish collation and natural numbers', function () {
       var table = make(); WBTableSort.sort(table, 'name', 'asc');
       assert(ids(table) === 'r4,r3,r5,r2,r6,r1', ids(table)); active(table, 'name', 'ascending');
