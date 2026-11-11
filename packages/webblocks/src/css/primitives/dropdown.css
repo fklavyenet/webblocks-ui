@@ -16,6 +16,7 @@
   border-radius: var(--wb-r-lg);
   box-shadow: var(--wb-shadow-lg);
   padding: var(--wb-s1) 0;
+  overflow: hidden;
   animation: wb-dropdown-in 0.12s ease;
 }
 
@@ -41,7 +42,6 @@ html.wb-js .wb-dropdown-menu {
     inset: auto;
     margin: 0;
     color: var(--wb-text);
-    overflow: visible;
     animation: none;
   }
   .wb-dropdown-menu[popover]:not(:popover-open) { display: none; }
@@ -120,8 +120,4 @@ html.wb-js .wb-dropdown-menu {
   max-width: 92vw;
   max-height: min(70vh, 420px);
   overflow-y: auto;
-}
-
-@supports selector(:popover-open) {
-  .wb-dropdown-menu[popover].wb-dropdown-menu--panel { overflow-y: auto; }
 }

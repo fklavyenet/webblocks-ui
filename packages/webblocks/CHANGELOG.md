@@ -6,6 +6,12 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.35.1] — 2026-11-11
+
+### Fixed
+- Keep dropdown row highlights within rounded menu corners, including native dropdowns and scrollable panels.
+- Align the active tab underline with the tab strip divider.
+
 ## [2.35.0] — 2026-11-11
 
 ### Added
