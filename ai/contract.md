@@ -115,6 +115,15 @@ Use `search.wb-filter-bar` for standalone search and filtering regions. Use
 - Native drawer roots omit the root slide transform to preserve unclipped child
   layers; legacy div drawers retain their original transitions.
 
+## Interface copy
+
+Use sentence case for headings, navigation, breadcrumb labels, controls and
+table labels. Follow the locale's spelling rules and preserve product names,
+acronyms and authored record titles. Short labels and brand taglines omit the
+terminal period. Write the intended casing in the source text or translation.
+Do not use CSS to uppercase or capitalize interface copy. Use the shared
+breadcrumb component for the decorative slash and its spacing.
+
 ## Branding
 
 Admin, auth, and sidebar product brand marks should follow `docs/admin-product-brand.md`: project-owned inline SVG components using `currentColor`, standard WebBlocks UI sizing classes, no default `img`/`picture`/CSS-mask shell marks, and separate favicon/app icon files.

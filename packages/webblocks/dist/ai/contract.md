@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.35.1
+Version: v2.35.2
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -114,6 +114,15 @@ Use `search.wb-filter-bar` for standalone search and filtering regions. Use
   remain in the active native subtree. Do not access internal native layers.
 - Native drawer roots omit the root slide transform to preserve unclipped child
   layers; legacy div drawers retain their original transitions.
+
+## Interface copy
+
+Use sentence case for headings, navigation, breadcrumb labels, controls and
+table labels. Follow the locale's spelling rules and preserve product names,
+acronyms and authored record titles. Short labels and brand taglines omit the
+terminal period. Write the intended casing in the source text or translation.
+Do not use CSS to uppercase or capitalize interface copy. Use the shared
+breadcrumb component for the decorative slash and its spacing.
 
 ## Branding
 

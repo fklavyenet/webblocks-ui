@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.35.2] — 2026-11-15
+
+### Changed
+- Document sentence case for interface copy, punctuation for brand taglines, and the shared breadcrumb spacing contract.
+
 ## [2.35.1] — 2026-11-11
 
 ### Fixed

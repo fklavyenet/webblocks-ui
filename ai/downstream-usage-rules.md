@@ -122,6 +122,19 @@ Use inline `wb-alert` for validation errors, blocking failures, persistent warni
 
 Admin, auth, and sidebar brand marks should follow the shipped admin product brand standard. Prefer project-owned inline SVG components using `currentColor`, WebBlocks sizing classes, and separate favicon/app icon files.
 
+## Interface copy
+
+Use sentence case for headings, breadcrumb labels, navigation, tabs,
+form and table labels, and buttons. Follow the locale's spelling rules and
+preserve product names, acronyms, and authored record titles. Omit terminal
+periods on short labels and brand taglines. Use normal punctuation in messages
+and help written as sentences.
+
+Store the intended casing in the source text or translation. Do not apply
+CSS `text-transform: uppercase`, `text-transform: capitalize`, or equivalent
+utilities. Breadcrumb labels stay separate from the shared decorative
+separator and its CSS spacing.
+
 ## Custom CSS and JS
 
 Custom CSS or JS is allowed only when shipped WebBlocks UI composition cannot cover the need. Before adding it, explain which shipped pattern, primitive, surface, utility, or hook was insufficient.
