@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.37.0] — 2026-11-16
+
+### Added
+- Add physical-scale Gallery rows. Use actual item dimensions to keep a shared scale across rows and when items stack at narrow widths.
+
 ## [2.36.0] — 2026-11-16
 
 ### Added

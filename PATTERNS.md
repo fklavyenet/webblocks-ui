@@ -545,6 +545,9 @@ Layout modifiers (all optional; the bare `wb-gallery` is a fluid auto-fit grid w
 - custom layouts: `wb-gallery--weighted` repeats positive column weights, and
   `wb-gallery--equal-height` derives uncropped rows from image dimensions.
   Both stack below 40rem of gallery width. See the [Gallery integration contract](packages/webblocks/INTEGRATION.md#weighted-columns-and-equal-height-rows).
+- physical scale: `wb-gallery--physical-scale` fits grouped items at a shared
+  scale using their actual dimensions and preserves that scale relationship
+  when stacked. See the [physical scale contract](packages/webblocks/INTEGRATION.md#physical-scale).
 
 Caption placement modifiers — captions sit **below** the media by default (a `figcaption.wb-gallery-caption` as a sibling of the trigger, with any `wb-gallery-meta` beside it). To overlay them on the media instead, move a `wb-gallery-caption` *inside* the `wb-gallery-trigger` — it becomes a bottom scrim — and nest any `wb-gallery-meta` **inside that caption** so it rides in the same scrim. Add one of:
 

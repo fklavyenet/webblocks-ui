@@ -110,6 +110,35 @@
     check('Switching to the original grid clears layout state', getComputedStyle(late.grid).display === 'grid' &&
       !late.grid.hasAttribute('data-wb-gallery-layout-ready') && !late.images[0].parentElement.style.getPropertyValue('--wb-gallery-item-share'));
 
+    var physical = gallery('wb-gallery--physical-scale', true);
+    physical.images.forEach(function (image, index) {
+      if (index % 3 === 0) {
+        var row = document.createElement('div');
+        row.className = 'wb-gallery-row';
+        physical.grid.append(row);
+      }
+      var item = image.parentElement;
+      var size = index === 2 ? 80 : 40;
+      item.setAttribute('data-wb-gallery-physical-width', size);
+      item.setAttribute('data-wb-gallery-physical-height', size);
+      var trigger = document.createElement('a');
+      trigger.className = 'wb-gallery-trigger';
+      trigger.href = image.src;
+      image.before(trigger);
+      trigger.append(image);
+      physical.grid.lastElementChild.append(item);
+    });
+    WBGallery.update(physical.root);
+    check('Wide physical scale preserves 2:1 in both dimensions', near(box(physical, 2).width, box(physical, 0).width * 2) &&
+      near(box(physical, 2).height, box(physical, 0).height * 2) && near(box(physical, 0).bottom, box(physical, 2).bottom));
+    check('Physical scale is shared across uneven rows', near(box(physical, 0).width, box(physical, 6).width));
+    physical.root.style.width = '390px';
+    check('Stacking preserves physical proportions', box(physical, 1).top > box(physical, 0).bottom &&
+      near(box(physical, 2).width, box(physical, 0).width * 2) && near(box(physical, 2).height, box(physical, 0).height * 2));
+    physical.images[0].closest('.wb-gallery-item').removeAttribute('data-wb-gallery-physical-width');
+    WBGallery.update(physical.root);
+    check('Incomplete measurements fall back to the standard grid', !physical.grid.hasAttribute('data-wb-gallery-layout-ready'));
+
     var passed = results.filter(Boolean).length;
     document.querySelector('#summary').textContent = passed + ' / ' + results.length + ' checks passed.';
   });

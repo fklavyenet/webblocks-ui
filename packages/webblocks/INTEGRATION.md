@@ -1415,6 +1415,17 @@ existing caption and viewer markup. Hover captions are visible on devices
 without hover. Use `WBGallery.update(gallery)` after changing the layout,
 its attributes, or its items in an existing editor or dynamically rendered view.
 
+### Physical scale
+
+Use `wb-gallery--physical-scale` and group the ordered items into
+`.wb-gallery-row` elements inside `.wb-gallery-grid`. Each figure supplies
+`data-wb-gallery-physical-width` and `data-wb-gallery-physical-height` as positive
+numbers using the same unit for every item. The gallery fits the rows using one
+shared scale. Below 40rem it stacks and centers the items, with the widest item
+filling the available width and the same proportions across all items.
+Images fit inside the measured boxes without cropping. Missing measurements
+leave the standard grid in place. The viewer fits each image independently.
+
 Behavior contract:
 
 - the shipped `WBGallery` module upgrades `.wb-gallery-trigger` elements that point to a shared modal through `data-wb-gallery-target`
