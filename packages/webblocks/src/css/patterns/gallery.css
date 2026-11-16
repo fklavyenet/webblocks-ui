@@ -37,7 +37,7 @@
 
 /* ── Gap modifiers ──────────────────────────────────────────── */
 
-.wb-gallery--gap-none { --wb-gallery-gap: 0; }
+.wb-gallery--gap-none { --wb-gallery-gap: 0px; }
 .wb-gallery--gap-sm { --wb-gallery-gap: var(--wb-s2); }
 .wb-gallery--gap-md { --wb-gallery-gap: var(--wb-s4); }
 .wb-gallery--gap-lg { --wb-gallery-gap: var(--wb-s6); }
@@ -321,5 +321,61 @@
 
   .wb-gallery-viewer-toolbar {
     flex-wrap: wrap;
+  }
+}
+
+/* Custom layouts respond to the gallery width, including in narrow columns
+   on wide screens. Below the threshold both use uncropped, stacked media. */
+.wb-gallery:is(.wb-gallery--weighted, .wb-gallery--equal-height) {
+  container: wb-gallery / inline-size;
+}
+
+.wb-gallery:is(.wb-gallery--weighted, .wb-gallery--equal-height) > .wb-gallery-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.wb-gallery:is(.wb-gallery--weighted, .wb-gallery--equal-height) > .wb-gallery-grid > .wb-gallery-item {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.wb-gallery:is(.wb-gallery--weighted, .wb-gallery--equal-height) > .wb-gallery-grid .wb-gallery-media {
+  aspect-ratio: auto;
+  height: auto;
+}
+
+@container wb-gallery (min-width: 40rem) {
+  .wb-gallery.wb-gallery--weighted > .wb-gallery-grid {
+    grid-template-columns: var(--wb-gallery-tracks, repeat(var(--wb-gallery-columns), minmax(0, 1fr)));
+    align-items: start;
+  }
+
+  .wb-gallery.wb-gallery--weighted:not(.wb-gallery--aspect-auto) > .wb-gallery-grid .wb-gallery-media {
+    aspect-ratio: var(--wb-gallery-aspect);
+  }
+
+  .wb-gallery.wb-gallery--equal-height > .wb-gallery-grid[data-wb-gallery-layout-ready="equal-height"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .wb-gallery.wb-gallery--equal-height > .wb-gallery-grid > .wb-gallery-item {
+    /* Round down slightly so the last item still fits after subpixel layout. */
+    flex: 0 0 max(0px, calc(
+      (100% - var(--wb-gallery-gap) * var(--wb-gallery-row-gaps)) * var(--wb-gallery-item-share) - .02px
+    ));
+  }
+
+  .wb-gallery.wb-gallery--equal-height > .wb-gallery-grid .wb-gallery-media {
+    aspect-ratio: var(--wb-gallery-item-ratio, auto);
+    object-fit: contain;
+  }
+}
+
+@media (hover: none) {
+  .wb-gallery:is(.wb-gallery--weighted, .wb-gallery--equal-height).wb-gallery--captions-hover > .wb-gallery-grid .wb-gallery-caption {
+    opacity: 1;
+    transform: none;
   }
 }

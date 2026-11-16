@@ -1391,6 +1391,30 @@ Data contract:
 - caption and meta can come from visible markup or explicit `data-wb-gallery-caption` / `data-wb-gallery-meta`
 - optional `data-wb-gallery-width` / `data-wb-gallery-height` can be used as viewer hints
 
+### Weighted columns and equal-height rows
+
+Add one layout modifier to the gallery root. Keep figures as direct children of
+the existing `.wb-gallery-grid`. Load the standard WebBlocks UI runtime.
+
+- `wb-gallery--weighted` uses `data-wb-gallery-weights="1 2 1"` on the root.
+  Supply two to five space-separated positive weights. Tracks repeat in source
+  order for each row. Missing or invalid weights fall back to equal tracks
+  using the existing column count.
+- `wb-gallery--equal-height` uses `data-wb-gallery-items-per-row="3"` on the root.
+  Pass a count from two to five. The default is three. Set the inline image's
+  HTML `width` and `height` to its intrinsic dimensions to reserve the correct
+  space before it loads. When dimensions are unavailable the media initially
+  uses a 4:3 box and updates from the image's natural dimensions on load.
+  Complete rows fill the gallery width with uncropped media of equal height.
+  An incomplete final row stays aligned to the start and reserves space for the
+  missing items. Captions below images keep their natural heights.
+
+Both modifiers stack into a single column below a gallery width of 40rem and
+show media at its intrinsic aspect ratio at that width. They retain the
+existing caption and viewer markup. Hover captions are visible on devices
+without hover. Use `WBGallery.update(gallery)` after changing the layout,
+its attributes, or its items in an existing editor or dynamically rendered view.
+
 Behavior contract:
 
 - the shipped `WBGallery` module upgrades `.wb-gallery-trigger` elements that point to a shared modal through `data-wb-gallery-target`

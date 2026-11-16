@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.36.0] — 2026-11-16
+
+### Added
+- Add opt-in weighted columns and uncropped equal-height Gallery rows. Both stack at narrow gallery widths and retain the shared viewer.
+
 ## [2.35.2] — 2026-11-15
 
 ### Changed

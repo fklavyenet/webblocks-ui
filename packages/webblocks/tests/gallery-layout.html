@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery layout browser tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <script src="../dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+<main class="wb-container wb-stack wb-gap-4 wb-py-6">
+  <h1>Gallery layouts</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="results" class="wb-marker-list"></ol>
+  <div id="fixtures"></div>
+</main>
+<script>
+  window.addEventListener('load', async function () {
+    'use strict';
+    var results = [];
+    var fixtures = document.querySelector('#fixtures');
+    var sizes = [[400, 400], [640, 400], [320, 400], [480, 400], [320, 400], [480, 400], [400, 400]];
+
+    function check(name, passed) {
+      results.push(Boolean(passed));
+      var entry = document.createElement('li');
+      entry.textContent = (passed ? 'PASS — ' : 'FAIL — ') + name;
+      document.querySelector('#results').append(entry);
+    }
+
+    function gallery(modifier, defineSize) {
+      var root = document.createElement('section');
+      var grid = document.createElement('div');
+      root.className = 'wb-gallery wb-gallery--cols-3 wb-gallery--aspect-auto ' + modifier;
+      root.style.width = '900px';
+      grid.className = 'wb-gallery-grid';
+      var loads = [];
+      var images = sizes.map(function (size, index) {
+        var figure = document.createElement('figure');
+        var img = document.createElement('img');
+        var caption = document.createElement('figcaption');
+        figure.className = 'wb-gallery-item';
+        img.className = 'wb-gallery-media';
+        img.alt = 'Synthetic rectangle ' + (index + 1);
+        if (defineSize) {
+          img.width = size[0];
+          img.height = size[1];
+        }
+        loads.push(new Promise(function (resolve, reject) {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', reject, { once: true });
+        }));
+        img.src = 'data:image/svg+xml,' + encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="' + size[0] + '" height="' + size[1] +
+          '"><rect width="100%" height="100%" fill="' + ['teal', 'navy', 'purple'][index % 3] + '"/></svg>'
+        );
+        caption.className = 'wb-gallery-caption';
+        caption.textContent = index === 1 ? 'An intentionally longer caption to verify that wrapping text does not alter the media height.' : img.alt;
+        figure.append(img, caption);
+        grid.append(figure);
+        return img;
+      });
+      root.append(grid);
+      fixtures.append(root);
+      return { root: root, grid: grid, images: images, loaded: Promise.all(loads) };
+    }
+
+    function box(fixture, index) { return fixture.images[index].getBoundingClientRect(); }
+    function near(a, b) { return Math.abs(a - b) < 1; }
+
+    var weighted = gallery('wb-gallery--weighted', true);
+    weighted.root.dataset.wbGalleryWeights = '1 2.5 1';
+    WBGallery.update(weighted.root);
+    check('Custom weights determine track widths', near(box(weighted, 1).width, box(weighted, 0).width * 2.5));
+    check('Custom tracks repeat across rows', near(box(weighted, 4).width, box(weighted, 1).width));
+    weighted.root.dataset.wbGalleryWeights = '1 -2 1';
+    WBGallery.update(weighted.root);
+    check('Invalid weights fall back to equal tracks', near(box(weighted, 0).width, box(weighted, 1).width));
+    weighted.root.dataset.wbGalleryWeights = '1 2 1';
+    WBGallery.update(weighted.root);
+    weighted.root.style.width = '390px';
+    check('A narrow weighted gallery stacks inside a wide viewport', near(box(weighted, 0).width, box(weighted, 1).width) && box(weighted, 1).top > box(weighted, 0).bottom);
+
+    var equal = gallery('wb-gallery--equal-height', true);
+    WBGallery.update(equal.root);
+    check('Ratios produce a single row of equal-height images', near(box(equal, 0).height, box(equal, 1).height) &&
+      near(box(equal, 1).height, box(equal, 2).height) && near(box(equal, 0).top, box(equal, 2).top));
+    check('Irregular final row remains left-aligned and avoids enlargement',
+      near(box(equal, 6).left, box(equal, 3).left) && box(equal, 6).height <= box(equal, 3).height + 1);
+    check('Wide equal-height media is uncropped', getComputedStyle(equal.images[1]).objectFit === 'contain');
+    equal.root.classList.add('wb-gallery--gap-none');
+    check('Zero gap keeps a complete equal-height row', near(box(equal, 0).top, box(equal, 2).top) &&
+      near(box(equal, 0).height, box(equal, 2).height) && near(box(equal, 0).right, box(equal, 1).left));
+    equal.root.dataset.wbGalleryItemsPerRow = '2';
+    WBGallery.update(equal.root);
+    check('Changing the target reflows the existing items', near(box(equal, 0).top, box(equal, 1).top) &&
+      box(equal, 2).top > box(equal, 0).bottom);
+    equal.root.style.width = '390px';
+    await equal.loaded;
+    check('Narrow equal-height layout stacks at the natural image ratio', box(equal, 1).top > box(equal, 0).bottom &&
+      near(box(equal, 1).width / 1.6, box(equal, 1).height));
+
+    var late = gallery('wb-gallery--equal-height', false);
+    WBGallery.update(late.root);
+    await late.loaded;
+    check('Image loads update a gallery missing dimension attributes', near(box(late, 0).height, box(late, 1).height) &&
+      near(box(late, 1).width, box(late, 0).width * 1.6));
+    late.root.classList.remove('wb-gallery--equal-height');
+    WBGallery.update(late.root);
+    check('Switching to the original grid clears layout state', getComputedStyle(late.grid).display === 'grid' &&
+      !late.grid.hasAttribute('data-wb-gallery-layout-ready') && !late.images[0].parentElement.style.getPropertyValue('--wb-gallery-item-share'));
+
+    var passed = results.filter(Boolean).length;
+    document.querySelector('#summary').textContent = passed + ' / ' + results.length + ' checks passed.';
+  });
+</script>
+</body>
+</html>
