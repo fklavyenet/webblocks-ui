@@ -132,9 +132,37 @@
     check('Wide physical scale preserves 2:1 in both dimensions', near(box(physical, 2).width, box(physical, 0).width * 2) &&
       near(box(physical, 2).height, box(physical, 0).height * 2) && near(box(physical, 0).bottom, box(physical, 2).bottom));
     check('Physical scale is shared across uneven rows', near(box(physical, 0).width, box(physical, 6).width));
-    physical.root.style.width = '390px';
-    check('Stacking preserves physical proportions', box(physical, 1).top > box(physical, 0).bottom &&
-      near(box(physical, 2).width, box(physical, 0).width * 2) && near(box(physical, 2).height, box(physical, 0).height * 2));
+    ['top', 'center', 'bottom'].forEach(function (alignment) {
+      physical.root.style.width = '900px';
+      physical.root.dataset.wbGalleryVerticalAlignment = alignment;
+      WBGallery.update(physical.root);
+
+      var wideBoxes = physical.images.slice(0, 3).map(function (_, index) { return box(physical, index); });
+      var edges = wideBoxes.map(function (rect) {
+        return alignment === 'center' ? (rect.top + rect.bottom) / 2 : rect[alignment];
+      });
+      check('Pompeji wide / ' + alignment + ': image boxes align independently of captions',
+        edges.every(function (edge) { return near(edge, edges[0]); }) &&
+        wideBoxes.every(function (rect, index) {
+          var figure = physical.images[index].closest('figure');
+          return figure.querySelector('figcaption').getBoundingClientRect().top >= rect.bottom - 1;
+        }));
+      check('Pompeji wide / ' + alignment + ': uncropped proportions and order',
+        near(wideBoxes[2].width, wideBoxes[0].width * 2) && near(wideBoxes[2].height, wideBoxes[0].height * 2) &&
+        wideBoxes[0].left < wideBoxes[1].left && wideBoxes[1].left < wideBoxes[2].left &&
+        getComputedStyle(physical.images[1]).objectFit === 'contain');
+
+      physical.root.style.width = '390px';
+      var narrowBoxes = physical.images.slice(0, 3).map(function (_, index) { return box(physical, index); });
+      check('Pompeji narrow / ' + alignment + ': centered stack, with no alignment offset',
+        narrowBoxes[1].top > narrowBoxes[0].bottom && narrowBoxes[2].top > narrowBoxes[1].bottom &&
+        near(narrowBoxes[2].width, narrowBoxes[0].width * 2) && near(narrowBoxes[2].height, narrowBoxes[0].height * 2) &&
+        narrowBoxes.every(function (rect, index) {
+          var figure = physical.images[index].closest('figure');
+          return near(rect.left + rect.width / 2, narrowBoxes[0].left + narrowBoxes[0].width / 2) &&
+            getComputedStyle(figure).paddingBlockStart === '0px';
+        }));
+    });
     physical.images[0].closest('.wb-gallery-item').removeAttribute('data-wb-gallery-physical-width');
     WBGallery.update(physical.root);
     check('Incomplete measurements fall back to the standard grid', !physical.grid.hasAttribute('data-wb-gallery-layout-ready'));

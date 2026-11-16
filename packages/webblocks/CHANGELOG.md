@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.38.0] — 2026-11-16
+
+### Added
+- Let Physical scale galleries align image boxes at the top, center, or bottom of each row. Bottom remains the default.
+
 ## [2.37.0] — 2026-11-16
 
 ### Added

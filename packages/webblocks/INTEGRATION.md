@@ -1421,8 +1421,11 @@ Use `wb-gallery--physical-scale` and group the ordered items into
 `.wb-gallery-row` elements inside `.wb-gallery-grid`. Each figure supplies
 `data-wb-gallery-physical-width` and `data-wb-gallery-physical-height` as positive
 numbers using the same unit for every item. The gallery fits the rows using one
-shared scale. Below 40rem it stacks and centers the items, with the widest item
-filling the available width and the same proportions across all items.
+shared scale. On the gallery root, use `data-wb-gallery-vertical-alignment`
+with `top`, `center`, or `bottom` (the default) to align the image boxes within
+each row. Captions follow their own image and do not contribute to the alignment.
+Below 40rem, the gallery stacks and centers the items regardless of alignment.
+The widest item fills the available width and the rest keep their proportions.
 Images fit inside the measured boxes without cropping. Missing measurements
 leave the standard grid in place. The viewer fits each image independently.
 
