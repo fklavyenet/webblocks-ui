@@ -135,6 +135,34 @@
                 </div>
               </section>
 
+              <section class="wb-docs-section wb-docs-wide" id="dropdown-submenus">
+                <h2>Dropdown submenus</h2>
+                <p>Open Products, then hover over or tap Software. On a keyboard, use the arrow keys and Escape.</p>
+                <header class="wb-navbar wb-navbar--static">
+                  <nav aria-label="Dropdown submenus">
+                    <div class="wb-dropdown">
+                      <button type="button" class="wb-btn wb-btn-ghost" data-wb-toggle="dropdown">
+                        Products <i class="wb-icon wb-icon-chevron-down" aria-hidden="true"></i>
+                      </button>
+                      <div class="wb-dropdown-menu">
+                        <button type="button" class="wb-dropdown-item" data-wb-toggle="submenu">Software</button>
+                        <div class="wb-dropdown-menu">
+                          <a class="wb-dropdown-item" href="dropdown-submenu.html#cms">CMS</a>
+                          <a class="wb-dropdown-item" href="dropdown-submenu.html#publisher">Publisher</a>
+                        </div>
+                      </div>
+                    </div>
+                  </nav>
+                </header>
+                <pre><code>&lt;button type="button" class="wb-dropdown-item" data-wb-toggle="submenu"&gt;
+                Software
+              &lt;/button&gt;
+              &lt;div class="wb-dropdown-menu"&gt;
+                &lt;a class="wb-dropdown-item" href="dropdown-submenu.html#cms"&gt;CMS&lt;/a&gt;
+              &lt;/div&gt;</code></pre>
+                <p><a href="dropdown-submenu.html">Open the full navbar demo</a></p>
+              </section>
+
               <section class="wb-docs-section wb-docs-wide" id="shell-selection">
                 <h2>Shell selection</h2>
                 <div class="wb-table-wrap">

@@ -225,6 +225,47 @@
                 </div>
               </section>
 
+              <section class="wb-docs-section wb-docs-wide" id="native-form-groups">
+                <h2>Native form grupları</h2>
+                <p>Ortak bir soru için fieldset ve legend kullan. Etiketli kontrolleri şu sınıfı taşıyan kapsayıcıya yerleştir <code>wb-fieldset-body</code>.</p>
+                <div class="wb-card">
+                  <div class="wb-card-body wb-grid wb-grid-2 wb-gap-4">
+                    <div class="wb-field">
+                      <fieldset class="wb-fieldset">
+                        <legend>Gönüllü vardiyaları</legend>
+                        <div class="wb-fieldset-body">
+                          <label class="wb-check"><input type="checkbox" name="docs-shifts[]" value="morning"> Sabah</label>
+                          <label class="wb-check"><input type="checkbox" name="docs-shifts[]" value="afternoon"> Öğleden sonra</label>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="wb-field">
+                      <fieldset class="wb-fieldset" aria-describedby="docs-rating-help">
+                        <legend>Restoran puanı</legend>
+                        <div class="wb-fieldset-body">
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="1" required> 1</label>
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="2" required> 2</label>
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="3" required> 3</label>
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="4" required> 4</label>
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="5" required> 5</label>
+                        </div>
+                      </fieldset>
+                      <div class="wb-field-meta">
+                        <p class="wb-field-hint" id="docs-rating-help">Bir puan seç.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <pre><code>&lt;fieldset class="wb-fieldset"&gt;
+                &lt;legend&gt;Gönüllü vardiyaları&lt;/legend&gt;
+                &lt;div class="wb-fieldset-body"&gt;
+                  &lt;label class="wb-check"&gt;
+                    &lt;input type="checkbox" name="shifts[]" value="morning"&gt; Sabah
+                  &lt;/label&gt;
+                &lt;/div&gt;
+              &lt;/fieldset&gt;</code></pre>
+              </section>
+
               <section class="wb-docs-section wb-docs-wide" id="surfaces-and-display">
                 <h2>Surface ve görünüm sözleşmeleri</h2>
                 <p><code>wb-card-media</code>, card gövdelerine öngörülebilir bir medya çerçevesi verir; böylece karışık logolar, ekran görüntüleri ve servis görselleri bir card ızgarası boyunca yazı taban çizgisini tutarlı tutar. Varsayılan fit değeri <code>contain</code>'dir, yani görsel varsayılan olarak kırpılmak yerine tamamen görünür kalır.</p>

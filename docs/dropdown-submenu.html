@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-preset="modern">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dropdown submenus · WebBlocks UI</title>
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-ui.css">
+  <link rel="stylesheet" href="../packages/webblocks/dist/webblocks-icons.css">
+  <script src="../packages/webblocks/dist/webblocks-ui.js" defer></script>
+</head>
+<body>
+  <header class="wb-navbar wb-px-3">
+    <div class="wb-container wb-container-md wb-gap-2">
+      <a class="wb-navbar-brand" href="#demo">WebBlocks UI</a>
+      <nav class="wb-cluster wb-gap-2" aria-label="Primary navigation">
+        <div class="wb-dropdown">
+          <button type="button" class="wb-btn wb-btn-ghost" data-wb-toggle="dropdown">
+            Products
+            <i class="wb-icon wb-icon-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div class="wb-dropdown-menu">
+            <button type="button" class="wb-dropdown-item" data-wb-toggle="submenu">
+              <i class="wb-icon wb-icon-layers" aria-hidden="true"></i>
+              Software
+            </button>
+            <div class="wb-dropdown-menu">
+              <a class="wb-dropdown-item" href="#cms">
+                <i class="wb-icon wb-icon-file-text" aria-hidden="true"></i>
+                CMS
+              </a>
+              <a class="wb-dropdown-item" href="#publisher">
+                <i class="wb-icon wb-icon-globe" aria-hidden="true"></i>
+                Publisher
+              </a>
+            </div>
+            <button type="button" class="wb-dropdown-item" data-wb-toggle="submenu">
+              <i class="wb-icon wb-icon-layout" aria-hidden="true"></i>
+              Design system
+            </button>
+            <div class="wb-dropdown-menu">
+              <a class="wb-dropdown-item" href="#components">
+                <i class="wb-icon wb-icon-box" aria-hidden="true"></i>
+                Components
+              </a>
+              <a class="wb-dropdown-item" href="#patterns">
+                <i class="wb-icon wb-icon-layout-grid" aria-hidden="true"></i>
+                Patterns
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="wb-navbar-spacer"></div>
+      <button type="button" class="wb-btn wb-btn-ghost wb-btn-icon" data-wb-mode-cycle
+              aria-label="Change color mode" title="Change color mode">
+        <i class="wb-icon wb-icon-sun-moon" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="demo" class="wb-container wb-container-md wb-py-6 wb-stack wb-gap-6">
+    <div class="wb-stack wb-gap-2">
+      <h1>Dropdown submenus</h1>
+      <p class="wb-text-muted">Open <strong>Products</strong>, then point to or tap <strong>Software</strong>
+        or <strong>Design system</strong>. Use the arrow keys to move between items and Escape to go back.</p>
+    </div>
+
+    <div class="wb-grid wb-grid-2 wb-gap-4">
+      <section id="cms" class="wb-card" aria-labelledby="demo-cms-title">
+        <div class="wb-card-header"><h2 id="demo-cms-title" class="wb-card-title">CMS</h2></div>
+        <div class="wb-card-body">Manage pages and editorial content.</div>
+      </section>
+      <section id="publisher" class="wb-card" aria-labelledby="demo-publisher-title">
+        <div class="wb-card-header"><h2 id="demo-publisher-title" class="wb-card-title">Publisher</h2></div>
+        <div class="wb-card-body">Review and publish releases.</div>
+      </section>
+      <section id="components" class="wb-card" aria-labelledby="demo-components-title">
+        <div class="wb-card-header"><h2 id="demo-components-title" class="wb-card-title">Components</h2></div>
+        <div class="wb-card-body">Explore shared interface building blocks.</div>
+      </section>
+      <section id="patterns" class="wb-card" aria-labelledby="demo-patterns-title">
+        <div class="wb-card-header"><h2 id="demo-patterns-title" class="wb-card-title">Patterns</h2></div>
+        <div class="wb-card-body">Combine components into complete layouts.</div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

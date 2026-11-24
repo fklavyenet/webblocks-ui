@@ -5,7 +5,8 @@
    ============================================================ */
 
 /* ── Label ────────────────────────────────────────────────── */
-.wb-label {
+.wb-label,
+fieldset.wb-fieldset > legend {
   display: flex;
   flex-direction: column;
   gap: var(--wb-s1);
@@ -544,6 +545,32 @@
 .wb-form-group {
   display: grid;
   gap: var(--wb-s4);
+}
+
+/* ── Native fieldset ───────────────────────────────────────── */
+fieldset.wb-fieldset {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+fieldset.wb-fieldset > legend {
+  display: block;
+  max-inline-size: 100%;
+  margin-block-end: var(--wb-s2);
+  padding: 0;
+  overflow-wrap: anywhere;
+}
+
+.wb-fieldset-body {
+  display: grid;
+  gap: var(--wb-s2);
+}
+
+fieldset.wb-fieldset:disabled :is(.wb-check, .wb-radio) {
+  color: var(--wb-muted);
+  cursor: default;
 }
 
 /* ── Input Group (prefix / suffix addon) ─────────────────── */

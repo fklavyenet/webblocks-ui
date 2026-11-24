@@ -587,9 +587,40 @@ Shipped form primitives:
 - `wb-input-sm`, `wb-input-lg`, `wb-select-sm`, `wb-select-lg`, `wb-file-sm`, `wb-file-lg`, `wb-color-sm`, `wb-color-lg`, `wb-range-sm`, `wb-range-lg`
 - `wb-input-error`, `wb-select-error`, `wb-textarea-error`, `wb-file-error`, `wb-color-error`, `wb-range-error`
 - `wb-form-row`, `wb-form-group`
+- `wb-fieldset`, `wb-fieldset-body`
 - `wb-check`, `wb-radio`, `wb-switch`
 - `wb-input-wrap`, `wb-input-icon`, `wb-input-suffix`
 - `wb-input-group`, `wb-input-addon`, `wb-input-addon-btn`
+
+#### Native form groups
+
+Use `fieldset.wb-fieldset` with a first-child `legend` for controls that share
+one question. The legend supplies the group's accessible name and uses the
+theme's label typography. Put the individually labelled controls in
+`.wb-fieldset-body` for compact spacing. `wb-form-group` continues to be a
+general layout helper for groups of fields.
+
+```html
+<div class="wb-field">
+  <fieldset class="wb-fieldset" aria-describedby="contact-method-help">
+    <legend>Preferred contact method</legend>
+    <div class="wb-fieldset-body">
+      <label class="wb-radio"><input type="radio" name="contact" value="email" required> Email</label>
+      <label class="wb-radio"><input type="radio" name="contact" value="phone" required> Phone</label>
+    </div>
+  </fieldset>
+  <div class="wb-field-meta">
+    <p class="wb-field-hint" id="contact-method-help">Choose one method.</p>
+  </div>
+</div>
+```
+
+Use `wb-check` for checkbox options. Keep `name`, `value`, `checked`,
+`required`, and `disabled` native. Set `disabled` on the fieldset to disable its
+controls. Reference only rendered help and error IDs with `aria-describedby`
+and set `aria-invalid="true"` on the fieldset when the group has a validation
+error. For a required checkbox group, validate the minimum number of choices
+as a group. HTML `required` on a checkbox applies to that individual choice.
 
 Meta-area rule:
 
@@ -1006,6 +1037,44 @@ Notes:
 - if `data-wb-target` is omitted, the JS looks for the first `.wb-dropdown-menu` in the same `.wb-dropdown`
 - right alignment can use `wb-dropdown-end` on the wrapper or `wb-dropdown-menu-end` on the menu
 - with JS enabled, the active visible dropdown menu node is rendered under the shared runtime’s anchored layer so it does not clip inside cards, shells, or other local containers; native dropdown panels stay in source DOM; legacy panels within a managed native surface use its child layer
+
+#### Dropdown submenus
+
+Place a `button.wb-dropdown-item[data-wb-toggle="submenu"]` immediately before
+its `.wb-dropdown-menu`, inside the parent menu. Follow the same structure for
+other submenu items. Use `type="button"` on controls and `a.wb-dropdown-item`
+with an `href` for navigation links.
+
+```html
+<div class="wb-dropdown">
+  <button type="button" class="wb-btn" data-wb-toggle="dropdown">Products</button>
+  <div class="wb-dropdown-menu">
+    <button type="button" class="wb-dropdown-item" data-wb-toggle="submenu">Software</button>
+    <div class="wb-dropdown-menu">
+      <a class="wb-dropdown-item" href="/cms">CMS</a>
+      <a class="wb-dropdown-item" href="/publisher">Publisher</a>
+    </div>
+    <a class="wb-dropdown-item" href="/services">Services</a>
+  </div>
+</div>
+```
+
+WebBlocks UI supplies the chevron, IDs, menu semantics and focus management.
+The same HTML works in the navbar and in standalone dropdowns. The submenu
+opens flush against the parent menu on the inline-end side when possible,
+tries the opposite side, then uses vertical placement when needed. Mouse
+hover opens a submenu and keeps it open as the pointer crosses into the panel.
+Clicking or tapping also opens the submenu. Selecting a link or action closes
+the menu chain.
+
+Use Up and Down to move through a menu, Home and End to jump to its ends,
+and Enter, Space or the inline-end arrow key to open an indicated submenu.
+Escape or the inline-start arrow key closes the submenu and returns focus to
+its opener. Tab and Shift+Tab close the menu chain and continue page navigation.
+Use conventional links and buttons as menu items. Rich dropdowns with arbitrary
+form controls should use the regular dropdown structure.
+
+See the [navbar demo](../../docs/dropdown-submenu.html).
 
 ### Native Popover API for Dropdown and Popover
 

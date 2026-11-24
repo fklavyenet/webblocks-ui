@@ -150,6 +150,7 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 
 ## Native Form Controls
 
+- Group controls that share a question in `fieldset.wb-fieldset` with a first-child `legend` and `.wb-fieldset-body` around the individually labelled controls. Keep native choice names, states and disabled behavior. `wb-form-group` remains a general layout helper.
 - Use `wb-file` on `input[type="file"]`, `wb-color` on `input[type="color"]`, and `wb-range` on `input[type="range"]`.
 - These are native controls, not composite widgets. Preserve the matching HTML input type and browser behavior.
 - Use their `-sm`, `-lg`, and `-error` variants where needed; keep labels, hints, and errors in the canonical `wb-field` contract.
@@ -163,6 +164,7 @@ Admin, auth, and sidebar product brand marks should follow `docs/admin-product-b
 
 ## Navigation Groups
 
+- Define a cascading dropdown with `button.wb-dropdown-item[data-wb-toggle="submenu"]` immediately followed by its `.wb-dropdown-menu` inside the parent panel. `WBDropdown` owns arrow indicators, hover and touch handling, positioning, keyboard navigation and focus return.
 - Put `data-wb-nav-group` on the `.wb-nav-group` container. The existing
   div/button structure and native `details > summary` use the same
   `.wb-nav-group-toggle` and `.wb-nav-group-items` classes.

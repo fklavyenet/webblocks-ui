@@ -224,7 +224,7 @@
       coords.left + width <= window.innerWidth - padding;
   }
 
-  function pickPlacement(rect, width, height, preferred, offset, padding) {
+  function pickPlacement(rect, width, height, preferred, offset, padding, fallbackPlacements) {
     var side = getSide(preferred);
     var align = getAlign(preferred);
     var opposite = {
@@ -233,12 +233,23 @@
       left: 'right',
       right: 'left'
     }[side] || 'top';
-    var placements = [preferred, opposite + '-' + align];
+    var placements = [preferred, opposite + '-' + align].concat(fallbackPlacements || []);
 
     for (var i = 0; i < placements.length; i += 1) {
-      var coords = computeCoords(rect, width, height, placements[i], offset);
+      var placement = placements[i];
+      var coords = computeCoords(rect, width, height, placement, offset);
+      if (fallbackPlacements) {
+        // Prefer keeping the opening edge clear, even if the panel needs to
+        // slide a little along that edge to fit the viewport.
+        var candidateSide = getSide(placement);
+        if (candidateSide === 'left' || candidateSide === 'right') {
+          coords.top = clamp(coords.top, padding, window.innerHeight - height - padding);
+        } else {
+          coords.left = clamp(coords.left, padding, window.innerWidth - width - padding);
+        }
+      }
       if (fitsWithinViewport(coords, width, height, padding)) {
-        return { placement: placements[i], coords: coords };
+        return { placement: placement, coords: coords };
       }
     }
 
@@ -291,6 +302,13 @@
 
   function shouldElevateAnchored(instance) {
     return !!(instance && instance.layer === 'anchored' && getParentOverlay(instance));
+  }
+
+  function isOwnedBy(instance, owner) {
+    for (var parent = instance && instance.parentOverlay; parent; parent = parent.parentOverlay) {
+      if (parent === owner) return true;
+    }
+    return false;
   }
 
   function getBackdropElement(instance) {
@@ -381,7 +399,8 @@
         return;
       }
 
-      instance.element.setAttribute('data-wb-overlay-interactive', instance === topInteractive ? 'true' : 'false');
+      var interactive = instance === topInteractive || isOwnedBy(topInteractive, instance);
+      instance.element.setAttribute('data-wb-overlay-interactive', interactive ? 'true' : 'false');
     });
   }
 
@@ -521,17 +540,18 @@
 
     var panelRect = panel.getBoundingClientRect();
     var triggerRect = instance.trigger.getBoundingClientRect();
+    var anchorRect = instance.anchorRect ? instance.anchorRect(triggerRect, instance) : triggerRect;
     var preferred = getPlacement(instance.placement);
     var offset = instance.offset == null ? 8 : instance.offset;
     var padding = instance.viewportPadding == null ? 8 : instance.viewportPadding;
-    var picked = pickPlacement(triggerRect, panelRect.width, panelRect.height, preferred, offset, padding);
+    var picked = pickPlacement(anchorRect, panelRect.width, panelRect.height, preferred, offset, padding, instance.fallbackPlacements);
     var coords = picked.coords;
 
     coords.left = clamp(coords.left, padding, Math.max(padding, window.innerWidth - panelRect.width - padding));
     coords.top = clamp(coords.top, padding, Math.max(padding, window.innerHeight - panelRect.height - padding));
 
-    panel.style.top = Math.round(coords.top) + 'px';
-    panel.style.left = Math.round(coords.left) + 'px';
+    panel.style.top = (instance.anchorRect ? coords.top : Math.round(coords.top)) + 'px';
+    panel.style.left = (instance.anchorRect ? coords.left : Math.round(coords.left)) + 'px';
     panel.style.visibility = '';
     panel.style.pointerEvents = '';
     panel.dataset.wbOverlayPlacement = picked.placement;
@@ -557,6 +577,7 @@
   function closeByGroup(group, except) {
     activeStack.slice().forEach(function (instance) {
       if (!instance.active || instance === except) return;
+      if (isOwnedBy(except, instance)) return;
       // A nested anchored overlay must not close the native surface hosting it.
       if ((instance.nativePopover || except.nativePopover) &&
           instance.element && except.trigger && instance.element.contains(except.trigger)) return;
@@ -678,14 +699,14 @@
       else return;
     }
 
-    if (instance.nativeDialog || instance.nativePopover || instance.layer === 'dialog') {
-      // Close owned menus and nested overlays before removing their native
-      // modal subtree; otherwise they would retain body locks and active state.
-      activeStack.slice().reverse().forEach(function (child) {
-        if (child !== instance && instance.element.contains(child.element) &&
-            (instance.nativeDialog || instance.nativePopover || child.nativePopover)) close(child, 'parent-close');
-      });
-    }
+    // Explicit children can share a portal layer with their parent. Native
+    // surfaces also own overlays hosted in their active DOM subtree.
+    var ownsNativeSubtree = instance.nativeDialog || instance.nativePopover || instance.layer === 'dialog';
+    activeStack.slice().reverse().forEach(function (child) {
+      if (isOwnedBy(child, instance) || (ownsNativeSubtree && child !== instance &&
+          instance.element.contains(child.element) &&
+          (instance.nativeDialog || instance.nativePopover || child.nativePopover))) close(child, 'parent-close');
+    });
 
     instance.active = false;
     instance.element.classList.remove('is-open');
@@ -741,10 +762,13 @@
       element: options.element || null,
       panel: options.panel || options.element || null,
       trigger: options.trigger || null,
+      parentOverlay: options.parentOverlay || null,
       portal: options.portal !== false && !nativePopover,
       exclusive: options.exclusive !== false,
       position: options.position || null,
       placement: options.placement || 'bottom-start',
+      anchorRect: options.anchorRect,
+      fallbackPlacements: options.fallbackPlacements,
       offset: options.offset,
       viewportPadding: options.viewportPadding,
       matchWidth: !!options.matchWidth,
@@ -832,10 +856,15 @@
       }
       return;
     }
-    if (top.element && top.element.contains(e.target)) return;
-    if (top.trigger && top.trigger.contains(e.target)) return;
+    if (containsOverlayTarget(top, e.target)) return;
+    while (top.parentOverlay && !containsOverlayTarget(top.parentOverlay, e.target)) top = top.parentOverlay;
     requestClose(top, 'outside', { originalEvent: e });
   });
+
+  function containsOverlayTarget(instance, target) {
+    return (instance.element && instance.element.contains(target)) ||
+      (instance.trigger && instance.trigger.contains(target));
+  }
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {

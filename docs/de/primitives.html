@@ -225,6 +225,47 @@
                 </div>
               </section>
 
+              <section class="wb-docs-section wb-docs-wide" id="native-form-groups">
+                <h2>Native Formulargruppen</h2>
+                <p>Verwende für eine gemeinsame Frage ein Fieldset mit Legende. Fasse die beschrifteten Eingaben in diesem Container zusammen <code>wb-fieldset-body</code>.</p>
+                <div class="wb-card">
+                  <div class="wb-card-body wb-grid wb-grid-2 wb-gap-4">
+                    <div class="wb-field">
+                      <fieldset class="wb-fieldset">
+                        <legend>Verfügbare Schichten für Freiwillige</legend>
+                        <div class="wb-fieldset-body">
+                          <label class="wb-check"><input type="checkbox" name="docs-shifts[]" value="morning"> Vormittags</label>
+                          <label class="wb-check"><input type="checkbox" name="docs-shifts[]" value="afternoon"> Nachmittags</label>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div class="wb-field">
+                      <fieldset class="wb-fieldset" aria-describedby="docs-rating-help">
+                        <legend>Restaurantbewertung</legend>
+                        <div class="wb-fieldset-body">
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="1" required> 1</label>
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="2" required> 2</label>
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="3" required> 3</label>
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="4" required> 4</label>
+                          <label class="wb-radio"><input type="radio" name="docs-rating" value="5" required> 5</label>
+                        </div>
+                      </fieldset>
+                      <div class="wb-field-meta">
+                        <p class="wb-field-hint" id="docs-rating-help">Wähle eine Bewertung.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <pre><code>&lt;fieldset class="wb-fieldset"&gt;
+                &lt;legend&gt;Verfügbare Schichten für Freiwillige&lt;/legend&gt;
+                &lt;div class="wb-fieldset-body"&gt;
+                  &lt;label class="wb-check"&gt;
+                    &lt;input type="checkbox" name="shifts[]" value="morning"&gt; Vormittags
+                  &lt;/label&gt;
+                &lt;/div&gt;
+              &lt;/fieldset&gt;</code></pre>
+              </section>
+
               <section class="wb-docs-section wb-docs-wide" id="surfaces-and-display">
                 <h2>Surfaces und Darstellungsverträge</h2>
                 <p><code>wb-card-media</code> gibt Card-Bodies einen vorhersehbaren Medienrahmen, damit gemischte Logos, Screenshots und Service-Bilder die Textgrundlinie über ein Card-Raster hinweg einheitlich halten. Der Standard-Fit ist <code>contain</code>, sodass das vollständige Bild sichtbar bleibt, statt standardmäßig beschnitten zu werden.</p>

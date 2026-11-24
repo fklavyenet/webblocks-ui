@@ -6,6 +6,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.39.0] — 2026-11-24
+
+### Added
+- Add cascading dropdown submenus with flush side placement, mouse hover, touch activation, keyboard navigation, and focus return.
+- Add themed native fieldsets with compact control spacing and native legend and disabled semantics.
+- Document both components and add a live navbar submenu example and form group examples.
+
 ## [2.38.0] — 2026-11-16
 
 ### Added

@@ -78,6 +78,44 @@ html.wb-js .wb-dropdown-menu {
   background: var(--wb-primary-soft);
   outline: none;
 }
+.wb-dropdown-menu--cascade {
+  min-inline-size: min(200px, calc(100vi - 16px));
+  max-inline-size: calc(100vi - 16px);
+  max-block-size: calc(100dvb - 16px);
+  overflow: auto;
+  animation: none;
+}
+
+.wb-dropdown-menu--cascade .wb-dropdown-item[data-wb-toggle="submenu"]::after {
+  content: "";
+  flex: none;
+  inline-size: 0.42em;
+  block-size: 0.42em;
+  margin-inline-start: auto;
+  border-block-start: 1.5px solid currentColor;
+  border-inline-end: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.wb-dropdown-menu--cascade .wb-dropdown-item[data-wb-toggle="submenu"]:dir(rtl)::after {
+  transform: rotate(-45deg);
+}
+
+.wb-dropdown-menu--cascade .wb-dropdown-item[data-wb-toggle="submenu"][aria-expanded="true"] {
+  background: var(--wb-surface-2);
+}
+
+.wb-dropdown-menu--cascade .wb-dropdown-item:where(:disabled, [aria-disabled="true"]) {
+  color: var(--wb-muted);
+  cursor: default;
+}
+
+@media (pointer: coarse) {
+  .wb-dropdown-menu--cascade .wb-dropdown-item {
+    min-block-size: 44px;
+  }
+}
+
 .wb-dropdown-item.is-active {
   color: var(--wb-accent-text);
   background: var(--wb-accent-softer);

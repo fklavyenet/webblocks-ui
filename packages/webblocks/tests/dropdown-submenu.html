@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dropdown submenu checks — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+  <script>
+    var useSource = new URLSearchParams(location.search).has('source');
+    var runtime = useSource ? ['utils/dom', 'utils/overlay', 'dropdown'].map(function (name) {
+      return '../src/js/' + name + '.js';
+    }) : ['../dist/webblocks-ui.js'];
+    runtime.forEach(function (path) {
+      var script = document.createElement('script');
+      script.src = path;
+      script.async = false;
+      document.head.appendChild(script);
+    });
+  </script>
+</head>
+<body>
+<main class="wb-container wb-stack wb-gap-4 wb-py-6">
+  <h1>Dropdown submenu checks</h1>
+  <p id="summary" role="status">Waiting for checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <div id="sandbox"></div>
+  <button id="outside" type="button" class="wb-btn">Outside</button>
+</main>
+<script>
+(function () {
+  'use strict';
+
+  var failures = document.getElementById('failures');
+  var sandbox = document.getElementById('sandbox');
+  var outside = document.getElementById('outside');
+  var count = 0;
+
+  function check(condition, label) {
+    count += 1;
+    if (condition) return;
+    var failure = document.createElement('li');
+    failure.textContent = label;
+    failures.append(failure);
+  }
+
+  function key(keyName) {
+    document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key: keyName, bubbles: true, cancelable: true }));
+  }
+
+  function tap(target) {
+    target.dispatchEvent(new PointerEvent('click', { pointerType: 'touch', bubbles: true, cancelable: true }));
+  }
+
+  function movePointer(from, to, pointerType = 'mouse') {
+    from.dispatchEvent(new PointerEvent('pointerout', { bubbles: true, pointerType, relatedTarget: to }));
+    to.dispatchEvent(new PointerEvent('pointerover', { bubbles: true, pointerType, relatedTarget: from }));
+  }
+
+  function afterHoverDelay() {
+    return new Promise(function (resolve) { setTimeout(resolve, 340); });
+  }
+
+  function shown(panel) {
+    return panel.classList.contains('is-open') && panel.getClientRects().length > 0;
+  }
+
+  function fixture(native) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'wb-dropdown';
+    wrapper.innerHTML = `
+      <button type="button" class="wb-btn" data-wb-toggle="dropdown">Products</button>
+      <div class="wb-dropdown-menu" ${native ? 'popover="manual"' : ''}>
+        <button type="button" class="wb-dropdown-item" data-wb-toggle="submenu">Software</button>
+        <div class="wb-dropdown-menu">
+          <button type="button" class="wb-dropdown-item" disabled>Unavailable</button>
+          <button type="button" class="wb-dropdown-item">CMS</button>
+          <button type="button" class="wb-dropdown-item">Publisher</button>
+        </div>
+        <button type="button" class="wb-dropdown-item" data-wb-toggle="submenu">Design system</button>
+        <div class="wb-dropdown-menu">
+          <button type="button" class="wb-dropdown-item">Components</button>
+        </div>
+      </div>`;
+    sandbox.append(wrapper);
+    var trigger = wrapper.firstElementChild;
+    var parent = trigger.nextElementSibling;
+    var [first, second] = parent.querySelectorAll('[data-wb-toggle="submenu"]');
+    return { wrapper, trigger, parent, first, firstPanel: first.nextElementSibling,
+      second, secondPanel: second.nextElementSibling };
+  }
+
+  async function run() {
+    for (var native of [false, true]) {
+      if (native && !HTMLElement.prototype.showPopover) continue;
+      var f = fixture(native);
+      var mode = native ? 'Native parent' : 'Regular parent';
+      var [, cms, publisher] = f.firstPanel.children;
+
+      WBDropdown.close(f.firstPanel);
+      check(f.first.nextElementSibling === f.firstPanel, mode + ' closing an unopened submenu preserves its HTML');
+
+      f.trigger.focus();
+      key('ArrowDown');
+      check(shown(f.parent) && document.activeElement === f.first, mode + ' opens and focuses the first item');
+      check(f.first.getAttribute('aria-haspopup') === 'menu' && f.first.getAttribute('aria-controls') === f.firstPanel.id,
+        mode + ' generates submenu relationships');
+      key('ArrowRight');
+      check(shown(f.parent) && shown(f.firstPanel) && document.activeElement === cms, mode + ' opens the submenu and skips disabled items');
+      var rect = f.firstPanel.getBoundingClientRect();
+      var opener = f.first.getBoundingClientRect();
+      var hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      check(f.firstPanel.contains(hit) && rect.left >= 0 && rect.right <= innerWidth, mode + ' renders the submenu within the viewport');
+      check(rect.bottom <= opener.top || rect.top >= opener.bottom || rect.right <= opener.left || rect.left >= opener.right,
+        mode + ' keeps the opener visible');
+      var parentRect = f.parent.getBoundingClientRect();
+      var side = f.firstPanel.dataset.wbOverlaySide;
+      if (side === 'right' || side === 'left') {
+        var gap = side === 'right' ? rect.left - parentRect.right : parentRect.left - rect.right;
+        check(Math.abs(gap) < 0.5, mode + ' side panel sits flush against the parent menu');
+      }
+      check(f.parent.dataset.wbOverlayInteractive === 'true', mode + ' remains interactive while the submenu is open');
+      key('ArrowDown');
+      check(document.activeElement === publisher, mode + ' moves focus to the next submenu item');
+      key('Escape');
+      check(shown(f.parent) && !shown(f.firstPanel) && document.activeElement === f.first, mode + ' Escape returns focus to the submenu opener');
+      key('ArrowRight');
+      key('ArrowLeft');
+      check(shown(f.parent) && !shown(f.firstPanel) && document.activeElement === f.first, mode + ' back arrow closes one level');
+
+      movePointer(outside, f.first, 'touch');
+      await afterHoverDelay();
+      check(!shown(f.firstPanel), mode + ' touch contact does not trigger hover');
+      movePointer(outside, f.first);
+      await afterHoverDelay();
+      check(shown(f.firstPanel) && document.activeElement === f.first, mode + ' mouse hover opens without moving focus');
+      movePointer(f.first, f.second);
+      movePointer(f.second, cms);
+      await afterHoverDelay();
+      check(shown(f.firstPanel) && !shown(f.secondPanel), mode + ' crossing another item into the side panel cancels the switch');
+      movePointer(cms, f.second);
+      await afterHoverDelay();
+      check(!shown(f.firstPanel) && shown(f.secondPanel), mode + ' hovering the sibling switches branches');
+      movePointer(f.second, outside);
+      await afterHoverDelay();
+      check(shown(f.parent) && !shown(f.secondPanel), mode + ' leaving both panels closes only the hover-opened submenu');
+      movePointer(outside, f.first);
+      await afterHoverDelay();
+      key('ArrowRight');
+      movePointer(f.first, outside);
+      await afterHoverDelay();
+      check(shown(f.firstPanel) && document.activeElement === cms, mode + ' keyboard focus keeps the submenu open after the pointer leaves');
+      key('Escape');
+
+      tap(f.first);
+      tap(f.second);
+      check(shown(f.parent) && !shown(f.firstPanel) && shown(f.secondPanel), mode + ' taps switch branches');
+      tap(f.second);
+      check(shown(f.parent) && !shown(f.secondPanel), mode + ' a repeated tap closes the submenu');
+      tap(f.first);
+      outside.click();
+      check(!shown(f.parent) && !shown(f.firstPanel) && f.first.nextElementSibling === f.firstPanel,
+        mode + ' outside click closes and restores the whole chain');
+
+      tap(f.trigger);
+      tap(f.first);
+      tap(cms);
+      await new Promise(function (resolve) { setTimeout(resolve, 30); });
+      check(!shown(f.parent) && !shown(f.firstPanel), mode + ' a leaf action closes the whole chain');
+
+      WBDropdown.open(f.parent);
+      WBDropdown.open(f.firstPanel);
+      WBDropdown.close(f.parent);
+      check(!shown(f.firstPanel) && f.first.getAttribute('aria-expanded') === 'false', mode + ' API close cleans up descendants');
+      WBDropdown.open(f.parent);
+      key('Escape');
+      check(!shown(f.parent) && document.activeElement === f.trigger, mode + ' root Escape returns focus to the main trigger');
+      f.parent.remove();
+      f.wrapper.remove();
+    }
+
+    var rtl = fixture(false);
+    document.documentElement.dir = 'rtl';
+    rtl.trigger.focus();
+    key('ArrowDown');
+    key('ArrowLeft');
+    check(shown(rtl.firstPanel), 'RTL reverses the submenu opening key');
+    key('ArrowRight');
+    check(!shown(rtl.firstPanel) && document.activeElement === rtl.first, 'RTL reverses the back key');
+    WBDropdown.closeAll();
+    document.documentElement.removeAttribute('dir');
+    rtl.parent.remove();
+    rtl.wrapper.remove();
+
+    var failed = failures.children.length;
+    document.getElementById('summary').textContent = (failed ? 'FAIL' : 'PASS') + ' — ' + count + ' checks, ' + failed + ' failures.';
+  }
+
+  window.addEventListener('load', function () {
+    run().catch(function (error) {
+      document.getElementById('summary').textContent = 'FAIL — ' + error.message;
+    });
+  });
+})();
+</script>
+</body>
+</html>
