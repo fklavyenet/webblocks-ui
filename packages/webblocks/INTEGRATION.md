@@ -3454,8 +3454,11 @@ interaction, or a misleading success/danger color based on vote share.
 
 UI owns the track, accent fill, radius, theme and native-engine styling. Hosts own
 values, labels, formatting, validation, totals, authorization and result visibility.
+The meter is 12 CSS px tall, including a 2 px neutral frame on all sides. The
+track is empty at the minimum value. At the maximum, the fill covers the inner
+track and the frame remains visible.
 For independent poll choices use the same 0–100 scale for every option; multiple
-choice percentages may sum above 100. Zero remains an empty track, 100 fills it.
+choice percentages may sum above 100.
 Missing measurements should be described as missing rather than silently set to zero.
 Long labels should wrap using ordinary layout; keep values readable on small screens.
 See [native meter examples](../../docs/meter.html). No chart library is required.

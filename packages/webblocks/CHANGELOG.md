@@ -6,6 +6,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.39.1] — 2026-11-25
+
+### Fixed
+- Keep a 2 px theme-aware frame visible around native `wb-meter` indicators at every value, including full capacity. The meter is 12 px tall.
+
 ## [2.39.0] — 2026-11-24
 
 ### Added
