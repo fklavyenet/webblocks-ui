@@ -38,10 +38,12 @@ Use the canonical admin table structure instead.
 
 ## Non-Semantic Detail Lists
 
-Do not use `wb-detail-list` on a div/span root or replace `dt.wb-detail-label`
+In new or rewritten markup, do not use `wb-detail-list` on a div/span root or replace `dt.wb-detail-label`
 and `dd.wb-detail-value` with div/span elements. `div.wb-detail-row` is allowed
 only as a grouping wrapper inside `dl.wb-detail-list`. CSS and ARIA roles cannot
-replace the native anatomy. Existing div-only consumers must migrate.
+replace the native anatomy. Existing div-only consumers retain their original
+v2 styling as deprecated compatibility support; migrate them when rewriting the
+template rather than removing support during a compatible upgrade.
 
 Do not choose a description list just because a page is called a detail page,
 or use one to imitate a table's column sizing. Field/value table summaries and

@@ -33,10 +33,11 @@
       '<div class="wb-detail-row"><dt class="wb-detail-label">Path</dt><dd class="wb-detail-value wb-detail-value-mono">/synthetic-fixture/' + 'long-unbroken-value-'.repeat(14) + '</dd></div>' +
       '</dl></section>';
   });
-  // Deliberately invalid historical anatomy verifies that CSS no longer styles it.
-  body += '<div id="old-root" class="wb-detail-list"><div class="wb-detail-row"><span class="wb-detail-label">Unsupported div root</span><span class="wb-detail-value">Migrate this markup.</span></div></div>' +
+  // Legacy div/span styling remains compatible while new authoring uses dl/dt/dd.
+  body += '<div id="old-root" class="wb-detail-list"><div class="wb-detail-row"><span class="wb-detail-label">Legacy span term</span><span class="wb-detail-value">Existing consumer content.</span></div><div class="wb-detail-row"><div class="wb-detail-label">Legacy div term</div><div class="wb-detail-value wb-detail-value-mono">/synthetic/path</div></div></div>' +
     '<div class="wb-detail-row" id="outside-row">An unrelated row class outside a detail list.</div>' +
-    '<dl id="unrelated"><dt class="wb-detail-label">Unrelated native term</dt><dd class="wb-detail-value">Unrelated description</dd></dl>';
+    '<dl id="unrelated"><dt>Unrelated native term</dt><dd>Unrelated description</dd></dl>' +
+    '<span id="muted-reference" style="color:var(--wb-muted)">Muted reference</span>';
   frame.addEventListener('load', function () {
     var doc = frame.contentDocument;
     var win = frame.contentWindow;
@@ -82,8 +83,26 @@
             check(id + ' nested dl stays unstyled', win.getComputedStyle(nested).display === 'block');
             check(id + ' machine value keeps mono font', win.getComputedStyle(list.querySelector('.wb-detail-value-mono')).fontFamily === win.getComputedStyle(doc.documentElement).getPropertyValue('--wb-font-mono').trim());
           });
-          check(context + ' div root unsupported', win.getComputedStyle(doc.getElementById('old-root')).display === 'block' && win.getComputedStyle(doc.querySelector('#old-root .wb-detail-row')).display === 'block');
-          check(context + ' unrelated row unaffected', win.getComputedStyle(doc.getElementById('outside-row')).display === 'block');
+          var legacy = doc.getElementById('old-root');
+          var legacyRow = legacy.firstElementChild;
+          var legacyLabel = legacyRow.firstElementChild;
+          var legacyValue = legacyRow.lastElementChild;
+          var legacyLabelBox = legacyLabel.getBoundingClientRect();
+          var legacyValueBox = legacyValue.getBoundingClientRect();
+          var rootSize = parseFloat(win.getComputedStyle(doc.documentElement).fontSize);
+          check(context + ' legacy div root stays styled', win.getComputedStyle(legacy).display === 'grid' && win.getComputedStyle(legacyRow).display === 'grid');
+          check(context + ' legacy label typography', near(parseFloat(win.getComputedStyle(legacyLabel).fontSize), rootSize * 0.75) && win.getComputedStyle(legacyLabel).fontWeight === '600');
+          check(context + ' legacy muted label', win.getComputedStyle(legacyLabel).color === win.getComputedStyle(doc.getElementById('muted-reference')).color);
+          check(context + ' legacy row spacing', near(parseFloat(win.getComputedStyle(legacyRow).paddingTop), rootSize * 0.75) && near(parseFloat(win.getComputedStyle(legacyRow).columnGap), rootSize));
+          check(context + ' legacy separators', parseFloat(win.getComputedStyle(legacyRow).borderBottomWidth) === 1 && parseFloat(win.getComputedStyle(legacy.lastElementChild).borderBottomWidth) === 0);
+          check(context + ' legacy div and mono values', win.getComputedStyle(legacy.lastElementChild.firstElementChild).fontWeight === '600' && near(parseFloat(win.getComputedStyle(legacy.querySelector('.wb-detail-value-mono')).fontSize), rootSize * 0.875));
+          if (width <= 640) {
+            check(context + ' legacy mobile stacking', legacyValueBox.top >= legacyLabelBox.bottom);
+          } else {
+            check(context + ' legacy 13rem key column', near(legacyLabelBox.width, rootSize * 13));
+            check(context + ' legacy horizontal placement', direction === 'rtl' ? legacyValueBox.right < legacyLabelBox.left : legacyValueBox.left > legacyLabelBox.right);
+          }
+          check(context + ' standalone legacy row remains compatible', win.getComputedStyle(doc.getElementById('outside-row')).display === 'grid');
           check(context + ' unrelated native list unaffected', win.getComputedStyle(doc.getElementById('unrelated')).display === 'block' && win.getComputedStyle(doc.querySelector('#unrelated dt')).fontWeight === '400');
           check(context + ' no document overflow', doc.documentElement.scrollWidth <= width + 1);
         });

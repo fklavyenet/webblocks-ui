@@ -39,8 +39,9 @@ Right:
 
 ## Semantic Detail Lists
 
-Wrong: div/span markup does not express term/description relationships and is
-not styled by the component.
+Deprecated for new authoring: div/span markup does not express term/description
+relationships. Existing markup remains styled for v2 compatibility; do not
+copy it into new or rewritten templates.
 
 ```html
 <div class="wb-detail-list">

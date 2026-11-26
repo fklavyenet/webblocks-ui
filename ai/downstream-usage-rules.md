@@ -93,8 +93,8 @@ Admin filter bar actions:
 
 Use `dl.wb-detail-list` for term/description or independent name/value
 associations. Each direct `div.wb-detail-row` contains one `dt.wb-detail-label`
-followed by one `dd.wb-detail-value`. A grouping div is allowed; div/span roots,
-terms and descriptions are not. Keep multi-paragraph or multiple-value content
+followed by one `dd.wb-detail-value`. A grouping div is allowed; new or rewritten
+markup must not substitute div/span roots, terms or descriptions. Keep multi-paragraph or multiple-value content
 inside the same `dd`. Do not add ARIA roles to imitate native semantics.
 
 The default is ruled horizontal. Add `wb-detail-list--borderless` to that `dl`
@@ -111,9 +111,13 @@ when there are no row actions. Metadata can also be expressed as a description
 list when its relationships suit one: page type, two-column layout and borders
 alone never determine semantics.
 
-Existing div/span-only detail lists must be migrated to `dl`/`dt`/`dd`, or to
-native table markup for tabular summaries. They are no longer styled by the
-component. Do not patch a vendored stylesheet or add an ARIA/JavaScript repair.
+Existing div/span-only detail lists remain styled with their original v2
+geometry, typography, separators and mobile stacking as deprecated compatibility
+support. No immediate migration is required for a v2 upgrade. Migrate to
+`dl`/`dt`/`dd`, or native table markup for tabular summaries, when rewriting the
+template. The three new presentations target native markup; legacy markup
+retains its historical presentation. Do not patch a vendored stylesheet or add
+an ARIA/JavaScript repair. Removal would require a future breaking release.
 
 ## Forms
 

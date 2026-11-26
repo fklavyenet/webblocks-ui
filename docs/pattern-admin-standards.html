@@ -559,7 +559,7 @@
     &lt;dd class="wb-detail-value"&gt;Unpublished content that can still be edited.&lt;/dd&gt;
   &lt;/div&gt;
 &lt;/dl&gt;</code></pre>
-                    <p>Migration: div/span-only detail lists are unsupported and no longer styled. Change their elements to <code>dl</code>/<code>dt</code>/<code>dd</code>, or use a native table for tabular summaries. CSS and ARIA roles do not repair semantics.</p>
+                    <p>Compatibility: existing div/span-only detail lists retain their original v2 styling. This markup is deprecated for new authoring; use <code>dl</code>/<code>dt</code>/<code>dd</code> in new or rewritten description lists, or native tables for tabular summaries. No immediate migration is required to upgrade within v2. CSS and ARIA roles do not repair semantics.</p>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="detail-page">

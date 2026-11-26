@@ -502,7 +502,8 @@ filters and pagination. No extra table wrapper or surface is needed. See
 
 ## Detail list
 
-`wb-detail-list` styles a native `dl`, never a div-based imitation. Each direct
+New detail lists use `wb-detail-list` on a native `dl`. Deprecated div/span
+markup retains its original v2 styling for compatibility. Each direct
 `div.wb-detail-row` groups `dt.wb-detail-label` and `dd.wb-detail-value`.
 The default is horizontal with row separators. Add `wb-detail-list--borderless`
 for horizontal without separators, or `wb-detail-list--stacked` for a term above

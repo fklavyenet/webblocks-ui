@@ -120,6 +120,43 @@
   flex: 1 1 100%;
 }
 
+/* Deprecated v2 compatibility. Preserve existing div/span layouts while hosts
+   migrate; new markup uses the native description-list anatomy below. */
+.wb-detail-list {
+  display: grid;
+  gap: 0;
+}
+
+.wb-detail-row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr);
+  gap: var(--wb-s2) var(--wb-s4);
+  padding: var(--wb-s3) 0;
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.wb-detail-row:last-child {
+  border-bottom: none;
+}
+
+.wb-detail-label {
+  font-size: var(--wb-font-size-xs);
+  font-weight: 600;
+  line-height: var(--wb-line-height-base);
+  color: var(--wb-muted);
+}
+
+.wb-detail-value {
+  min-width: 0;
+  color: var(--wb-text);
+  overflow-wrap: anywhere;
+}
+
+.wb-detail-value-mono {
+  font-family: var(--wb-font-mono);
+  font-size: 0.875rem;
+}
+
 /* Semantic description lists. A div may group a dt/dd pair, never replace it. */
 dl.wb-detail-list {
   display: grid;
@@ -146,6 +183,7 @@ dl.wb-detail-list > .wb-detail-row > dt.wb-detail-label,
 dl.wb-detail-list > .wb-detail-row > dd.wb-detail-value {
   margin: 0;
   min-width: 0;
+  font-size: inherit;
   color: var(--wb-text);
   overflow-wrap: anywhere;
 }
@@ -272,6 +310,10 @@ dl.wb-detail-list--stacked > .wb-detail-row > dd.wb-detail-value {
 .wb-stat-bar   { margin-top: var(--wb-s3); }
 
 @media (max-width: 640px) {
+  .wb-detail-row {
+    grid-template-columns: 1fr;
+  }
+
   dl.wb-detail-list > .wb-detail-row {
     grid-template-columns: minmax(0, 1fr);
   }

@@ -105,7 +105,7 @@ a glossary, questions and answers, or independent metadata facts. Use native
 `dt.wb-detail-label` and `dd.wb-detail-value`; each direct `div.wb-detail-row`
 groups one term and one description. A description may contain several
 paragraphs, links, or other appropriate content. The grouping div has no semantic
-replacement role. Do not put these classes on div/span substitutes for `dl`,
+replacement role. In new or rewritten markup, do not put these classes on div/span substitutes for `dl`,
 `dt`, or `dd`, and do not add table, heading, or list roles to simulate semantics.
 
 The same markup supports three CSS-only presentations:
@@ -140,10 +140,14 @@ require a description list, and a two-column appearance alone does not decide
 the element. Description lists may describe metadata too; choose by the
 information relationships, not by the requested styling.
 
-Migration: div/span-only detail lists are no longer styled by this component.
-Replace their root/term/value elements with `dl`/`dt`/`dd` for actual description
-lists, or migrate tabular summaries to native tables. CSS does not repair
-semantics and no JavaScript migration or ARIA substitute is provided. See the
+Compatibility: existing div/span-only detail lists retain their original v2
+styling, including small muted labels, original columns and 640 px stacking.
+This authoring style is deprecated; use `dl`/`dt`/`dd` in new or rewritten
+description lists, or migrate tabular summaries to native tables. The three
+new presentation variants apply to native markup; legacy markup retains its
+historical presentation. CSS does not repair semantics and no JavaScript
+migration or ARIA substitute is provided. Removing compatibility would require
+a future breaking release. See the
 [three live examples](../../docs/pattern-admin-standards.html#detail-lists).
 
 ### Canonical Vocabulary

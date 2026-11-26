@@ -235,7 +235,8 @@ obtain this visual layout.
 
 Description lists use `dl.wb-detail-list` with direct `div.wb-detail-row` groups,
 each containing `dt.wb-detail-label` followed by `dd.wb-detail-value`.
-Div/span substitutes for those native elements are unsupported. The default is
+New and rewritten markup must use those native elements. Deprecated div/span
+markup retains its original v2 styling for compatibility. The native default is
 horizontal with separators; use `wb-detail-list--borderless` for horizontal
 without separators or `wb-detail-list--stacked` for a term above an indented
 description. Keep these classes on the same `dl` root as `wb-detail-list`.

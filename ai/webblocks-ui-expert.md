@@ -39,7 +39,7 @@ The expert agent should:
 * choose canonical WebBlocks shell patterns before local page wrappers
 * prefer `wb-card` for generic framed content
 * keep admin table structure consistent across downstream products
-* require native `dl`/`dt`/`dd` for detail lists in all three presentations; allow `div.wb-detail-row` only to group each term/description pair
+* require native `dl`/`dt`/`dd` for new or rewritten detail lists in all three presentations; allow `div.wb-detail-row` only to group each term/description pair, while preserving deprecated div/span styling for existing v2 consumers
 * keep field/value table summaries and comparable records in native tables instead of selecting `wb-detail-list` from the page name or visual columns
 * use shipped overlay and feedback primitives
 * treat custom CSS/JS as a last resort after explaining why shipped composition is insufficient

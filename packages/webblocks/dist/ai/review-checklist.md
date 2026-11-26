@@ -28,11 +28,11 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 
 ## Detail Lists
 
-- [ ] Every `wb-detail-list` root is a `dl`; each direct `wb-detail-row` groups a native `dt.wb-detail-label` followed by `dd.wb-detail-value`. No div/span substitutes, fake ARIA semantics or JavaScript repair exists.
+- [ ] New and rewritten `wb-detail-list` roots are `dl` elements; each direct `wb-detail-row` groups a native `dt.wb-detail-label` followed by `dd.wb-detail-value`. No new div/span substitutes, fake ARIA semantics or JavaScript repair exists.
 - [ ] The root uses the default ruled horizontal, `wb-detail-list--borderless` horizontal, or `wb-detail-list--stacked` indented presentation; all preserve native semantics without JavaScript.
 - [ ] Field/value table summaries and comparable records retain native table markup with row headers and an accessible table name. Read-only summaries have no invented `Actions` column. The page name or visual columns did not decide the element.
 - [ ] Long terms, multi-paragraph descriptions, machine strings, nested lists, light/dark themes, 640 px stacking, narrow layouts and logical RTL indentation remain readable. Unrelated `dl` elements are unaffected.
-- [ ] Old div/span-only consumers are migrated to native description lists or tables; they are not treated as styled compatibility markup.
+- [ ] Old div/span-only consumers retain their original v2 layout and typography as deprecated compatibility support. Migrate them when rewriting templates; do not require an immediate migration or remove support in a compatible release.
 
 ## Forms
 

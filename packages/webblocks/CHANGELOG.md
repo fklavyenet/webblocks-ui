@@ -6,7 +6,22 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [3.0.0] — 2026-11-26
+## [2.40.0] — 2026-11-26
+
+### Added
+- Add ruled horizontal, `wb-detail-list--borderless` horizontal and `wb-detail-list--stacked` indented presentations for native `dl`/`dt`/`dd` markup.
+
+### Fixed
+- Restore the v2.39.2 styling contract for existing div/span detail lists, including original typography, column widths, separators and mobile stacking. No immediate consumer migration is required.
+- Keep the AI examples source filename consistent on case-sensitive filesystems.
+
+### Deprecated
+- Keep div/span-only detail lists supported for compatibility, but require semantic description lists or native tables in new and rewritten markup. See [the v2.40.0 migration notes](releases/v2.40.0.md).
+
+### Release status
+- Withdraw the v3.0.0 release recommendation and continue the supported v2 line with v2.40.0. Published v3.0.0 tag contents remain unchanged.
+
+## [3.0.0] — 2026-11-26 — Withdrawn
 
 ### Breaking
 - `wb-detail-list` requires native `dl`/`dt`/`dd` markup. Div/span substitutes are no longer styled. Migrate description lists or replace tabular summaries with native tables before upgrading; see [the v3.0.0 migration notes](releases/v3.0.0.md).

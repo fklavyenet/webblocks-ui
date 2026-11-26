@@ -559,7 +559,7 @@
     &lt;dd class="wb-detail-value"&gt;Unveröffentlichter Inhalt, der noch bearbeitet werden kann.&lt;/dd&gt;
   &lt;/div&gt;
 &lt;/dl&gt;</code></pre>
-                    <p>Migration: Reine Div/Span-Detailisten werden nicht unterstützt und nicht mehr gestaltet. Ersetze die Elemente durch <code>dl</code>/<code>dt</code>/<code>dd</code> oder verwende native Tabellen für tabellarische Übersichten. CSS und ARIA-Rollen reparieren keine Semantik.</p>
+                    <p>Kompatibilität: Bestehende Div/Span-Detailisten behalten ihre ursprüngliche v2-Darstellung. Diese Struktur ist für neue Implementierungen veraltet; nutze <code>dl</code>/<code>dt</code>/<code>dd</code> in neuen oder überarbeiteten Beschreibungslisten und native Tabellen für tabellarische Übersichten. Ein Upgrade innerhalb von v2 erfordert keine sofortige Migration. CSS und ARIA-Rollen reparieren keine Semantik.</p>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="detail-page">
