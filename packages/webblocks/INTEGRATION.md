@@ -2887,6 +2887,16 @@ Other:
 
 ## Icons
 
+For the approved 2026-11-26 product browser-title, favicon and semantic-icon
+rules, see the [admin product brand standard](../../docs/admin-product-brand.md)
+and [AI contract](../../ai/contract.md#semantic-interface-icons--approved-2026-11-26),
+including their rollout boundaries and public-site/host/native/game exceptions.
+These rules supplement older pinned contracts without adding icons or APIs.
+Validate literal and dynamic names in the actual release's `dist/webblocks-icons.json`
+and `dist/webblocks-icons.css`; fallback glyphs do not prove support. Preserve
+sidebar-only 18 x 18 px sizing and one 18 px indent; other controls keep shipped
+sizes. Releases and consumer updates require separate fresh operator approval.
+
 Generated icon rules share one SVG payload between `-webkit-mask-image` and
 `mask-image` through the internal `--wb-icon-mask` property. This does not change
 the icon catalog, aliases, helper classes, CSS file paths, or consumer markup.
@@ -2931,7 +2941,7 @@ Canonical vs alias rule:
 
 Semantic guidance:
 
-- use `refresh` for reloading current data
+- use `refresh-cw` for refreshing current data or checking for updates under the shared semantic dictionary (`refresh` remains a compatibility alias)
 - use `sync` for reconciling with a remote source
 - use `rotate-cw` or `rotate-ccw` for literal rotation/cycle actions
 - use `wb-spinner` or `wb-spinner-pulse` for loading state instead of inventing a loader icon class

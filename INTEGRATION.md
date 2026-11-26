@@ -11,6 +11,14 @@ This document is the **single source of truth** for:
 
 For downstream AI usage rules and review checklists, also see `ai/contract.md`.
 
+The locally approved 2026-11-26 browser-title, product-favicon and semantic-icon
+rules are documented in the [admin product brand standard](docs/admin-product-brand.md)
+and [AI contract](ai/contract.md#browser-page-titles--approved-2026-11-26).
+They supplement older pinned contracts without changing their available APIs
+or icons. Check names in the actual pin's registry and shipped icon CSS, preserve
+the documented public-site/host/native/game exceptions, and treat release and
+consumer updates as separate operations requiring fresh operator approval.
+
 If this file conflicts with shipped source, shipped source wins.
 
 ---

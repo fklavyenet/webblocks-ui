@@ -4,6 +4,30 @@ This standard binds how WebBlocks ecosystem products render product identity in 
 
 WebBlocks UI owns the layout slots, class contracts, token behavior, and sizing hooks. Each product owns its product mark artwork, accessible name, final retained asset list, and product-specific contrast choices.
 
+## Browser page titles — approved 2026-11-26
+
+Product panels, workspaces, sign-in, password recovery and product-owned error
+screens use `{localized page title} - {product name}` with the literal ` - `
+separator. Put distinguishing page information first and the canonical product
+name last, exactly once. With no page title, render only the product name.
+A standalone single-purpose tool may retain its descriptive product title when
+no separate screen exists.
+
+Reuse the localized visible page title and current breadcrumb's page meaning:
+`Record type: Record name` for detail pages, `Action + record type: Record name`
+for edit pages, and `Edit profile: {name}` for the authenticated operator's
+profile, using the current name after a change. Include a named parent before
+the record name where applicable. Keep product suffixes out of the visible
+heading and breadcrumb; do not strip product-name text from authored record
+titles merely because it also appears in the suffix.
+
+Compose titles at one product-owned server-side helper/layout boundary with
+escaped text and one `title` element. Do not repair titles through global
+JavaScript. Preserve normal framework updates on existing dynamic screens
+without adding a runtime. Public SEO/editorial titles, custom-site branding
+and host-owned titles remain separate; packages must not replace unrelated
+host screens' titles.
+
 ## Product Shell Brand Marks
 
 Admin, auth, and sidebar product marks should be rendered with a project-owned inline SVG component or partial.
@@ -130,12 +154,90 @@ Stacked or large hero-logo auth layouts are not the WebBlocks product shell defa
 
 ## Favicon And App Icons
 
-Favicons and app icons are separate file assets, not the inline SVG product brand component.
+**Product favicons and app icons — approved 2026-11-26.** Use each product's own
+approved recognizable mark. Favicons and app icons are standalone file assets,
+separate from the inline SVG product brand component. Standalone SVG artwork
+must not depend on page CSS or inherit the shell's `currentColor` contract.
+Retain product-specific contrast choices; no product rebrand, forced
+squircle/container or user-selected accent binding is authorized.
 
-- Do not make a squircle favicon or app icon the default WebBlocks ecosystem standard.
-- Do not dynamically bind favicons to user-selected accent by default.
-- Products should keep only the favicon and icon files they actually use.
-- Product docs and tests should list the final retained favicon and app icon files.
+| Asset | Required dimensions | Delivery |
+|---|---|---|
+| SVG favicon | Scalable | `rel="icon"`, `type="image/svg+xml"`, `sizes="any"` |
+| PNG fallbacks | 16 x 16 and 32 x 32 | `rel="icon"`, `type="image/png"`, matching `sizes` |
+| Multi-size ICO | 16/32/48 px frames | `rel="icon"`, `type="image/vnd.microsoft.icon"`, `sizes="16x16 32x32 48x48"` |
+| Apple touch icon | 180 x 180 | `rel="apple-touch-icon"`, `type="image/png"`, `sizes="180x180"` |
+| Actual PWA/installable manifest only | 192 x 192, 512 x 512 and an appropriate maskable icon | Manifest entries with matching `src`, `type`, `sizes` and maskable `purpose` |
+
+- Declare used assets explicitly in one shared product head partial/helper on panel, authentication and product-owned error screens. Do not rely solely on browser root-favicon discovery.
+- Version URLs when file content changes, preferably with a content hash. Verify nonempty files, actual dimensions including ICO frames, successful asset responses and appropriate media types.
+- Inspect the mark at 16 and 32 px in light and dark browser chrome; preserve product contrast rather than substituting a generic ecosystem icon.
+- Add PWA sizes/maskable artwork only for an actual PWA/installable manifest. Preserve its identity, scope and behavior; do not create a PWA for this rule.
+- Keep package assets namespaced without overwriting a host's root favicon. Preserve public CMS sites' configured favicons, branding and SEO choices.
+- Product docs/tests list the final retained files and manifest references. Remove obsolete assets only after reference and installation/package-flow checks.
+
+## Semantic interface icons — approved 2026-11-26
+
+Use the [shared concept/action dictionary](../ai/contract.md#semantic-interface-icons--approved-2026-11-26)
+for navigation, page links and controls across products. It defines the same
+`wb-icon-*` names for Dashboard, profile/users, settings/security, languages,
+pages/documents, extensions, history and shared actions. Match the actual
+concept/action, not a similar label. Record domain concepts and justified
+exceptions in the product's focused UI contract. A heading needs no icon;
+when present, match its corresponding navigation concept.
+
+Check literal and dynamically selected icon names against the actual pinned
+release's `packages/webblocks/dist/ai/contract.md`,
+`packages/webblocks/dist/webblocks-icons.json` registry and shipped
+`webblocks-icons.css`, including aliases. Do not treat the missing-icon fallback
+as evidence of support. For refresh/check-for-updates actions use the semantic
+`refresh-cw` alias; `rotate-cw` is its base glyph. Do not guess names from another
+library or perform blanket UI-pin upgrades. No new icon library, runtime,
+plugin or vendored-runtime patch is authorized.
+
+Local verification baseline: `v2.39.1` (2026-11-26). All dictionary names have
+shipped icon CSS selectors. The registry lists the base glyphs; `refresh-cw`
+is absent as a literal registry entry but shares the shipped CSS rule with
+the registered `rotate-cw` glyph. This is an existing supported alias, not a
+new icon or a reason to change the dictionary. Validate that alias-to-glyph
+relationship again for each consuming product's actual pin. The shipped
+`v2.39.1` AI contract predates these three rules; the local approval supplies
+the additional policy without changing that release's artifacts.
+
+Sidebar navigation keeps the direct icon anatomy: group toggles contain a direct
+`i.wb-icon.wb-nav-group-icon`; every `a.wb-nav-group-item` contains one meaningful
+decorative `i.wb-icon[aria-hidden="true"]` followed by a label span. Use the
+item's icon, or the group icon as fallback. Group, child and top-level sidebar
+icons are 18 x 18 px. The direct `wb-nav-group-items` container has exactly
+18 px inline-start padding applied once. Do not add wrappers, child margins or
+a second indent. If an older pin's default differs, use only a sidebar-scoped
+product CSS adjustment; preserve routes, `aria-current`, active-child expansion
+and shared runtime ownership of open/closed state. Keep standard child-link
+typography at 0.875 rem, weight 400 normally and 600 when current; the toggle
+inherits the sidebar font. Verify visibility/alignment at desktop and narrow
+widths. Other controls retain shipped component/icon sizing, including the
+shipped 24 px mobile navbar menu icon; 18 px is not a global icon size.
+
+Decorative icons beside text use `aria-hidden="true"`. Icon-only native
+buttons/links need meaningful localized accessible action names. Preserve
+keyboard behavior and the existing tooltip contract. Icons and color never
+replace required text or accessible state. Product logos, favicons, authored
+content illustrations and game artwork are separate from functional icons.
+
+## Rollout boundaries for these three rules
+
+The local 2026-11-26 approval supplements an older pinned contract that lacks
+these rules; it does not authorize unshipped APIs or icons. Apply only to
+product-owned web surfaces. Preserve public SEO/editorial titles, custom-site
+branding, CMS package/host ownership, Craft's native control-panel shell,
+native-app identity and the separate game interface system. Document each
+exception's owning surface, reason and retained behavior. Do not migrate legacy
+frameworks, redesign unrelated UI or add general CSS/JS.
+
+Report changed files, retained exceptions, validation and missing browser
+checks. Commit, merge/main integration, push, version bump, tag/release,
+publication, deployment, installation and consumer updates are separate
+operations requiring fresh operator approval after this rollout's change report.
 
 ## Asset Cleanup
 
@@ -160,6 +262,9 @@ Each product should add tests or assertions that verify:
 - Auth and sidebar product mark tests reject `img`, `picture`/`source`, CSS mask rendering, and SVG `width` or `height` attributes.
 - Obsolete brand assets are absent.
 - Favicon files remain present.
+- Browser titles follow the localized page/product composition with escaped text, one suffix and one `title` across panel, auth and product-owned errors.
+- Favicon declarations, dimensions/ICO frames, media types and cache-versioned URLs match the retained asset inventory; PWA-only assets do not create a new PWA.
+- Functional icons match the shared concept/action dictionary, exist in the actual pinned registry/CSS, and retain the sidebar and accessibility contracts above.
 
 ## Downstream Implementation Checklist
 
@@ -171,4 +276,5 @@ Use this checklist when updating CMS, QuizTem, Herne Panel, Publisher/Plugins, o
 - Update the sidebar.
 - Remove obsolete files.
 - Update docs, tests, and changelog.
-- Bump version and publish if the project has live installs.
+- Report the changed files, retained exceptions and validation, including missing browser checks.
+- Obtain fresh operator approval before committing, integrating, pushing, bumping/tagging/releasing, publishing, deploying, installing or updating consumers for this rollout.

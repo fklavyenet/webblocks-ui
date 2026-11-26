@@ -6,6 +6,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.39.2] — 2026-11-26
+
+### Changed
+- Document the shared localized browser-title contract for product panels, workspaces, authentication and product-owned errors.
+- Specify standalone product favicon/app icon assets, shared head declarations, cache versioning, existing PWA requirements and package/host ownership.
+- Align the AI contract, downstream review checklist, brand standard and English, Turkish and German admin guidance with the shared semantic icon dictionary, pinned registry/CSS checks, accessibility and sidebar sizing/indent rules.
+- Preserve public SEO and custom-site branding, Craft native control panels, native-app identity and separate game interfaces. Release and consumer adoption remain separate operations.
+
 ## [2.39.1] — 2026-11-25
 
 ### Fixed

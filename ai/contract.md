@@ -128,6 +128,63 @@ breadcrumb component for the decorative slash and its spacing.
 
 Admin, auth, and sidebar product brand marks should follow `docs/admin-product-brand.md`: project-owned inline SVG components using `currentColor`, standard WebBlocks UI sizing classes, no default `img`/`picture`/CSS-mask shell marks, and separate favicon/app icon files.
 
+## Browser page titles — approved 2026-11-26
+
+- Product panels, workspaces, sign-in, password recovery and product-owned error screens use `{localized page title} - {product name}` with the literal ` - ` separator. Put distinguishing page information first and the canonical product name last, exactly once. With no page title, render the product name once. A standalone single-purpose tool may keep its descriptive product title when it has no separate screen.
+- Reuse the localized visible page title and current breadcrumb, including record, edit-action and named-parent meaning: `Record type: Record name`, `Action + record type: Record name`, and `Edit profile: {name}` using the authenticated account's current name. Put a named parent before the record name when applicable. Keep the product suffix out of the heading and breadcrumb; preserve product-name text inside authored record titles.
+- Use one product-owned server-side helper/layout boundary, escaped text and one `title` element. Do not add a global JavaScript title repair handler. Preserve normal framework title updates on existing dynamic screens without introducing a runtime.
+
+## Product favicons and app icons — approved 2026-11-26
+
+- Reuse each product's own approved recognizable mark as standalone files, separate from the inline `currentColor` shell component. Standalone SVG artwork must not depend on page CSS. Do not invent a new brand, force a squircle/container or bind icons to the user's accent.
+- Keep an SVG favicon, 16 x 16 and 32 x 32 PNG fallbacks, a multi-size ICO with 16/32/48 px images, and a 180 x 180 Apple touch icon. Declare used assets explicitly in one shared product head partial/helper with appropriate media types and size metadata on panel, auth and product-owned error screens.
+- Only an actual PWA/installable manifest needs 192 x 192, 512 x 512 and an appropriate maskable icon. Preserve existing PWA identity, scope and behavior; do not create a PWA for this rule.
+- Version asset URLs when content changes, preferably with a content hash. Verify nonempty files, actual dimensions (including ICO frames), successful responses and media types; inspect the mark at 16 and 32 px in light and dark browser chrome. Keep product-specific contrast decisions.
+- Keep package assets namespaced without overwriting the host's root favicon. Preserve configured public CMS site favicons, branding and SEO. Inventory retained files and manifest references; remove obsolete assets only after reference and installation/package-flow checks.
+
+## Semantic interface icons — approved 2026-11-26
+
+Shared concepts/actions use the same icon across products, sidebars, page links
+and controls. Names below are the suffix after `wb-icon-`:
+
+| Concept | Icon |
+|---|---|
+| Dashboard | `layout-dashboard` |
+| Profile / users | `user-round` / `users` |
+| Settings / security | `settings` / `shield-check` |
+| Languages | `languages` |
+| Pages / documents | `file-text` |
+| Extensions | `plug` |
+| History | `history` |
+| View / edit / delete | `eye` / `pencil` / `trash` |
+| Add / save | `plus` / `save` |
+| Search / copy | `search` / `copy` |
+| Refresh / check for updates | `refresh-cw` |
+| Download / install an update | `download` |
+| Open an external destination | `external-link` |
+
+- Match the actual concept/action, not a similar label. Document product-specific domain concepts and justified exceptions in the product's focused UI contract. Headings need no icon; when present, match the corresponding navigation concept.
+- Check literal and dynamically selected names against the exact pinned UI release's `packages/webblocks/dist/webblocks-icons.json` registry and `webblocks-icons.css`, together with that release's `dist/ai/contract.md`. Resolve shipped CSS aliases to their registered base glyphs; a fallback glyph is not proof of support. Do not guess names from another library or upgrade all UI pins for this rollout.
+- Sidebar group icons are direct `i.wb-icon.wb-nav-group-icon` children of `wb-nav-group-toggle`. Every `a.wb-nav-group-item` has one meaningful decorative `i.wb-icon[aria-hidden="true"]` followed by a label span; use the item's icon or the group icon as fallback. Group, child and top-level sidebar icons are 18 x 18 px. Apply exactly 18 px inline-start padding once to the direct `wb-nav-group-items` container; no extra wrapper, child margin or second indent. For an older pin with different defaults, use only a sidebar-scoped product CSS adjustment, never a vendored-runtime patch. Preserve routes, current state, active-child expansion and UI ownership of open/closed state. Other controls retain shipped component/icon sizes, including mobile shell controls.
+- Decorative icons beside text use `aria-hidden="true"`. Icon-only native buttons/links have a meaningful localized accessible action name. Preserve keyboard behavior and the existing tooltip contract; icons/color never replace required text or accessible state.
+- Product logos, favicons, authored content illustrations and game artwork are separate from functional interface icons. No new icon library, runtime or plugin is authorized.
+
+## Rollout boundaries for these three rules
+
+These locally approved 2026-11-26 rules supplement an older pinned contract
+that does not yet contain them; they do not authorize using unshipped APIs or
+icons. Apply them only to product-owned web surfaces. Preserve public-site SEO,
+editorial content titles, custom-site branding, CMS package/host ownership,
+Craft's native control-panel shell, native-app identity and the separate game
+interface system. Packages must not replace unrelated host titles or favicons.
+Document each exception's owning surface, reason and retained behavior. Do not
+migrate legacy frameworks, redesign unrelated UI, add general CSS/JS or patch
+vendored runtimes. Report changed files, retained exceptions, validation and
+missing browser checks. Commit, merge/main integration, push, version bump,
+tag/release, publication, deployment, installation and consumer updates remain
+separate operations requiring fresh operator approval after the change report
+for this rollout.
+
 ## Topbar Menus
 
 - Use `wb-theme-switcher` for preset/accent selection. Its trigger uses `wb-theme-switcher-trigger` with the complete palette-icon + chevron anatomy; hosts provide menu labels and choices, not project-local trigger styling.

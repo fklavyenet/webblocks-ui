@@ -122,6 +122,87 @@ Use inline `wb-alert` for validation errors, blocking failures, persistent warni
 
 Admin, auth, and sidebar brand marks should follow the shipped admin product brand standard. Prefer project-owned inline SVG components using `currentColor`, WebBlocks sizing classes, and separate favicon/app icon files.
 
+## Browser page titles — approved 2026-11-26
+
+Product panels, workspaces, sign-in, password recovery and product-owned error
+screens use `{localized page title} - {product name}` with the literal ` - `
+separator. Reuse the localized heading/current breadcrumb's page, record,
+edit-action and named-parent meaning. Append the canonical product name once;
+with no page title, use only that name. Do not add the suffix to visible headings
+or breadcrumbs or strip product-name text from authored record titles. Profile
+editing uses `Edit profile: {name}` with the authenticated account's current name.
+A standalone single-purpose tool may keep its descriptive product title when
+there is no separate screen.
+
+Use one product-owned server-side helper/layout boundary with escaped text and
+one `title` element. Preserve existing framework title updates for dynamic
+screens; do not introduce a runtime or global JavaScript repair handler.
+
+## Product favicons and app icons — approved 2026-11-26
+
+Keep standalone files using the product's existing approved recognizable mark:
+SVG, 16 x 16 and 32 x 32 PNG, a multi-size ICO with 16/32/48 px images, and a
+180 x 180 Apple touch icon. These are separate from inline `currentColor` shell
+marks; the SVG file must work without page CSS. Use one explicit shared product
+head partial/helper on panel, auth and product-owned error screens, with media
+types, size metadata and content-versioned URLs (prefer a content hash).
+
+Only an actual PWA/installable manifest needs 192 x 192, 512 x 512 and an
+appropriate maskable icon. Preserve its identity, scope and behavior. Do not
+create a PWA, invent a brand, force a squircle/container or follow user accents.
+Check nonempty files, dimensions including ICO frames, asset responses/media
+types, and 16/32 px legibility in light/dark browser chrome. Preserve product
+contrast choices. Inventory retained files and manifest references; remove
+obsolete assets only after reference and installation/package-flow checks.
+Keep package assets namespaced and preserve host root and configured public
+CMS site favicons, branding and SEO. See the
+[brand asset contract](../docs/admin-product-brand.md#favicon-and-app-icons).
+
+## Semantic interface icons — approved 2026-11-26
+
+Use the [shared concept/action dictionary](contract.md#semantic-interface-icons--approved-2026-11-26)
+for navigation, page links and controls across products. Document domain
+concepts and justified exceptions in the product's focused UI contract. Check
+literal and dynamic icon names against the actual pinned release's AI contract,
+`packages/webblocks/dist/webblocks-icons.json` and shipped `webblocks-icons.css`,
+resolving shipped CSS aliases to registered base glyphs; a rendered fallback
+does not prove support. Do not guess
+names from another library or update every UI pin for this rollout.
+
+Sidebar group icons are direct `i.wb-icon.wb-nav-group-icon` children of
+`wb-nav-group-toggle`. Every `a.wb-nav-group-item` has one meaningful decorative
+`i.wb-icon[aria-hidden="true"]` followed by a label span, using its own icon or
+the group icon as fallback. Group, child and top-level icons are 18 x 18 px.
+The direct `wb-nav-group-items` container has exactly 18 px inline-start padding
+once; no nested icon wrapper, child margin or second indent. If an older pin
+differs, apply only a sidebar-scoped product CSS adjustment, never a vendored
+patch. Preserve routes, current state, active-child expansion and shared runtime
+ownership of open/closed state. Other controls retain shipped sizes, including
+mobile shell controls. A heading needs no icon; if present, use its navigation
+concept's icon.
+
+Decorative icons beside text have `aria-hidden="true"`. Icon-only native
+buttons/links need a localized accessible action name, with keyboard behavior
+and the existing tooltip contract preserved. Icons/color do not replace text
+or accessible state. Logos, favicons, authored illustrations and game artwork
+are separate. No new icon library, runtime or plugin is authorized.
+
+## Rollout boundaries for these three rules
+
+The local 2026-11-26 approval supplements older pinned contracts that lack these
+rules without authorizing unshipped icons/APIs. Apply only to product-owned web
+surfaces. Preserve public SEO, editorial titles, custom-site branding, CMS
+package/host ownership, Craft's native control-panel shell, native-app identity
+and the separate game interface system. Packages must not replace unrelated
+host titles or favicons. Record each exception's owning surface, reason and
+retained behavior. Do not migrate frameworks, redesign unrelated UI, add general
+CSS/JS or patch vendored runtimes.
+
+Report changed files, retained exceptions, validation and missing browser checks.
+Commit, merge/main integration, push, version bump, tag/release, publication,
+deployment, installation and consumer updates are separate operations requiring
+fresh operator approval after this rollout's change report.
+
 ## Interface copy
 
 Use sentence case for headings, breadcrumb labels, navigation, tabs,

@@ -52,6 +52,35 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Brand marks are project-owned inline SVG using `currentColor`.
 - [ ] Brand mark markup avoids default `img`, `picture`, CSS-mask shells, and width/height attributes.
 
+## Browser page titles — approved 2026-11-26
+
+- [ ] Panel, workspace, sign-in, password recovery and product-owned error titles use `{localized page title} - {product name}` with literal ` - `, one final product suffix, or just the product name when the page title is empty.
+- [ ] The localized heading and current breadcrumb share the page/record/edit-action/named-parent meaning; profile editing uses the authenticated account's current name. Visible headings/breadcrumbs omit the product suffix; authored record titles retain their text.
+- [ ] One product-owned server-side helper/layout emits escaped text and one `title`; existing dynamic framework updates remain intact without a global JavaScript repair handler.
+
+## Product favicons and app icons — approved 2026-11-26
+
+- [ ] Standalone files reuse the approved product mark, separate from inline `currentColor` shell SVGs; favicon SVGs work without page CSS. No rebrand, forced container/squircle or user-accent binding was introduced.
+- [ ] The retained set includes SVG, PNG 16/32, ICO frames 16/32/48, and Apple 180. Only an actual PWA/installable manifest adds 192/512 and an appropriate maskable icon, preserving its identity, scope and behavior.
+- [ ] A shared product head explicitly declares assets with correct media types/size metadata on panel, auth and product-owned error screens; URLs change with content, preferably by hash.
+- [ ] Files are nonempty, actual dimensions/ICO frames and successful responses/media types were checked, and 16/32 px marks were inspected in light/dark browser chrome with product contrast preserved.
+- [ ] Retained files and manifest references are inventoried. Obsolete assets are removed only after reference and installation/package-flow checks; package assets stay namespaced and host root/public CMS site favicons remain intact.
+
+## Semantic interface icons — approved 2026-11-26
+
+- [ ] Shared concepts/actions match the AI contract's dictionary across navigation, page links and controls; domain concepts and justified exceptions are documented in the product's focused UI contract.
+- [ ] Literal and dynamic icon names were checked against the actual pinned release's AI contract, icon registry and shipped icon CSS, resolving CSS aliases to registered base glyphs; fallback glyphs were not accepted as evidence. No blanket pin upgrade, new icon library/runtime/plugin or vendored patch was introduced.
+- [ ] Sidebar groups use direct `i.wb-icon.wb-nav-group-icon` elements and each child link has one meaningful decorative icon then a label span. Group, child and top-level icons are 18 x 18 px; the direct items container applies exactly 18 px inline-start padding once without extra wrappers/margins/indent. Older-pin adjustments are sidebar-scoped; routes, current state, active-child expansion and shared runtime state ownership remain intact.
+- [ ] Other controls retain shipped sizes, including mobile shell controls. Headings need no icon; an optional heading icon matches its navigation concept.
+- [ ] Decorative icons use `aria-hidden="true"`; icon-only native controls have localized accessible action names. Keyboard behavior/tooltips, required text and accessible states remain intact.
+
+## Rollout boundaries for these three rules
+
+- [ ] The local 2026-11-26 approval supplements older pinned contracts without requiring unshipped icons/APIs. Public SEO/editorial titles, custom-site branding, CMS package/host ownership, Craft native control-panel shell, native-app identity and the separate game interface system are preserved. Standalone single-purpose tools may retain descriptive product titles where no separate screen exists.
+- [ ] Each exception records its owning surface, reason and retained behavior. Product logos, favicons and authored illustrations remain separate from functional icons; unrelated host screens are untouched.
+- [ ] No framework migration, unrelated redesign or new general CSS/JS was introduced. The change report lists files, retained exceptions, validation and missing browser checks.
+- [ ] Commit, merge/main integration, push, version bump, tag/release, publication, deployment, installation and consumer updates wait for fresh operator approval after this rollout's change report.
+
 ## Custom CSS/JS
 
 - [ ] Preset/accent dropdowns use the shipped `wb-theme-switcher` palette-icon + chevron trigger.
