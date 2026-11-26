@@ -135,12 +135,16 @@
                           <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Standard-Dichte</strong><span>Wähle die Basis-Abstandsskala für die Workspace-Oberfläche.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Comfortable</option><option>Compact</option></select></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Sicherheitswarnungen</strong><span>Benachrichtigt Inhaber, wenn sich ein neues Gerät anmeldet oder eine Rolle wechselt.</span></div><div class="wb-settings-row-control"><label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span><span>Aktiviert</span></label></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Standard-Startseite</strong><span>Lege fest, wo Mitglieder nach der Anmeldung landen.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Dashboard</option><option>Projekte</option><option>Mitglieder</option></select></div></div></div>
                         </section>
                         <section class="wb-settings-section" id="detail-and-status">
-                          <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Beispiel für Detail und Status</h2><p class="wb-settings-section-desc">Detailseiten sollten strukturierte Label-/Wert-Zeilen und Statuszusammenfassungen nutzen, die Fehler von optionalen Hinweisen unterscheiden.</p></div></div>
+                          <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Beispiel für Detail und Status</h2><p class="wb-settings-section-desc">Nutze eine native Tabelle für diese Installationsübersicht und unterscheide Fehler von optionalen Hinweisen in der Statusübersicht.</p></div></div>
                           <div class="wb-settings-section-body wb-stack-5">
-                            <div class="wb-detail-list">
-                              <div class="wb-detail-row"><div class="wb-detail-label">Primäre Domain</div><div class="wb-detail-value">atlas-cloud.beispiel</div></div>
-                              <div class="wb-detail-row"><div class="wb-detail-label">CMS-App-Pfad</div><div class="wb-detail-value wb-detail-value-mono">/var/www/atlas-cloud/web_root</div></div>
-                              <div class="wb-detail-row"><div class="wb-detail-label">CMS-Public-Pfad</div><div class="wb-detail-value wb-detail-value-mono">/var/www/atlas-cloud/web_root/public</div></div>
+                            <div class="wb-table-wrap">
+                              <table class="wb-table" aria-label="Details der Installation">
+                                <tbody>
+                                  <tr><th scope="row" class="wb-table-key">Primäre Domain</th><td>atlas-cloud.beispiel</td></tr>
+                                  <tr><th scope="row" class="wb-table-key">CMS-App-Pfad</th><td class="wb-mono wb-table-break">/var/www/atlas-cloud/web_root</td></tr>
+                                  <tr><th scope="row" class="wb-table-key">CMS-Public-Pfad</th><td class="wb-mono wb-table-break">/var/www/atlas-cloud/web_root/public</td></tr>
+                                </tbody>
+                              </table>
                             </div>
                             <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Funktionsfähig mit Hinweisen</strong> Die Kernprüfungen sind bestanden. Eine optionale Integration ist für diesen Workspace nicht konfiguriert, die Basisinfrastruktur ist aber in Ordnung.</div>
                           </div>

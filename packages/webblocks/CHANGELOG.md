@@ -6,6 +6,18 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.0.0] — 2026-11-26
+
+### Breaking
+- `wb-detail-list` requires native `dl`/`dt`/`dd` markup. Div/span substitutes are no longer styled. Migrate description lists or replace tabular summaries with native tables before upgrading; see [the v3.0.0 migration notes](releases/v3.0.0.md).
+
+### Changed
+- Support ruled horizontal (default), `wb-detail-list--borderless` horizontal and `wb-detail-list--stacked` indented presentations with shared readable typography, responsive stacking and logical RTL indentation.
+- Separate semantic description lists from field/value table summaries in integration docs, localized live examples and downstream AI rules; installation summaries now use native tables.
+
+### Fixed
+- Normalize the AI examples source filename to `ai/examples.md` so canonical builds and exports work on case-sensitive filesystems.
+
 ## [2.39.2] — 2026-11-26
 
 ### Changed

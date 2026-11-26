@@ -500,6 +500,22 @@ filters and pagination. No extra table wrapper or surface is needed. See
 [sorting examples](docs/table-sort.html) and the
 [integration contract](packages/webblocks/INTEGRATION.md#table-sorting).
 
+## Detail list
+
+`wb-detail-list` styles a native `dl`, never a div-based imitation. Each direct
+`div.wb-detail-row` groups `dt.wb-detail-label` and `dd.wb-detail-value`.
+The default is horizontal with row separators. Add `wb-detail-list--borderless`
+for horizontal without separators, or `wb-detail-list--stacked` for a term above
+an indented description without separators. Horizontal forms stack at 640 px.
+`wb-detail-value-mono` styles a `dd` that holds machine strings.
+
+Use it for term/description or independent name/value associations. Use
+`table.wb-table` with `th[scope="row"].wb-table-key` and `td` for field/value
+table summaries and comparable records. A detail page does not imply a detail
+list; visual rows and separators do not determine HTML semantics. See the
+[contract](packages/webblocks/INTEGRATION.md#semantic-detail-lists-and-tables)
+and [three live examples](docs/pattern-admin-standards.html#detail-lists).
+
 ## Chart
 
 `wb-chart` is an interactive data-visualization component, not a generic surface.

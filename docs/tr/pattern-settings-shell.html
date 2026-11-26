@@ -135,12 +135,16 @@
                           <div class="wb-settings-section-body"><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Varsayılan yoğunluk</strong><span>Çalışma alanı arayüzü için temel boşluk ölçeğini seç.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Comfortable</option><option>Compact</option></select></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Güvenlik uyarıları</strong><span>Yeni bir cihaz giriş yaptığında veya bir rol değiştiğinde sahipleri bilgilendir.</span></div><div class="wb-settings-row-control"><label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span><span>Etkin</span></label></div></div><div class="wb-settings-row"><div class="wb-settings-row-label"><strong>Varsayılan açılış sayfası</strong><span>Üyelerin giriş yaptıktan sonra nereye düşeceğini seç.</span></div><div class="wb-settings-row-control"><select class="wb-select"><option>Dashboard</option><option>Projeler</option><option>Üyeler</option></select></div></div></div>
                         </section>
                         <section class="wb-settings-section" id="detail-and-status">
-                          <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Detay ve durum örneği</h2><p class="wb-settings-section-desc">Detay sayfaları yapılandırılmış etiket/değer satırları ve hataları isteğe bağlı uyarılardan ayıran durum özetleri kullanmalıdır.</p></div></div>
+                          <div class="wb-settings-section-header"><div><h2 class="wb-settings-section-title">Detay ve durum örneği</h2><p class="wb-settings-section-desc">Bu kurulum özeti için yerel tablo kullan; durum özetinde hataları isteğe bağlı uyarılardan ayır.</p></div></div>
                           <div class="wb-settings-section-body wb-stack-5">
-                            <div class="wb-detail-list">
-                              <div class="wb-detail-row"><div class="wb-detail-label">Birincil alan adı</div><div class="wb-detail-value">atlas-cloud.example</div></div>
-                              <div class="wb-detail-row"><div class="wb-detail-label">CMS uygulama yolu</div><div class="wb-detail-value wb-detail-value-mono">/var/www/atlas-cloud/web_root</div></div>
-                              <div class="wb-detail-row"><div class="wb-detail-label">CMS public yolu</div><div class="wb-detail-value wb-detail-value-mono">/var/www/atlas-cloud/web_root/public</div></div>
+                            <div class="wb-table-wrap">
+                              <table class="wb-table" aria-label="Kurulum detayları">
+                                <tbody>
+                                  <tr><th scope="row" class="wb-table-key">Birincil alan adı</th><td>atlas-cloud.example</td></tr>
+                                  <tr><th scope="row" class="wb-table-key">CMS uygulama yolu</th><td class="wb-mono wb-table-break">/var/www/atlas-cloud/web_root</td></tr>
+                                  <tr><th scope="row" class="wb-table-key">CMS public yolu</th><td class="wb-mono wb-table-break">/var/www/atlas-cloud/web_root/public</td></tr>
+                                </tbody>
+                              </table>
                             </div>
                             <div class="wb-callout wb-callout-info"><strong class="wb-callout-title">Sağlıklı, uyarılar var</strong> Temel kontroller geçti. Bu çalışma alanı için isteğe bağlı bir entegrasyon yapılandırılmamış, ancak temel altyapı sağlıklı.</div>
                           </div>

@@ -669,6 +669,8 @@ Inside patterns:
 - use utilities only for small adjustments
 - keep `wb-field-meta` inside fields that carry assistive content; reserve empty meta rows only when aligned multi-column forms need them
 - keep table wrappers singular: `wb-table-wrap` owns radius/border, inner toolbars stay control rows, and table headers stay header bands
+- choose native HTML by information relationships: field/value table summaries and comparable records use `table.wb-table`; term/description or independent name/value associations use `dl.wb-detail-list` with `dt`/`dd`, optionally grouped by `div.wb-detail-row`
+- do not select `wb-detail-list` merely because a page shows details; use its default ruled horizontal, `--borderless` horizontal, or `--stacked` indented presentation only on a semantic `dl`
 - keep text casing content-defined; use typography for emphasis instead of automatic uppercase or capitalize transforms
 
 Do not create custom pattern wrappers before checking whether the shipped shell already fits the page.

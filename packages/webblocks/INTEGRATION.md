@@ -98,6 +98,54 @@ percentage. Keys remain unbroken; if a key and its values cannot fit, the owning
 Use `table`, `th`, and `td` when the content is tabular. Do not change tabular
 content to `dl`, `dt`, and `dd` solely to obtain a particular visual layout.
 
+### Semantic detail lists and tables
+
+Use `dl.wb-detail-list` for term/description or name/value associations, such as
+a glossary, questions and answers, or independent metadata facts. Use native
+`dt.wb-detail-label` and `dd.wb-detail-value`; each direct `div.wb-detail-row`
+groups one term and one description. A description may contain several
+paragraphs, links, or other appropriate content. The grouping div has no semantic
+replacement role. Do not put these classes on div/span substitutes for `dl`,
+`dt`, or `dd`, and do not add table, heading, or list roles to simulate semantics.
+
+The same markup supports three CSS-only presentations:
+
+| Root classes | Presentation |
+| --- | --- |
+| `wb-detail-list` | Horizontal term/description pairs with row separators (default) |
+| `wb-detail-list wb-detail-list--borderless` | Horizontal pairs without row separators |
+| `wb-detail-list wb-detail-list--stacked` | Term above an indented description, without row separators |
+
+Choose one presentation. Both horizontal forms stack at viewport widths of
+640 px or less. The stacked form retains its logical inline-start indentation
+in LTR and RTL. Terms and descriptions share the normal text size; terms use
+medium weight. `dd.wb-detail-value-mono` remains available for machine strings.
+
+```html
+<dl class="wb-detail-list wb-detail-list--stacked">
+  <div class="wb-detail-row">
+    <dt class="wb-detail-label">Draft</dt>
+    <dd class="wb-detail-value">Unpublished content that can still be edited.</dd>
+  </div>
+</dl>
+```
+
+For a field/value record summary presented as a table, including installation
+details and assignment summaries, use `table.wb-table` with
+`th[scope="row"].wb-table-key` and `td` inside `wb-table-wrap`. Keep comparable
+records and column-based datasets in native tables. Give each table an
+accessible name with a caption or `aria-labelledby`/`aria-label`. A read-only
+summary needs no invented `Actions` column. A detail page does not automatically
+require a description list, and a two-column appearance alone does not decide
+the element. Description lists may describe metadata too; choose by the
+information relationships, not by the requested styling.
+
+Migration: div/span-only detail lists are no longer styled by this component.
+Replace their root/term/value elements with `dl`/`dt`/`dd` for actual description
+lists, or migrate tabular summaries to native tables. CSS does not repair
+semantics and no JavaScript migration or ARIA substitute is provided. See the
+[three live examples](../../docs/pattern-admin-standards.html#detail-lists).
+
 ### Canonical Vocabulary
 
 Use these nouns first in examples, reviews, and generated markup:

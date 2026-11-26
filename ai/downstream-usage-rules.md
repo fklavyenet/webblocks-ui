@@ -89,6 +89,32 @@ Admin filter bar actions:
 * do not add project-specific filter alignment CSS
 * keep row actions and compact toolbar icon buttons under their separate action standards
 
+## Semantic Detail Lists And Tables
+
+Use `dl.wb-detail-list` for term/description or independent name/value
+associations. Each direct `div.wb-detail-row` contains one `dt.wb-detail-label`
+followed by one `dd.wb-detail-value`. A grouping div is allowed; div/span roots,
+terms and descriptions are not. Keep multi-paragraph or multiple-value content
+inside the same `dd`. Do not add ARIA roles to imitate native semantics.
+
+The default is ruled horizontal. Add `wb-detail-list--borderless` to that `dl`
+for horizontal without separators, or `wb-detail-list--stacked` for a term above
+an indented description without separators. Choose one presentation. Horizontal
+forms stack at 640 px; indentation follows the writing direction. No local
+CSS or JavaScript is needed. Use `wb-detail-value-mono` only on an appropriate `dd`.
+
+Use `table.wb-table` inside `wb-table-wrap` for field/value table summaries,
+including installation and assignment summaries, and for comparable records or
+column-based datasets. Key cells use `th scope="row" class="wb-table-key"`;
+values use `td`. Give the table an accessible name; omit an `Actions` column
+when there are no row actions. Metadata can also be expressed as a description
+list when its relationships suit one: page type, two-column layout and borders
+alone never determine semantics.
+
+Existing div/span-only detail lists must be migrated to `dl`/`dt`/`dd`, or to
+native table markup for tabular summaries. They are no longer styled by the
+component. Do not patch a vendored stylesheet or add an ARIA/JavaScript repair.
+
 ## Forms
 
 Use shipped field, input, select, textarea, checkbox/radio, button, card, and layout primitives. Put page-level submit actions in the owning form or card footer, not in the page header.

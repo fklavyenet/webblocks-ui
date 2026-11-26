@@ -37,6 +37,47 @@ Right:
 </section>
 ```
 
+## Semantic Detail Lists
+
+Wrong: div/span markup does not express term/description relationships and is
+not styled by the component.
+
+```html
+<div class="wb-detail-list">
+  <div class="wb-detail-row">
+    <span class="wb-detail-label">Draft</span>
+    <span class="wb-detail-value">Unpublished content.</span>
+  </div>
+</div>
+```
+
+Right: default ruled horizontal. For borderless horizontal add
+`wb-detail-list--borderless` to the `dl`; for a term above an indented description
+add `wb-detail-list--stacked` instead. The semantic children remain identical.
+
+```html
+<dl class="wb-detail-list">
+  <div class="wb-detail-row">
+    <dt class="wb-detail-label">Draft</dt>
+    <dd class="wb-detail-value">Unpublished content that can still be edited.</dd>
+  </div>
+</dl>
+```
+
+Field/value table summaries use native tables instead. A detail page name does
+not imply a description list, and read-only summaries need no action column.
+
+```html
+<div class="wb-table-wrap">
+  <table class="wb-table" aria-label="Assignment summary">
+    <tbody>
+      <tr><th scope="row" class="wb-table-key">Subject</th><td>Mathematics</td></tr>
+      <tr><th scope="row" class="wb-table-key">Attempts</th><td>4</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
 ## Destructive Delete Modal
 
 Wrong:

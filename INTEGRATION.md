@@ -233,6 +233,17 @@ not truncated; `wb-table-wrap` owns horizontal overflow when the complete table
 cannot fit. Do not replace a semantic table with `dl`, `dt`, and `dd` solely to
 obtain this visual layout.
 
+Description lists use `dl.wb-detail-list` with direct `div.wb-detail-row` groups,
+each containing `dt.wb-detail-label` followed by `dd.wb-detail-value`.
+Div/span substitutes for those native elements are unsupported. The default is
+horizontal with separators; use `wb-detail-list--borderless` for horizontal
+without separators or `wb-detail-list--stacked` for a term above an indented
+description. Keep these classes on the same `dl` root as `wb-detail-list`.
+Use a description list for term/description or independent name/value
+associations; use a semantic table for field/value table summaries and
+comparable records. Page type and visual layout do not decide semantics.
+See the [detail list contract](packages/webblocks/INTEGRATION.md#semantic-detail-lists-and-tables).
+
 ---
 
 # 11. Feedback Standard

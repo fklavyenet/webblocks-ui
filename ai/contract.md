@@ -60,6 +60,14 @@ Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields
 Use `search.wb-filter-bar` for standalone search and filtering regions. Use
 `form.wb-filter-bar` for filters that submit to a URL.
 
+## Semantic Detail Lists And Tables
+
+- Use native HTML first. `wb-detail-list` belongs on `dl`, `wb-detail-label` on `dt`, and `wb-detail-value` on `dd`. Each direct `div.wb-detail-row` groups one `dt` followed by one `dd`; the div does not replace either semantic element. Multiple paragraphs or values may live inside that `dd`.
+- Three CSS-only presentations share that markup: default ruled horizontal; `wb-detail-list--borderless` horizontal without separators; `wb-detail-list--stacked` term above an inline-start-indented description without separators. Put the modifier on the same `dl` as `wb-detail-list`; select one presentation. Horizontal forms stack at 640 px. No JavaScript is required.
+- Use description lists for term/description or independent name/value associations, including suitable metadata. Keep field/value table summaries (such as installation or assignment summaries), comparable records and column-based datasets in `table.wb-table`, using `th[scope="row"].wb-table-key` and `td` for key/value rows. Provide an accessible table name. Do not invent an `Actions` column for a read-only summary.
+- A detail page does not automatically need a description list. Choose by information relationships, not two-column appearance, borders or page name. Do not turn a real table into a description list for sizing or styling.
+- Div/span substitutes for the `dl`/`dt`/`dd` anatomy are unsupported. Migrate existing hosts to semantic description lists or native tables as appropriate; do not repair them with CSS, ARIA roles or JavaScript. Styling is scoped to native elements.
+
 ## Table Sorting
 
 - Opt in with `table.wb-table[data-wb-table-sort="client|server"]`; sortable headers use `th[data-wb-sort="key"] > .wb-table-sort` with a native button, or a server-rendered link in server mode.

@@ -72,7 +72,7 @@
       },
       {
         "path": "docs/pattern-admin-standards.html",
-        "description": "Admin page, list, detail, action column, and danger-zone standards."
+        "description": "Admin page, list, semantic dl/dt/dd detail-list variants versus native table summaries, action column, and danger-zone standards."
       },
       {
         "path": "docs/table-sort.html",

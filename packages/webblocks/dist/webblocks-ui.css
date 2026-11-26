@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.39.2 (https://webblocksui.com/)
+ * WebBlocks UI v3.0.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -2088,34 +2088,50 @@ flex-wrap: wrap;
 .wb-card-footer > .wb-cluster:only-child {
 flex: 1 1 100%;
 }
-.wb-detail-list {
+dl.wb-detail-list {
 display: grid;
 gap: 0;
+margin: 0;
+font-size: var(--wb-font-size-md);
+line-height: var(--wb-line-height-base);
 }
-.wb-detail-row {
+dl.wb-detail-list > .wb-detail-row {
 display: grid;
-grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr);
-gap: var(--wb-s2) var(--wb-s4);
+grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+gap: var(--wb-s1) var(--wb-s4);
+align-items: start;
 padding: var(--wb-s3) 0;
 border-bottom: 1px solid var(--wb-border);
 }
-.wb-detail-row:last-child {
+dl.wb-detail-list > .wb-detail-row:last-child {
 border-bottom: none;
 }
-.wb-detail-label {
-font-size: var(--wb-font-size-xs);
-font-weight: 600;
-line-height: var(--wb-line-height-base);
-color: var(--wb-muted);
-}
-.wb-detail-value {
+dl.wb-detail-list > .wb-detail-row > dt.wb-detail-label,
+dl.wb-detail-list > .wb-detail-row > dd.wb-detail-value {
+margin: 0;
 min-width: 0;
 color: var(--wb-text);
 overflow-wrap: anywhere;
 }
-.wb-detail-value-mono {
+dl.wb-detail-list > .wb-detail-row > dt.wb-detail-label {
+font-weight: 500;
+}
+dl.wb-detail-list > .wb-detail-row > dd.wb-detail-value {
+font-weight: 400;
+}
+dl.wb-detail-list > .wb-detail-row > dd.wb-detail-value-mono {
 font-family: var(--wb-font-mono);
-font-size: 0.875rem;
+font-size: var(--wb-font-size-sm);
+}
+dl.wb-detail-list--borderless > .wb-detail-row,
+dl.wb-detail-list--stacked > .wb-detail-row {
+border-bottom: none;
+}
+dl.wb-detail-list--stacked > .wb-detail-row {
+grid-template-columns: minmax(0, 1fr);
+}
+dl.wb-detail-list--stacked > .wb-detail-row > dd.wb-detail-value {
+margin-inline-start: var(--wb-s4);
 }
 .wb-danger-zone {
 border-color: color-mix(in srgb, var(--wb-danger) 32%, var(--wb-border));
@@ -2193,8 +2209,8 @@ font-weight: 500;
 .wb-stat-down  { color: var(--wb-danger);  font-size: 0.8rem; font-weight: 500; }
 .wb-stat-bar   { margin-top: var(--wb-s3); }
 @media (max-width: 640px) {
-.wb-detail-row {
-grid-template-columns: 1fr;
+dl.wb-detail-list > .wb-detail-row {
+grid-template-columns: minmax(0, 1fr);
 }
 }
 .wb-background-media.wb-background-media {

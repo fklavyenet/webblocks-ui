@@ -71,6 +71,7 @@
               <li class="wb-section-nav-item"><a href="#admin-filter-bar-actions" class="wb-section-nav-link">Filtre aksiyonları</a></li>
               <li class="wb-section-nav-item"><a href="#dense-table-content" class="wb-section-nav-link">Yoğun tablo içeriği</a></li>
               <li class="wb-section-nav-item"><a href="#form-cards" class="wb-section-nav-link">Form card'ları</a></li>
+              <li class="wb-section-nav-item"><a href="#detail-lists" class="wb-section-nav-link">Açıklama listeleri</a></li>
               <li class="wb-section-nav-item"><a href="#detail-page" class="wb-section-nav-link">Detay sayfası</a></li>
               <li class="wb-section-nav-item"><a href="#table-actions" class="wb-section-nav-link">Tablo aksiyonları</a></li>
               <li class="wb-section-nav-item"><a href="#status-guidance" class="wb-section-nav-link">Durum rehberi</a></li>
@@ -90,8 +91,8 @@
                 <div class="wb-docs-flow">
                   <section class="wb-docs-section wb-docs-prose" id="overview">
                     <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Standardın amacı</strong> Sayfa başlığı ve breadcrumb kullanıcının nerede olduğunu anlatır. Card'lar ve bölümler ise sırada ne yapabileceğini anlatır. Submit aksiyonları genel sayfa başlığına değil, gönderdikleri forma aittir.</div>
-                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>İş</th><th>Tercih edilen yapı</th><th>Kural</th></tr></thead><tbody><tr><td>Yönetim oluşturma veya düzenleme sayfası</td><td><code>wb-page-header</code> + <code>wb-card</code> + <code>wb-form-section</code></td><td>Sayfanın <code>h1</code>'ini card'ların dışında tut ve alanları amaca göre grupla.</td></tr><tr><td>Detay sayfası</td><td><code>wb-detail-list</code> + destekleyici card'lar</td><td>Dağınık paragraflar yerine etiket/değer satırları kullan.</td></tr><tr><td>Index tablosu</td><td><code>wb-table</code> + <code>wb-table-actions</code></td><td>Son sütunu her zaman <code>Actions</code> olarak etiketle ve başlık ile butonların o hücrenin sol kenarından başlamasına izin ver.</td></tr><tr><td>Yıkıcı aksiyon</td><td><code>wb-danger-zone</code></td><td>Sonucu net anlatan bir etiketle son card'da tut.</td></tr></tbody></table></div>
-                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Tercih edilen sınıflar</th><th>Amaç</th><th>Notlar</th></tr></thead><tbody><tr><td><code>wb-page-header</code>, <code>wb-page-breadcrumb</code>, <code>wb-page-title</code>, <code>wb-page-description</code>, <code>wb-page-actions</code></td><td>Sayfa düzeyinde yönetim hiyerarşisi</td><td>Card'ların dışında tek bir sayfa <code>h1</code>'i kullan ve burada yalnızca bağlam aksiyonlarını tut. <code>wb-page-breadcrumbs</code> uyumluluk alias'ı olarak kalır.</td></tr><tr><td><code>wb-breadcrumb</code>, <code>wb-breadcrumb-item</code>, <code>wb-breadcrumb-link</code>, <code>wb-breadcrumb-current</code></td><td>İkincil hiyerarşi bağlamı</td><td>Ayırıcılar varsayılan olarak CSS'e aittir. <code>wb-breadcrumb-separator</code> yalnızca elle kullanılacak bir kaçış yolu olarak kalır.</td></tr><tr><td><code>wb-card</code>, <code>wb-card-footer</code>, <code>wb-field</code>, <code>wb-field-hint</code>, <code>wb-field-error</code>, <code>wb-action-group</code>, <code>wb-grid-2</code>, <code>wb-stack-4</code></td><td>Mevcut card, alan, aksiyon ve yerleşim yapısı</td><td>Önce mevcut primitive'leri kullan. v2.6.0 form alias'ları uyumluluk için kullanılabilir kalır.</td></tr><tr><td><code>wb-form-section</code>, <code>wb-form-section-header</code>, <code>wb-form-section-title</code>, <code>wb-form-section-description</code>, <code>wb-form-error-summary</code>, <code>wb-input-mono</code></td><td>Yönetime özgü form anlamları</td><td>Markup açık bölümleme, form geneli doğrulama özeti veya kod benzeri input davranışı gerektirdiğinde bunları kullan.</td></tr><tr><td><code>wb-detail-list</code>, <code>wb-detail-row</code>, <code>wb-detail-label</code>, <code>wb-detail-value</code>, <code>wb-detail-value-mono</code></td><td>Detay sayfası etiket/değer satırları</td><td>Yollar, token'lar, komutlar ve URL'ler için monospace değerler kullan.</td></tr><tr><td><code>td.wb-table-actions</code></td><td>Açık son satır aksiyon hücresi</td><td>Bunu normal, sola hizalı bir <code>Actions</code> tablo başlığı ve sola hizalı aksiyon butonlarıyla birlikte kullan. <code>wb-action-group</code>'u tablo hücrelerinin dışında genel amaçlı tut.</td></tr><tr><td><code>wb-danger-zone</code>, <code>wb-danger-zone-title</code>, <code>wb-danger-zone-description</code>, <code>wb-danger-zone-actions</code></td><td>Son yıkıcı bölüm</td><td><code>CMS Kurulumunu Sil</code> gibi net yıkıcı etiketler kullan.</td></tr></tbody></table></div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>İş</th><th>Tercih edilen yapı</th><th>Kural</th></tr></thead><tbody><tr><td>Yönetim oluşturma veya düzenleme sayfası</td><td><code>wb-page-header</code> + <code>wb-card</code> + <code>wb-form-section</code></td><td>Sayfanın <code>h1</code>'ini card'ların dışında tut ve alanları amaca göre grupla.</td></tr><tr><td>Alan/değer detay tablosu</td><td><code>wb-table</code> + <code>wb-table-key</code></td><td>Kayıt özetlerinde yerel tablo satırları ve satır başlıkları; terim/açıklama ilişkilerinde semantik açıklama listesi kullan.</td></tr><tr><td>Index tablosu</td><td><code>wb-table</code> + <code>wb-table-actions</code></td><td>Son sütunu her zaman <code>Actions</code> olarak etiketle ve başlık ile butonların o hücrenin sol kenarından başlamasına izin ver.</td></tr><tr><td>Yıkıcı aksiyon</td><td><code>wb-danger-zone</code></td><td>Sonucu net anlatan bir etiketle son card'da tut.</td></tr></tbody></table></div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Tercih edilen sınıflar</th><th>Amaç</th><th>Notlar</th></tr></thead><tbody><tr><td><code>wb-page-header</code>, <code>wb-page-breadcrumb</code>, <code>wb-page-title</code>, <code>wb-page-description</code>, <code>wb-page-actions</code></td><td>Sayfa düzeyinde yönetim hiyerarşisi</td><td>Card'ların dışında tek bir sayfa <code>h1</code>'i kullan ve burada yalnızca bağlam aksiyonlarını tut. <code>wb-page-breadcrumbs</code> uyumluluk alias'ı olarak kalır.</td></tr><tr><td><code>wb-breadcrumb</code>, <code>wb-breadcrumb-item</code>, <code>wb-breadcrumb-link</code>, <code>wb-breadcrumb-current</code></td><td>İkincil hiyerarşi bağlamı</td><td>Ayırıcılar varsayılan olarak CSS'e aittir. <code>wb-breadcrumb-separator</code> yalnızca elle kullanılacak bir kaçış yolu olarak kalır.</td></tr><tr><td><code>wb-card</code>, <code>wb-card-footer</code>, <code>wb-field</code>, <code>wb-field-hint</code>, <code>wb-field-error</code>, <code>wb-action-group</code>, <code>wb-grid-2</code>, <code>wb-stack-4</code></td><td>Mevcut card, alan, aksiyon ve yerleşim yapısı</td><td>Önce mevcut primitive'leri kullan. v2.6.0 form alias'ları uyumluluk için kullanılabilir kalır.</td></tr><tr><td><code>wb-form-section</code>, <code>wb-form-section-header</code>, <code>wb-form-section-title</code>, <code>wb-form-section-description</code>, <code>wb-form-error-summary</code>, <code>wb-input-mono</code></td><td>Yönetime özgü form anlamları</td><td>Markup açık bölümleme, form geneli doğrulama özeti veya kod benzeri input davranışı gerektirdiğinde bunları kullan.</td></tr><tr><td><code>wb-detail-list</code>, <code>wb-detail-row</code>, <code>wb-detail-label</code>, <code>wb-detail-value</code>, <code>wb-detail-value-mono</code></td><td>dl/dt/dd üzerinde semantik açıklama listeleri</td><td>Üç görünümde de yerel dl/dt/dd kullan. Tablo biçimindeki özetleri tablo olarak tut.</td></tr><tr><td><code>td.wb-table-actions</code></td><td>Açık son satır aksiyon hücresi</td><td>Bunu normal, sola hizalı bir <code>Actions</code> tablo başlığı ve sola hizalı aksiyon butonlarıyla birlikte kullan. <code>wb-action-group</code>'u tablo hücrelerinin dışında genel amaçlı tut.</td></tr><tr><td><code>wb-danger-zone</code>, <code>wb-danger-zone-title</code>, <code>wb-danger-zone-description</code>, <code>wb-danger-zone-actions</code></td><td>Son yıkıcı bölüm</td><td><code>CMS Kurulumunu Sil</code> gibi net yıkıcı etiketler kullan.</td></tr></tbody></table></div>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="product-identity">
@@ -515,17 +516,67 @@
                     </div>
                   </section>
 
+                  <section class="wb-docs-section wb-docs-wide" id="detail-lists">
+                    <h2>Semantik açıklama listeleri</h2>
+                    <p>Terim/açıklama veya bağımsız ad/değer ilişkileri için <code>dl.wb-detail-list</code> kullan. Her doğrudan <code>div.wb-detail-row</code>, bir <code>dt.wb-detail-label</code> ve ardından bir <code>dd.wb-detail-value</code> öğesini gruplar. Div çifti gruplayabilir; yerel kök, terim veya açıklama öğesinin yerine geçemez.</p>
+                    <p>Bir detay sayfası otomatik olarak açıklama listesi gerektirmez. Kurulum ve atama özetleri gibi alan/değer tabloları ve karşılaştırılabilir kayıtlar için <code>table.wb-table</code>, <code>th scope="row" class="wb-table-key"</code> ve <code>td</code> kullan. İlişkiler uygunsa açıklama listeleri meta verileri de anlatabilir. Sayfa adı, çizgiler ve görsel sütunlar semantiği belirlemez.</p>
+                    <div class="wb-grid-3">
+                      <section class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Çizgili yatay</h3></div>
+                        <div class="wb-card-body">
+                          <dl class="wb-detail-list" aria-label="Çizgili yatay">
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Taslak</dt><dd class="wb-detail-value">Henüz yayımlanmamış, düzenlemeye açık içerik.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">İnceleme</dt><dd class="wb-detail-value">İçeriğin doğruluk ve dil açısından değerlendirilmesi.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Arşiv</dt><dd class="wb-detail-value">Yayından kaldırılmış, başvuru amacıyla saklanan içerik.</dd></div>
+                          </dl>
+                        </div>
+                      </section>
+                      <section class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Çizgisiz yatay</h3></div>
+                        <div class="wb-card-body">
+                          <dl class="wb-detail-list wb-detail-list--borderless" aria-label="Çizgisiz yatay">
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Taslak</dt><dd class="wb-detail-value">Henüz yayımlanmamış, düzenlemeye açık içerik.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">İnceleme</dt><dd class="wb-detail-value">İçeriğin doğruluk ve dil açısından değerlendirilmesi.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Arşiv</dt><dd class="wb-detail-value">Yayından kaldırılmış, başvuru amacıyla saklanan içerik.</dd></div>
+                          </dl>
+                        </div>
+                      </section>
+                      <section class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Girintili dikey</h3></div>
+                        <div class="wb-card-body">
+                          <dl class="wb-detail-list wb-detail-list--stacked" aria-label="Girintili dikey">
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Taslak</dt><dd class="wb-detail-value">Henüz yayımlanmamış, düzenlemeye açık içerik.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">İnceleme</dt><dd class="wb-detail-value">İçeriğin doğruluk ve dil açısından değerlendirilmesi.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Arşiv</dt><dd class="wb-detail-value">Yayından kaldırılmış, başvuru amacıyla saklanan içerik.</dd></div>
+                          </dl>
+                        </div>
+                      </section>
+                    </div>
+                    <p><code>wb-detail-list</code> sınıfını <code>dl</code> üzerinde tut. Varsayılan çizgili yataydır; çizgisiz yatay için <code>wb-detail-list--borderless</code>, terimin altında girintili açıklama için <code>wb-detail-list--stacked</code> ekle. Bir görünüm seç. Yatay düzenler 640 px ve altında alt alta geçer; dikey girinti LTR/RTL yönünü izler. JavaScript gerekmez.</p>
+                    <pre><code>&lt;dl class="wb-detail-list"&gt;
+  &lt;div class="wb-detail-row"&gt;
+    &lt;dt class="wb-detail-label"&gt;Taslak&lt;/dt&gt;
+    &lt;dd class="wb-detail-value"&gt;Henüz yayımlanmamış, düzenlemeye açık içerik.&lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+                    <p>Geçiş: yalnızca div/span kullanan detay listeleri desteklenmez ve artık biçimlendirilmez. Öğeleri <code>dl</code>/<code>dt</code>/<code>dd</code> olarak değiştir veya tablo biçimindeki özetler için yerel tablo kullan. CSS ve ARIA rolleri semantiği düzeltemez.</p>
+                  </section>
+
                   <section class="wb-docs-section wb-docs-wide" id="detail-page">
                     <h2>Sağlık card'lı detay sayfası</h2>
                     <div class="wb-grid-2">
                       <section class="wb-card">
-                        <div class="wb-card-header"><div><h2 class="wb-card-title">Kurulum detayları</h2><p class="wb-card-description">Detay sayfaları ham paragraflar yerine etiket/değer çiftleri göstermelidir.</p></div></div>
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Kurulum detayları</h2><p class="wb-card-description">Bu alan/değer özeti yerel tablo satırları ve satır başlıkları kullanır. Aksiyon sütunu gerekmez.</p></div></div>
                         <div class="wb-card-body">
-                          <div class="wb-detail-list">
-                            <div class="wb-detail-row"><div class="wb-detail-label">Alan adı</div><div class="wb-detail-value">webblocksui.com</div></div>
-                            <div class="wb-detail-row"><div class="wb-detail-label">CMS uygulama yolu</div><div class="wb-detail-value wb-detail-value-mono">/var/www/webblocksui.com/web_root</div></div>
-                            <div class="wb-detail-row"><div class="wb-detail-label">CMS public yolu</div><div class="wb-detail-value wb-detail-value-mono">/var/www/webblocksui.com/web_root/public</div></div>
-                            <div class="wb-detail-row"><div class="wb-detail-label">Deploy hook'u</div><div class="wb-detail-value wb-detail-value-mono">https://deploy.example.com/hooks/webblocks-ui-production</div></div>
+                          <div class="wb-table-wrap">
+                            <table class="wb-table" aria-label="Kurulum detayları">
+                              <tbody>
+                                <tr><th scope="row" class="wb-table-key">Alan adı</th><td>webblocksui.com</td></tr>
+                                <tr><th scope="row" class="wb-table-key">CMS uygulama yolu</th><td class="wb-mono wb-table-break">/var/www/webblocksui.com/web_root</td></tr>
+                                <tr><th scope="row" class="wb-table-key">CMS public yolu</th><td class="wb-mono wb-table-break">/var/www/webblocksui.com/web_root/public</td></tr>
+                                <tr><th scope="row" class="wb-table-key">Deploy hook'u</th><td class="wb-mono wb-table-break">https://deploy.example.com/hooks/webblocks-ui-production</td></tr>
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                         <div class="wb-card-footer"><div class="wb-action-group"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">CMS Kurulumunu Düzenle</a><a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Listeye dön</a></div></div>

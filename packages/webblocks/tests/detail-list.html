@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semantic detail list tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+</head>
+<body>
+<main class="wb-container wb-stack wb-gap-4 wb-py-6">
+  <h1>Semantic detail lists</h1>
+  <p>Checks use real iframe viewports at 320, 640, 641 and 960 px, in light/dark themes and LTR/RTL. No WebBlocks JavaScript is loaded. Repeat with <a href="?source=1">source CSS</a> or <a href="?">built CSS</a>.</p>
+  <p id="summary" role="status">Waiting for stylesheet and layout checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <iframe id="fixture" title="Three native description list presentations" style="width:100%;height:1000px;border:0"></iframe>
+</main>
+<script>
+(function () {
+  'use strict';
+  var frame = document.getElementById('fixture');
+  var source = new URLSearchParams(location.search).has('source');
+  var styles = source ? [
+    '../src/css/foundation/tokens.css', '../src/css/foundation/dark.css',
+    '../src/css/foundation/reset.css', '../src/css/foundation/elements.css',
+    '../src/css/primitives/card.css'
+  ] : ['../dist/webblocks-ui.css'];
+  var body = '';
+  ['', ' wb-detail-list--borderless', ' wb-detail-list--stacked'].forEach(function (modifier, index) {
+    body += '<section><h2>' + ['Ruled horizontal', 'Borderless horizontal', 'Indented stacked'][index] + '</h2>' +
+      '<dl class="wb-detail-list' + modifier + '">' +
+      '<div class="wb-detail-row"><dt class="wb-detail-label">Draft</dt><dd class="wb-detail-value">Unpublished content.</dd></div>' +
+      '<div class="wb-detail-row"><dt class="wb-detail-label">A long term that must wrap without clipping</dt><dd class="wb-detail-value"><p>A description with multiple paragraphs.</p><p>Another paragraph remains part of the same value.</p><dl class="nested"><dt>Nested term</dt><dd>Nested description</dd></dl></dd></div>' +
+      '<div class="wb-detail-row"><dt class="wb-detail-label">Path</dt><dd class="wb-detail-value wb-detail-value-mono">/synthetic-fixture/' + 'long-unbroken-value-'.repeat(14) + '</dd></div>' +
+      '</dl></section>';
+  });
+  // Deliberately invalid historical anatomy verifies that CSS no longer styles it.
+  body += '<div id="old-root" class="wb-detail-list"><div class="wb-detail-row"><span class="wb-detail-label">Unsupported div root</span><span class="wb-detail-value">Migrate this markup.</span></div></div>' +
+    '<div class="wb-detail-row" id="outside-row">An unrelated row class outside a detail list.</div>' +
+    '<dl id="unrelated"><dt class="wb-detail-label">Unrelated native term</dt><dd class="wb-detail-value">Unrelated description</dd></dl>';
+  frame.addEventListener('load', function () {
+    var doc = frame.contentDocument;
+    var win = frame.contentWindow;
+    var checks = [];
+    function check(name, condition) { checks.push({ name: name, passed: Boolean(condition) }); }
+    function near(a, b) { return Math.abs(a - b) < 1; }
+    [320, 640, 641, 960].forEach(function (width) {
+      frame.style.maxWidth = 'none';
+      frame.style.width = width + 'px';
+      ['light', 'dark'].forEach(function (mode) {
+        doc.documentElement.setAttribute('data-mode', mode);
+        ['ltr', 'rtl'].forEach(function (direction) {
+          doc.documentElement.dir = direction;
+          var context = width + 'px / ' + mode + ' / ' + direction;
+          doc.querySelectorAll('dl.wb-detail-list').forEach(function (list, index) {
+            var row = list.firstElementChild;
+            var term = row.firstElementChild;
+            var description = row.lastElementChild;
+            var termBox = term.getBoundingClientRect();
+            var valueBox = description.getBoundingClientRect();
+            var stacked = index === 2;
+            var id = context + ' / ' + index;
+            check(id + ' native anatomy', term.tagName === 'DT' && description.tagName === 'DD' && !list.hasAttribute('role'));
+            check(id + ' separator policy', parseFloat(win.getComputedStyle(row).borderBottomWidth) === (index === 0 ? 1 : 0));
+            check(id + ' last row has no separator', parseFloat(win.getComputedStyle(list.lastElementChild).borderBottomWidth) === 0);
+            check(id + ' equal text size', win.getComputedStyle(term).fontSize === win.getComputedStyle(description).fontSize);
+            check(id + ' normal description weight', win.getComputedStyle(description).fontWeight === '400');
+            if (stacked || width <= 640) {
+              check(id + ' description below term', valueBox.top >= termBox.bottom);
+            } else {
+              check(id + ' same-row alignment', near(valueBox.top, termBox.top));
+              check(id + ' columns follow direction', direction === 'rtl' ? valueBox.right < termBox.left : valueBox.left > termBox.right);
+            }
+            var indent = stacked ? parseFloat(win.getComputedStyle(list).fontSize) : 0;
+            check(id + ' logical indentation', near(parseFloat(win.getComputedStyle(description).marginInlineStart), indent));
+            if (stacked) {
+              check(id + ' visible RTL/LTR indent', near(direction === 'rtl' ? termBox.right - valueBox.right : valueBox.left - termBox.left, indent));
+            }
+            list.querySelectorAll('dt.wb-detail-label, dd.wb-detail-value').forEach(function (element) {
+              check(id + ' text fits ' + element.tagName, element.scrollWidth <= element.clientWidth + 1);
+            });
+            var nested = list.querySelector('.nested');
+            check(id + ' nested dl stays unstyled', win.getComputedStyle(nested).display === 'block');
+            check(id + ' machine value keeps mono font', win.getComputedStyle(list.querySelector('.wb-detail-value-mono')).fontFamily === win.getComputedStyle(doc.documentElement).getPropertyValue('--wb-font-mono').trim());
+          });
+          check(context + ' div root unsupported', win.getComputedStyle(doc.getElementById('old-root')).display === 'block' && win.getComputedStyle(doc.querySelector('#old-root .wb-detail-row')).display === 'block');
+          check(context + ' unrelated row unaffected', win.getComputedStyle(doc.getElementById('outside-row')).display === 'block');
+          check(context + ' unrelated native list unaffected', win.getComputedStyle(doc.getElementById('unrelated')).display === 'block' && win.getComputedStyle(doc.querySelector('#unrelated dt')).fontWeight === '400');
+          check(context + ' no document overflow', doc.documentElement.scrollWidth <= width + 1);
+        });
+      });
+    });
+    frame.style.width = '100%';
+    frame.style.maxWidth = '100%';
+    doc.documentElement.dir = 'ltr';
+    doc.documentElement.setAttribute('data-mode', new URLSearchParams(location.search).get('mode') === 'dark' ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-mode', doc.documentElement.getAttribute('data-mode'));
+    var failed = checks.filter(function (result) { return !result.passed; });
+    document.getElementById('summary').textContent = (source ? 'Source' : 'Dist') + ': ' + (checks.length - failed.length) + '/' + checks.length + ' checks passed.';
+    failed.forEach(function (result) {
+      var item = document.createElement('li');
+      item.textContent = result.name;
+      document.getElementById('failures').appendChild(item);
+    });
+    window.detailListTestResults = { total: checks.length, failed: failed };
+  });
+  frame.srcdoc = '<!doctype html><html lang="en" data-mode="light"><head><meta charset="utf-8">' +
+    styles.map(function (url) { return '<link rel="stylesheet" href="' + url + '">'; }).join('') +
+    '</head><body>' + body + '</body></html>';
+})();
+</script>
+</body>
+</html>

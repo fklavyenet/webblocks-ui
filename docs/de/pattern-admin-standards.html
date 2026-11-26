@@ -71,6 +71,7 @@
               <li class="wb-section-nav-item"><a href="#admin-filter-bar-actions" class="wb-section-nav-link">Filter-Aktionen</a></li>
               <li class="wb-section-nav-item"><a href="#dense-table-content" class="wb-section-nav-link">Dichte Tabelleninhalte</a></li>
               <li class="wb-section-nav-item"><a href="#form-cards" class="wb-section-nav-link">Form-Cards</a></li>
+              <li class="wb-section-nav-item"><a href="#detail-lists" class="wb-section-nav-link">Beschreibungslisten</a></li>
               <li class="wb-section-nav-item"><a href="#detail-page" class="wb-section-nav-link">Detailseite</a></li>
               <li class="wb-section-nav-item"><a href="#table-actions" class="wb-section-nav-link">Tabellenaktionen</a></li>
               <li class="wb-section-nav-item"><a href="#status-guidance" class="wb-section-nav-link">Hinweise zum Status</a></li>
@@ -90,8 +91,8 @@
                 <div class="wb-docs-flow">
                   <section class="wb-docs-section wb-docs-prose" id="overview">
                     <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Ziel des Standards</strong> Seitentitel und Breadcrumb erklären, wo man sich befindet. Cards und Abschnitte erklären, was als Nächstes möglich ist. Submit-Aktionen gehören zu dem Formular, das sie absenden - nicht in den globalen Page-Header.</div>
-                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Aufgabe</th><th>Bevorzugte Struktur</th><th>Regel</th></tr></thead><tbody><tr><td>Admin-Seite zum Anlegen oder Bearbeiten</td><td><code>wb-page-header</code> + <code>wb-card</code> + <code>wb-form-section</code></td><td>Halte das <code>h1</code> der Seite außerhalb der Cards und gruppiere Felder nach Zweck.</td></tr><tr><td>Detailseite</td><td><code>wb-detail-list</code> + ergänzende Cards</td><td>Nutze Label-/Wert-Zeilen statt loser Absätze.</td></tr><tr><td>Index-Tabelle</td><td><code>wb-table</code> + <code>wb-table-actions</code></td><td>Beschrifte die letzte Spalte immer mit <code>Actions</code> und lass Kopfzeile und Buttons am linken Rand dieser Zelle beginnen.</td></tr><tr><td>Destruktive Aktion</td><td><code>wb-danger-zone</code></td><td>Halte sie in der letzten Card mit einer konkreten Beschriftung zur Konsequenz.</td></tr></tbody></table></div>
-                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Bevorzugte Klassen</th><th>Zweck</th><th>Hinweise</th></tr></thead><tbody><tr><td><code>wb-page-header</code>, <code>wb-page-breadcrumb</code>, <code>wb-page-title</code>, <code>wb-page-description</code>, <code>wb-page-actions</code></td><td>Admin-Hierarchie auf Seitenebene</td><td>Nutze ein einziges <code>h1</code> außerhalb der Cards und behalte hier nur Kontextaktionen. <code>wb-page-breadcrumbs</code> bleibt ein Kompatibilitäts-Alias.</td></tr><tr><td><code>wb-breadcrumb</code>, <code>wb-breadcrumb-item</code>, <code>wb-breadcrumb-link</code>, <code>wb-breadcrumb-current</code></td><td>Sekundärer Hierarchie-Kontext</td><td>Trennzeichen werden standardmäßig von CSS erzeugt. <code>wb-breadcrumb-separator</code> bleibt nur als manuelle Ausweichlösung.</td></tr><tr><td><code>wb-card</code>, <code>wb-card-footer</code>, <code>wb-field</code>, <code>wb-field-hint</code>, <code>wb-field-error</code>, <code>wb-action-group</code>, <code>wb-grid-2</code>, <code>wb-stack-4</code></td><td>Bestehende Struktur für Card, Feld, Aktion und Layout</td><td>Nutze zuerst die bestehenden Primitives. Die Formular-Aliase aus v2.6.0 bleiben aus Kompatibilitätsgründen verfügbar.</td></tr><tr><td><code>wb-form-section</code>, <code>wb-form-section-header</code>, <code>wb-form-section-title</code>, <code>wb-form-section-description</code>, <code>wb-form-error-summary</code>, <code>wb-input-mono</code></td><td>Admin-spezifische Formular-Semantik</td><td>Behalte diese, wenn das Markup eine explizite Abschnittsbildung, eine Validierungsübersicht für das ganze Formular oder eine code-artige Feldbehandlung braucht.</td></tr><tr><td><code>wb-detail-list</code>, <code>wb-detail-row</code>, <code>wb-detail-label</code>, <code>wb-detail-value</code>, <code>wb-detail-value-mono</code></td><td>Label-/Wert-Zeilen der Detailseite</td><td>Nutze Monospace-Werte für Pfade, Tokens, Befehle und URLs.</td></tr><tr><td><code>td.wb-table-actions</code></td><td>Explizite letzte Aktionszelle einer Zeile</td><td>Kombiniere sie mit einer normalen linksbündigen <code>Actions</code>-Tabellenüberschrift und linksbündigen Aktions-Buttons. Halte <code>wb-action-group</code> außerhalb von Tabellenzellen generisch.</td></tr><tr><td><code>wb-danger-zone</code>, <code>wb-danger-zone-title</code>, <code>wb-danger-zone-description</code>, <code>wb-danger-zone-actions</code></td><td>Letzter destruktiver Abschnitt</td><td>Nutze konkrete destruktive Beschriftungen wie <code>CMS-Installation löschen</code>.</td></tr></tbody></table></div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Aufgabe</th><th>Bevorzugte Struktur</th><th>Regel</th></tr></thead><tbody><tr><td>Admin-Seite zum Anlegen oder Bearbeiten</td><td><code>wb-page-header</code> + <code>wb-card</code> + <code>wb-form-section</code></td><td>Halte das <code>h1</code> der Seite außerhalb der Cards und gruppiere Felder nach Zweck.</td></tr><tr><td>Feld/Wert-Detailtabelle</td><td><code>wb-table</code> + <code>wb-table-key</code></td><td>Nutze native Tabellenzeilen und Zeilenüberschriften für Datensatzübersichten und semantische Beschreibungslisten für Begriff/Beschreibung-Beziehungen.</td></tr><tr><td>Index-Tabelle</td><td><code>wb-table</code> + <code>wb-table-actions</code></td><td>Beschrifte die letzte Spalte immer mit <code>Actions</code> und lass Kopfzeile und Buttons am linken Rand dieser Zelle beginnen.</td></tr><tr><td>Destruktive Aktion</td><td><code>wb-danger-zone</code></td><td>Halte sie in der letzten Card mit einer konkreten Beschriftung zur Konsequenz.</td></tr></tbody></table></div>
+                    <div class="wb-table-wrap"><table class="wb-table wb-table-sm"><thead><tr><th>Bevorzugte Klassen</th><th>Zweck</th><th>Hinweise</th></tr></thead><tbody><tr><td><code>wb-page-header</code>, <code>wb-page-breadcrumb</code>, <code>wb-page-title</code>, <code>wb-page-description</code>, <code>wb-page-actions</code></td><td>Admin-Hierarchie auf Seitenebene</td><td>Nutze ein einziges <code>h1</code> außerhalb der Cards und behalte hier nur Kontextaktionen. <code>wb-page-breadcrumbs</code> bleibt ein Kompatibilitäts-Alias.</td></tr><tr><td><code>wb-breadcrumb</code>, <code>wb-breadcrumb-item</code>, <code>wb-breadcrumb-link</code>, <code>wb-breadcrumb-current</code></td><td>Sekundärer Hierarchie-Kontext</td><td>Trennzeichen werden standardmäßig von CSS erzeugt. <code>wb-breadcrumb-separator</code> bleibt nur als manuelle Ausweichlösung.</td></tr><tr><td><code>wb-card</code>, <code>wb-card-footer</code>, <code>wb-field</code>, <code>wb-field-hint</code>, <code>wb-field-error</code>, <code>wb-action-group</code>, <code>wb-grid-2</code>, <code>wb-stack-4</code></td><td>Bestehende Struktur für Card, Feld, Aktion und Layout</td><td>Nutze zuerst die bestehenden Primitives. Die Formular-Aliase aus v2.6.0 bleiben aus Kompatibilitätsgründen verfügbar.</td></tr><tr><td><code>wb-form-section</code>, <code>wb-form-section-header</code>, <code>wb-form-section-title</code>, <code>wb-form-section-description</code>, <code>wb-form-error-summary</code>, <code>wb-input-mono</code></td><td>Admin-spezifische Formular-Semantik</td><td>Behalte diese, wenn das Markup eine explizite Abschnittsbildung, eine Validierungsübersicht für das ganze Formular oder eine code-artige Feldbehandlung braucht.</td></tr><tr><td><code>wb-detail-list</code>, <code>wb-detail-row</code>, <code>wb-detail-label</code>, <code>wb-detail-value</code>, <code>wb-detail-value-mono</code></td><td>Semantische Beschreibungslisten mit dl/dt/dd</td><td>Nutze native dl/dt/dd in allen drei Darstellungen. Tabellarische Übersichten bleiben Tabellen.</td></tr><tr><td><code>td.wb-table-actions</code></td><td>Explizite letzte Aktionszelle einer Zeile</td><td>Kombiniere sie mit einer normalen linksbündigen <code>Actions</code>-Tabellenüberschrift und linksbündigen Aktions-Buttons. Halte <code>wb-action-group</code> außerhalb von Tabellenzellen generisch.</td></tr><tr><td><code>wb-danger-zone</code>, <code>wb-danger-zone-title</code>, <code>wb-danger-zone-description</code>, <code>wb-danger-zone-actions</code></td><td>Letzter destruktiver Abschnitt</td><td>Nutze konkrete destruktive Beschriftungen wie <code>CMS-Installation löschen</code>.</td></tr></tbody></table></div>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="product-identity">
@@ -515,17 +516,67 @@
                     </div>
                   </section>
 
+                  <section class="wb-docs-section wb-docs-wide" id="detail-lists">
+                    <h2>Semantische Beschreibungslisten</h2>
+                    <p>Nutze <code>dl.wb-detail-list</code> für Begriff/Beschreibung oder unabhängige Name/Wert-Beziehungen. Jedes direkte <code>div.wb-detail-row</code> gruppiert ein <code>dt.wb-detail-label</code>, gefolgt von einem <code>dd.wb-detail-value</code>. Ein Div darf das Paar gruppieren, aber weder das native Wurzelelement noch Begriff oder Beschreibung ersetzen.</p>
+                    <p>Eine Detailseite braucht nicht automatisch eine Beschreibungsliste. Feld/Wert-Tabellen wie Installations- und Zuweisungsübersichten sowie vergleichbare Datensätze verwenden <code>table.wb-table</code> mit <code>th scope="row" class="wb-table-key"</code> und <code>td</code>. Beschreibungslisten können bei passenden Beziehungen auch Metadaten darstellen. Seitenname, Trennlinien und sichtbare Spalten bestimmen nicht die Semantik.</p>
+                    <div class="wb-grid-3">
+                      <section class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Horizontal mit Trennlinien</h3></div>
+                        <div class="wb-card-body">
+                          <dl class="wb-detail-list" aria-label="Horizontal mit Trennlinien">
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Entwurf</dt><dd class="wb-detail-value">Unveröffentlichter Inhalt, der noch bearbeitet werden kann.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Prüfung</dt><dd class="wb-detail-value">Bewertung des Inhalts auf Richtigkeit und Sprache.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Archiv</dt><dd class="wb-detail-value">Nach der Veröffentlichung als Referenz aufbewahrter Inhalt.</dd></div>
+                          </dl>
+                        </div>
+                      </section>
+                      <section class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Horizontal ohne Trennlinien</h3></div>
+                        <div class="wb-card-body">
+                          <dl class="wb-detail-list wb-detail-list--borderless" aria-label="Horizontal ohne Trennlinien">
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Entwurf</dt><dd class="wb-detail-value">Unveröffentlichter Inhalt, der noch bearbeitet werden kann.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Prüfung</dt><dd class="wb-detail-value">Bewertung des Inhalts auf Richtigkeit und Sprache.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Archiv</dt><dd class="wb-detail-value">Nach der Veröffentlichung als Referenz aufbewahrter Inhalt.</dd></div>
+                          </dl>
+                        </div>
+                      </section>
+                      <section class="wb-card">
+                        <div class="wb-card-header"><h3 class="wb-card-title">Vertikal mit Einzug</h3></div>
+                        <div class="wb-card-body">
+                          <dl class="wb-detail-list wb-detail-list--stacked" aria-label="Vertikal mit Einzug">
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Entwurf</dt><dd class="wb-detail-value">Unveröffentlichter Inhalt, der noch bearbeitet werden kann.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Prüfung</dt><dd class="wb-detail-value">Bewertung des Inhalts auf Richtigkeit und Sprache.</dd></div>
+                            <div class="wb-detail-row"><dt class="wb-detail-label">Archiv</dt><dd class="wb-detail-value">Nach der Veröffentlichung als Referenz aufbewahrter Inhalt.</dd></div>
+                          </dl>
+                        </div>
+                      </section>
+                    </div>
+                    <p>Belasse <code>wb-detail-list</code> auf dem <code>dl</code>. Standard ist horizontal mit Trennlinien; ergänze <code>wb-detail-list--borderless</code> für horizontal ohne Trennlinien oder <code>wb-detail-list--stacked</code> für den Begriff über einer eingerückten Beschreibung. Wähle eine Darstellung. Horizontale Formen stehen bis 640 px untereinander; der vertikale Einzug folgt LTR/RTL. JavaScript ist nicht erforderlich.</p>
+                    <pre><code>&lt;dl class="wb-detail-list"&gt;
+  &lt;div class="wb-detail-row"&gt;
+    &lt;dt class="wb-detail-label"&gt;Entwurf&lt;/dt&gt;
+    &lt;dd class="wb-detail-value"&gt;Unveröffentlichter Inhalt, der noch bearbeitet werden kann.&lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+                    <p>Migration: Reine Div/Span-Detailisten werden nicht unterstützt und nicht mehr gestaltet. Ersetze die Elemente durch <code>dl</code>/<code>dt</code>/<code>dd</code> oder verwende native Tabellen für tabellarische Übersichten. CSS und ARIA-Rollen reparieren keine Semantik.</p>
+                  </section>
+
                   <section class="wb-docs-section wb-docs-wide" id="detail-page">
                     <h2>Detailseite mit Zustands-Card</h2>
                     <div class="wb-grid-2">
                       <section class="wb-card">
-                        <div class="wb-card-header"><div><h2 class="wb-card-title">Details der Installation</h2><p class="wb-card-description">Detailseiten sollten Label-/Wert-Paare zeigen statt reiner Absätze.</p></div></div>
+                        <div class="wb-card-header"><div><h2 class="wb-card-title">Details der Installation</h2><p class="wb-card-description">Diese Feld/Wert-Übersicht nutzt native Tabellenzeilen und Zeilenüberschriften. Eine Aktionsspalte ist nicht nötig.</p></div></div>
                         <div class="wb-card-body">
-                          <div class="wb-detail-list">
-                            <div class="wb-detail-row"><div class="wb-detail-label">Domain</div><div class="wb-detail-value">webblocksui.com</div></div>
-                            <div class="wb-detail-row"><div class="wb-detail-label">CMS-App-Pfad</div><div class="wb-detail-value wb-detail-value-mono">/var/www/webblocksui.com/web_root</div></div>
-                            <div class="wb-detail-row"><div class="wb-detail-label">CMS-Public-Pfad</div><div class="wb-detail-value wb-detail-value-mono">/var/www/webblocksui.com/web_root/public</div></div>
-                            <div class="wb-detail-row"><div class="wb-detail-label">Deploy-Hook</div><div class="wb-detail-value wb-detail-value-mono">https://deploy.example.com/hooks/webblocks-ui-production</div></div>
+                          <div class="wb-table-wrap">
+                            <table class="wb-table" aria-label="Details der Installation">
+                              <tbody>
+                                <tr><th scope="row" class="wb-table-key">Domain</th><td>webblocksui.com</td></tr>
+                                <tr><th scope="row" class="wb-table-key">CMS-App-Pfad</th><td class="wb-mono wb-table-break">/var/www/webblocksui.com/web_root</td></tr>
+                                <tr><th scope="row" class="wb-table-key">CMS-Public-Pfad</th><td class="wb-mono wb-table-break">/var/www/webblocksui.com/web_root/public</td></tr>
+                                <tr><th scope="row" class="wb-table-key">Deploy-Hook</th><td class="wb-mono wb-table-break">https://deploy.example.com/hooks/webblocks-ui-production</td></tr>
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                         <div class="wb-card-footer"><div class="wb-action-group"><a href="#" class="wb-btn wb-btn-primary wb-btn-sm">CMS-Installation bearbeiten</a><a href="#" class="wb-btn wb-btn-secondary wb-btn-sm">Zurück zur Liste</a></div></div>
