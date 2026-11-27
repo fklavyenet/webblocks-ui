@@ -6,6 +6,16 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.40.2] — 2026-11-28
+
+### Fixed
+- Use native `dl`/`dt`/`dd` statistic cards in documentation and Playground examples, keeping each value and its supporting delta in one description while preserving legacy div/span layouts.
+- Group the remaining related radio controls with the existing `wb-fieldset` and `legend`, and label search and domain inputs in English, German and Turkish examples.
+- Replace the Playground input group's invalid label/div nesting with a native label and matching control id.
+- Move command palette keyboard focus to native links and buttons, preserve browser activation and the search Enter submission guard, skip hidden/disabled results, and keep visual selection synchronized with focus.
+- Preserve legacy command groups and APIs, filter complete native list rows, and restore search focus before replacing a focused asynchronous result.
+- Align integration and downstream AI guidance, add a semantic command palette Playground starter, and cover source/dist behavior and native/legacy statistic layouts with browser regressions.
+
 ## [2.40.1] — 2026-11-27
 
 ### Fixed

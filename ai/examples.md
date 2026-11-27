@@ -206,3 +206,19 @@ Interactive input degrades without JavaScript: each star is a real submit button
 ```
 
 Override colors and size with `--wb-rating-color`, `--wb-rating-empty`, and `--wb-rating-size`. `wb-rating` carries no endpoints, storage, or CSRF and does not own a visible heading.
+
+
+## Native statistic card
+
+```html
+<dl class="wb-stat">
+  <dt class="wb-stat-label">Revenue</dt>
+  <dd>
+    <strong class="wb-stat-value">$24.8k</strong>
+    <span class="wb-stat-delta wb-stat-delta-up">+12%</span>
+  </dd>
+</dl>
+```
+
+Keep a statistic's supporting delta inside the same description. Existing
+non-native cards remain supported for compatibility.

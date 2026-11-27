@@ -179,9 +179,13 @@
                       <label class="wb-label" for="descField">Açıklama</label>
                       <textarea class="wb-textarea" id="descField" placeholder="Kısa özet"></textarea>
                     </div>
-                    <div class="wb-input-group">
-                      <span class="wb-input-addon">https://</span>
-                      <input class="wb-input" type="text" placeholder="proje.ornek.com">
+                    <p class="wb-text-sm wb-text-muted">İlişkili radio kontrolleri wb-fieldset ve legend ile gruplanır. Arama alanları ve input grupları dahil her kontrolün kendi native label elemanı bulunur.</p>
+                    <div class="wb-field">
+                      <label class="wb-label" for="projectDomain">Proje alan adı</label>
+                      <div class="wb-input-group">
+                        <span class="wb-input-addon">https://</span>
+                        <input class="wb-input" id="projectDomain" type="text" placeholder="proje.ornek.com">
+                      </div>
                     </div>
                     <div class="wb-field">
                       <label class="wb-label" for="projectPassword">Yönetici parolası</label>
@@ -217,8 +221,15 @@
                     </div>
                     <div class="wb-cluster">
                       <label class="wb-check"><input type="checkbox" checked> Analitiği etkinleştir</label>
-                      <label class="wb-radio"><input type="radio" name="visibility" checked> Özel</label>
-                      <label class="wb-radio"><input type="radio" name="visibility"> Herkese açık</label>
+                      <fieldset class="wb-fieldset">
+                        <legend>Görünürlük</legend>
+                        <div class="wb-fieldset-body">
+                          <div class="wb-cluster">
+                            <label class="wb-radio"><input type="radio" name="visibility" value="private" checked> Özel</label>
+                            <label class="wb-radio"><input type="radio" name="visibility" value="public"> Herkese açık</label>
+                          </div>
+                        </div>
+                      </fieldset>
                       <label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span> Bakım modu</label>
                     </div>
                   </div>
@@ -268,6 +279,7 @@
 
               <section class="wb-docs-section wb-docs-wide" id="surfaces-and-display">
                 <h2>Surface ve görünüm sözleşmeleri</h2>
+                <p>İstatistik kartları native dl/dt/dd kullanır: değer ve ona ait değişim aynı açıklamada kalır. Eski div/span kartları desteklenmeye devam eder.</p>
                 <p><code>wb-card-media</code>, card gövdelerine öngörülebilir bir medya çerçevesi verir; böylece karışık logolar, ekran görüntüleri ve servis görselleri bir card ızgarası boyunca yazı taban çizgisini tutarlı tutar. Varsayılan fit değeri <code>contain</code>'dir, yani görsel varsayılan olarak kırpılmak yerine tamamen görünür kalır.</p>
                 <p class="wb-text-sm wb-text-muted">Bir <code>wb-card</code>, <code>wb-grid-2</code> veya <code>wb-grid-auto</code> gibi bir WebBlocks grid primitive'inin doğrudan çocuğuysa satır yüksekliğine uzar ve <code>wb-card-footer</code>'ı otomatik olarak altta sabit tutar.</p>
                 <div class="wb-grid-2">
@@ -275,8 +287,8 @@
                     <div class="wb-card-header"><h3 class="wb-card-title">İstatistikler</h3></div>
                     <div class="wb-card-body">
                       <div class="wb-grid-2">
-                        <div class="wb-stat"><div class="wb-stat-label">MRR</div><div class="wb-stat-value">$12.4k</div><div class="wb-stat-delta wb-stat-delta-up">+8.2%</div></div>
-                        <div class="wb-stat"><div class="wb-stat-label">Deneme sürümleri</div><div class="wb-stat-value">214</div><div class="wb-stat-delta wb-stat-delta-down">-2.1%</div></div>
+                        <dl class="wb-stat"><dt class="wb-stat-label">MRR</dt><dd><strong class="wb-stat-value">$12.4k</strong><span class="wb-stat-delta wb-stat-delta-up">+8.2%</span></dd></dl>
+                        <dl class="wb-stat"><dt class="wb-stat-label">Deneme sürümleri</dt><dd><strong class="wb-stat-value">214</strong><span class="wb-stat-delta wb-stat-delta-down">-2.1%</span></dd></dl>
                       </div>
                     </div>
                   </div>

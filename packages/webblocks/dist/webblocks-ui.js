@@ -1,5 +1,5 @@
 /*!
- * WebBlocks UI v2.40.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.40.2 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -5085,11 +5085,14 @@
        <div class="wb-cmd-dialog">
          <div class="wb-cmd-search">
            <span class="wb-cmd-search-icon">⌕</span>
-           <input class="wb-cmd-input" type="text"
+           <label class="wb-sr-only" for="myCmdSearch">Search commands</label>
+           <input class="wb-cmd-input" id="myCmdSearch" type="text"
                   placeholder="Search commands..." autocomplete="off" />
          </div>
          <div class="wb-cmd-results">
-           <!-- Groups populated by search or static HTML -->
+           <ul class="wb-cmd-group">
+             <li><a class="wb-cmd-item" href="/docs">Documentation</a></li>
+           </ul>
          </div>
          <div class="wb-cmd-footer">
            <span class="wb-cmd-footer-hint">
@@ -5119,8 +5122,6 @@
   'use strict';
 
   var instances = new WeakMap();
-  var selectedIndex = -1;
-  var items = [];
 
   // ── External search handler ────────────────────────────── 
   // Assign: WBCommandPalette.onSearch = function(query, callback) { ... }
@@ -5129,28 +5130,34 @@
   // ── Helpers ───────────────────────────────────────────────
 
   function getItems(palette) {
-    return Array.from(palette.querySelectorAll('.wb-cmd-item'));
+    return Array.from(palette.querySelectorAll('.wb-cmd-item')).filter(function (item) {
+      return item.closest('.wb-cmd-backdrop') === palette;
+    });
   }
 
-  function clearSelection() {
-    items.forEach(function (item) { item.classList.remove('is-selected'); });
-    selectedIndex = -1;
+  function getVisibleItems(palette) {
+    return getItems(palette).filter(function (item) {
+      return !item.matches(':disabled, [aria-disabled="true"]') &&
+        !item.closest('[hidden], [inert]') && item.getClientRects().length &&
+        getComputedStyle(item).visibility !== 'hidden';
+    });
   }
 
-  function selectItem(index) {
+  function clearSelection(palette) {
+    getItems(palette).forEach(function (item) { item.classList.remove('is-selected'); });
+  }
+
+  function selectItem(palette, index) {
+    var items = getVisibleItems(palette);
     if (!items.length) return;
     if (index < 0) index = items.length - 1;
     if (index >= items.length) index = 0;
 
-    clearSelection();
-    selectedIndex = index;
-    items[selectedIndex].classList.add('is-selected');
-    items[selectedIndex].scrollIntoView({ block: 'nearest' });
-  }
-
-  function activateSelected() {
-    if (selectedIndex < 0 || !items[selectedIndex]) return;
-    items[selectedIndex].click();
+    var item = items[index];
+    // Preserve keyboard activation for legacy custom items; new markup uses links/buttons.
+    if (!item.matches('a[href], button, input, [tabindex]')) item.setAttribute('tabindex', '-1');
+    item.focus({ preventScroll: true });
+    item.scrollIntoView({ block: 'nearest' });
   }
 
   function getActivePalette() {
@@ -5186,6 +5193,7 @@
         palette.dispatchEvent(new CustomEvent('wb:cmd:open', { bubbles: true }));
       },
       onAfterClose: function () {
+        clearSelection(palette);
         palette.dispatchEvent(new CustomEvent('wb:cmd:close', { bubbles: true }));
       }
     });
@@ -5204,15 +5212,14 @@
 
     // Focus the input
     requestAnimationFrame(function () {
-      if (instance.nativeDialog && (!instance.active || !palette.open)) return;
+      if (!instance.active || (instance.nativeDialog && !palette.open)) return;
       var input = palette.querySelector('.wb-cmd-input');
       if (input) {
         input.value = '';
         input.focus();
         handleInput(input);
       }
-      items = getItems(palette);
-      selectedIndex = -1;
+      clearSelection(palette);
     });
   }
 
@@ -5238,6 +5245,7 @@
     var palette = input.closest('.wb-cmd-backdrop');
     if (!palette) return;
 
+    clearSelection(palette);
     var query = input.value.trim().toLowerCase();
 
     // If custom search handler is set, delegate
@@ -5245,22 +5253,26 @@
       searchHandler(query, function (html) {
         var results = palette.querySelector('.wb-cmd-results');
         if (results) {
+          // Return focus before replacing a focused command with new results.
+          if (results.contains(document.activeElement)) input.focus();
           results.innerHTML = html;
-          items = getItems(palette);
-          selectedIndex = -1;
+          clearSelection(palette);
         }
       });
       return;
     }
 
     // Built-in: filter visible items by text match
-    items = getItems(palette);
+    var items = getItems(palette);
     var anyVisible = false;
 
     items.forEach(function (item) {
       var text = (item.textContent || '').toLowerCase();
       var match = !query || text.includes(query);
       item.style.display = match ? '' : 'none';
+      // Semantic list rows must disappear with their filtered controls.
+      var row = item.parentElement;
+      if (row && row.tagName === 'LI') row.style.display = match ? '' : 'none';
       if (match) anyVisible = true;
     });
 
@@ -5275,10 +5287,6 @@
         .filter(function (i) { return i.style.display !== 'none'; });
       group.style.display = visibleItems.length ? '' : 'none';
     });
-
-    // Reset selection
-    items = items.filter(function (i) { return i.style.display !== 'none'; });
-    selectedIndex = -1;
 
     palette.dispatchEvent(new CustomEvent('wb:cmd:search', {
       bubbles: true,
@@ -5348,20 +5356,49 @@
     var activePalette = getActivePalette();
     if (!activePalette || !isTopInteractive(activePalette)) return;
 
+    if (e.defaultPrevented || e.isComposing || e.metaKey || e.ctrlKey || e.altKey) return;
+    var input = activePalette.querySelector('.wb-cmd-input');
+    var item = e.target.closest('.wb-cmd-item');
+    if (e.target !== input && (!item || item.closest('.wb-cmd-backdrop') !== activePalette)) return;
+    // Leave embedded controls and unrelated dialog actions to their native behavior.
+    if (item && e.target !== item) return;
+
+    var items = getVisibleItems(activePalette);
+    var index = items.indexOf(item);
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
-        selectItem(selectedIndex + 1);
+        selectItem(activePalette, index + 1);
         break;
       case 'ArrowUp':
         e.preventDefault();
-        selectItem(selectedIndex - 1);
+        selectItem(activePalette, index < 0 ? -1 : index - 1);
         break;
       case 'Enter':
-        e.preventDefault();
-        activateSelected();
+        // Real links/buttons keep browser activation, including modified link clicks.
+        if (e.target === input) {
+          // Retain the legacy guard against submitting an enclosing host form.
+          e.preventDefault();
+        } else if (item && !item.matches('a[href], button, input')) {
+          e.preventDefault();
+          item.click();
+        }
         break;
+      default:
+        // Typing after arrow navigation resumes the existing search field. Space
+        // remains the native button activation key. Do not intercept IME/modifiers.
+        if (item && input && ((e.key.length === 1 && e.key !== ' ') || e.key === 'Backspace')) {
+          input.focus();
+        }
     }
+  });
+
+  document.addEventListener('focusin', function (e) {
+    var palette = e.target.closest('.wb-cmd-backdrop');
+    if (!palette || palette !== getActivePalette() || !isTopInteractive(palette)) return;
+    clearSelection(palette);
+    var item = e.target.closest('.wb-cmd-item');
+    if (item && item.closest('.wb-cmd-backdrop') === palette) item.classList.add('is-selected');
   });
 
   document.addEventListener('input', function (e) {

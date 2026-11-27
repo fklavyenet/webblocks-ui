@@ -122,6 +122,13 @@ dialog.wb-cmd-backdrop::backdrop {
   padding: var(--wb-s1) var(--wb-s2);
 }
 
+/* Native result collections retain the legacy group layout. */
+ul.wb-cmd-group,
+ol.wb-cmd-group {
+  margin: 0;
+  list-style: none;
+}
+
 .wb-cmd-group + .wb-cmd-group {
   border-top: 1px solid var(--wb-border);
   margin-top: var(--wb-s1);
@@ -159,9 +166,15 @@ dialog.wb-cmd-backdrop::backdrop {
 }
 
 .wb-cmd-item:hover,
+.wb-cmd-item:focus-visible,
 .wb-cmd-item.is-selected {
   background: var(--wb-surface-2);
   text-decoration: none;
+}
+
+.wb-cmd-item:focus-visible {
+  outline: 2px solid var(--wb-primary);
+  outline-offset: -2px;
 }
 
 .wb-cmd-item.is-selected {

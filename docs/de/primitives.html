@@ -179,9 +179,13 @@
                       <label class="wb-label" for="descField">Beschreibung</label>
                       <textarea class="wb-textarea" id="descField" placeholder="Kurze Zusammenfassung"></textarea>
                     </div>
-                    <div class="wb-input-group">
-                      <span class="wb-input-addon">https://</span>
-                      <input class="wb-input" type="text" placeholder="projekt.beispiel.de">
+                    <p class="wb-text-sm wb-text-muted">Zusammengehörige Radio-Controls erhalten wb-fieldset und legend. Jedes Eingabefeld hat ein eigenes natives label, auch Suchfelder und Input-Groups.</p>
+                    <div class="wb-field">
+                      <label class="wb-label" for="projectDomain">Projekt-Domain</label>
+                      <div class="wb-input-group">
+                        <span class="wb-input-addon">https://</span>
+                        <input class="wb-input" id="projectDomain" type="text" placeholder="projekt.beispiel.de">
+                      </div>
                     </div>
                     <div class="wb-field">
                       <label class="wb-label" for="projectPassword">Admin-Passwort</label>
@@ -217,8 +221,15 @@
                     </div>
                     <div class="wb-cluster">
                       <label class="wb-check"><input type="checkbox" checked> Analyse aktivieren</label>
-                      <label class="wb-radio"><input type="radio" name="visibility" checked> Privat</label>
-                      <label class="wb-radio"><input type="radio" name="visibility"> Öffentlich</label>
+                      <fieldset class="wb-fieldset">
+                        <legend>Sichtbarkeit</legend>
+                        <div class="wb-fieldset-body">
+                          <div class="wb-cluster">
+                            <label class="wb-radio"><input type="radio" name="visibility" value="private" checked> Privat</label>
+                            <label class="wb-radio"><input type="radio" name="visibility" value="public"> Öffentlich</label>
+                          </div>
+                        </div>
+                      </fieldset>
                       <label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span> Wartungsmodus</label>
                     </div>
                   </div>
@@ -268,6 +279,7 @@
 
               <section class="wb-docs-section wb-docs-wide" id="surfaces-and-display">
                 <h2>Surfaces und Darstellungsverträge</h2>
+                <p>Statistikkarten verwenden native dl/dt/dd-Elemente: Wert und ergänzende Änderung bleiben in einer Beschreibung. Bisherige div/span-Karten werden weiterhin unterstützt.</p>
                 <p><code>wb-card-media</code> gibt Card-Bodies einen vorhersehbaren Medienrahmen, damit gemischte Logos, Screenshots und Service-Bilder die Textgrundlinie über ein Card-Raster hinweg einheitlich halten. Der Standard-Fit ist <code>contain</code>, sodass das vollständige Bild sichtbar bleibt, statt standardmäßig beschnitten zu werden.</p>
                 <p class="wb-text-sm wb-text-muted">Ist eine <code>wb-card</code> direktes Kind eines WebBlocks-Grid-Primitives wie <code>wb-grid-2</code> oder <code>wb-grid-auto</code>, streckt sie sich auf die Zeilenhöhe und hält <code>wb-card-footer</code> automatisch am unteren Rand.</p>
                 <div class="wb-grid-2">
@@ -275,8 +287,8 @@
                     <div class="wb-card-header"><h3 class="wb-card-title">Stats</h3></div>
                     <div class="wb-card-body">
                       <div class="wb-grid-2">
-                        <div class="wb-stat"><div class="wb-stat-label">MRR</div><div class="wb-stat-value">$12.4k</div><div class="wb-stat-delta wb-stat-delta-up">+8.2%</div></div>
-                        <div class="wb-stat"><div class="wb-stat-label">Testphasen</div><div class="wb-stat-value">214</div><div class="wb-stat-delta wb-stat-delta-down">-2.1%</div></div>
+                        <dl class="wb-stat"><dt class="wb-stat-label">MRR</dt><dd><strong class="wb-stat-value">$12.4k</strong><span class="wb-stat-delta wb-stat-delta-up">+8.2%</span></dd></dl>
+                        <dl class="wb-stat"><dt class="wb-stat-label">Testphasen</dt><dd><strong class="wb-stat-value">214</strong><span class="wb-stat-delta wb-stat-delta-down">-2.1%</span></dd></dl>
                       </div>
                     </div>
                   </div>

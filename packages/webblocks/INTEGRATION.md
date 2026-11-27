@@ -387,12 +387,20 @@ Use `wb-background-media` as an opt-in primitive on an existing semantic root wh
   <div class="wb-card-footer">Footer actions</div>
 </div>
 
-<div class="wb-stat">
-  <span class="wb-stat-label">Revenue</span>
-  <strong class="wb-stat-value">$24.8k</strong>
-  <span class="wb-stat-delta wb-stat-delta-up">+12%</span>
-</div>
+<dl class="wb-stat">
+  <dt class="wb-stat-label">Revenue</dt>
+  <dd>
+    <strong class="wb-stat-value">$24.8k</strong>
+    <span class="wb-stat-delta wb-stat-delta-up">+12%</span>
+  </dd>
+</dl>
 ```
+
+New statistic cards use `dl.wb-stat`, a `dt.wb-stat-label`, and one `dd`
+containing the value and its supporting delta. Keep the delta with the same
+value, rather than making it a second description. Native cards keep the
+existing typography and spacing; legacy div/span cards remain supported.
+Use native tables when statistics form comparable records with columns.
 
 Useful modifiers:
 
@@ -848,9 +856,10 @@ method, and named controls.
   <div class="wb-filter-bar-start">
     <div class="wb-search-bar wb-search-bar-full">
       <span class="wb-search-bar-icon"><i class="wb-icon wb-icon-search" aria-hidden="true"></i></span>
-      <input class="wb-search-bar-input" type="search" placeholder="Search users">
+      <label class="wb-sr-only" for="filterUsersSearch">Search users</label>
+      <input class="wb-search-bar-input" id="filterUsersSearch" type="search" placeholder="Search users">
     </div>
-    <select class="wb-filter-select">
+    <select class="wb-filter-select" aria-label="Filter by role">
       <option>All roles</option>
     </select>
     <button class="wb-filter-chip is-active">Active</button>
@@ -2181,12 +2190,14 @@ segmented control at its intrinsic width inside the grid-based fieldset body.
 <div class="wb-cmd-backdrop" id="site-cmd" data-wb-cmd-default role="dialog" aria-modal="true" aria-label="Command palette">
   <div class="wb-cmd-dialog">
     <div class="wb-cmd-search">
-      <input class="wb-cmd-input" type="text" placeholder="Search commands...">
+      <label class="wb-sr-only" for="site-cmd-search">Search commands</label>
+      <input class="wb-cmd-input" id="site-cmd-search" type="text" placeholder="Search commands...">
     </div>
     <div class="wb-cmd-results">
-      <div class="wb-cmd-group">
-        <a class="wb-cmd-item" href="/docs">Documentation</a>
-      </div>
+      <ul class="wb-cmd-group" aria-label="Commands">
+        <li><a class="wb-cmd-item" href="/docs">Documentation</a></li>
+        <li><button class="wb-cmd-item" type="button">Create document</button></li>
+      </ul>
       <div class="wb-cmd-empty" style="display:none;">No results</div>
     </div>
   </div>
@@ -2194,6 +2205,23 @@ segmented control at its intrinsic width inside the grid-based fieldset body.
 ```
 
 The first palette marked with `data-wb-cmd-default` is used by `Cmd/Ctrl + K`.
+
+Give the search input its own native label; the dialog's accessible name and
+placeholder do not label that input. Use `ul.wb-cmd-group > li` collections with
+native links for destinations and buttons for commands. Put group headings
+outside lists and name each list with `aria-labelledby` or `aria-label` when
+needed. Legacy div groups and direct items remain supported.
+
+Arrow Up/Down moves actual DOM focus among visible, enabled commands. Tab keeps
+normal link/button focus, Enter retains native activation, and Space activates
+buttons. Typing a non-space character or Backspace from a command returns to
+the search field; modifiers, IME composition and embedded controls remain
+browser-owned. Filtering clears selection and hides a native `li` together
+with its command. Async replacements return focus to search before removing a
+focused result. Custom callbacks return the same semantic HTML anatomy.
+Do not add listbox/option roles that erase the native link/button semantics,
+or a second keyboard handler. See [source/dist keyboard regressions](tests/command-palette.html).
+
 
 For native modality, replace the outer div with
 `<dialog class="wb-cmd-backdrop" id="site-cmd" data-wb-cmd-default aria-label="Command palette">`
@@ -3093,7 +3121,7 @@ WBNavGroup.toggle(document.querySelector('[data-wb-nav-group]'))
 WBCommandPalette.open(document.getElementById('site-cmd'))
 WBCommandPalette.close()
 WBCommandPalette.onSearch(function (query, callback) {
-  callback('<a class="wb-cmd-item" href="/docs">Docs</a>')
+  callback('<ul class="wb-cmd-group"><li><a class="wb-cmd-item" href="/docs">Docs</a></li></ul>')
 })
 
 WBToast.show('Saved', { type: 'success', duration: 3000 })

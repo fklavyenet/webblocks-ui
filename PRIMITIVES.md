@@ -598,3 +598,22 @@ policies and state reconciliation. Existing markup without the attribute keeps
 its legacy path. Use manual state for persistent/guarded panels. See
 [before/after examples](docs/native-overlays.html) and
 [the contract](packages/webblocks/INTEGRATION.md#native-popover-api-for-dropdown-and-popover).
+
+
+## Semantic statistics and command results
+
+Use `dl.wb-stat > dt.wb-stat-label + dd` for independent statistic name/value
+pairs. Keep `wb-stat-value` and optional `wb-stat-delta` inside that single `dd`.
+The shared CSS preserves the existing layout; legacy div/span cards remain
+supported. Use tables for comparable records and columns.
+
+Command palettes keep native labelled inputs and links/buttons. Group new
+results in `ul.wb-cmd-group > li`; legacy div groups still work. Arrow navigation
+moves actual DOM focus; Tab, Enter and Space retain native control behavior.
+Typing from a result resumes search. Hosts must not add competing focus or
+selection handlers. See the package integration guide for the complete anatomy.
+
+Related radio controls use `fieldset.wb-fieldset` with a first-child `legend`.
+Every input/select/textarea needs its own label; placeholders and names on a
+surrounding search region or dialog do not replace that label. For input groups,
+use a separate `label[for]` and matching control id, not a div inside a label.

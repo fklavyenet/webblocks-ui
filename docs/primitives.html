@@ -181,9 +181,13 @@
                       <label class="wb-label" for="descField">Description</label>
                       <textarea class="wb-textarea" id="descField" placeholder="Short summary"></textarea>
                     </div>
-                    <div class="wb-input-group">
-                      <span class="wb-input-addon">https://</span>
-                      <input class="wb-input" type="text" placeholder="project.example.com">
+                    <p class="wb-text-sm wb-text-muted">Related radio controls share a wb-fieldset and legend. Each input has its own native label, including search fields and input groups.</p>
+                    <div class="wb-field">
+                      <label class="wb-label" for="projectDomain">Project domain</label>
+                      <div class="wb-input-group">
+                        <span class="wb-input-addon">https://</span>
+                        <input class="wb-input" id="projectDomain" type="text" placeholder="project.example.com">
+                      </div>
                     </div>
                     <div class="wb-field">
                       <label class="wb-label" for="projectPassword">Admin password</label>
@@ -223,8 +227,15 @@
                     </div>
                     <div class="wb-cluster">
                       <label class="wb-check"><input type="checkbox" checked> Enable analytics</label>
-                      <label class="wb-radio"><input type="radio" name="visibility" checked> Private</label>
-                      <label class="wb-radio"><input type="radio" name="visibility"> Public</label>
+                      <fieldset class="wb-fieldset">
+                        <legend>Visibility</legend>
+                        <div class="wb-fieldset-body">
+                          <div class="wb-cluster">
+                            <label class="wb-radio"><input type="radio" name="visibility" value="private" checked> Private</label>
+                            <label class="wb-radio"><input type="radio" name="visibility" value="public"> Public</label>
+                          </div>
+                        </div>
+                      </fieldset>
                       <label class="wb-switch"><input type="checkbox" checked><span class="wb-switch-track"></span> Maintenance mode</label>
                     </div>
                   </div>
@@ -274,6 +285,7 @@
 
               <section class="wb-docs-section wb-docs-wide" id="surfaces-and-display">
                 <h2>Surfaces and display contracts</h2>
+                <p>Statistic cards use native dl/dt/dd: keep the value and its supporting delta in one description. Legacy div/span cards remain supported.</p>
                 <p><code>wb-card-media</code> gives card bodies a predictable media frame so mixed logos, screenshots, and service imagery keep the text baseline consistent across a card grid. The default fit is <code>contain</code>, so the full image stays visible instead of cropping by default.</p>
                 <p class="wb-text-sm wb-text-muted">When a <code>wb-card</code> is a direct child of a WebBlocks grid primitive such as <code>wb-grid-2</code> or <code>wb-grid-auto</code>, it stretches to the row height and keeps <code>wb-card-footer</code> pinned to the bottom automatically.</p>
                 <div class="wb-grid-2">
@@ -281,8 +293,8 @@
                     <div class="wb-card-header"><h3 class="wb-card-title">Stats</h3></div>
                     <div class="wb-card-body">
                       <div class="wb-grid-2">
-                        <div class="wb-stat"><div class="wb-stat-label">MRR</div><div class="wb-stat-value">$12.4k</div><div class="wb-stat-delta wb-stat-delta-up">+8.2%</div></div>
-                        <div class="wb-stat"><div class="wb-stat-label">Trials</div><div class="wb-stat-value">214</div><div class="wb-stat-delta wb-stat-delta-down">-2.1%</div></div>
+                        <dl class="wb-stat"><dt class="wb-stat-label">MRR</dt><dd><strong class="wb-stat-value">$12.4k</strong><span class="wb-stat-delta wb-stat-delta-up">+8.2%</span></dd></dl>
+                        <dl class="wb-stat"><dt class="wb-stat-label">Trials</dt><dd><strong class="wb-stat-value">214</strong><span class="wb-stat-delta wb-stat-delta-down">-2.1%</span></dd></dl>
                       </div>
                     </div>
                   </div>

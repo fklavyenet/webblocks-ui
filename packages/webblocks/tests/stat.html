@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Native statistic compatibility — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+</head>
+<body>
+<main class="wb-container wb-stack wb-gap-4 wb-py-6">
+  <h1>Native statistic compatibility</h1>
+  <p>Native name/value cards and retained legacy cards. Repeat with <a href="?source=1">source CSS</a> or <a href="?">built CSS</a>.</p>
+  <p id="summary" role="status">Waiting for layout checks.</p>
+  <ul id="failures" class="wb-marker-list"></ul>
+  <iframe id="fixture" title="Synthetic statistic cards" style="width:100%;height:650px;border:0"></iframe>
+</main>
+<script>
+(function () {
+  'use strict';
+  var frame = document.getElementById('fixture');
+  var source = new URLSearchParams(location.search).has('source');
+  var styles = source ? [
+    '../src/css/foundation/tokens.css', '../src/css/foundation/dark.css',
+    '../src/css/foundation/reset.css', '../src/css/foundation/elements.css',
+    '../src/css/primitives/card.css'
+  ] : ['../dist/webblocks-ui.css'];
+  var examples = [
+    ['Revenue', '$24.8k', '+12% vs last month'],
+    ['Workspaces awaiting administrative approval', '124', 'A longer supporting description that wraps at narrow widths.']
+  ];
+  var body = '';
+  examples.forEach(function (example, index) {
+    body += '<dl id="native-' + index + '" class="wb-stat"><dt class="wb-stat-label">' + example[0] + '</dt>' +
+      '<dd><strong class="wb-stat-value">' + example[1] + '</strong><span class="wb-stat-delta wb-stat-delta-up">' + example[2] + '</span></dd></dl>';
+    body += '<div id="legacy-' + index + '" class="wb-stat"><span class="wb-stat-label">' + example[0] + '</span>' +
+      '<strong class="wb-stat-value">' + example[1] + '</strong><span class="wb-stat-delta wb-stat-delta-up">' + example[2] + '</span></div>';
+  });
+  frame.addEventListener('load', function () {
+    var doc = frame.contentDocument, win = frame.contentWindow, checks = 0, failures = [];
+    function check(condition, name) { checks += 1; if (!condition) failures.push(name); }
+    function near(a, b) { return Math.abs(a - b) < 1; }
+    [320, 640, 1200].forEach(function (width) {
+      frame.style.width = width + 'px';
+      ['light', 'dark'].forEach(function (mode) {
+        doc.documentElement.setAttribute('data-mode', mode);
+        ['ltr', 'rtl'].forEach(function (direction) {
+          doc.documentElement.dir = direction;
+          examples.forEach(function (_, index) {
+            var native = doc.getElementById('native-' + index), legacy = doc.getElementById('legacy-' + index);
+            var context = width + ' / ' + mode + ' / ' + direction + ' / ' + index;
+            check(native.children.length === 2 && native.firstElementChild.tagName === 'DT' && native.lastElementChild.tagName === 'DD', context + ' native anatomy');
+            check(native.querySelector('dd .wb-stat-delta') !== null, context + ' delta belongs to the same description');
+            check(near(native.getBoundingClientRect().height, legacy.getBoundingClientRect().height), context + ' preserved card height');
+            check(native.scrollWidth <= native.clientWidth + 1, context + ' no horizontal overflow');
+            ['.wb-stat-label', '.wb-stat-value', '.wb-stat-delta'].forEach(function (selector) {
+              var a = native.querySelector(selector), b = legacy.querySelector(selector);
+              var sa = win.getComputedStyle(a), sb = win.getComputedStyle(b);
+              check(sa.fontSize === sb.fontSize && sa.fontWeight === sb.fontWeight && sa.color === sb.color, context + selector + ' typography');
+              check(near(a.getBoundingClientRect().top - native.getBoundingClientRect().top, b.getBoundingClientRect().top - legacy.getBoundingClientRect().top), context + selector + ' vertical spacing');
+              check(near(a.getBoundingClientRect().left, b.getBoundingClientRect().left), context + selector + ' logical alignment');
+            });
+          });
+        });
+      });
+    });
+    frame.style.width = '100%';
+    failures.forEach(function (name) { var li = document.createElement('li'); li.textContent = name; document.getElementById('failures').appendChild(li); });
+    document.getElementById('summary').textContent = (failures.length ? 'FAIL' : 'PASS') + ': ' + checks + ' checks; ' + failures.length + ' failures.';
+  });
+  frame.srcdoc = '<!doctype html><html lang="en"><head>' + styles.map(function (path) {
+    return '<link rel="stylesheet" href="' + new URL(path, location.href).href + '">';
+  }).join('') + '</head><body>' + body + '</body></html>';
+})();
+</script>
+</body>
+</html>

@@ -285,3 +285,19 @@ Tabs pair `[data-wb-tab]` controls with panels by id. Hosts may render the initi
 - Preserve meter semantics; do not label measurements as task progress or add a progressbar role.
 - UI owns the themed track and fill without JavaScript or inline CSS. Hosts own values, validation, formatting, aggregation and visibility.
 - Keep the same scale for compared values. Multiple-choice poll options remain independent percentages.
+
+
+## Semantic statistics, fields and command palettes
+
+- New statistic cards use `dl.wb-stat > dt.wb-stat-label + dd`; keep the value
+  and optional delta inside the same `dd`. Legacy div/span cards remain supported.
+  Use tables for comparable records with columns.
+- Related radio controls use `fieldset.wb-fieldset` with a first-child `legend`.
+  Give every input/select/textarea its own native label. Placeholder text and a
+  labelled search region or dialog do not replace a control's label. Input groups
+  use a separate `label[for]` and matching id; do not put div wrappers in a label.
+- New command groups use `ul.wb-cmd-group > li` with native destination links and
+  command buttons. Legacy div groups remain supported. The shared runtime moves
+  real focus with arrow keys, retains native activation and returns typing to
+  search. Do not erase control semantics with listbox/option roles or install a
+  parallel keyboard handler. Custom search HTML follows the same anatomy.

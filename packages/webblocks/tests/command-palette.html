@@ -67,11 +67,20 @@
     }
     root.innerHTML = '<div class="wb-cmd-dialog">' +
       '<div class="wb-cmd-search"><input class="wb-cmd-input" aria-label="Search commands"></div>' +
-      '<div class="wb-cmd-results"><div class="wb-cmd-group">' +
-      '<button type="button" class="wb-cmd-item">Documentation</button>' +
+      '<div class="wb-cmd-results"><' + (native ? 'ul' : 'div') + ' class="wb-cmd-group">' +
+      (native ? '<li>' : '') +
+      '<a href="#documentation" class="wb-cmd-item">Documentation</a>' +
+      (native ? '</li><li>' : '') +
       '<button type="button" class="wb-cmd-item">Settings</button>' +
+      (native ? '</li><li>' : '') +
       '<button type="button" class="wb-cmd-item" data-wb-toggle="modal" data-wb-target="#child-modal">Open child</button>' +
-      '</div><div class="wb-cmd-empty" style="display:none">No results</div></div></div>';
+      (native ? '</li><li>' : '') +
+      '<button type="button" class="wb-cmd-item" disabled>Unavailable</button>' +
+      (native ? '</li><li>' : '') +
+      '<button type="button" class="wb-cmd-item" hidden>Hidden command</button>' +
+      (native ? '</li></ul>' : '</div>') +
+      '<div class="wb-cmd-empty" style="display:none">No results</div></div>' +
+      '<button type="button" class="unrelated-action">Unrelated action</button></div>';
     document.getElementById('palettes').appendChild(root);
 
     var opener = document.createElement('button');
@@ -116,6 +125,25 @@
       check(document.activeElement === input, 'Native background is inert');
     }
 
+    key(input, 'ArrowDown');
+    var first = root.querySelector('.wb-cmd-item');
+    check(document.activeElement === first && first.classList.contains('is-selected') && first.tagName === 'A',
+      label + ' arrows move actual focus to a native link');
+    check(key(first, 'Enter'), label + ' link Enter remains browser-owned');
+    key(first, 'ArrowUp');
+    check(document.activeElement.textContent === 'Open child', label + ' arrows wrap and skip disabled/hidden commands');
+    settings.focus();
+    check(settings.classList.contains('is-selected') && !first.classList.contains('is-selected'),
+      label + ' Tab/click focus and selected styling agree');
+    check(key(settings, ' '), label + ' Space remains native button activation');
+    check(key(settings, 's') && document.activeElement === input && !root.querySelector('.is-selected'),
+      label + ' typing returns focus to search and clears selection');
+    var action = root.querySelector('.unrelated-action');
+    action.focus();
+    check(key(action, 'Enter') && key(action, 'ArrowDown') && document.activeElement === action,
+      label + ' unrelated controls retain native keys');
+    input.focus();
+
     root.click();
     check(requests.join() === 'outside' && WBCommandPalette.getActive() === root,
       label + ' outside close guard fires once');
@@ -127,8 +155,16 @@
     input.dispatchEvent(new Event('input', { bubbles: true }));
     check(query === 'sett' && settings.style.display !== 'none' && root.querySelector('.wb-cmd-item').style.display === 'none',
       label + ' filters and emits the search query');
+    if (root.tagName === 'DIALOG') {
+      check(root.querySelector('li').style.display === 'none' && settings.parentElement.style.display !== 'none',
+        'Native filtering hides entire list rows');
+    }
     key(input, 'ArrowDown');
-    key(input, 'Enter');
+    check(document.activeElement === settings && settings.classList.contains('is-selected'),
+      label + ' filtered navigation focuses the matching command');
+    check(key(settings, 'Enter'), label + ' button Enter remains browser-owned');
+    // Synthetic key events have no browser default activation; model that click here.
+    settings.click();
     await settle(105);
     check(selected === 1 && closed === 1 && WBCommandPalette.getActive() === null &&
       document.activeElement === opener && !document.body.classList.contains('wb-overlay-lock'),
@@ -150,6 +186,20 @@
     await settle();
     check(root.querySelector('.wb-cmd-results').textContent === 'External result',
       label + ' custom search callback renders results');
+    var external = root.querySelector('.wb-cmd-item');
+    key(input, 'ArrowDown');
+    check(document.activeElement === external, label + ' custom results participate in actual focus navigation');
+    var resolveSearch;
+    WBCommandPalette.onSearch(function (value, callback) { resolveSearch = callback; });
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    external.focus();
+    resolveSearch('<ul class="wb-cmd-group"><li><a class="wb-cmd-item" href="#async">Async link</a></li></ul>');
+    check(document.activeElement === input && !root.querySelector('.is-selected'),
+      label + ' async replacement returns focus before removing a focused result');
+    key(input, 'ArrowDown');
+    check(document.activeElement.textContent === 'Async link', label + ' async native list retains keyboard navigation');
+    resolveSearch('');
+    check(document.activeElement === input && !key(input, 'Enter'), label + ' empty search Enter cannot submit a host form or activate stale results');
     WBCommandPalette.close();
     WBCommandPalette.onSearch(null);
     check(closed === 3 && !root.classList.contains('is-open'), label + ' API closes active palette');

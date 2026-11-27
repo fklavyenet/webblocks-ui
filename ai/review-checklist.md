@@ -133,3 +133,17 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Manual native panels retain guards, persistence and group policy; auto-state limitations are documented.
 - [ ] Native toggles, canceled opening, invoker default prevention, fast reopen and lifecycle/ARIA reconciliation work in source and dist.
 - [ ] Native/legacy nesting, modal/drawer hosts, viewport bounds and wide dropdown scrolling remain interactive and visible.
+
+
+## Semantic statistics and command palette focus
+
+- [ ] New statistic cards use native `dl/dt/dd`; a delta stays with its value in
+  the same `dd`, and legacy cards retain their layout.
+- [ ] Related radio controls use `fieldset.wb-fieldset` and `legend`. Controls
+  have their own labels, and input-group labels do not contain div wrappers.
+- [ ] Command results retain native links/buttons inside semantic lists. Arrow,
+  Tab and click focus agree with the visual selection; disabled/hidden commands
+  are skipped and Enter/Space retain native activation.
+- [ ] Search clears selection and filters whole list rows; async replacement
+  restores focus to search before removing a focused result. Native/legacy
+  roots, custom HTML and nested dialogs are covered with source and dist.

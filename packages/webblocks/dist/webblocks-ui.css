@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.40.1 (https://webblocksui.com/)
+ * WebBlocks UI v2.40.2 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -2214,6 +2214,16 @@ background: var(--wb-surface);
 border: 1px solid var(--wb-border);
 border-radius: var(--wb-r-lg);
 box-shadow: var(--wb-shadow-sm);
+}
+dl.wb-stat {
+margin: 0;
+}
+dl.wb-stat > dd {
+display: flex;
+flex-direction: column;
+gap: var(--wb-s2);
+min-width: 0;
+margin: 0;
 }
 .wb-stat-label {
 font-size: 0.75rem;
@@ -5647,6 +5657,11 @@ padding: var(--wb-s1) 0;
 .wb-cmd-group {
 padding: var(--wb-s1) var(--wb-s2);
 }
+ul.wb-cmd-group,
+ol.wb-cmd-group {
+margin: 0;
+list-style: none;
+}
 .wb-cmd-group + .wb-cmd-group {
 border-top: 1px solid var(--wb-border);
 margin-top: var(--wb-s1);
@@ -5679,9 +5694,14 @@ font: inherit;
 transition: background var(--wb-t-f);
 }
 .wb-cmd-item:hover,
+.wb-cmd-item:focus-visible,
 .wb-cmd-item.is-selected {
 background: var(--wb-surface-2);
 text-decoration: none;
+}
+.wb-cmd-item:focus-visible {
+outline: 2px solid var(--wb-primary);
+outline-offset: -2px;
 }
 .wb-cmd-item.is-selected {
 background: var(--wb-primary-soft);
