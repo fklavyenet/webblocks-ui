@@ -6,6 +6,15 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.40.1] — 2026-11-27
+
+### Fixed
+- Use native `fieldset` and `legend` with the existing `wb-fieldset` anatomy in radio-card and button-check examples.
+- Give settings-row controls native labels matching their visible headings and connect their descriptions with `aria-describedby` in English, German and Turkish examples.
+- Use native `ul`/`ol` roots and `li` children for list-group and link-list examples, including localized documentation and dynamically generated playground rows.
+- Preserve interactive row separators, full-height link cards, media variants and retained legacy div/direct-link layouts when adding native list wrappers.
+- Align primitive, integration and downstream AI guidance with the semantic list and form contracts, and add source/dist browser regression coverage for native lists.
+
 ## [2.40.0] — 2026-11-26
 
 ### Added

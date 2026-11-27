@@ -4,24 +4,30 @@
    styled as selectable card buttons.
 
    Usage:
-   <div class="wb-radio-group">
-     <label class="wb-radio-card">
-       <input type="radio" name="plan" value="starter">
-       <span class="wb-radio-card-body">
-         <strong>Starter</strong>
-         <span>$9 / month</span>
-       </span>
-     </label>
-     <label class="wb-radio-card">
-       <input type="radio" name="plan" value="pro">
-       <span class="wb-radio-card-body">
-         <strong>Pro</strong>
-         <span>$29 / month</span>
-       </span>
-     </label>
-   </div>
+   <fieldset class="wb-fieldset">
+     <legend>Plan</legend>
+     <div class="wb-fieldset-body">
+       <div class="wb-radio-group">
+         <label class="wb-radio-card">
+           <input type="radio" name="plan" value="starter">
+           <span class="wb-radio-card-body">
+             <strong>Starter</strong>
+             <span>$9 / month</span>
+           </span>
+         </label>
+         <label class="wb-radio-card">
+           <input type="radio" name="plan" value="pro">
+           <span class="wb-radio-card-body">
+             <strong>Pro</strong>
+             <span>$29 / month</span>
+           </span>
+         </label>
+       </div>
+     </div>
+   </fieldset>
 
-   Works with type="radio" or type="checkbox".
+   Works with type="radio" or type="checkbox". The fieldset and legend
+   supply native grouping; wb-radio-group only controls layout.
    ============================================================ */
 
 /* ── Group wrapper ────────────────────────────────────────── */
@@ -98,16 +104,23 @@
 
 /* ── Compact (pill-style toggle buttons) ─────────────────── */
 /*
-  <div class="wb-btn-check-group">
-    <label class="wb-btn-check">
-      <input type="radio" name="view" value="list">
-      <span>List</span>
-    </label>
-    <label class="wb-btn-check">
-      <input type="radio" name="view" value="grid">
-      <span>Grid</span>
-    </label>
-  </div>
+  <fieldset class="wb-fieldset">
+    <legend>View</legend>
+    <div class="wb-fieldset-body">
+      <div>
+        <div class="wb-btn-check-group">
+          <label class="wb-btn-check">
+            <input type="radio" name="view" value="list">
+            <span>List</span>
+          </label>
+          <label class="wb-btn-check">
+            <input type="radio" name="view" value="grid">
+            <span>Grid</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
 */
 .wb-btn-check-group {
   display: inline-flex;

@@ -221,6 +221,7 @@ Compact single-message toast:
 
 Link list leading visual standard:
 
+- use `ul.wb-link-list` or `ol.wb-link-list` with direct `li` children; each linked row is `li > a.wb-link-list-item`
 - `wb-link-list-item` is a two-column row: `wb-link-list-main` beside `wb-link-list-desc`
 - a row with a leading thumbnail or icon must also carry `wb-link-list-item--media`, which adds the leading column; without it the visual consumes the main column
 - `wb-link-list-thumb` is the square image slot, `wb-link-list-icon` the icon slot; use one or the other, not both
@@ -228,14 +229,18 @@ Link list leading visual standard:
 - below 960px the row keeps the leading column and the description spans the full width
 
 ```html
-<a class="wb-link-list-item wb-link-list-item--media" href="/games/blockfall">
-  <img class="wb-link-list-thumb" src="/media/blockfall.jpg" alt="">
-  <div class="wb-link-list-main">
-    <span class="wb-link-list-title">Blockfall</span>
-    <span class="wb-link-list-meta">Arcade puzzle</span>
-  </div>
-  <div class="wb-link-list-desc">Turn, stack, and clear glowing rows.</div>
-</a>
+<ul class="wb-link-list">
+  <li>
+    <a class="wb-link-list-item wb-link-list-item--media" href="/games/blockfall">
+      <img class="wb-link-list-thumb" src="/media/blockfall.jpg" alt="">
+      <div class="wb-link-list-main">
+        <span class="wb-link-list-title">Blockfall</span>
+        <span class="wb-link-list-meta">Arcade puzzle</span>
+      </div>
+      <div class="wb-link-list-desc">Turn, stack, and clear glowing rows.</div>
+    </a>
+  </li>
+</ul>
 ```
 
 Promo split standard:

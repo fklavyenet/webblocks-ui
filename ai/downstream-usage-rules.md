@@ -119,7 +119,21 @@ template. The three new presentations target native markup; legacy markup
 retains its historical presentation. Do not patch a vendored stylesheet or add
 an ARIA/JavaScript repair. Removal would require a future breaking release.
 
+## Native Lists
+
+Use `ul.wb-list` or `ul.wb-link-list` for unordered collections, and `ol` when
+order conveys meaning. Keep direct children as `li`. Static entries may carry
+the row class on the `li`; interactive entries wrap a native link/button in
+`li` and retain the row classes on the control. Keep list headings outside the
+list. Preserve link-list media, stacked, cards and wide-thumbnail modifiers.
+Legacy div/direct-link layouts remain supported for compatibility; do not
+introduce that anatomy in new or rewritten markup.
+
 ## Forms
+
+Settings-row headings label their native controls through `label[for]` and
+matching IDs. Connect descriptions with `aria-describedby`; generic enabled
+state text must not replace the setting's accessible name.
 
 Use shipped field, input, select, textarea, checkbox/radio, button, card, and layout primitives. Put page-level submit actions in the owning form or card footer, not in the page header.
 

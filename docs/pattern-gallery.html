@@ -581,24 +581,24 @@
 
                   <section class="wb-docs-section wb-docs-wide" id="accessibility-behavior">
                     <h2>Accessibility / behavior notes</h2>
-                    <div class="wb-list wb-list-sm">
-                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Alt text</span><span class="wb-list-item-sub">The viewer uses <code>data-wb-gallery-alt</code> first, then falls back to the inline image <code>alt</code>.</span></div></div>
-                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Caption and meta</span><span class="wb-list-item-sub">The viewer reads <code>data-wb-gallery-caption</code> and <code>data-wb-gallery-meta</code> first, then falls back to <code>wb-gallery-caption</code> and <code>wb-gallery-meta</code> text.</span></div></div>
-                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Modal labeling</span><span class="wb-list-item-sub">If a viewer caption is present and has an <code>id</code>, the modal uses <code>aria-labelledby</code>. Otherwise it falls back to an <code>aria-label</code> from caption, alt, or the text "Gallery viewer".</span></div></div>
-                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Keyboard navigation</span><span class="wb-list-item-sub">When the shared viewer modal is active, left and right arrow keys step through items unless focus is inside an input, textarea, or editable field.</span></div></div>
-                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Scoped stepping</span><span class="wb-list-item-sub">Prev and next only step through triggers inside the same <code>.wb-gallery</code> that point to the same modal selector.</span></div></div>
-                      <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Boundary behavior</span><span class="wb-list-item-sub">Prev and next controls are disabled at the beginning and end of the active item list.</span></div></div>
-                    </div>
+                    <ul class="wb-list wb-list-sm">
+                      <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Alt text</span><span class="wb-list-item-sub">The viewer uses <code>data-wb-gallery-alt</code> first, then falls back to the inline image <code>alt</code>.</span></div></li>
+                      <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Caption and meta</span><span class="wb-list-item-sub">The viewer reads <code>data-wb-gallery-caption</code> and <code>data-wb-gallery-meta</code> first, then falls back to <code>wb-gallery-caption</code> and <code>wb-gallery-meta</code> text.</span></div></li>
+                      <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Modal labeling</span><span class="wb-list-item-sub">If a viewer caption is present and has an <code>id</code>, the modal uses <code>aria-labelledby</code>. Otherwise it falls back to an <code>aria-label</code> from caption, alt, or the text "Gallery viewer".</span></div></li>
+                      <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Keyboard navigation</span><span class="wb-list-item-sub">When the shared viewer modal is active, left and right arrow keys step through items unless focus is inside an input, textarea, or editable field.</span></div></li>
+                      <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Scoped stepping</span><span class="wb-list-item-sub">Prev and next only step through triggers inside the same <code>.wb-gallery</code> that point to the same modal selector.</span></div></li>
+                      <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Boundary behavior</span><span class="wb-list-item-sub">Prev and next controls are disabled at the beginning and end of the active item list.</span></div></li>
+                    </ul>
                   </section>
 
                   <section class="wb-docs-section wb-docs-wide" id="related-primitives">
                     <h2>Related primitives</h2>
-                    <div class="wb-link-list">
-                      <a href="primitives.html#interaction-shells" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-modal</span><span class="wb-link-list-meta">Viewer boundary</span></div><div class="wb-link-list-desc">Gallery viewing stays inside the shipped modal primitive instead of becoming a separate overlay family.</div></a>
-                      <a href="primitives.html#surfaces-and-display" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-card</span><span class="wb-link-list-meta">Framed surface</span></div><div class="wb-link-list-desc">Use cards when the gallery belongs inside a dashboard, detail panel, or contained module.</div></a>
-                      <a href="pattern-content-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-content-shell</span><span class="wb-link-list-meta">Editorial context</span></div><div class="wb-link-list-desc">Use content shells when the gallery supports a long-form article, guide, or case-study flow.</div></a>
-                      <a href="layout.html#base-composition-primitives" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Layout primitives</span><span class="wb-link-list-meta">Composition helpers</span></div><div class="wb-link-list-desc">Use <code>wb-stack</code>, <code>wb-split</code>, and <code>wb-grid-*</code> to frame the surrounding page without changing the gallery contract.</div></a>
-                    </div>
+                    <ul class="wb-link-list">
+                      <li><a href="primitives.html#interaction-shells" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-modal</span><span class="wb-link-list-meta">Viewer boundary</span></div><div class="wb-link-list-desc">Gallery viewing stays inside the shipped modal primitive instead of becoming a separate overlay family.</div></a></li>
+                      <li><a href="primitives.html#surfaces-and-display" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-card</span><span class="wb-link-list-meta">Framed surface</span></div><div class="wb-link-list-desc">Use cards when the gallery belongs inside a dashboard, detail panel, or contained module.</div></a></li>
+                      <li><a href="pattern-content-shell.html" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">wb-content-shell</span><span class="wb-link-list-meta">Editorial context</span></div><div class="wb-link-list-desc">Use content shells when the gallery supports a long-form article, guide, or case-study flow.</div></a></li>
+                      <li><a href="layout.html#base-composition-primitives" class="wb-link-list-item"><div class="wb-link-list-main"><span class="wb-link-list-title">Layout primitives</span><span class="wb-link-list-meta">Composition helpers</span></div><div class="wb-link-list-desc">Use <code>wb-stack</code>, <code>wb-split</code>, and <code>wb-grid-*</code> to frame the surrounding page without changing the gallery contract.</div></a></li>
+                    </ul>
                   </section>
                 </div>
               </div>

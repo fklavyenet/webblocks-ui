@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Native list compatibility tests — WebBlocks UI</title>
+  <link rel="stylesheet" href="../dist/webblocks-ui.css">
+</head>
+<body>
+<main class="wb-container wb-stack wb-gap-4 wb-py-6">
+  <h1>Native list compatibility</h1>
+  <p>Compare native lists with retained legacy layouts, including interactive separators, media and card variants. Repeat with <a href="?source=1">source CSS</a> or <a href="?">built CSS</a>.</p>
+  <p id="summary" role="status">Waiting for layout checks.</p>
+  <ol id="failures" class="wb-marker-list"></ol>
+  <iframe id="fixture" title="Synthetic native and legacy list fixtures" style="width:100%;height:700px;border:0"></iframe>
+</main>
+<script>
+(function () {
+  'use strict';
+  var frame = document.getElementById('fixture');
+  var source = new URLSearchParams(location.search).has('source');
+  var styles = source ? [
+    '../src/css/foundation/tokens.css', '../src/css/foundation/dark.css',
+    '../src/css/foundation/reset.css', '../src/css/foundation/elements.css',
+    '../src/css/primitives/list-group.css', '../src/css/primitives/link-list.css'
+  ] : ['../dist/webblocks-ui.css'];
+  var cases = [
+    { family: 'wb-list', modifier: '', interactive: false },
+    { family: 'wb-list', modifier: 'wb-list-sm', interactive: true },
+    { family: 'wb-list', modifier: 'wb-list-flush', interactive: true },
+    { family: 'wb-list', modifier: 'wb-list-numbered', interactive: false },
+    { family: 'wb-link-list', modifier: '', interactive: true },
+    { family: 'wb-link-list', modifier: 'wb-link-list--stacked', interactive: true },
+    { family: 'wb-link-list', modifier: 'wb-link-list--cards wb-link-list--stacked', interactive: true },
+    { family: 'wb-link-list', modifier: 'wb-link-list--cards wb-link-list--stacked wb-link-list--thumb-wide', interactive: true }
+  ];
+  function row(test, index) {
+    var link = test.family === 'wb-link-list';
+    var media = link && test.modifier.indexOf('stacked') !== -1;
+    var tag = test.interactive ? 'a' : 'div';
+    var title = index ? 'Second entry' : 'First entry';
+    var content = link ?
+      (media ? '<img class="wb-link-list-thumb" width="64" height="64" alt="" src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27/%3E">' : '') +
+      '<div class="wb-link-list-main"><span class="wb-link-list-title">' + title + '</span><span class="wb-link-list-meta">Synthetic metadata</span></div><div class="wb-link-list-desc">' + (index ? 'Short description.' : 'A longer description that wraps at narrow widths and exercises the card row height.') + '</div>' :
+      '<span class="wb-list-item-text"><span class="wb-list-item-title">' + title + '</span><span class="wb-list-item-sub">Synthetic description</span></span>';
+    return '<' + tag + (test.interactive ? ' href="#summary"' : '') + ' class="' + (link ? 'wb-link-list-item' : 'wb-list-item') +
+      (media ? ' wb-link-list-item--media' : '') + (!link && test.interactive ? ' wb-list-item-action' : '') + '">' + content + '</' + tag + '>';
+  }
+  var body = '';
+  cases.forEach(function (test, index) {
+    ['native', 'legacy'].forEach(function (mode) {
+      var tag = mode === 'native' ? (test.modifier === 'wb-list-numbered' ? 'ol' : 'ul') : 'div';
+      body += '<' + tag + ' id="' + mode + '-' + index + '" class="' + test.family + ' ' + test.modifier + '">';
+      [0, 1].forEach(function (rowIndex) {
+        var html = row(test, rowIndex);
+        if (mode === 'native') html = test.interactive ? '<li>' + html + '</li>' : html.replace(/^<div/, '<li').replace(/<\/div>$/, '</li>');
+        body += html;
+      });
+      body += '</' + tag + '>';
+    });
+  });
+  frame.addEventListener('load', function () {
+    var doc = frame.contentDocument;
+    var win = frame.contentWindow;
+    var checks = [];
+    function check(name, condition) { checks.push({ name: name, passed: Boolean(condition) }); }
+    function near(a, b) { return Math.abs(a - b) < 1; }
+    [320, 640, 960, 1200].forEach(function (width) {
+      frame.style.maxWidth = 'none';
+      frame.style.width = width + 'px';
+      ['light', 'dark'].forEach(function (mode) {
+        doc.documentElement.setAttribute('data-mode', mode);
+        ['ltr', 'rtl'].forEach(function (direction) {
+          doc.documentElement.dir = direction;
+          cases.forEach(function (test, index) {
+            var native = doc.getElementById('native-' + index);
+            var legacy = doc.getElementById('legacy-' + index);
+            var selector = test.family === 'wb-list' ? '.wb-list-item' : '.wb-link-list-item';
+            var nativeRows = native.querySelectorAll(selector);
+            var legacyRows = legacy.querySelectorAll(selector);
+            var context = width + 'px / ' + mode + ' / ' + direction + ' / case ' + index;
+            check(context + ' native list children', Array.from(native.children).every(function (child) { return child.tagName === 'LI'; }));
+            check(context + ' root geometry', near(native.getBoundingClientRect().height, legacy.getBoundingClientRect().height));
+            check(context + ' no horizontal overflow', native.scrollWidth <= native.clientWidth + 1);
+            nativeRows.forEach(function (element, rowIndex) {
+              var before = legacyRows[rowIndex];
+              var style = win.getComputedStyle(element);
+              var oldStyle = win.getComputedStyle(before);
+              check(context + ' row ' + rowIndex + ' dimensions', near(element.getBoundingClientRect().width, before.getBoundingClientRect().width) && near(element.getBoundingClientRect().height, before.getBoundingClientRect().height));
+              check(context + ' row ' + rowIndex + ' colors', style.color === oldStyle.color && style.backgroundColor === oldStyle.backgroundColor);
+              if (test.family === 'wb-list') {
+                check(context + ' row ' + rowIndex + ' separator', parseFloat(style.borderBottomWidth) === (rowIndex === 0 ? 1 : 0));
+              } else {
+                check(context + ' row ' + rowIndex + ' grid columns', style.gridTemplateColumns === oldStyle.gridTemplateColumns);
+                check(context + ' row ' + rowIndex + ' full-height link', near(element.getBoundingClientRect().height, element.parentElement.getBoundingClientRect().height));
+              }
+              if (test.interactive) {
+                element.focus();
+                check(context + ' native link focus', doc.activeElement === element && element.tagName === 'A' && element.hasAttribute('href'));
+              }
+            });
+          });
+        });
+      });
+    });
+    frame.style.width = '100%';
+    frame.style.maxWidth = '100%';
+    doc.documentElement.dir = 'ltr';
+    doc.documentElement.setAttribute('data-mode', 'light');
+    var failed = checks.filter(function (result) { return !result.passed; });
+    var summary = document.getElementById('summary');
+    summary.textContent = (source ? 'Source' : 'Dist') + ': ' + (checks.length - failed.length) + '/' + checks.length + ' checks passed.';
+    summary.dataset.status = failed.length ? 'failed' : 'passed';
+    failed.forEach(function (result) {
+      var item = document.createElement('li');
+      item.textContent = result.name;
+      document.getElementById('failures').appendChild(item);
+    });
+  });
+  frame.srcdoc = '<!doctype html><html lang="en" data-mode="light"><head><meta charset="utf-8">' +
+    styles.map(function (url) { return '<link rel="stylesheet" href="' + url + '">'; }).join('') +
+    '</head><body>' + body + '</body></html>';
+})();
+</script>
+</body>
+</html>

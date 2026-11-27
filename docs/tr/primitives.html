@@ -554,10 +554,10 @@
                     <div class="wb-card-header"><h3 class="wb-card-title">İşaretçili liste değildir</h3></div>
                     <div class="wb-card-body wb-stack-4">
                       <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-list</code>, <code>wb-list-item</code> satırlarından kurulu çerçeveli list-group surface'idir. <code>wb-marker-list</code> ile tek ortak yanı isimdeki kelimedir: çerçevesi ve arka planı vardır, işaretçisi yoktur.</p>
-                      <div class="wb-list wb-list-sm">
-                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Profil</span><span class="wb-list-item-sub">Kişisel bilgiler</span></div></div>
-                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Güvenlik</span><span class="wb-list-item-sub">Parola ve oturumlar</span></div></div>
-                      </div>
+                      <ul class="wb-list wb-list-sm">
+                        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Profil</span><span class="wb-list-item-sub">Kişisel bilgiler</span></div></li>
+                        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Güvenlik</span><span class="wb-list-item-sub">Parola ve oturumlar</span></div></li>
+                      </ul>
                       <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-marker-list</code>'i nav, breadcrumb, pagination, tabs veya <code>wb-inline-list</code> üzerinde kullanma; bunlar bilerek işaretçisiz kalır. <code>wb-rich-text</code> içinde gereksizdir. İşaretçiyi geri getirmek için projeye özel <code>list-style</code> kuralı yazma.</p>
                     </div>
                   </div>
@@ -916,11 +916,11 @@
   <div class="wb-drawer" id="primitiveDrawer" role="dialog" aria-modal="true" aria-labelledby="primitiveDrawerTitle">
     <div class="wb-drawer-header"><h2 class="wb-drawer-title" id="primitiveDrawerTitle">Primitive kontrol listesi</h2><button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Kapat"><i class="wb-icon wb-icon-x"></i></button></div>
     <div class="wb-drawer-body">
-      <div class="wb-list wb-list-sm">
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Pakette gelen sınıfları kullan</span><span class="wb-list-item-sub">Yalnızca sunuma yönelik adlar uydurma.</span></div></div>
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Token'ları dolaylı kullan</span><span class="wb-list-item-sub">Mümkün olduğunca paketin primitive ve pattern'leri içinde kal.</span></div></div>
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Davranış için veri hook'larını kullan</span><span class="wb-list-item-sub">Overlay'leri ve etkileşim durumunu pakette gelen JavaScript yönetsin.</span></div></div>
-      </div>
+      <ul class="wb-list wb-list-sm">
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Pakette gelen sınıfları kullan</span><span class="wb-list-item-sub">Yalnızca sunuma yönelik adlar uydurma.</span></div></li>
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Token'ları dolaylı kullan</span><span class="wb-list-item-sub">Mümkün olduğunca paketin primitive ve pattern'leri içinde kal.</span></div></li>
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Davranış için veri hook'larını kullan</span><span class="wb-list-item-sub">Overlay'leri ve etkileşim durumunu pakette gelen JavaScript yönetsin.</span></div></li>
+      </ul>
     </div>
     <div class="wb-drawer-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Kapat</button></div>
   </div>

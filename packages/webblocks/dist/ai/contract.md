@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.40.0
+Version: v2.40.1
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -211,10 +211,12 @@ for this rollout.
 - Use `wb-rich-text` for rendered editor output; its lists already carry markers and need no extra class.
 - Use `wb-marker-list` on the `ul` or `ol` itself for hand-authored bullet or numbered prose lists outside a rich-text wrapper. Nested lists inherit it; do not repeat it on a child list.
 - `wb-list` is the framed list-group surface built from `wb-list-item` rows. It is not a marker list and never restores bullets.
+- New or rewritten `wb-list` and `wb-link-list` collections use native `ul` or `ol` roots with direct `li` children. Use `ol` when order conveys meaning. Static rows may be `li.wb-list-item` or `li.wb-link-list-item`; interactive rows put a native link/button inside the `li`, retaining the row classes on that control. Legacy div/direct-link layouts remain compatible; do not reproduce them in new markup. Keep list headings outside the list, not as non-li children.
 - Do not write project-local `list-style` rules to bring markers back. That is exactly what `wb-marker-list` exists for.
 
 ## Native Form Controls
 
+- Bind visible settings-row headings to their controls with native `label[for]` and matching control IDs. Connect descriptions with `aria-describedby`; a nearby div/strong or generic enabled-state label does not name the setting.
 - Group controls that share a question in `fieldset.wb-fieldset` with a first-child `legend` and `.wb-fieldset-body` around the individually labelled controls. Keep native choice names, states and disabled behavior. `wb-form-group` remains a general layout helper.
 - Use `wb-file` on `input[type="file"]`, `wb-color` on `input[type="color"]`, and `wb-range` on `input[type="range"]`.
 - These are native controls, not composite widgets. Preserve the matching HTML input type and browser behavior.

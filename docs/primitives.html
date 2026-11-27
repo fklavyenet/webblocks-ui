@@ -560,10 +560,10 @@
                     <div class="wb-card-header"><h3 class="wb-card-title">Not a marker list</h3></div>
                     <div class="wb-card-body wb-stack-4">
                       <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-list</code> is the framed list-group surface built from <code>wb-list-item</code> rows. It shares a word with <code>wb-marker-list</code> and nothing else: it has a frame, a background, and no markers.</p>
-                      <div class="wb-list wb-list-sm">
-                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Profile</span><span class="wb-list-item-sub">Personal details</span></div></div>
-                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Security</span><span class="wb-list-item-sub">Password and sessions</span></div></div>
-                      </div>
+                      <ul class="wb-list wb-list-sm">
+                        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Profile</span><span class="wb-list-item-sub">Personal details</span></div></li>
+                        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Security</span><span class="wb-list-item-sub">Password and sessions</span></div></li>
+                      </ul>
                       <p class="wb-text-sm wb-text-muted wb-m-0">Do not use <code>wb-marker-list</code> on nav, breadcrumb, pagination, tabs, or <code>wb-inline-list</code>; those stay marker-less on purpose. Inside <code>wb-rich-text</code> it is redundant. Do not write project-local <code>list-style</code> rules to bring markers back.</p>
                     </div>
                   </div>
@@ -922,11 +922,11 @@
   <div class="wb-drawer" id="primitiveDrawer" role="dialog" aria-modal="true" aria-labelledby="primitiveDrawerTitle">
     <div class="wb-drawer-header"><h2 class="wb-drawer-title" id="primitiveDrawerTitle">Primitive checklist</h2><button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Close"><i class="wb-icon wb-icon-x"></i></button></div>
     <div class="wb-drawer-body">
-      <div class="wb-list wb-list-sm">
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Use shipped classes</span><span class="wb-list-item-sub">Do not invent presentation-only names.</span></div></div>
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Use tokens indirectly</span><span class="wb-list-item-sub">Stay inside package primitives and patterns when possible.</span></div></div>
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Use data hooks for behavior</span><span class="wb-list-item-sub">Let shipped JavaScript handle overlays and interaction state.</span></div></div>
-      </div>
+      <ul class="wb-list wb-list-sm">
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Use shipped classes</span><span class="wb-list-item-sub">Do not invent presentation-only names.</span></div></li>
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Use tokens indirectly</span><span class="wb-list-item-sub">Stay inside package primitives and patterns when possible.</span></div></li>
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Use data hooks for behavior</span><span class="wb-list-item-sub">Let shipped JavaScript handle overlays and interaction state.</span></div></li>
+      </ul>
     </div>
     <div class="wb-drawer-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Close</button></div>
   </div>

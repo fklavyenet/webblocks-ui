@@ -14,6 +14,21 @@
   overflow: hidden;
 }
 
+/* Native list wrappers preserve row sizing and separators. Legacy direct
+   div/link rows remain styled for existing consumers. */
+:is(ul, ol).wb-list > li {
+  min-width: 0;
+}
+
+:is(ul, ol).wb-list > li > .wb-list-item {
+  width: 100%;
+  text-align: start;
+}
+
+:is(ul, ol).wb-list > li:not(:last-child) > .wb-list-item {
+  border-bottom: 1px solid var(--wb-border);
+}
+
 /* ── List item ────────────────────────────────────────────── */
 
 .wb-list-item {
@@ -35,7 +50,8 @@
 }
 
 /* ── Interactive (clickable) items ───────────────────────────
-   Add .wb-list-item-action to make the item a button/link.
+   Use a native button/link with .wb-list-item-action inside a li.
+   The class adds appearance, not interactive semantics.
    ──────────────────────────────────────────────────────────── */
 
 .wb-list-item-action {

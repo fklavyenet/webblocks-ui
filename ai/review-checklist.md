@@ -36,6 +36,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 
 ## Forms
 
+- [ ] Settings-row controls have native labels matching their visible setting headings; help text is connected with `aria-describedby`.
 - [ ] Forms use shipped field and input primitives.
 - [ ] Native file, color, and range inputs use `wb-file`, `wb-color`, and `wb-range` with the matching HTML input type.
 - [ ] Submit actions stay in the owning form or card footer.
@@ -100,6 +101,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 
 ## Tests
 
+- [ ] New or rewritten `wb-list` and `wb-link-list` collections use `ul`/`ol` with direct `li` children; interactive rows retain native buttons/links, separators and full-height card layout. Existing div/direct-link consumers remain compatible.
 - [ ] Canonical build and validation commands do not require Node, npm, Playwright, or another downloaded runtime.
 - [ ] Existing downstream tests or smoke checks still pass.
 - [ ] UI changes were reviewed for shell, table, overlay, feedback, and responsive behavior.

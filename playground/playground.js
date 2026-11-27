@@ -761,7 +761,7 @@
     elements.warnings.innerHTML = '';
 
     warnings.forEach(function (warning, index) {
-      var item = document.createElement('div');
+      var item = document.createElement('li');
       var text = document.createElement('div');
       var title = document.createElement('span');
       var subtitle = document.createElement('span');
@@ -809,6 +809,7 @@
     elements.relatedDocs.innerHTML = '';
 
     links.forEach(function (link) {
+      var item = document.createElement('li');
       var anchor = document.createElement('a');
       var main = document.createElement('div');
       var title = document.createElement('span');
@@ -827,7 +828,8 @@
       main.appendChild(title);
       anchor.appendChild(main);
       anchor.appendChild(desc);
-      elements.relatedDocs.appendChild(anchor);
+      item.appendChild(anchor);
+      elements.relatedDocs.appendChild(item);
     });
   }
 

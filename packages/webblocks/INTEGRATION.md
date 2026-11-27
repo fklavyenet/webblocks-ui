@@ -2015,17 +2015,30 @@ Feedback rules:
 
 ### Lists, Pagination, Breadcrumbs, Avatars, Empty States
 
-`wb-list` is the framed list-group surface. `wb-marker-list` is the separate, unframed primitive for bullet and numbered prose lists — the two are not interchangeable.
+`wb-list` is the framed list-group surface. Use `ul.wb-list` for unordered
+collections or `ol.wb-list` for meaningful sequences, with direct `li` children.
+Static rows use `li.wb-list-item`; interactive rows wrap a native
+`a.wb-list-item` or `button.wb-list-item` in `li`. Keep group headings outside
+the list. Legacy div/direct-link consumers retain their styles.
+
+`wb-link-list` follows the same native list anatomy: wrap each
+`a.wb-link-list-item` in `li`, keeping media and copy inside the link. A
+non-interactive entry may use `li.wb-link-list-item` directly. Existing media,
+stacked, cards and wide-thumbnail modifiers keep their classes.
+
+`wb-marker-list` is the separate, unframed primitive for bullet and numbered prose lists — the two are not interchangeable.
 
 ```html
-<div class="wb-list">
-  <a href="#" class="wb-list-item wb-list-item-action is-active">
-    <span class="wb-list-item-text">
-      <span class="wb-list-item-title">Profile</span>
-      <span class="wb-list-item-sub">Personal details</span>
-    </span>
-  </a>
-</div>
+<ul class="wb-list">
+  <li>
+    <a href="#" class="wb-list-item wb-list-item-action is-active">
+      <span class="wb-list-item-text">
+        <span class="wb-list-item-title">Profile</span>
+        <span class="wb-list-item-sub">Personal details</span>
+      </span>
+    </a>
+  </li>
+</ul>
 
 <ul class="wb-marker-list">
   <li>Pin an explicit tag</li>
@@ -2108,34 +2121,53 @@ Canonical rules:
 
 ### Radio Cards and Button Checks
 
-```html
-<div class="wb-radio-group">
-  <label class="wb-radio-card">
-    <input type="radio" name="plan" value="starter">
-    <span class="wb-radio-card-body">
-      <strong>Starter</strong>
-      <span>$9 / month</span>
-    </span>
-  </label>
-  <label class="wb-radio-card">
-    <input type="radio" name="plan" value="pro">
-    <span class="wb-radio-card-body">
-      <strong>Pro</strong>
-      <span>$29 / month</span>
-    </span>
-  </label>
-</div>
+For choices that answer one question, use `fieldset.wb-fieldset` with a
+first-child `legend` and `wb-fieldset-body`. Keep `wb-radio-group` and
+`wb-btn-check-group` as inner layout containers; they do not replace native
+grouping. Give the radio inputs in each group the same `name` and distinct
+`value` attributes. The plain wrapper around `wb-btn-check-group` keeps the
+segmented control at its intrinsic width inside the grid-based fieldset body.
 
-<div class="wb-btn-check-group">
-  <label class="wb-btn-check">
-    <input type="radio" name="view" value="grid">
-    <span>Grid</span>
-  </label>
-  <label class="wb-btn-check">
-    <input type="radio" name="view" value="list">
-    <span>List</span>
-  </label>
-</div>
+```html
+<fieldset class="wb-fieldset">
+  <legend>Plan</legend>
+  <div class="wb-fieldset-body">
+    <div class="wb-radio-group">
+      <label class="wb-radio-card">
+        <input type="radio" name="plan" value="starter">
+        <span class="wb-radio-card-body">
+          <strong>Starter</strong>
+          <span>$9 / month</span>
+        </span>
+      </label>
+      <label class="wb-radio-card">
+        <input type="radio" name="plan" value="pro">
+        <span class="wb-radio-card-body">
+          <strong>Pro</strong>
+          <span>$29 / month</span>
+        </span>
+      </label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="wb-fieldset">
+  <legend>View</legend>
+  <div class="wb-fieldset-body">
+    <div>
+      <div class="wb-btn-check-group">
+        <label class="wb-btn-check">
+          <input type="radio" name="view" value="grid">
+          <span>Grid</span>
+        </label>
+        <label class="wb-btn-check">
+          <input type="radio" name="view" value="list">
+          <span>List</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</fieldset>
 ```
 
 ### Command Palette

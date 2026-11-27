@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.40.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.40.1 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -5825,6 +5825,16 @@ border: 1px solid var(--wb-border);
 border-radius: var(--wb-r-lg);
 overflow: hidden;
 }
+:is(ul, ol).wb-list > li {
+min-width: 0;
+}
+:is(ul, ol).wb-list > li > .wb-list-item {
+width: 100%;
+text-align: start;
+}
+:is(ul, ol).wb-list > li:not(:last-child) > .wb-list-item {
+border-bottom: 1px solid var(--wb-border);
+}
 .wb-list-item {
 display: flex;
 align-items: center;
@@ -5948,6 +5958,12 @@ display: grid;
 gap: 1px;
 background: var(--wb-border);
 border: 1px solid var(--wb-border);
+}
+:is(ul, ol).wb-link-list > li {
+min-width: 0;
+}
+:is(ul, ol).wb-link-list > li > .wb-link-list-item {
+height: 100%;
 }
 .wb-link-list-item {
 display: grid;
@@ -7262,7 +7278,8 @@ border-bottom: none;
 .wb-settings-row-label {
 flex: 1;
 }
-.wb-settings-row-label strong {
+.wb-settings-row-label strong,
+.wb-settings-row-label > label.wb-label {
 display: block;
 font-size: 0.875rem;
 font-weight: 600;

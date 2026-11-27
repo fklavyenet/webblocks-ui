@@ -554,10 +554,10 @@
                     <div class="wb-card-header"><h3 class="wb-card-title">Keine Marker-Liste</h3></div>
                     <div class="wb-card-body wb-stack-4">
                       <p class="wb-text-sm wb-text-muted wb-m-0"><code>wb-list</code> ist die gerahmte List-Group-Surface aus <code>wb-list-item</code>-Zeilen. Mit <code>wb-marker-list</code> teilt sie nur ein Wort im Namen: sie hat einen Rahmen, einen Hintergrund und keine Marker.</p>
-                      <div class="wb-list wb-list-sm">
-                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Profil</span><span class="wb-list-item-sub">Persönliche Angaben</span></div></div>
-                        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Sicherheit</span><span class="wb-list-item-sub">Passwort und Sitzungen</span></div></div>
-                      </div>
+                      <ul class="wb-list wb-list-sm">
+                        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Profil</span><span class="wb-list-item-sub">Persönliche Angaben</span></div></li>
+                        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Sicherheit</span><span class="wb-list-item-sub">Passwort und Sitzungen</span></div></li>
+                      </ul>
                       <p class="wb-text-sm wb-text-muted wb-m-0">Setze <code>wb-marker-list</code> nicht auf nav, breadcrumb, pagination, tabs oder <code>wb-inline-list</code>; diese bleiben bewusst ohne Marker. Innerhalb von <code>wb-rich-text</code> ist die Klasse überflüssig. Schreibe keine projektlokalen <code>list-style</code>-Regeln, um Marker zurückzuholen.</p>
                     </div>
                   </div>
@@ -916,11 +916,11 @@
   <div class="wb-drawer" id="primitiveDrawer" role="dialog" aria-modal="true" aria-labelledby="primitiveDrawerTitle">
     <div class="wb-drawer-header"><h2 class="wb-drawer-title" id="primitiveDrawerTitle">Primitives-Checkliste</h2><button class="wb-drawer-close" data-wb-dismiss="drawer" aria-label="Schließen"><i class="wb-icon wb-icon-x"></i></button></div>
     <div class="wb-drawer-body">
-      <div class="wb-list wb-list-sm">
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Ausgelieferte Klassen nutzen</span><span class="wb-list-item-sub">Erfinde keine rein darstellungsbezogenen Namen.</span></div></div>
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Tokens indirekt nutzen</span><span class="wb-list-item-sub">Bleibe nach Möglichkeit innerhalb der Primitives und Patterns des Pakets.</span></div></div>
-        <div class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Daten-Hooks für Verhalten nutzen</span><span class="wb-list-item-sub">Überlasse Overlays und Interaktionszustände dem ausgelieferten JavaScript.</span></div></div>
-      </div>
+      <ul class="wb-list wb-list-sm">
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Ausgelieferte Klassen nutzen</span><span class="wb-list-item-sub">Erfinde keine rein darstellungsbezogenen Namen.</span></div></li>
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Tokens indirekt nutzen</span><span class="wb-list-item-sub">Bleibe nach Möglichkeit innerhalb der Primitives und Patterns des Pakets.</span></div></li>
+        <li class="wb-list-item"><div class="wb-list-item-text"><span class="wb-list-item-title">Daten-Hooks für Verhalten nutzen</span><span class="wb-list-item-sub">Überlasse Overlays und Interaktionszustände dem ausgelieferten JavaScript.</span></div></li>
+      </ul>
     </div>
     <div class="wb-drawer-footer"><button class="wb-btn wb-btn-secondary" data-wb-dismiss="drawer">Schließen</button></div>
   </div>

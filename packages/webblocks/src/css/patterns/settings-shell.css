@@ -175,7 +175,8 @@
   flex: 1;
 }
 
-.wb-settings-row-label strong {
+.wb-settings-row-label strong,
+.wb-settings-row-label > label.wb-label {
   display: block;
   font-size: 0.875rem;
   font-weight: 600;

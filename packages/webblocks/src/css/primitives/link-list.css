@@ -9,6 +9,16 @@
   border: 1px solid var(--wb-border);
 }
 
+/* New lists use ul/ol > li > a.wb-link-list-item. Keep the legacy
+   direct-link anatomy compatible while allowing equal-height card rows. */
+:is(ul, ol).wb-link-list > li {
+  min-width: 0;
+}
+
+:is(ul, ol).wb-link-list > li > .wb-link-list-item {
+  height: 100%;
+}
+
 .wb-link-list-item {
   display: grid;
   grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
@@ -111,9 +121,9 @@
    column sits beside a wide description column. `--stacked`
    turns each row into a compact card-like entry instead, with
    the description under the title and any leading visual
-   beside the whole text block. Host markup is unchanged:
+   beside the whole text block. Native lists wrap each link in li:
    .wb-link-list.wb-link-list--stacked
-     > .wb-link-list-item[.wb-link-list-item--media]
+     > li > .wb-link-list-item[.wb-link-list-item--media]
    Wins over the base rules on specificity, in every viewport.
    ------------------------------------------------------- */
 .wb-link-list--stacked .wb-link-list-item {
