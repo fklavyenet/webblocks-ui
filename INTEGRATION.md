@@ -251,7 +251,8 @@ See the [detail list contract](packages/webblocks/INTEGRATION.md#semantic-detail
 
 Use the shipped feedback primitives without inventing wrappers or classes.
 
-* transient success/info feedback → `wb-toast` outside normal layout flow, preferably inside `#wb-overlay-root.wb-overlay-root`
+* acknowledgements that can expire → `wb-toast` outside normal layout flow, preferably inside `#wb-overlay-root.wb-overlay-root`
+* operation results that need to stay visible → inline `wb-alert`; panels may keep all action results inline
 * validation errors and user-correctable failures → inline contextual feedback near the related form, card, or section, usually `wb-alert`
 * persistent warnings or blocking failures → inline in the related card or section
 * page-global alerts → only truly global/system-level states
@@ -417,21 +418,25 @@ Flexbox, field grids, and container queries; no measurement JavaScript.
       <label class="wb-label" for="filter-status">Status</label>
       <select class="wb-filter-select" id="filter-status" name="status">
         <option value="">All statuses</option>
+        <option value="published" selected>Published</option>
       </select>
     </div>
     <div class="wb-filter-bar-actions">
       <div class="wb-action-group">
         <button class="wb-btn wb-btn-primary" type="submit">Filter</button>
-        <a class="wb-btn wb-btn-secondary" href="?">Clear</a>
+        <a class="wb-btn wb-btn-secondary" href="?">Reset</a>
       </div>
     </div>
   </div>
 </form>
 ```
 
-Hosts retain field labels, values, URLs, and active-filter detection. Render
-Clear only when filters are active. Do not add empty labels, spacer elements,
-manual action offsets, or downstream alignment styles.
+Hosts retain localized labels, values, URLs and default-state detection. Use
+Filter and Reset labels, translated for the current locale. Show Reset only
+when it restores default filters or a non-default sort that it controls, and
+preserve access scope and parent context in its URL. Live search uses the
+search input's built-in clear control. Do not add empty labels, spacer
+elements, manual action offsets or downstream alignment styles.
 
 ## Chart integration
 

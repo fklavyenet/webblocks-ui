@@ -469,7 +469,8 @@ For dismissible alerts, use `data-wb-dismiss="alert"` on the close button.
 
 Use feedback where the user can understand and act on it without layout jumps.
 
-- transient success and informational feedback should use a toast outside normal layout flow
+- acknowledgements that can expire may use a toast outside normal layout flow
+- operation results that need to stay visible use inline `wb-alert`; panels may keep all action results inline
 - toasts must not push the topbar, page header, main content, cards, or forms downward
 - validation errors and user-correctable failures should render inline at the top of the related form, card, or section with contextual primitives such as `wb-alert`
 - persistent warnings and blocking failures should render inline in the related card or section
@@ -2008,7 +2009,7 @@ Supported positions:
 
 Feedback rules:
 
-- use success/info toasts for transient non-blocking feedback
+- use success/info toasts for acknowledgements that can expire; panels may keep all action results inline with `wb-alert`
 - use danger/warning toasts only when the issue is transient and non-blocking
 - keep validation errors, user-correctable failures, persistent warnings, and blocking failures inline with contextual feedback such as `wb-alert`
 - keep toast containers outside normal layout flow, preferably under `#wb-overlay-root`
@@ -3406,21 +3407,25 @@ Flexbox, field grids, and container queries; no measurement JavaScript.
       <label class="wb-label" for="filter-status">Status</label>
       <select class="wb-filter-select" id="filter-status" name="status">
         <option value="">All statuses</option>
+        <option value="published" selected>Published</option>
       </select>
     </div>
     <div class="wb-filter-bar-actions">
       <div class="wb-action-group">
         <button class="wb-btn wb-btn-primary" type="submit">Filter</button>
-        <a class="wb-btn wb-btn-secondary" href="?">Clear</a>
+        <a class="wb-btn wb-btn-secondary" href="?">Reset</a>
       </div>
     </div>
   </div>
 </form>
 ```
 
-Hosts retain field labels, values, URLs, and active-filter detection. Render
-Clear only when filters are active. Do not add empty labels, spacer elements,
-manual action offsets, or downstream alignment styles.
+Hosts retain localized labels, values, URLs and default-state detection. Use
+Filter and Reset labels, translated for the current locale. Show Reset only
+when it restores default filters or a non-default sort that it controls, and
+preserve access scope and parent context in its URL. Live search uses the
+search input's built-in clear control. Do not add empty labels, spacer
+elements, manual action offsets or downstream alignment styles.
 
 ---
 

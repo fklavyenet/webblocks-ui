@@ -58,7 +58,10 @@ with a description list merely to reproduce this column layout.
 Labelled filter forms use `wb-filter-bar--fields` with one `wb-filter-bar-fields` flow. Use direct `wb-field` children, optional `wb-filter-bar-search`, and `wb-filter-bar-actions > .wb-action-group`. Do not combine these fields with `wb-stack` or gap utilities; UI owns field alignment, row separation, and intrinsic-width actions that wrap together only when needed.
 
 Use `search.wb-filter-bar` for standalone search and filtering regions. Use
-`form.wb-filter-bar` for filters that submit to a URL.
+`form.wb-filter-bar` for filters that submit to a URL. Use localized **Filter**
+and **Reset** labels. Show Reset when it would restore default filters or a
+non-default sort it controls. Preserve access scope and parent context. Live
+search uses the search input's built-in clear control.
 
 ## Semantic Detail Lists And Tables
 
@@ -82,8 +85,8 @@ Use `search.wb-filter-bar` for standalone search and filtering regions. Use
 - Use one shared `#wb-overlay-root.wb-overlay-root`.
 - Use `wb-modal` for dialog and destructive confirmation flows.
 - Do not use browser `confirm()` or `alert()` as product UI.
-- Use `wb-toast` for transient success/info feedback.
-- Use inline `wb-alert` for validation, blocking, persistent, and user-correctable errors.
+- Use inline `wb-alert` for validation, blocking and user-correctable errors, persistent warnings, and operation results that need to stay visible. Panels may use inline alerts for all action results.
+- Use `wb-toast` for acknowledgements that can expire.
 - Do not create duplicate overlay roots, custom overlay stacks, or project-local modal systems when WebBlocks UI primitives fit.
 - Modal/drawer focus excludes closed disclosure bodies, hidden/inert nodes, disabled controls and negative tabindex. Keep focus containment in the shared runtime; do not add a competing host trap.
 

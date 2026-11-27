@@ -80,12 +80,12 @@ the package integration guide for raw values, localization and lifecycle rules.
 
 Admin filter bar actions:
 
-* use canonical English labels `Filter` and `Clear`
-* render `Clear` only when filters are active
+* use the localized equivalents of `Filter` and `Reset` on submitted filters
+* render `Reset` only when it restores default filters or a non-default sort it controls, and preserve the user's scope and parent context
+* live search uses the search input's built-in clear control
 * use normal `wb-btn` sizing for filter action buttons; do not use `wb-btn-sm`
 * for labelled filters, use `wb-filter-bar wb-filter-bar--fields` and a single `wb-filter-bar-fields` flow; put each control in `wb-field`, search in `wb-field wb-filter-bar-search`, and an action group in `wb-filter-bar-actions`
 * do not mix `wb-stack` or gap utilities into labelled filter fields; the component owns label spacing, row separation, wrapping, and intrinsic-width, end-aligned actions that stay inline when space permits
-* do not use `Apply`, `Apply Filters`, `Reset`, or `Clear filters` on new WebBlocks admin filter surfaces
 * do not add project-specific filter alignment CSS
 * keep row actions and compact toolbar icon buttons under their separate action standards
 
@@ -158,13 +158,21 @@ Do not call the internal `WBDom.overlay` API from downstream applications.
 
 ## Feedback
 
-Use `wb-toast` for transient success and info feedback. Toasts should live outside normal layout flow, preferably under `#wb-overlay-root`.
+Use inline `wb-alert` for validation errors, blocking and user-correctable failures, persistent warnings, and operation results that need to stay visible. Panels may use inline alerts for all action results.
 
-Use inline `wb-alert` for validation errors, blocking failures, persistent warnings, and user-correctable errors.
+Use `wb-toast` for acknowledgements that can expire. Toasts should live outside normal layout flow, preferably under `#wb-overlay-root`.
 
 ## Branding
 
 Admin, auth, and sidebar brand marks should follow the shipped admin product brand standard. Prefer project-owned inline SVG components using `currentColor`, WebBlocks sizing classes, and separate favicon/app icon files.
+
+Admin sidebars use `wb-sidebar-brand-logo` on the inline SVG and a sidebar
+viewBox sized to show about 30 px of artwork in the shared 48 px slot. On
+mobile, open the sidebar with `wb-navbar-toggle` and the 24 px
+`wb-icon wb-icon-menu wb-icon-lg` icon. Put a WebBlocks icon button with
+`wb-icon-x` and a localized accessible name inside the sidebar header for
+closing. Both buttons use the same sidebar target. See the
+[admin product brand standard](../docs/admin-product-brand.md#sidebar-contract).
 
 ## Browser page titles — approved 2026-11-26
 

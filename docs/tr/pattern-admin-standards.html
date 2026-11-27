@@ -360,60 +360,63 @@
                     <h2>Yönetim Filtre Çubuğu Aksiyonları</h2>
                     <div class="wb-card">
                       <div class="wb-card-body wb-stack-4">
-                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Filtre aksiyonu standardı</strong> Yönetim filtre formları birincil submit aksiyonu için <code>Filter</code>, aktif filtreleri temizlemek için <code>Clear</code> kullanır. <code>Clear</code>'ı yalnızca en az bir filtre aktifken render et.</div>
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Filtre aksiyonu standardı</strong> Gönderilen filtrelerde <code>Filter</code> ve <code>Reset</code> kullanılır. Reset varsayılan filtreleri ve kapsadığı sıralamayı geri yükler. Canlı arama, arama alanının yerleşik temizleme kontrolünü kullanır.</div>
                         <div class="wb-table-wrap">
                           <table class="wb-table wb-table-sm">
                             <thead><tr><th>Alan</th><th>Kural</th></tr></thead>
                             <tbody>
-                              <tr><td>Form yapısı</td><td><code>wb-filter-bar</code> ile gerçek bir form kullan. Alanları <code>wb-filter-bar-start</code>, aksiyon butonlarını <code>wb-filter-bar-end</code> içine koy.</td></tr>
-                              <tr><td>Alan ve aksiyon hizalaması</td><td><code>wb-items-end</code>, <code>wb-field</code>, <code>wb-flex-1</code> ve <code>wb-min-w-0</code> gibi mevcut kompozisyonu kullan; böylece etiketler, kontroller ve aksiyon butonları aynı taban çizgisini ve alan ritmini paylaşır.</td></tr>
-                              <tr><td>Etiketler</td><td>Kanonik İngilizce etiketler <code>Filter</code> ve <code>Clear</code>'dır. Yeni WebBlocks yönetim filtre yüzeylerinde <code>Apply</code>, <code>Apply Filters</code>, <code>Reset</code> veya <code>Clear filters</code> kullanma.</td></tr>
-                              <tr><td>Clear'ın görünürlüğü</td><td><code>Clear</code>'ı yalnızca filtreler aktifken render et. Filtresiz varsayılan durumda devre dışı bırakmak yerine tamamen çıkar.</td></tr>
+                              <tr><td>Form yapısı</td><td><code>form.wb-filter-bar.wb-filter-bar--fields</code> kullan. Etiketli <code>wb-field</code> alanlarını doğrudan <code>wb-filter-bar-fields</code> içine koy. Ana aramayı ilk sıraya al ve alanına <code>wb-filter-bar-search</code> ekle.</td></tr>
+                              <tr><td>Alan ve aksiyon hizalaması</td><td>Etiketleri, kontrolleri ve <code>wb-filter-bar-actions &gt; .wb-action-group</code> grubunu WebBlocks UI hizalar. Kontrollerde <code>wb-input</code> ve <code>wb-filter-select</code> kullan.</td></tr>
+                              <tr><td>Etiketler</td><td>İngilizcede <code>Filter</code> ve <code>Reset</code>, diğer dillerde karşılıklarını kullan.</td></tr>
+                              <tr><td>Reset'ın görünürlüğü</td><td>Reset bağlantısı varsayılan bir filtreyi veya kapsadığı sıralamayı geri yükleyecekse göster. Listenin üst kaydını ve erişim kapsamını koru.</td></tr>
                               <tr><td>Buton boyutu</td><td>Filtre aksiyonlarının input ve select yüksekliğine uyması için normal <code>wb-btn</code> butonları kullan. Filtre çubuğu aksiyon butonları için <code>wb-btn-sm</code> kullanma.</td></tr>
-                              <tr><td>Clear varyantı</td><td><code>wb-btn-ghost</code> gibi mevcut ikincil/silik bir WebBlocks buton stilini kullan; yeni bir clear-buton varyantı uydurma.</td></tr>
+                              <tr><td>Reset varyantı</td><td><code>wb-btn-secondary</code> gibi mevcut bir ikincil düğme stili kullan.</td></tr>
                               <tr><td>Kapsam</td><td>Bu kural filtre çubuğu aksiyonları içindir. Satır aksiyonları ve kompakt toolbar ikon butonları kendi ikon-buton ve kompakt aksiyon standartlarını korur.</td></tr>
                               <tr><td>CSS</td><td>Projeye özel filtre hizalama CSS'i yazma. Özel bir hizalama sınıfı eklemek yerine mevcut WebBlocks primitive ve utility'lerini birleştir.</td></tr>
                             </tbody>
                           </table>
                         </div>
-                        <form class="wb-filter-bar wb-items-end" role="search" aria-label="Sayfa filtreleme örneği">
-                          <div class="wb-filter-bar-start">
-                            <div class="wb-field wb-flex-1 wb-min-w-0">
+                        <form class="wb-filter-bar wb-filter-bar--fields" method="get" role="search" aria-label="Sayfa filtreleme örneği">
+                          <div class="wb-filter-bar-fields">
+                            <div class="wb-field wb-filter-bar-search">
                               <label class="wb-label" for="adminFilterSearch">Ara</label>
-                              <input id="adminFilterSearch" class="wb-input" type="search">
+                              <input id="adminFilterSearch" class="wb-input" type="search" name="q">
                             </div>
                             <div class="wb-field">
                               <label class="wb-label" for="adminFilterStatus">Durum</label>
-                              <select id="adminFilterStatus" class="wb-select">
-                                <option>Tümü</option>
+                              <select id="adminFilterStatus" class="wb-filter-select" name="status">
+                                <option value="">Tümü</option>
+                                <option value="published" selected>Yayında</option>
                               </select>
                             </div>
-                          </div>
-                          <div class="wb-filter-bar-end wb-items-end">
-                            <button type="submit" class="wb-btn wb-btn-primary">Filter</button>
-                            <a href="/current-route" class="wb-btn wb-btn-ghost">Clear</a>
+                            <div class="wb-filter-bar-actions">
+                              <div class="wb-action-group">
+                                <button type="submit" class="wb-btn wb-btn-primary">Filtrele</button>
+                                <a href="/current-route" class="wb-btn wb-btn-secondary">Sıfırla</a>
+                              </div>
+                            </div>
                           </div>
                         </form>
-                        <pre><code>&lt;form class="wb-filter-bar wb-items-end"&gt;
-  &lt;div class="wb-filter-bar-start"&gt;
-    &lt;div class="wb-field wb-flex-1 wb-min-w-0"&gt;
-      &lt;label class="wb-label" for="search"&gt;Search&lt;/label&gt;
-      &lt;input id="search" class="wb-input" type="search"&gt;
+                        <pre><code>&lt;form class="wb-filter-bar wb-filter-bar--fields" method="get" action="/current-route"&gt;
+  &lt;div class="wb-filter-bar-fields"&gt;
+    &lt;div class="wb-field wb-filter-bar-search"&gt;
+      &lt;label class="wb-label" for="search"&gt;Ara&lt;/label&gt;
+      &lt;input id="search" class="wb-input" type="search" name="q"&gt;
     &lt;/div&gt;
-
     &lt;div class="wb-field"&gt;
-      &lt;label class="wb-label" for="status"&gt;Status&lt;/label&gt;
-      &lt;select id="status" class="wb-select"&gt;
-        &lt;option&gt;All&lt;/option&gt;
+      &lt;label class="wb-label" for="status"&gt;Durum&lt;/label&gt;
+      &lt;select id="status" class="wb-filter-select" name="status"&gt;
+        &lt;option value=""&gt;Tümü&lt;/option&gt;
+        &lt;option value="published" selected&gt;Yayında&lt;/option&gt;
       &lt;/select&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class="wb-filter-bar-end wb-items-end"&gt;
-    &lt;button type="submit" class="wb-btn wb-btn-primary"&gt;Filter&lt;/button&gt;
-
-    &lt;!-- Render only when filters are active. --&gt;
-    &lt;a href="/current-route" class="wb-btn wb-btn-ghost"&gt;Clear&lt;/a&gt;
+    &lt;div class="wb-filter-bar-actions"&gt;
+      &lt;div class="wb-action-group"&gt;
+        &lt;button type="submit" class="wb-btn wb-btn-primary"&gt;Filtrele&lt;/button&gt;
+        &lt;!-- Render when the current state differs from the defaults. --&gt;
+        &lt;a href="/current-route" class="wb-btn wb-btn-secondary"&gt;Sıfırla&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/form&gt;</code></pre>
                       </div>

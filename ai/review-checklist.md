@@ -19,6 +19,7 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 
 - [ ] Admin lists start with a page-level `wb-page-header`.
 - [ ] Filters appear before the list card.
+- [ ] Submitted filters use localized Filter and Reset labels. Reset restores defaults within the current scope and appears when it changes filter or controlled sort state. Live search uses the input’s built-in clear control.
 - [ ] Tables live in `section.wb-card > .wb-card-body > .wb-table-wrap`.
 - [ ] Action columns have an explicit `Actions` header.
 - [ ] Row actions use `td.wb-table-actions` and `.wb-action-group`.
@@ -51,8 +52,8 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 
 ## Feedback
 
-- [ ] Transient success/info feedback uses `wb-toast`.
-- [ ] Validation, blocking, and user-correctable errors use inline `wb-alert`.
+- [ ] Operation results that need to stay visible, validation, blocking and user-correctable errors, and persistent warnings use inline `wb-alert`.
+- [ ] Acknowledgements that can expire may use `wb-toast`.
 - [ ] Toasts do not block page interaction or behave like modals.
 
 ## Branding

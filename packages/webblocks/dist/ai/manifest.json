@@ -14,8 +14,8 @@
     "ai/"
   ],
   "files": [
-    {"path": "contract.md", "sha256": "f515c82560f01ab7a39dee576a3518c73e8dd75aa700a4c5fef9af1537ba91cc"},
-    {"path": "review-checklist.md", "sha256": "8d95d1324fd56b7d31a22fe47ccbbbb02284e22b0da3134034b470ac6642ce5a"},
+    {"path": "contract.md", "sha256": "08eda04e30737921d7050f8308894b6f2a4143f0cfcdaa17dabb54e02d83345a"},
+    {"path": "review-checklist.md", "sha256": "23548aa2048599d8eed057746735da439382b3c33aa5bf4d961d6247717d5398"},
     {"path": "forbidden-patterns.md", "sha256": "507c3651bb5827f2fe87a675dc63280f72efb177236e42ea0cb2d3a31ab4d6ea"},
     {"path": "examples.md", "sha256": "bdf59c48498a27288525c0ae670e5f61cc4d84f2ca156e7d75f51bcf1540bc83"},
     {"path": "downstream-agent-block.md", "sha256": "0dc6fbc88323e78b206de6cf8bbaaac34f45dc5cce3bd2e4f0d33399b58b35f3"}

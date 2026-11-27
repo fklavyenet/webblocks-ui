@@ -19,6 +19,7 @@ Thumbs.db
 .env
 
 # Test output
+/output/
 .tmp-test/
 test-results/
 playwright-report/

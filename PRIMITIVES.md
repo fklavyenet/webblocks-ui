@@ -183,7 +183,8 @@ Overlay Stack Standard:
 
 Feedback and toast standard:
 
-- transient success feedback belongs in a toast and must not push the topbar, page header, main content, cards, or forms downward
+- acknowledgements that can expire may use a toast outside normal layout flow, without pushing the topbar, page header, main content, cards or forms downward
+- operation results that need to stay visible use inline `wb-alert`; panels may keep all action results inline
 - validation errors and user-correctable failures belong inline at the top of the related form, card, or section using contextual feedback primitives such as `wb-alert`
 - persistent warnings or blocking failures belong inline in the related card or section
 - page-global alerts are reserved for truly global or system-level states

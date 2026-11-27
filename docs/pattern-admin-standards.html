@@ -360,60 +360,63 @@
                     <h2>Admin Filter Bar Actions</h2>
                     <div class="wb-card">
                       <div class="wb-card-body wb-stack-4">
-                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Filter action standard</strong> Admin filter forms use <code>Filter</code> for the primary submit action and <code>Clear</code> for clearing active filters. Render <code>Clear</code> only when at least one filter is active.</div>
+                        <div class="wb-callout wb-callout-accent"><strong class="wb-callout-title">Filter action standard</strong> Submitted filters use <code>Filter</code> and <code>Reset</code>. Reset restores the default filters. It may also restore a non-default sort. Live search uses the search input’s built-in clear control.</div>
                         <div class="wb-table-wrap">
                           <table class="wb-table wb-table-sm">
                             <thead><tr><th>Area</th><th>Rule</th></tr></thead>
                             <tbody>
-                              <tr><td>Form structure</td><td>Use a real form with <code>wb-filter-bar</code>. Put fields in <code>wb-filter-bar-start</code> and action buttons in <code>wb-filter-bar-end</code>.</td></tr>
-                              <tr><td>Field and action alignment</td><td>Use existing composition such as <code>wb-items-end</code>, <code>wb-field</code>, <code>wb-flex-1</code>, and <code>wb-min-w-0</code> so labels, controls, and action buttons share the same baseline and field rhythm.</td></tr>
-                              <tr><td>Labels</td><td>The canonical English labels are <code>Filter</code> and <code>Clear</code>. Do not use <code>Apply</code>, <code>Apply Filters</code>, <code>Reset</code>, or <code>Clear filters</code> on new WebBlocks admin filter surfaces.</td></tr>
-                              <tr><td>Clear visibility</td><td>Render <code>Clear</code> only when filters are active. Omit it entirely for the unfiltered default state instead of disabling it.</td></tr>
+                              <tr><td>Form structure</td><td>Use a real <code>form.wb-filter-bar.wb-filter-bar--fields</code>. Place each labelled <code>wb-field</code> inside <code>wb-filter-bar-fields</code>. Put the primary search first and add <code>wb-filter-bar-search</code> to its field.</td></tr>
+                              <tr><td>Field and action alignment</td><td>WebBlocks UI aligns labels, controls and the <code>wb-filter-bar-actions &gt; .wb-action-group</code>. Use <code>wb-input</code> and <code>wb-filter-select</code> for controls.</td></tr>
+                              <tr><td>Labels</td><td>Use <code>Filter</code> and <code>Reset</code> in English and their equivalents in other locales.</td></tr>
+                              <tr><td>Reset visibility</td><td>Show Reset when it would restore a default filter or a sort that the link controls. Keep the list’s parent and authorization scope.</td></tr>
                               <tr><td>Button size</td><td>Use normal <code>wb-btn</code> buttons so filter actions match input and select height. Do not use <code>wb-btn-sm</code> for filter bar action buttons.</td></tr>
-                              <tr><td>Clear variant</td><td>Use an existing secondary/subtle WebBlocks button style such as <code>wb-btn-ghost</code>; do not invent a new clear-button variant.</td></tr>
+                              <tr><td>Reset variant</td><td>Use an existing secondary button style such as <code>wb-btn-secondary</code>.</td></tr>
                               <tr><td>Scope</td><td>This rule is for filter bar actions. Row actions and compact toolbar icon buttons keep their own icon-button and compact-action standards.</td></tr>
                               <tr><td>CSS</td><td>Do not write project-specific filter alignment CSS. Compose existing WebBlocks primitives and utilities instead of adding a dedicated alignment class.</td></tr>
                             </tbody>
                           </table>
                         </div>
-                        <form class="wb-filter-bar wb-items-end" role="search" aria-label="Filter pages example">
-                          <div class="wb-filter-bar-start">
-                            <div class="wb-field wb-flex-1 wb-min-w-0">
+                        <form class="wb-filter-bar wb-filter-bar--fields" method="get" role="search" aria-label="Filter pages example">
+                          <div class="wb-filter-bar-fields">
+                            <div class="wb-field wb-filter-bar-search">
                               <label class="wb-label" for="adminFilterSearch">Search</label>
-                              <input id="adminFilterSearch" class="wb-input" type="search">
+                              <input id="adminFilterSearch" class="wb-input" type="search" name="q">
                             </div>
                             <div class="wb-field">
                               <label class="wb-label" for="adminFilterStatus">Status</label>
-                              <select id="adminFilterStatus" class="wb-select">
-                                <option>All</option>
+                              <select id="adminFilterStatus" class="wb-filter-select" name="status">
+                                <option value="">All</option>
+                                <option value="published" selected>Published</option>
                               </select>
                             </div>
-                          </div>
-                          <div class="wb-filter-bar-end wb-items-end">
-                            <button type="submit" class="wb-btn wb-btn-primary">Filter</button>
-                            <a href="/current-route" class="wb-btn wb-btn-ghost">Clear</a>
+                            <div class="wb-filter-bar-actions">
+                              <div class="wb-action-group">
+                                <button type="submit" class="wb-btn wb-btn-primary">Filter</button>
+                                <a href="/current-route" class="wb-btn wb-btn-secondary">Reset</a>
+                              </div>
+                            </div>
                           </div>
                         </form>
-                        <pre><code>&lt;form class="wb-filter-bar wb-items-end"&gt;
-  &lt;div class="wb-filter-bar-start"&gt;
-    &lt;div class="wb-field wb-flex-1 wb-min-w-0"&gt;
+                        <pre><code>&lt;form class="wb-filter-bar wb-filter-bar--fields" method="get" action="/current-route"&gt;
+  &lt;div class="wb-filter-bar-fields"&gt;
+    &lt;div class="wb-field wb-filter-bar-search"&gt;
       &lt;label class="wb-label" for="search"&gt;Search&lt;/label&gt;
-      &lt;input id="search" class="wb-input" type="search"&gt;
+      &lt;input id="search" class="wb-input" type="search" name="q"&gt;
     &lt;/div&gt;
-
     &lt;div class="wb-field"&gt;
       &lt;label class="wb-label" for="status"&gt;Status&lt;/label&gt;
-      &lt;select id="status" class="wb-select"&gt;
-        &lt;option&gt;All&lt;/option&gt;
+      &lt;select id="status" class="wb-filter-select" name="status"&gt;
+        &lt;option value=""&gt;All&lt;/option&gt;
+        &lt;option value="published" selected&gt;Published&lt;/option&gt;
       &lt;/select&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class="wb-filter-bar-end wb-items-end"&gt;
-    &lt;button type="submit" class="wb-btn wb-btn-primary"&gt;Filter&lt;/button&gt;
-
-    &lt;!-- Render only when filters are active. --&gt;
-    &lt;a href="/current-route" class="wb-btn wb-btn-ghost"&gt;Clear&lt;/a&gt;
+    &lt;div class="wb-filter-bar-actions"&gt;
+      &lt;div class="wb-action-group"&gt;
+        &lt;button type="submit" class="wb-btn wb-btn-primary"&gt;Filter&lt;/button&gt;
+        &lt;!-- Render when the current state differs from the defaults. --&gt;
+        &lt;a href="/current-route" class="wb-btn wb-btn-secondary"&gt;Reset&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/form&gt;</code></pre>
                       </div>

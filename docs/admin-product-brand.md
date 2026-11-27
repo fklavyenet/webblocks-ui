@@ -85,6 +85,22 @@ Products may render inline SVG as the brand mark, but the rendered mark must kee
 </a>
 ```
 
+The inline SVG is a direct child of the brand link. Use the shared 3 rem
+(48 CSS px at the default root font size) logo slot. For sidebar artwork,
+choose a separate SVG viewBox that yields a visible drawing about 30 CSS px
+on its longer side and preserves the original aspect ratio.
+
+On mobile admin shells, use the shipped `wb-navbar-toggle` with the
+`wb-icon wb-icon-menu wb-icon-lg` classes in the top bar. The shared
+`wb-icon-lg` class sizes the glyph to 24 CSS px. The open sidebar overlays
+the top bar, so put a
+mobile-only `wb-btn wb-btn-ghost wb-btn-icon wb-btn-sm` with `wb-icon-x`
+beside the brand link in the sidebar header. Give the close button a localized
+accessible name. Wire both controls to the same sidebar ID with
+`data-wb-toggle="sidebar"`, `data-wb-target` and `aria-controls`. Compose
+the header with WebBlocks UI layout utilities and keep both controls as native
+buttons.
+
 ## Auth Contract
 
 Auth panels and auth cards should use the same product brand component as the sidebar.
