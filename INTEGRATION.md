@@ -451,3 +451,11 @@ Use native `meter.wb-meter` for bounded values such as poll percentages. See the
 [package meter contract](packages/webblocks/INTEGRATION.md#meter) and
 [examples](docs/meter.html). Hosts own values and accessible localized text; UI
 owns the native track/fill styling. Loading progress keeps its existing contract.
+
+## Action feedback
+
+Product-owned actions use the shared WebBlocks Action Feedback standard.
+See [the public contract](docs/action-feedback.md) and the package integration
+reference. Do not fork generic request locks/feedback templates downstream.
+Existing detailed update modals, stages, elapsed time and recovery remain owned
+by the update host/Publisher Client.

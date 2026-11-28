@@ -1,6 +1,6 @@
 # WebBlocks UI AI Contract
 
-Version: v2.41.0
+Version: v2.42.0
 
 This is the canonical downstream AI usage contract for WebBlocks UI. Downstream projects should reference the copy shipped with the pinned WebBlocks UI release.
 
@@ -370,3 +370,26 @@ Before finishing downstream UI work, verify:
 ## Opt-in card media
 
 New framed card images use `wb-card-media--frame` and a direct `wb-card-media-viewport`; keep captions outside the viewport. Fit, aspect, surface and thumbnail size are independent. Use `wb-card--media-start`, `wb-card--media-end` or `wb-card--media-overlay` with `wb-card-content` only on explicitly enabled new layouts. Preserve all legacy card/media anatomy and aspect-auto behavior. Never nest an interactive media link or viewer trigger in a linked whole card. See package INTEGRATION.md for the complete API.
+
+## WebBlocks Action Feedback
+
+Use the shared `WBActionFeedback` runtime for processing feedback and repeat
+activation protection on product-owned action flows. Opt in owning forms/shells
+with `data-wb-action-feedback` and localized `data-wb-action-label`; exclude
+specialized native handling with `off`. Existing `data-wb-busy` and
+`WBBusySubmit.bind()` use the same registry. Do not copy generic JS locks or
+feedback Blade templates into each product.
+
+Preserve validation/confirmation, successful controls and submitter payloads,
+external form buttons, icon dimensions, modal close guards and native Back
+restoration. Asynchronous callers use `begin`/`isPending` and the returned
+cleanup callback with their actual lifecycle. HTTP acceptance/disconnection is
+not job completion; no timer unlock or automatic mutation retry.
+
+Update checks are included, with explicit `data-wb-action-link` opt-in for GET
+links and persistent inline `wb-alert` results. Preserve detailed install modals,
+stages, elapsed time, logs and recovery; Publisher Client owns their progress.
+Use explicit exclusions/narrow adapters rather than duplicate generic bars.
+See `docs/action-feedback.md` and package INTEGRATION for API/options, host
+ownership, compatibility and acceptance. Never treat this API as shipped in an
+older pin or pin a nonexistent release.

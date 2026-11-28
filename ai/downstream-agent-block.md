@@ -31,6 +31,7 @@ Use WebBlocks UI pattern-first:
 - Admin lists must follow the canonical table/action contract: `wb-page-header`, filters before the list card, `section.wb-card`, `.wb-card-body`, `.wb-table-wrap`, explicit `Actions` header, `td.wb-table-actions`, `.wb-action-group`, and pagination in `.wb-card-footer`.
 - New and rewritten detail lists use `dl.wb-detail-list > div.wb-detail-row > dt.wb-detail-label + dd.wb-detail-value`. Do not introduce div/span roots, terms or descriptions. Choose default ruled horizontal, `wb-detail-list--borderless`, or `wb-detail-list--stacked`; the modifier stays on the `dl`. Existing div-only markup keeps its original v2 styling as deprecated compatibility support; migrate it when rewriting templates.
 - Use native `table.wb-table` with `th[scope="row"].wb-table-key` and `td` for field/value table summaries and comparable records; give the table an accessible name and omit unneeded row actions. Use description lists for term/description or independent name/value associations. Page names, borders and visual column counts do not decide semantics.
+- Apply the WebBlocks Action Feedback standard from the adopted release: shared `WBActionFeedback`, localized labels, payload-preserving repeat guards and retained detailed update stages/time/recovery. Do not fork generic locks or feedback templates per project.
 - Add custom CSS or JS only as a last resort after shipped WebBlocks UI composition is proven insufficient.
 - Do not add Tailwind, Vite, React, Vue, Livewire, or Inertia UI layers for WebBlocks UI surfaces.
 

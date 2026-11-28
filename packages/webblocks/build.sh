@@ -379,6 +379,7 @@ cat \
   "$ROOT/src/js/clipboard.js" \
   "$ROOT/src/js/collapse.js" \
   "$ROOT/src/js/update-indicator.js" \
+  "$ROOT/src/js/action-feedback.js" \
   "$ROOT/src/js/busy-submit.js" \
   > "$JS_OUT"
 

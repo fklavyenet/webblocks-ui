@@ -345,6 +345,13 @@ Also shipped:
 - `wb-btn-group`
 - `wb-btn-group-join`
 
+### Action feedback
+
+Use `WBActionFeedback` for shared processing feedback and repeat activation
+protection; `WBBusySubmit` remains a compatibility entry point. See the
+[Action Feedback contract](../../docs/action-feedback.md) for native forms,
+asynchronous/queued lifetimes, modal guards and preserving detailed updates.
+
 ### Badges
 
 ```html

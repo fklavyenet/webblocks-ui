@@ -211,8 +211,8 @@
 /* ── Busy state ───────────────────────────────────────────────
    In-flight action feedback: a leading spinner, progress cursor,
    and a click shield. Toggle `.is-busy` (plus `aria-busy="true"`
-   and `disabled` where applicable) — the busy-submit runtime
-   (data-wb-busy) does this automatically for form submits. */
+   and guarded activation). WBActionFeedback preserves successful
+   controls instead of disabling submitters before serialization. */
 
 @keyframes wb-btn-busy-spin {
   to {
@@ -245,4 +245,15 @@
   .wb-btn.is-busy::before {
     animation-duration: 1.6s;
   }
+}
+
+/* Compact actions use one real spinner without widening the icon slot. */
+.wb-btn.is-busy.wb-action-feedback-icon::before { content: none; }
+.wb-action-icon.is-busy,
+.wb-action-btn.is-busy,
+.wb-dropdown-item.is-busy { cursor: progress; }
+
+.wb-action-feedback-icon > .wb-spinner {
+  width: var(--wb-icon-size, 1.125rem);
+  height: var(--wb-icon-size, 1.125rem);
 }

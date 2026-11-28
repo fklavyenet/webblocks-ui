@@ -117,6 +117,10 @@
       {
         "path": "docs/card-media.html",
         "description": "Opt-in card media frames, natural/ratio sizing, thumbnail sizes, horizontal and overlay layouts with legacy compatibility."
+      },
+      {
+        "path": "docs/action-feedback.md",
+        "description": "Shared WBActionFeedback standard, native/async request lifecycle, generated feedback, modal guards, compatibility and retained detailed system updates."
       }
     ],
     "ai_contract": [

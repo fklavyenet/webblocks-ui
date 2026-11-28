@@ -51,7 +51,7 @@ source_group_for() {
     packages/webblocks/src/*) printf '%s\n' "package_source" ;;
     packages/webblocks/dist/*) printf '%s\n' "package_dist" ;;
     packages/webblocks/INTEGRATION.md|packages/webblocks/README.md) printf '%s\n' "package_docs" ;;
-    docs/*.html|docs/admin-product-brand.md) printf '%s\n' "html_docs" ;;
+    docs/*.html|docs/admin-product-brand.md|docs/action-feedback.md) printf '%s\n' "html_docs" ;;
     ai/*) printf '%s\n' "ai_contract" ;;
     *) printf '%s\n' "root_docs" ;;
   esac
@@ -69,7 +69,7 @@ content_type_for() {
       printf '%s\n' "primitive" ;;
     INTEGRATION.md|packages/webblocks/INTEGRATION.md)
       printf '%s\n' "integration" ;;
-    docs/admin-product-brand.md)
+    docs/admin-product-brand.md|docs/action-feedback.md)
       printf '%s\n' "brand_standard" ;;
     packages/webblocks/src/css/*)
       printf '%s\n' "source_css" ;;
@@ -94,7 +94,7 @@ priority_for() {
     INTEGRATION.md) printf '%s\n' "4" ;;
     PATTERNS.md) printf '%s\n' "5" ;;
     PRIMITIVES.md) printf '%s\n' "6" ;;
-    docs/*.html|docs/admin-product-brand.md) printf '%s\n' "7" ;;
+    docs/*.html|docs/admin-product-brand.md|docs/action-feedback.md) printf '%s\n' "7" ;;
     ai/*.md|ai/knowledge-map.json) printf '%s\n' "8" ;;
     *) printf '%s\n' "9" ;;
   esac
@@ -480,6 +480,7 @@ find docs -maxdepth 1 -type f -name '*.html' | sort | while IFS= read -r file; d
   add_file "$file"
 done
 add_file "docs/admin-product-brand.md"
+add_file "docs/action-feedback.md"
 for file in ai/README.md ai/contract.md ai/webblocks-ui-expert.md ai/downstream-usage-rules.md ai/review-checklist.md ai/forbidden-patterns.md ai/response-formats.md ai/examples.md ai/downstream-agent-block.md; do
   add_file "$file"
 done

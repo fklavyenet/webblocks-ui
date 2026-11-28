@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * WebBlocks UI v2.41.0 (https://webblocksui.com/)
+ * WebBlocks UI v2.42.0 (https://webblocksui.com/)
  * Copyright 2026 WebBlocks UI
  * Licensed under MIT
  */
@@ -1939,6 +1939,14 @@ animation: wb-btn-busy-spin 0.6s linear infinite;
 .wb-btn.is-busy::before {
     animation-duration: 1.6s;
   }
+}
+.wb-btn.is-busy.wb-action-feedback-icon::before { content: none; }
+.wb-action-icon.is-busy,
+.wb-action-btn.is-busy,
+.wb-dropdown-item.is-busy { cursor: progress; }
+.wb-action-feedback-icon > .wb-spinner {
+width: var(--wb-icon-size, 1.125rem);
+height: var(--wb-icon-size, 1.125rem);
 }
 .wb-badge {
 display: inline-flex;

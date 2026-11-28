@@ -617,3 +617,9 @@ Related radio controls use `fieldset.wb-fieldset` with a first-child `legend`.
 Every input/select/textarea needs its own label; placeholders and names on a
 surrounding search region or dialog do not replace that label. For input groups,
 use a separate `label[for]` and matching control id, not a div inside a label.
+
+## Action feedback
+
+`WBActionFeedback` composes busy buttons, compact spinners, native progress and
+overlay guards. It owns one transient request registry, not transport or durable
+job results. See [Action Feedback](docs/action-feedback.md).

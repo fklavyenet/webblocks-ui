@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Action feedback tests — WebBlocks UI</title><link rel="stylesheet" href="../dist/webblocks-ui.css"></head>
+<body><main class="wb-container wb-container-md wb-stack wb-stack-4 wb-py-6">
+<h1>WebBlocks Action Feedback</h1><p id="summary" role="status">Running checks.</p>
+<ul id="failures" class="wb-marker-list"></ul><div id="fixture"></div>
+<a href="?bundle=source">Test source</a><a href="?bundle=dist">Test dist</a>
+</main><script>
+(async function () {
+  'use strict';
+  var checks = 0, failures = document.getElementById('failures');
+  var fixture = document.getElementById('fixture');
+  var bundle = new URLSearchParams(location.search).get('bundle') || 'dist';
+  function check(value, label) {
+    checks++;
+    if (!value) { var li = document.createElement('li'); li.textContent = label; failures.append(li); }
+  }
+  function load(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script'); s.src = src + '?fixture=' + Date.now();
+      s.onload = resolve; s.onerror = reject; document.head.append(s);
+    });
+  }
+  function wait() { return new Promise(function (resolve) { setTimeout(resolve, 20); }); }
+  function make(extra) {
+    var wrapper = document.createElement('section'); wrapper.className = 'wb-card';
+    wrapper.innerHTML = '<div class="wb-card-body"><form method="post" data-wb-action-feedback data-wb-action-label="Saving…" ' + (extra || '') + '>' +
+      '<input name="title" value="Synthetic"><input name="_method" value="PATCH" type="hidden">' +
+      '<input name="excluded" value="disabled" disabled><button type="submit" name="intent" value="save" class="wb-btn"><span>Save</span></button>' +
+      '<button type="submit" class="wb-btn" aria-disabled="false">Alternate</button></form></div>';
+    fixture.append(wrapper); return wrapper.querySelector('form');
+  }
+  function submit(form, button) {
+    var e = new SubmitEvent('submit', { bubbles: true, cancelable: true, submitter: button || null });
+    form.dispatchEvent(e); return e;
+  }
+  function click(element, extras) {
+    var e = new MouseEvent('click', Object.assign({ bubbles: true, cancelable: true, button: 0 }, extras));
+    element.dispatchEvent(e); return e;
+  }
+  try {
+    if (bundle === 'source') {
+      for (var path of ['utils/storage', 'utils/dom', 'utils/overlay', 'modal', 'drawer', 'action-feedback', 'busy-submit']) await load('../src/js/' + path + '.js');
+    } else await load('../dist/webblocks-ui.js');
+    check(Boolean(window.WBActionFeedback && window.WBBusySubmit), 'Public APIs available');
+    var api = WBActionFeedback;
+    var form = make(), button = form.querySelector('button'), alternate = form.querySelectorAll('button')[1];
+    var child = button.firstChild;
+    var finish = api.begin(form, button, { label: 'Working…', progress: true });
+    check(Boolean(finish) && api.isPending(form) && api.isPending(button), 'Begin owns form/control');
+    check(button.classList.contains('is-busy') && button.textContent === 'Working…', 'Busy text and spinner state');
+    check(!button.disabled && !alternate.disabled && button.getAttribute('aria-disabled') === 'true', 'Successful controls stay enabled');
+    check(form.querySelector('[name="excluded"]').disabled, 'Preexisting disabled input stays disabled');
+    var values = new FormData(form, button);
+    check(values.get('title') === 'Synthetic' && values.get('intent') === 'save' && values.get('_method') === 'PATCH' && !values.has('excluded'), 'FormData preserves payload and selected action');
+    check(api.begin(form, button) === null, 'Duplicate begin rejected');
+    check(submit(form, button).defaultPrevented && submit(form).defaultPrevented, 'Repeat and implicit/Enter submission blocked');
+    check(click(alternate).defaultPrevented, 'Alternate submit button blocked');
+    await wait();
+    var status = form.parentElement.querySelector('[data-wb-action-status]');
+    check(status && !form.contains(status) && status.querySelector('[role="status"]').textContent === 'Working…', 'Connected live status outside aria-busy form');
+    check(status.querySelector('progress') && !status.querySelector('progress').hasAttribute('value'), 'Unknown progress is indeterminate');
+    finish(); finish();
+    check(!api.isPending(form) && button.firstChild === child && button.getAttribute('aria-label') === null, 'Idempotent cleanup restores nodes and label');
+    check(!form.hasAttribute('aria-busy') && alternate.getAttribute('aria-disabled') === 'false' && !status.isConnected, 'Cleanup restores ARIA and removes only generated status');
+
+    // Independent work remains possible, overlapping scopes are rejected.
+    var other = make();
+    var done1 = api.begin(form, button), done2 = api.begin(other, other.querySelector('button'));
+    check(Boolean(done1 && done2) && api.begin(fixture, null) === null, 'Independent work allowed, overlapping parent rejected');
+    done1(); done2();
+
+    var external = document.createElement('button'); external.type = 'submit'; external.className = 'wb-btn'; external.textContent = 'External';
+    form.id = 'external-form'; external.setAttribute('form', form.id); form.parentElement.append(external);
+    var first = submit(form, external);
+    check(!first.defaultPrevented && api.isPending(form) && external.getAttribute('aria-busy') === 'true', 'Native delegated external form control');
+    check(submit(form).defaultPrevented, 'Implicit submit cannot bypass external control lock');
+    window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+    check(!api.isPending(form) && external.textContent === 'External', 'BFCache restores native state');
+    form.setAttribute('data-wb-action-feedback', 'off');
+    submit(form, external);
+    check(!api.isPending(form), 'External control honors owning form opt-out');
+    form.setAttribute('data-wb-action-feedback', '');
+    var shell = form.parentElement; shell.setAttribute('data-wb-action-label', 'Processing…');
+    submit(form, external);
+    check(external.textContent === 'Saving…', 'External control uses owning form label before shell fallback');
+    window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+    form.parentElement.remove(); other.parentElement.remove();
+
+    var invalid = make(); var required = invalid.querySelector('input'); required.required = true; required.value = '';
+    invalid.requestSubmit();
+    check(!api.isPending(invalid), 'Native validation rejection does not acquire lock');
+    invalid.remove();
+    var canceled = make(); canceled.addEventListener('submit', function (e) { e.preventDefault(); });
+    submit(canceled, canceled.querySelector('button'));
+    check(!api.isPending(canceled), 'Feature-intercepted submit not automatically locked');
+    canceled.remove();
+    var late = make();
+    function cancelLate(e) { if (e.target === late) e.preventDefault(); }
+    window.addEventListener('submit', cancelLate);
+    submit(late, late.querySelector('button')); await wait();
+    check(!api.isPending(late), 'Later window cancellation restores state');
+    window.removeEventListener('submit', cancelLate); late.remove();
+
+    for (var attrs of ['method="get"', 'target="_blank"', 'data-wb-action-feedback="off"']) {
+      var excluded = make();
+      if (attrs.startsWith('method')) excluded.method = 'get';
+      else if (attrs.startsWith('target')) excluded.target = '_blank';
+      else excluded.setAttribute('data-wb-action-feedback', 'off');
+      submit(excluded, excluded.querySelector('button'));
+      check(!api.isPending(excluded), 'Automatic exclusion ' + attrs); excluded.remove();
+    }
+    var override = make(); var overrideButton = override.querySelector('button');
+    overrideButton.setAttribute('formmethod', 'get'); submit(override, overrideButton);
+    check(!api.isPending(override), 'Submitter method override respected');
+    overrideButton.setAttribute('formmethod', 'post'); overrideButton.setAttribute('formtarget', '_blank'); submit(override, overrideButton);
+    check(!api.isPending(override), 'Submitter target override respected'); override.remove();
+
+    var legacy = make(); legacy.removeAttribute('data-wb-action-feedback'); legacy.removeAttribute('data-wb-action-label');
+    var legacyButton = legacy.querySelector('button'); legacyButton.setAttribute('data-wb-busy', ''); legacyButton.setAttribute('data-wb-busy-label', 'Legacy saving…');
+    WBBusySubmit.bind(); WBBusySubmit.bind(); submit(legacy, legacyButton);
+    check(api.isPending(legacy) && legacyButton.textContent === 'Legacy saving…' && !legacyButton.disabled, 'Legacy hooks use one payload-preserving registry');
+    check(legacyButton.getAttribute('data-wb-busy-bound') === 'true', 'Legacy binding API retained');
+    window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true })); legacy.remove();
+
+    var iconForm = make(), icon = iconForm.querySelector('button'); icon.className = 'wb-btn wb-btn-icon'; icon.innerHTML = '<i class="wb-icon wb-icon-save" aria-hidden="true"></i>';
+    var width = icon.getBoundingClientRect().width;
+    var doneIcon = api.begin(iconForm, icon);
+    check(icon.querySelectorAll('.wb-spinner').length === 1 && icon.classList.contains('wb-action-feedback-icon'), 'Compact icon has exactly one real spinner');
+    check(Math.abs(width - icon.getBoundingClientRect().width) < 1 && getComputedStyle(icon, '::before').content === 'none', 'Icon dimensions retained and pseudo spinner suppressed');
+    doneIcon(); iconForm.remove();
+
+    var inputForm = make(), input = document.createElement('input'); input.type = 'submit'; input.name = 'input-intent'; input.value = 'original'; input.className = 'wb-btn'; inputForm.append(input);
+    var doneInput = api.begin(inputForm, input, { label: 'Sending…' });
+    check(input.value === 'original' && new FormData(inputForm, input).get('input-intent') === 'original', 'Input submitter value never replaced');
+    check(inputForm.parentElement.querySelector('[data-wb-action-status] .wb-spinner'), 'Input submitter has adjacent visible spinner'); doneInput(); inputForm.remove();
+
+    var shellOpt = document.createElement('section'); shellOpt.setAttribute('data-wb-action-feedback', ''); shellOpt.setAttribute('data-wb-action-label', 'Shell processing…'); fixture.append(shellOpt);
+    var shellForm = make(); shellForm.removeAttribute('data-wb-action-feedback'); shellForm.removeAttribute('data-wb-action-label'); shellOpt.append(shellForm);
+    submit(shellForm, shellForm.querySelector('button'));
+    check(api.isPending(shellForm) && shellForm.querySelector('button').textContent === 'Shell processing…', 'Shell opt-in and localized fallback cover injected forms');
+    window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true })); shellOpt.remove();
+    var drawer = document.createElement('div'); drawer.className = 'wb-drawer'; drawer.innerHTML = '<div class="wb-drawer-body"><button type="button">Run</button></div><button type="button" data-wb-dismiss="drawer">Close</button>'; fixture.append(drawer);
+    var drawerButton = drawer.querySelector('button'); var drawerDone = api.begin(drawer, drawerButton, { label: 'Running…' });
+    var drawerClose = new CustomEvent('wb:overlay:close-request', { bubbles: true, cancelable: true }); drawer.dispatchEvent(drawerClose);
+    check(drawerClose.defaultPrevented, 'Drawer shares close guard'); drawerDone();
+    var cancelableDone = api.begin(drawer, drawerButton, { label: 'Cancelable…', lockClose: false });
+    drawerClose = new CustomEvent('wb:overlay:close-request', { bubbles: true, cancelable: true }); drawer.dispatchEvent(drawerClose);
+    var cancelReached = false; drawer.querySelector('[data-wb-dismiss]').addEventListener('click', function () { cancelReached = true; });
+    click(drawer.querySelector('[data-wb-dismiss]'));
+    check(!drawerClose.defaultPrevented && cancelReached, 'Domain-cancellable work keeps dismissal policy'); cancelableDone(); drawer.remove();
+    await load('../src/js/action-feedback.js');
+    check(WBActionFeedback === api, 'Repeated runtime load retains one registry');
+
+    // Legacy/native overlays share the same guard and retain host progress.
+    for (var native of [false, true]) {
+      var modal = document.createElement(native ? 'dialog' : 'div'); modal.className = 'wb-modal'; modal.setAttribute('aria-label', 'Synthetic operation');
+      modal.innerHTML = '<div class="wb-modal-dialog"><div class="wb-modal-body"><p id="host-stage">Verifying package · 0:12</p></div><button type="button" data-wb-dismiss="modal">Cancel</button></div>';
+      fixture.append(modal); WBModal.open(modal); await wait();
+      var modalForm = make(); modal.querySelector('.wb-modal-body').append(modalForm);
+      var modalButton = modalForm.querySelector('button'); var doneModal = api.begin(modalForm, modalButton);
+      var close = new CustomEvent('wb:overlay:close-request', { bubbles: true, cancelable: true }); modal.dispatchEvent(close);
+      check(close.defaultPrevented && click(modal.querySelector('[data-wb-dismiss]')).defaultPrevented, (native ? 'Native' : 'Legacy') + ' modal close and cancel guarded');
+      var feedback = modal.querySelector('[data-wb-action-status]');
+      check(feedback && !feedback.closest('[aria-busy="true"]') && modal.contains(feedback), 'Status stays in overlay outside busy form');
+      check(modal.querySelector('#host-stage').textContent === 'Verifying package · 0:12', 'Detailed stage/time retained');
+      doneModal();
+      var detailed = api.begin(modalForm, modalButton, { feedback: false });
+      check(!modal.querySelector('[data-wb-action-status]') && api.isPending(modal), 'Detailed updater opts out of generic progress without losing guard');
+      detailed(); WBModal.close(modal); await wait(); modal.remove();
+    }
+
+    var asyncForm = make(); var asyncDone = api.begin(asyncForm, asyncForm.querySelector('button'));
+    window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+    check(api.isPending(asyncForm), 'BFCache does not release in-page asynchronous work'); asyncDone(); asyncForm.remove();
+    var link = document.createElement('a'); link.className = 'wb-btn'; link.href = 'action-feedback.html?check=synthetic'; link.textContent = 'Check for updates'; link.setAttribute('data-wb-action-link', ''); link.setAttribute('data-wb-action-label', 'Checking…'); fixture.append(link);
+    function cancelLink(e) { if (e.target === link) { check(api.isPending(link), 'Explicit GET check link enters shared pending state'); e.preventDefault(); } }
+    window.addEventListener('click', cancelLink); click(link); await wait();
+    check(!api.isPending(link) && !link.hasAttribute('aria-busy'), 'Canceled navigation restores link ARIA'); window.removeEventListener('click', cancelLink);
+    var linkHostReached = false;
+    function stopNavigation(e) { if (e.target === link) { linkHostReached = true; e.preventDefault(); } }
+    // This listener runs after the runtime but allows inspection before cleanup.
+    function excludedLink(e) { if (e.target === link) { check(!api.isPending(link), 'Modifier/download/alternate-target link excluded'); e.preventDefault(); } }
+    window.addEventListener('click', excludedLink);
+    click(link, { ctrlKey: true }); link.setAttribute('download', ''); click(link); link.removeAttribute('download'); link.target = '_blank'; click(link);
+    window.removeEventListener('click', excludedLink);
+    link.target = '_self'; var pendingLink = api.begin(link, link, { feedback: false });
+    window.addEventListener('click', stopNavigation);
+    var modifier = click(link, { ctrlKey: true });
+    // The explicit late cancellation is the only preventDefault; it still reaches
+    // the host listener, unlike a duplicate primary click captured by the guard.
+    check(api.isPending(link) && modifier.defaultPrevented && linkHostReached, 'Pending link can retain a distinct modifier navigation');
+    window.removeEventListener('click', stopNavigation); pendingLink();
+    check(!link.hasAttribute('aria-busy'), 'Direct control surface restores original busy state'); link.remove();
+
+    // Exercise actual browser serialization to a local synthetic endpoint.
+    var frame = document.createElement('iframe'); frame.hidden = true; fixture.append(frame);
+    var received = new Promise(function (resolve, reject) {
+      var timeout = setTimeout(function () { window.removeEventListener('message', accept); reject(new Error('Payload response timeout; serve this fixture with PHP.')); }, 6000);
+      function accept(e) { if (e.source !== frame.contentWindow || e.origin !== location.origin || e.data.fixture !== 'action-feedback') return;
+        clearTimeout(timeout); window.removeEventListener('message', accept); resolve(e.data); }
+      window.addEventListener('message', accept);
+    });
+    var endpoint = new URL('action-feedback-post.php', location.href).href;
+    var runtime = new URL(bundle === 'source' ? '../src/js/action-feedback.js' : '../dist/webblocks-ui.js', location.href).href;
+    frame.srcdoc = '<!doctype html><form method="post" enctype="multipart/form-data" action="' + endpoint + '" data-wb-action-feedback data-wb-action-label="Sending…">' +
+      '<input name="title" value="Synthetic"><input name="_method" value="PATCH" type="hidden"><input name="excluded" value="disabled" disabled>' +
+      '<input type="file" name="artifact"><button type="submit" name="intent" value="save">Send</button></form>' +
+      '<script src="' + runtime + '"><\/script><script>' +
+      'var f=document.querySelector("form"),t=new DataTransfer();t.items.add(new File(["synthetic fixture"],"fixture.txt",{type:"text/plain"}));' +
+      'f.querySelector("[type=file]").files=t.files;f.requestSubmit(f.querySelector("button"));<\/script>';
+    var actual = await received;
+    check(actual.title === 'Synthetic' && actual.intent === 'save' && actual.method === 'PATCH' && actual.excluded === false, 'Actual first accepted native POST retains fields, submitter and method override');
+    check(actual.file === 'fixture.txt' && actual.size === 17, 'Actual native multipart POST retains file');
+    frame.remove();
+  } catch (error) { check(false, error.stack || String(error)); }
+  document.getElementById('summary').textContent = checks + ' checks, ' + failures.children.length + ' failures (' + bundle + ').';
+  document.documentElement.setAttribute('data-test-result', failures.children.length ? 'fail' : 'pass');
+}());
+</script></body></html>

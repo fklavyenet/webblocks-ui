@@ -154,3 +154,11 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] New frames support direct images, image links and picture sources; captions remain outside the cropped viewport. Overlay content sits inside the viewport, outside any image link.
 - [ ] Horizontal and overlay cards work as direct children of shipped grids, keep captions visible, and do not overflow with long content. Horizontal start/end stack media first at 640 px and follow RTL direction.
 - [ ] Whole-card links contain no nested media links or viewer controls. Missing/hidden media preserves the card content.
+
+## WebBlocks Action Feedback
+
+- [ ] Product-owned actions use the released `WBActionFeedback` registry with localized labels, explicit scopes/exclusions and no copied generic JS/Blade feedback mechanism.
+- [ ] Validation/cancellation, double click/Enter, successful-control and file/submitter payloads, external controls, original disabled/ARIA states, icon dimensions and source/dist are verified.
+- [ ] Native/legacy overlay close guards, connected live status outside busy subtrees, appropriate async cleanup, independent surfaces and BFCache behavior are verified.
+- [ ] Update checks stay in scope with persistent inline results; detailed update modals retain stages, elapsed time, logs/results and recovery without a second generic progress UI.
+- [ ] GET filters, alternate targets and downloads retain native behavior; acceptance or disconnection never means queued-job completion. No timer unlock, automatic mutation retry or bypass of server guards.

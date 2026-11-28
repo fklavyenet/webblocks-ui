@@ -301,3 +301,26 @@ Tabs pair `[data-wb-tab]` controls with panels by id. Hosts may render the initi
   real focus with arrow keys, retains native activation and returns typing to
   search. Do not erase control semantics with listbox/option roles or install a
   parallel keyboard handler. Custom search HTML follows the same anatomy.
+
+## WebBlocks Action Feedback
+
+Use the shared `WBActionFeedback` runtime for processing feedback and repeat
+activation protection on product-owned action flows. Opt in owning forms/shells
+with `data-wb-action-feedback` and localized `data-wb-action-label`; exclude
+specialized native handling with `off`. Existing `data-wb-busy` and
+`WBBusySubmit.bind()` use the same registry. Do not copy generic JS locks or
+feedback Blade templates into each product.
+
+Preserve validation/confirmation, successful controls and submitter payloads,
+external form buttons, icon dimensions, modal close guards and native Back
+restoration. Asynchronous callers use `begin`/`isPending` and the returned
+cleanup callback with their actual lifecycle. HTTP acceptance/disconnection is
+not job completion; no timer unlock or automatic mutation retry.
+
+Update checks are included, with explicit `data-wb-action-link` opt-in for GET
+links and persistent inline `wb-alert` results. Preserve detailed install modals,
+stages, elapsed time, logs and recovery; Publisher Client owns their progress.
+Use explicit exclusions/narrow adapters rather than duplicate generic bars.
+See `docs/action-feedback.md` and package INTEGRATION for API/options, host
+ownership, compatibility and acceptance. Never treat this API as shipped in an
+older pin or pin a nonexistent release.

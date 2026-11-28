@@ -6,6 +6,16 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.42.0] — 2026-11-28
+
+### Added
+- Shared `WBActionFeedback` request lifecycle with localized generated feedback, repeat click/submit protection, external form controls and payload-preserving guards.
+- Native/legacy modal and drawer close guards, asynchronous cleanup, BFCache restoration and explicit update-check link support without replacing detailed install stages/time/recovery.
+- A canonical Action Feedback contract and source/dist browser regressions including actual multipart submitter payloads.
+
+### Fixed
+- Route legacy `WBBusySubmit` hooks through the shared registry, preserve submitter name/value and restore canceled/back-navigation state instead of disabling successful controls during serialization.
+
 ## [2.41.0] — 2026-11-28
 
 ### Added
