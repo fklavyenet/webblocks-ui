@@ -366,3 +366,7 @@ Before finishing downstream UI work, verify:
   real focus with arrow keys, retains native activation and returns typing to
   search. Do not erase control semantics with listbox/option roles or install a
   parallel keyboard handler. Custom search HTML follows the same anatomy.
+
+## Opt-in card media
+
+New framed card images use `wb-card-media--frame` and a direct `wb-card-media-viewport`; keep captions outside the viewport. Fit, aspect, surface and thumbnail size are independent. Use `wb-card--media-start`, `wb-card--media-end` or `wb-card--media-overlay` with `wb-card-content` only on explicitly enabled new layouts. Preserve all legacy card/media anatomy and aspect-auto behavior. Never nest an interactive media link or viewer trigger in a linked whole card. See package INTEGRATION.md for the complete API.

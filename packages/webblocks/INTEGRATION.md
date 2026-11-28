@@ -443,6 +443,48 @@ Notes:
 - fixed aspect modifiers switch the frame to `aspect-ratio` sizing and let the image fill the frame box with `object-fit: contain`
 - use `wb-gallery` instead when the job is an equal-tile image set with shared viewer behavior
 
+### Opt-in card media frames
+
+Existing `wb-card-media` markup, `--aspect-auto`, alignment and default contain
+behavior are unchanged. New media uses `figure.wb-card-media.wb-card-media--frame`
+with a direct `.wb-card-media-viewport` containing an image, picture, or link
+wrapping the image/picture. An optional `figcaption` follows the viewport and
+is never cropped. Image links retain native accessible names.
+
+Modifiers on the frame:
+
+- `--fit-contain` (default) / `--fit-cover`.
+- Existing `--aspect-square` (1:1), `--aspect-wide` (16:9), `--aspect-portrait`
+  (4:5), plus `--aspect-16-10` and `--aspect-natural`. Natural is distinct from
+  historical aspect-auto sizing; it follows the image without height limits.
+- `--size-sm`, `--size-md`, `--size-lg`: 40, 56, 96 px square thumbnails.
+- `--surface-muted`, `--surface-dark`: optional backgrounds for letterboxing.
+
+Use DOM order for top, header-first and bottom caps. Put a frame in the existing
+body for inset media, or in header/footer for a thumbnail. Do not add padding
+twice. Horizontal cards use one direct frame followed by
+`.wb-card-content` grouping existing header/body/footer regions. Root modifiers
+are `wb-card--media-start`, `wb-card--media-end`, `wb-card--media-overlay`.
+Horizontal cards stack media first at 640 px and respect document direction.
+Overlay cards place `wb-card-content` inside the media viewport, after the
+image/link/picture; the caption remains outside that viewport and is never
+covered. Do not put content inside an image link.
+
+```html
+<article class="wb-card wb-card--media-start">
+  <figure class="wb-card-media wb-card-media--frame wb-card-media--aspect-wide">
+    <div class="wb-card-media-viewport"><img src="cover.jpg" alt="Book cover"></div>
+  </figure>
+  <div class="wb-card-content"><div class="wb-card-body">Card content</div></div>
+</article>
+```
+
+Validated percentages may set `--wb-card-media-focus-x`,
+`--wb-card-media-focus-y` on a frame and `--wb-card-media-width` on the card
+(15–85%). Natural images do not crop, regardless of fit. Layout needs no
+JavaScript; use the existing gallery viewer for optional enlargement. A linked
+whole card must not contain another link, button, or viewer trigger.
+
 ### Alerts and Callouts
 
 ```html

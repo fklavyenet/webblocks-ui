@@ -6,6 +6,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.41.0] — 2026-11-28
+
+### Added
+- Opt-in card media viewports with independent fit, aspect, surface, thumbnail size and focal position, preserving all historical media sizing.
+- Responsive start/end media cards and content-over-image layouts with uncropped captions, linked/picture image support, and grid composition.
+- English, German and Turkish examples and shared integration/review guidance.
+
 ## [2.40.2] — 2026-11-28
 
 ### Fixed

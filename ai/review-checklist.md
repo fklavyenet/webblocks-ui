@@ -147,3 +147,10 @@ Use this checklist after downstream UI changes that use WebBlocks UI.
 - [ ] Search clears selection and filters whole list rows; async replacement
   restores focus to search before removing a focused result. Native/legacy
   roots, custom HTML and nested dialogs are covered with source and dist.
+
+## Opt-in card media
+
+- [ ] Legacy card/media markup retains its original computed styles and aspect-auto limits.
+- [ ] New frames support direct images, image links and picture sources; captions remain outside the cropped viewport. Overlay content sits inside the viewport, outside any image link.
+- [ ] Horizontal and overlay cards work as direct children of shipped grids, keep captions visible, and do not overflow with long content. Horizontal start/end stack media first at 640 px and follow RTL direction.
+- [ ] Whole-card links contain no nested media links or viewer controls. Missing/hidden media preserves the card content.

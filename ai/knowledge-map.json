@@ -113,6 +113,10 @@
       {
         "path": "docs/native-overlays.html",
         "description": "Live before/after HTML and behavior comparisons for legacy/native modal, drawer, popover and dropdown."
+      },
+      {
+        "path": "docs/card-media.html",
+        "description": "Opt-in card media frames, natural/ratio sizing, thumbnail sizes, horizontal and overlay layouts with legacy compatibility."
       }
     ],
     "ai_contract": [
